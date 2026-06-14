@@ -8,7 +8,19 @@
 
 **Tech Stack:** Astro 6.4.x · Tailwind CSS 4.3.x (`@tailwindcss/vite`) · `@astrojs/mdx` · `@astrojs/sitemap` · API Fonts native d'Astro (self-host Fraunces + Inter) · Web3Forms (formulaire) · Plausible (analytics) · Calendly (RDV) · Cloudflare Pages (hébergement) · Node 22 LTS.
 
-> 📎 Référence d'implémentation détaillée (snippets vérifiés contre la doc officielle le 2026-06-14) : [`docs/superpowers/_research-reference.md`](../_research-reference.md). En cas de doute sur une API/version, c'est la source de vérité.
+> 📎 Référence d'implémentation détaillée (snippets vérifiés contre la doc officielle le 2026-06-14) : [`docs/superpowers/_research-reference.md`](../_research-reference.md). **En cas de divergence, CE PLAN prévaut** sur la référence (voir la section « Corrections (post-revue) » en fin de référence). La référence sert d'appui sur les API/versions Astro.
+
+---
+
+## Conventions (corrections post-revue 2026-06-14)
+
+Ces conventions résolvent les problèmes remontés par la revue adversariale. Elles s'appliquent à **tout** le plan.
+
+1. **Trailing slash — `trailingSlash: 'always'`.** Cloudflare Pages sert les pages `format:'directory'` AVEC slash final (308 sinon). Donc **toutes** les URLs internes, canonical, `og:url`, JSON-LD et sitemap portent un **slash final** : `/contact/`, `/services/audit-ia/`, `/blog/<id>/`. Dans chaque snippet, les `href` internes et les `new URL(...)` doivent finir par `/`. Une porte `curl -I` en Phase 6 vérifie que la forme canonique répond **200** (pas 308).
+2. **Pages `noindex` exclues du sitemap.** `/merci/`, `/mentions-legales/`, `/confidentialite/` sont `noindex` ET filtrées du sitemap (jamais d'URL noindex dans le sitemap).
+3. **Le PLAN prévaut sur la référence** pour : la palette (HEX Direction B), l'emplacement du logo (`public/logo.png` → `/logo.png`), l'absence de `BlogLayout` (tout passe par `BaseLayout`).
+4. **Répertoire de travail.** Le projet Astro est dans `app/`. Les commandes `npm …` s'exécutent **depuis `app/`** ; les commandes `git …` **depuis la racine du repo** (`CLAUDEPARTNERS/`). Chaque bloc le suppose ; ajouter un `cd` si le cwd a été réinitialisé.
+5. **Redirections au niveau domaine** (www→apex, `*.pages.dev`→apex) : **NON** gérées par `_redirects` (non supporté par Cloudflare Pages) → **Cloudflare Redirect Rules** (Phase 6, Task 6.3).
 
 ---
 
@@ -42,9 +54,9 @@ Ces valeurs viennent de l'extérieur. Le site **build et fonctionne avec les pla
 ## Carte des fichiers
 
 ```
-claudepartners/
+app/                                 # racine du projet Astro (sous le repo CLAUDEPARTNERS/)
 ├─ public/
-│  ├─ favicon.svg · og-default.jpg · logo.png (images/)
+│  ├─ favicon.svg · og-default.jpg · logo.png
 │  ├─ robots.txt · _headers · _redirects
 ├─ src/
 │  ├─ assets/                      # images optimisées (astro:assets)
@@ -188,7 +200,7 @@ import { remarkReadingTime } from './remark-reading-time.mjs';
 export default defineConfig({
   site: 'https://claudepartners.fr',          // PRÉREQUIS SEO #1
   output: 'static',                            // défaut ; aucun adapter Cloudflare
-  trailingSlash: 'never',
+  trailingSlash: 'always',                     // cohérent avec build.format:'directory' + le 308 par défaut de Cloudflare Pages
   build: { format: 'directory', assets: '_astro' },
 
   fonts: [
@@ -219,12 +231,14 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/merci') && !page.includes('/404'),
+      // Exclut toutes les pages noindex — jamais d'URL noindex dans le sitemap.
+      filter: (page) => !['/merci', '/mentions-legales', '/confidentialite'].some((p) => page.includes(p)),
       serialize(item) {
         if (item.url === 'https://claudepartners.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;
         } else if (/\/blog\//.test(item.url)) {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.7;
+          item.lastmod = new Date().toISOString();
         } else {
           item.changefreq = ChangeFreqEnum.MONTHLY; item.priority = 0.5;
         }
@@ -381,17 +395,25 @@ git commit -m "feat: BaseLayout minimal + page de test design system"
 ```astro
 ---
 interface Props {
-  title: string; description: string; image?: string;
+  title: string; description: string; image?: string; imageAlt?: string;
   canonical?: string; type?: 'website' | 'article'; noindex?: boolean;
 }
-const { title, description, image = '/og-default.jpg', canonical, type = 'website', noindex = false } = Astro.props;
-const canonicalURL = new URL(canonical ?? Astro.url.pathname, Astro.site);
+const {
+  title, description, image = '/og-default.jpg',
+  imageAlt = 'Claude Partners — IA et automatisation pour organismes de formation',
+  canonical, type = 'website', noindex = false,
+} = Astro.props;
+// trailingSlash:'always' => Astro.url.pathname porte déjà le slash final ; on garantit la cohérence.
+const rawPath = canonical ?? Astro.url.pathname;
+const path = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
+const canonicalURL = new URL(path, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
 const fullTitle = title === 'Claude Partners' ? title : `${title} — Claude Partners`;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
@@ -402,13 +424,14 @@ const fullTitle = title === 'Claude Partners' ? title : `${title} — Claude Par
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={socialImageURL} />
-<meta property="og:image:alt" content={fullTitle} />
+<meta property="og:image:alt" content={imageAlt} />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:site_name" content="Claude Partners" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:image:alt" content={imageAlt} />
 ```
 
 - [ ] **Step 2 : Commit**
@@ -430,11 +453,26 @@ git add -A && git commit -m "feat: composant BaseHead (SEO meta, canonical, OG, 
 interface Props { schema: Record<string, unknown> | Record<string, unknown>[]; }
 const { schema } = Astro.props;
 const blocks = Array.isArray(schema) ? schema : [schema];
+// Échappe `<` pour qu'un éventuel `</script>` dans une valeur ne casse pas le bloc JSON-LD.
+const json = (b: Record<string, unknown>) => JSON.stringify(b).replace(/</g, '\\u003c');
 ---
-{blocks.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
+{blocks.map((b) => <script type="application/ld+json" set:html={json(b)} />)}
 ```
 
-- [ ] **Step 2 : Enrichir BaseLayout (BaseHead + Plausible + JSON-LD global)**
+- [ ] **Step 2 : Créer les stubs Header/Footer AVANT le BaseLayout (qui les importe)**
+
+> Ordre important : le BaseLayout enrichi (Step 3) importe `Header`/`Footer`. On crée donc ces stubs d'abord pour qu'un build/dev intermédiaire reste vert. Versions définitives en Phase 4 (Task 4.1).
+
+Create `app/src/components/Header.astro` :
+```astro
+<header class="border-b border-sand"><nav class="mx-auto max-w-5xl px-4 py-4">Claude Partners</nav></header>
+```
+Create `app/src/components/Footer.astro` :
+```astro
+<footer class="border-t border-sand"><div class="mx-auto max-w-5xl px-4 py-8 text-sm text-muted">© Claude Partners</div></footer>
+```
+
+- [ ] **Step 3 : Enrichir BaseLayout (BaseHead + Plausible + JSON-LD global)**
 
 Remplacer `app/src/layouts/BaseLayout.astro` :
 ```astro
@@ -447,21 +485,23 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
-  title: string; description: string; image?: string;
+  title: string; description: string; image?: string; imageAlt?: string;
   type?: 'website' | 'article'; noindex?: boolean;
   pageSchema?: Record<string, unknown>[];
 }
-const { title, description, image, type, noindex, pageSchema = [] } = Astro.props;
+const { title, description, image, imageAlt, type, noindex, pageSchema = [] } = Astro.props;
 const site = Astro.site!.toString().replace(/\/$/, '');
 
 const organization = {
-  '@context': 'https://schema.org', '@type': 'ProfessionalService',
+  '@context': 'https://schema.org', '@type': 'Organization',
   '@id': `${site}/#organization`, name: 'Claude Partners', url: site,
-  logo: `${site}/logo.png`,
+  // logo en ImageObject = attendu par le rich result Article (publisher.logo).
+  logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 },
   description: "Claude Partners aide les organismes de formation français à intégrer l'IA et automatiser leurs process.",
   areaServed: { '@type': 'Country', name: 'France' },
   email: 'contact@claudepartners.fr',
-  sameAs: ['https://www.linkedin.com/company/claude-partners'],
+  // sameAs: ajouter UNIQUEMENT des profils réels existants, ex. LinkedIn (sinon laisser vide).
+  // sameAs: ['https://www.linkedin.com/company/<page-reelle>'],
 };
 const website = {
   '@context': 'https://schema.org', '@type': 'WebSite',
@@ -472,7 +512,7 @@ const website = {
 <!doctype html>
 <html lang="fr">
   <head>
-    <BaseHead title={title} description={description} image={image} type={type} noindex={noindex} />
+    <BaseHead title={title} description={description} image={image} imageAlt={imageAlt} type={type} noindex={noindex} />
     <Font cssVariable="--font-fraunces" preload />
     <Font cssVariable="--font-inter" preload />
     <script defer data-domain="claudepartners.fr" src="https://plausible.io/js/script.js"></script>
@@ -485,19 +525,6 @@ const website = {
     <Footer />
   </body>
 </html>
-```
-
-> ⚠️ `Header`/`Footer` sont créés en Phase 4 (Task 4.1). Pour garder le build vert d'ici là, créer immédiatement des stubs (Step 3).
-
-- [ ] **Step 3 : Stubs Header/Footer (provisoires, remplacés en Phase 4)**
-
-Create `app/src/components/Header.astro` :
-```astro
-<header class="border-b border-sand"><nav class="mx-auto max-w-5xl px-4 py-4">Claude Partners</nav></header>
-```
-Create `app/src/components/Footer.astro` :
-```astro
-<footer class="border-t border-sand"><div class="mx-auto max-w-5xl px-4 py-8 text-sm text-muted">© Claude Partners</div></footer>
 ```
 
 - [ ] **Step 4 : Mettre à jour la page de test pour utiliser le nouveau layout**
@@ -523,10 +550,10 @@ Expected : 0 erreur.
 git add -A && git commit -m "feat: JSON-LD global (Organization+WebSite), Plausible, BaseLayout complet"
 ```
 
-### Task 2.3 : robots.txt + image OG par défaut
+### Task 2.3 : robots.txt + favicon + assets + page 404
 
 **Files:**
-- Create: `app/public/robots.txt`, `app/public/og-default.jpg` (placeholder), `app/public/logo.png` (placeholder)
+- Create: `app/public/robots.txt`, `app/public/favicon.svg`, `app/public/og-default.jpg`, `app/public/logo.png`, `app/src/pages/404.astro`
 
 - [ ] **Step 1 : Créer robots.txt**
 
@@ -538,19 +565,39 @@ Allow: /
 Sitemap: https://claudepartners.fr/sitemap-index.xml
 ```
 
-- [ ] **Step 2 : Placer des images placeholder**
+- [ ] **Step 2 : Favicon + images**
 
-Ajouter `app/public/og-default.jpg` (1200×630, visuel Direction B) et `app/public/logo.png`. Placeholders acceptables jusqu'à la livraison du logo/visuel définitif.
+Create `app/public/favicon.svg` (monogramme « CP » sur fond terracotta — placeholder SVG valide) :
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#CC785C"/><text x="32" y="42" font-family="Georgia, serif" font-size="30" fill="#FBF7F1" text-anchor="middle">CP</text></svg>
+```
+Ajouter `app/public/og-default.jpg` (1200×630, visuel Direction B) et `app/public/logo.png` (carré, ~512×512). **Doivent être de vrais fichiers image décodables** (pas des fichiers vides). Placeholders acceptables jusqu'à la livraison des visuels définitifs.
 
-- [ ] **Step 3 : Vérifier le sitemap**
+- [ ] **Step 3 : Page 404**
+
+Create `app/src/pages/404.astro` :
+```astro
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page introuvable" description="Cette page n'existe pas." noindex={true}>
+  <section class="mx-auto max-w-2xl px-4 py-24 text-center">
+    <h1 class="font-serif text-5xl font-semibold text-brand-700">404</h1>
+    <p class="mt-4 text-muted">Cette page n'existe pas (ou plus).</p>
+    <a href="/" class="mt-8 inline-block rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white hover:bg-brand-600">Retour à l'accueil</a>
+  </section>
+</BaseLayout>
+```
+
+- [ ] **Step 4 : Vérifier le sitemap et les assets**
 
 Run : `npm run build`
-Expected : `dist/sitemap-index.xml` et `dist/sitemap-0.xml` présents ; `dist/robots.txt` copié tel quel.
+Expected : `dist/sitemap-index.xml` et `dist/sitemap-0.xml` présents ; `dist/robots.txt`, `dist/favicon.svg`, `dist/404.html` générés. Les pages noindex (`/merci/`, légales) **absentes** du sitemap.
 
-- [ ] **Step 4 : Commit**
+- [ ] **Step 5 : Commit**
 
 ```bash
-git add -A && git commit -m "feat: robots.txt + assets OG/logo placeholder"
+git add -A && git commit -m "feat: robots.txt, favicon, assets, page 404"
 ```
 
 ---
@@ -619,9 +666,10 @@ git add -A && git commit -m "feat: collection blog (Content Layer) + plugin typo
 - Create: `app/src/content/blog/integrer-ia-organisme-formation.mdx`
 - Create: `app/src/content/blog/images/ia-of-cover.jpg`
 
-- [ ] **Step 1 : Ajouter une image de couverture**
+- [ ] **Step 1 : Ajouter une image de couverture (vrai fichier binaire)**
 
-Placer `app/src/content/blog/images/ia-of-cover.jpg` (1200×630). Placeholder acceptable.
+Placer `app/src/content/blog/images/ia-of-cover.jpg` (1200×630).
+⚠️ Le helper `image()` du schéma **valide le fichier au build** : il doit être un **JPEG/PNG/WebP décodable**, pas un fichier vide (sinon `npm run build` échoue). Si pas de visuel définitif, télécharger un placeholder réel (ex. via la skill de génération d'images, ou un placeholder libre de droits) — ne jamais créer un `.jpg` de 0 octet.
 
 - [ ] **Step 2 : Créer l'article**
 
@@ -693,7 +741,7 @@ const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
     <ul class="mt-10 grid gap-8 sm:grid-cols-2">
       {posts.map((post) => (
         <li class="overflow-hidden rounded-xl border border-sand bg-cream-50">
-          <a href={`/blog/${post.id}`} class="block">
+          <a href={`/blog/${post.id}/`} class="block">
             <Image src={post.data.image} alt={post.data.imageAlt} width={600} height={315} loading="lazy" class="aspect-[40/21] w-full object-cover" />
             <div class="p-5">
               <h2 class="font-serif text-xl font-medium">{post.data.title}</h2>
@@ -733,7 +781,7 @@ const site = Astro.site!;
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'BlogPosting',
   '@id': new URL(`/blog/${post.id}/#article`, site).href,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/blog/${post.id}`, site).href },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/blog/${post.id}/`, site).href },
   headline: title, description,
   image: [new URL(image.src, site).href],
   datePublished: pubDate.toISOString(),
@@ -792,9 +840,9 @@ Remplacer `app/src/components/Header.astro` :
 ```astro
 ---
 const links = [
-  { href: '/services', label: 'Services' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/a-propos', label: 'À propos' },
+  { href: '/services/', label: 'Services' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/a-propos/', label: 'À propos' },
 ];
 ---
 <header class="border-b border-sand bg-cream-50">
@@ -802,7 +850,7 @@ const links = [
     <a href="/" class="font-serif text-xl font-semibold text-ink">Claude Partners</a>
     <ul class="flex items-center gap-6 text-sm">
       {links.map((l) => <li><a href={l.href} class="text-muted hover:text-ink">{l.label}</a></li>)}
-      <li><a href="/contact" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white hover:bg-brand-600">Prendre RDV</a></li>
+      <li><a href="/contact/" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white hover:bg-brand-600">Prendre RDV</a></li>
     </ul>
   </nav>
 </header>
@@ -821,17 +869,17 @@ Remplacer `app/src/components/Footer.astro` :
     <div>
       <p class="font-medium text-ink">Navigation</p>
       <ul class="mt-2 space-y-1">
-        <li><a href="/services" class="hover:text-ink">Services</a></li>
-        <li><a href="/blog" class="hover:text-ink">Blog</a></li>
-        <li><a href="/a-propos" class="hover:text-ink">À propos</a></li>
-        <li><a href="/contact" class="hover:text-ink">Contact</a></li>
+        <li><a href="/services/" class="hover:text-ink">Services</a></li>
+        <li><a href="/blog/" class="hover:text-ink">Blog</a></li>
+        <li><a href="/a-propos/" class="hover:text-ink">À propos</a></li>
+        <li><a href="/contact/" class="hover:text-ink">Contact</a></li>
       </ul>
     </div>
     <div>
       <p class="font-medium text-ink">Légal</p>
       <ul class="mt-2 space-y-1">
-        <li><a href="/mentions-legales" class="hover:text-ink">Mentions légales</a></li>
-        <li><a href="/confidentialite" class="hover:text-ink">Confidentialité</a></li>
+        <li><a href="/mentions-legales/" class="hover:text-ink">Mentions légales</a></li>
+        <li><a href="/confidentialite/" class="hover:text-ink">Confidentialité</a></li>
       </ul>
     </div>
   </div>
@@ -859,7 +907,7 @@ Create `app/src/components/ContactForm.astro` (remplacer `PLACEHOLDER-WEB3FORMS-
 <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
   <input type="hidden" name="access_key" value="PLACEHOLDER-WEB3FORMS-ACCESS-KEY" />
   <input type="hidden" name="subject" value="Nouveau message depuis claudepartners.fr" />
-  <input type="hidden" name="redirect" value="https://claudepartners.fr/merci" />
+  <input type="hidden" name="redirect" value="https://claudepartners.fr/merci/" />
   <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
   <div>
@@ -950,6 +998,12 @@ const breadcrumb = {
       <div>
         <h2 class="font-serif text-2xl">Nous écrire</h2>
         <div class="mt-4"><ContactForm /></div>
+        <div class="mt-8 border-t border-sand pt-6 text-sm text-muted">
+          <p class="font-medium text-ink">Coordonnées</p>
+          <p class="mt-2">Email : <a href="mailto:contact@claudepartners.fr" class="text-brand-700 hover:underline">contact@claudepartners.fr</a></p>
+          <p class="mt-1">Zone d'intervention : France entière (à distance).</p>
+          <!-- Ajouter ici LinkedIn / téléphone quand disponibles (et synchroniser avec le sameAs du JSON-LD). -->
+        </div>
       </div>
     </div>
   </section>
@@ -1046,7 +1100,7 @@ const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', site).href },
-    { '@type': 'ListItem', position: 2, name: 'Services', item: new URL('/services', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: new URL('/services/', site).href },
     { '@type': 'ListItem', position: 3, name: d.title },
   ],
 };
@@ -1089,7 +1143,7 @@ const schema = [serviceSchema, breadcrumb, ...(faqSchema ? [faqSchema] : [])];
 
     <div class="mt-16 rounded-xl bg-brand-50 p-8 text-center">
       <p class="font-serif text-2xl">Prêt à passer à l'action ?</p>
-      <a href="/contact" class="mt-4 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+      <a href="/contact/" class="mt-4 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
     </div>
   </section>
 </BaseLayout>
@@ -1111,7 +1165,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     <ul class="mt-10 grid gap-6 sm:grid-cols-2">
       {services.map((s) => (
         <li class="rounded-xl border border-sand bg-cream-50 p-6">
-          <a href={`/services/${s.id}`} class="block">
+          <a href={`/services/${s.id}/`} class="block">
             <h2 class="font-serif text-xl font-medium text-brand-700">{s.data.title}</h2>
             <p class="mt-2 text-muted">{s.data.tagline}</p>
             <span class="mt-4 inline-block text-sm font-medium text-brand-600">En savoir plus →</span>
@@ -1293,8 +1347,8 @@ const faqSchema = {
         Du diagnostic aux outils sur mesure, nous aidons les organismes de formation à intégrer l'IA et à automatiser leurs process — pour gagner du temps et monter en qualité.
       </p>
       <div class="mt-8 flex justify-center gap-4">
-        <a href="/contact" class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
-        <a href="/services" class="rounded-lg border border-sand px-6 py-3 font-medium hover:bg-cream-50">Découvrir nos services</a>
+        <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+        <a href="/services/" class="rounded-lg border border-sand px-6 py-3 font-medium hover:bg-cream-50">Découvrir nos services</a>
       </div>
     </div>
   </section>
@@ -1315,7 +1369,7 @@ const faqSchema = {
       <ul class="mt-10 grid gap-6 sm:grid-cols-2">
         {services.map((s) => (
           <li class="rounded-xl border border-sand bg-cream-50 p-6">
-            <a href={`/services/${s.id}`} class="block">
+            <a href={`/services/${s.id}/`} class="block">
               <h3 class="font-serif text-xl font-medium text-brand-700">{s.data.title}</h3>
               <p class="mt-2 text-muted">{s.data.tagline}</p>
               <span class="mt-4 inline-block text-sm font-medium text-brand-600">En savoir plus →</span>
@@ -1336,6 +1390,21 @@ const faqSchema = {
     </ol>
   </section>
 
+  <!-- Pourquoi Claude Partners (réassurance / E-E-A-T) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-20">
+      <h2 class="text-center font-serif text-3xl font-semibold">Pourquoi Claude Partners</h2>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-3">
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Spécialistes des organismes de formation</p><p class="mt-2 text-muted">On connaît vos contraintes : Qualiopi, pédagogie, administratif.</p></li>
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Orientés résultats</p><p class="mt-2 text-muted">Des gains de temps concrets et mesurables, pas des promesses.</p></li>
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Vos équipes autonomes</p><p class="mt-2 text-muted">On forme et on outille pour que vous gardiez la main.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Témoignages (emplacement — à remplir dès les premiers clients) -->
+  {/* TODO témoignages : insérer ici 2-3 verbatims clients (nom, OF, résultat) quand disponibles. Ajouter alors un schema Review/AggregateRating si pertinent. */}
+
   <!-- FAQ -->
   <section class="bg-cream-100">
     <div class="mx-auto max-w-3xl px-4 py-20">
@@ -1349,7 +1418,7 @@ const faqSchema = {
   <!-- CTA final -->
   <section class="mx-auto max-w-3xl px-4 py-20 text-center">
     <h2 class="font-serif text-3xl font-semibold">Faisons entrer l'IA dans votre organisme</h2>
-    <a href="/contact" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+    <a href="/contact/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
   </section>
 </BaseLayout>
 ```
@@ -1399,7 +1468,7 @@ const breadcrumb = {
     </div>
     <div class="mt-12 rounded-xl bg-brand-50 p-8 text-center">
       <p class="font-serif text-2xl">Discutons de votre projet</p>
-      <a href="/contact" class="mt-4 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Prendre rendez-vous</a>
+      <a href="/contact/" class="mt-4 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Prendre rendez-vous</a>
     </div>
   </section>
 </BaseLayout>
@@ -1504,8 +1573,8 @@ ${serviceLines}
 ## Pages principales
 
 - [Accueil](${SITE}/): Présentation de Claude Partners et de son offre pour les OF.
-- [Contact](${SITE}/contact): Formulaire de contact et prise de rendez-vous.
-- [À propos](${SITE}/a-propos): Mission et approche.
+- [Contact](${SITE}/contact/): Formulaire de contact et prise de rendez-vous.
+- [À propos](${SITE}/a-propos/): Mission et approche.
 
 ## Blog
 
@@ -1513,8 +1582,8 @@ ${postLines}
 
 ## Optional
 
-- [Mentions légales](${SITE}/mentions-legales)
-- [Politique de confidentialité](${SITE}/confidentialite)
+- [Mentions légales](${SITE}/mentions-legales/)
+- [Politique de confidentialité](${SITE}/confidentialite/)
 `;
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };
@@ -1531,18 +1600,126 @@ Expected : `dist/llms.txt` présent, contenu Markdown conforme (services + blog 
 git add -A && git commit -m "feat: endpoint llms.txt (GEO)"
 ```
 
-### Task 5.3 : _headers et _redirects Cloudflare
+### Task 5.3 : Maillage interne & pages de tags (topic clusters SEO)
+
+> Implémente le maillage interne services ↔ articles et les clusters thématiques demandés par la SPEC §6.4/§7 (levier SEO direct).
+
+**Files:**
+- Modify: `app/src/content.config.ts` (champ `relatedTags` sur services)
+- Modify: les 4 fiches `app/src/content/services/*.mdx` (frontmatter `relatedTags`)
+- Modify: `app/src/pages/services/[...id].astro` (bloc « Articles liés »)
+- Modify: `app/src/pages/blog/[...id].astro` (tags cliquables)
+- Create: `app/src/pages/blog/tags/[tag].astro`
+
+- [ ] **Step 1 : Ajouter `relatedTags` au schéma services**
+
+Dans `app/src/content.config.ts`, dans le `schema` de la collection `services`, ajouter :
+```ts
+    relatedTags: z.array(z.string()).default([]),
+```
+
+- [ ] **Step 2 : Renseigner `relatedTags` dans les 4 fiches**
+
+Ajouter au frontmatter de chaque fiche (valeurs = tags d'articles correspondants) :
+- `audit-ia.mdx` : `relatedTags: ["IA", "automatisation"]`
+- `formation-ia.mdx` : `relatedTags: ["IA"]`
+- `automatisation.mdx` : `relatedTags: ["automatisation", "Qualiopi"]`
+- `outils-ia-sur-mesure.mdx` : `relatedTags: ["IA"]`
+
+- [ ] **Step 3 : Bloc « Articles liés » sur les fiches services**
+
+Dans `app/src/pages/services/[...id].astro`, ajouter au frontmatter (après `const { Content } = await render(service);`) :
+```astro
+import { getCollection } from 'astro:content';
+const related = d.relatedTags.length
+  ? (await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true))
+      .filter((p) => p.data.tags.some((t) => d.relatedTags.includes(t)))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+      .slice(0, 3)
+  : [];
+```
+> ⚠️ `getCollection` est peut-être déjà importé dans ce fichier (via `import { getCollection, render }`). Ne pas le ré-importer : fusionner l'import.
+
+Puis, juste AVANT le bloc CTA final, insérer :
+```astro
+    {related.length > 0 && (
+      <section class="mt-12">
+        <h2 class="font-serif text-2xl">Articles liés</h2>
+        <ul class="mt-4 space-y-3">{related.map((p) => (
+          <li><a href={`/blog/${p.id}/`} class="text-brand-700 hover:underline">{p.data.title}</a></li>
+        ))}</ul>
+      </section>
+    )}
+```
+
+- [ ] **Step 4 : Pages de tags**
+
+Create `app/src/pages/blog/tags/[tag].astro` :
+```astro
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true);
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts.filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag, posts } = Astro.props;
+---
+<BaseLayout title={`Articles : ${tag}`} description={`Nos articles sur le thème « ${tag} » pour les organismes de formation.`}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-sm font-medium uppercase tracking-wide text-brand-600">Thème</p>
+    <h1 class="mt-2 font-serif text-4xl font-semibold">#{tag}</h1>
+    <ul class="mt-8 space-y-4">{posts.map((p) => (
+      <li><a href={`/blog/${p.id}/`} class="block rounded-lg border border-sand bg-cream-50 p-4 hover:bg-cream-100">
+        <span class="font-serif text-lg">{p.data.title}</span>
+        <span class="mt-1 block text-sm text-muted">{p.data.description}</span>
+      </a></li>
+    ))}</ul>
+    <a href="/blog/" class="mt-8 inline-block text-sm text-brand-600">← Tous les articles</a>
+  </section>
+</BaseLayout>
+```
+
+- [ ] **Step 5 : Rendre les tags d'article cliquables**
+
+Dans `app/src/pages/blog/[...id].astro`, remplacer le bloc des tags par des liens vers les pages de tags :
+```astro
+    {tags.length > 0 && (
+      <ul class="mt-4 flex flex-wrap gap-2">{tags.map((t) => (
+        <li><a href={`/blog/tags/${t}/`} class="rounded-full bg-brand-50 px-3 py-1 text-xs text-brand-700 hover:bg-brand-100">#{t}</a></li>
+      ))}</ul>
+    )}
+```
+
+- [ ] **Step 6 : Vérifier + commit**
+
+Run : `npm run build`
+Expected : pages `/blog/tags/<tag>/` générées pour chaque tag ; bloc « Articles liés » visible sur les fiches services ayant des `relatedTags` correspondants ; tags d'article cliquables.
+```bash
+git add -A && git commit -m "feat: maillage interne services<->articles + pages de tags (SEO clusters)"
+```
+
+### Task 5.4 : _headers et _redirects Cloudflare
 
 **Files:**
 - Create: `app/public/_headers`, `app/public/_redirects`, `app/.node-version`
 
 - [ ] **Step 1 : _headers**
 
-Create `app/public/_headers` :
+Create `app/public/_headers` (le bloc `/fonts/*` est inutile : l'API Fonts d'Astro émet les polices sous `/_astro/fonts/`, déjà couvert par `/_astro/*`) :
 ```text
 /_astro/*
-  Cache-Control: public, max-age=31536000, immutable
-/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 /*
   Cache-Control: public, max-age=0, must-revalidate
@@ -1555,22 +1732,25 @@ https://:project.pages.dev/*
 
 - [ ] **Step 2 : _redirects**
 
-Create `app/public/_redirects` :
+Create `app/public/_redirects` (⚠️ Cloudflare Pages NE supporte PAS les sources par hostname dans `_redirects` — la redirection www→apex se fait via une Redirect Rule, voir Phase 6 Task 6.3) :
 ```text
-https://www.claudepartners.fr/* https://claudepartners.fr/:splat 301
+# Redirections de CHEMIN relatives uniquement (ex: /ancienne-url /nouvelle-url 301).
+# www->apex et *.pages.dev->apex sont gérés par des Cloudflare Redirect Rules (Phase 6, Task 6.3),
+# car _redirects ne gère pas les redirections au niveau domaine/hostname.
 ```
 
 - [ ] **Step 3 : Pin Node version**
 
 Create `app/.node-version` :
 ```text
-22
+22.16.0
 ```
+> Version complète et paire (supportée par Astro). ⚠️ Si Cloudflare détecte `.node-version`, il **ignore** la variable `NODE_VERSION` du dashboard — ce fichier fait foi. Vérifier la version Node réellement utilisée dans les logs de build Cloudflare.
 
 - [ ] **Step 4 : Vérifier**
 
 Run : `npm run build`
-Expected : `dist/_headers` et `dist/_redirects` présents à la racine de `dist/`.
+Expected : `dist/_headers` et `dist/_redirects` présents à la racine de `dist/`. Les polices sont sous `dist/_astro/fonts/` (couvertes par la règle `/_astro/*`).
 
 - [ ] **Step 5 : Commit**
 
@@ -1578,7 +1758,7 @@ Expected : `dist/_headers` et `dist/_redirects` présents à la racine de `dist/
 git add -A && git commit -m "feat: _headers, _redirects Cloudflare + .node-version"
 ```
 
-### Task 5.4 : Audit qualité final (local)
+### Task 5.5 : Audit qualité final (local)
 
 - [ ] **Step 1 : Build de production + preview**
 
@@ -1589,9 +1769,9 @@ Run : `npm run build && npm run preview`
 Lancer Lighthouse (Chrome DevTools) sur `/`, une fiche service et un article.
 Expected : Performance, SEO, Accessibilité, Best Practices ≥ 95. Corriger les écarts (alt manquants, contrastes, tailles d'image).
 
-- [ ] **Step 3 : Vérifier la cohérence des canonical/trailingSlash**
+- [ ] **Step 3 : Vérifier la cohérence canonical ↔ sitemap (trailing slash)**
 
-Inspecter quelques `dist/**/index.html` : `<link rel="canonical">` sans slash final (cohérent avec `trailingSlash: 'never'` et `_redirects`).
+Sur le build (`dist/`, PAS en dev) : inspecter quelques `dist/**/index.html` et confirmer que `<link rel="canonical">` porte un **slash final** (ex. `https://claudepartners.fr/contact/`), et que la **même** URL (avec slash) figure dans `dist/sitemap-0.xml`. Canonical, `og:url`, JSON-LD et sitemap doivent tous utiliser la forme AVEC slash (cohérent avec `trailingSlash: 'always'`).
 
 - [ ] **Step 4 : Commit (si corrections)**
 
@@ -1604,6 +1784,8 @@ git add -A && git commit -m "fix: corrections audit qualité (Lighthouse, a11y, 
 # PHASE 6 — Déploiement Cloudflare Pages + DNS
 
 > ⚠️ Cette phase comporte des **actions manuelles dans des dashboards externes** (Cloudflare) et une **modification DNS sensible**. La modification des nameservers Hostinger peut être faite via le MCP `hostinger-domains` (outil `updateDomainNameservers`) une fois les NS Cloudflare connus — à ne lancer qu'après validation explicite.
+>
+> 🛟 **Rollback DNS** : avant tout changement, créer un snapshot de la zone (`hostinger-dns` `getDNSSnapshotList`/`getDNSRecords`). En cas d'échec d'activation ou de coupure email, restaurer via `restoreDNSSnapshot` et remettre les NS `*.dns-parking.com` d'origine.
 
 ### Task 6.1 : Pousser le repo + connecter Cloudflare Pages
 
@@ -1625,13 +1807,13 @@ Framework preset:          Astro
 Build command:             npm run build
 Build output directory:    dist            (relatif au root => app/dist)
 Production branch:          main
-Environment variables:     NODE_VERSION = 22   (Production ET Preview)
 ```
-> Vérifier dans les logs de build Cloudflare que le dossier `dist` est bien détecté à partir du root `app`.
+> La version de Node est pinnée par `app/.node-version` (= `22.16.0`, Task 5.4) qui **prime** sur toute variable `NODE_VERSION`. Inutile de définir `NODE_VERSION` dans le dashboard. Vérifier dans les logs de build que `dist` est détecté à partir du root `app` et que Node 22.16.0 est utilisé.
 
 - [ ] **Step 3 : Vérifier le déploiement `.pages.dev`**
 
-Expected : build Cloudflare réussit ; le site est accessible sur `https://claudepartners.pages.dev` ; les previews `.pages.dev` renvoient `X-Robots-Tag: noindex`.
+Expected : le build Cloudflare réussit ; le site est accessible sur `https://claudepartners.pages.dev`.
+> ℹ️ Les déploiements **preview** (URLs à hash) sont `noindex` **par défaut** chez Cloudflare. En revanche le sous-domaine de **production** `claudepartners.pages.dev` reste indexable et créerait du contenu dupliqué avec l'apex → il sera redirigé en 301 vers l'apex via une Redirect Rule (Task 6.3).
 
 ### Task 6.2 : Délégation DNS Hostinger → Cloudflare
 
@@ -1639,9 +1821,9 @@ Expected : build Cloudflare réussit ; le site est accessible sur `https://claud
 
 Cloudflare → **Add a domain** `claudepartners.fr` (plan Free). Laisser Cloudflare scanner les DNS.
 
-- [ ] **Step 2 : Recopier les enregistrements email** (si email @claudepartners.fr existe)
+- [ ] **Step 2 : Relever et recopier TOUS les enregistrements DNS (surtout l'email)**
 
-Vérifier/recréer MX, SPF (TXT), DKIM dans Cloudflare **avant** de basculer, sinon l'email casse. (Si aucun email sur le domaine, ignorer.)
+AVANT de basculer : relever la zone actuelle chez Hostinger (via hPanel → DNS, ou le MCP `hostinger-dns` `getDNSRecords` + `getDNSSnapshotList` pour un snapshot de secours). Confirmer la présence/absence de **MX, SPF (TXT), DKIM, DMARC** et de tout sous-domaine actif, puis les **recréer à l'identique dans Cloudflare** avant le switch (le scan auto de Cloudflare peut manquer des TXT/DKIM). Sinon l'email casse silencieusement.
 
 - [ ] **Step 3 : Récupérer les 2 nameservers Cloudflare** (`*.ns.cloudflare.com`).
 
@@ -1660,15 +1842,44 @@ Expected : propagation < 1 h à 24 h ; Cloudflare affiche le domaine « Active �
 Projet Pages → **Custom domains → Set up a domain** → ajouter `claudepartners.fr` PUIS `www.claudepartners.fr`. Cloudflare crée automatiquement les CNAME (apex via CNAME flattening + www), proxied.
 > Ne PAS créer le CNAME manuellement avant « Set up a domain » (erreur 522).
 
-- [ ] **Step 7 : Vérifications finales**
+- [ ] **Step 7 : Vérifications HTTPS de base**
 
+Expected : `https://claudepartners.fr` répond en HTTPS (certificat actif) ; `https://claudepartners.fr/sitemap-index.xml`, `/robots.txt`, `/llms.txt` accessibles. (La canonicalisation www→apex est mise en place en Task 6.3.)
+
+### Task 6.3 : Redirect Rules (canonicalisation www→apex et *.pages.dev→apex)
+
+> `_redirects` ne gère PAS les redirections au niveau domaine sur Cloudflare Pages → on utilise les **Redirect Rules** de la zone. Indispensable pour le SEO (éviter le contenu dupliqué).
+
+- [ ] **Step 1 : Règle www → apex**
+
+Cloudflare → zone `claudepartners.fr` → Rules → **Redirect Rules** → Create :
+- When incoming requests match : `Hostname equals www.claudepartners.fr`
+- Then : Static redirect → `https://claudepartners.fr` + **Preserve path/query** → Status **301**.
+> Prérequis : un enregistrement DNS `www` (proxied) doit exister — créé par « Set up a domain » (Task 6.2 Step 6) ou ajouté manuellement (CNAME `www` → `claudepartners.pages.dev`, proxied).
+
+- [ ] **Step 2 : Règle *.pages.dev (production) → apex**
+
+Redirect Rule :
+- When : `Hostname equals claudepartners.pages.dev`
+- Then : Static redirect → `https://claudepartners.fr` + preserve path/query → **301**.
+
+- [ ] **Step 3 : Porte de vérification HTTP réelle (`curl -I`)**
+
+Run :
+```bash
+curl -sI https://claudepartners.fr/ | findstr /I "HTTP location"
+curl -sI https://claudepartners.fr/contact | findstr /I "HTTP location"
+curl -sI https://www.claudepartners.fr/ | findstr /I "HTTP location"
+curl -sI https://claudepartners.pages.dev/ | findstr /I "HTTP location"
+```
 Expected :
-- `https://claudepartners.fr` et `https://www.claudepartners.fr` répondent en HTTPS (certificat actif).
-- `www` redirige en 301 vers l'apex.
-- `https://claudepartners.fr/sitemap-index.xml`, `/robots.txt`, `/llms.txt` accessibles.
-- Les previews `.pages.dev` sont en `noindex`.
+- `/` → **200**.
+- `/contact` (sans slash) → **308** vers `/contact/` (forme canonique), et `/contact/` → **200**.
+- `www…` → **301** vers `https://claudepartners.fr/…`.
+- `claudepartners.pages.dev` → **301** vers l'apex.
+> Confirme que la forme canonique (avec slash) répond 200 et que toutes les variantes redirigent vers l'apex — cohérent avec `trailingSlash: 'always'` et les canonical.
 
-### Task 6.3 : Référencement initial (Google Search Console)
+### Task 6.4 : Référencement initial (Google Search Console)
 
 > Le MCP `gscServer` est disponible pour ces étapes.
 
@@ -1698,9 +1909,9 @@ git push
 - [ ] Web3Forms `access_key` réelle injectée dans `ContactForm.astro`
 - [ ] Compte Plausible créé + site ajouté + goals (`Contact Form Submit`)
 - [ ] URL Calendly réelle injectée dans `CalendlyInline.astro`
-- [ ] Logo + image OG définitifs (remplacer placeholders)
+- [ ] Logo + image OG + favicon définitifs (remplacer placeholders)
 - [ ] Infos légales réelles (mentions légales)
-- [ ] URL LinkedIn (ou retrait du `sameAs`)
+- [ ] URL LinkedIn réelle → décommenter/ajouter au `sameAs` du JSON-LD (sinon laisser sans `sameAs`)
 
 ---
 

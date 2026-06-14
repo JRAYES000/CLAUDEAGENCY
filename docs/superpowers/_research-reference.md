@@ -647,3 +647,20 @@ https://www.claudepartners.fr/* https://claudepartners.fr/:splat 301
 - Calendly : calendly.com/help advanced-embed, help.calendly.com embed-options-overview
 - schema.org / Google : developers.google.com structured-data (organization, article, faqpage, breadcrumb, local-business) ; schema.org/Service ; schema.org/ProfessionalService ; llmstxt.org
 - Hostinger : support pointer-domain-via-cloudflare
+
+---
+
+## Corrections (post-revue 2026-06-14) — LE PLAN PRÉVAUT
+
+La revue adversariale a relevé des divergences entre cette référence et le plan. **En cas de doute, suivre le PLAN** (`plans/2026-06-14-claudepartners-site.md`). Décisions actées :
+
+1. **Trailing slash : `trailingSlash: 'always'`** (et non `'never'`). Cloudflare Pages sert les pages `format:'directory'` AVEC slash (308 sinon). Toutes les URLs (canonical, og:url, liens internes, JSON-LD, sitemap, llms.txt) portent un **slash final**. L'affirmation du §0/§4/§13 selon laquelle `'never'` est « cohérent » est **erronée** pour Cloudflare Pages.
+2. **Palette = HEX Direction B** (et non l'OKLCH ton 50 du §5). Variables `@theme` : `--color-cream-50:#FBF7F1`, `--color-cream-100:#F5EFE6`, `--color-sand:#E5D9C7`, `--color-ink:#2B2724`, `--color-muted:#7A6E60`, terracotta `--color-brand-500:#CC785C` (ramp 50→900). Le §5 ne définissait pas cream/sand/muted : utiliser ceux du plan.
+3. **Logo : `public/logo.png` → `/logo.png`** (pas `/images/logo.png`). Et dans le JSON-LD, `logo` est un **`ImageObject`** (pas une simple chaîne) sur un nœud **`Organization`** (pas `ProfessionalService`, qui déclenche des warnings LocalBusiness sans adresse).
+4. **Pas de `BlogLayout`** : tout passe par `BaseLayout` (le §3/§7 le mentionnait à tort).
+5. **www→apex et `*.pages.dev`→apex : via Cloudflare Redirect Rules**, PAS via `_redirects` (le §13 est faux : `_redirects` ne gère pas les sources par hostname).
+6. **`_headers`** : supprimer le bloc `/fonts/*` (mort) ; les polices sont sous `/_astro/fonts/` (couvert par `/_astro/*`).
+7. **`sameAs` LinkedIn** : ne l'ajouter que si la page existe réellement (sinon l'omettre).
+8. **`.node-version` = `22.16.0`** (version complète paire) ; il prime sur la variable `NODE_VERSION` du dashboard Cloudflare.
+9. **Pages `noindex` exclues du sitemap** : `/merci/`, `/mentions-legales/`, `/confidentialite/`.
+10. **`Schema.astro`** échappe `<` (`JSON.stringify(b).replace(/</g,'\\u003c')`) pour blinder le JSON-LD.
