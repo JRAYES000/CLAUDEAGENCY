@@ -6,11 +6,49 @@ const links = [
 ];
 ---
 <header class="border-b border-sand bg-cream-50">
-  <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-    <a href="/" class="font-serif text-xl font-semibold text-ink">Claude Partners</a>
-    <ul class="flex items-center gap-6 text-sm">
-      {links.map((l) => <li><a href={l.href} class="text-muted hover:text-ink">{l.label}</a></li>)}
-      <li><a href="/contact/" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white hover:bg-brand-600">Prendre RDV</a></li>
+  <nav aria-label="Navigation principale" class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+    <a href="/" class="font-display text-xl font-bold tracking-tight text-ink">Claude Partners</a>
+
+    <!-- Desktop -->
+    <ul class="hidden items-center gap-7 text-sm sm:flex">
+      {links.map((l) => <li><a href={l.href} class="text-muted transition-colors hover:text-ink">{l.label}</a></li>)}
+      <li><a href="/contact/" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white transition-colors hover:bg-brand-600">Prendre RDV</a></li>
     </ul>
+
+    <!-- Mobile toggle -->
+    <button id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink hover:bg-cream-100 sm:hidden">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
   </nav>
+
+  <!-- Mobile panel -->
+  <div id="mobile-menu" hidden class="border-t border-sand bg-cream-50 sm:hidden">
+    <ul class="mx-auto flex max-w-5xl flex-col gap-1 px-4 py-3 text-sm">
+      {links.map((l) => <li><a href={l.href} class="block rounded-md px-2 py-2 text-ink hover:bg-cream-100">{l.label}</a></li>)}
+      <li><a href="/contact/" class="mt-1 block rounded-lg bg-brand-500 px-4 py-2 text-center font-medium text-white">Prendre RDV</a></li>
+    </ul>
+  </div>
 </header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var willOpen = menu.hasAttribute('hidden');
+      if (willOpen) {
+        menu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Fermer le menu');
+      } else {
+        menu.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Ouvrir le menu');
+      }
+    });
+  })();
+</script>

@@ -2,11 +2,12 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Polices — réutilise les variables générées par l'API Fonts d'Astro */
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, serif;
+  /* Polices (API Fonts Astro) — Pairing B : Bricolage Grotesque (display) + Schibsted Grotesk (corps) */
+  --font-sans: var(--font-schibsted), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-serif: var(--font-bricolage), system-ui, sans-serif; /* alias : les classes font-serif existantes -> display */
 
-  /* Direction B — crème / sable / encre */
+  /* Direction B — crème / sable / encre (neutres teintés chaud, jamais #000/#fff) */
   --color-cream-50:  #FBF7F1;
   --color-cream-100: #F5EFE6;
   --color-sand:      #E5D9C7;
@@ -28,6 +29,43 @@
 
 @layer base {
   body { font-family: var(--font-sans); color: var(--color-ink); background-color: var(--color-cream-50); }
-  h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--color-ink); }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    text-wrap: balance;          /* évite les veuves sur les titres */
+    letter-spacing: -0.02em;     /* tracking serré, caractère display */
+  }
   a { color: inherit; }
+
+  /* Confort tactile + ancres */
+  a, button, summary, [role="button"] { touch-action: manipulation; }
+  html { scroll-behavior: smooth; }
+  :target { scroll-margin-top: 5rem; }
+
+  /* Focus visible cohérent sur TOUS les interactifs (remplace les outline-none ponctuels) */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Motion d'entrée sobre, easing ease-out (pas de bounce). Réutilisable via class. */
+@layer utilities {
+  @keyframes cp-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .cp-rise { animation: cp-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .cp-rise-2 { animation: cp-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+  .cp-rise-3 { animation: cp-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

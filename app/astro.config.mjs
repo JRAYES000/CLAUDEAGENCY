@@ -14,19 +14,19 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Fraunces',
-      cssVariable: '--font-fraunces',
-      weights: [400, 500, 600, 700],
-      styles: ['normal', 'italic'],
+      name: 'Bricolage Grotesque',      // display / titres (Pairing B)
+      cssVariable: '--font-bricolage',
+      weights: [400, 600, 700, 800],
+      styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['Georgia', 'serif'],
+      fallbacks: ['system-ui', 'sans-serif'],
       display: 'swap',
     },
     {
       provider: fontProviders.google(),
-      name: 'Inter',
-      cssVariable: '--font-inter',
-      weights: [400, 500, 600, 700],
+      name: 'Schibsted Grotesk',        // corps (Pairing B)
+      cssVariable: '--font-schibsted',
+      weights: [400, 500, 700, 900],
       styles: ['normal'],
       subsets: ['latin'],
       fallbacks: ['system-ui', 'sans-serif'],
