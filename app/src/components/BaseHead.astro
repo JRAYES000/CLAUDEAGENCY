@@ -5,7 +5,7 @@ interface Props {
 }
 const {
   title, description, image = '/og-default.jpg',
-  imageAlt = 'Claude Partners — IA et automatisation pour organismes de formation',
+  imageAlt = 'Claude Partners, IA et automatisation pour organismes de formation',
   canonical, type = 'website', noindex = false,
 } = Astro.props;
 // trailingSlash:'always' => Astro.url.pathname porte déjà le slash final ; on garantit la cohérence.
@@ -13,7 +13,7 @@ const rawPath = canonical ?? Astro.url.pathname;
 const path = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
 const canonicalURL = new URL(path, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
-const fullTitle = title === 'Claude Partners' ? title : `${title} — Claude Partners`;
+const fullTitle = title === 'Claude Partners' ? title : `${title} · Claude Partners`;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />

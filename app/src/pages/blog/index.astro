@@ -10,16 +10,19 @@ const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
 ---
 <BaseLayout title="Blog" description="Conseils IA et automatisation pour organismes de formation.">
   <section class="mx-auto max-w-5xl px-4 py-16">
-    <h1 class="font-serif text-4xl font-semibold">Le blog</h1>
-    <p class="mt-2 text-muted">Idées concrètes pour faire entrer l'IA dans votre OF.</p>
-    <ul class="mt-10 grid gap-8 sm:grid-cols-2">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le blog</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Idées pour faire entrer l'IA dans votre OF</h1>
+      <p class="mt-4 text-lg leading-relaxed text-muted">Des conseils concrets sur l'IA et l'automatisation pour les organismes de formation.</p>
+    </div>
+    <ul class="mt-12 grid gap-8 sm:grid-cols-2">
       {posts.map((post) => (
         <li class="overflow-hidden rounded-xl border border-sand bg-cream-50">
           <a href={`/blog/${post.id}/`} class="block">
             <Image src={post.data.image} alt={post.data.imageAlt} width={600} height={315} loading="lazy" class="aspect-[40/21] w-full object-cover" />
             <div class="p-5">
-              <h2 class="font-serif text-xl font-medium">{post.data.title}</h2>
-              <p class="mt-2 text-sm text-muted">{post.data.description}</p>
+              <h2 class="line-clamp-2 font-display text-xl font-bold text-ink">{post.data.title}</h2>
+              <p class="mt-2 line-clamp-2 text-sm text-muted">{post.data.description}</p>
               <time datetime={post.data.pubDate.toISOString()} class="mt-3 block text-xs text-muted">{dateFmt.format(post.data.pubDate)}</time>
             </div>
           </a>

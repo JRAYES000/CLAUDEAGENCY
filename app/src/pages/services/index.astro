@@ -4,19 +4,39 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Nos services" description="Audit IA, formation des équipes, automatisation des process et outils sur mesure pour organismes de formation.">
-  <section class="mx-auto max-w-5xl px-4 py-16">
-    <h1 class="font-serif text-4xl font-semibold">Nos services</h1>
-    <p class="mt-2 text-muted">Le partenaire unique pour faire entrer l'IA dans votre organisme de formation.</p>
-    <ul class="mt-10 grid gap-6 sm:grid-cols-2">
-      {services.map((s) => (
-        <li class="rounded-xl border border-sand bg-cream-50 p-6">
-          <a href={`/services/${s.id}/`} class="block">
-            <h2 class="font-serif text-xl font-medium text-brand-700">{s.data.title}</h2>
-            <p class="mt-2 text-muted">{s.data.tagline}</p>
-            <span class="mt-4 inline-block text-sm font-medium text-brand-600">En savoir plus →</span>
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <div class="cp-rise max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Nos services</p>
+      <h1 class="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+        Le partenaire unique pour faire entrer l'IA dans votre <span class="text-brand-600">organisme de formation</span>
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-muted">
+        Quatre expertises complémentaires, du diagnostic aux outils sur mesure. On vous prend par la main, à votre rythme.
+      </p>
+    </div>
+
+    <ul class="mt-14 border-t border-sand">
+      {services.map((s, i) => (
+        <li class="border-b border-sand">
+          <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[auto_1fr_auto] sm:gap-8">
+            <span class="font-display text-2xl font-bold tabular-nums text-brand-300">{`0${i + 1}`}</span>
+            <div>
+              <h2 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h2>
+              <p class="mt-1 text-muted">{s.data.tagline}</p>
+            </div>
+            <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
           </a>
         </li>
       ))}
     </ul>
+  </section>
+
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Par où commencer ?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert pour identifier vos priorités, sans engagement.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
   </section>
 </BaseLayout>

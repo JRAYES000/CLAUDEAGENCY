@@ -7,35 +7,39 @@
   <div>
     <label for="name" class="block text-sm font-medium">Nom et prénom</label>
     <input type="text" id="name" name="name" required autocomplete="name"
-           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus:outline-none" />
+           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
   </div>
   <div>
     <label for="email" class="block text-sm font-medium">Email professionnel</label>
-    <input type="email" id="email" name="email" required autocomplete="email"
-           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus:outline-none" />
+    <input type="email" id="email" name="email" required autocomplete="email" spellcheck="false"
+           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
   </div>
   <div>
     <label for="organisme" class="block text-sm font-medium">Nom de votre organisme de formation</label>
-    <input type="text" id="organisme" name="organisme" required
-           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus:outline-none" />
+    <input type="text" id="organisme" name="organisme" required autocomplete="organization"
+           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
   </div>
   <div>
     <label for="message" class="block text-sm font-medium">Votre message</label>
     <textarea id="message" name="message" rows="5" required
-              class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus:outline-none"></textarea>
+              class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"></textarea>
   </div>
 
-  <button type="submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white hover:bg-brand-600">Envoyer</button>
+  <button type="submit" id="form-submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70">Envoyer</button>
   <p id="form-result" class="text-sm" role="status" aria-live="polite"></p>
 </form>
 
 <script is:inline>
   const form = document.getElementById('contact-form');
   const result = document.getElementById('form-result');
+  const btn = document.getElementById('form-submit');
+  const btnLabel = btn.textContent;
+  const genericError = 'Une erreur est survenue. Réessayez ou écrivez-nous à contact@claudepartners.fr.';
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const json = JSON.stringify(Object.fromEntries(new FormData(form)));
-    result.textContent = 'Envoi en cours...'; result.className = 'text-sm text-muted';
+    btn.disabled = true; btn.textContent = 'Envoi en cours…';
+    result.textContent = 'Envoi en cours…'; result.className = 'text-sm text-muted';
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: json });
@@ -44,8 +48,11 @@
         result.textContent = 'Merci, votre message a bien été envoyé.'; result.className = 'text-sm text-green-700';
         form.reset();
         if (window.plausible) window.plausible('Contact Form Submit');
-      } else { result.textContent = data.message || 'Une erreur est survenue.'; result.className = 'text-sm text-red-700'; }
-    } catch { result.textContent = 'Erreur réseau. Réessayez.'; result.className = 'text-sm text-red-700'; }
-    finally { setTimeout(() => { result.textContent = ''; }, 6000); }
+      } else { result.textContent = data.message || genericError; result.className = 'text-sm text-red-700'; }
+    } catch { result.textContent = genericError; result.className = 'text-sm text-red-700'; }
+    finally {
+      btn.disabled = false; btn.textContent = btnLabel;
+      setTimeout(() => { result.textContent = ''; }, 6000);
+    }
   });
 </script>

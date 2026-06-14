@@ -13,15 +13,18 @@ const breadcrumb = {
 ---
 <BaseLayout title="Contact" description="Discutons de votre projet d'intégration de l'IA. Prenez rendez-vous ou écrivez-nous." pageSchema={[breadcrumb]}>
   <section class="mx-auto max-w-5xl px-4 py-16">
-    <h1 class="font-serif text-4xl font-semibold">Parlons de votre organisme</h1>
-    <p class="mt-2 text-muted">Réservez un créneau de 30 minutes, ou laissez-nous un message.</p>
-    <div class="mt-10 grid gap-12 lg:grid-cols-2">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Contact</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Parlons de votre organisme</h1>
+      <p class="mt-4 text-lg leading-relaxed text-muted">Réservez un créneau de 30 minutes, ou laissez-nous un message.</p>
+    </div>
+    <div class="mt-12 grid gap-12 lg:grid-cols-2">
       <div>
-        <h2 class="font-serif text-2xl">Prendre rendez-vous</h2>
+        <h2 class="font-display text-2xl font-bold text-ink">Prendre rendez-vous</h2>
         <div class="mt-4"><CalendlyInline /></div>
       </div>
       <div>
-        <h2 class="font-serif text-2xl">Nous écrire</h2>
+        <h2 class="font-display text-2xl font-bold text-ink">Nous écrire</h2>
         <div class="mt-4"><ContactForm /></div>
         <div class="mt-8 border-t border-sand pt-6 text-sm text-muted">
           <p class="font-medium text-ink">Coordonnées</p>
