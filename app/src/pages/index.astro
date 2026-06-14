@@ -42,16 +42,24 @@ const proof = [
   { task: "La création de tunnels de vente", detail: "Pages, lead magnets et séquences d'e-mails générés en quelques minutes.", before: "5–6 h par tunnel", after: "Quelques minutes" },
 ];
 
-// Personas : le visiteur se reconnaît.
-const personas = [
-  { r: "Vous dirigez l'organisme", d: "Déléguez le marketing et l'admin sans recruter ni alourdir vos coûts de structure." },
-  { r: "Vous pilotez la pédagogie", d: "Récupérez du temps pour vos stagiaires pendant qu'on s'occupe du reste." },
-  { r: "Vous tenez l'administratif et la qualité", d: "Finissez-en avec les tâches répétitives et abordez Qualiopi sereinement." },
+// Profils d'OF : verticalisation (profondeur métier + SEO), formulé « ce qu'on prend en charge » (0 client → pas de claim de résultat passé).
+const profils = [
+  { t: "CFA / organisme multi-formations", reality: "Volume de dossiers, suivi de cohortes, reporting aux financeurs.", change: "Un suivi et un reporting en partie automatisés, des réponses normalisées." },
+  { t: "OF indépendant / petite structure", reality: "Tout repose sur une ou deux personnes ; l'administratif grignote le temps pédagogique.", change: "Des heures récupérées chaque semaine sur l'admin récurrent — qu'on prend en charge." },
+  { t: "Centre certifié Qualiopi", reality: "Tenir ses preuves toute l'année, et un audit de surveillance lourd (souvent une dizaine d'heures, 3 000 à 4 000 € s'il est externalisé).", change: "Une tenue des preuves allégée au fil de l'année. Nous ne sommes pas un cabinet d'audit Qualiopi : on vous fait gagner du temps sur la préparation." },
+  { t: "Formateur indépendant", reality: "Création de supports, prospection, facturation — et vous êtes seul·e.", change: "Des supports produits plus vite, des relances et des devis assistés, votre marketing pris en main." },
+];
+
+// Parlons franchement : démystification honnête (distincte de la FAQ, alignée done-for-you).
+const franchement = [
+  { q: "L'IA va-t-elle remplacer les formateurs ?", a: "Non. Elle enlève l'administratif et la production répétitive. La pédagogie, l'animation, la relation : ça reste vous — et c'est là qu'est votre valeur." },
+  { q: "L'IA risque-t-elle de dénaturer mes contenus ?", a: "Non. On part de vos contenus, votre ligne, votre voix. L'IA accélère la première version ; vous gardez la main éditoriale sur le fond." },
+  { q: "En vous déléguant tout, est-ce que je deviens dépendant ?", a: "Vous déléguez ce qui vous épuise — le marketing, l'admin — pas votre cœur de métier. Les outils et contenus produits vous appartiennent ; vous pouvez reprendre la main quand vous voulez." },
 ];
 
 const why = [
   { t: "Une équipe, pas un freelance isolé", d: "Quatre consultants spécialisés — SEO, SEA, optimisation de site, process & admin OF — au lieu d'un seul prestataire qui touche à tout." },
-  { t: "Nous connaissons les organismes de formation de l'intérieur", d: "Notre fondateur pilote le commercial et le marketing d'un organisme de formation (+3 M€ de CA depuis 2021). Nos recommandations viennent du terrain, pas d'un manuel." },
+  { t: "Spécialistes des OF, pas généralistes de l'IA", d: "On ne fait pas du conseil IA pour tout le monde : tout ce qu'on construit est pensé pour le monde de la formation — ses contraintes (Qualiopi, financement, pédagogie) et son vocabulaire." },
   { t: "Des prix imbattables grâce à l'IA", d: "Nos consultants maîtrisent Claude Code et Claude Cowork : on produit le même travail bien plus vite, et on répercute ce gain sur nos tarifs." },
   { t: "Vos données restent protégées", d: "Solutions conformes RGPD, hébergées dans l'UE quand c'est possible. La confidentialité de vos stagiaires n'est jamais négociée." },
 ];
@@ -59,9 +67,13 @@ const why = [
 const faq = [
   { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité — et notre métier : notre fondateur pilote le commercial et le marketing d'un organisme de formation, et nous en connaissons les contraintes (Qualiopi, financement, pédagogie) au quotidien." },
   { q: "Comment pouvez-vous être moins chers qu'une agence ?", a: "Nos consultants maîtrisent Claude Code et Claude Cowork. On produit le même travail en moyenne 3 à 4× moins de temps — et on répercute ce gain directement sur nos tarifs." },
+  { q: "Combien ça coûte ? Quel budget prévoir ?", a: "L'audit de départ est offert et sans engagement. Ensuite, le devis dépend du périmètre : on propose ce qui a le meilleur retour sur le temps gagné, sans vendre l'inutile." },
   { q: "Faut-il être à l'aise avec la technique ?", a: "Non. On prend en charge toute la complexité technique et on vous parle en langage clair." },
   { q: "Faut-il changer nos outils actuels ?", a: "Non. L'IA et nos prestations se greffent sur votre stack existante — votre CRM, vos logiciels, vos tableurs. On s'adapte à vous." },
   { q: "Nos données et celles de nos stagiaires sont-elles en sécurité ?", a: "Oui. Nous privilégions des solutions conformes RGPD et hébergées dans l'UE. La confidentialité n'est jamais négociée." },
+  { q: "L'IA est-elle compatible avec mes obligations Qualiopi ?", a: "Oui. L'IA aide surtout à tenir vos preuves et votre traçabilité au fil de l'année. Nous ne sommes pas un cabinet d'audit Qualiopi : nous vous faisons gagner du temps sur la préparation." },
+  { q: "En combien de temps voit-on des résultats ?", a: "Les premières automatisations simples se mettent en place en quelques jours. Côté acquisition, la publicité agit vite, le référencement sur quelques mois. L'audit fixe les priorités pour des gains rapides dès le départ." },
+  { q: "Je suis formateur indépendant, est-ce que c'est pour moi aussi ?", a: "Oui. Quand on travaille seul, le temps gagné sur l'administratif, les supports et la prospection compte double." },
   { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos priorités et vous repartez avec une feuille de route chiffrée, avec ou sans nous." },
 ];
 const faqSchema = {
@@ -257,17 +269,21 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Pour qui (liste éditoriale, role-led) -->
-  <section class="mx-auto max-w-5xl px-4 py-20">
-    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pensé pour ceux qui font tourner l'organisme</h2>
-    <ul class="mt-10 border-t border-sand">
-      {personas.map((p) => (
-        <li class="grid gap-1 border-b border-sand py-6 sm:grid-cols-[0.9fr_1.1fr] sm:gap-8">
-          <h3 class="font-display text-lg font-bold text-brand-700">{p.r}</h3>
-          <p class="text-muted">{p.d}</p>
-        </li>
+  <!-- Profils d'OF (verticalisation — profondeur métier + SEO) -->
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <div class="max-w-2xl">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quel organisme êtes-vous ?</h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted">On connaît vos contraintes. Voici ce qu'on peut prendre en charge, concrètement, selon votre structure.</p>
+    </div>
+    <div class="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+      {profils.map((p) => (
+        <div>
+          <h3 class="font-display text-xl font-bold text-brand-700">{p.t}</h3>
+          <p class="mt-2 text-muted"><span class="font-semibold text-ink">Votre réalité :</span> {p.reality}</p>
+          <p class="mt-1 text-muted"><span class="font-semibold text-ink">Avec nous :</span> {p.change}</p>
+        </div>
       ))}
-    </ul>
+    </div>
   </section>
 
   <!-- Pourquoi (blocs de texte, pas de cartes) -->
@@ -314,6 +330,21 @@ const faqSchema = {
           <a href="/a-propos/#julien-rayes" class="font-semibold text-brand-600 hover:text-brand-700">Découvrir notre histoire <span aria-hidden="true">→</span></a>
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Parlons franchement (démystification honnête) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-20">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Parlons franchement</h2>
+      <dl class="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-3">
+        {franchement.map((f) => (
+          <div>
+            <dt class="font-display text-lg font-bold text-brand-700">{f.q}</dt>
+            <dd class="mt-2 text-muted">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </section>
 
