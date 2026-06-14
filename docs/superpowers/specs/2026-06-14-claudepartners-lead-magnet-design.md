@@ -109,3 +109,14 @@ Site statique Astro, même esprit que le `ContactForm.astro` actuel (POST vers u
 - Code du widget Mailjet (action + champs) requis avant le câblage final du formulaire.
 - 10ᵉ automatisation à arrêter à la rédaction du PDF.
 - Passage Mailjet Premium pour activer Email 2 + Email 3.
+
+## Mise à jour 2026-06-15 — déviation d'architecture (Approche B)
+
+Le code d'intégration fourni par Mailjet est un **iframe non-stylable** (formulaire soumis en JS, sans action postable) → l'approche A (formulaire maison postant directement vers Mailjet) est impossible. Le site étant hébergé sur **Cloudflare Pages**, on bascule sur l'**Approche B** (serverless) :
+
+- Formulaire maison `LeadMagnet.astro` → `POST /api/subscribe` (**Cloudflare Pages Function** : `app/functions/api/subscribe.js`) → API Mailjet `contactslist/10523019/managecontact` → l'automation Mailjet envoie le PDF.
+- **Opt-in simple** (case de consentement = base RGPD) au lieu du double opt-in du widget.
+- Champs Mailjet (noms exacts) : `firstname`, `société`, `téléphone` (+ `email`).
+- Secrets en **variables d'environnement Cloudflare Pages** : `MJ_APIKEY`, `MJ_SECRETKEY` (jamais dans le dépôt).
+- `src/data/mailjet.ts` (config widget) supprimé.
+- **À confirmer** : root directory du projet Pages (emplacement de `functions/`) ; création de l'**automation** Mailjet (déclencheur « inscription à la liste » → Email 1 livraison PDF).

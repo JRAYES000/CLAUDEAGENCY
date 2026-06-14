@@ -1,8 +1,8 @@
 ---
 // src/components/LeadMagnet.astro
-// Bloc CTA + formulaire d'inscription au lead magnet (poste vers Mailjet).
-import { MAILJET_FORM } from '../data/mailjet';
-
+// Bloc CTA + formulaire d'inscription au lead magnet.
+// Poste vers la Pages Function /api/subscribe, qui appelle l'API Mailjet côté serveur
+// (clé jamais exposée au client). Voir app/functions/api/subscribe.js.
 interface Props { variant?: 'compact' | 'full'; }
 const { variant = 'compact' } = Astro.props;
 const isFull = variant === 'full';
@@ -23,30 +23,36 @@ const inputClass =
       : 'Le guide concret, tiré d’un organisme de formation réel : pour chaque tâche, l’automatisation, le temps gagné et l’outil. Recevez-le par email.'}
   </p>
 
-  <form id="lead-magnet-form" action={MAILJET_FORM.actionUrl} method="POST" class="mt-6 space-y-4">
-    {MAILJET_FORM.hidden.map((h) => (<input type="hidden" name={h.name} value={h.value} />))}
-    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+  <form id="lead-magnet-form" action="/api/subscribe" method="POST" class="mt-6 space-y-4">
+    <!-- Honeypot anti-bot (doit rester vide) -->
+    <input type="text" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
     <div class="grid gap-4 sm:grid-cols-2">
       <div>
         <label for="lm-firstname" class="block text-sm font-medium">Prénom</label>
-        <input type="text" id="lm-firstname" name={MAILJET_FORM.fields.firstName} required autocomplete="given-name" class={inputClass} />
+        <input type="text" id="lm-firstname" name="firstname" required autocomplete="given-name" class={inputClass} />
       </div>
       <div>
         <label for="lm-email" class="block text-sm font-medium">Email professionnel</label>
-        <input type="email" id="lm-email" name={MAILJET_FORM.fields.email} required autocomplete="email" spellcheck="false" class={inputClass} />
+        <input type="email" id="lm-email" name="email" required autocomplete="email" spellcheck="false" class={inputClass} />
       </div>
     </div>
-    <div>
-      <label for="lm-org" class="block text-sm font-medium">Nom de votre organisme <span class="text-muted">(optionnel)</span></label>
-      <input type="text" id="lm-org" name={MAILJET_FORM.fields.organisation} autocomplete="organization" class={inputClass} />
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label for="lm-societe" class="block text-sm font-medium">Organisme <span class="text-muted">(optionnel)</span></label>
+        <input type="text" id="lm-societe" name="societe" autocomplete="organization" class={inputClass} />
+      </div>
+      <div>
+        <label for="lm-tel" class="block text-sm font-medium">Téléphone <span class="text-muted">(optionnel)</span></label>
+        <input type="tel" id="lm-tel" name="telephone" autocomplete="tel" class={inputClass} />
+      </div>
     </div>
     <label class="flex items-start gap-2 text-sm text-muted">
-      <input type="checkbox" name="consent" required class="mt-1" />
-      <span>J'accepte de recevoir le guide et des conseils par email. Voir la <a href="/confidentialite/" class="text-brand-600 hover:underline">politique de confidentialité</a>. Désinscription en un clic.</span>
+      <input type="checkbox" name="consent" value="1" required class="mt-1" />
+      <span>J’accepte de recevoir le guide et des conseils par email. Voir la <a href="/confidentialite/" class="text-brand-600 hover:underline">politique de confidentialité</a>. Désinscription en un clic.</span>
     </label>
 
-    <button type="submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-brand-600 disabled:opacity-70">
+    <button type="submit" id="lm-submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-brand-600 disabled:opacity-70">
       Recevoir le guide
     </button>
     <p id="lm-result" class="text-sm" role="status" aria-live="polite"></p>
@@ -57,10 +63,34 @@ const inputClass =
   (function () {
     var form = document.getElementById('lead-magnet-form');
     if (!form) return;
-    form.addEventListener('submit', function (e) {
-      var hp = form.querySelector('input[name="botcheck"]');
-      if (hp && hp.checked) { e.preventDefault(); return; }
-      if (window.plausible) window.plausible('Lead Magnet Submit');
+    var btn = document.getElementById('lm-submit');
+    var result = document.getElementById('lm-result');
+    var label = btn.textContent;
+    var genericError = 'Une erreur est survenue. Réessayez ou écrivez-nous à contact@claudepartners.fr.';
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (form.botcheck && form.botcheck.value) return; // honeypot rempli => bot
+      var data = Object.fromEntries(new FormData(form));
+      btn.disabled = true; btn.textContent = 'Envoi en cours…';
+      result.textContent = ''; result.className = 'text-sm text-muted';
+      try {
+        var res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        var j = await res.json().catch(function () { return {}; });
+        if (res.ok && j.ok) {
+          if (window.plausible) window.plausible('Lead Magnet Submit');
+          window.location.href = '/merci-ressource/';
+        } else {
+          result.textContent = j.error || genericError; result.className = 'text-sm text-red-700';
+          btn.disabled = false; btn.textContent = label;
+        }
+      } catch (err) {
+        result.textContent = genericError; result.className = 'text-sm text-red-700';
+        btn.disabled = false; btn.textContent = label;
+      }
     });
   })();
 </script>
