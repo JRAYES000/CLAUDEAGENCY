@@ -1,16 +1,10 @@
 ---
-// Calculateur de temps & d'argent gagnés — raisonnement ANNUEL, sans dépendance.
-// Chaque tâche : heures/an SANS l'IA, heures/an AVEC l'IA, et € économisés/an.
-// Le € est propre à chaque tâche (logique de coût évité, pas un simple heures × taux) :
-//   - Qualiopi : accompagnement externe évité (~3 000 € → 2 000 € retenus)
-//   - Supports : temps formatrice (~40 €/h)
-//   - Admin / relances / conventions : temps assistant·e commercial·e & administratif·ve (~20 €/h)
+// Calculateur de temps & d'argent gagnés — ANNUEL, sans dépendance. Version simplifiée :
+// chaque ligne = temps aujourd'hui → avec l'IA ; le panneau = total (€ + heures récupérées).
+// € propre à chaque tâche (coût évité) : Qualiopi = accompagnement externe évité ;
+// supports = temps formatrice (~40 €/h) ; admin/relances/conventions = temps assistant·e (~20 €/h).
 // Valeurs validées avec Julien — éditables ci-dessous.
 const nf = new Intl.NumberFormat('fr-FR');
-const fmtRatio = (r) => {
-  r = Math.round(r * 10) / 10;
-  return Number.isInteger(r) ? String(r) : String(r).replace('.', ',');
-};
 const tasks = [
   { label: "Tenir à jour mes preuves & indicateurs Qualiopi (toute l'année)", without: 30, withAI: 3, euro: 2000 },
   { label: 'Créer & mettre à jour mes supports de cours', without: 30, withAI: 10, euro: 800 },
@@ -22,17 +16,17 @@ const tasks = [
 <section class="bg-cream-100" aria-labelledby="calc-title">
   <div class="mx-auto max-w-5xl px-4 py-20">
     <h2 id="calc-title" class="font-display text-3xl font-bold text-ink sm:text-4xl">Combien de temps et d'argent l'IA peut vous faire gagner ?</h2>
-    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">Cochez les tâches qui vous concernent. On estime, <strong class="font-semibold text-ink">sur un an</strong>, le temps récupéré et l'argent économisé — on l'affinera ensemble lors de l'audit.</p>
+    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">Cochez les tâches qui vous concernent. On estime, <strong class="font-semibold text-ink">sur un an</strong>, le temps et l'argent que l'IA peut vous faire gagner.</p>
 
     <div class="mt-10 grid gap-10 md:grid-cols-[1.15fr_0.85fr]">
       <fieldset id="calc-tasks" class="space-y-3 border-0 p-0">
-        <legend class="sr-only">Tâches chronophages de votre organisme</legend>
+        <legend class="mb-3 text-sm text-muted">Pour chaque tâche : temps aujourd'hui <span aria-hidden="true">→</span> temps avec l'IA.</legend>
         {tasks.map((t) => (
-          <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-sand bg-cream-50 p-4 transition-colors hover:border-brand-300">
-            <input type="checkbox" class="calc-task mt-1 h-5 w-5 shrink-0 accent-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" data-without={t.without} data-with={t.withAI} data-euro={t.euro} />
-            <span>
+          <label class="flex cursor-pointer items-center gap-3 rounded-lg border border-sand bg-cream-50 p-4 transition-colors hover:border-brand-300">
+            <input type="checkbox" class="calc-task h-5 w-5 shrink-0 accent-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" data-without={t.without} data-with={t.withAI} data-euro={t.euro} />
+            <span class="min-w-0">
               <span class="block font-medium text-ink">{t.label}</span>
-              <span class="mt-1 block text-sm text-muted">Sans l'IA {nf.format(t.without)} h/an → avec l'IA {nf.format(t.withAI)} h/an · ÷{fmtRatio(t.without / t.withAI)} · ~{nf.format(t.euro)} €/an</span>
+              <span class="mt-0.5 block text-sm font-medium text-brand-700">{nf.format(t.without)} h <span aria-hidden="true">→</span> {nf.format(t.withAI)} h / an</span>
             </span>
           </label>
         ))}
@@ -43,8 +37,7 @@ const tasks = [
           <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">Votre estimation · sur un an</p>
           <div aria-live="polite">
             <p id="calc-euro" class="mt-3 font-display text-4xl font-extrabold text-ink">—</p>
-            <p id="calc-hours" class="mt-1 text-lg text-muted">Cochez vos tâches pour voir l'estimation.</p>
-            <p id="calc-detail" class="mt-1 text-sm text-muted"></p>
+            <p id="calc-hours" class="mt-1 text-lg text-muted">Cochez vos tâches pour voir votre estimation.</p>
           </div>
           <p class="mt-4 text-sm text-muted">Estimation indicative, à affiner lors de l'audit.</p>
           <noscript><p class="mt-2 text-sm text-muted">Activez JavaScript pour obtenir l'estimation chiffrée.</p></noscript>
@@ -60,13 +53,8 @@ const tasks = [
     var boxes = Array.prototype.slice.call(document.querySelectorAll('.calc-task'));
     var euroEl = document.getElementById('calc-euro');
     var hoursEl = document.getElementById('calc-hours');
-    var detailEl = document.getElementById('calc-detail');
-    if (!boxes.length || !euroEl || !hoursEl || !detailEl) return;
+    if (!boxes.length || !euroEl || !hoursEl) return;
     var nf = new Intl.NumberFormat('fr-FR');
-    function fmtRatio(r) {
-      r = Math.round(r * 10) / 10;
-      return Number.isInteger(r) ? String(r) : String(r).replace('.', ',');
-    }
     function update() {
       var wo = 0, wi = 0, eu = 0, any = false;
       boxes.forEach(function (b) {
@@ -79,16 +67,11 @@ const tasks = [
       });
       if (!any) {
         euroEl.textContent = '—';
-        hoursEl.textContent = "Cochez vos tâches pour voir l'estimation.";
-        detailEl.textContent = '';
+        hoursEl.textContent = 'Cochez vos tâches pour voir votre estimation.';
         return;
       }
-      var saved = wo - wi;
-      var euroR = Math.round(eu / 10) * 10;
-      euroEl.textContent = '~ ' + nf.format(euroR) + ' € / an';
-      hoursEl.textContent = nf.format(saved) + ' h récupérées / an';
-      var ratioTxt = wi > 0 ? ' (÷' + fmtRatio(wo / wi) + ')' : '';
-      detailEl.textContent = "Sans l'IA " + nf.format(wo) + " h → avec l'IA " + nf.format(wi) + ' h' + ratioTxt;
+      euroEl.textContent = '~ ' + nf.format(Math.round(eu / 10) * 10) + ' € / an';
+      hoursEl.textContent = nf.format(wo - wi) + ' h récupérées / an';
       if (window.plausible) window.plausible('Calculator Used');
     }
     boxes.forEach(function (b) { b.addEventListener('change', update); });
