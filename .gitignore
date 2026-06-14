@@ -1,5 +1,8 @@
 # Artefacts transitoires (capture navigateur Playwright MCP)
 .playwright-mcp/
 
+# Artefacts transitoires (miniatures Canva téléchargées pour prévisualisation)
+.canva-tmp/
+
 # Screenshots de revue (hors versionnement)
 /cp-*.png

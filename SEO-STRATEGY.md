@@ -60,8 +60,8 @@ les citations IA), et **maille vers la page service correspondante** + CTA audit
 - [x] Ré-étoffer l'article existant `integrer-ia-organisme-formation.mdx` → **page pilier** (~850 mots, maillée vers les 4 services + CTA). *(fait 2026-06-14 — peut encore être approfondi vers 1 200+)*
 - [x] **Article 1 — « Automatiser la conformité Qualiopi avec l'IA »** : rédigé (~700 mots), image de couverture unique générée (HF Z-Image), maillage bidirectionnel avec le pilier + liens vers `automatisation`/`audit-ia`. *(2026-06-14)*
 - [x] **Article 2 — « Automatiser l'émargement et le suivi des stagiaires »** (~590 mots) + image générée + lien croisé bidirectionnel avec l'article Qualiopi. *(2026-06-14)*
-- [ ] Rédiger les articles 3 → 4 (BPF, charge administrative).
-- [ ] Rédiger les articles 5 → 9 au rythme de 2/mois.
+- [x] **Articles 3-4 — BPF + charge administrative** publiés + maillage interne (pilier → charge admin, émargement → BPF, hub → Qualiopi/émargement/BPF). ⚠️ **couvertures temporaires** (réemploi) à remplacer par des visuels uniques dès que la génération d'images est rétablie. *(2026-06-14)*
+- [ ] Rédiger les articles 5 → 9 au rythme de 2/mois (ChatGPT formateurs, supports IA, EDOF/MCF, outils IA, personnalisation pédagogique).
 - [ ] *(En parallèle, Julien a publié 2 articles « acquisition » : SEO et SEA pour OF — volet marketing du cluster.)*
 - [ ] Maillage interne : chaque article → 1 lien vers son service + 1-2 vers articles voisins.
 - [ ] Vérifier `relatedTags` des services pour que le bloc « Articles liés » se remplisse.
