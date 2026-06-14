@@ -4,6 +4,8 @@ const links = [
   { href: '/blog/', label: 'Blog' },
   { href: '/a-propos/', label: 'À propos' },
 ];
+const path = Astro.url.pathname;
+const isActive = (href) => path === href || path.startsWith(href);
 ---
 <header class="border-b border-sand bg-cream-50">
   <nav aria-label="Navigation principale" class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
@@ -11,7 +13,7 @@ const links = [
 
     <!-- Desktop -->
     <ul class="hidden items-center gap-7 text-sm sm:flex">
-      {links.map((l) => <li><a href={l.href} class="text-muted transition-colors hover:text-ink">{l.label}</a></li>)}
+      {links.map((l) => <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} class={`transition-colors hover:text-ink ${isActive(l.href) ? 'font-medium text-ink' : 'text-muted'}`}>{l.label}</a></li>)}
       <li><a href="/contact/" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white transition-colors hover:bg-brand-600">Prendre RDV</a></li>
     </ul>
 

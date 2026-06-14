@@ -12,18 +12,29 @@ const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
   <section class="mx-auto max-w-5xl px-4 py-16">
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le blog</p>
-      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Idées pour faire entrer l'IA dans votre OF</h1>
-      <p class="mt-4 text-lg leading-relaxed text-muted">Des conseils concrets sur l'IA et l'automatisation pour les organismes de formation.</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Idées concrètes pour faire entrer l'IA dans votre OF</h1>
     </div>
-    <ul class="mt-12 grid gap-8 sm:grid-cols-2">
+
+    <ul class="mt-12 border-t border-sand">
       {posts.map((post) => (
-        <li class="overflow-hidden rounded-xl border border-sand bg-cream-50">
-          <a href={`/blog/${post.id}/`} class="block">
-            <Image src={post.data.image} alt={post.data.imageAlt} width={600} height={315} loading="lazy" class="aspect-[40/21] w-full object-cover" />
-            <div class="p-5">
-              <h2 class="line-clamp-2 font-display text-xl font-bold text-ink">{post.data.title}</h2>
-              <p class="mt-2 line-clamp-2 text-sm text-muted">{post.data.description}</p>
-              <time datetime={post.data.pubDate.toISOString()} class="mt-3 block text-xs text-muted">{dateFmt.format(post.data.pubDate)}</time>
+        <li class="border-b border-sand">
+          <a href={`/blog/${post.id}/`} class="group grid gap-5 py-7 sm:grid-cols-[220px_1fr] sm:gap-8">
+            <Image
+              src={post.data.image}
+              alt={post.data.imageAlt}
+              width={440}
+              height={248}
+              loading="lazy"
+              class="aspect-[16/9] w-full rounded-xl border border-sand object-cover"
+            />
+            <div>
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+                <time datetime={post.data.pubDate.toISOString()}>{dateFmt.format(post.data.pubDate)}</time>
+                {post.data.tags.slice(0, 2).map((t) => <span class="font-medium text-brand-600">#{t}</span>)}
+              </div>
+              <h2 class="mt-2 font-display text-2xl font-bold leading-tight text-ink transition-colors group-hover:text-brand-700">{post.data.title}</h2>
+              <p class="mt-2 line-clamp-2 text-muted">{post.data.description}</p>
+              <span class="mt-3 inline-block text-sm font-semibold text-brand-600">Lire l'article <span aria-hidden="true">→</span></span>
             </div>
           </a>
         </li>
