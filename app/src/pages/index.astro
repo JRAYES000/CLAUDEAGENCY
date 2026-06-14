@@ -12,46 +12,88 @@ const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
+const why = [
+  { t: "Spécialistes des organismes de formation", d: "On connaît vos contraintes : Qualiopi, pédagogie, administratif. Pas de discours générique." },
+  { t: "Orientés résultats", d: "Des gains de temps concrets et mesurables, pas des promesses en l'air." },
+  { t: "Vos équipes autonomes", d: "On forme et on outille pour que vous gardiez la main, sans dépendance." },
+];
 ---
 <BaseLayout
   title="Claude Partners"
   description="Claude Partners aide les organismes de formation à intégrer l'IA et automatiser leurs process pour gagner en efficacité."
   pageSchema={[faqSchema]}
 >
-  <!-- Hero -->
-  <section class="bg-cream-100">
-    <div class="mx-auto max-w-4xl px-4 py-24 text-center">
-      <h1 class="font-serif text-5xl font-semibold leading-tight">L'IA au service de votre organisme de formation</h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted">
-        Du diagnostic aux outils sur mesure, nous aidons les organismes de formation à intégrer l'IA et à automatiser leurs process — pour gagner du temps et monter en qualité.
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
-        <a href="/services/" class="rounded-lg border border-sand px-6 py-3 font-medium hover:bg-cream-50">Découvrir nos services</a>
+  <!-- Hero asymétrique -->
+  <section class="relative overflow-hidden bg-cream-100">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
+      <div class="cp-rise">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Conseil IA · Organismes de formation</p>
+        <h1 class="mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+          L'IA au service de votre <span class="text-brand-600">organisme de formation</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+          Du diagnostic aux outils sur mesure, on vous aide à intégrer l'IA et à automatiser vos process. Vous récupérez du temps, vous montez en qualité.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Demander un audit offert</a>
+          <a href="/services/" class="rounded-lg border border-sand bg-cream-50 px-6 py-3 font-semibold text-ink transition-colors hover:border-brand-300">Découvrir nos services</a>
+        </div>
+      </div>
+
+      <div class="cp-rise-2">
+        <svg viewBox="0 0 480 420" class="h-auto w-full" role="img" aria-label="Illustration : des process reliés et fluidifiés par l'IA">
+          <rect x="16" y="16" width="448" height="388" rx="28" fill="#FBF7F1" stroke="#E5D9C7" />
+          <circle cx="360" cy="120" r="92" fill="#F5E0D6" />
+          <circle cx="150" cy="300" r="64" fill="#EBC0AD" />
+          <path d="M60 150 C 160 90, 320 360, 420 290" fill="none" stroke="#CC785C" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12" opacity="0.8" />
+          <g>
+            <rect x="64" y="96" width="150" height="58" rx="12" fill="#FFFFFF" stroke="#E5D9C7" />
+            <circle cx="92" cy="125" r="11" fill="#CC785C" />
+            <rect x="112" y="115" width="84" height="8" rx="4" fill="#E5D9C7" />
+            <rect x="112" y="131" width="56" height="8" rx="4" fill="#EBC0AD" />
+          </g>
+          <g>
+            <rect x="270" y="244" width="150" height="58" rx="12" fill="#FFFFFF" stroke="#E5D9C7" />
+            <circle cx="298" cy="273" r="11" fill="#934E3A" />
+            <rect x="318" y="263" width="84" height="8" rx="4" fill="#E5D9C7" />
+            <rect x="318" y="279" width="56" height="8" rx="4" fill="#EBC0AD" />
+          </g>
+          <line x1="214" y1="125" x2="270" y2="273" stroke="#CC785C" stroke-width="2.5" stroke-linecap="round" />
+          <circle cx="242" cy="199" r="20" fill="#CC785C" />
+          <path d="M234 199 l6 6 l10 -12" fill="none" stroke="#FBF7F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
     </div>
   </section>
 
-  <!-- Problème -->
-  <section class="mx-auto max-w-3xl px-4 py-20 text-center">
-    <h2 class="font-serif text-3xl font-semibold">Vos équipes débordées, l'administratif chronophage</h2>
-    <p class="mt-4 text-muted">
-      Qualiopi, suivi des stagiaires, création de supports : ces tâches grignotent le temps pédagogique.
-      L'IA bien intégrée vous rend ces heures — sans bouleverser votre organisation.
-    </p>
+  <!-- Problème (éditorial, asymétrique) -->
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <div class="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
+      <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vos équipes débordées, l'administratif chronophage</h2>
+      <p class="text-lg leading-relaxed text-muted">
+        Qualiopi, suivi des stagiaires, création de supports : ces tâches grignotent le temps pédagogique.
+        Bien intégrée, l'IA vous rend ces heures, sans bouleverser votre organisation.
+      </p>
+    </div>
   </section>
 
-  <!-- Services -->
+  <!-- Services (liste éditoriale, pas de grille de cartes) -->
   <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-20">
-      <h2 class="text-center font-serif text-3xl font-semibold">Nos services</h2>
-      <ul class="mt-10 grid gap-6 sm:grid-cols-2">
-        {services.map((s) => (
-          <li class="rounded-xl border border-sand bg-cream-50 p-6">
-            <a href={`/services/${s.id}/`} class="block">
-              <h3 class="font-serif text-xl font-medium text-brand-700">{s.data.title}</h3>
-              <p class="mt-2 text-muted">{s.data.tagline}</p>
-              <span class="mt-4 inline-block text-sm font-medium text-brand-600">En savoir plus →</span>
+    <div class="mx-auto max-w-6xl px-4 py-20">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quatre façons de vous faire gagner du temps</h2>
+        <a href="/services/" class="text-sm font-semibold text-brand-600 hover:text-brand-700">Tous les services <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="mt-10 border-t border-sand">
+        {services.map((s, i) => (
+          <li class="border-b border-sand">
+            <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[auto_1fr_auto] sm:gap-8">
+              <span class="font-display text-2xl font-bold tabular-nums text-brand-300">{`0${i + 1}`}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h3>
+                <p class="mt-1 text-muted">{s.data.tagline}</p>
+              </div>
+              <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
             </a>
           </li>
         ))}
@@ -59,44 +101,50 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Méthode -->
+  <!-- Méthode (stepper, sans cartes) -->
   <section class="mx-auto max-w-5xl px-4 py-20">
-    <h2 class="text-center font-serif text-3xl font-semibold">Notre méthode</h2>
-    <ol class="mt-10 grid gap-8 sm:grid-cols-3">
-      <li><span class="font-serif text-3xl text-brand-300">1</span><p class="mt-2 font-medium">On diagnostique</p><p class="text-muted">On identifie vos opportunités prioritaires.</p></li>
-      <li><span class="font-serif text-3xl text-brand-300">2</span><p class="mt-2 font-medium">On met en place</p><p class="text-muted">On forme, on automatise, on outille.</p></li>
-      <li><span class="font-serif text-3xl text-brand-300">3</span><p class="mt-2 font-medium">On rend autonome</p><p class="text-muted">Vos équipes gardent la main.</p></li>
+    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Notre méthode, en trois temps</h2>
+    <ol class="mt-12 grid gap-10 sm:grid-cols-3">
+      <li><div class="font-display text-5xl font-extrabold text-brand-200">1</div><p class="mt-3 font-display text-lg font-bold">On diagnostique</p><p class="mt-1 text-muted">On identifie vos opportunités prioritaires et leur ROI.</p></li>
+      <li><div class="font-display text-5xl font-extrabold text-brand-200">2</div><p class="mt-3 font-display text-lg font-bold">On met en place</p><p class="mt-1 text-muted">On forme, on automatise, on outille, de bout en bout.</p></li>
+      <li><div class="font-display text-5xl font-extrabold text-brand-200">3</div><p class="mt-3 font-display text-lg font-bold">On rend autonome</p><p class="mt-1 text-muted">Vos équipes gardent la main, sans dépendance à un prestataire.</p></li>
     </ol>
   </section>
 
-  <!-- Pourquoi Claude Partners (réassurance / E-E-A-T) -->
+  <!-- Pourquoi (blocs de texte, pas de cartes) -->
   <section class="bg-cream-100">
     <div class="mx-auto max-w-5xl px-4 py-20">
-      <h2 class="text-center font-serif text-3xl font-semibold">Pourquoi Claude Partners</h2>
-      <ul class="mt-10 grid gap-6 sm:grid-cols-3">
-        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Spécialistes des organismes de formation</p><p class="mt-2 text-muted">On connaît vos contraintes : Qualiopi, pédagogie, administratif.</p></li>
-        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Orientés résultats</p><p class="mt-2 text-muted">Des gains de temps concrets et mesurables, pas des promesses.</p></li>
-        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Vos équipes autonomes</p><p class="mt-2 text-muted">On forme et on outille pour que vous gardiez la main.</p></li>
-      </ul>
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pourquoi Claude Partners</h2>
+      <div class="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-3">
+        {why.map((w) => (
+          <div>
+            <h3 class="font-display text-lg font-bold text-brand-700">{w.t}</h3>
+            <p class="mt-2 text-muted">{w.d}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
-
-  <!-- Témoignages (emplacement — à remplir dès les premiers clients) -->
-  {/* TODO témoignages : insérer ici 2-3 verbatims clients (nom, OF, résultat) quand disponibles. Ajouter alors un schema Review/AggregateRating si pertinent. */}
 
   <!-- FAQ -->
-  <section class="bg-cream-100">
-    <div class="mx-auto max-w-3xl px-4 py-20">
-      <h2 class="text-center font-serif text-3xl font-semibold">Questions fréquentes</h2>
-      <dl class="mt-8 space-y-4">{faq.map((f) => (
-        <div class="rounded-lg border border-sand bg-cream-50 p-5"><dt class="font-medium">{f.q}</dt><dd class="mt-1 text-muted">{f.a}</dd></div>
-      ))}</dl>
-    </div>
+  <section class="mx-auto max-w-3xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Questions fréquentes</h2>
+    <dl class="mt-8 divide-y divide-sand border-y border-sand">
+      {faq.map((f) => (
+        <div class="py-5">
+          <dt class="font-display font-bold text-ink">{f.q}</dt>
+          <dd class="mt-2 text-muted">{f.a}</dd>
+        </div>
+      ))}
+    </dl>
   </section>
 
-  <!-- CTA final -->
-  <section class="mx-auto max-w-3xl px-4 py-20 text-center">
-    <h2 class="font-serif text-3xl font-semibold">Faisons entrer l'IA dans votre organisme</h2>
-    <a href="/contact/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Faisons entrer l'IA dans votre organisme</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert pour identifier vos priorités, sans engagement.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
   </section>
 </BaseLayout>
