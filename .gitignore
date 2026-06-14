@@ -1,0 +1,5 @@
+# Artefacts transitoires (capture navigateur Playwright MCP)
+.playwright-mcp/
+
+# Screenshots de revue (hors versionnement)
+/cp-*.png
