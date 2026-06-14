@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImg from '../assets/hero.jpg';
 import julienImg from '../assets/julien.jpg';
+import TimeSavingsCalculator from '../components/TimeSavingsCalculator.astro';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 
@@ -168,6 +169,9 @@ const faqSchema = {
       </p>
     </div>
   </section>
+
+  <!-- Calculateur de temps gagné (signature interactive) -->
+  <TimeSavingsCalculator />
 
   <!-- Preuve : résultats réels dans notre propre OF -->
   <section class="mx-auto max-w-5xl px-4 py-20">
