@@ -15,10 +15,12 @@ const inputClass =
 >
   <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Ressource gratuite</p>
   <h2 id="lead-magnet-title" class={`mt-2 font-display font-bold text-ink ${isFull ? 'text-3xl sm:text-4xl' : 'text-2xl'}`}>
-    10 automatisations IA qui libèrent 1 jour/semaine dans un organisme de formation
+    {isFull ? 'Recevez le guide gratuitement' : '10 automatisations IA qui libèrent 1 jour/semaine dans un organisme de formation'}
   </h2>
   <p class="mt-3 leading-relaxed text-muted">
-    Le guide concret, tiré d'un organisme de formation réel : pour chaque tâche, l'automatisation, le temps gagné et l'outil. Recevez-le par email.
+    {isFull
+      ? 'Indiquez votre email : on vous l’envoie tout de suite, avec quelques conseils pour le mettre en œuvre.'
+      : 'Le guide concret, tiré d’un organisme de formation réel : pour chaque tâche, l’automatisation, le temps gagné et l’outil. Recevez-le par email.'}
   </p>
 
   <form id="lead-magnet-form" action={MAILJET_FORM.actionUrl} method="POST" class="mt-6 space-y-4">
