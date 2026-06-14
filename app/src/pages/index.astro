@@ -3,43 +3,95 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImg from '../assets/hero.jpg';
+import julienImg from '../assets/julien.jpg';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+// Récit de douleur : OF qui porte marketing + admin en plus de la pédagogie.
+const irritants = [
+  "Votre site ne remonte pas sur Google, faute de temps pour le SEO.",
+  "Les agences SEO/SEA facturent cher — et ne connaissent pas votre métier.",
+  "L'administratif et les audits Qualiopi grignotent vos soirées.",
+  "L'IA, tout le monde en parle. Mais qui s'en occupe concrètement chez vous ?",
+];
+
+// L'équipe : 4 expertises qu'on délègue à Claude Partners (chaque carte renvoie vers sa page).
+const expertises = [
+  { t: "Référencement (SEO)", href: "/services/seo/", d: "On fait remonter votre organisme sur Google et on attire des candidats qualifiés, durablement." },
+  { t: "Publicité (SEA)", href: "/services/sea/", d: "On pilote vos campagnes Google Ads pour remplir vos sessions, sans gaspiller votre budget." },
+  { t: "Optimisation de site", href: "/services/optimisation-site/", d: "On transforme vos visiteurs en demandes d'inscription et de devis." },
+  { t: "Process & admin OF", href: "/services/automatisation/", d: "Gestion administrative, dossiers de financement, audits de surveillance Qualiopi : on prépare, vous validez." },
+];
+
+// Cas d'usage illustratifs : ce que l'IA produit concrètement pour un OF.
+const concrete = [
+  { t: "Un support de cours complet", d: "généré à partir de votre programme, prêt à relire en quelques minutes." },
+  { t: "Quiz, études de cas et corrigés", d: "adaptés à chaque niveau, sans repartir d'une page blanche." },
+  { t: "Les relances qui partent seules", d: "émargements, évaluations, paiements : plus rien ne se perd." },
+  { t: "Vos audits de surveillance Qualiopi pré-remplis", d: "les pièces sont préparées automatiquement, il n'y a plus qu'à vérifier." },
+  { t: "Un assistant qui répond aux stagiaires", d: "entraîné sur votre offre, disponible à toute heure." },
+  { t: "Une réunion transformée en compte rendu", d: "et en support, automatiquement, dès qu'elle se termine." },
+];
+
+// Preuve par l'exemple : résultats réels obtenus par notre fondateur dans son propre OF.
+const proof = [
+  { task: "Les relances administratives", detail: "Émargements, questionnaires de satisfaction, suivi des stagiaires jusqu'au bout de la formation.", before: "2 h / jour", after: "2 h / mois" },
+  { task: "Les comptes rendus de visioconférence", detail: "Synthèses des réunions entre formateurs et clients, rédigées et classées automatiquement.", before: "2–3 h / semaine", after: "2–3 h / mois" },
+  { task: "Le coaching des commerciaux", detail: "Un agent IA analyse chaque appel de closing et envoie au commercial des conseils personnalisés pour améliorer son taux de conversion.", before: "Surveillance manuelle", after: "Coaching auto après chaque appel" },
+  { task: "La création de tunnels de vente", detail: "Pages, lead magnets et séquences d'e-mails générés en quelques minutes.", before: "5–6 h par tunnel", after: "Quelques minutes" },
+];
+
+// Personas : le visiteur se reconnaît.
+const personas = [
+  { r: "Vous dirigez l'organisme", d: "Déléguez le marketing et l'admin sans recruter ni alourdir vos coûts de structure." },
+  { r: "Vous pilotez la pédagogie", d: "Récupérez du temps pour vos stagiaires pendant qu'on s'occupe du reste." },
+  { r: "Vous tenez l'administratif et la qualité", d: "Finissez-en avec les tâches répétitives et abordez Qualiopi sereinement." },
+];
+
+const why = [
+  { t: "Une équipe, pas un freelance isolé", d: "Quatre consultants spécialisés — SEO, SEA, optimisation de site, process & admin OF — au lieu d'un seul prestataire qui touche à tout." },
+  { t: "Nous connaissons les organismes de formation de l'intérieur", d: "Notre fondateur pilote le commercial et le marketing d'un organisme de formation (+3 M€ de CA depuis 2021). Nos recommandations viennent du terrain, pas d'un manuel." },
+  { t: "Des prix imbattables grâce à l'IA", d: "Nos consultants maîtrisent Claude Code et Claude Cowork : on produit le même travail bien plus vite, et on répercute ce gain sur nos tarifs." },
+  { t: "Vos données restent protégées", d: "Solutions conformes RGPD, hébergées dans l'UE quand c'est possible. La confidentialité de vos stagiaires n'est jamais négociée." },
+];
+
 const faq = [
-  { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité : nous connaissons vos contraintes (Qualiopi, pédagogie, administratif)." },
-  { q: "Faut-il être à l'aise avec la technique ?", a: "Non. Nous prenons en charge la complexité technique et formons vos équipes en langage clair." },
-  { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos opportunités prioritaires." },
+  { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité — et notre métier : notre fondateur pilote le commercial et le marketing d'un organisme de formation, et nous en connaissons les contraintes (Qualiopi, financement, pédagogie) au quotidien." },
+  { q: "Comment pouvez-vous être moins chers qu'une agence ?", a: "Nos consultants maîtrisent Claude Code et Claude Cowork. On produit le même travail en moyenne 3 à 4× moins de temps — et on répercute ce gain directement sur nos tarifs." },
+  { q: "Faut-il être à l'aise avec la technique ?", a: "Non. On prend en charge toute la complexité technique et on vous parle en langage clair." },
+  { q: "Faut-il changer nos outils actuels ?", a: "Non. L'IA et nos prestations se greffent sur votre stack existante — votre CRM, vos logiciels, vos tableurs. On s'adapte à vous." },
+  { q: "Nos données et celles de nos stagiaires sont-elles en sécurité ?", a: "Oui. Nous privilégions des solutions conformes RGPD et hébergées dans l'UE. La confidentialité n'est jamais négociée." },
+  { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos priorités et vous repartez avec une feuille de route chiffrée, avec ou sans nous." },
 ];
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
-const why = [
-  { t: "Spécialistes des organismes de formation", d: "On connaît vos contraintes : Qualiopi, pédagogie, administratif. Pas de discours générique." },
-  { t: "Orientés résultats", d: "Des gains de temps concrets et mesurables, pas des promesses en l'air." },
-  { t: "Vos équipes autonomes", d: "On forme et on outille pour que vous gardiez la main, sans dépendance." },
-];
 ---
 <BaseLayout
   title="Claude Partners"
-  description="Claude Partners aide les organismes de formation à intégrer l'IA et automatiser leurs process pour gagner en efficacité."
+  description="Une équipe de consultants IA qui prend en charge le SEO, le SEA, le site et l'admin Qualiopi des organismes de formation — plus vite et moins cher qu'une agence."
   pageSchema={[faqSchema]}
 >
   <!-- Hero asymétrique -->
   <section class="relative overflow-hidden bg-cream-100">
     <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
       <div class="cp-rise">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Conseil IA · Organismes de formation</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Équipe IA · Organismes de formation</p>
         <h1 class="mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-          L'IA au service de votre <span class="text-brand-600">organisme de formation</span>
+          Le marketing et l'admin de votre <span class="text-brand-600">organisme de formation</span>, pris en charge par l'IA
         </h1>
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          Du diagnostic aux outils sur mesure, on vous aide à intégrer l'IA et à automatiser vos process. Vous récupérez du temps, vous montez en qualité.
+          SEO, SEA, optimisation de votre site, gestion administrative et audits Qualiopi : nos quatre consultants s'en chargent pour vous — en moyenne 3 à 4× plus vite et moins cher qu'une agence, grâce à la maîtrise de Claude Code et Claude Cowork.
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
           <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Demander un audit offert</a>
-          <a href="/services/" class="rounded-lg border border-sand bg-cream-50 px-6 py-3 font-semibold text-ink transition-colors hover:border-brand-300">Découvrir nos services</a>
+          <a href="#expertises" class="rounded-lg border border-sand bg-cream-50 px-6 py-3 font-semibold text-ink transition-colors hover:border-brand-300">Voir nos expertises</a>
         </div>
+        <p class="mt-6 flex items-center gap-2.5 text-sm text-muted">
+          <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+          Notre fondateur pilote le marketing d'un organisme de formation — +3 M€ de CA générés depuis 2021.
+        </p>
       </div>
 
       <div class="cp-rise-2">
@@ -57,31 +109,46 @@ const why = [
 
   <!-- Problème (éditorial, asymétrique) -->
   <section class="mx-auto max-w-6xl px-4 py-20">
-    <div class="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
-      <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vos équipes débordées, l'administratif chronophage</h2>
-      <p class="text-lg leading-relaxed text-muted">
-        Qualiopi, suivi des stagiaires, création de supports : ces tâches grignotent le temps pédagogique.
-        Bien intégrée, l'IA vous rend ces heures, sans bouleverser votre organisation.
-      </p>
+    <div class="grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+      <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vous portez tout, en même temps</h2>
+      <div>
+        <p class="text-lg leading-relaxed text-muted">
+          Diriger un organisme de formation, c'est faire dix métiers à la fois : la pédagogie, le commercial,
+          le marketing, l'administratif, la qualité. Les journées n'y suffisent pas — et tout ce qui touche
+          au marketing ou à l'admin passe toujours après.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {irritants.map((i) => (
+            <li class="flex gap-3 text-muted">
+              <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-300"></span>
+              <span>{i}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-8 text-lg font-medium leading-relaxed text-ink">
+          Et si vous déléguiez tout ça à une équipe qui va 3 à 4× plus vite, pour bien moins cher ?
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Services (liste éditoriale, pas de grille de cartes) -->
-  <section class="bg-cream-100">
+  <!-- Déléguez à notre équipe : les 4 expertises -->
+  <section id="expertises" class="bg-cream-100">
     <div class="mx-auto max-w-6xl px-4 py-20">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quatre façons de vous faire gagner du temps</h2>
-        <a href="/services/" class="text-sm font-semibold text-brand-600 hover:text-brand-700">Tous les services <span aria-hidden="true">→</span></a>
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quatre experts. Une équipe. Un prix imbattable.</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">
+          Vous ne recrutez pas, vous ne formez personne : vous déléguez. Chacun de nos consultants couvre un domaine où les organismes de formation perdent du temps — ou de l'argent chez une agence.
+        </p>
       </div>
-      <ul class="mt-10 border-t border-sand">
-        {services.map((s) => (
-          <li class="border-b border-sand">
-            <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
-              <div>
-                <h3 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h3>
-                <p class="mt-1 text-muted">{s.data.tagline}</p>
-              </div>
-              <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
+      <ul class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-sand bg-sand sm:grid-cols-2">
+        {expertises.map((e) => (
+          <li>
+            <a href={e.href} class="group flex h-full flex-col bg-cream-50 p-7 transition-colors hover:bg-cream-100">
+              <h3 class="flex items-center gap-2 font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">
+                {e.t}<span aria-hidden="true" class="text-brand-500 transition-transform group-hover:translate-x-1">→</span>
+              </h3>
+              <p class="mt-2 leading-relaxed text-muted">{e.d}</p>
             </a>
           </li>
         ))}
@@ -89,27 +156,159 @@ const why = [
     </div>
   </section>
 
-  <!-- Méthode (stepper, sans cartes) -->
+  <!-- Bande différenciatrice : le claim prix / vitesse -->
+  <section class="bg-ink">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <p class="font-display text-2xl font-bold leading-snug text-cream-50 sm:text-3xl">
+        Une agence facture des semaines de travail. Notre équipe, équipée d'IA, le fait en quelques jours —
+        <span class="text-brand-300"> pour 3 à 4× moins cher.</span>
+      </p>
+      <p class="mx-auto mt-5 max-w-xl leading-relaxed text-sand">
+        Nos consultants maîtrisent Claude Code et Claude Cowork. Même expertise, une fraction du temps et du budget.
+      </p>
+    </div>
+  </section>
+
+  <!-- Preuve : résultats réels dans notre propre OF -->
   <section class="mx-auto max-w-5xl px-4 py-20">
-    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Notre méthode, en trois temps</h2>
-    <ol class="mt-12 grid gap-10 sm:grid-cols-3">
-      <li><div class="font-display text-5xl font-extrabold text-brand-200">1</div><p class="mt-3 font-display text-lg font-bold">On diagnostique</p><p class="mt-1 text-muted">On identifie vos opportunités prioritaires et leur ROI.</p></li>
-      <li><div class="font-display text-5xl font-extrabold text-brand-200">2</div><p class="mt-3 font-display text-lg font-bold">On met en place</p><p class="mt-1 text-muted">On forme, on automatise, on outille, de bout en bout.</p></li>
-      <li><div class="font-display text-5xl font-extrabold text-brand-200">3</div><p class="mt-3 font-display text-lg font-bold">On rend autonome</p><p class="mt-1 text-muted">Vos équipes gardent la main, sans dépendance à un prestataire.</p></li>
-    </ol>
+    <div class="max-w-2xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">La preuve</p>
+      <h2 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">On l'a d'abord fait dans notre propre organisme</h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted">
+        Avant d'en faire notre métier, notre fondateur a automatisé le back-office de son propre organisme de formation. Voici des résultats réels, mesurés — pas des promesses.
+      </p>
+    </div>
+    <ul class="mt-12 border-t border-sand">
+      {proof.map((p) => (
+        <li class="grid gap-3 border-b border-sand py-7 sm:grid-cols-[1.1fr_0.9fr] sm:items-center sm:gap-8">
+          <div>
+            <h3 class="font-display text-lg font-bold text-ink">{p.task}</h3>
+            <p class="mt-1 leading-relaxed text-muted">{p.detail}</p>
+          </div>
+          <div class="text-sm sm:text-right">
+            <p class="text-muted">Avant : {p.before}</p>
+            <p class="mt-1 font-display text-base font-bold text-brand-700">Après : {p.after}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8 text-muted">Ces gains, nous les installons désormais chez les organismes de formation que nous accompagnons.</p>
+  </section>
+
+  <!-- Concrètement : cas d'usage (le moteur de désir) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-6xl px-4 py-20">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Concrètement, ce que l'IA change chez vous</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">
+          Pas de promesses abstraites. Voici des tâches que l'IA prend en charge dès aujourd'hui, sur vos propres contenus et vos propres outils.
+        </p>
+      </div>
+      <ul class="mt-12 grid gap-x-12 gap-y-px sm:grid-cols-2">
+        {concrete.map((c) => (
+          <li class="border-t border-sand py-6">
+            <p class="leading-relaxed text-muted"><strong class="font-display text-lg text-ink">{c.t}</strong> {c.d}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-8 text-muted">On part de vos process, jamais d'un modèle générique. Chaque cas est adapté à votre réalité.</p>
+    </div>
+  </section>
+
+  <!-- Nos prestations (liste éditoriale, pas de grille de cartes) -->
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Nos prestations, de bout en bout</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">
+          Au-delà du marketing, on intègre l'IA dans tout votre organisme : on diagnostique, on automatise, on outille.
+        </p>
+      </div>
+      <a href="/services/" class="text-sm font-semibold text-brand-600 hover:text-brand-700">Tous les services <span aria-hidden="true">→</span></a>
+    </div>
+    <ul class="mt-10 border-t border-sand">
+      {services.filter((s) => s.data.category !== 'marketing').map((s) => (
+        <li class="border-b border-sand">
+          <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
+            <div>
+              <h3 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h3>
+              <p class="mt-1 text-muted">{s.data.tagline}</p>
+            </div>
+            <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Méthode (stepper, sans cartes) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-20">
+      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Notre méthode, en trois temps</h2>
+      <ol class="mt-12 grid gap-10 sm:grid-cols-3">
+        <li><div class="font-display text-5xl font-extrabold text-brand-200">1</div><p class="mt-3 font-display text-lg font-bold">On diagnostique</p><p class="mt-1 text-muted">On identifie vos priorités à plus fort ROI — marketing, admin, IA.</p></li>
+        <li><div class="font-display text-5xl font-extrabold text-brand-200">2</div><p class="mt-3 font-display text-lg font-bold">On prend en charge</p><p class="mt-1 text-muted">On exécute de bout en bout : campagnes, automatisations, outils, dossiers.</p></li>
+        <li><div class="font-display text-5xl font-extrabold text-brand-200">3</div><p class="mt-3 font-display text-lg font-bold">On rend compte</p><p class="mt-1 text-muted">Vous suivez les résultats en toute transparence, sans vous en occuper.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pour qui (liste éditoriale, role-led) -->
+  <section class="mx-auto max-w-5xl px-4 py-20">
+    <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pensé pour ceux qui font tourner l'organisme</h2>
+    <ul class="mt-10 border-t border-sand">
+      {personas.map((p) => (
+        <li class="grid gap-1 border-b border-sand py-6 sm:grid-cols-[0.9fr_1.1fr] sm:gap-8">
+          <h3 class="font-display text-lg font-bold text-brand-700">{p.r}</h3>
+          <p class="text-muted">{p.d}</p>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <!-- Pourquoi (blocs de texte, pas de cartes) -->
   <section class="bg-cream-100">
     <div class="mx-auto max-w-5xl px-4 py-20">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pourquoi Claude Partners</h2>
-      <div class="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-3">
+      <div class="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
         {why.map((w) => (
           <div>
             <h3 class="font-display text-lg font-bold text-brand-700">{w.t}</h3>
-            <p class="mt-2 text-muted">{w.d}</p>
+            <p class="mt-2 leading-relaxed text-muted">{w.d}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Le fondateur (incarnation humaine + portrait réel) -->
+  <section class="mx-auto max-w-3xl px-4 py-20">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le fondateur</p>
+    <div class="mt-6 grid gap-8 sm:grid-cols-[170px_1fr] sm:items-start sm:gap-10">
+      <Image
+        src={julienImg}
+        alt="Portrait de Julien Rayes, fondateur de Claude Partners"
+        width={340}
+        height={340}
+        sizes="(min-width: 640px) 170px, 160px"
+        loading="lazy"
+        class="w-40 rounded-2xl border border-sand object-cover sm:w-full"
+      />
+      <div>
+        <blockquote class="border-l-2 border-brand-300 pl-6">
+          <p class="font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">
+            « Je n'ai pas appris l'IA dans les livres. Je l'ai déployée, seul, dans un organisme de formation à plus de 3 M€ de chiffre d'affaires. »
+          </p>
+          <p class="mt-6 text-lg leading-relaxed text-muted">
+            Directeur commercial et marketing, j'ai automatisé l'administratif, le commercial et le marketing avec Make et Claude Code. Claude Partners met cette expérience au service des autres organismes de formation — avec une équipe de quatre spécialistes.
+          </p>
+          <footer class="mt-6 font-display font-bold text-ink">
+            Julien Rayes <span class="font-sans font-normal text-muted">— Fondateur, Claude Partners</span>
+          </footer>
+        </blockquote>
+        <p class="mt-6 pl-6 text-sm">
+          <a href="/a-propos/#julien-rayes" class="font-semibold text-brand-600 hover:text-brand-700">Découvrir notre histoire <span aria-hidden="true">→</span></a>
+        </p>
       </div>
     </div>
   </section>
@@ -130,9 +329,12 @@ const why = [
   <!-- CTA final : bandeau terracotta plein -->
   <section class="bg-brand-700">
     <div class="mx-auto max-w-4xl px-4 py-20 text-center">
-      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Faisons entrer l'IA dans votre organisme</h2>
-      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert pour identifier vos priorités, sans engagement.</p>
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Déléguez ce qui vous freine. Gardez la pédagogie.</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-brand-100">
+        Commencez par un audit offert : on identifie vos priorités à plus fort ROI — marketing, admin, IA — et on vous remet une feuille de route chiffrée. Vous repartez avec, que vous travailliez avec nous ensuite ou non.
+      </p>
       <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+      <p class="mt-5 text-sm text-brand-100">Sans engagement · Vous repartez avec votre feuille de route.</p>
     </div>
   </section>
 </BaseLayout>

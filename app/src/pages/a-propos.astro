@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import aboutImg from '../assets/about.jpg';
+import julienImg from '../assets/julien.jpg';
 import { authorPerson } from '../data/author';
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -27,9 +28,17 @@ const breadcrumb = {
     <div class="prose prose-stone mt-8 max-w-none">
       <p>Claude Partners est né d'un constat simple : les organismes de formation ont tout à gagner de l'IA, mais manquent de temps et d'un partenaire de confiance pour s'y mettre sans se tromper.</p>
       <h2 id="julien-rayes" class="scroll-mt-24">Le fondateur</h2>
+      <Image
+        src={julienImg}
+        alt="Portrait de Julien Rayes, fondateur de Claude Partners"
+        width={360}
+        height={360}
+        loading="lazy"
+        class="not-prose mb-4 w-36 rounded-2xl border border-sand object-cover sm:float-right sm:ml-6 sm:w-44"
+      />
       <p>Claude Partners a été fondé par <strong>Julien Rayes</strong>. Directeur commercial et marketing d'un organisme de formation professionnelle qui a dépassé 3 M€ de chiffre d'affaires depuis 2021, il en a automatisé seul tout le back-office — administratif, commercial et marketing — avec des outils comme Make et Claude Code.</p>
       <p>C'est ce qui fait notre différence : nous ne théorisons pas l'IA pour les organismes de formation, nous l'avons déjà déployée dans l'un d'eux.</p>
-      <h2>Notre mission</h2>
+      <h2 class="clear-both">Notre mission</h2>
       <p>Faire entrer l'IA dans votre organisme de formation, de façon concrète et mesurable, du diagnostic jusqu'aux outils sur mesure.</p>
       <h2>Notre approche</h2>
       <p>Nous privilégions les résultats rapides et l'autonomie de vos équipes. Pas de jargon, pas de dépendance : nous formons et nous outillons pour que vous gardiez la main.</p>

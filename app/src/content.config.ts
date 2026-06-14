@@ -25,6 +25,7 @@ const services = defineCollection({
     description: z.string().max(160),
     tagline: z.string(),
     order: z.number().default(99),
+    category: z.enum(['marketing', 'ia']).default('ia'),
     problem: z.string(),
     deliverables: z.array(z.string()),
     benefits: z.array(z.string()),

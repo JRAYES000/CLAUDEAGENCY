@@ -1,33 +1,58 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const services = await getCollection('services');
+const byOrder = (a, b) => a.data.order - b.data.order;
+const groups = [
+  {
+    label: 'Marketing & acquisition',
+    desc: 'Attirer des candidats qualifiés et remplir vos sessions.',
+    items: services.filter((s) => s.data.category === 'marketing').sort(byOrder),
+  },
+  {
+    label: 'IA & automatisation des process',
+    desc: 'Récupérer du temps sur la pédagogie et l\'administratif.',
+    items: services.filter((s) => s.data.category !== 'marketing').sort(byOrder),
+  },
+];
 ---
-<BaseLayout title="Nos services" description="Audit IA, formation des équipes, automatisation des process et outils sur mesure pour organismes de formation.">
+<BaseLayout
+  title="Nos services"
+  description="SEO, SEA, optimisation de site, audit IA, automatisation et outils sur mesure : tout ce qu'un organisme de formation peut déléguer à une équipe IA."
+>
   <section class="mx-auto max-w-6xl px-4 py-20">
     <div class="cp-rise max-w-3xl">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Nos services</p>
       <h1 class="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">
-        Le partenaire unique pour faire entrer l'IA dans votre <span class="text-brand-600">organisme de formation</span>
+        Tout ce que vous pouvez déléguer pour votre <span class="text-brand-600">organisme de formation</span>
       </h1>
       <p class="mt-6 text-lg leading-relaxed text-muted">
-        Quatre expertises complémentaires, du diagnostic aux outils sur mesure. On vous prend par la main, à votre rythme.
+        Du marketing à l'administratif, nos quatre consultants prennent en charge ce qui vous fait perdre du temps — en moyenne 3 à 4× plus vite et moins cher qu'une agence, grâce à la maîtrise de Claude Code et Claude Cowork.
       </p>
     </div>
 
-    <ul class="mt-14 border-t border-sand">
-      {services.map((s) => (
-        <li class="border-b border-sand">
-          <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
-            <div>
-              <h2 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h2>
-              <p class="mt-1 text-muted">{s.data.tagline}</p>
-            </div>
-            <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    {groups.map((g) => (
+      <div class="mt-14">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+          <h2 class="font-display text-2xl font-bold text-ink">{g.label}</h2>
+          <p class="text-muted">{g.desc}</p>
+        </div>
+        <ul class="mt-6 border-t border-sand">
+          {g.items.map((s) => (
+            <li class="border-b border-sand">
+              <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-ink transition-colors group-hover:text-brand-700">{s.data.title}</h3>
+                  <p class="mt-1 text-muted">{s.data.tagline}</p>
+                </div>
+                <span aria-hidden="true" class="hidden self-center text-brand-500 transition-transform group-hover:translate-x-1 sm:inline">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </section>
 
   <!-- CTA final : bandeau terracotta plein -->
