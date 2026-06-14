@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImg from '../assets/hero.jpg';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const faq = [
@@ -41,27 +43,14 @@ const why = [
       </div>
 
       <div class="cp-rise-2">
-        <svg viewBox="0 0 480 420" class="h-auto w-full" role="img" aria-label="Illustration : des process reliés et fluidifiés par l'IA">
-          <rect x="16" y="16" width="448" height="388" rx="28" fill="#FBF7F1" stroke="#E5D9C7" />
-          <circle cx="360" cy="120" r="92" fill="#F5E0D6" />
-          <circle cx="150" cy="300" r="64" fill="#EBC0AD" />
-          <path d="M60 150 C 160 90, 320 360, 420 290" fill="none" stroke="#CC785C" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12" opacity="0.8" />
-          <g>
-            <rect x="64" y="96" width="150" height="58" rx="12" fill="#FFFFFF" stroke="#E5D9C7" />
-            <circle cx="92" cy="125" r="11" fill="#CC785C" />
-            <rect x="112" y="115" width="84" height="8" rx="4" fill="#E5D9C7" />
-            <rect x="112" y="131" width="56" height="8" rx="4" fill="#EBC0AD" />
-          </g>
-          <g>
-            <rect x="270" y="244" width="150" height="58" rx="12" fill="#FFFFFF" stroke="#E5D9C7" />
-            <circle cx="298" cy="273" r="11" fill="#934E3A" />
-            <rect x="318" y="263" width="84" height="8" rx="4" fill="#E5D9C7" />
-            <rect x="318" y="279" width="56" height="8" rx="4" fill="#EBC0AD" />
-          </g>
-          <line x1="214" y1="125" x2="270" y2="273" stroke="#CC785C" stroke-width="2.5" stroke-linecap="round" />
-          <circle cx="242" cy="199" r="20" fill="#CC785C" />
-          <path d="M234 199 l6 6 l10 -12" fill="none" stroke="#FBF7F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <Image
+          src={heroImg}
+          alt="Un formateur accompagne deux apprenants autour d'un ordinateur portable dans une salle de formation lumineuse"
+          loading="eager"
+          fetchpriority="high"
+          sizes="(min-width: 768px) 42vw, 100vw"
+          class="w-full rounded-2xl border border-sand object-cover"
+        />
       </div>
     </div>
   </section>

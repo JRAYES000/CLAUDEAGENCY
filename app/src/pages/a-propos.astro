@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import aboutImg from '../assets/about.jpg';
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -14,6 +16,13 @@ const breadcrumb = {
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">À propos</p>
       <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">À propos de Claude Partners</h1>
     </div>
+    <Image
+      src={aboutImg}
+      alt="Un poste de travail lumineux avec un ordinateur portable, un carnet et une tasse de café"
+      loading="eager"
+      sizes="(min-width: 768px) 42rem, 100vw"
+      class="mt-8 w-full rounded-2xl border border-sand object-cover"
+    />
     <div class="prose prose-stone mt-8 max-w-none">
       <p>Claude Partners est né d'un constat simple : les organismes de formation ont tout à gagner de l'IA, mais manquent de temps et d'un partenaire de confiance pour s'y mettre sans se tromper.</p>
       <h2>Notre mission</h2>
