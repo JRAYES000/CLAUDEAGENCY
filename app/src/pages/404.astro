@@ -4,7 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Page introuvable" description="Cette page n'existe pas." noindex={true}>
   <section class="mx-auto max-w-2xl px-4 py-24 text-center">
     <h1 class="font-display text-6xl font-extrabold tracking-tight text-brand-700">404</h1>
-    <p class="mt-4 text-muted">Cette page n'existe pas (ou plus).</p>
-    <a href="/" class="mt-8 inline-block rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white hover:bg-brand-600">Retour à l'accueil</a>
+    <p class="mt-4 text-muted">Cette page n'existe pas (ou plus). Voici par où continuer :</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-600">Accueil</a>
+      <a href="/services/" class="rounded-lg border border-sand bg-cream-50 px-5 py-2.5 font-medium text-ink transition-colors hover:border-brand-300">Nos services</a>
+      <a href="/blog/" class="rounded-lg border border-sand bg-cream-50 px-5 py-2.5 font-medium text-ink transition-colors hover:border-brand-300">Le blog</a>
+    </div>
   </section>
 </BaseLayout>
