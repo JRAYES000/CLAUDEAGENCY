@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { AUTHOR, authorPerson } from '../../data/author';
+import LeadMagnet from '../../components/LeadMagnet.astro';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog', ({ data }) =>
@@ -48,6 +49,10 @@ const articleSchema = {
       ))}</ul>
     )}
     <div class="prose prose-stone mt-8 max-w-none"><Content /></div>
+
+    <div class="mt-14">
+      <LeadMagnet variant="compact" />
+    </div>
 
     <aside class="mt-14 rounded-2xl border border-sand bg-cream-100 p-6 sm:p-7" aria-label="À propos de l'auteur">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">L'auteur</p>
