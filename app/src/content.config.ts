@@ -18,4 +18,19 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+const services = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/services' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().max(160),
+    tagline: z.string(),
+    order: z.number().default(99),
+    problem: z.string(),
+    deliverables: z.array(z.string()),
+    benefits: z.array(z.string()),
+    process: z.array(z.object({ step: z.string(), detail: z.string() })),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+  }),
+});
+
+export const collections = { blog, services };
