@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Polices — réutilise les variables générées par l'API Fonts d'Astro */
