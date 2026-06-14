@@ -13,6 +13,13 @@ const { Content } = await render(service);
 const d = service.data;
 const site = Astro.site!;
 
+const related = d.relatedTags.length
+  ? (await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true))
+      .filter((p) => p.data.tags.some((t) => d.relatedTags.includes(t)))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+      .slice(0, 3)
+  : [];
+
 const serviceSchema = {
   '@context': 'https://schema.org', '@type': 'Service',
   '@id': new URL(`/services/${service.id}/#service`, site).href,
@@ -63,6 +70,15 @@ const schema = [serviceSchema, breadcrumb, ...(faqSchema ? [faqSchema] : [])];
         <dl class="mt-4 space-y-4">{d.faq.map((f) => (
           <div class="rounded-lg border border-sand bg-cream-50 p-4"><dt class="font-medium">{f.q}</dt><dd class="mt-1 text-muted">{f.a}</dd></div>
         ))}</dl>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="mt-12">
+        <h2 class="font-serif text-2xl">Articles liés</h2>
+        <ul class="mt-4 space-y-3">{related.map((p) => (
+          <li><a href={`/blog/${p.id}/`} class="text-brand-700 hover:underline">{p.data.title}</a></li>
+        ))}</ul>
       </section>
     )}
 

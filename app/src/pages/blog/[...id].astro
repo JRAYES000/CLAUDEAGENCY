@@ -40,7 +40,9 @@ const articleSchema = {
       &middot; {remarkPluginFrontmatter.minutesRead}
     </p>
     {tags.length > 0 && (
-      <ul class="mt-4 flex flex-wrap gap-2">{tags.map((t) => <li class="rounded-full bg-brand-50 px-3 py-1 text-xs text-brand-700">#{t}</li>)}</ul>
+      <ul class="mt-4 flex flex-wrap gap-2">{tags.map((t) => (
+        <li><a href={`/blog/tags/${t}/`} class="rounded-full bg-brand-50 px-3 py-1 text-xs text-brand-700 hover:bg-brand-100">#{t}</a></li>
+      ))}</ul>
     )}
     <div class="prose prose-stone mt-8 max-w-none"><Content /></div>
   </article>

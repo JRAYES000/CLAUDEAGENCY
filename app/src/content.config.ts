@@ -30,6 +30,7 @@ const services = defineCollection({
     benefits: z.array(z.string()),
     process: z.array(z.object({ step: z.string(), detail: z.string() })),
     faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    relatedTags: z.array(z.string()).default([]),
   }),
 });
 
