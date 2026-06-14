@@ -1,0 +1,64 @@
+---
+// src/components/LeadMagnet.astro
+// Bloc CTA + formulaire d'inscription au lead magnet (poste vers Mailjet).
+import { MAILJET_FORM } from '../data/mailjet';
+
+interface Props { variant?: 'compact' | 'full'; }
+const { variant = 'compact' } = Astro.props;
+const isFull = variant === 'full';
+const inputClass =
+  'mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500';
+---
+<section
+  class={`not-prose rounded-2xl border border-sand bg-cream-100 ${isFull ? 'p-8 sm:p-10' : 'p-6 sm:p-7'}`}
+  aria-labelledby="lead-magnet-title"
+>
+  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Ressource gratuite</p>
+  <h2 id="lead-magnet-title" class={`mt-2 font-display font-bold text-ink ${isFull ? 'text-3xl sm:text-4xl' : 'text-2xl'}`}>
+    10 automatisations IA qui libèrent 1 jour/semaine dans un organisme de formation
+  </h2>
+  <p class="mt-3 leading-relaxed text-muted">
+    Le guide concret, tiré d'un organisme de formation réel : pour chaque tâche, l'automatisation, le temps gagné et l'outil. Recevez-le par email.
+  </p>
+
+  <form id="lead-magnet-form" action={MAILJET_FORM.actionUrl} method="POST" class="mt-6 space-y-4">
+    {MAILJET_FORM.hidden.map((h) => (<input type="hidden" name={h.name} value={h.value} />))}
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label for="lm-firstname" class="block text-sm font-medium">Prénom</label>
+        <input type="text" id="lm-firstname" name={MAILJET_FORM.fields.firstName} required autocomplete="given-name" class={inputClass} />
+      </div>
+      <div>
+        <label for="lm-email" class="block text-sm font-medium">Email professionnel</label>
+        <input type="email" id="lm-email" name={MAILJET_FORM.fields.email} required autocomplete="email" spellcheck="false" class={inputClass} />
+      </div>
+    </div>
+    <div>
+      <label for="lm-org" class="block text-sm font-medium">Nom de votre organisme <span class="text-muted">(optionnel)</span></label>
+      <input type="text" id="lm-org" name={MAILJET_FORM.fields.organisation} autocomplete="organization" class={inputClass} />
+    </div>
+    <label class="flex items-start gap-2 text-sm text-muted">
+      <input type="checkbox" name="consent" required class="mt-1" />
+      <span>J'accepte de recevoir le guide et des conseils par email. Voir la <a href="/confidentialite/" class="text-brand-600 hover:underline">politique de confidentialité</a>. Désinscription en un clic.</span>
+    </label>
+
+    <button type="submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-brand-600 disabled:opacity-70">
+      Recevoir le guide
+    </button>
+    <p id="lm-result" class="text-sm" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('lead-magnet-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      var hp = form.querySelector('input[name="botcheck"]');
+      if (hp && hp.checked) { e.preventDefault(); return; }
+      if (window.plausible) window.plausible('Lead Magnet Submit');
+    });
+  })();
+</script>
