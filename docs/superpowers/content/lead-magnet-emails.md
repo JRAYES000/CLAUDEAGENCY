@@ -1,7 +1,8 @@
 # Lead magnet — copy emails (à coller dans Mailjet)
 
-> Les emails 2 et 3 ne s'activent qu'en **phase Premium** (automation multi-emails). L'email de confirmation et l'Email 1 fonctionnent dès maintenant.
-> Liens à insérer : PDF = `https://claudepartners.fr/ressources/10-automatisations-ia.pdf` · Audit = `https://claudepartners.fr/contact/`
+> **Livraison via l'API transactionnelle Mailjet (gratuite)**, depuis la Pages Function `app/functions/api/subscribe.js` — PAS d'automation Mailjet (Premium non souhaité). L'**Email 1** ci-dessous est celui qu'envoie la fonction (son HTML vit dans la fonction). Opt-in simple (case de consentement = base RGPD) ; double opt-in non utilisé.
+> Emails 2 & 3 (relances J+2/J+5) : à brancher plus tard via un **Cron Cloudflare + Send API** (toujours sans Premium).
+> Liens : PDF = `https://claudepartners.fr/ressources/10-automatisations-ia.pdf` · Audit = `https://claudepartners.fr/contact/`
 
 ---
 
