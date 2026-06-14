@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DiagnosticForm from '../components/DiagnosticForm.astro';
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Diagnostic' },
+  ],
+};
+
+// Comparatif : faire seul / agence / Claude Partners. Reprend les claims déjà tenus sur la home
+// (connaissance OF, délai, 3-4× moins cher, périmètre réuni) — rien de nouveau à étayer.
+const critteres = [
+  { c: 'Connaissance des organismes de formation', seul: 'Variable', agence: 'Faible', cp: "Forte — c'est notre seul métier" },
+  { c: 'Délai de mise en œuvre', seul: 'Lent (vous manquez de temps)', agence: 'Plusieurs semaines', cp: 'Quelques jours' },
+  { c: 'Coût', seul: 'Votre temps, la ressource la plus rare', agence: 'Élevé', cp: '3 à 4× moins cher qu\'une agence' },
+  { c: 'Périmètre couvert', seul: 'Partiel, au cas par cas', agence: 'Souvent un seul canal', cp: 'SEO, SEA, site & admin réunis' },
+  { c: 'Vos équipes', seul: 'Seules face aux outils', agence: 'Rarement formées', cp: 'On forme et on outille' },
+];
+---
+<BaseLayout
+  title="Diagnostic IA gratuit"
+  description="Faites le point en 2 minutes : où en est votre organisme de formation avec l'IA ? On revient vers vous avec des pistes concrètes et un audit offert, sans engagement."
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-5xl px-4 py-16">
+    <div class="cp-rise max-w-2xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Diagnostic gratuit · sans engagement</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Où en est votre organisme avec l'IA ?</h1>
+      <p class="mt-4 text-lg leading-relaxed text-muted">En 2 minutes, dites-nous votre rôle et votre priorité. On revient vers vous avec des <strong class="font-semibold text-ink">pistes concrètes</strong> et un <strong class="font-semibold text-ink">audit offert</strong> — vous repartez avec une feuille de route, que vous travailliez avec nous ensuite ou non.</p>
+    </div>
+  </section>
+
+  <!-- Comparatif : pourquoi pas faire seul / via une agence (placé ici, pas sur la home) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-16">
+      <h2 class="font-display text-2xl font-bold text-ink sm:text-3xl">Faire seul, passer par une agence, ou déléguer à une équipe spécialisée ?</h2>
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[680px] border-collapse text-left text-sm">
+          <caption class="sr-only">Comparaison entre faire soi-même, une agence classique et Claude Partners.</caption>
+          <thead>
+            <tr class="border-b border-sand">
+              <th scope="col" class="py-3 pr-4 font-display text-base font-bold text-ink">Critère</th>
+              <th scope="col" class="px-4 py-3 font-medium text-muted">Faire soi-même</th>
+              <th scope="col" class="px-4 py-3 font-medium text-muted">Agence classique</th>
+              <th scope="col" class="rounded-t-lg bg-brand-700 px-4 py-3 font-display text-base font-bold text-cream-50">Claude Partners</th>
+            </tr>
+          </thead>
+          <tbody>
+            {critteres.map((r, i) => (
+              <tr class="border-b border-sand align-top">
+                <th scope="row" class="py-4 pr-4 font-medium text-ink">{r.c}</th>
+                <td class="px-4 py-4 text-muted">{r.seul}</td>
+                <td class="px-4 py-4 text-muted">{r.agence}</td>
+                <td class={`px-4 py-4 font-medium text-ink bg-brand-50 ${i === critteres.length - 1 ? 'rounded-b-lg' : ''}`}>{r.cp}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-sm text-muted">Comparaison indicative, fondée sur notre expérience du secteur. On en discute lors de l'audit.</p>
+    </div>
+  </section>
+
+  <!-- Formulaire qualifiant -->
+  <section class="mx-auto max-w-5xl px-4 py-16">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink sm:text-3xl">Lancez votre diagnostic</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">Trois questions, vos coordonnées, c'est tout. On vous répond avec des pistes adaptées à votre situation.</p>
+        <ul class="mt-8 space-y-3 text-muted">
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span><span>Réponse personnalisée, pas un mail automatique.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span><span>Audit offert si vous souhaitez aller plus loin.</span></li>
+          <li class="flex gap-3"><span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span><span>Aucune obligation, aucune relance insistante.</span></li>
+        </ul>
+        <p class="mt-8 text-muted">Vous préférez en parler de vive voix ? <a href="/contact/" class="font-semibold text-brand-700 hover:underline">Prenez rendez-vous (30 min)</a>.</p>
+      </div>
+      <div class="rounded-2xl border border-sand bg-cream-50 p-6 sm:p-8">
+        <DiagnosticForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
