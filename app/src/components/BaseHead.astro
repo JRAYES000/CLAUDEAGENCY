@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string; description: string; image?: string; imageAlt?: string;
+  canonical?: string; type?: 'website' | 'article'; noindex?: boolean;
+}
+const {
+  title, description, image = '/og-default.jpg',
+  imageAlt = 'Claude Partners — IA et automatisation pour organismes de formation',
+  canonical, type = 'website', noindex = false,
+} = Astro.props;
+// trailingSlash:'always' => Astro.url.pathname porte déjà le slash final ; on garantit la cohérence.
+const rawPath = canonical ?? Astro.url.pathname;
+const path = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
+const canonicalURL = new URL(path, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
+const fullTitle = title === 'Claude Partners' ? title : `${title} — Claude Partners`;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="Claude Partners" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:image:alt" content={imageAlt} />
