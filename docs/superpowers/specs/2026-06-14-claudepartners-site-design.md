@@ -42,11 +42,11 @@ Quatre services, chacun avec sa page dédiée :
 |---|---|---|
 | Framework | **Astro** + Tailwind CSS | HTML statique → meilleur SEO technique (Core Web Vitals), terrain idéal pour Claude Code. |
 | Contenu blog | **Markdown / MDX** (content collections Astro) | Un fichier = un article ; rédaction directe par Claude Code, versionnée. |
-| Hébergement | **Cloudflare Pages** (recommandé) ou **Hostinger statique** | CF Pages : gratuit, CDN mondial, déploiement auto depuis Git. À finaliser au déploiement. |
+| Hébergement | **Cloudflare Pages** ✅ | Gratuit, CDN mondial, déploiement continu depuis Git. |
 | Versionnement | **Git** (repo dédié) | Historique, déploiement continu. |
-| Formulaire contact | Service sans back-end (Web3Forms / Formspree) | Pas de serveur à maintenir. |
+| Formulaire contact | **Web3Forms** ✅ | Sans back-end, pas de serveur à maintenir. |
 | Prise de RDV | **Calendly** embarqué | Déjà utilisé par Julien. |
-| Analytics | **Plausible** (recommandé, privacy-friendly) ou GA4 | À confirmer ; Plausible simplifie la conformité RGPD. |
+| Analytics | **Plausible** ✅ | Privacy-friendly → pas de bandeau cookies, conformité RGPD simplifiée. |
 | Base de données | ❌ Aucune en v1 | YAGNI : pas d'espace client ni de contenu dynamique. |
 
 **Langue** : français uniquement.
@@ -153,7 +153,7 @@ Contenu structuré, FAQ, fichier `llms.txt` — cohérent pour une entreprise sp
 
 ---
 
-## 11. Décisions à finaliser (non bloquantes)
-- Hébergement définitif : Cloudflare Pages vs Hostinger statique.
-- Outil d'analytics : Plausible vs GA4.
-- Service de formulaire : Web3Forms vs Formspree.
+## 11. Décisions actées (2026-06-14)
+- Hébergement : **Cloudflare Pages** (déploiement continu depuis Git).
+- Analytics : **Plausible**.
+- Formulaire : **Web3Forms**.
