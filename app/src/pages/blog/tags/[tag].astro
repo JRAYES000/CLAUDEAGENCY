@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true);
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts.filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag, posts } = Astro.props;
+---
+<BaseLayout title={`Articles : ${tag}`} description={`Nos articles sur le thème « ${tag} » pour les organismes de formation.`}>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-sm font-medium uppercase tracking-wide text-brand-600">Thème</p>
+    <h1 class="mt-2 font-serif text-4xl font-semibold">#{tag}</h1>
+    <ul class="mt-8 space-y-4">{posts.map((p) => (
+      <li><a href={`/blog/${p.id}/`} class="block rounded-lg border border-sand bg-cream-50 p-4 hover:bg-cream-100">
+        <span class="font-serif text-lg">{p.data.title}</span>
+        <span class="mt-1 block text-sm text-muted">{p.data.description}</span>
+      </a></li>
+    ))}</ul>
+    <a href="/blog/" class="mt-8 inline-block text-sm text-brand-600">← Tous les articles</a>
+  </section>
+</BaseLayout>

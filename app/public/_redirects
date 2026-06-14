@@ -1,0 +1,3 @@
+# Redirections de CHEMIN relatives uniquement (ex: /ancienne-url /nouvelle-url 301).
+# www->apex et *.pages.dev->apex sont gérés par des Cloudflare Redirect Rules (Phase 6, Task 6.3),
+# car _redirects ne gère pas les redirections au niveau domaine/hostname.

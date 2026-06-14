@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const faq = [
+  { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité : nous connaissons vos contraintes (Qualiopi, pédagogie, administratif)." },
+  { q: "Faut-il être à l'aise avec la technique ?", a: "Non. Nous prenons en charge la complexité technique et formons vos équipes en langage clair." },
+  { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos opportunités prioritaires." },
+];
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<BaseLayout
+  title="Claude Partners"
+  description="Claude Partners aide les organismes de formation à intégrer l'IA et automatiser leurs process pour gagner en efficacité."
+  pageSchema={[faqSchema]}
+>
+  <!-- Hero -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-4xl px-4 py-24 text-center">
+      <h1 class="font-serif text-5xl font-semibold leading-tight">L'IA au service de votre organisme de formation</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted">
+        Du diagnostic aux outils sur mesure, nous aidons les organismes de formation à intégrer l'IA et à automatiser leurs process — pour gagner du temps et monter en qualité.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+        <a href="/services/" class="rounded-lg border border-sand px-6 py-3 font-medium hover:bg-cream-50">Découvrir nos services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problème -->
+  <section class="mx-auto max-w-3xl px-4 py-20 text-center">
+    <h2 class="font-serif text-3xl font-semibold">Vos équipes débordées, l'administratif chronophage</h2>
+    <p class="mt-4 text-muted">
+      Qualiopi, suivi des stagiaires, création de supports : ces tâches grignotent le temps pédagogique.
+      L'IA bien intégrée vous rend ces heures — sans bouleverser votre organisation.
+    </p>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-20">
+      <h2 class="text-center font-serif text-3xl font-semibold">Nos services</h2>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2">
+        {services.map((s) => (
+          <li class="rounded-xl border border-sand bg-cream-50 p-6">
+            <a href={`/services/${s.id}/`} class="block">
+              <h3 class="font-serif text-xl font-medium text-brand-700">{s.data.title}</h3>
+              <p class="mt-2 text-muted">{s.data.tagline}</p>
+              <span class="mt-4 inline-block text-sm font-medium text-brand-600">En savoir plus →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Méthode -->
+  <section class="mx-auto max-w-5xl px-4 py-20">
+    <h2 class="text-center font-serif text-3xl font-semibold">Notre méthode</h2>
+    <ol class="mt-10 grid gap-8 sm:grid-cols-3">
+      <li><span class="font-serif text-3xl text-brand-300">1</span><p class="mt-2 font-medium">On diagnostique</p><p class="text-muted">On identifie vos opportunités prioritaires.</p></li>
+      <li><span class="font-serif text-3xl text-brand-300">2</span><p class="mt-2 font-medium">On met en place</p><p class="text-muted">On forme, on automatise, on outille.</p></li>
+      <li><span class="font-serif text-3xl text-brand-300">3</span><p class="mt-2 font-medium">On rend autonome</p><p class="text-muted">Vos équipes gardent la main.</p></li>
+    </ol>
+  </section>
+
+  <!-- Pourquoi Claude Partners (réassurance / E-E-A-T) -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-20">
+      <h2 class="text-center font-serif text-3xl font-semibold">Pourquoi Claude Partners</h2>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-3">
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Spécialistes des organismes de formation</p><p class="mt-2 text-muted">On connaît vos contraintes : Qualiopi, pédagogie, administratif.</p></li>
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Orientés résultats</p><p class="mt-2 text-muted">Des gains de temps concrets et mesurables, pas des promesses.</p></li>
+        <li class="rounded-xl border border-sand bg-cream-50 p-6"><p class="font-medium">Vos équipes autonomes</p><p class="mt-2 text-muted">On forme et on outille pour que vous gardiez la main.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Témoignages (emplacement — à remplir dès les premiers clients) -->
+  {/* TODO témoignages : insérer ici 2-3 verbatims clients (nom, OF, résultat) quand disponibles. Ajouter alors un schema Review/AggregateRating si pertinent. */}
+
+  <!-- FAQ -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-3xl px-4 py-20">
+      <h2 class="text-center font-serif text-3xl font-semibold">Questions fréquentes</h2>
+      <dl class="mt-8 space-y-4">{faq.map((f) => (
+        <div class="rounded-lg border border-sand bg-cream-50 p-5"><dt class="font-medium">{f.q}</dt><dd class="mt-1 text-muted">{f.a}</dd></div>
+      ))}</dl>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="mx-auto max-w-3xl px-4 py-20 text-center">
+    <h2 class="font-serif text-3xl font-semibold">Faisons entrer l'IA dans votre organisme</h2>
+    <a href="/contact/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white hover:bg-brand-600">Demander un audit offert</a>
+  </section>
+</BaseLayout>

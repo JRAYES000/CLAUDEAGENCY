@@ -1,0 +1,8 @@
+---
+interface Props { schema: Record<string, unknown> | Record<string, unknown>[]; }
+const { schema } = Astro.props;
+const blocks = Array.isArray(schema) ? schema : [schema];
+// Échappe `<` pour qu'un éventuel `</script>` dans une valeur ne casse pas le bloc JSON-LD.
+const json = (b: Record<string, unknown>) => JSON.stringify(b).replace(/</g, '\\u003c');
+---
+{blocks.map((b) => <script type="application/ld+json" set:html={json(b)} />)}
