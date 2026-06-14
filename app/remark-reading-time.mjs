@@ -5,5 +5,6 @@ export function remarkReadingTime() {
   return function (tree, { data }) {
     const rt = getReadingTime(toString(tree), { wordsPerMinute: 200 });
     data.astro.frontmatter.minutesRead = `${Math.max(1, Math.round(rt.minutes))} min de lecture`;
+    data.astro.frontmatter.wordCount = rt.words;
   };
 }

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUTHOR, authorPerson } from '../../data/author';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog', ({ data }) =>
@@ -24,12 +25,14 @@ const articleSchema = {
   image: [new URL(image.src, site).href],
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { '@type': 'Person', name: author },
+  author: { '@id': new URL('/a-propos/#julien-rayes', site).href },
   publisher: { '@id': new URL('/#organization', site).href },
   inLanguage: 'fr-FR',
+  ...(tags.length ? { keywords: tags.join(', ') } : {}),
+  ...(remarkPluginFrontmatter.wordCount ? { wordCount: remarkPluginFrontmatter.wordCount } : {}),
 };
 ---
-<BaseLayout title={title} description={description} type="article" image={image.src} pageSchema={[articleSchema]}>
+<BaseLayout title={title} description={description} type="article" image={image.src} pageSchema={[articleSchema, authorPerson(site)]}>
   <article class="mx-auto max-w-2xl px-4 py-16">
     <Image src={image} alt={imageAlt} width={1200} height={630} loading="eager" fetchpriority="high" class="rounded-xl" />
     <h1 class="mt-8 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-700 sm:text-5xl">{title}</h1>
@@ -45,5 +48,13 @@ const articleSchema = {
       ))}</ul>
     )}
     <div class="prose prose-stone mt-8 max-w-none"><Content /></div>
+
+    <aside class="mt-14 rounded-2xl border border-sand bg-cream-100 p-6 sm:p-7" aria-label="À propos de l'auteur">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">L'auteur</p>
+      <p class="mt-2 font-display text-lg font-bold text-ink">{AUTHOR.name}</p>
+      <p class="text-sm text-brand-600">{AUTHOR.jobTitle}</p>
+      <p class="mt-3 text-sm leading-relaxed text-muted">{AUTHOR.bio}</p>
+      <a href="/a-propos/" class="mt-3 inline-block text-sm font-semibold text-brand-700 hover:underline">En savoir plus sur Claude Partners <span aria-hidden="true">→</span></a>
+    </aside>
   </article>
 </BaseLayout>

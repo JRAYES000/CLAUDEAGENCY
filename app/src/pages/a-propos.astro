@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import aboutImg from '../assets/about.jpg';
+import { authorPerson } from '../data/author';
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -10,7 +11,7 @@ const breadcrumb = {
   ],
 };
 ---
-<BaseLayout title="À propos" description="Claude Partners : le partenaire des organismes de formation pour intégrer l'IA et automatiser leurs process." pageSchema={[breadcrumb]}>
+<BaseLayout title="À propos" description="Claude Partners : le partenaire des organismes de formation pour intégrer l'IA et automatiser leurs process." pageSchema={[breadcrumb, authorPerson(Astro.site!)]}>
   <section class="mx-auto max-w-2xl px-4 py-16">
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">À propos</p>
@@ -25,12 +26,15 @@ const breadcrumb = {
     />
     <div class="prose prose-stone mt-8 max-w-none">
       <p>Claude Partners est né d'un constat simple : les organismes de formation ont tout à gagner de l'IA, mais manquent de temps et d'un partenaire de confiance pour s'y mettre sans se tromper.</p>
+      <h2 id="julien-rayes" class="scroll-mt-24">Le fondateur</h2>
+      <p>Claude Partners a été fondé par <strong>Julien Rayes</strong>. Directeur commercial et marketing d'un organisme de formation professionnelle qui a dépassé 3 M€ de chiffre d'affaires depuis 2021, il en a automatisé seul tout le back-office — administratif, commercial et marketing — avec des outils comme Make et Claude Code.</p>
+      <p>C'est ce qui fait notre différence : nous ne théorisons pas l'IA pour les organismes de formation, nous l'avons déjà déployée dans l'un d'eux.</p>
       <h2>Notre mission</h2>
       <p>Faire entrer l'IA dans votre organisme de formation, de façon concrète et mesurable, du diagnostic jusqu'aux outils sur mesure.</p>
       <h2>Notre approche</h2>
       <p>Nous privilégions les résultats rapides et l'autonomie de vos équipes. Pas de jargon, pas de dépendance : nous formons et nous outillons pour que vous gardiez la main.</p>
       <h2>Pourquoi nous</h2>
-      <p>Nous sommes spécialisés dans le monde de la formation : nous connaissons vos contraintes (Qualiopi, pédagogie, administratif) et nous parlons votre langage.</p>
+      <p>Nous sommes spécialisés dans le monde de la formation : nous en connaissons les contraintes (Qualiopi, pédagogie, administratif) parce que nous les vivons au quotidien, et nous parlons votre langage.</p>
       <p>Cette spécialisation OF est notre force : chaque recommandation s'appuie sur la réalité du terrain des organismes de formation, pas sur des recettes génériques.</p>
     </div>
   </section>
