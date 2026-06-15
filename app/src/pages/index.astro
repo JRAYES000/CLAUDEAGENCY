@@ -2,7 +2,10 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import heroImg from '../assets/hero.jpg';
+import heroImg from '../assets/hero-pilotage-ia.jpg';
+import surchargeImg from '../assets/dirigeant-surcharge.jpg';
+import preuveImg from '../assets/resultats-automatisation.jpg';
+import methodeImg from '../assets/methode-diagnostic.jpg';
 import julienImg from '../assets/julien.jpg';
 import TimeSavingsCalculator from '../components/TimeSavingsCalculator.astro';
 
@@ -103,14 +106,14 @@ const faqSchema = {
         </div>
         <p class="mt-5 flex items-center gap-2.5 text-sm text-muted">
           <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
-          Notre fondateur pilote le marketing d'un organisme de formation — +3 M€ de CA générés depuis 2021.
+          Les méthodes qu'on déploie chez vous, on les a d'abord rôdées dans notre propre organisme — +3 M€ de CA à la clé.
         </p>
       </div>
 
       <div class="cp-rise-2">
         <Image
           src={heroImg}
-          alt="Un formateur accompagne deux apprenants autour d'un ordinateur portable dans une salle de formation lumineuse"
+          alt="Dirigeant d'organisme de formation serein à son bureau, épaulé par une équipe d'agents IA qui pilotent son SEO, sa publicité, son site et son administratif"
           loading="eager"
           fetchpriority="high"
           sizes="(min-width: 768px) 42vw, 100vw"
@@ -123,7 +126,16 @@ const faqSchema = {
   <!-- Problème (éditorial, asymétrique) -->
   <section class="mx-auto max-w-6xl px-4 py-12">
     <div class="grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-      <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vous portez tout, en même temps</h2>
+      <div>
+        <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vous portez tout, en même temps</h2>
+        <Image
+          src={surchargeImg}
+          alt="Directrice d'organisme de formation submergée par les dossiers, les relances et l'administratif à son bureau"
+          sizes="(min-width: 768px) 38vw, 100vw"
+          loading="lazy"
+          class="mt-8 hidden w-full rounded-2xl border border-sand object-cover md:block"
+        />
+      </div>
       <div>
         <p class="text-lg leading-relaxed text-muted">
           Diriger un organisme de formation, c'est faire dix métiers à la fois : la pédagogie, le commercial,
@@ -187,12 +199,21 @@ const faqSchema = {
 
   <!-- Preuve : résultats réels dans notre propre OF -->
   <section class="mx-auto max-w-5xl px-4 py-12">
-    <div class="max-w-2xl">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">La preuve</p>
-      <h2 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">On l'a d'abord fait dans notre propre organisme</h2>
-      <p class="mt-4 text-lg leading-relaxed text-muted">
-        Avant d'en faire notre métier, notre fondateur a automatisé le back-office de son propre organisme de formation. Voici des résultats réels, mesurés — pas des promesses.
-      </p>
+    <div class="grid gap-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-12">
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">La preuve</p>
+        <h2 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">On l'a d'abord fait dans notre propre organisme</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">
+          Avant d'en faire notre métier, notre fondateur a automatisé le back-office de son propre organisme de formation. Voici des résultats réels, mesurés — pas des promesses.
+        </p>
+      </div>
+      <Image
+        src={preuveImg}
+        alt="Tableau de bord affichant des indicateurs en hausse et des tâches automatisées dans un organisme de formation"
+        sizes="(min-width: 768px) 42vw, 100vw"
+        loading="lazy"
+        class="w-full rounded-2xl border border-sand object-cover"
+      />
     </div>
     <ul class="mt-8 border-t border-sand">
       {proof.map((p) => (
@@ -261,7 +282,14 @@ const faqSchema = {
   <section class="bg-cream-100">
     <div class="mx-auto max-w-5xl px-4 py-12">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Notre méthode, en trois temps</h2>
-      <ol class="mt-8 grid gap-10 sm:grid-cols-3">
+      <Image
+        src={methodeImg}
+        alt="Les trois temps de la méthode Claude Partners : diagnostic, prise en charge, reporting"
+        sizes="(min-width: 1024px) 64rem, 100vw"
+        loading="lazy"
+        class="mt-8 w-full rounded-2xl border border-sand object-cover"
+      />
+      <ol class="mt-10 grid gap-10 sm:grid-cols-3">
         <li><div class="font-display text-5xl font-extrabold text-brand-200">1</div><p class="mt-3 font-display text-lg font-bold">On diagnostique</p><p class="mt-1 text-muted">On identifie vos priorités à plus fort ROI — marketing, admin, IA.</p></li>
         <li><div class="font-display text-5xl font-extrabold text-brand-200">2</div><p class="mt-3 font-display text-lg font-bold">On prend en charge</p><p class="mt-1 text-muted">On exécute de bout en bout : campagnes, automatisations, outils, dossiers.</p></li>
         <li><div class="font-display text-5xl font-extrabold text-brand-200">3</div><p class="mt-3 font-display text-lg font-bold">On rend compte</p><p class="mt-1 text-muted">Vous suivez les résultats en toute transparence, sans vous en occuper.</p></li>
