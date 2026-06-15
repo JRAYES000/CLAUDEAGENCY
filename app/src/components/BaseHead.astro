@@ -15,7 +15,9 @@ const rawPath = canonical ?? Astro.url.pathname;
 const path = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
 const canonicalURL = new URL(path, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
-const fullTitle = title === 'Claude Partners' ? title : `${title} · Claude Partners`;
+const withBrand = `${title} · Claude Partners`;
+// Suffixe de marque seulement s'il ne pousse pas le titre au-delà de ~60 car (évite la troncature SERP).
+const fullTitle = title === 'Claude Partners' ? title : (withBrand.length <= 60 ? withBrand : title);
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />

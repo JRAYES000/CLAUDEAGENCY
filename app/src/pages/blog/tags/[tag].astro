@@ -5,20 +5,27 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true);
-  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
-  return tags.map((tag) => ({
-    params: { tag },
+  // Slug d'URL en minuscules (URLs SEO-friendly) ; libellé d'affichage = casse d'origine.
+  const bySlug = new Map(); // slug -> { label, posts }
+  for (const p of posts) {
+    for (const tag of p.data.tags) {
+      const slug = tag.toLowerCase();
+      if (!bySlug.has(slug)) bySlug.set(slug, { label: tag, posts: [] });
+      bySlug.get(slug).posts.push(p);
+    }
+  }
+  return [...bySlug.entries()].map(([slug, { label, posts: tagPosts }]) => ({
+    params: { tag: slug },
     props: {
-      tag,
-      posts: posts.filter((p) => p.data.tags.includes(tag))
-        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+      tag: label,
+      posts: tagPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
     },
   }));
 }) satisfies GetStaticPaths;
 
 const { tag, posts } = Astro.props;
 ---
-<BaseLayout title={`Articles : ${tag}`} description={`Nos articles sur le thème « ${tag} » pour les organismes de formation.`}>
+<BaseLayout title={`Articles : ${tag}`} description={`Nos articles sur le thème « ${tag} » pour les organismes de formation.`} noindex>
   <section class="mx-auto max-w-3xl px-4 py-16">
     <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Thème</p>
     <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">#{tag}</h1>
