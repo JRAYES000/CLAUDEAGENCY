@@ -88,20 +88,20 @@ const faqSchema = {
 >
   <!-- Hero asymétrique -->
   <section class="relative overflow-hidden bg-cream-100">
-    <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
+    <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-[1.1fr_0.9fr] md:py-16">
       <div class="cp-rise">
         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Équipe IA · Organismes de formation</p>
-        <h1 class="mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-          Le marketing et l'admin de votre <span class="text-brand-600">organisme de formation</span>, pris en charge par l'IA
+        <h1 class="mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-ink sm:text-3xl lg:text-4xl">
+          Gestion administrative et commerciale de votre <span class="text-brand-600">organisme de formation</span> piloté par l'IA
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          SEO, SEA, optimisation de votre site, gestion administrative et audits Qualiopi : nos quatre consultants s'en chargent pour vous — en moyenne 3 à 4× plus vite et moins cher qu'une agence, grâce à la maîtrise de Claude Code et Claude Cowork.
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+          SEO, SEA, optimisation de votre site, gestion administrative et audits Qualiopi : nos quatre consultants s'en chargent pour vous — en moyenne 3× plus vite et 3× moins cher qu'un prestataire traditionnel, grâce à notre totale maîtrise de Claude et outils IA.
         </p>
-        <div class="mt-9 flex flex-wrap gap-3">
+        <div class="mt-6 flex flex-wrap gap-3">
           <a href="/contact/" class="rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Demander un audit offert</a>
           <a href="#expertises" class="rounded-lg border border-sand bg-cream-50 px-6 py-3 font-semibold text-ink transition-colors hover:border-brand-300">Voir nos expertises</a>
         </div>
-        <p class="mt-6 flex items-center gap-2.5 text-sm text-muted">
+        <p class="mt-5 flex items-center gap-2.5 text-sm text-muted">
           <span aria-hidden="true" class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
           Notre fondateur pilote le marketing d'un organisme de formation — +3 M€ de CA générés depuis 2021.
         </p>
@@ -121,7 +121,7 @@ const faqSchema = {
   </section>
 
   <!-- Problème (éditorial, asymétrique) -->
-  <section class="mx-auto max-w-6xl px-4 py-20">
+  <section class="mx-auto max-w-6xl px-4 py-12">
     <div class="grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
       <h2 class="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">Vous portez tout, en même temps</h2>
       <div>
@@ -147,14 +147,14 @@ const faqSchema = {
 
   <!-- Déléguez à notre équipe : les 4 expertises -->
   <section id="expertises" class="bg-cream-100">
-    <div class="mx-auto max-w-6xl px-4 py-20">
+    <div class="mx-auto max-w-6xl px-4 py-12">
       <div class="max-w-2xl">
         <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quatre experts. Une équipe. Un prix imbattable.</h2>
         <p class="mt-4 text-lg leading-relaxed text-muted">
           Vous ne recrutez pas, vous ne formez personne : vous déléguez. Chacun de nos consultants couvre un domaine où les organismes de formation perdent du temps — ou de l'argent chez une agence.
         </p>
       </div>
-      <ul class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-sand bg-sand sm:grid-cols-2">
+      <ul class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-sand bg-sand sm:grid-cols-2">
         {expertises.map((e) => (
           <li>
             <a href={e.href} class="group flex h-full flex-col bg-cream-50 p-7 transition-colors hover:bg-cream-100">
@@ -171,7 +171,7 @@ const faqSchema = {
 
   <!-- Bande différenciatrice : le claim prix / vitesse -->
   <section class="bg-ink">
-    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+    <div class="mx-auto max-w-4xl px-4 py-12 text-center">
       <p class="font-display text-2xl font-bold leading-snug text-cream-50 sm:text-3xl">
         Une agence facture des semaines de travail. Notre équipe, équipée d'IA, le fait en quelques jours —
         <span class="text-brand-300"> pour 3 à 4× moins cher.</span>
@@ -186,7 +186,7 @@ const faqSchema = {
   <TimeSavingsCalculator />
 
   <!-- Preuve : résultats réels dans notre propre OF -->
-  <section class="mx-auto max-w-5xl px-4 py-20">
+  <section class="mx-auto max-w-5xl px-4 py-12">
     <div class="max-w-2xl">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">La preuve</p>
       <h2 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">On l'a d'abord fait dans notre propre organisme</h2>
@@ -194,7 +194,7 @@ const faqSchema = {
         Avant d'en faire notre métier, notre fondateur a automatisé le back-office de son propre organisme de formation. Voici des résultats réels, mesurés — pas des promesses.
       </p>
     </div>
-    <ul class="mt-12 border-t border-sand">
+    <ul class="mt-8 border-t border-sand">
       {proof.map((p) => (
         <li class="grid gap-3 border-b border-sand py-7 sm:grid-cols-[1.1fr_0.9fr] sm:items-center sm:gap-8">
           <div>
@@ -213,14 +213,14 @@ const faqSchema = {
 
   <!-- Concrètement : cas d'usage (le moteur de désir) -->
   <section class="bg-cream-100">
-    <div class="mx-auto max-w-6xl px-4 py-20">
+    <div class="mx-auto max-w-6xl px-4 py-12">
       <div class="max-w-2xl">
         <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Concrètement, ce que l'IA change chez vous</h2>
         <p class="mt-4 text-lg leading-relaxed text-muted">
           Pas de promesses abstraites. Voici des tâches que l'IA prend en charge dès aujourd'hui, sur vos propres contenus et vos propres outils.
         </p>
       </div>
-      <ul class="mt-12 grid gap-x-12 gap-y-px sm:grid-cols-2">
+      <ul class="mt-8 grid gap-x-12 gap-y-px sm:grid-cols-2">
         {concrete.map((c) => (
           <li class="border-t border-sand py-6">
             <p class="leading-relaxed text-muted"><strong class="font-display text-lg text-ink">{c.t}</strong> {c.d}</p>
@@ -232,7 +232,7 @@ const faqSchema = {
   </section>
 
   <!-- Nos prestations (liste éditoriale, pas de grille de cartes) -->
-  <section class="mx-auto max-w-6xl px-4 py-20">
+  <section class="mx-auto max-w-6xl px-4 py-12">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div class="max-w-2xl">
         <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Nos prestations, de bout en bout</h2>
@@ -242,7 +242,7 @@ const faqSchema = {
       </div>
       <a href="/services/" class="text-sm font-semibold text-brand-600 hover:text-brand-700">Tous les services <span aria-hidden="true">→</span></a>
     </div>
-    <ul class="mt-10 border-t border-sand">
+    <ul class="mt-8 border-t border-sand">
       {services.filter((s) => s.data.category !== 'marketing').map((s) => (
         <li class="border-b border-sand">
           <a href={`/services/${s.id}/`} class="group grid items-baseline gap-1 py-7 sm:grid-cols-[1fr_auto] sm:gap-8">
@@ -259,9 +259,9 @@ const faqSchema = {
 
   <!-- Méthode (stepper, sans cartes) -->
   <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-20">
+    <div class="mx-auto max-w-5xl px-4 py-12">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Notre méthode, en trois temps</h2>
-      <ol class="mt-12 grid gap-10 sm:grid-cols-3">
+      <ol class="mt-8 grid gap-10 sm:grid-cols-3">
         <li><div class="font-display text-5xl font-extrabold text-brand-200">1</div><p class="mt-3 font-display text-lg font-bold">On diagnostique</p><p class="mt-1 text-muted">On identifie vos priorités à plus fort ROI — marketing, admin, IA.</p></li>
         <li><div class="font-display text-5xl font-extrabold text-brand-200">2</div><p class="mt-3 font-display text-lg font-bold">On prend en charge</p><p class="mt-1 text-muted">On exécute de bout en bout : campagnes, automatisations, outils, dossiers.</p></li>
         <li><div class="font-display text-5xl font-extrabold text-brand-200">3</div><p class="mt-3 font-display text-lg font-bold">On rend compte</p><p class="mt-1 text-muted">Vous suivez les résultats en toute transparence, sans vous en occuper.</p></li>
@@ -270,12 +270,12 @@ const faqSchema = {
   </section>
 
   <!-- Profils d'OF (verticalisation — profondeur métier + SEO) -->
-  <section class="mx-auto max-w-6xl px-4 py-20">
+  <section class="mx-auto max-w-6xl px-4 py-12">
     <div class="max-w-2xl">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Quel organisme êtes-vous ?</h2>
       <p class="mt-4 text-lg leading-relaxed text-muted">On connaît vos contraintes. Voici ce qu'on peut prendre en charge, concrètement, selon votre structure.</p>
     </div>
-    <div class="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+    <div class="mt-8 grid gap-x-12 gap-y-10 sm:grid-cols-2">
       {profils.map((p) => (
         <div>
           <h3 class="font-display text-xl font-bold text-brand-700">{p.t}</h3>
@@ -288,9 +288,9 @@ const faqSchema = {
 
   <!-- Pourquoi (blocs de texte, pas de cartes) -->
   <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-20">
+    <div class="mx-auto max-w-5xl px-4 py-12">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pourquoi Claude Partners</h2>
-      <div class="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+      <div class="mt-8 grid gap-x-12 gap-y-10 sm:grid-cols-2">
         {why.map((w) => (
           <div>
             <h3 class="font-display text-lg font-bold text-brand-700">{w.t}</h3>
@@ -302,7 +302,7 @@ const faqSchema = {
   </section>
 
   <!-- Le fondateur (incarnation humaine + portrait réel) -->
-  <section class="mx-auto max-w-3xl px-4 py-20">
+  <section class="mx-auto max-w-3xl px-4 py-12">
     <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le fondateur</p>
     <div class="mt-6 grid gap-8 sm:grid-cols-[170px_1fr] sm:items-start sm:gap-10">
       <Image
@@ -335,9 +335,9 @@ const faqSchema = {
 
   <!-- Parlons franchement (démystification honnête) -->
   <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-20">
+    <div class="mx-auto max-w-5xl px-4 py-12">
       <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Parlons franchement</h2>
-      <dl class="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-3">
+      <dl class="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-3">
         {franchement.map((f) => (
           <div>
             <dt class="font-display text-lg font-bold text-brand-700">{f.q}</dt>
@@ -349,7 +349,7 @@ const faqSchema = {
   </section>
 
   <!-- FAQ -->
-  <section class="mx-auto max-w-3xl px-4 py-20">
+  <section class="mx-auto max-w-3xl px-4 py-12">
     <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Questions fréquentes</h2>
     <dl class="mt-8 divide-y divide-sand border-y border-sand">
       {faq.map((f) => (
@@ -363,7 +363,7 @@ const faqSchema = {
 
   <!-- CTA final : bandeau terracotta plein -->
   <section class="bg-brand-700">
-    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+    <div class="mx-auto max-w-4xl px-4 py-12 text-center">
       <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Déléguez ce qui vous freine. Gardez la pédagogie.</h2>
       <p class="mx-auto mt-4 max-w-xl leading-relaxed text-brand-100">
         Commencez par un audit offert : on identifie vos priorités à plus fort ROI — marketing, admin, IA — et on vous remet une feuille de route chiffrée. Vous repartez avec, que vous travailliez avec nous ensuite ou non.

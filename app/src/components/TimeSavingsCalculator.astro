@@ -14,11 +14,11 @@ const tasks = [
 ];
 ---
 <section class="bg-cream-100" aria-labelledby="calc-title">
-  <div class="mx-auto max-w-5xl px-4 py-20">
+  <div class="mx-auto max-w-5xl px-4 py-12">
     <h2 id="calc-title" class="font-display text-3xl font-bold text-ink sm:text-4xl">Combien de temps et d'argent l'IA peut vous faire gagner ?</h2>
     <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">Cochez les tâches qui vous concernent. On estime, <strong class="font-semibold text-ink">sur un an</strong>, le temps et l'argent que l'IA peut vous faire gagner.</p>
 
-    <div class="mt-10 grid gap-10 md:grid-cols-[1.15fr_0.85fr]">
+    <div class="mt-8 grid gap-10 md:grid-cols-[1.15fr_0.85fr]">
       <fieldset id="calc-tasks" class="space-y-3 border-0 p-0">
         <legend class="mb-3 text-sm text-muted">Pour chaque tâche : temps aujourd'hui <span aria-hidden="true">→</span> temps avec l'IA.</legend>
         {tasks.map((t) => (
