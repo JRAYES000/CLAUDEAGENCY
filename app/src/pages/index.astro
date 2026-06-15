@@ -27,16 +27,6 @@ const expertises = [
   { t: "Process & admin OF", href: "/services/automatisation/", d: "Gestion administrative, dossiers de financement, audits de surveillance Qualiopi : on prépare, vous validez." },
 ];
 
-// Cas d'usage illustratifs : ce que l'IA produit concrètement pour un OF.
-const concrete = [
-  { t: "Un support de cours complet", d: "généré à partir de votre programme, prêt à relire en quelques minutes." },
-  { t: "Quiz, études de cas et corrigés", d: "adaptés à chaque niveau, sans repartir d'une page blanche." },
-  { t: "Les relances qui partent seules", d: "émargements, évaluations, paiements : plus rien ne se perd." },
-  { t: "Vos audits de surveillance Qualiopi pré-remplis", d: "les pièces sont préparées automatiquement, il n'y a plus qu'à vérifier." },
-  { t: "Un assistant qui répond aux stagiaires", d: "entraîné sur votre offre, disponible à toute heure." },
-  { t: "Une réunion transformée en compte rendu", d: "et en support, automatiquement, dès qu'elle se termine." },
-];
-
 // Preuve par l'exemple : résultats réels obtenus par notre fondateur dans son propre OF.
 const proof = [
   { task: "Les relances administratives", detail: "Émargements, questionnaires de satisfaction, suivi des stagiaires jusqu'au bout de la formation.", before: "2 h / jour", after: "2 h / mois" },
@@ -53,21 +43,10 @@ const profils = [
   { t: "Formateur indépendant", reality: "Création de supports, prospection, facturation — et vous êtes seul·e.", change: "Des supports produits plus vite, des relances et des devis assistés, votre marketing pris en main." },
 ];
 
-// Parlons franchement : démystification honnête (distincte de la FAQ, alignée done-for-you).
-const franchement = [
+const faq = [
   { q: "L'IA va-t-elle remplacer les formateurs ?", a: "Non. Elle enlève l'administratif et la production répétitive. La pédagogie, l'animation, la relation : ça reste vous — et c'est là qu'est votre valeur." },
   { q: "L'IA risque-t-elle de dénaturer mes contenus ?", a: "Non. On part de vos contenus, votre ligne, votre voix. L'IA accélère la première version ; vous gardez la main éditoriale sur le fond." },
   { q: "En vous déléguant tout, est-ce que je deviens dépendant ?", a: "Vous déléguez ce qui vous épuise — le marketing, l'admin — pas votre cœur de métier. Les outils et contenus produits vous appartiennent ; vous pouvez reprendre la main quand vous voulez." },
-];
-
-const why = [
-  { t: "Une équipe, pas un freelance isolé", d: "Quatre consultants spécialisés — SEO, SEA, optimisation de site, process & admin OF — au lieu d'un seul prestataire qui touche à tout." },
-  { t: "Spécialistes des OF, pas généralistes de l'IA", d: "On ne fait pas du conseil IA pour tout le monde : tout ce qu'on construit est pensé pour le monde de la formation — ses contraintes (Qualiopi, financement, pédagogie) et son vocabulaire." },
-  { t: "Des prix imbattables grâce à l'IA", d: "Nos consultants maîtrisent Claude Code et Claude Cowork : on produit le même travail bien plus vite, et on répercute ce gain sur nos tarifs." },
-  { t: "Vos données restent protégées", d: "Solutions conformes RGPD, hébergées dans l'UE quand c'est possible. La confidentialité de vos stagiaires n'est jamais négociée." },
-];
-
-const faq = [
   { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité — et notre métier : notre fondateur pilote le commercial et le marketing d'un organisme de formation, et nous en connaissons les contraintes (Qualiopi, financement, pédagogie) au quotidien." },
   { q: "Comment pouvez-vous être moins chers qu'une agence ?", a: "Nos consultants maîtrisent Claude Code et Claude Cowork. On produit le même travail en moyenne 3 à 4× moins de temps — et on répercute ce gain directement sur nos tarifs." },
   { q: "Combien ça coûte ? Quel budget prévoir ?", a: "L'audit de départ est offert et sans engagement. Ensuite, le devis dépend du périmètre : on propose ce qui a le meilleur retour sur le temps gagné, sans vendre l'inutile." },
@@ -182,24 +161,12 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Bande différenciatrice : le claim prix / vitesse -->
-  <section class="bg-ink">
-    <div class="mx-auto max-w-4xl px-4 py-12 text-center">
-      <p class="font-display text-2xl font-bold leading-snug text-cream-50 sm:text-3xl">
-        Une agence facture des semaines de travail. Notre équipe, équipée d'IA, le fait en quelques jours —
-        <span class="text-brand-300"> pour 3 à 4× moins cher.</span>
-      </p>
-      <p class="mx-auto mt-5 max-w-xl leading-relaxed text-sand">
-        Nos consultants maîtrisent Claude Code et Claude Cowork. Même expertise, une fraction du temps et du budget.
-      </p>
-    </div>
-  </section>
-
   <!-- Calculateur de temps gagné (signature interactive) -->
   <TimeSavingsCalculator />
 
   <!-- Preuve : résultats réels dans notre propre OF -->
-  <section class="mx-auto max-w-5xl px-4 py-12">
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-5xl px-4 py-12">
     <div class="grid gap-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-12">
       <div class="max-w-2xl">
         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">La preuve</p>
@@ -231,25 +198,6 @@ const faqSchema = {
       ))}
     </ul>
     <p class="mt-8 text-muted">Ces gains, nous les installons désormais chez les organismes de formation que nous accompagnons.</p>
-  </section>
-
-  <!-- Concrètement : cas d'usage (le moteur de désir) -->
-  <section class="bg-cream-100">
-    <div class="mx-auto max-w-6xl px-4 py-12">
-      <div class="max-w-2xl">
-        <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Concrètement, ce que l'IA change chez vous</h2>
-        <p class="mt-4 text-lg leading-relaxed text-muted">
-          Pas de promesses abstraites. Voici des tâches que l'IA prend en charge dès aujourd'hui, sur vos propres contenus et vos propres outils.
-        </p>
-      </div>
-      <ul class="mt-8 grid gap-x-12 gap-y-px sm:grid-cols-2">
-        {concrete.map((c) => (
-          <li class="border-t border-sand py-6">
-            <p class="leading-relaxed text-muted"><strong class="font-display text-lg text-ink">{c.t}</strong> {c.d}</p>
-          </li>
-        ))}
-      </ul>
-      <p class="mt-8 text-muted">On part de vos process, jamais d'un modèle générique. Chaque cas est adapté à votre réalité.</p>
     </div>
   </section>
 
@@ -315,23 +263,9 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Pourquoi (blocs de texte, pas de cartes) -->
-  <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-12">
-      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Pourquoi Claude Partners</h2>
-      <div class="mt-8 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-        {why.map((w) => (
-          <div>
-            <h3 class="font-display text-lg font-bold text-brand-700">{w.t}</h3>
-            <p class="mt-2 leading-relaxed text-muted">{w.d}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Le fondateur (incarnation humaine + portrait réel) -->
-  <section class="mx-auto max-w-3xl px-4 py-12">
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-3xl px-4 py-12">
     <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le fondateur</p>
     <div class="mt-6 grid gap-8 sm:grid-cols-[170px_1fr] sm:items-start sm:gap-10">
       <Image
@@ -360,20 +294,6 @@ const faqSchema = {
         </p>
       </div>
     </div>
-  </section>
-
-  <!-- Parlons franchement (démystification honnête) -->
-  <section class="bg-cream-100">
-    <div class="mx-auto max-w-5xl px-4 py-12">
-      <h2 class="font-display text-3xl font-bold text-ink sm:text-4xl">Parlons franchement</h2>
-      <dl class="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-3">
-        {franchement.map((f) => (
-          <div>
-            <dt class="font-display text-lg font-bold text-brand-700">{f.q}</dt>
-            <dd class="mt-2 text-muted">{f.a}</dd>
-          </div>
-        ))}
-      </dl>
     </div>
   </section>
 
