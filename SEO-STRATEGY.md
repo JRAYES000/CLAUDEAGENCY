@@ -60,9 +60,19 @@ les citations IA), et **maille vers la page service correspondante** + CTA audit
 - [x] Ré-étoffer l'article existant `integrer-ia-organisme-formation.mdx` → **page pilier** (~850 mots, maillée vers les 4 services + CTA). *(fait 2026-06-14 — peut encore être approfondi vers 1 200+)*
 - [x] **Article 1 — « Automatiser la conformité Qualiopi avec l'IA »** : rédigé (~700 mots), image de couverture unique générée (HF Z-Image), maillage bidirectionnel avec le pilier + liens vers `automatisation`/`audit-ia`. *(2026-06-14)*
 - [x] **Article 2 — « Automatiser l'émargement et le suivi des stagiaires »** (~590 mots) + image générée + lien croisé bidirectionnel avec l'article Qualiopi. *(2026-06-14)*
-- [x] **Articles 3-4 — BPF + charge administrative** publiés + maillage interne (pilier → charge admin, émargement → BPF, hub → Qualiopi/émargement/BPF). ⚠️ **couvertures temporaires** (réemploi) à remplacer par des visuels uniques dès que la génération d'images est rétablie. *(2026-06-14)*
-- [ ] Rédiger les articles 5 → 9 au rythme de 2/mois (ChatGPT formateurs, supports IA, EDOF/MCF, outils IA, personnalisation pédagogique).
-- [ ] *(En parallèle, Julien a publié 2 articles « acquisition » : SEO et SEA pour OF — volet marketing du cluster.)*
+- [x] **Articles 3-4 — BPF + charge administrative** publiés + maillage interne. **Couvertures uniques régénérées (HF PRO, 2026-06-15).** *(2026-06-14)*
+- [x] **Articles supplémentaires (2026-06-15) — sélection pilotée par les volumes réels (MCP Ubersuggest)**, plus par hypothèse :
+  - « Logiciel pour organisme de formation » (320 vol, diff. 10) — cover unique
+  - « Créer un organisme de formation » (170 vol, diff. 23) — cover unique
+  - « Convention de formation » (720 vol, diff. 14) — cover unique, étoffé à 642 mots
+  - « Programme de formation » (590 vol, diff. 16) — cover unique
+  - « Indicateurs Qualiopi » (320 vol, diff. 24) — ⚠️ cover temporaire à régénérer
+  - « Audit de surveillance Qualiopi » (210 vol, diff. 15) — ⚠️ cover temporaire à régénérer
+- [x] Maillage interne dense (chaque article → service + 2-4 articles voisins, liens bidirectionnels).
+- [ ] **Régénérer les 2 couvertures temporaires** (indicateurs + audit-surveillance) dès retour du quota HF.
+- [ ] *(Julien a publié en parallèle 3 articles « acquisition » : SEO, SEA, optimisation-site — volet marketing.)*
+
+> **Journal audit + technique (2026-06-15)** — Audit Ubersuggest réalisé (score 76/100). Correctifs poussés : slugs de tags en minuscules, tags en `noindex` + hors sitemap, titres ≤60 car (suffixe conditionnel), lien email `/contact` réparé (`<!--email_off-->`). Perf : hero responsive (`widths` srcset) → FCP mobile 2,6→1,9 s, Speed Index 3,6→3,0 s (LCP encore 4,2 s, dominé par redirect labo + throttling). Indexation : sitemap resoumis (Google ne l'avait téléchargé qu'avec 13 URLs). Données niche : « qualiopi » 22k vol, SERPs à faible autorité = **niche gagnable** (réévaluer le cadrage « faibles volumes » ci-dessus).
 - [ ] Maillage interne : chaque article → 1 lien vers son service + 1-2 vers articles voisins.
 - [ ] Vérifier `relatedTags` des services pour que le bloc « Articles liés » se remplisse.
 
