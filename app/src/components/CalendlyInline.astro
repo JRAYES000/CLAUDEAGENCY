@@ -4,3 +4,17 @@ const { url = 'https://calendly.com/formations_cpf/private-videocall-with-julien
 ---
 <div class="calendly-inline-widget" data-url={url} data-resize="true" style="min-width:320px;height:700px;"></div>
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" defer></script>
+<!-- Conversion Google Ads (AW-18240137840) : RDV pris via Calendly -->
+<script is:inline>
+  window.addEventListener('message', function (e) {
+    if (
+      e.origin && e.origin.indexOf('calendly.com') !== -1 &&
+      e.data && typeof e.data === 'object' &&
+      e.data.event === 'calendly.event_scheduled'
+    ) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: 'AW-18240137840/EamCCJ6I_b4cEPDUyflD' });
+      }
+    }
+  });
+</script>
