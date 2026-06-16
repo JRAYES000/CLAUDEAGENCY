@@ -82,7 +82,34 @@ const inputClass =
         var j = await res.json().catch(function () { return {}; });
         if (res.ok && j.ok) {
           if (window.plausible) window.plausible('Lead Magnet Submit');
-          window.location.href = '/merci-ressource/';
+          // Conversion Google Ads (AW-18240137840) : "Inscription" déclenchée UNIQUEMENT
+          // sur une vraie soumission (et plus sur chaque chargement de /merci-ressource/).
+          // On attache aussi les données utilisateur pour l'Enhanced Conversions (Google les hache).
+          var redirected = false;
+          var go = function () {
+            if (redirected) return;
+            redirected = true;
+            window.location.href = '/merci-ressource/';
+          };
+          if (typeof window.gtag === 'function') {
+            try {
+              window.gtag('set', 'user_data', {
+                email: data.email || undefined,
+                phone_number: data.telephone || undefined,
+                address: { first_name: data.firstname || undefined },
+              });
+            } catch (e) {}
+            window.gtag('event', 'conversion', {
+              send_to: 'AW-18240137840/4mV8CJzVmr8cEPDUyflD',
+              value: 1.0,
+              currency: 'EUR',
+              event_callback: go,
+            });
+            // Filet de sécurité : on redirige au plus tard après 1,5 s même si le callback ne se déclenche pas.
+            setTimeout(go, 1500);
+          } else {
+            go();
+          }
         } else {
           result.textContent = j.error || genericError; result.className = 'text-sm text-red-700';
           btn.disabled = false; btn.textContent = label;
