@@ -29,6 +29,16 @@ jugement, du ton ou de l'expertise* → modèle fort.
 NE PAS activer `CLAUDE_CODE_SUBAGENT_MODEL=haiku` : ce flag forcerait **tous** les sous-agents
 (y compris la rédaction) sur Haiku et ferait perdre en qualité. Le routage doit rester sélectif.
 
+## Discipline de travail : skill `fabuleux`
+
+Skill projet dans `.claude/skills/fabuleux/`. L'invoquer (`/fabuleux`) pour le travail à forte
+valeur : rédiger ou retravailler un article (route PROSE : soustraction, anti-slop, zéro cadratin,
+espaces insécables), vérifier une page de design (route ARTEFACT : screenshot + vision), trancher
+une décision SEO (route ANALYSE : critères + vérification + honnêteté). Pas pour les corvées.
+
+Attention au quota Max : `fabuleux` pousse l'effort, donc consomme plus de tokens. Le réserver aux
+tâches qui le méritent, et déléguer le mécanique aux sous-agents Haiku (cf. routage ci-dessus).
+
 ## Garde-fous projet
 - Respecter le ton de `PRODUCT.md` (chaleureux, concret, ROI, français, sans jargon IA).
 - Pas de nouveau Schema `FAQPage`/`HowTo` pour le SEO Google (cf. `SEO-STRATEGY.md` §5).
