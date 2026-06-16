@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImg from '../assets/hero-pilotage-ia.jpg';
 import surchargeImg from '../assets/dirigeant-surcharge.jpg';
@@ -10,6 +10,17 @@ import julienImg from '../assets/julien.jpg';
 import TimeSavingsCalculator from '../components/TimeSavingsCalculator.astro';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+// Préchargement de l'image LCP (hero) : on génère les mêmes variantes que le composant
+// <Image> ci-dessous (widths + format WebP) pour que le navigateur réutilise la ressource
+// préchargée plutôt que d'en télécharger une seconde. Accélère le LCP mobile.
+const heroSizes = '(min-width: 768px) 42vw, 100vw';
+const heroOptimized = await getImage({
+  src: heroImg,
+  widths: [480, 800, 1200, 1600],
+  sizes: heroSizes,
+  format: 'webp',
+});
 
 // Récit de douleur : OF qui porte marketing + admin en plus de la pédagogie.
 const irritants = [
@@ -68,6 +79,17 @@ const faqSchema = {
   description="Une équipe de consultants IA qui prend en charge le SEO, le SEA, le site et l'admin Qualiopi des organismes de formation — plus vite et moins cher qu'une agence."
   pageSchema={[faqSchema]}
 >
+  <!-- Préchargement responsive de l'image LCP (hero) -->
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    type="image/webp"
+    imagesrcset={heroOptimized.srcSet.attribute}
+    imagesizes={heroSizes}
+    fetchpriority="high"
+  />
+
   <!-- Hero asymétrique -->
   <section class="relative overflow-hidden bg-cream-100">
     <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-[1.1fr_0.9fr] md:py-16">
@@ -89,14 +111,16 @@ const faqSchema = {
         </p>
       </div>
 
-      <div class="cp-rise-2">
+      <!-- Pas d'animation cp-rise sur l'image : c'est l'élément LCP ; une entrée
+           opacity:0 -> 1 retarderait l'horodatage LCP (surtout sur mobile). -->
+      <div>
         <Image
           src={heroImg}
           alt="Dirigeant d'organisme de formation serein à son bureau, épaulé par une équipe d'agents IA qui pilotent son SEO, sa publicité, son site et son administratif"
           loading="eager"
           fetchpriority="high"
           widths={[480, 800, 1200, 1600]}
-          sizes="(min-width: 768px) 42vw, 100vw"
+          sizes={heroSizes}
           class="w-full rounded-2xl border border-sand object-cover"
         />
       </div>
