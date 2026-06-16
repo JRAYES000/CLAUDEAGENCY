@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// SCAFFOLD de la page de résultats du Baromètre IA des OF.
+// =========================================================================
+// IMPORTANT — AUCUN RÉSULTAT N'EST INVENTÉ ICI.
+// Tous les chiffres sont des PLACEHOLDERS balisés « __ » à remplir UNIQUEMENT
+// une fois la collecte terminée et les données analysées (cf. BAROMETRE-IA-OF.md §4).
+//
+// SEO — CHOIX ASSUMÉ : cette page est en `noindex` tant qu'elle est vide.
+// Raison : publier une page « creuse » (placeholders) nuirait à la qualité
+// perçue par Google (thin/under-construction content) et à l'E-E-A-T de l'étude.
+// On la rend indexable SEULEMENT le jour où elle contient les vrais chiffres.
+// En parallèle, elle est exclue du sitemap (voir astro.config.mjs : filtre
+// `/barometre-ia-organismes-formation/resultats`) — cohérent avec la règle
+// « jamais d'URL noindex dans le sitemap ».
+//
+// CHECKLIST DE MISE EN LIGNE (le jour J, une fois les données prêtes) :
+//   1. Remplacer tous les placeholders « __ » par les vrais chiffres.
+//   2. Renseigner la méthodologie (nombre de répondants, période, échantillon).
+//   3. Passer `noindex` à false ci-dessous (retirer la prop ou la mettre à false).
+//   4. Retirer `/barometre-ia-organismes-formation/resultats` du filtre sitemap.
+//   5. Ajouter le schema (Dataset / Article) si pertinent.
+// =========================================================================
+
+// PLACEHOLDER — à renseigner après la collecte. Aucune valeur réelle pour l'instant.
+const methodo = {
+  repondants: '__', // ex. 112
+  periode: '__',    // ex. « du 15 septembre au 12 octobre 2026 »
+  profil: '__',     // ex. « OF indépendants, CFA, centres multi-formations, formateurs indépendants »
+};
+
+// PLACEHOLDER — encadrés de stats citables. Libellés conservés, valeurs à remplir.
+// Ne PAS inventer : « __ % » reste tel quel tant que les données ne sont pas là.
+const chiffresCles = [
+  { valeur: '__ %', libelle: "des OF utilisent déjà l'IA dans leur activité" },
+  { valeur: '__ %', libelle: "citent l'administratif / Qualiopi comme tâche n°1 la plus chronophage" },
+  { valeur: '__ h', libelle: "gagnées en moyenne par semaine grâce à l'IA (OF équipés)" },
+  { valeur: '__ %', libelle: "désignent le manque de temps comme principal frein" },
+  { valeur: '__ %', libelle: "comptent investir davantage dans l'IA en 2026" },
+];
+
+// PLACEHOLDER — tableau de synthèse. Les modalités viennent du questionnaire
+// (BAROMETRE-IA-OF.md §2) ; les parts (« __ % ») sont à remplir après analyse.
+const tableauAdoption = [
+  { modalite: 'Oui, régulièrement', part: '__ %' },
+  { modalite: 'Oui, ponctuellement', part: '__ %' },
+  { modalite: "Non, mais on y réfléchit", part: '__ %' },
+  { modalite: 'Non, pas du tout', part: '__ %' },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: "Baromètre IA des organismes de formation", item: new URL('/barometre-ia-organismes-formation/', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: 'Résultats' },
+  ],
+};
+---
+<BaseLayout
+  title="Résultats du Baromètre IA des OF (à venir)"
+  description="Les résultats du Baromètre 2026 de l'IA dans les organismes de formation français seront publiés ici à l'issue de la collecte. Page en cours de préparation."
+  noindex={true}
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <!-- Bandeau d'état : visible pour l'équipe ; à retirer le jour de la publication. -->
+    <p class="rounded-lg border border-dashed border-brand-300 bg-cream-100 px-5 py-4 text-sm text-muted">
+      <strong class="font-semibold text-ink">Page en cours de préparation.</strong> Les résultats seront publiés à l'issue de la collecte. Cette page est volontairement en <code>noindex</code> tant qu'elle ne contient pas de données réelles.
+      <a href="/barometre-ia-organismes-formation/" class="text-brand-700 hover:underline">Participer à l'enquête</a>.
+    </p>
+
+    <div class="cp-rise mt-10">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Étude · résultats</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+        Baromètre 2026 de l'IA dans les organismes de formation
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">
+        Cette page présentera les enseignements de notre enquête menée auprès des organismes de formation français : adoption de l'IA, usages, temps gagné, freins et projets pour 2026.
+      </p>
+    </div>
+
+    <!-- Méthodologie (en haut, pour la crédibilité) — PLACEHOLDER -->
+    <h2 class="mt-14 font-display text-2xl font-bold text-ink">Méthodologie</h2>
+    <ul class="mt-4 space-y-2 text-muted">
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span><strong class="font-semibold text-ink">Répondants :</strong> {methodo.repondants} organismes de formation <span class="text-brand-600">(PLACEHOLDER — à renseigner)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span><strong class="font-semibold text-ink">Période de collecte :</strong> {methodo.periode} <span class="text-brand-600">(PLACEHOLDER)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span><strong class="font-semibold text-ink">Profil de l'échantillon :</strong> {methodo.profil} <span class="text-brand-600">(PLACEHOLDER)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span><strong class="font-semibold text-ink">Mode de recueil :</strong> questionnaire en ligne auto-administré (17 questions).</span></li>
+    </ul>
+
+    <!-- Chiffres-clés citables — PLACEHOLDER (c'est ce que les médias copient avec le lien source) -->
+    <h2 class="mt-12 font-display text-2xl font-bold text-ink">Les chiffres-clés à retenir</h2>
+    <p class="mt-3 text-sm text-brand-600">PLACEHOLDER — aucune valeur réelle. Les « __ » seront remplacés après analyse des réponses.</p>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      {chiffresCles.map((c) => (
+        <div class="rounded-2xl border border-sand bg-cream-50 p-6">
+          <p class="font-display text-4xl font-extrabold text-brand-700">{c.valeur}</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{c.libelle}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tableau de synthèse — PLACEHOLDER -->
+    <h2 class="mt-12 font-display text-2xl font-bold text-ink">Adoption de l'IA dans les OF</h2>
+    <p class="mt-3 text-sm text-brand-600">PLACEHOLDER — répartition à compléter après analyse.</p>
+    <div class="mt-6 overflow-x-auto">
+      <table class="w-full min-w-[480px] border-collapse text-left text-sm">
+        <caption class="sr-only">Répartition des organismes de formation selon leur usage de l'IA (données à venir).</caption>
+        <thead>
+          <tr class="border-b border-sand">
+            <th scope="col" class="py-3 pr-4 font-display text-base font-bold text-ink">Usage de l'IA</th>
+            <th scope="col" class="px-4 py-3 font-medium text-muted">Part des répondants</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableauAdoption.map((r) => (
+            <tr class="border-b border-sand align-top">
+              <th scope="row" class="py-4 pr-4 font-medium text-ink">{r.modalite}</th>
+              <td class="px-4 py-4 text-muted">{r.part}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Sections thématiques — emplacements à remplir -->
+    <h2 class="mt-12 font-display text-2xl font-bold text-ink">Sections détaillées (à venir)</h2>
+    <ul class="mt-4 space-y-2 text-muted">
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span>Adoption : qui utilise l'IA, depuis quand, avec quels outils. <span class="text-brand-600">(à compléter)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span>Usages : pour quelles tâches, et quelle tâche est la plus chronophage. <span class="text-brand-600">(à compléter)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span>Gains : temps gagné, impact sur la qualité. <span class="text-brand-600">(à compléter)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span>Freins et craintes. <span class="text-brand-600">(à compléter)</span></span></li>
+      <li class="flex gap-3"><span aria-hidden="true" class="text-brand-500">→</span><span>Projets 2026 : intentions d'investissement et besoins d'accompagnement. <span class="text-brand-600">(à compléter)</span></span></li>
+    </ul>
+
+    <!-- Enseignements — analyse (à rédiger) -->
+    <h2 class="mt-12 font-display text-2xl font-bold text-ink">Ce que ça révèle</h2>
+    <p class="mt-3 text-muted">PLACEHOLDER — 3 à 4 enseignements d'analyse seront rédigés ici une fois les données consolidées (l'angle expert, pas seulement des chiffres).</p>
+
+    <!-- Réutilisation libre (facilite les citations liées) -->
+    <h2 class="mt-12 font-display text-2xl font-bold text-ink">Réutilisation</h2>
+    <p class="mt-3 text-muted">
+      Les chiffres de cette étude seront librement réutilisables, à condition de citer la source avec un lien vers cette page : <span class="text-ink">claudepartners.fr — Baromètre de l'IA dans les organismes de formation</span>.
+    </p>
+  </section>
+
+  <!-- CTA final -->
+  <section class="mt-16 bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Et dans votre organisme ?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert pour identifier où l'IA vous ferait gagner du temps, sans engagement.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
+  </section>
+</BaseLayout>

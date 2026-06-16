@@ -73,6 +73,12 @@ chronophage pour Y % »…). Chaque chiffre marquant devient une **citation repr
 
 ## 4. Blueprint de la page de résultats (à publier sur claudepartners.fr)
 
+> **État (juin 2026) — pages créées sur le site :**
+> - **Landing / présentation : `/barometre-ia-organismes-formation/`** — *indexable*, explique l'enquête et renvoie vers le questionnaire.
+>   ⟶ **TODO utilisateur :** renseigner `QUESTIONNAIRE_URL` (lien Tally/Google Forms) dans `app/src/pages/barometre-ia-organismes-formation/index.astro`.
+> - **Résultats (SCAFFOLD) : `/barometre-ia-organismes-formation/resultats/`** — *en `noindex` + exclue du sitemap* tant qu'elle est vide. Tous les chiffres sont des **placeholders `__`** (aucun résultat inventé).
+>   ⟶ **TODO le jour J :** remplir les chiffres, la méthodo, puis passer `noindex` à false et retirer l'URL du filtre sitemap (`app/astro.config.mjs`). Checklist détaillée en tête du fichier `resultats.astro`.
+
 **URL cible :** `/barometre-ia-organismes-formation/` (ou un article de blog dédié) — page pilier, citable.
 
 **Structure :**

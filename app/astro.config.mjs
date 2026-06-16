@@ -40,7 +40,9 @@ export default defineConfig({
     mdx(),
     sitemap({
       // Exclut toutes les pages noindex — jamais d'URL noindex dans le sitemap.
-      filter: (page) => !['/merci', '/mentions-legales', '/confidentialite', '/blog/tags/'].some((p) => page.includes(p)),
+      // NB: la page résultats du baromètre est en noindex tant qu'elle est vide (scaffold) → exclue ici.
+      //     La landing du baromètre, elle, reste indexable et présente dans le sitemap.
+      filter: (page) => !['/merci', '/mentions-legales', '/confidentialite', '/blog/tags/', '/barometre-ia-organismes-formation/resultats'].some((p) => page.includes(p)),
       serialize(item) {
         if (item.url === 'https://claudepartners.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;

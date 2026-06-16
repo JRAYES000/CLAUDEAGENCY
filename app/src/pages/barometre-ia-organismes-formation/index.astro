@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Landing / page de présentation du Baromètre IA des OF.
+// Rôle : expliquer l'enquête, sa valeur, et renvoyer vers le questionnaire.
+// SEO : page INDEXABLE (contenu réel, utile, citable) — c'est le point d'entrée
+// public de l'étude. La page de résultats (/resultats/) reste en noindex tant
+// qu'elle n'a pas de données. Voir plan : BAROMETRE-IA-OF.md.
+
+// TODO (côté utilisateur) : remplacer ce lien par l'URL réelle du questionnaire
+// Tally / Google Forms une fois créé (cf. BAROMETRE-IA-OF.md §2 et §6).
+const QUESTIONNAIRE_URL = ''; // ex. 'https://tally.so/r/XXXXXX'
+
+const pourquoi = [
+  {
+    titre: '~5 minutes',
+    detail: '17 questions, surtout des QCM. On respecte votre temps.',
+  },
+  {
+    titre: 'Anonyme',
+    detail: "Vos réponses servent une étude agrégée. Email facultatif, uniquement si vous voulez recevoir l'étude.",
+  },
+  {
+    titre: 'En avant-première',
+    detail: "Laissez votre email (facultatif) et recevez l'étude complète avant sa publication.",
+  },
+];
+
+const themes = [
+  "Votre adoption de l'IA aujourd'hui",
+  "Les tâches sur lesquelles vous l'utilisez (ou pourriez l'utiliser)",
+  'La tâche la plus chronophage de votre quotidien',
+  "Le temps gagné — et l'impact sur la qualité",
+  "Vos freins et vos craintes",
+  'Vos projets pour 2026',
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: "Baromètre IA des organismes de formation" },
+  ],
+};
+---
+<BaseLayout
+  title="Baromètre IA des organismes de formation"
+  description="Participez au Baromètre 2026 de l'IA dans les organismes de formation : 5 minutes pour une étude chiffrée et indépendante sur l'adoption de l'IA dans les OF français."
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Enquête 2026 · participez</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+        Baromètre de l'IA dans les organismes de formation
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">
+        Où en sont vraiment les organismes de formation français avec l'intelligence artificielle ? Pour le savoir, nous menons la première enquête chiffrée et indépendante sur le sujet — et nous avons besoin de <strong class="font-semibold text-ink">votre</strong> regard de terrain.
+      </p>
+      <p class="mt-4 leading-relaxed text-muted">
+        En 5 minutes, vous contribuez à une étude qui rendra visible la réalité du secteur : usages réels, temps gagné, freins, projets. Les résultats seront publiés ici, librement réutilisables avec un lien vers la source.
+      </p>
+    </div>
+
+    <!-- CTA principal vers le questionnaire -->
+    <div class="mt-10 rounded-2xl border border-sand bg-cream-100 p-6 sm:p-8">
+      <p class="font-display text-xl font-bold text-ink">Participer à l'enquête (5 min)</p>
+      <p class="mt-2 text-muted">17 questions, surtout des QCM. Anonyme. Email facultatif si vous souhaitez recevoir l'étude en avant-première.</p>
+      <div class="mt-6">
+        {QUESTIONNAIRE_URL ? (
+          <a
+            href={QUESTIONNAIRE_URL}
+            target="_blank"
+            rel="noopener"
+            class="inline-block rounded-lg bg-brand-500 px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
+          >
+            Répondre au questionnaire →
+          </a>
+        ) : (
+          <!--
+            TODO: brancher le formulaire réel.
+            Renseigner QUESTIONNAIRE_URL ci-dessus (lien public Tally / Google Forms).
+            Tant qu'il est vide, on affiche un emplacement balisé plutôt qu'un lien mort.
+          -->
+          <p class="rounded-lg border border-dashed border-brand-300 bg-cream-50 px-5 py-4 text-sm text-muted">
+            <strong class="font-semibold text-ink">Questionnaire en préparation.</strong> Le lien public sera ajouté ici dès l'ouverture de la collecte. Vous voulez être prévenu·e ? <a href="/contact/" class="text-brand-700 hover:underline">Écrivez-nous</a>.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pourquoi participer -->
+  <section class="bg-cream-100">
+    <div class="mx-auto max-w-3xl px-4 py-16">
+      <h2 class="font-display text-2xl font-bold text-ink sm:text-3xl">Pourquoi participer</h2>
+      <dl class="mt-8 grid gap-6 sm:grid-cols-3">
+        {pourquoi.map((p) => (
+          <div class="rounded-2xl border border-sand bg-cream-50 p-6">
+            <dt class="font-display text-lg font-bold text-ink">{p.titre}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-muted">{p.detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Ce que couvre l'enquête -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="font-display text-2xl font-bold text-ink sm:text-3xl">Ce que couvre l'enquête</h2>
+    <p class="mt-3 leading-relaxed text-muted">
+      Six thèmes, du profil de votre structure à vos projets. Les questions sont volontairement neutres : l'objectif est de mesurer la réalité du secteur, pas de « vendre » l'IA.
+    </p>
+    <ul class="mt-8 grid gap-x-10 gap-y-3 border-t border-sand pt-8 sm:grid-cols-2">
+      {themes.map((t) => (
+        <li class="flex gap-3 text-muted">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-12 rounded-2xl border border-sand bg-cream-50 p-6">
+      <p class="text-sm leading-relaxed text-muted">
+        Les résultats agrégés seront publiés sur cette page :
+        <a href="/barometre-ia-organismes-formation/resultats/" class="font-semibold text-brand-700 hover:underline">les résultats du baromètre</a>
+        (en cours de collecte). Cette enquête s'inscrit dans notre travail d'accompagnement des OF : voir
+        <a href="/blog/integrer-ia-organisme-formation/" class="font-semibold text-brand-700 hover:underline">notre guide pour intégrer l'IA dans un organisme de formation</a>.
+      </p>
+    </div>
+
+    <p class="mt-8 text-sm text-muted">
+      Enquête menée par Claude Partners — cabinet de conseil spécialisé dans l'intégration de l'IA pour les organismes de formation français.
+    </p>
+  </section>
+
+  <!-- CTA final -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">5 minutes pour faire avancer tout le secteur</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Votre réponse compte : plus nous sommes nombreux, plus l'étude est solide et utile à tous les organismes de formation.</p>
+      <div class="mt-8">
+        {QUESTIONNAIRE_URL ? (
+          <a href={QUESTIONNAIRE_URL} target="_blank" rel="noopener" class="inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Répondre au questionnaire →</a>
+        ) : (
+          <a href="/contact/" class="inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Être prévenu·e de l'ouverture</a>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
