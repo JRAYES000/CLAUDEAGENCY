@@ -57,7 +57,7 @@ les citations IA), et **maille vers la page service correspondante** + CTA audit
 | 9 | IA et pédagogie : personnaliser les parcours apprenants | ia pédagogie personnalisation | outils-ia-sur-mesure |
 
 **Checklist :**
-- [x] Ré-étoffer l'article existant `integrer-ia-organisme-formation.mdx` → **page pilier** (~850 mots, maillée vers les 4 services + CTA). *(fait 2026-06-14 — peut encore être approfondi vers 1 200+)*
+- [x] Ré-étoffer l'article existant `integrer-ia-organisme-formation.mdx` → **page pilier** (~1 440 mots, maillée vers les 4 services + CTA). *(2026-06-14 ; approfondi 2026-06-16 : exemple chiffré de gain de temps, section RGPD/données stagiaires, FAQ étoffée — coût + outils gratuits/payants)*
 - [x] **Article 1 — « Automatiser la conformité Qualiopi avec l'IA »** : rédigé (~700 mots), image de couverture unique générée (HF Z-Image), maillage bidirectionnel avec le pilier + liens vers `automatisation`/`audit-ia`. *(2026-06-14)*
 - [x] **Article 2 — « Automatiser l'émargement et le suivi des stagiaires »** (~590 mots) + image générée + lien croisé bidirectionnel avec l'article Qualiopi. *(2026-06-14)*
 - [x] **Articles 3-4 — BPF + charge administrative** publiés + maillage interne. **Couvertures uniques régénérées (HF PRO, 2026-06-15).** *(2026-06-14)*
