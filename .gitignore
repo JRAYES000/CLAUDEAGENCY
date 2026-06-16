@@ -1,3 +1,6 @@
+# Worktrees git temporaires des sous-agents Claude Code (éphémères)
+.claude/
+
 # Artefacts transitoires (capture navigateur Playwright MCP)
 .playwright-mcp/
 
