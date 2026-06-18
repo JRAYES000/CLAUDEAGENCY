@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère le lead magnet PDF « 10 automatisations IA » à la charte Claude Partners.
+"""Génère le lead magnet PDF « 10 automatisations IA » à la charte Claude Agency.
 
 Sortie : app/public/ressources/10-automatisations-ia.pdf
 Lancer depuis app/ :  python scripts/generate-lead-magnet-pdf.py
@@ -10,11 +10,11 @@ from reportlab.lib.units import cm
 from reportlab.lib.colors import HexColor, white
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable,
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, KeepTogether, HRFlowable, Image,
 )
 
 # Palette (approx. charte du site)
-BRAND = HexColor("#BE5B3A")
+BRAND = HexColor("#CC785C")
 INK = HexColor("#2B2A28")
 MUTED = HexColor("#6E665C")
 CREAM = HexColor("#FBF8F2")
@@ -23,6 +23,7 @@ SAND = HexColor("#E7DECF")
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, "..", "public", "ressources", "10-automatisations-ia.pdf"))
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
+LOGO = os.path.join(HERE, "logo-spark-cream.png")
 
 MARGIN = 2 * cm
 CONTENT_W = A4[0] - 2 * MARGIN
@@ -92,10 +93,14 @@ FICHES = [
 
 
 def header_band():
-    t = Table([[Paragraph(TITLE, styles["h_title"])]], colWidths=[CONTENT_W])
+    logo = Image(LOGO, width=1.15 * cm, height=1.15 * cm)
+    t = Table([[logo, Paragraph(TITLE, styles["h_title"])]],
+              colWidths=[1.7 * cm, CONTENT_W - 1.7 * cm])
     t.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, -1), BRAND),
-        ("LEFTPADDING", (0, 0), (-1, -1), 18),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (0, 0), 18),
+        ("LEFTPADDING", (1, 0), (1, 0), 6),
         ("RIGHTPADDING", (0, 0), (-1, -1), 18),
         ("TOPPADDING", (0, 0), (-1, -1), 18),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 18),
@@ -131,7 +136,7 @@ def on_page(canvas, doc):
     canvas.rect(0, 0, A4[0], A4[1], fill=1, stroke=0)
     canvas.setFillColor(MUTED)
     canvas.setFont("Times-Roman", 8)
-    canvas.drawString(MARGIN, 1.2 * cm, "Claude Partners — claudepartners.fr")
+    canvas.drawString(MARGIN, 1.2 * cm, "Claude Agency — claudepartners.fr")
     canvas.drawRightString(A4[0] - MARGIN, 1.2 * cm, str(doc.page))
     canvas.restoreState()
 
@@ -141,7 +146,7 @@ def build():
         OUT, pagesize=A4,
         leftMargin=MARGIN, rightMargin=MARGIN, topMargin=MARGIN, bottomMargin=2 * cm,
         title="10 automatisations IA pour organismes de formation",
-        author="Julien Rayes — Claude Partners",
+        author="Julien Rayes — Claude Agency",
     )
     story = [
         Paragraph("GUIDE GRATUIT", styles["eyebrow"]),
@@ -154,7 +159,7 @@ def build():
     ]
     for i, (num, title, detail, result) in enumerate(FICHES):
         block = [
-            Paragraph(f'<font color="#BE5B3A">{num}</font>&nbsp;&nbsp;{title}', styles["fiche_h"]),
+            Paragraph(f'<font color="#CC785C">{num}</font>&nbsp;&nbsp;{title}', styles["fiche_h"]),
             Paragraph(detail, styles["body"]),
             Paragraph(result, styles["result"]),
         ]
