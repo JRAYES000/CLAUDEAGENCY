@@ -18,7 +18,7 @@ Merci de votre intérêt ! Un dernier clic pour confirmer votre adresse et recev
 
 Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet email.
 
-— Julien Rayes, Claude Partners
+— Julien Rayes, Claude Agency
 
 ---
 
