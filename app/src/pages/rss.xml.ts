@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
   );
 
   return rss({
-    title: 'Claude Partners — Blog',
+    title: 'Claude Agency — Blog',
     description: "Conseils IA et automatisation pour les organismes de formation.",
     site: context.site!,
     items: posts.map((post) => ({

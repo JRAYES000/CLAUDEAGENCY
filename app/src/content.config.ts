@@ -10,7 +10,7 @@ const blog = defineCollection({
       description: z.string().max(160),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      author: z.string().default('Claude Partners'),
+      author: z.string().default('Claude Agency'),
       image: image(),
       imageAlt: z.string(),
       tags: z.array(z.string()).default([]),

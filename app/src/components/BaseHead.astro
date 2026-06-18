@@ -6,7 +6,7 @@ interface Props {
 }
 const {
   title, description, image = '/og-default.jpg',
-  imageAlt = 'Claude Partners, IA et automatisation pour organismes de formation',
+  imageAlt = 'Claude Agency, IA et automatisation pour organismes de formation',
   imageWidth = 1200, imageHeight = 630, imageType = 'image/jpeg',
   canonical, type = 'website', noindex = false,
 } = Astro.props;
@@ -15,9 +15,9 @@ const rawPath = canonical ?? Astro.url.pathname;
 const path = rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
 const canonicalURL = new URL(path, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
-const withBrand = `${title} · Claude Partners`;
+const withBrand = `${title} · Claude Agency`;
 // Suffixe de marque seulement s'il ne pousse pas le titre au-delà de ~60 car (évite la troncature SERP).
-const fullTitle = title === 'Claude Partners' ? title : (withBrand.length <= 60 ? withBrand : title);
+const fullTitle = title === 'Claude Agency' ? title : (withBrand.length <= 60 ? withBrand : title);
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,7 +30,7 @@ const fullTitle = title === 'Claude Partners' ? title : (withBrand.length <= 60 
 <link rel="canonical" href={canonicalURL} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title="Claude Partners — Blog" href="/rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="Claude Agency — Blog" href="/rss.xml" />
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
@@ -41,7 +41,7 @@ const fullTitle = title === 'Claude Partners' ? title : (withBrand.length <= 60 
 <meta property="og:image:height" content={String(imageHeight)} />
 <meta property="og:image:type" content={imageType} />
 <meta property="og:locale" content="fr_FR" />
-<meta property="og:site_name" content="Claude Partners" />
+<meta property="og:site_name" content="Claude Agency" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />

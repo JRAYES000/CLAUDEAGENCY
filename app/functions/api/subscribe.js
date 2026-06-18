@@ -9,7 +9,7 @@ const LIST_ID = '10523019'; // Ressources – 10 automatisations IA
 const REDIRECT = '/merci-ressource/';
 const PDF_URL = 'https://claudepartners.fr/ressources/10-automatisations-ia.pdf';
 const FROM_EMAIL = 'contact@claudepartners.fr';
-const FROM_NAME = 'Julien Rayes — Claude Partners';
+const FROM_NAME = 'Julien Rayes — Claude Agency';
 
 export async function onRequestGet() {
   // Health-check + détecteur de version de déploiement.
@@ -76,7 +76,7 @@ export async function onRequestPost({ request, env }) {
               `${helloText}\n\nVoici votre guide, comme promis : ${PDF_URL}\n\n` +
               `Chaque automatisation y est expliquée avec le temps qu'elle fait gagner et l'outil utilisé — ` +
               `toutes déployées dans un organisme de formation réel.\n\n` +
-              `Une question en le lisant ? Répondez simplement à cet email.\n\n— Julien Rayes, Claude Partners`,
+              `Une question en le lisant ? Répondez simplement à cet email.\n\n— Julien Rayes, Claude Agency`,
             HTMLPart:
               `<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#2B2A28;">` +
               `<p>${hello}</p>` +
@@ -84,7 +84,7 @@ export async function onRequestPost({ request, env }) {
               `<p style="margin:24px 0;"><a href="${PDF_URL}" style="background:#BE5B3A;color:#ffffff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">Télécharger le guide (PDF)</a></p>` +
               `<p>Chaque automatisation y est expliquée avec le temps qu'elle fait gagner et l'outil utilisé — toutes déployées dans un organisme de formation réel.</p>` +
               `<p>Une question en le lisant ? Répondez simplement à cet email.</p>` +
-              `<p>— Julien Rayes, Claude Partners</p>` +
+              `<p>— Julien Rayes, Claude Agency</p>` +
               `</div>`,
           },
         ],
