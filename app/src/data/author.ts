@@ -4,10 +4,10 @@
 
 export const AUTHOR = {
   name: 'Julien Rayes',
-  jobTitle: 'Fondateur de Claude Partners',
+  jobTitle: 'Fondateur de Claude Agency',
   // Bio factuelle, alignée sur la page /a-propos/. Aucune affirmation inventée.
   bio:
-    "Julien Rayes est le fondateur de Claude Partners. Directeur commercial et marketing " +
+    "Julien Rayes est le fondateur de Claude Agency. Directeur commercial et marketing " +
     "d'un organisme de formation professionnelle (plus de 3 M€ de chiffre d'affaires depuis 2021), " +
     "il en a automatisé seul tout le back-office (administratif, commercial et marketing) avec " +
     "des outils comme Make et Claude Code. Il aide aujourd'hui les organismes de formation à " +

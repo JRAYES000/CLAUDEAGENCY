@@ -16,10 +16,10 @@ const site = Astro.site!.toString().replace(/\/$/, '');
 
 const organization = {
   '@context': 'https://schema.org', '@type': 'Organization',
-  '@id': `${site}/#organization`, name: 'Claude Partners', url: site,
+  '@id': `${site}/#organization`, name: 'Claude Agency', url: site,
   // logo en ImageObject = attendu par le rich result Article (publisher.logo).
   logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 },
-  description: "Claude Partners aide les organismes de formation français à intégrer l'IA et automatiser leurs process.",
+  description: "Claude Agency aide les organismes de formation français à intégrer l'IA et automatiser leurs process.",
   areaServed: { '@type': 'Country', name: 'France' },
   email: 'contact@claudepartners.fr',
   // sameAs : profils réels existants. LinkedIn du fondateur (pas encore de page entreprise dédiée).
@@ -27,7 +27,7 @@ const organization = {
 };
 const website = {
   '@context': 'https://schema.org', '@type': 'WebSite',
-  '@id': `${site}/#website`, url: site, name: 'Claude Partners',
+  '@id': `${site}/#website`, url: site, name: 'Claude Agency',
   inLanguage: 'fr-FR', publisher: { '@id': `${site}/#organization` },
 };
 ---
