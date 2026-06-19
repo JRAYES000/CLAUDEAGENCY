@@ -1,4 +1,41 @@
+# robots.txt — Claude Partners
+# Site ouvert : on veut être indexé par Google ET cité par les moteurs IA.
+# Bots de recherche IA (citations) et bots d'entraînement (mémoire de marque)
+# explicitement autorisés — cohérent avec la stratégie GEO et /llms.txt.
+
 User-agent: *
+Allow: /
+
+# --- Moteurs de recherche IA : récupération temps réel = éligibilité aux citations ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# --- Bots d'entraînement : présence dans la mémoire des modèles = notoriété de marque ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://claudepartners.fr/sitemap-index.xml

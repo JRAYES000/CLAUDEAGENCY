@@ -85,7 +85,7 @@ Le conseil B2B récompense l'expertise humaine prouvée. Aujourd'hui l'auteur es
 - [x] **Auteur nommé réel** : Julien Rayes — entité partagée `app/src/data/author.ts`. *(2026-06-14)*
 - [x] **Page auteur** : section « Le fondateur » sur `/a-propos/` avec ancre `#julien-rayes`. *(2026-06-14)*
 - [x] Schema `Person` lié au `BlogPosting.author` via `@id` (présent sur l'article ET la page auteur → entité consolidée). *(2026-06-14)*
-- [ ] Remplir `sameAs` (Organization + Person) — **en attente d'un LinkedIn réel** ; laissé vide proprement (`BaseLayout.astro` l.~25 + `author.ts`).
+- [x] `sameAs` Person rempli (LinkedIn fondateur réel, `author.ts`) ; Organization `sameAs` = même LinkedIn. *(constaté 2026-06-19)* Étendre via page entreprise LinkedIn / Wikidata reste un plus (cf. action #22 recherche 2026).
 - [x] Page « À propos » : preuves de crédibilité réelles ajoutées (OF > 3 M€ de CA, back-office automatisé avec Make + Claude Code). *(2026-06-14)*
 
 ### 🟡 LEVIER 3 — Netlinking (autorité de domaine)
@@ -104,16 +104,17 @@ Domaine neuf = 0 autorité. Quelques liens pertinents suffisent dans ce créneau
 Les acheteurs (dirigeants d'OF) interrogent de plus en plus une IA. Niche B2B spécialisée
 = peu de sources fiables à citer → fort potentiel de citation. `llms.txt` déjà présent.
 
-**⚠️ Contradiction à trancher EN PREMIER :** Cloudflare injecte à l'edge un *Managed
-robots.txt* (AI Crawl Control) qui **Disallow ClaudeBot, GPTBot, Google-Extended, CCBot,
-Bytespider, Amazonbot…**. Résultat : ton `llms.txt` invite les IA à te citer, mais
-Cloudflare leur **bloque l'accès au site**. Tant que ce blocage est actif, le Levier GEO
-est **neutralisé**. Décision : désactiver « Block AI bots » dans Cloudflare (cohérent avec
-la stratégie GEO) OU assumer de ne pas viser les citations IA (et alors retirer `llms.txt`
-pour éviter l'incohérence).
+**✅ Contradiction résolue (audit 2026-06-19) :** le `robots.txt` servi **en production** est
+la version permissive (aucun bot IA bloqué) — vérifié par requête réelle sur la prod. Le
+*Managed robots.txt* Cloudflare (AI Crawl Control) n'est donc pas actif. Le `robots.txt` du
+dépôt a été rendu **explicite** : autorisation nommée des bots de **recherche IA**
+(OAI-SearchBot, PerplexityBot, Claude-SearchBot, ChatGPT-User…) ET des bots d'**entraînement**
+(GPTBot, ClaudeBot, CCBot, Google-Extended → présence dans la mémoire des modèles = notoriété
+de marque). Le Levier GEO n'est **pas** neutralisé. *Seul reste à confirmer côté Julien* : que
+le toggle « Block AI bots » est bien OFF dans le dashboard Cloudflare (non vérifiable par API).
 
 **Checklist :**
-- [ ] **Trancher le blocage AI bots Cloudflare** (cf. avertissement ci-dessus) — prérequis de tout le levier GEO.
+- [x] **Blocage AI bots Cloudflare tranché** (2026-06-19) : prod permissive + `robots.txt` explicite (bots de recherche IA et d'entraînement autorisés). Reste à confirmer le toggle côté dashboard Cloudflare.
 - [ ] Structurer chaque article : définition claire en intro + Q/R + données chiffrées (citabilité).
 - [ ] Garder `llms.txt` à jour (il se régénère depuis les collections — vérifier après chaque ajout).
 - [ ] Inclure des réponses directes aux questions « comment / pourquoi / combien » du secteur.
@@ -156,3 +157,34 @@ pour éviter l'incohérence).
 - ❌ Pas de bourrage de mots-clés ni de contenu généré « vide » : la niche se gagne par la
   précision et l'expertise réelle, pas le volume.
 - ❌ Pas de pages doublons / variations géographiques artificielles (offre nationale).
+
+---
+
+## 6. Journal — Audit « recherche SEO 2026 » (2026-06-19)
+
+Site confronté aux 50 actions de la recherche SEO post-avril 2026. Le socle technique et le
+cluster de contenu étaient **déjà solides** (audit : schema chaîné, hero LCP optimisé, BLUF
+systématique, maillage interne dense, FAQ partout). Les vrais manques : la **citeabilité GEO**
+et l'**autorité prouvée par des sources**. Actions menées en autonomie :
+
+- **Citeabilité / E-E-A-T (le plus gros gain).** Constat : **0/26 article** citait une source
+  primaire externe. Ajout de **citations vers les sources officielles** (Légifrance L.6353-1,
+  travail-emploi/Qualiopi + RNQ, service-public/Mon Activité Formation, DARES, CNIL) sur les
+  2 piliers + 4 articles réglementaires (convention, NDA, BPF, indicateurs). Ajout d'une
+  **statistique sourcée** (DARES-Céreq : 49 % des OF certifiés Qualiopi + 4 % en cours, été
+  2023) et de **tableaux comparatifs** (4 chantiers IA ; coûts d'audit Qualiopi) — formats les
+  plus cités par les moteurs IA (#26). Une **citation attribuée du fondateur** (donnée
+  propriétaire : relances 2 h/j → 2 h/mois) sur le pilier IA (#14/#15). `updatedDate` posé sur
+  les **6 articles réellement modifiés** uniquement (pas de faux refresh, cf. action #16).
+- **Technique.** `robots.txt` rendu **explicite** (bots de recherche IA + entraînement
+  autorisés, #1/#31). **HSTS** ajouté aux `_headers` (#44). Build vérifié (58 pages, 0 erreur),
+  rendu confirmé sur le `dist` (tables, blockquote, liens, `dateModified` 2026-06-19 dans le JSON-LD).
+- **État GSC (grounding).** Sitemap *Valid*, **41 URLs indexées**, 0 erreur (crawl 2026-06-18).
+  Trafic encore quasi nul (~13 impressions ; requête « julien rayes » ; `logiciel-organisme-formation`
+  pos. 3,8) : **pré-trafic** normal pour un domaine neuf. Aucun quick-win position 4-10 à récolter
+  pour l'instant → priorité maintenue sur autorité + citeabilité, pas sur l'optimisation CTR.
+
+**Reste à arbitrer côté Julien (hors autonomie) :** confirmer le toggle « Block AI bots » OFF
+dans Cloudflare ; brancher **IndexNow** (intégration Cloudflare 1-clic ou ping au déploiement,
+#4) ; leviers externes — **netlinking**, mentions de marque non-linkées (#34), **YouTube**
+(corrélation 0,737 avec les citations IA, #50), Wikidata + page entreprise LinkedIn (#22).
