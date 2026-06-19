@@ -242,3 +242,24 @@ PBN, achat de liens dofollow nu, link farming, guest posting de masse bas de gam
 
 ### Synthèse en une phrase
 Pour claudepartners.fr, le chemin le moins risqué et le plus durable est **topical authority + maillage interne d'abord, fondations ensuite, liens éditoriaux gagnés (founder-led + data) comme moteur, et achat de liens FR sélectif, balisé `sponsored` et minoritaire à partir du T2** — avec un profil d'ancres ultra-prudent (0% exact-match externe au démarrage, ≤5% à maturité), une vélocité progressive, et un filtrage qualité (trafic réel + Force Induite Babbar) sur chaque donneur.
+
+---
+
+## 9. Addendum — Audit SEO 2026 + rebrand (2026-06-19)
+
+**Impact du rebrand « Claude Partners » → « Claude Agency » sur le netlinking.** La marque/entité de référence est désormais **Claude Agency** (cf. mémoire dédiée). Conséquences :
+- **Ancre de marque** = « Claude Agency » pour tous les nouveaux liens/citations. NAP cohérent (nom identique partout).
+- **À réconcilier (côté Julien — il détient les comptes)** : la fiche AnnuaireFormation et les candidatures guest post (Tree Learning, Digiformag) ont été soumises sous « Claude Partners ». Mettre à jour le nom affiché vers « Claude Agency » si possible, ou assumer une transition. Le **domaine reste `claudepartners.fr`** (inchangé).
+
+**Quick win appliqué en autonomie (2026-06-19).** Le seul levier réellement automatisable sans Julien est la **fondation on-site / entité** (Priorité 1-3) :
+- Entité **Organization** enrichie (`foundingDate`, `founder` lié au Person Julien Rayes, `knowsAbout`) → renforce le Knowledge Graph, support direct des citations IA (GEO).
+- La citeabilité des articles (sources primaires, stats, tableaux, PR #7) est aussi un **citable asset** : des pages sourcées attirent plus de liens éditoriaux.
+
+**Quick wins qui nécessitent Julien (comptes/identité — je ne crée pas de compte, règle établie) :**
+1. **Page entreprise LinkedIn « Claude Agency »** (seul le profil perso est en `sameAs` Organization) → puis l'ajouter au `sameAs`.
+2. **Inscriptions Featured.com / Qwoted** (citations d'expert founder-led, réponses < 4 h).
+3. **Relancer** Tree Learning + Digiformag (candidatures du 06-15, en attente).
+4. **Nouvelles citations/annuaires** thématiques (Entreprise-IA, Annuaire Qualiopi) sous « Claude Agency ».
+5. **Baromètre IA des OF** = LE linkable asset data-first (Priorité 4) : il lui faut de vraies réponses (distribution LinkedIn/cold email/Make) — pas de données fabriquées.
+
+> Cadence inchangée : ~2-4 liens/mois, fondations d'abord, 0 % exact-match externe au démarrage, tout lien payant balisé `sponsored` (T2 seulement).

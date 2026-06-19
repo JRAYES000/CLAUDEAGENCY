@@ -22,6 +22,17 @@ const organization = {
   description: "Claude Agency aide les organismes de formation français à intégrer l'IA et automatiser leurs process.",
   areaServed: { '@type': 'Country', name: 'France' },
   email: 'contact@claudepartners.fr',
+  foundingDate: '2026',
+  // founder lié à l'entité Person (page auteur) → renforce le Knowledge Graph (E-E-A-T + GEO).
+  founder: { '@type': 'Person', '@id': `${site}/a-propos/#julien-rayes`, name: 'Julien Rayes' },
+  knowsAbout: [
+    'Intelligence artificielle',
+    'Automatisation des process',
+    'Organismes de formation',
+    'Qualiopi',
+    'Référencement naturel (SEO)',
+    'Google Ads (SEA)',
+  ],
   // sameAs : profils réels existants. LinkedIn du fondateur (pas encore de page entreprise dédiée).
   sameAs: ['https://www.linkedin.com/in/julien-rayes/'],
 };

@@ -188,3 +188,11 @@ et l'**autorité prouvée par des sources**. Actions menées en autonomie :
 dans Cloudflare ; brancher **IndexNow** (intégration Cloudflare 1-clic ou ping au déploiement,
 #4) ; leviers externes — **netlinking**, mentions de marque non-linkées (#34), **YouTube**
 (corrélation 0,737 avec les citations IA, #50), Wikidata + page entreprise LinkedIn (#22).
+
+**Suite (2026-06-19, après merge de la PR #7).** PR #7 **mergée et déployée**. Entité **Organization**
+enrichie (`foundingDate`, `founder` lié au Person, `knowsAbout`) pour consolider le Knowledge Graph
+(#22, PR séparée). Confirmation **fonctionnelle** que les bots IA ne sont pas bloqués (robots.txt prod
+sans bloc « Managed content » ni `Content-Signal: ai-train=no`) ; la confirmation **visuelle** du toggle
+Cloudflare attend que le navigateur de Julien soit connecté (Claude in Chrome — aucun navigateur appairé).
+Leviers externes : stratégie cadrée dans `NETLINKING.md` (addendum rebrand §9) ; le reste (LinkedIn
+entreprise, Featured/Qwoted, annuaires, baromètre) nécessite les comptes/identité de Julien.
