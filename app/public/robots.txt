@@ -1,4 +1,4 @@
-# robots.txt — Claude Partners
+# robots.txt — Claude Agency
 # Site ouvert : on veut être indexé par Google ET cité par les moteurs IA.
 # Bots de recherche IA (citations) et bots d'entraînement (mémoire de marque)
 # explicitement autorisés — cohérent avec la stratégie GEO et /llms.txt.
