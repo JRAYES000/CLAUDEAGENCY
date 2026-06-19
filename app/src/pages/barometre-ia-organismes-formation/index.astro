@@ -7,14 +7,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // public de l'étude. La page de résultats (/resultats/) reste en noindex tant
 // qu'elle n'a pas de données. Voir plan : BAROMETRE-IA-OF.md.
 
-// TODO (côté utilisateur) : remplacer ce lien par l'URL réelle du questionnaire
-// Tally / Google Forms une fois créé (cf. BAROMETRE-IA-OF.md §2 et §6).
-const QUESTIONNAIRE_URL = ''; // ex. 'https://tally.so/r/XXXXXX'
+// Questionnaire natif (formulaire on-site → Supabase). Voir ./questionnaire.astro.
+const QUESTIONNAIRE_URL = '/barometre-ia-organismes-formation/questionnaire/';
 
 const pourquoi = [
   {
     titre: '~5 minutes',
-    detail: '17 questions, surtout des QCM. On respecte votre temps.',
+    detail: '15 questions, surtout des QCM. On respecte votre temps.',
   },
   {
     titre: 'Anonyme',
@@ -65,13 +64,11 @@ const breadcrumb = {
     <!-- CTA principal vers le questionnaire -->
     <div class="mt-10 rounded-2xl border border-sand bg-cream-100 p-6 sm:p-8">
       <p class="font-display text-xl font-bold text-ink">Participer à l'enquête (5 min)</p>
-      <p class="mt-2 text-muted">17 questions, surtout des QCM. Anonyme. Email facultatif si vous souhaitez recevoir l'étude en avant-première.</p>
+      <p class="mt-2 text-muted">15 questions, surtout des QCM. Anonyme. Email facultatif si vous souhaitez recevoir l'étude en avant-première.</p>
       <div class="mt-6">
         {QUESTIONNAIRE_URL ? (
           <a
             href={QUESTIONNAIRE_URL}
-            target="_blank"
-            rel="noopener"
             class="inline-block rounded-lg bg-brand-500 px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
           >
             Répondre au questionnaire →
@@ -141,7 +138,7 @@ const breadcrumb = {
       <p class="mx-auto mt-4 max-w-xl text-brand-100">Votre réponse compte : plus nous sommes nombreux, plus l'étude est solide et utile à tous les organismes de formation.</p>
       <div class="mt-8">
         {QUESTIONNAIRE_URL ? (
-          <a href={QUESTIONNAIRE_URL} target="_blank" rel="noopener" class="inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Répondre au questionnaire →</a>
+          <a href={QUESTIONNAIRE_URL} class="inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Répondre au questionnaire →</a>
         ) : (
           <a href="/contact/" class="inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Être prévenu·e de l'ouverture</a>
         )}

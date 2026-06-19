@@ -88,7 +88,7 @@ const fieldCls =
     var btn = document.getElementById('diagnostic-submit');
     if (!form || !result || !btn) return;
     var btnLabel = btn.textContent;
-    var genericError = "Une erreur est survenue. Réessayez ou écrivez-nous à contact@claudepartners.fr.";
+    var genericError = "Une erreur est survenue. Réessayez ou écrivez-nous à contact@claudeagency.fr.";
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var json = JSON.stringify(Object.fromEntries(new FormData(form)));

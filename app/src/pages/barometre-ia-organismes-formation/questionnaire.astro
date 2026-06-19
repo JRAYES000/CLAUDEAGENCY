@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Questionnaire natif du Baromètre IA des OF. Les réponses sont envoyées en
+// direct (POST client) à Supabase (projet « Claude Agency »), table
+// public.barometre_reponses, protégée en insert-only (RLS, clé publishable).
+// La clé publishable est PUBLIQUE par conception (RLS empêche toute lecture).
+// Page noindex (utilitaire) — la landing /barometre.../ porte le SEO.
+
+const SUPA_URL = 'https://ifutijlvjgkdaonxzzpi.supabase.co';
+const SUPA_KEY = 'sb_publishable_AMATmViFhzzEHM7t1GYHhQ_0I68c4c4';
+const ENDPOINT = `${SUPA_URL}/rest/v1/barometre_reponses`;
+
+// Définition des questions (rendu DRY). type: radio | checkbox | text.
+const questions = [
+  { id: 'structure_type', type: 'radio', q: 'Quel type de structure dirigez-vous ?', opts: ['OF indépendant', 'CFA', 'OF intégré à une entreprise', 'Formateur indépendant', 'Autre'] },
+  { id: 'taille', type: 'radio', q: 'Combien de formateurs dans votre structure ?', opts: ['1 (vous seul)', '2 à 5', '6 à 20', 'Plus de 20'] },
+  { id: 'qualiopi', type: 'radio', q: 'Êtes-vous certifié Qualiopi ?', opts: ['Oui', 'En cours', 'Non'] },
+  { id: 'ia_usage', type: 'radio', q: "Utilisez-vous l'IA dans votre activité ?", opts: ['Oui, régulièrement', 'Oui, ponctuellement', 'Non, mais envisagé', 'Non'] },
+  { id: 'ia_depuis', type: 'radio', q: 'Depuis quand utilisez-vous l\'IA ?', opts: ['Moins de 6 mois', '6 à 12 mois', '1 à 2 ans', 'Plus de 2 ans', "Je n'utilise pas l'IA"] },
+  { id: 'ia_usages', type: 'checkbox', q: 'Pour quels usages ? (plusieurs réponses possibles)', opts: ['Création de supports', 'Administratif / Qualiopi', 'Marketing / SEO', 'Relation apprenants', 'BPF / reporting', 'Émargement', 'Autre'] },
+  { id: 'ia_outils', type: 'checkbox', q: 'Quels outils utilisez-vous ? (plusieurs réponses possibles)', opts: ['ChatGPT', 'Claude', 'Copilot', 'Gemini', 'Make / n8n', 'Outil métier OF', 'Autre'] },
+  { id: 'temps_gagne', type: 'radio', q: 'Temps gagné estimé par semaine grâce à l\'IA', opts: ["Moins d'1 h", '1 à 3 h', '3 à 5 h', '5 à 10 h', 'Plus de 10 h', 'Aucun / non concerné'] },
+  { id: 'benefice', type: 'radio', q: 'Principal bénéfice constaté', opts: ['Gain de temps', 'Qualité', 'Coût', 'Réactivité', 'Aucun'] },
+  { id: 'tache_aidee', type: 'text', q: "La tâche où l'IA vous a le plus aidé ? (optionnel)" },
+  { id: 'freins', type: 'checkbox', q: 'Qu\'est-ce qui vous freine ? (plusieurs réponses possibles)', opts: ['Manque de temps', 'Manque de compétences', 'RGPD / confidentialité', 'Coût', 'Doutes sur la qualité', 'Conformité Qualiopi', 'Pas de besoin'] },
+  { id: 'qualiopi_crainte', type: 'radio', q: 'L\'usage de l\'IA et Qualiopi vous inquiète-t-il ?', opts: ['Oui', 'Non', 'Sans avis'] },
+  { id: 'qualiopi_crainte_pourquoi', type: 'text', q: 'Si oui, pourquoi ? (optionnel)' },
+  { id: 'investir_12m', type: 'radio', q: 'Comptez-vous investir dans l\'IA dans les 12 prochains mois ?', opts: ['Oui', 'Non', 'Déjà fait'] },
+  { id: 'budget', type: 'radio', q: 'Budget annuel envisagé (IA / automatisation)', opts: ['0 €', 'Moins de 500 €', '500 à 2 000 €', '2 000 à 10 000 €', 'Plus de 10 000 €'] },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Baromètre IA des organismes de formation', item: new URL('/barometre-ia-organismes-formation/', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: 'Questionnaire' },
+  ],
+};
+---
+<BaseLayout
+  title="Questionnaire — Baromètre IA des organismes de formation"
+  description="Répondez au Baromètre 2026 de l'IA dans les organismes de formation français : 5 minutes, anonyme."
+  noindex={true}
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-14">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Baromètre 2026 · 5 minutes</p>
+    <h1 class="mt-3 font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl">
+      Le questionnaire
+    </h1>
+    <p class="mt-4 leading-relaxed text-muted">
+      Toutes les questions sont facultatives. Vos réponses sont <strong class="font-semibold text-ink">anonymes</strong> et servent une étude agrégée. Laissez votre email seulement si vous voulez recevoir les résultats.
+    </p>
+
+    <!-- Merci (caché par défaut) -->
+    <div id="barometre-merci" hidden class="mt-8 rounded-2xl border border-brand-200 bg-cream-100 p-8 text-center">
+      <p class="font-display text-2xl font-bold text-ink">Merci ! 🙌</p>
+      <p class="mt-3 leading-relaxed text-muted">Votre réponse est bien enregistrée. Elle fait avancer la première étude indépendante sur l'IA dans les organismes de formation français.</p>
+      <a href="/barometre-ia-organismes-formation/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Retour au baromètre</a>
+    </div>
+
+    <form id="barometre-form" class="mt-8 space-y-9">
+      {questions.map((item, i) => (
+        <fieldset class="rounded-2xl border border-sand bg-cream-50 p-5 sm:p-6">
+          <legend class="px-1 font-display text-base font-bold text-ink">{i + 1}. {item.q}</legend>
+          {item.type === 'text' ? (
+            <input
+              type="text"
+              name={item.id}
+              maxlength="280"
+              class="mt-3 w-full rounded-lg border border-sand bg-white px-4 py-2.5 text-ink outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-200"
+              autocomplete="off"
+            />
+          ) : (
+            <div class="mt-3 space-y-2">
+              {item.opts.map((opt) => (
+                <label class="flex cursor-pointer items-center gap-3 rounded-lg border border-transparent px-2 py-1.5 text-muted transition-colors hover:bg-cream-100">
+                  <input type={item.type} name={item.id} value={opt} class="h-4 w-4 shrink-0 accent-brand-500" />
+                  <span>{opt}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </fieldset>
+      ))}
+
+      <!-- Accompagnement + email -->
+      <fieldset class="rounded-2xl border border-sand bg-cream-50 p-5 sm:p-6">
+        <legend class="px-1 font-display text-base font-bold text-ink">Pour aller plus loin (facultatif)</legend>
+        <label class="mt-3 flex cursor-pointer items-center gap-3 text-muted">
+          <input type="checkbox" name="accompagnement" class="h-4 w-4 shrink-0 accent-brand-500" />
+          <span>Je souhaite être recontacté pour un audit offert de mon organisme.</span>
+        </label>
+        <label class="mt-4 block">
+          <span class="text-sm text-muted">Votre email (pour recevoir l'étude ou être recontacté)</span>
+          <input
+            type="email"
+            name="email"
+            placeholder="vous@votre-of.fr"
+            class="mt-1.5 w-full rounded-lg border border-sand bg-white px-4 py-2.5 text-ink outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-200"
+            autocomplete="email"
+          />
+        </label>
+      </fieldset>
+
+      <!-- Honeypot anti-spam (ne pas remplir) -->
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label>Ne remplissez pas ce champ<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      <p id="barometre-error" hidden class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+
+      <button
+        type="submit"
+        id="barometre-submit"
+        class="w-full rounded-lg bg-brand-500 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-brand-600 disabled:opacity-60"
+      >
+        Envoyer ma réponse
+      </button>
+      <p class="text-center text-xs text-muted">Anonyme · vos données ne sont utilisées que pour l'étude agrégée.</p>
+    </form>
+  </section>
+
+  <script is:inline define:vars={{ ENDPOINT, SUPA_KEY }}>
+    const form = document.getElementById('barometre-form');
+    const merci = document.getElementById('barometre-merci');
+    const errEl = document.getElementById('barometre-error');
+    const btn = document.getElementById('barometre-submit');
+
+    const single = (name) => {
+      const el = form.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : null;
+    };
+    const multi = (name) =>
+      Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map((e) => e.value);
+    const txt = (name) => {
+      const el = form.querySelector(`[name="${name}"]`);
+      const v = el ? el.value.trim() : '';
+      return v || null;
+    };
+
+    const showMerci = () => {
+      form.hidden = true;
+      merci.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errEl.hidden = true;
+
+      // Honeypot : un bot remplit "website" → on simule un succès sans rien envoyer.
+      if (form.querySelector('[name="website"]').value) { showMerci(); return; }
+
+      const payload = {
+        structure_type: single('structure_type'),
+        taille: single('taille'),
+        qualiopi: single('qualiopi'),
+        ia_usage: single('ia_usage'),
+        ia_depuis: single('ia_depuis'),
+        ia_usages: multi('ia_usages'),
+        ia_outils: multi('ia_outils'),
+        temps_gagne: single('temps_gagne'),
+        benefice: single('benefice'),
+        tache_aidee: txt('tache_aidee'),
+        freins: multi('freins'),
+        qualiopi_crainte: single('qualiopi_crainte'),
+        qualiopi_crainte_pourquoi: txt('qualiopi_crainte_pourquoi'),
+        investir_12m: single('investir_12m'),
+        budget: single('budget'),
+        accompagnement: form.querySelector('[name="accompagnement"]').checked,
+        email: txt('email'),
+        user_agent: navigator.userAgent,
+        source: 'site',
+      };
+
+      // Anti-soumission vide : au moins une vraie réponse.
+      const answered =
+        [payload.structure_type, payload.taille, payload.qualiopi, payload.ia_usage,
+         payload.ia_depuis, payload.temps_gagne, payload.benefice, payload.tache_aidee,
+         payload.qualiopi_crainte, payload.investir_12m, payload.budget, payload.email].some(Boolean) ||
+        payload.ia_usages.length || payload.ia_outils.length || payload.freins.length;
+      if (!answered) {
+        errEl.textContent = 'Merci de répondre à au moins une question avant d\'envoyer.';
+        errEl.hidden = false;
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Envoi…';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            apikey: SUPA_KEY,
+            Authorization: `Bearer ${SUPA_KEY}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          if (window.plausible) window.plausible('Barometre - reponse');
+          showMerci();
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      } catch (err) {
+        errEl.textContent = "Une erreur est survenue à l'envoi. Réessayez, ou écrivez-nous à contact@claudeagency.fr.";
+        errEl.hidden = false;
+        btn.disabled = false;
+        btn.textContent = 'Envoyer ma réponse';
+      }
+    });
+  </script>
+</BaseLayout>
