@@ -6,7 +6,7 @@ import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 
 export default defineConfig({
-  site: 'https://claudepartners.fr',          // PRÉREQUIS SEO #1
+  site: 'https://claudeagency.fr',          // PRÉREQUIS SEO #1
   output: 'static',                            // défaut ; aucun adapter Cloudflare
   trailingSlash: 'always',                     // cohérent avec build.format:'directory' + le 308 par défaut de Cloudflare Pages
   build: { format: 'directory', assets: '_astro' },
@@ -44,7 +44,7 @@ export default defineConfig({
       //     La landing du baromètre, elle, reste indexable et présente dans le sitemap.
       filter: (page) => !['/merci', '/mentions-legales', '/confidentialite', '/blog/tags/', '/barometre-ia-organismes-formation/resultats', '/barometre-ia-organismes-formation/questionnaire'].some((p) => page.includes(p)),
       serialize(item) {
-        if (item.url === 'https://claudepartners.fr/') {
+        if (item.url === 'https://claudeagency.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;
         } else if (/\/blog\//.test(item.url)) {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.7;

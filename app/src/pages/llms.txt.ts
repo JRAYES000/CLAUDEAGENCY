@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-const SITE = 'https://claudepartners.fr';
+const SITE = 'https://claudeagency.fr';
 
 export const GET: APIRoute = async () => {
   const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());

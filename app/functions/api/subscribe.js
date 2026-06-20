@@ -7,8 +7,8 @@
 //   MJ_SECRETKEY = secret key Mailjet
 const LIST_ID = '10523019'; // Ressources – 10 automatisations IA
 const REDIRECT = '/merci-ressource/';
-const PDF_URL = 'https://claudepartners.fr/ressources/10-automatisations-ia.pdf';
-const FROM_EMAIL = 'contact@claudepartners.fr';
+const PDF_URL = 'https://claudeagency.fr/ressources/10-automatisations-ia.pdf';
+const FROM_EMAIL = 'contact@claudeagency.fr';
 const FROM_NAME = 'Julien Rayes — Claude Agency';
 
 export async function onRequestGet() {

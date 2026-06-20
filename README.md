@@ -1,8 +1,10 @@
-# Claude Partners
+# Claude Agency
 
-Site vitrine + blog SEO de **Claude Partners**, cabinet de conseil qui aide les **organismes de formation (OF) français** à intégrer l'IA et automatiser leurs process — pour gagner du temps et monter en qualité, sans perdre la main.
+Site vitrine + blog SEO de **Claude Agency**, cabinet de conseil qui aide les **organismes de formation (OF) français** à intégrer l'IA et automatiser leurs process — pour gagner du temps et monter en qualité, sans perdre la main.
 
-🌐 Production : **https://claudepartners.fr**
+🌐 Production : **https://claudeagency.fr**
+
+> ℹ️ `claudepartners.fr` était l'ancien nom de domaine — le site est désormais sur **claudeagency.fr**.
 
 > Le design **est** le produit : ce dépôt sert l'acquisition (SEO) et la conversion (audit offert / prise de rendez-vous), pas une application métier.
 
@@ -27,7 +29,7 @@ Cible : dirigeants et responsables pédagogiques/administratifs d'OF, souvent ce
 ## Structure du dépôt
 
 ```text
-claudepartners/
+claudeagency/
 ├── app/                     # Le site Astro (code + contenu)
 │   ├── src/
 │   │   ├── pages/           # Routes (accueil, blog, services, ressources, baromètre)
@@ -79,4 +81,4 @@ npm run preview    # prévisualise le build localement
 
 ## Licence
 
-Projet privé — © Claude Partners. Tous droits réservés.
+Projet privé — © Claude Agency. Tous droits réservés.
