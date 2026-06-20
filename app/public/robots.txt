@@ -38,4 +38,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://claudepartners.fr/sitemap-index.xml
+Sitemap: https://claudeagency.fr/sitemap-index.xml

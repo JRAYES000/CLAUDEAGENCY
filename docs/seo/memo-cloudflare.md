@@ -1,6 +1,6 @@
 # Mémo Cloudflare — réglages à appliquer manuellement (dashboard)
 
-> Ces réglages se font dans le **dashboard Cloudflare** de la zone `claudepartners.fr`
+> Ces réglages se font dans le **dashboard Cloudflare** de la zone `claudeagency.fr`
 > (compte plan Free suffisant). Ils ne peuvent **pas** être faits depuis le dépôt /
 > l'environnement d'agent (pas d'accès au dashboard). À appliquer toi-même, ou avec
 > « Claude in Chrome » exécuté **sur ta machine** (là où tu es connecté à Cloudflare).
@@ -14,7 +14,7 @@
 ## 1. Always Use HTTPS  *(perf + sécurité)*
 **Où :** SSL/TLS → **Edge Certificates** → activer **Always Use HTTPS**.
 **Effet :** toute requête `http://` est redirigée en `https://` au bord du réseau (301).
-**Vérif :** `curl -sIL http://claudepartners.fr/` → doit montrer un 301 vers `https://claudepartners.fr/` puis 200.
+**Vérif :** `curl -sIL http://claudeagency.fr/` → doit montrer un 301 vers `https://claudeagency.fr/` puis 200.
 
 ---
 
@@ -45,21 +45,21 @@ par le hop `http→https` → c'est la principale cause des `−630 ms « Redire
 **Où :** **Rules** → **Redirect Rules** → *Create rule* (créer 2 règles).
 
 **Règle A — www → apex :**
-- When : `Hostname equals www.claudepartners.fr`
-- Then : *Dynamic* → `concat("https://claudepartners.fr", http.request.uri.path)`
+- When : `Hostname equals www.claudeagency.fr`
+- Then : *Dynamic* → `concat("https://claudeagency.fr", http.request.uri.path)`
 - Status : **301**, *Preserve query string* : activé.
 
 **Règle B — *.pages.dev → apex :**
 - When : `Hostname equals claudepartners.pages.dev`
-- Then : *Dynamic* → `concat("https://claudepartners.fr", http.request.uri.path)`
+- Then : *Dynamic* → `concat("https://claudeagency.fr", http.request.uri.path)`
 - Status : **301**, *Preserve query string* : activé.
 
 **Effet :** une seule URL canonique (apex + https + slash final), pas de duplication
 `www`/`pages.dev` qui diluerait l'autorité.
 **Vérif :**
 ```
-curl -sIL http://www.claudepartners.fr/        # → 1 seul 301 → https://claudepartners.fr/ → 200
-curl -sIL https://claudepartners.pages.dev/    # → 301 → https://claudepartners.fr/
+curl -sIL http://www.claudeagency.fr/        # → 1 seul 301 → https://claudeagency.fr/ → 200
+curl -sIL https://claudepartners.pages.dev/    # → 301 → https://claudeagency.fr/
 ```
 
 ---
@@ -74,7 +74,7 @@ peuvent pas accéder au site. Contradiction à lever.
 **Décision :** cohérent avec la stratégie GEO (être cité par ChatGPT/Perplexity dans une
 niche B2B pauvre en sources). Si tu ne vises pas le GEO, laisse bloqué **et** retire
 `llms.txt` pour éviter l'incohérence.
-**Vérif :** `curl -s https://claudepartners.fr/robots.txt` → ne doit pas contenir de
+**Vérif :** `curl -s https://claudeagency.fr/robots.txt` → ne doit pas contenir de
 `Disallow` ciblant GPTBot/ClaudeBot/Google-Extended.
 
 ---
@@ -101,6 +101,19 @@ côté serveur.
 
 **Contrôle final unique :**
 ```
-curl -sIL http://www.claudepartners.fr/
-# Attendu : au plus UN 301 → https://claudepartners.fr/ → 200, en-tête strict-transport-security présent
+curl -sIL http://www.claudeagency.fr/
+# Attendu : au plus UN 301 → https://claudeagency.fr/ → 200, en-tête strict-transport-security présent
 ```
+
+---
+
+## 6. Rediriger l'ancien domaine claudepartners.fr → claudeagency.fr  *(SEO critique — rebrand)*
+Depuis le rebrand, le site doit être servi sur **claudeagency.fr**. L'ancien domaine
+**claudepartners.fr** sert encore le **même contenu** (même projet Pages) → **contenu dupliqué**.
+Mettre une redirection **301** de tout `claudepartners.fr` vers `claudeagency.fr`.
+**Où :** **Rules → Redirect Rules → Create rule** (sur la zone `claudepartners.fr`).
+- When : `Hostname equals claudepartners.fr` (faire aussi `www.claudepartners.fr`)
+- Then : *Dynamic* → `concat("https://claudeagency.fr", http.request.uri.path)`
+- Status : **301**, *Preserve query string* : activé.
+**Garder** la zone `claudepartners.fr` dans Cloudflare uniquement pour cette redirection.
+**Vérif :** `curl -sIL https://claudepartners.fr/` → **301** → `https://claudeagency.fr/`

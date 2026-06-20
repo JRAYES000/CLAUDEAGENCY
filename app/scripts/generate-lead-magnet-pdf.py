@@ -116,7 +116,7 @@ def cta_box():
             "Commencez par un audit offert : on identifie vos priorités à plus fort ROI et on vous remet "
             "une feuille de route chiffrée. Vous repartez avec, que vous travailliez avec nous ensuite ou non.",
             styles["cta_b"]),
-        Paragraph("Réservez votre audit sur <b>claudepartners.fr/contact</b>", styles["cta_b"]),
+        Paragraph("Réservez votre audit sur <b>claudeagency.fr/contact</b>", styles["cta_b"]),
     ]
     t = Table([[inner]], colWidths=[CONTENT_W])
     t.setStyle(TableStyle([
@@ -136,7 +136,7 @@ def on_page(canvas, doc):
     canvas.rect(0, 0, A4[0], A4[1], fill=1, stroke=0)
     canvas.setFillColor(MUTED)
     canvas.setFont("Times-Roman", 8)
-    canvas.drawString(MARGIN, 1.2 * cm, "Claude Agency — claudepartners.fr")
+    canvas.drawString(MARGIN, 1.2 * cm, "Claude Agency — claudeagency.fr")
     canvas.drawRightString(A4[0] - MARGIN, 1.2 * cm, str(doc.page))
     canvas.restoreState()
 
