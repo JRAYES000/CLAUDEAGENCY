@@ -18,6 +18,7 @@ const isActive = (href) => path === href || path.startsWith(href);
     <!-- Desktop -->
     <ul class="hidden items-center gap-7 text-sm sm:flex">
       {links.map((l) => <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} class={`transition-colors hover:text-ink ${isActive(l.href) ? 'font-medium text-ink' : 'text-muted'}`}>{l.label}</a></li>)}
+      <li><a href="https://reporting.claudeagency.fr" target="_blank" rel="noopener" class="transition-colors text-muted hover:text-ink">Admin</a></li>
       <li><a href="/contact/" class="rounded-lg bg-brand-500 px-4 py-2 font-medium text-white transition-colors hover:bg-brand-600">Prendre RDV</a></li>
     </ul>
 
@@ -34,6 +35,7 @@ const isActive = (href) => path === href || path.startsWith(href);
   <div id="mobile-menu" hidden class="border-t border-sand bg-cream-50 sm:hidden">
     <ul class="mx-auto flex max-w-5xl flex-col gap-1 px-4 py-3 text-sm">
       {links.map((l) => <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} class={`block rounded-md px-3 py-2.5 transition-colors hover:bg-cream-100 ${isActive(l.href) ? 'font-medium text-brand-700' : 'text-ink'}`}>{l.label}</a></li>)}
+      <li><a href="https://reporting.claudeagency.fr" target="_blank" rel="noopener" class="block rounded-md px-3 py-2.5 text-ink transition-colors hover:bg-cream-100">Admin</a></li>
       <li><a href="/contact/" class="mt-1 block rounded-lg bg-brand-500 px-4 py-2 text-center font-medium text-white">Prendre RDV</a></li>
     </ul>
   </div>
