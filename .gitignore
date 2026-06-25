@@ -9,3 +9,12 @@
 
 # Screenshots de revue (hors versionnement)
 /cp-*.png
+
+# Documents de travail internes (audits, plans d'action, netlinking) — hors versionnement
+/Audit-SEO-*.docx
+/Plan-action-*.docx
+/Netlinking-*.xlsx
+/AUDIT_CONTENU_*.txt
+
+# Worktrees git locaux temporaires
+/worktree-*/
