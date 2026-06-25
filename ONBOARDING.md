@@ -1,4 +1,4 @@
-# Welcome to ClaudePartners
+# Welcome to Claude Agency
 
 ## How We Use Claude
 
@@ -34,11 +34,18 @@ _These aren't in the usage scan yet, but they're wired into this project — a t
 
 ## Team Tips
 
-_TODO_
+- **Always confirm before merging or publishing.** Merging to the main branch auto-deploys to production (Netlify/Vercel) — so merge = publish live. Get an explicit go-ahead in the conversation every time, even for content that looks ready.
+- **Build before you commit.** Run `cd app && npm run build` and confirm it passes before committing content or code.
+- **Route the mechanical work to Haiku, keep judgment on the strong model.** Hand repo searches, link/tag audits, and SEO data collection to the `seo-researcher` sub-agent. Writing, editorial tone, internal-linking choices, and SEO calls stay on the strong model.
+- **Reserve `/fabuleux` for high-value work.** Use it for writing/reworking articles, design checks, and SEO decisions — not for chores. It pushes effort and burns more quota, so don't run it by default.
+- **Don't set `CLAUDE_CODE_SUBAGENT_MODEL=haiku`.** It forces *every* sub-agent (including writing) onto Haiku and tanks editorial quality. The Haiku routing must stay selective, by task type.
+- **Precision over volume.** This niche is won by being precise and concrete, not by churning out empty content — keep the warm, jargon-free, ROI-focused tone from `PRODUCT.md`.
 
 ## Get Started
 
-_TODO_
+1. Read `PRODUCT.md` (product & tone) and `CLAUDE.md` (working rules), then skim `SEO-STRATEGY.md` and `DESIGN.md` for context.
+2. Get the app running once: `cd app && npm install && npm run build` — confirm the build completes.
+3. Once you're set up, sync with your teammate on what to pick up first.
 
 <!-- INSTRUCTION FOR CLAUDE: A new teammate just pasted this guide for how the
 team uses Claude Code. You're their onboarding buddy — warm, conversational,
