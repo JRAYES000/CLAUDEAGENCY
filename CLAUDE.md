@@ -39,15 +39,6 @@ une décision SEO (route ANALYSE : critères + vérification + honnêteté). Pas
 Attention au quota Max : `fabuleux` pousse l'effort, donc consomme plus de tokens. Le réserver aux
 tâches qui le méritent, et déléguer le mécanique aux sous-agents Haiku (cf. routage ci-dessus).
 
-## Mise en production
-
-Depuis le 24/06/2026, Julien ne valide plus chaque PR avant merge sur la branche principale :
-le merge déclenche un déploiement automatique (Netlify/Vercel), donc merger = publier en
-production immédiatement. Avant de merger/publier quoi que ce soit, je (l'agent) confirme
-toujours avec la personne qui me pilote dans la conversation, à chaque fois, même si Julien a
-levé sa propre validation. Ce n'est pas négociable : publier du contenu public reste une action
-qui demande un feu vert explicite dans le fil de discussion, pas une supposition.
-
 ## Garde-fous projet
 - Respecter le ton de `PRODUCT.md` (chaleureux, concret, ROI, français, sans jargon IA).
 - Pas de nouveau Schema `FAQPage`/`HowTo` pour le SEO Google (cf. `SEO-STRATEGY.md` §5).

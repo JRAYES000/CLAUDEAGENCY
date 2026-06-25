@@ -8,7 +8,7 @@ const posts = (await getCollection('blog', ({ data }) =>
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
 ---
-<BaseLayout title="Blog IA pour organismes de formation" description="Conseils concrets sur l'IA et l'automatisation pour les organismes de formation : outils, pédagogie, Qualiopi et gains de temps au quotidien.">
+<BaseLayout title="Blog" description="Conseils IA et automatisation pour organismes de formation.">
   <section class="mx-auto max-w-5xl px-4 py-16">
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le blog</p>
