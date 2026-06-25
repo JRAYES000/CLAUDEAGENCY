@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -n --arg ctx 'Garde-fous ClaudePartners : confirmer dans le fil AVANT tout merge/publication (merger = publier en prod) ; vérifier le build (cd app && npm run build) avant de committer du contenu/code ; router le mécanique vers un sous-agent Haiku (seo-researcher), garder le jugement sur le modèle fort ; /fabuleux pour le travail à forte valeur, pas pour les corvées ; tenir le ton de PRODUCT.md (chaleureux, concret, sans jargon IA).' '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:$ctx}}'",
+            "statusMessage": "Rappel des garde-fous ClaudePartners"
+          }
+        ]
+      }
+    ]
+  }
+}
