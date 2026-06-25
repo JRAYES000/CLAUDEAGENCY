@@ -196,3 +196,31 @@ sans bloc « Managed content » ni `Content-Signal: ai-train=no`) ; la confirmat
 Cloudflare attend que le navigateur de Julien soit connecté (Claude in Chrome — aucun navigateur appairé).
 Leviers externes : stratégie cadrée dans `NETLINKING.md` (addendum rebrand §9) ; le reste (LinkedIn
 entreprise, Featured/Qwoted, annuaires, baromètre) nécessite les comptes/identité de Julien.
+
+---
+
+## 7. 🔴 PRIORITÉ — Migration de domaine `claudepartners.fr` → `claudeagency.fr` (2026-06-25)
+
+**Constat.** Tout le code est passé sur `claudeagency.fr` (`astro.config.mjs site:`, schemas,
+emails, `llms.txt`). Mais ce document et la Search Console raisonnaient encore sur l'ancienne
+propriété `claudepartners.fr` (41 URLs indexées). C'est une **migration de domaine** : sans
+redirections 301 + signal explicite à Google, le nouveau domaine repart de zéro (0 historique,
+0 indexation) et l'ancien indexé devient du contenu mort.
+
+**État non vérifié.** Aucune redirection inter-domaine dans le dépôt (`_redirects` ne gère que
+`www`/`pages.dev` → apex). Impossible de confirmer depuis l'environnement agent (politique réseau
+bloque l'accès sortant à ces domaines). **À confirmer/exécuter par Julien.**
+
+**Runbook (par ordre) :**
+1. **Cloudflare — Redirect Rule 301** `claudepartners.fr/*` ET `www.claudepartners.fr/*`
+   → `https://claudeagency.fr/$1` (préserver chemin + query string). C'est une règle au niveau
+   *hostname* (impossible dans `_redirects`, qui est relatif au chemin).
+2. **Search Console** : valider la propriété domaine `claudeagency.fr`, puis sur `claudepartners.fr`
+   lancer l'outil **« Changement d'adresse »** vers `claudeagency.fr`. Resoumettre le sitemap
+   `https://claudeagency.fr/sitemap-index.xml`.
+3. **Garder l'ancien domaine + les 301 actifs ≥ 6 mois** (transfert des signaux par Google = lent).
+4. **Mettre à jour les références externes** vers le nouveau domaine (LinkedIn, annuaires, `sameAs`).
+5. **Vérification** (depuis une machine sans blocage réseau) :
+   `curl -I https://claudepartners.fr/blog/` doit renvoyer `301` → `https://claudeagency.fr/blog/`.
+
+> Désormais, la propriété GSC à suivre (§4 KPI) est **`claudeagency.fr`**, pas `claudepartners.fr`.
