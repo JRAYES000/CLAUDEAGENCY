@@ -43,10 +43,13 @@ tâches qui le méritent, et déléguer le mécanique aux sous-agents Haiku (cf.
 
 Depuis le 24/06/2026, Julien ne valide plus chaque PR avant merge sur la branche principale :
 le merge déclenche un déploiement automatique (Netlify/Vercel), donc merger = publier en
-production immédiatement. Avant de merger/publier quoi que ce soit, je (l'agent) confirme
-toujours avec la personne qui me pilote dans la conversation, à chaque fois, même si Julien a
-levé sa propre validation. Ce n'est pas négociable : publier du contenu public reste une action
-qui demande un feu vert explicite dans le fil de discussion, pas une supposition.
+production immédiatement.
+
+Depuis le 25/06/2026, Julien autorise l'agent à passer en production directement (merge sur
+`main` = publication) **sans demander de validation préalable à chaque fois**. L'agent peut
+donc merger/publier de son propre chef quand le travail est prêt. Conditions à respecter quand
+même : vérifier le build (`cd app && npm run build`) avant tout merge, tenir le ton et les
+garde-fous projet, et signaler clairement après coup ce qui a été publié.
 
 ## Garde-fous projet
 - Respecter le ton de `PRODUCT.md` (chaleureux, concret, ROI, français, sans jargon IA).
