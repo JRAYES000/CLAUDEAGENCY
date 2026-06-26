@@ -36,11 +36,9 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 3, name: d.title },
   ],
 };
-const faqSchema = d.faq.length ? {
-  '@context': 'https://schema.org', '@type': 'FAQPage',
-  mainEntity: d.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-} : null;
-const schema = [serviceSchema, breadcrumb, ...(faqSchema ? [faqSchema] : [])];
+// Schema FAQPage retiré le 2026-06-26 (gap-pass) — conformité doctrine CLAUDE.md §SEO-STRATEGY.
+// FAQ visible utilisateur conservée dans le <dl> plus bas.
+const schema = [serviceSchema, breadcrumb];
 ---
 <BaseLayout title={d.title} description={d.description} pageSchema={schema}>
   <section class="mx-auto max-w-3xl px-4 py-16">
