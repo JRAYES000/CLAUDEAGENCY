@@ -25,7 +25,12 @@ const serviceSchema = {
   '@id': new URL(`/services/${service.id}/#service`, site).href,
   name: d.title, description: d.description, serviceType: d.title,
   provider: { '@id': new URL('/#organization', site).href },
-  areaServed: { '@type': 'Country', name: 'France' },
+  areaServed: [
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'Country', name: 'Belgique' },
+    { '@type': 'Country', name: 'Suisse' },
+    { '@type': 'Country', name: 'Luxembourg' },
+  ],
   audience: { '@type': 'BusinessAudience', name: 'Organismes de formation' },
 };
 const breadcrumb = {

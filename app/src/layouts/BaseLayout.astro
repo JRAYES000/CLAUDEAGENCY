@@ -19,8 +19,13 @@ const organization = {
   '@id': `${site}/#organization`, name: 'Claude Agency', url: site,
   // logo en ImageObject = attendu par le rich result Article (publisher.logo).
   logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 },
-  description: "Claude Agency aide les organismes de formation français à intégrer l'IA et automatiser leurs process.",
-  areaServed: { '@type': 'Country', name: 'France' },
+  description: "Claude Agency aide les organismes de formation francophones (France, Belgique, Suisse, Luxembourg) à intégrer l'IA et automatiser leurs process.",
+  areaServed: [
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'Country', name: 'Belgique' },
+    { '@type': 'Country', name: 'Suisse' },
+    { '@type': 'Country', name: 'Luxembourg' },
+  ],
   email: 'contact@claudeagency.fr',
   foundingDate: '2026',
   // founder lié à l'entité Person (page auteur) → renforce le Knowledge Graph (E-E-A-T + GEO).
