@@ -19,3 +19,7 @@
 
 # Worktrees git locaux temporaires
 /worktree-*/
+
+# Archive locale des documents internes (auto-déplacés depuis la racine le 2026-06-26)
+/archive/
+
