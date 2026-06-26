@@ -23,8 +23,11 @@ export const AUTHOR = {
 } as const;
 
 // Schema.org Person. `site` = Astro.site (URL).
-// sameAs : profils réels et vérifiés de l'auteur (LinkedIn). Ne jamais inventer de profil.
-const AUTHOR_SAMEAS = ['https://www.linkedin.com/in/julien-rayes/'];
+// sameAs : profils réels et vérifiés de l'auteur (LinkedIn personnel + entreprise). Ne jamais inventer de profil.
+const AUTHOR_SAMEAS = [
+  'https://www.linkedin.com/in/julien-rayes/',
+  'https://www.linkedin.com/company/claudeagency-fr/',
+];
 export function authorPerson(site: URL) {
   const base = site.toString().replace(/\/$/, '');
   return {
