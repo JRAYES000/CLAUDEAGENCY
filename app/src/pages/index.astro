@@ -70,15 +70,13 @@ const faq = [
   { q: "Quel type de reporting vais-je recevoir et à quelle fréquence ?", a: "Tous les jours, vous recevez un reporting de l'activité du consultant et des consultants assignés à votre projet : le nombre d'heures consacrées et le détail des tâches réalisées. Vous gardez ainsi une visibilité permanente sur ce qui est fait, et l'assurance que votre investissement est suivi de près." },
   { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos priorités et vous repartez avec une feuille de route chiffrée, avec ou sans nous." },
 ];
-const faqSchema = {
-  '@context': 'https://schema.org', '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-};
+// Schema FAQPage retiré le 2026-06-26 (gap-pass) — conformité doctrine CLAUDE.md §SEO-STRATEGY
+// (pas de nouveau FAQPage/HowTo). FAQ visible utilisateur conservée plus bas.
 ---
 <BaseLayout
   title="Claude Agency — agence IA pour organismes de formation"
   description="Claude Agency prend en charge le SEO, la SEA et l'automatisation IA de votre organisme de formation, pour gagner en visibilité et en temps administratif."
-  pageSchema={[faqSchema]}
+  pageSchema={[]}
 >
   <!-- Préchargement responsive de l'image LCP (hero) -->
   <link

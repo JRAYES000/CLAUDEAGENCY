@@ -10,9 +10,9 @@ export const GET: APIRoute = async () => {
   const postLines = posts.map((p) => `- [${p.data.title}](${SITE}/blog/${p.id}/): ${p.data.description}`).join('\n');
   const body = `# Claude Agency
 
-> Cabinet de conseil qui aide les organismes de formation (OF) français à intégrer l'IA et automatiser leurs processus. Site en français.
+> Agence IA spécialisée pour les organismes de formation (OF) certifiés Qualiopi en France, Belgique, Suisse et Luxembourg. Marketing (SEO, SEA, optimisation de site) et automatisation administrative (dossiers, BPF, émargement, suivi de cohortes).
 
-Claude Agency propose audits, formation, automatisation et outils d'IA sur mesure pour les organismes de formation (Qualiopi, gestion administrative, contenus pédagogiques). RDV via Calendly, contact via formulaire.
+Claude Agency propose audits, formation, automatisation et outils d'IA sur mesure pour les organismes de formation (Qualiopi, gestion administrative, contenus pédagogiques). Différenciateur : maîtrise complète de Claude Code et Claude Cowork — production en moyenne 3 à 4× plus vite qu'une agence traditionnelle, gain répercuté sur les tarifs. RDV via Calendly, contact via formulaire.
 
 ## Services
 
