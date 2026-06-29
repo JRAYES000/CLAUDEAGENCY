@@ -1,107 +1,175 @@
-# Rapport SEO — Challenge #1 Claude Agency
-> Date : 29 juin 2026 | Site : claudeagency.fr | Repo : JRAYES000/CLAUDEAGENCY (branche main)
+# Rapport SEO consolidé — Challenge #1 · Claude Agency
+> Mis à jour le 29 juin 2026 | Site : claudeagency.fr | Repo : JRAYES000/CLAUDEAGENCY · branche main
+>
+> Ce document consolide l'audit du 26 juin, le clustering sémantique, les corrections appliquées le 29 juin et le backlog priorisé.
 
 ---
 
-## 1. État initial — Audit SEO
+## 1. Score SEO global
 
-### Ce qui était déjà en place (avant corrections)
-| Élément | État |
-|---|---|
-| Schema Organization + WebSite | ✅ Présent dans BaseLayout (toutes pages) |
-| Balises OG / Twitter | ✅ Complètes dans BaseHead.astro |
-| Sitemap XML | ✅ Configuré @astrojs/sitemap, lien dans BaseHead |
-| Robots.txt | ✅ Présent dans app/public/ |
-| Canonical URLs | ✅ Implémenté dans BaseHead.astro |
-| FAQ homepage | ✅ 14 questions/réponses |
-| Meta descriptions | ✅ Présentes sur toutes les pages clés |
-| Attributs alt images | ✅ Tous renseignés |
-
-### Problèmes identifiés (priorisés)
-| Priorité | Problème | Impact |
+| Axe | 26/06 (initial) | 29/06 (après corrections) |
 |---|---|---|
-| 🔴 Critique | Title homepage : brand en tête au lieu du mot-clé | CTR SERP réduit |
-| 🔴 Critique | Meta description homepage générique, sans CTA | CTR sous-optimisé |
-| 🟡 Important | 3 mots-clés prioritaires sans article de blog dédié | Trafic organique manquant |
-| 🟢 Mineur | Blog : 55 articles mais aucun ciblant "Qualiopi IA gain de temps" spécifiquement | Gap éditorial |
-
-**Score SEO estimé avant corrections : 62/100**
-*(technique solide, contenu existant, mais title non optimisé et gaps de mots-clés prioritaires)*
+| Technique (robots, sitemap, canonical) | 80/100 | 80/100 |
+| On-page (title, meta, H1, alt) | 70/100 | 82/100 |
+| Schéma / E-E-A-T | 78/100 | 78/100 |
+| GEO / visibilité IA | 55/100 | 55/100 |
+| Performance (LCP, Core Web Vitals) | 82/100 | 82/100 |
+| Maillage interne | 70/100 | 75/100 |
+| **Score global** | **72/100** | **76/100** |
 
 ---
 
-## 2. Corrections appliquées
+## 2. Ce qui était déjà en place
 
-### 2a. Title et meta description — page d'accueil
-**Fichier modifié :** `app/src/pages/index.astro`
+| Élément | Détail |
+|---|---|
+| Schema Organization + WebSite | BaseLayout — toutes les pages. Logo, areaServed FR/BE/CH/LU, founder Julien Rayes, knowsAbout, sameAs LinkedIn |
+| Schema Person / BreadcrumbList / Service | Pages dédiées |
+| Balises OG + Twitter Cards | BaseHead.astro — complètes |
+| Sitemap XML | @astrojs/sitemap, filtré (no-index exclus), lié dans BaseHead |
+| Robots.txt | Propre — bots IA autorisés (OAI-SearchBot, PerplexityBot, ClaudeBot, GPTBot) |
+| Canonical URLs | BaseHead avec trailing slash cohérent Cloudflare |
+| Attributs alt | Renseignés sur toutes les images |
+| FAQ homepage | 14 Q/R |
+| Hero LCP | Préchargé WebP responsive, fetchpriority=high |
+| Blog | 55 articles au 26/06 |
+
+---
+
+## 3. Corrections appliquées — 29 juin 2026
+
+### Title + meta description — homepage
+Fichier : app/src/pages/index.astro
+Commit : seo(home): title keyword-first + meta description optimisée
 
 | | Avant | Après |
 |---|---|---|
-| **Title** | "Claude Agency — agence IA pour organismes de formation" (brand en tête, 54 chars) | "Agence IA pour organismes de formation \| Claude Agency" (keyword-first, 54 chars) |
-| **Meta description** | "Claude Agency prend en charge le SEO, la SEA et l'automatisation IA…" (155 chars, générique) | "Claude Agency automatise votre administratif Qualiopi et booste votre visibilité Google. Audit gratuit offert." (110 chars, CTA clair) |
+| Title | "Claude Agency — agence IA pour organismes de formation" (brand en tête) | "Agence IA pour organismes de formation | Claude Agency" (keyword-first) |
+| Meta | 155 chars génériques, sans CTA | 110 chars — bénéfice Qualiopi + CTA audit gratuit |
 
-**Commit :** `seo(home): title keyword-first + meta description optimisée`
+### 3 articles créés
 
-### 2b. Schema.org
-Déjà implémenté dans `app/src/layouts/BaseLayout.astro` : Organization (avec logo, areaServed FR/BE/CH/LU, founder, knowsAbout, sameAs LinkedIn) + WebSite sur toutes les pages. Aucune correction nécessaire.
+| Titre | Slug | Mot-clé ciblé | Mots |
+|---|---|---|---|
+| Automatiser la gestion Qualiopi avec l'IA | automatiser-gestion-qualiopi-ia | automatisation Qualiopi IA | ~850 |
+| SEO pour organisme de formation : guide complet 2026 | seo-guide-complet-organisme-formation-2026 | SEO organisme de formation | ~950 |
+| Qualiopi et IA : comment gagner 5h par semaine | qualiopi-ia-gagner-5h-semaine | Qualiopi IA gain de temps | ~820 |
 
-### 2c. Balises H1 / alt / sitemap / robots
-Tous déjà corrects dans le repo. Aucune correction nécessaire.
-
----
-
-## 3. Articles de blog créés
-
-| # | Titre | Slug | Mot-clé ciblé | Longueur |
-|---|---|---|---|---|
-| 1 | "Automatiser la gestion Qualiopi avec l'IA : mode d'emploi" | `automatiser-gestion-qualiopi-ia` | automatisation Qualiopi IA | ~850 mots |
-| 2 | "SEO pour organisme de formation : guide complet 2026" | `seo-guide-complet-organisme-formation-2026` | SEO organisme de formation | ~950 mots |
-| 3 | "Qualiopi et IA : comment gagner 5h par semaine sur l'administratif" | `qualiopi-ia-gagner-5h-semaine` | Qualiopi IA gain de temps | ~820 mots |
-
-Chaque article contient :
-- Frontmatter complet (title, description, pubDate, author, image, imageAlt, tags, draft)
-- Structure H1 > intro > H2 thématiques > CTA audit gratuit
-- Maillage interne vers les pages /services/ et articles existants du blog
-- Ton : professionnel, "vous", sans jargon
-
-**Commits :**
-- `feat(blog): article "automatiser gestion Qualiopi IA"`
-- `feat(blog): article "SEO guide complet OF 2026"`
-- `feat(blog): article "Qualiopi IA gagner 5h semaine"`
+Chaque article : frontmatter complet, H1 > intro > H2 thématiques > CTA audit, maillage vers /services/ et articles existants.
 
 ---
 
-## 4. Score SEO estimé après corrections
+## 4. Clustering sémantique — carte des mots-clés
 
-**Score estimé : 74/100** (+12 points)
+### Cluster 1 — Acquisition agence IA
+Hub : /services/ | Transactionnel
 
-| Dimension | Avant | Après |
+| Mot-clé | Vol./mois | Page cible | Statut |
+|---|---|---|---|
+| IA pour organisme de formation | 100-300 | /blog/integrer-ia-organisme-formation/ | OK |
+| agence IA organisme de formation | 20-50 | /services/ | A renforcer H1 |
+| outils IA formateurs | 50-150 | /blog/outils-ia-organisme-formation/ | OK |
+
+### Cluster 2 — SEO niche
+Hub : /services/seo/ | Transactionnel B2B
+
+| Mot-clé | Vol./mois | Page cible | Statut |
+|---|---|---|---|
+| SEO organisme de formation | 50-150 | /blog/seo-organisme-formation/ | OK |
+| SEO organisme de formation 2026 | 50-150 | /blog/seo-guide-complet-organisme-formation-2026/ | Cree 29/06 |
+| agence SEO organisme de formation | 10-30 | /services/seo/ | A capter en H1 |
+
+### Cluster 3 — Qualiopi & admin
+Hub : /services/automatisation/ | Informationnel → transactionnel
+
+| Mot-clé | Vol./mois | Page cible | Statut |
+|---|---|---|---|
+| automatisation Qualiopi IA | 10-30 | /blog/automatiser-gestion-qualiopi-ia/ | Cree 29/06 |
+| Qualiopi IA gain de temps | 10-30 | /blog/qualiopi-ia-gagner-5h-semaine/ | Cree 29/06 |
+| automatiser BPF | 10-30 | /blog/automatiser-bpf-organisme-formation/ | OK |
+
+### Cluster 4 — Pédagogie
+Hub : /services/formation-ia/ | Informationnel — bien couvert, pas d'action urgente
+
+### Cluster 5 — Conformité légale (top funnel)
+Hub : /blog/numero-declaration-activite/
+
+| Mot-clé | Vol./mois | Statut |
 |---|---|---|
-| Technique (sitemap, robots, schema, canonical) | 18/20 | 18/20 |
-| On-page (title, meta, H1, alt) | 12/20 | 17/20 |
-| Contenu (couverture des mots-clés, profondeur) | 16/30 | 22/30 |
-| Autorité (backlinks, E-E-A-T) | 8/15 | 8/15 |
-| Expérience utilisateur (Core Web Vitals) | 8/15 | 9/15 |
+| numéro de déclaration d'activité | 500-1500 | Pilier trafic OK |
+| Qualiopi guide | 200-500 | OK |
+| logiciel organisme de formation | 100-300 | OK |
 
 ---
 
-## 5. Prochaines actions recommandées (semaine suivante)
+## 5. Backlog priorisé — actions restantes
 
-### 1. Soumettre le sitemap dans Google Search Console
-Accéder à Search Console > Sitemaps > soumettre `https://claudeagency.fr/sitemap-index.xml`. Valider que les 3 nouveaux articles sont bien indexés.
+### Critique
 
-### 2. Optimiser les titles des pages services
-Les pages /services/seo/, /services/sea/, /services/automatisation/ méritent un audit title/description avec les mots-clés exacts. Même logique : keyword-first, max 60 chars.
+**1. Créer app/public/llms.txt**
+robots.txt autorise déjà les bots IA. llms.txt absent alors que la stratégie y fait référence.
+Format : <= 30 lignes — Liens / Services / Contenus piliers / A propos / Contact.
+Effort : 30 min | Impact : citations GEO (ChatGPT, Perplexity, Claude)
 
-### 3. Ajouter les schémas Article sur les articles de blog
-Le layout de blog devrait inclure un schema Article (ou BlogPosting) avec author, datePublished, publisher. Cela renforce le signal E-E-A-T et améliore les rich results.
+**2. Schema Article sur le layout blog**
+Le layout blog n'injecte pas de schema Article/BlogPosting (author, datePublished, publisher).
+Fichier : app/src/layouts/BlogPostLayout.astro (ou équivalent)
+Effort : 20 min | Impact : rich results Google, signal E-E-A-T
 
-### 4. Lancer une campagne de backlinks ciblée
-Publier les 3 nouveaux articles en guest post ou en partage sur les réseaux (LinkedIn) avec un lien retour. Objectif : 5 à 10 domaines référents thématiquement proches (formation, RH, qualité).
+### Important
 
-### 5. Créer les images covers pour les 3 nouveaux articles
-Les articles référencent des images existantes (`qualiopi-ia-cover.webp`, `seo-of-cover.webp`, `ia-of-cover.jpg`). Idéalement, créer des covers spécifiques à ces articles pour améliorer le CTR sur les réseaux sociaux et les rich results.
+**3. Corriger le title page A propos**
+Actuel : "Claude Agency, partenaire IA des OF · Claude Agency" (doublon marque + jargon)
+Cible : "Julien Rayes & Claude Agency — agence IA pour OF" (49 chars)
+Fichier : app/src/pages/a-propos.astro | Effort : 5 min
+
+**4. Refaire le H1 de /services/seo/**
+Cible : "Agence SEO pour organismes de formation" — capte "agence SEO organisme de formation"
+Effort : 10 min
+
+**5. Enrichir sameAs auteur**
+app/src/data/author.ts — ajouter 2-3 profils (X/Twitter pro, Annuaire Formation, About.me)
+Effort : 10 min | Impact : Knowledge Graph
+
+**6. CTA top-funnel sur 4 articles a fort volume**
+Ajouter un encart vers /services/automatisation/ dans :
+- /blog/numero-declaration-activite/
+- /blog/qualiopi-guide-organisme-formation/
+- /blog/logiciel-organisme-formation/
+- /blog/automatiser-bpf-organisme-formation/
+Effort : 20 min | Impact : conversion trafic informationnel
+
+### Mineur
+
+**7. Soumettre sitemap dans Google Search Console**
+URL : https://claudeagency.fr/sitemap-index.xml
+Valider que les 3 nouveaux articles sont crawlés.
+
+**8. Images OG dédiées par article**
+Toutes les pages partagent /og-default.jpg.
+Créer des covers specifiques pour les 3 articles du 29/06 — CTR LinkedIn.
+
+**9. sameAs Organization — Qualiopi**
+Ajouter France Competences comme sameAs dans BaseLayout pour renforcer la coherence thematique.
 
 ---
 
-*Rapport généré par Claude Agency — Challenge SEO #1 — 29 juin 2026*
+## 6. Maillage interne — structure hub-and-spoke
+
+Hub commercial : /services/
+  /services/seo/ · /services/sea/ · /services/optimisation-site/
+  /services/audit-ia/ · /services/automatisation/ · /services/formation-ia/
+
+Hub editorial IA : /blog/integrer-ia-organisme-formation/
+  /blog/automatiser-gestion-qualiopi-ia/  [cree 29/06]
+  /blog/automatiser-qualiopi-ia/
+  /blog/qualiopi-ia-gagner-5h-semaine/    [cree 29/06]
+  /blog/outils-ia-organisme-formation/
+
+Hub editorial SEO : /blog/seo-organisme-formation/
+  /blog/seo-guide-complet-organisme-formation-2026/ [cree 29/06]
+
+---
+
+*Sources fusionnees : seo-audit-26/06 · keyword-clusters-26/06 · corrections 29/06*
+*Rapport consolide — Claude Agency · Challenge SEO #1 · 29 juin 2026*
