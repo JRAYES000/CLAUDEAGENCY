@@ -10,9 +10,9 @@ from pathlib import Path
 import time
 
 BASE     = Path(__file__).parent
-V2_MP4   = BASE / "VSL-ClaudeAgency-juin2026-v2.mp4"
-VOIX_P2  = BASE / "voix_off_v3_nouvelle_section.mp3"
-SCENES   = [BASE / "scenes" / f"scene_{i}.mp4" for i in [8, 9, 10, 11]]
+V2_MP4   = BASE / "VSL-ClaudeAgency-juin2026.mp4"
+VOIX_P2  = BASE / "voix_yann_v3.mp3"
+SCENES   = [BASE / "scenes" / f"scene_{i}.jpg" for i in [8, 9, 10, 11]]
 OUTPUT   = BASE / "VSL-ClaudeAgency-v3-FINAL.mp4"
 VID_ONLY = BASE / "_tmp_vsl_v3_video.mp4"
 AUD_WAV  = BASE / "_tmp_vsl_v3_audio.wav"
@@ -40,9 +40,12 @@ try:
     p2_audio_dur = voix_p2.duration
     print(f"Audio P2: {p2_audio_dur:.2f}s")
 
+    # Duree par image = duree audio / nb scenes
+    dur_per_img = p2_audio_dur / len(SCENES)
     raw_clips = []
     for s in SCENES:
-        c = VideoFileClip(str(s))
+        from moviepy import ImageClip
+        c = ImageClip(str(s), duration=dur_per_img)
         c = c.with_effects([vfx.Resize(TARGET_SIZE)]).with_fps(TARGET_FPS)
         print(f"  {s.name}: {c.duration:.1f}s")
         raw_clips.append(c)
