@@ -1,0 +1,29 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,52,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,2,1,2,20,20,60,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:03.96,Default,,0,0,0,,Diriger un organisme de formation,\Nc'est faire dix métiers à la fois.
+Dialogue: 0,0:00:03.96,0:00:08.76,Default,,0,0,0,,Et le marketing, l'administratif,\Nles audits Qualiopi : ça passe toujours après.
+Dialogue: 0,0:00:08.76,0:00:13.69,Default,,0,0,0,,Claude Agency est une équipe IA\Ndédiée aux organismes de formation.
+Dialogue: 0,0:00:13.69,0:00:21.41,Default,,0,0,0,,Référencement, publicité, optimisation de votre site,\Ngestion administrative : on prend en charge ce qui vous freine.
+Dialogue: 0,0:00:21.41,0:00:23.13,Default,,0,0,0,,Vous gardez la pédagogie.
+Dialogue: 0,0:00:23.13,0:00:29.13,Default,,0,0,0,,On ne vend pas une promesse : on l'a fait dans\Nnotre propre organisme de formation, avant d'en faire notre métier.
+Dialogue: 0,0:00:29.13,0:00:37.05,Default,,0,0,0,,Résultat : des heures récupérées chaque semaine sur l'administratif,\Nvos preuves Qualiopi tenues à jour, et une visibilité retrouvée sur Google.
+Dialogue: 0,0:00:37.05,0:00:49.40,Default,,0,0,0,,Réservez votre audit gratuit : vous repartez avec une feuille de route claire,\Nsans engagement. Claude Agency, l'IA au service de votre organisme de formation.
+Dialogue: 0,0:00:49.40,0:00:52.40,Default,,0,0,0,,Concrètement, voici ce que vous obtenez,\Nsemaine après semaine.
+Dialogue: 0,0:00:52.40,0:00:57.80,Default,,0,0,0,,Sur Google, on optimise vos pages pour que les entreprises\Nqui cherchent une formation vous trouvent avant vos concurrents.
+Dialogue: 0,0:00:57.80,0:01:02.30,Default,,0,0,0,,Sur la publicité, on pilote vos campagnes\NGoogle Ads et LinkedIn. Chaque euro dépensé est suivi.
+Dialogue: 0,0:01:02.30,0:01:07.00,Default,,0,0,0,,Sur Qualiopi, on structure vos preuves de réalisation\Nchaque mois. Votre prochain audit sera serein.
+Dialogue: 0,0:01:07.00,0:01:11.50,Default,,0,0,0,,Et votre site web devient un outil commercial\Nqui génère de vraies demandes, pas une simple vitrine.
+Dialogue: 0,0:01:11.50,0:01:17.00,Default,,0,0,0,,Si vous êtes certifié Qualiopi et que vous voulez arrêter\Nde tout gérer seul, voici l'étape suivante.
+Dialogue: 0,0:01:17.00,0:01:19.50,Default,,0,0,0,,Réservez votre audit gratuit de 30 minutes\Nsur claudeagency.fr.
+Dialogue: 0,0:01:19.50,0:01:21.00,Default,,0,0,0,,Vous repartez avec une feuille de route claire,\Nsans engagement.
+Dialogue: 0,0:01:21.00,0:01:22.08,Default,,0,0,0,,Les créneaux sont limités ce mois-ci.\NRéservez maintenant.
