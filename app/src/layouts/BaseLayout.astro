@@ -17,9 +17,9 @@ const site = Astro.site!.toString().replace(/\/$/, '');
 const organization = {
   '@context': 'https://schema.org', '@type': 'Organization',
   '@id': `${site}/#organization`, name: 'Claude Agency', url: site,
-  // logo en ImageObject = attendu par le rich result Article (publisher.logo).
   logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 },
-  description: "Claude Agency aide les organismes de formation francophones (France, Belgique, Suisse, Luxembourg) à intégrer l'IA et automatiser leurs process.",
+  slogan: "L'agence IA qui gère le marketing et l'administratif de votre organisme de formation",
+  description: "Claude Agency aide les organismes de formation francophones (France, Belgique, Suisse, Luxembourg) à intégrer l'IA et automatiser leurs process. Spécialiste de Claude (Anthropic), l'agence forme les équipes, automatise l'administratif Qualiopi et prend en charge le marketing digital.",
   areaServed: [
     { '@type': 'Country', name: 'France' },
     { '@type': 'Country', name: 'Belgique' },
@@ -28,49 +28,79 @@ const organization = {
   ],
   email: 'contact@claudeagency.fr',
   foundingDate: '2026',
-  // founder lié à l'entité Person (page auteur) → renforce le Knowledge Graph (E-E-A-T + GEO).
-  founder: { '@type': 'Person', '@id': `${site}/a-propos/#julien-rayes`, name: 'Julien Rayes' },
+  founder: { '@type': 'Person', '@id': `${site}/a-propos/#julien-rayes`, name: 'Julien Rayes',
+    jobTitle: 'Fondateur et directeur',
+    description: "Julien Rayes a automatisé le back-office de son propre organisme de formation (3 M€ de CA) avec Make et Claude Code avant de créer Claude Agency.",
+    sameAs: ['https://www.linkedin.com/in/julien-rayes/'],
+  },
   knowsAbout: [
-    'Intelligence artificielle',
-    'Automatisation des process',
-    'Organismes de formation',
-    'Qualiopi',
-    'Référencement naturel (SEO)',
+    'Intelligence artificielle pour organismes de formation',
+    'Claude (Anthropic)',
+    'Automatisation des process avec l\'IA',
+    'Conformité Qualiopi',
+    'Référencement naturel (SEO) pour organismes de formation',
     'Google Ads (SEA)',
+    'Claude Code',
+    'Make (Integromat)',
+    'Formation des équipes à l\'IA',
+    'Gestion administrative des OF',
   ],
-  // sameAs : profils réels existants (fondateur + page entreprise LinkedIn « Claude Agency »).
-  sameAs: ['https://www.linkedin.com/in/julien-rayes/', 'https://www.linkedin.com/company/claudeagency-fr/'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services IA pour organismes de formation',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Audit IA et diagnostic', description: 'Identifier où l\'IA peut faire gagner du temps dans un organisme de formation.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Formation des équipes à l\'IA', description: 'Ateliers pratiques pour former formateurs et équipes administratives à Claude et aux outils IA.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Automatisation administrative', description: 'Automatiser l\'émargement, le BPF, la conformité Qualiopi et les relances stagiaires.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Référencement SEO', description: 'Améliorer la visibilité Google d\'un organisme de formation pour attirer des candidats qualifiés.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Publicité Google Ads (SEA)', description: 'Piloter les campagnes Google Ads pour remplir les sessions de formation.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Outils IA sur mesure', description: 'Développer des agents IA et automatisations spécifiques aux process de l\'organisme de formation.' } },
+    ],
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'contact@claudeagency.fr',
+    availableLanguage: 'French',
+    areaServed: ['FR', 'BE', 'CH', 'LU'],
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/julien-rayes/',
+    'https://www.linkedin.com/company/claudeagency-fr/',
+  ],
 };
+
 const website = {
   '@context': 'https://schema.org', '@type': 'WebSite',
   '@id': `${site}/#website`, url: site, name: 'Claude Agency',
   inLanguage: 'fr-FR', publisher: { '@id': `${site}/#organization` },
+  description: "Ressources, guides et conseils pour intégrer l'IA dans un organisme de formation.",
 };
 ---
 <!doctype html>
 <html lang="fr">
-  <head>
-    <BaseHead title={title} description={description} image={image} imageAlt={imageAlt} type={type} noindex={noindex} />
-    <Font cssVariable="--font-bricolage" preload />
-    <Font cssVariable="--font-schibsted" preload />
-    <!-- Google tag (gtag.js) — Google Ads AW-18240137840 + GA4 G-6SG03DR5J9 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240137840"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18240137840');
-      gtag('config', 'G-6SG03DR5J9');
-    </script>
-    <!-- Instantly Website Visitors (Leadsy) -->
-    <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="E9K4gB9DKK5wC4cn" data-version="062024" is:inline></script>
-    <Schema schema={[organization, website, ...pageSchema]} />
-    <slot name="head" />
-  </head>
-  <body class="flex min-h-screen flex-col font-sans">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-500 focus:px-4 focus:py-2 focus:font-medium focus:text-cream-50">Aller au contenu</a>
-    <Header />
-    <main id="main" class="flex-1"><slot /></main>
-    <Footer />
-  </body>
+<head>
+  <BaseHead title={title} description={description} image={image} imageAlt={imageAlt} type={type} noindex={noindex} />
+  <Font cssVariable="--font-bricolage" preload />
+  <Font cssVariable="--font-schibsted" preload />
+  <!-- Google tag (gtag.js) — Google Ads AW-18240137840 + GA4 G-6SG03DR5J9 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240137840"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18240137840');
+    gtag('config', 'G-6SG03DR5J9');
+  </script>
+  <!-- Instantly Website Visitors (Leadsy) -->
+  <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="E9K4gB9DKK5wC4cn" data-version="062024" is:inline></script>
+  <Schema schema={[organization, website, ...pageSchema]} />
+  <slot name="head" />
+</head>
+<body class="flex min-h-screen flex-col font-sans">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-500 focus:px-4 focus:py-2 focus:font-medium focus:text-cream-50">Aller au contenu</a>
+  <Header />
+  <main id="main" class="flex-1"><slot /></main>
+  <Footer />
+</body>
 </html>
