@@ -76,6 +76,24 @@ const website = {
   inLanguage: 'fr-FR', publisher: { '@id': `${site}/#organization` },
   description: "Ressources, guides et conseils pour intégrer l'IA dans un organisme de formation.",
 };
+
+const professionalService = {
+  '@context': 'https://schema.org', '@type': 'ProfessionalService',
+  '@id': ${site}/#service,
+  name: 'Claude Agency',
+  url: site,
+  description: "Agence IA spécialisée dans l'accompagnement des organismes de formation francophones : SEO, SEA, automatisation administrative, conformité Qualiopi et outils IA sur mesure.",
+  provider: { '@id': ${site}/#organization },
+  serviceType: ['Agence IA', 'Référencement SEO', 'Publicité Google Ads', 'Automatisation IA', 'Formation IA', 'Outils IA sur mesure'],
+  areaServed: [
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'Country', name: 'Belgique' },
+    { '@type': 'Country', name: 'Suisse' },
+    { '@type': 'Country', name: 'Luxembourg' },
+  ],
+  audience: { '@type': 'Audience', audienceType: 'Organismes de formation professionnelle' },
+  availableLanguage: 'French',
+};
 ---
 <!doctype html>
 <html lang="fr">
@@ -94,7 +112,7 @@ const website = {
   </script>
   <!-- Instantly Website Visitors (Leadsy) -->
   <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="E9K4gB9DKK5wC4cn" data-version="062024" is:inline></script>
-  <Schema schema={[organization, website, ...pageSchema]} />
+  <Schema schema={[organization, website, professionalService, ...pageSchema]} />
   <slot name="head" />
 </head>
 <body class="flex min-h-screen flex-col font-sans">
