@@ -79,11 +79,11 @@ const website = {
 
 const professionalService = {
   '@context': 'https://schema.org', '@type': 'ProfessionalService',
-  '@id': ${site}/#service,
+  '@id': `${site}/#service`,
   name: 'Claude Agency',
   url: site,
   description: "Agence IA spécialisée dans l'accompagnement des organismes de formation francophones : SEO, SEA, automatisation administrative, conformité Qualiopi et outils IA sur mesure.",
-  provider: { '@id': ${site}/#organization },
+  provider: { '@id': `${site}/#organization` },
   serviceType: ['Agence IA', 'Référencement SEO', 'Publicité Google Ads', 'Automatisation IA', 'Formation IA', 'Outils IA sur mesure'],
   areaServed: [
     { '@type': 'Country', name: 'France' },
