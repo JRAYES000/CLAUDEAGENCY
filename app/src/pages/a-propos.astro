@@ -8,15 +8,19 @@ const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: 'À propos' },
+    { '@type': 'ListItem', position: 2, name: 'À propos', item: new URL('/a-propos/', Astro.site).href },
   ],
 };
 ---
-<BaseLayout title="Julien Rayes & Claude Agency — agence IA pour OF" description="Claude Agency : le partenaire des organismes de formation pour intégrer l'IA et automatiser leurs process. Fondée par Julien Rayes, directeur commercial et marketing d'un OF Qualiopi." pageSchema={[breadcrumb, authorPerson(Astro.site!)]}>
+<BaseLayout
+  title="Julien Rayes & Claude Agency — agence IA pour OF"
+  description="Claude Agency aide les organismes de formation à intégrer l'IA et automatiser leurs process. Fondée par Julien Rayes, directeur d'un OF Qualiopi à 3 M€ de CA."
+  pageSchema={[breadcrumb, authorPerson(Astro.site!)]}
+>
   <section class="mx-auto max-w-2xl px-4 py-16">
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">À propos</p>
-      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">À propos de Claude Agency</h1>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Claude Agency — l'agence IA pour organismes de formation</h1>
     </div>
     <Image
       src={aboutImg}
@@ -46,6 +50,16 @@ const breadcrumb = {
       <p>Nous sommes spécialisés dans le monde de la formation : nous en connaissons les contraintes (Qualiopi, pédagogie, administratif) parce que nous les vivons au quotidien, et nous parlons votre langage.</p>
       <p>Cette spécialisation OF est notre force : chaque recommandation s'appuie sur la réalité du terrain des organismes de formation, pas sur des recettes génériques.</p>
     </div>
+
+    <nav class="mt-12 border-t border-sand pt-8 not-prose" aria-label="Explorer Claude Agency">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Explorer</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        <li><a href="/services/" class="text-brand-700 font-semibold hover:underline">Nos services IA pour organismes de formation →</a></li>
+        <li><a href="/blog/" class="text-brand-700 font-semibold hover:underline">Blog : guides pratiques IA et automatisation →</a></li>
+        <li><a href="/ressources/10-automatisations-ia/" class="text-brand-700 font-semibold hover:underline">Guide : 10 automatisations IA pour un OF →</a></li>
+        <li><a href="/contact/" class="text-brand-700 font-semibold hover:underline">Prendre un audit offert →</a></li>
+      </ul>
+    </nav>
   </section>
 
   <!-- CTA final : bandeau terracotta plein -->
