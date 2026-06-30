@@ -1,0 +1,128 @@
+---
+title: "Automatiser les relances stagiaires : guide pratique pour les organismes de formation"
+description: "Comment automatiser les relances avant et après la formation ? Convocations, rappels, no-show, évaluations : les workflows qui font gagner des heures chaque semaine."
+pubDate: 2026-06-30
+author: "Julien Rayes"
+image: "./images/ia-of-cover.jpg"
+imageAlt: "Automatisation relances stagiaires emails SMS formation"
+tags: ["automatisation", "relances", "stagiaires", "Make", "email", "organisme de formation"]
+draft: false
+---
+
+Les relances sont l'une des tâches les plus répétitives — et pourtant les plus impactantes — dans un organisme de formation. Mal gérées, elles génèrent du no-show, des dossiers incomplets, des évaluations manquantes. Bien automatisées, elles libèrent des heures chaque semaine et améliorent l'expérience stagiaire.
+
+## Pourquoi les relances manuelles sont un problème
+
+Dans la plupart des organismes de formation, les relances reposent sur la mémoire et la bonne volonté de l'équipe. Résultat :
+- On oublie de relancer certains stagiaires
+- Les relances ne sont pas personnalisées (même message pour tout le monde)
+- En période chargée, les relances passent après d'autres priorités
+- Il est impossible de tracer qui a reçu quoi et quand
+
+Les conséquences sont mesurables : des taux de no-show de 15 à 25%, des dossiers Qualiopi incomplets (évaluations manquantes), des attestations envoyées avec retard.
+
+## Les 4 moments clés pour relancer un stagiaire
+
+### Avant la session
+
+**J-7 : la confirmation**
+Objectif : s'assurer que le stagiaire a bien les informations pratiques et confirme sa participation.
+
+Contenu : rappel de la date, heure, lieu ou lien de connexion, programme de la journée, ce qu'il faut apporter ou préparer, contact en cas d'empêchement.
+
+**J-3 : le rappel**
+Objectif : réduire le risque de no-show de dernière minute.
+
+Contenu : rappel synthétique + invitation à confirmer sa présence (lien "Je confirme" ou "Je dois annuler"). Ce lien vous permet de gérer les désistements assez tôt pour éventuellement trouver un remplaçant.
+
+**J-1 : le rappel final**
+Objectif : éliminer les oublis.
+
+Contenu : ultra-court. "Rappel : votre formation [titre] a lieu demain [jour] à [heure]. À demain ! [formateur]". Un ton chaleureux, pas administratif.
+
+### Après la session
+
+**J+1 : l'évaluation à chaud**
+Objectif : recueillir les retours pendant que la formation est encore fraîche.
+
+Contenu : remerciement + lien vers le formulaire d'évaluation (3 à 5 questions maximum). L'évaluation à chaud doit être courte pour être complétée.
+
+**J+7 : l'attestation et les ressources**
+Objectif : délivrer les livrables post-formation et maintenir le contact.
+
+Contenu : attestation de formation en pièce jointe + récapitulatif des ressources partagées + invitation à revenir vers vous si besoin.
+
+**J+30 : le suivi à froid**
+Objectif : mesurer le transfert des apprentissages et maintenir la relation.
+
+Contenu : "Un mois après votre formation [titre], qu'avez-vous mis en pratique ? Avez-vous eu des difficultés ?" + lien vers un court questionnaire. Ce dernier email génère souvent des témoignages spontanés et des opportunités de fidélisation.
+
+## Comment automatiser ces relances avec Make
+
+Make (anciennement Integromat) est l'outil le plus adapté pour automatiser ces séquences. Voici la structure d'un scénario Make pour les relances :
+
+### Scénario 1 : Relances pré-session
+
+**Déclencheur :** calendrier (tous les jours à 9h)
+
+**Actions :**
+1. Récupérer la liste des sessions prévues dans les 7 jours (depuis votre Google Sheets, Airtable, LMS ou CRM)
+2. Pour chaque session, récupérer la liste des inscrits
+3. Pour chaque inscrit, envoyer l'email de relance correspondant (J-7, J-3 ou J-1) via Brevo ou Gmail
+
+**Personnalisation :** Make injecte automatiquement le prénom, la date, le lien de connexion spécifique à chaque inscrit.
+
+### Scénario 2 : Relances post-session
+
+**Déclencheur :** fin de session (date de session + 1 jour)
+
+**Actions :**
+1. Récupérer la liste des présents (depuis la feuille de présence ou votre LMS)
+2. Envoyer l'email J+1 avec le lien d'évaluation
+3. Programmer l'envoi de l'attestation à J+7
+4. Créer une tâche dans votre CRM pour le suivi à J+30
+
+### Scénario 3 : Relance des absents
+
+**Déclencheur :** absence non justifiée détectée (J+1 après la session)
+
+**Actions :**
+1. Identifier les inscrits non présents
+2. Envoyer un email de relance pour proposer un report
+3. Notifier le responsable commercial pour un appel de suivi
+
+## Les outils pour automatiser vos relances
+
+| Outil | Usage | Prix |
+|-------|-------|------|
+| **Make** | Orchestration des workflows | Gratuit jusqu'à 1000 ops/mois |
+| **Brevo** | Envoi des emails | Gratuit jusqu'à 300 emails/jour |
+| **Twillio / Brevo SMS** | Envoi SMS | ~0,07€/SMS |
+| **Calendly** | Gestion des rendez-vous | Gratuit (plan basique) |
+| **Typeform / Google Forms** | Formulaires d'évaluation | Gratuit |
+| **Airtable / Notion** | Base de données des sessions | Gratuit à 20$/mois |
+
+## L'IA pour personnaliser les relances
+
+Les relances automatisées peuvent rester impersonnelles. L'IA permet de changer ça sans effort supplémentaire.
+
+**Exemple avec Claude + Make :**
+- Make récupère les informations du stagiaire (prénom, poste, entreprise, thème de formation)
+- Il envoie ces données à Claude avec un prompt : "Rédige un email de relance J-3 chaleureux et personnel, en mentionnant son poste et en liant le thème de la formation à ses enjeux métier"
+- Claude génère un email unique pour ce stagiaire
+- Make l'envoie via Brevo
+
+Le résultat est un email qui semble écrit spécifiquement pour cette personne — à la différence d'un template avec juste le prénom changé.
+
+## Mesurer l'impact de vos relances
+
+Mettez en place ces métriques pour mesurer l'efficacité de vos relances automatisées :
+
+- **Taux d'ouverture des emails** (objectif : > 60% pour les emails de relance — ils sont très attendus)
+- **Taux de présence** avant et après automatisation (attendez-vous à -40% de no-show)
+- **Taux de complétion des évaluations à chaud** (objectif : > 80%)
+- **Délai moyen d'envoi des attestations** (objectif : < 48h après la session)
+
+## Ce que fait Claude Agency
+
+Nous configurons des systèmes complets de relances automatisées pour les organismes de formation — de la convocation à l'évaluation à froid. [Parlons de votre projet](/contact).
