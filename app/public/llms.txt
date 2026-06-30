@@ -1,0 +1,21 @@
+# Claude Agency
+
+> Claude Agency est l'agence IA specialisee dans l'accompagnement des organismes de formation (OF) francophones.
+
+## Services
+
+- Audit IA et diagnostic
+- Formation des equipes a l'IA
+- Automatisation administrative (Qualiopi, emargement, BPF)
+- SEO pour organismes de formation
+- SEA (Google Ads)
+- Outils IA sur mesure
+
+## Cible
+
+Organismes de formation professionnelle : France, Belgique, Suisse, Luxembourg.
+
+## Contact
+
+- Site : https://claudeagency.fr
+- Email : contact@claudeagency.fr
