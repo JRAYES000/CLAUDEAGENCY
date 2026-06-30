@@ -3,31 +3,46 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LeadMagnet from '../../components/LeadMagnet.astro';
 
 const teasers = [
-  "Les relances administratives qui partent toutes seules",
-  "Les comptes rendus de visio rédigés automatiquement",
-  "Le coaching commercial après chaque appel",
-  "La création de tunnels de vente en quelques minutes",
-  "Les supports de cours générés depuis votre programme",
-  "Quiz, études de cas et corrigés prêts à l'emploi",
-  "Le dossier d'audit Qualiopi pré-rempli",
-  "L'assistant qui répond aux stagiaires 24/7",
-  "Chaque réunion transformée en compte rendu + support",
-  "Les relances de paiement et de financement automatisées",
+  { name: "Les relances administratives qui partent toutes seules", desc: "Convocations, rappels d'émargement et relances de satisfaction envoyés automatiquement aux stagiaires." },
+  { name: "Les comptes rendus de visio rédigés automatiquement", desc: "Chaque réunion formateur-client est synthétisée et classée sans intervention manuelle." },
+  { name: "Le coaching commercial après chaque appel", desc: "Un agent IA analyse l'appel de closing et envoie des conseils personnalisés au commercial." },
+  { name: "La création de tunnels de vente en quelques minutes", desc: "Pages, lead magnets et séquences email générés à partir de votre programme de formation." },
+  { name: "Les supports de cours générés depuis votre programme", desc: "Diapositives, fiches et résumés produits automatiquement depuis le contenu pédagogique existant." },
+  { name: "Quiz, études de cas et corrigés prêts à l'emploi", desc: "Évaluations formatives créées en quelques secondes à partir des objectifs pédagogiques." },
+  { name: "Le dossier d'audit Qualiopi pré-rempli", desc: "Preuves, indicateurs et tableaux de bord tenus à jour en continu, prêts pour l'auditeur." },
+  { name: "L'assistant qui répond aux stagiaires 24/7", desc: "Un chatbot formé sur vos contenus répond aux questions courantes hors des heures de formation." },
+  { name: "Chaque réunion transformée en compte rendu + support", desc: "Transcription, synthèse et support de présentation générés automatiquement après chaque session." },
+  { name: "Les relances de paiement et de financement automatisées", desc: "Relances OPCO, CPF et paiement direct envoyées au bon moment sans suivi manuel." },
 ];
+
+const site = Astro.site!.toString().replace(/\/$/, '');
 
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${site}/` },
     { '@type': 'ListItem', position: 2, name: 'Ressources' },
-    { '@type': 'ListItem', position: 3, name: '10 automatisations IA' },
+    { '@type': 'ListItem', position: 3, name: '10 automatisations IA', item: `${site}/ressources/10-automatisations-ia/` },
   ],
+};
+
+const itemList = {
+  '@context': 'https://schema.org', '@type': 'ItemList',
+  name: '10 automatisations IA pour organismes de formation',
+  description: "Les 10 automatisations IA déployées dans un organisme de formation réel pour libérer 1 jour par semaine.",
+  numberOfItems: 10,
+  itemListElement: teasers.map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t.name,
+    description: t.desc,
+  })),
 };
 ---
 <BaseLayout
   title="10 automatisations IA pour organismes de formation"
-  description="Le guide gratuit des 10 automatisations IA qui libèrent 1 jour/semaine dans un organisme de formation. Tiré d'un OF réel : automatisation, temps gagné, outil."
-  pageSchema={[breadcrumb]}
+  description="Le guide gratuit des 10 automatisations IA qui libèrent 1 jour/semaine dans un OF. Tiré d'un organisme réel : automatisation, temps gagné, outil."
+  pageSchema={[breadcrumb, itemList]}
 >
   <section class="mx-auto max-w-3xl px-4 py-16">
     <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Guide gratuit</p>
@@ -42,7 +57,7 @@ const breadcrumb = {
       {teasers.map((t) => (
         <li class="flex gap-3 text-muted">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
-          <span>{t}</span>
+          <span>{t.name}</span>
         </li>
       ))}
     </ul>
@@ -54,5 +69,15 @@ const breadcrumb = {
     <p class="mt-8 text-sm text-muted">
       Rédigé par Julien Rayes, fondateur de Claude Agency — directeur commercial et marketing d'un organisme de formation (+3 M€ de CA depuis 2021).
     </p>
+
+    <nav class="mt-12 border-t border-sand pt-8" aria-label="Articles liés">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Pour aller plus loin</p>
+      <ul class="mt-4 space-y-2">
+        <li><a href="/blog/integrer-ia-organisme-formation/" class="text-brand-700 hover:underline">Intégrer l'IA dans votre organisme de formation →</a></li>
+        <li><a href="/blog/automatiser-qualiopi-ia/" class="text-brand-700 hover:underline">Automatiser la conformité Qualiopi avec l'IA →</a></li>
+        <li><a href="/blog/reduire-charge-administrative-organisme-formation/" class="text-brand-700 hover:underline">Réduire la charge administrative en organisme de formation →</a></li>
+        <li><a href="/blog/creer-supports-formation-ia/" class="text-brand-700 hover:underline">Créer ses supports de formation avec l'IA →</a></li>
+      </ul>
+    </nav>
   </section>
 </BaseLayout>
