@@ -70,14 +70,11 @@ const faq = [
   { q: "Quel type de reporting vais-je recevoir et à quelle fréquence ?", a: "Tous les jours, vous recevez un reporting de l'activité du consultant et des consultants assignés à votre projet : le nombre d'heures consacrées et le détail des tâches réalisées. Vous gardez ainsi une visibilité permanente sur ce qui est fait, et l'assurance que votre investissement est suivi de près." },
   { q: "Comment démarrer ?", a: "Par un audit offert : on identifie ensemble vos priorités et vous repartez avec une feuille de route chiffrée, avec ou sans nous." },
 ];
-// Schema FAQPage : expose les 14 questions à Google pour les rich snippets.
-const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 ---
 <BaseLayout
   title="Agence IA pour organismes de formation | Claude Agency"
   description="Claude Agency automatise votre administratif Qualiopi et booste votre visibilité Google. Audit gratuit offert."
   imageAlt="Dirigeant d'un organisme de formation serein, accompagné par une équipe IA qui pilote son SEO, sa publicité et son administratif"
-  pageSchema={[faqSchema]}
 >
   <!-- Préchargement responsive de l'image LCP (hero) -->
   <link
