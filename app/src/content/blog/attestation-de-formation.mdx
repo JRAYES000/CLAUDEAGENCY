@@ -1,4 +1,116 @@
+---
+title: "Attestation de formation : tout ce que l'organisme doit savoir en 2026"
+description: "Quelles mentions obligatoires pour une attestation de formation ? Comment la générer automatiquement ? Guide pour les organismes certifiés Qualiopi."
+pubDate: 2026-06-30
+author: "Julien Rayes"
+image: "./images/ia-of-cover.jpg"
+imageAlt: "Attestation de formation obligatoire organisme Qualiopi"
+tags: ["attestation de formation", "Qualiopi", "conformité", "organisme de formation", "automatisation"]
+draft: false
+---
 
+L'attestation de formation est un document légalement obligatoire que tout organisme de formation doit remettre à chaque stagiaire à l'issue d'une action de formation. Mal rédigée ou mal gérée, elle peut poser des problèmes lors d'un audit Qualiopi ou d'un contrôle OPCO.
+
+## Attestation de formation vs certificat de formation : quelle différence ?
+
+Ces deux termes sont souvent confondus.
+
+**L'attestation de formation** est le document de base, obligatoire pour tout organisme. Elle atteste qu'une personne a suivi une formation. Elle ne valide pas des compétences — elle confirme la participation.
+
+**Le certificat de formation** (ou "attestation de fin de formation") va plus loin : il peut attester des compétences acquises, un niveau atteint, ou préparer à une certification reconnue. Certains organismes délivrent des "certificats de compétences professionnelles" qui ont une valeur plus forte sur le marché du travail.
+
+**Le titre ou diplôme** est délivré par un organisme certificateur (État, CPNE, etc.) après validation d'une certification RNCP ou RS. Ce n'est pas l'attestation de base.
+
+## Les mentions obligatoires de l'attestation
+
+L'article R.6353-1 du Code du travail liste les mentions obligatoires de l'attestation de fin de formation :
+
+**1. L'intitulé de l'action de formation** (exactement celui qui figure dans la convention ou le contrat)
+
+**2. La nature de l'action de formation** (acquisition de compétences, adaptation au poste, promotion professionnelle...)
+
+**3. La durée effective de la formation** en heures. Attention : c'est la durée *effective* — si un stagiaire a été absent 2 heures sur 14 heures, son attestation doit mentionner 12 heures.
+
+**4. Les dates de début et de fin de la formation**
+
+**5. Les objectifs de la formation** (tels que définis dans la convention)
+
+**6. Les acquis de formation** : compétences, savoir-faire ou savoir-être acquis par le stagiaire. C'est ici que vous personnalisez selon les résultats du stagiaire.
+
+**7. Les résultats de l'évaluation des acquis** : a minima, une mention de l'évaluation réalisée et de son résultat (réussi, en cours d'acquisition, non atteint).
+
+**8. Le nom et la signature du responsable de l'organisme de formation** (ou son représentant habilité)
+
+**9. Le nom et la signature du bénéficiaire** (ou une mention de refus de signature si applicable)
+
+**Ce qui n'est pas obligatoire mais recommandé :**
+- Le logo et les coordonnées de l'organisme
+- Le numéro de déclaration d'activité
+- La mention Qualiopi (si certifié)
+- Le numéro de convention ou de contrat
+
+## Les erreurs courantes à éviter
+
+**Erreur 1 : L'attestation identique pour tous les stagiaires**  
+Si vous délivrez la même attestation à un stagiaire qui a tout validé et à un stagiaire qui a eu des difficultés, vous ne respectez pas l'exigence de mentionner les résultats de l'évaluation. Personnalisez au minimum la section "résultats".
+
+**Erreur 2 : La durée théorique plutôt que la durée effective**  
+Un stagiaire absent l'après-midi du premier jour n'a pas suivi 14 heures de formation. Sa durée effective est 11 heures. L'attestation doit refléter la durée réelle.
+
+**Erreur 3 : L'envoi tardif**  
+L'attestation doit être délivrée "à l'issue de la formation". En pratique, J+7 est un maximum. Certains OPCO exigent l'attestation avant de traiter le dossier de financement.
+
+**Erreur 4 : L'absence de signature du stagiaire**  
+L'attestation doit être signée par le stagiaire (ou une mention de refus). En présentiel, c'est facile. En distanciel, utilisez un outil de signature électronique (DocuSign, Yousign, SignNow).
+
+## Qualiopi et les attestations
+
+L'indicateur 10 du référentiel Qualiopi porte sur la délivrance des documents de fin de formation. L'auditeur va vérifier :
+- Que toutes les formations ont donné lieu à la délivrance d'une attestation
+- Que les mentions obligatoires sont présentes
+- Que les délais sont respectés
+- Que les signatures sont présentes
+
+**Conseils pour l'audit :** constituez un dossier par session avec : les feuilles de présence signées, les attestations émises, les preuves d'envoi (accusés de réception email). L'automatisation de la génération et de l'envoi facilite considérablement ce suivi.
+
+## Automatiser la génération des attestations
+
+Générer manuellement les attestations de toutes vos sessions est chronophage et source d'erreurs. L'automatisation est possible et relativement simple.
+
+### Solution 1 : Make + Google Docs + Gmail
+
+**Workflow :**
+1. Saisie des données de session dans un Google Sheets (nom stagiaire, formation, dates, durée, résultats)
+2. Make récupère les données de chaque stagiaire
+3. Make utilise un template Google Docs pour générer l'attestation personnalisée
+4. Make convertit en PDF
+5. Make envoie le PDF par email au stagiaire
+6. Make archive le document dans un dossier Google Drive organisé
+
+**Coût :** gratuit ou quasi-gratuit (Make plan Core à 9€/mois)  
+**Temps de mise en place :** 2 à 4 heures
+
+### Solution 2 : LMS avec génération intégrée
+
+Les LMS comme Teachizy ou Digiforma génèrent automatiquement les attestations depuis les données de session. C'est la solution la plus simple si vous utilisez déjà l'un de ces outils.
+
+### Solution 3 : Script Python ou Node.js personnalisé
+
+Pour des besoins très spécifiques (mise en page complexe, intégrations particulières), un développeur peut créer un script sur mesure avec des librairies comme PDFKit, ReportLab ou Puppeteer. Claude Agency peut vous aider sur ce point.
+
+## L'attestation numérique et la signature électronique
+
+En distanciel, la signature du stagiaire sur l'attestation se fait via un outil de signature électronique :
+
+- **Yousign** (français, RGPD, à partir de 25€/mois) : signature simple ou avancée, API disponible pour l'intégration dans vos workflows
+- **DocuSign** : référence internationale, plus cher, mais très complet
+- **SignNow, HelloSign** : alternatives moins chères mais moins adaptées au RGPD
+
+Pour la plupart des attestations de formation professionnelle, la **signature électronique simple** (cliquer sur "Je signe") est suffisante. La signature avancée (avec vérification d'identité) n'est requise que pour certains documents juridiques à fort enjeu.
+
+## Ce que fait Claude Agency
+
+Nous automatisons la génération et l'envoi de vos attestations de formation : configuration de Make, template PDF, signature électronique, archivage et intégration avec votre LMS ou CRM. [Contactez-nous](/contact).
 
 ## Pour aller plus loin
 
