@@ -41,7 +41,7 @@ const tasks = [
           </div>
           <p class="mt-4 text-sm text-muted">Estimation indicative, à affiner lors de l'audit.</p>
           <noscript><p class="mt-2 text-sm text-muted">Activez JavaScript pour obtenir l'estimation chiffrée.</p></noscript>
-          <a href="/contact/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Valider ce potentiel — audit offert</a>
+          <a id="calc-cta" href="/contact/" class="mt-6 inline-block rounded-lg bg-brand-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-600">Valider ce potentiel — audit offert</a>
         </div>
       </div>
     </div>
@@ -53,6 +53,7 @@ const tasks = [
     var boxes = Array.prototype.slice.call(document.querySelectorAll('.calc-task'));
     var euroEl = document.getElementById('calc-euro');
     var hoursEl = document.getElementById('calc-hours');
+    var ctaEl = document.getElementById('calc-cta');
     if (!boxes.length || !euroEl || !hoursEl) return;
     var nf = new Intl.NumberFormat('fr-FR');
     function update() {
@@ -68,10 +69,13 @@ const tasks = [
       if (!any) {
         euroEl.textContent = '—';
         hoursEl.textContent = 'Cochez vos tâches pour voir votre estimation.';
+        if (ctaEl) ctaEl.href = '/contact/';
         return;
       }
       euroEl.textContent = '~ ' + nf.format(Math.round(eu / 10) * 10) + ' € / an';
       hoursEl.textContent = nf.format(wo - wi) + ' h récupérées / an';
+      // L'estimation suit le prospect jusqu'au formulaire de contact (message pré-rempli).
+      if (ctaEl) ctaEl.href = '/contact/?estimation=' + (Math.round(eu / 10) * 10) + '&heures=' + (wo - wi);
       if (window.plausible) window.plausible('Calculator Used');
     }
     boxes.forEach(function (b) { b.addEventListener('change', update); });

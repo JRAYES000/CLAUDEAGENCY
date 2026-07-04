@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import CalendlyInline from '../components/CalendlyInline.astro';
+import julienImg from '../assets/julien.jpg';
 
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -26,7 +28,11 @@ const breadcrumb = {
       </div>
       <div>
         <h2 class="font-display text-2xl font-bold text-ink">Nous écrire</h2>
-        <div class="mt-4"><ContactForm /></div>
+        <div class="mt-4 flex items-center gap-4 rounded-xl border border-sand bg-cream-100 p-4">
+          <Image src={julienImg} alt="Julien Rayes, fondateur de Claude Agency" width={112} height={112} class="h-14 w-14 shrink-0 rounded-full border border-sand object-cover" />
+          <p class="text-sm leading-relaxed text-muted"><span class="font-semibold text-ink">Réponse personnelle de Julien sous 24&nbsp;h ouvrées.</span> Pas de séquence automatique, pas de relance insistante.</p>
+        </div>
+        <div class="mt-5"><ContactForm /></div>
         <div class="mt-8 border-t border-sand pt-6 text-sm text-muted">
           <p class="font-medium text-ink">Coordonnées</p>
           <p class="mt-2">Email : <!--email_off--><a href="mailto:contact@claudeagency.fr" class="text-brand-700 hover:underline">contact@claudeagency.fr</a><!--/email_off--></p>
@@ -36,4 +42,21 @@ const breadcrumb = {
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    // Pré-remplit le message quand le prospect arrive depuis le calculateur de la home
+    // (/contact/?estimation=12260&heures=540) : il n'a plus qu'à envoyer.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var estimation = parseInt(params.get('estimation'), 10);
+      var heures = parseInt(params.get('heures'), 10);
+      var message = document.getElementById('message');
+      if (!message || message.value || !estimation || estimation <= 0) return;
+      var nf = new Intl.NumberFormat('fr-FR');
+      message.value =
+        'Bonjour,\n\nVotre calculateur estime mon gain potentiel à ~' + nf.format(estimation) + ' € par an' +
+        (heures > 0 ? ' (' + nf.format(heures) + ' h récupérées)' : '') +
+        ". J'aimerais valider cette estimation avec l'audit offert.";
+    })();
+  </script>
 </BaseLayout>
