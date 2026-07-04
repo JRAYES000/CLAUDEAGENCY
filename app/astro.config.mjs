@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import { remarkReadingTime } from './remark-reading-time.mjs';
+import { rehypeArticleCta } from './rehype-article-cta.mjs';
 
 // lastmod réel des articles (updatedDate sinon pubDate) — un lastmod « date du build »
 // sur toutes les URLs est un faux signal de fraîcheur que Google finit par ignorer.
@@ -50,7 +51,7 @@ export default defineConfig({
     },
   ],
 
-  markdown: { remarkPlugins: [remarkReadingTime] },
+  markdown: { remarkPlugins: [remarkReadingTime], rehypePlugins: [rehypeArticleCta] },
 
   integrations: [
     mdx(),

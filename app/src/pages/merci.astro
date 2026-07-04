@@ -1,10 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CalendlyInline from '../components/CalendlyInline.astro';
 ---
 <BaseLayout title="Merci" description="Votre message a bien été envoyé." noindex={true}>
-  <section class="mx-auto max-w-2xl px-4 py-24 text-center">
+  <section class="mx-auto max-w-2xl px-4 pt-24 pb-12 text-center">
     <h1 class="font-display text-4xl font-extrabold tracking-tight text-brand-700 sm:text-5xl">Merci !</h1>
-    <p class="mt-4 text-muted">Votre message a bien été envoyé. Nous revenons vers vous rapidement.</p>
-    <a href="/" class="mt-8 inline-block rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white hover:bg-brand-600">Retour à l'accueil</a>
+    <p class="mt-4 text-muted">Votre message a bien été envoyé. Julien vous répond personnellement sous 24&nbsp;h ouvrées.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-4 pb-24">
+    <div class="rounded-2xl border border-sand bg-cream-100 p-6 sm:p-8">
+      <h2 class="font-display text-2xl font-bold text-ink">Gagnez un aller-retour d'emails</h2>
+      <p class="mt-2 leading-relaxed text-muted">Si vous voulez avancer tout de suite, choisissez directement votre créneau de 30 minutes — on parlera de votre organisme, pas de la météo.</p>
+      <div class="mt-6"><CalendlyInline /></div>
+    </div>
+    <p class="mt-8 text-center"><a href="/" class="text-sm font-semibold text-brand-700 hover:underline">Retour à l'accueil</a></p>
   </section>
 </BaseLayout>
