@@ -18,6 +18,15 @@ const { title, description, pubDate, updatedDate, author, image, imageAlt, tags 
 const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
 const site = Astro.site!;
 
+const allPosts = await getCollection('blog', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true);
+const related = allPosts
+  .filter((p) => p.id !== post.id)
+  .map((p) => ({ p, score: p.data.tags.filter((t) => tags.includes(t)).length }))
+  .sort((a, b) => b.score - a.score || b.p.data.pubDate.valueOf() - a.p.data.pubDate.valueOf())
+  .slice(0, 3)
+  .map(({ p }) => p);
+
 const articleSchema = {
   '@context': 'https://schema.org', '@type': 'BlogPosting',
   '@id': new URL(`/blog/${post.id}/#article`, site).href,
@@ -69,5 +78,19 @@ const breadcrumb = {
       <p class="mt-3 text-sm leading-relaxed text-muted">{AUTHOR.bio}</p>
       <a href="/a-propos/" class="mt-3 inline-block text-sm font-semibold text-brand-700 hover:underline">En savoir plus sur Claude Agency <span aria-hidden="true">→</span></a>
     </aside>
+
+    {related.length > 0 && (
+      <section class="mt-14" aria-label="Articles liés">
+        <h2 class="font-display text-2xl font-bold text-ink">À lire aussi</h2>
+        <ul class="mt-5 divide-y divide-sand border-y border-sand">{related.map((p) => (
+          <li>
+            <a href={`/blog/${p.id}/`} class="group block py-5">
+              <p class="font-display text-lg font-bold leading-snug text-ink transition-colors group-hover:text-brand-700">{p.data.title}</p>
+              <p class="mt-1 line-clamp-2 text-sm text-muted">{p.data.description}</p>
+            </a>
+          </li>
+        ))}</ul>
+      </section>
+    )}
   </article>
 </BaseLayout>
