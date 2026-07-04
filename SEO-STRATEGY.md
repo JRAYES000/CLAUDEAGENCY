@@ -199,7 +199,34 @@ entreprise, Featured/Qwoted, annuaires, baromètre) nécessite les comptes/ident
 
 ---
 
-## 7. 🔴 PRIORITÉ — Migration de domaine `claudepartners.fr` → `claudeagency.fr` (2026-06-25)
+## 7. Journal — Audit maillage + technique (2026-07-04)
+
+Passe d'optimisation autonome (branche `claude/website-seo-audit-lniqxw`), 11 actions sans
+levier externe ni achat de lien :
+
+- **Maillage interne.** Bloc « À lire aussi » automatique en pied de chaque article (3 articles
+  par tags partagés) → liens entrants garantis pour tout le blog. 4 orphelins désenclavés par
+  des liens éditoriaux dans le corps d'articles voisins (certificat-de-réalisation,
+  formation-ia-equipe, livret-accueil, remplir-bpf). 29 articles sans lien service → 1 lien
+  service contextuel chacun dans « Pour aller plus loin ». 1 lien cassé corrigé
+  (`formation-ia-equipe` → slug inexistant). **312 liens internes sans trailing slash**
+  corrigés (`trailingSlash:'always'` ⇒ chaque lien sans slash coûtait une 308 au crawl).
+- **Métadonnées.** 14 titres ramenés ≤ 60 caractères (mot-clé conservé en tête), 7 descriptions
+  ramenées ≤ 155. `author: Julien Rayes` ajouté sur 2 articles qui retombaient sur l'entité
+  générique (E-E-A-T). Pas d'`updatedDate` posé : retouches de méta/maillage, pas de refresh
+  de contenu.
+- **Technique.** `lastmod` du sitemap = vraie date (`updatedDate` sinon `pubDate`) au lieu de
+  la date de build (faux signal de fraîcheur que Google finit par ignorer). **IndexNow
+  branché** : clé hébergée (`/957b….txt`) + `postbuild` qui soumet toutes les URLs du sitemap
+  à `api.indexnow.org` à chaque déploiement Cloudflare Pages (inactif en build local).
+- **Services.** `relatedTags` d'`integration-ia` : « Accompagnement » (0 article correspondant)
+  remplacé par « organisme de formation » (21 articles).
+
+Build vérifié : 166 pages, 0 erreur.
+
+---
+
+## 8. 🔴 PRIORITÉ — Migration de domaine `claudepartners.fr` → `claudeagency.fr` (2026-06-25)
 
 **Constat.** Tout le code est passé sur `claudeagency.fr` (`astro.config.mjs site:`, schemas,
 emails, `llms.txt`). Mais ce document et la Search Console raisonnaient encore sur l'ancienne

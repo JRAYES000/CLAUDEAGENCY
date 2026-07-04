@@ -1,9 +1,25 @@
 // @ts-check
+import { readFileSync, readdirSync } from 'node:fs';
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import { remarkReadingTime } from './remark-reading-time.mjs';
+
+// lastmod réel des articles (updatedDate sinon pubDate) — un lastmod « date du build »
+// sur toutes les URLs est un faux signal de fraîcheur que Google finit par ignorer.
+const BLOG_DIR = new URL('./src/content/blog/', import.meta.url);
+const blogLastmod = Object.fromEntries(
+  readdirSync(BLOG_DIR)
+    .filter((f) => /\.mdx?$/.test(f))
+    .map((f) => {
+      const src = readFileSync(new URL(f, BLOG_DIR), 'utf8');
+      const date =
+        src.match(/^updatedDate:\s*["']?(\d{4}-\d{2}-\d{2})/m)?.[1] ??
+        src.match(/^pubDate:\s*["']?(\d{4}-\d{2}-\d{2})/m)?.[1];
+      return [f.replace(/\.mdx?$/, ''), date];
+    }),
+);
 
 export default defineConfig({
   site: 'https://claudeagency.fr',          // PRÉREQUIS SEO #1
@@ -48,7 +64,9 @@ export default defineConfig({
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;
         } else if (/\/blog\//.test(item.url)) {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.7;
-          item.lastmod = new Date().toISOString();
+          const slug = item.url.match(/\/blog\/([^/]+)\/$/)?.[1];
+          const lastmod = slug && blogLastmod[slug];
+          if (lastmod) item.lastmod = new Date(lastmod).toISOString();
         } else {
           item.changefreq = ChangeFreqEnum.MONTHLY; item.priority = 0.5;
         }
