@@ -20,6 +20,8 @@
 # Worktrees git locaux temporaires
 /worktree-*/
 
-# Archive locale des documents internes (auto-déplacés depuis la racine le 2026-06-26)
+# Archive locale des documents internes (auto-dÃ©placÃ©s depuis la racine le 2026-06-26)
 /archive/
 
+# RÃ©glages locaux Claude Code (allowlist de permissions perso)
+.claude/settings.local.json

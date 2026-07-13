@@ -17,9 +17,10 @@ const site = Astro.site!.toString().replace(/\/$/, '');
 const organization = {
   '@context': 'https://schema.org', '@type': 'Organization',
   '@id': `${site}/#organization`, name: 'Claude Agency', url: site,
+  alternateName: ['Agence Claude', 'Agence marketing Claude'],
   logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 },
   slogan: "L'agence IA qui gère le marketing et l'administratif de votre organisme de formation",
-  description: "Claude Agency aide les organismes de formation francophones (France, Belgique, Suisse, Luxembourg) à intégrer l'IA et automatiser leurs process. Spécialiste de Claude (Anthropic), l'agence forme les équipes, automatise l'administratif Qualiopi et prend en charge le marketing digital.",
+  description: "Claude Agency est une agence marketing et IA pour organismes de formation francophones (France, Belgique, Suisse, Luxembourg) : SEO, Google Ads, optimisation de site et automatisation administrative Qualiopi, pilotés avec Claude (Anthropic). L'agence forme aussi les équipes à l'IA.",
   areaServed: [
     { '@type': 'Country', name: 'France' },
     { '@type': 'Country', name: 'Belgique' },
@@ -36,6 +37,7 @@ const organization = {
   knowsAbout: [
     'Intelligence artificielle pour organismes de formation',
     'Claude (Anthropic)',
+    'Marketing digital pour organismes de formation',
     'Automatisation des process avec l\'IA',
     'Conformité Qualiopi',
     'Référencement naturel (SEO) pour organismes de formation',
@@ -113,7 +115,23 @@ const professionalService = {
     gtag('config', 'G-6SG03DR5J9');
   </script>
   <!-- Instantly Website Visitors (Leadsy) -->
-  <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="E9K4gB9DKK5wC4cn" data-version="062024" is:inline></script>
+  <!-- Leadsy chargé après première interaction (ou 4 s) : hors du chemin critique LCP/TBT -->
+  <script is:inline>
+    (function () {
+      var done = false;
+      function load() {
+        if (done) return; done = true;
+        var s = document.createElement('script');
+        s.id = 'vtag-ai-js'; s.async = true; s.src = 'https://r2.leadsy.ai/tag.js';
+        s.dataset.pid = 'E9K4gB9DKK5wC4cn'; s.dataset.version = '062024';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) {
+        addEventListener(e, load, { once: true, passive: true });
+      });
+      setTimeout(load, 4000);
+    })();
+  </script>
   <Schema schema={[organization, website, professionalService, ...pageSchema]} />
   <slot name="head" />
 </head>
