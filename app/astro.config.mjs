@@ -63,6 +63,9 @@ export default defineConfig({
       serialize(item) {
         if (item.url === 'https://claudeagency.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;
+        } else if (/\/agence-marketing-claude\/$/.test(item.url)) {
+          // Landing requête cible « agence marketing claude » : priorité haute.
+          item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.9;
         } else if (/\/blog\//.test(item.url)) {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.7;
           const slug = item.url.match(/\/blog\/([^/]+)\/$/)?.[1];

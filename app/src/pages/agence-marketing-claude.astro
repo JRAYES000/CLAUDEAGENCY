@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import methodeImg from '../assets/methode-diagnostic.jpg';
+
+const site = Astro.site!;
+
+const serviceSchema = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  '@id': new URL('/agence-marketing-claude/#service', site).href,
+  name: 'Agence marketing Claude',
+  serviceType: 'Agence marketing pilotée par Claude (IA)',
+  description:
+    "Agence marketing dont les consultants pilotent le SEO, la publicité Google Ads et le contenu avec Claude, l'IA d'Anthropic. Spécialisée dans les organismes de formation.",
+  provider: { '@id': new URL('/#organization', site).href },
+  areaServed: { '@type': 'Country', name: 'France' },
+  audience: { '@type': 'BusinessAudience', name: 'Organismes de formation' },
+};
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Agence marketing Claude' },
+  ],
+};
+
+const faq = [
+  { q: "Qu'est-ce qu'une agence marketing Claude ?", a: "C'est une agence marketing dont les consultants produisent le référencement, la publicité et le contenu avec Claude, l'intelligence artificielle d'Anthropic. Le travail livré est le même que celui d'une agence classique : il est simplement produit 3 à 4 fois plus vite, ce qui se retrouve dans les tarifs et les délais." },
+  { q: "Pourquoi Claude plutôt que ChatGPT ?", a: "Claude est aujourd'hui l'IA la plus solide en rédaction française naturelle et en travail agentique long (Claude Code, Claude Cowork). C'est elle qui permet à nos consultants de mener un audit SEO, produire un article optimisé ou restructurer une campagne Google Ads en heures plutôt qu'en jours. Nous utilisons aussi d'autres outils quand ils sont plus pertinents." },
+  { q: "Le contenu produit avec l'IA est-il pénalisé par Google ?", a: "Non. Google évalue la qualité et l'utilité d'un contenu, pas l'outil qui a servi à le produire. Chaque livrable est relu, vérifié et signé par un consultant : c'est ce contrôle humain, plus l'expertise métier, qui fait la différence avec du contenu généré en masse." },
+  { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité. Notre fondateur dirige le commercial et le marketing d'un organisme de formation : nous connaissons Qualiopi, les financements et la pédagogie de l'intérieur, et nos contenus parlent le langage de vos futurs stagiaires." },
+  { q: "Qui pilote réellement le travail : l'IA ou un humain ?", a: "Un consultant, toujours. Claude exécute la production (recherche, rédaction, analyse, code) sous la direction d'un consultant qui cadre, vérifie et valide. Vous recevez d'ailleurs un reporting quotidien du travail réalisé." },
+  { q: "Combien coûte une agence marketing qui travaille avec Claude ?", a: "Moins cher qu'une agence classique à périmètre égal, parce que le temps de production est divisé par 3 ou 4 et que nous répercutons ce gain. L'audit de départ est offert et sans engagement : vous repartez avec une feuille de route chiffrée, avec ou sans nous." },
+];
+---
+<BaseLayout
+  title="Agence marketing Claude : SEO, Ads et contenu pilotés par l'IA"
+  description="Claude Agency est l'agence marketing qui pilote SEO, Google Ads et contenu avec Claude, l'IA d'Anthropic. Spécialisée organismes de formation. Audit offert."
+  pageSchema={[serviceSchema, breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Marketing &amp; IA</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Agence marketing Claude&nbsp;: votre acquisition pilotée par l'IA d'Anthropic</h1>
+    </div>
+
+    <div class="prose prose-stone mt-8 max-w-none">
+      <p class="lead">
+        Une <strong>agence marketing Claude</strong> est une agence dont les consultants produisent le
+        référencement, la publicité et le contenu avec <strong>Claude, l'intelligence artificielle
+        d'Anthropic</strong>. Le résultat&nbsp;: le même travail qu'une agence classique, livré en moyenne
+        3 à 4 fois plus vite, à des tarifs réduits d'autant. Claude Agency est une agence française
+        construite entièrement sur ce modèle, spécialisée dans les organismes de formation.
+      </p>
+
+      <h2>Ce que Claude change concrètement dans votre marketing</h2>
+      <p>
+        Nos consultants maîtrisent Claude Code et Claude Cowork, les outils professionnels d'Anthropic.
+        Dans notre propre organisme de formation, cette maîtrise a produit des résultats mesurés&nbsp;:
+      </p>
+      <ul>
+        <li>Les relances administratives et commerciales sont passées de <strong>2&nbsp;h par jour à 2&nbsp;h par mois</strong>.</li>
+        <li>Un tunnel de vente complet (pages, lead magnet, séquence d'e-mails) est produit en <strong>quelques minutes au lieu de 5 à 6&nbsp;heures</strong>.</li>
+        <li>Les comptes rendus et synthèses qui prenaient 2 à 3&nbsp;h par semaine en prennent autant… <strong>par mois</strong>.</li>
+        <li>Le back-office marketing et commercial d'un organisme à <strong>plus de 3&nbsp;M€ de chiffre d'affaires</strong> tourne avec ces méthodes depuis 2021.</li>
+      </ul>
+
+      <h2>Agence classique ou agence pilotée par Claude&nbsp;?</h2>
+      <table>
+        <thead>
+          <tr><th></th><th>Agence classique</th><th>Claude Agency</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Article SEO optimisé</td><td>Plusieurs jours de production</td><td>Quelques heures, relu et validé par un consultant</td></tr>
+          <tr><td>Lancement d'une campagne Google Ads</td><td>Souvent 2 à 3 semaines</td><td>Quelques jours, pages de destination comprises</td></tr>
+          <tr><td>Reporting</td><td>Mensuel</td><td>Quotidien&nbsp;: heures passées et tâches réalisées</td></tr>
+          <tr><td>Connaissance de votre métier</td><td>Généraliste</td><td>Spécialisée organismes de formation (Qualiopi, financements)</td></tr>
+          <tr><td>Tarifs</td><td>Temps humain facturé à l'heure</td><td>Gain de temps répercuté sur le devis</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Nos services marketing</h2>
+      <p>
+        Nous prenons en charge l'acquisition de bout en bout, avec un interlocuteur unique&nbsp;:
+      </p>
+      <ul>
+        <li><a href="/services/seo/">Référencement naturel (SEO)</a>&nbsp;: faire remonter vos formations sur Google, durablement.</li>
+        <li><a href="/services/sea/">Publicité Google Ads (SEA)</a>&nbsp;: remplir vos sessions dès maintenant, budget maîtrisé.</li>
+        <li><a href="/services/optimisation-site/">Optimisation de votre site</a>&nbsp;: transformer vos visiteurs en demandes de devis.</li>
+        <li><a href="/services/automatisation/">Automatisation de l'administratif</a>&nbsp;: parce qu'un marketing qui ramène des dossiers que personne n'a le temps de traiter ne sert à rien.</li>
+      </ul>
+
+      <h2>Notre méthode</h2>
+      <ol>
+        <li><strong>Audit offert.</strong> On analyse votre visibilité, votre site et vos process&nbsp;: vous repartez avec une feuille de route chiffrée, avec ou sans nous.</li>
+        <li><strong>Sprint de mise en place.</strong> Les fondations d'abord (site, pages, campagnes, contenus prioritaires), livrées vite grâce à Claude.</li>
+        <li><strong>Pilotage continu.</strong> Un reporting quotidien de l'activité des consultants, des positions et des conversions suivies mois après mois.</li>
+      </ol>
+    </div>
+
+    <Image
+      src={methodeImg}
+      alt="Consultant d'une agence marketing analysant le référencement et les campagnes d'un organisme de formation avec Claude"
+      loading="lazy"
+      sizes="(min-width: 768px) 42rem, 100vw"
+      class="mt-10 w-full rounded-2xl border border-sand object-cover"
+    />
+
+    <div class="prose prose-stone mt-10 max-w-none">
+      <h2>Claude, c'est quoi exactement&nbsp;?</h2>
+      <p>
+        Claude est l'intelligence artificielle développée par Anthropic, utilisée par les équipes
+        marketing du monde entier pour la recherche, la rédaction et l'analyse. Ses déclinaisons
+        professionnelles, Claude Code et Claude Cowork, permettent de confier à l'IA des travaux
+        complets (un audit SEO, une refonte de pages, une campagne publicitaire) sous le contrôle
+        d'un consultant. C'est cette maîtrise, rare en France, qui fonde notre agence&nbsp;: nous ne
+        « testons » pas l'IA, nous produisons avec elle chaque jour.
+      </p>
+      <p>
+        Envie de voir comment nous l'utilisons au quotidien&nbsp;? Notre fondateur détaille son parcours
+        et sa méthode sur la page <a href="/a-propos/">à propos</a>.
+      </p>
+    </div>
+
+    <section class="mt-14">
+      <h2 class="font-display text-2xl font-bold text-ink">Questions fréquentes</h2>
+      <dl class="mt-6 divide-y divide-sand border-y border-sand">
+        {faq.map((f) => (
+          <div class="py-5">
+            <dt class="font-display font-bold text-ink">{f.q}</dt>
+            <dd class="mt-2 text-muted">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <nav class="mt-12 border-t border-sand pt-8" aria-label="Explorer Claude Agency">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Explorer</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        <li><a href="/services/" class="font-semibold text-brand-700 hover:underline">Tous nos services →</a></li>
+        <li><a href="/blog/externaliser-marketing-organisme-formation/" class="font-semibold text-brand-700 hover:underline">Externaliser le marketing d'un OF →</a></li>
+        <li><a href="/blog/claude-agency-vs-concurrents/" class="font-semibold text-brand-700 hover:underline">Comparatif des agences IA pour OF →</a></li>
+        <li><a href="/diagnostic/" class="font-semibold text-brand-700 hover:underline">Diagnostic gratuit en 2 minutes →</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Voyez ce que Claude ferait pour votre marketing</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert, sans engagement&nbsp;: vos priorités, chiffrées, sous une semaine.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -251,3 +251,39 @@ bloque l'accès sortant à ces domaines). **À confirmer/exécuter par Julien.**
    `curl -I https://claudepartners.fr/blog/` doit renvoyer `301` → `https://claudeagency.fr/blog/`.
 
 > Désormais, la propriété GSC à suivre (§4 KPI) est **`claudeagency.fr`**, pas `claudepartners.fr`.
+
+---
+
+## 8. Journal — Offensive « agence marketing claude » (2026-07-13)
+
+Audit complet GSC + DataForSEO (SERP France réelle) + crawl. Constats de grounding :
+**claudeagency.fr absent du top 20** sur « agence marketing claude » (SERP faible : posts
+Instagram/Reddit, guides « skills Claude », petites agences — très gagnable) ; 18e sur
+« agence claude » ; striking distance sur « agence référencement (naturel) claude »
+(pos. 10,8-16,4 via `/services/seo/`, 141 impressions). Volumes : « agence marketing
+claude » <10/mois, « agence ia » 1 900 (diff. 1), « agence seo ia » 260, « claude ai
+france » 390. LCP mobile labo 6,4 s (hero léger 15-55 Ko : le coupable est le JS tiers).
+
+Actions menées en autonomie (~20, hors netlinking) :
+- **Landing `/agence-marketing-claude/`** : title/H1 exact-match, ~1 100 mots, définition
+  citable (GEO), tableau comparatif, chiffres propriétaires, FAQ visible (sans schema
+  FAQPage, cf. §5), Schema `Service` + `BreadcrumbList`, priorité sitemap 0,9.
+- **Homepage** : title « Agence marketing IA pour organismes de formation | Claude Agency »,
+  description réécrite (agence marketing + Claude/Anthropic), lien contextuel vers la landing.
+- **Maillage** : footer sitewide + 5 articles (externaliser-marketing [ancre exacte],
+  vs-concurrents, seo-OF, sea-OF, remplir-sessions) + à-propos + 3 services → landing.
+- **Services étoffés** : section « agence qui travaille avec Claude » sur seo/sea/
+  optimisation-site + FAQ « contenu IA pénalisé ? » sur seo.
+- **Article satellite** `claude-pour-le-marketing` (~950 mots, intent info de la SERP cible,
+  tableau Claude/Claude Code/Cowork). ⚠️ cover réutilisée (externaliser-marketing) à régénérer.
+- **Entité** : Organization `alternateName` (« Agence Claude », « Agence marketing Claude »),
+  description « agence marketing et IA », knowsAbout + marketing digital ; llms.txt : landing
+  ajoutée + Q/R « Qu'est-ce qu'une agence marketing Claude ? » ; descriptions CTR réécrites
+  (feuille-emargement CTR 0 % pos 9,8 ; questionnaire-satisfaction pos 10,2).
+- **Perf** : Leadsy différé (interaction ou 4 s) → hors chemin critique LCP/TBT.
+- Build 168 pages OK, rendu vérifié (desktop + mobile 390 px, zéro débordement).
+
+**Constats hors périmètre repo (côté Julien)** : `www.claudeagency.fr` répond **200 sans
+redirect** vers l'apex (la règle Cloudflare documentée dans `_redirects` n'est pas active —
+à corriger dans le dashboard) ; propriété GSC `sc-domain:claudeagency.fr` non vérifiée
+(la propriété URL-prefix suffit au quotidien).
