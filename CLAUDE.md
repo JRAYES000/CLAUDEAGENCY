@@ -52,6 +52,8 @@ même : vérifier le build (`cd app && npm run build`) avant tout merge, tenir l
 garde-fous projet, et signaler clairement après coup ce qui a été publié.
 
 ## Garde-fous projet
+- Toujours donner à Julien les **URLs complètes et cliquables** (`https://claudeagency.fr/...`)
+  des pages créées ou modifiées, en précisant si elles sont déjà en production ou pas encore.
 - Respecter le ton de `PRODUCT.md` (chaleureux, concret, ROI, français, sans jargon IA).
 - Pas de nouveau Schema `FAQPage`/`HowTo` pour le SEO Google (cf. `SEO-STRATEGY.md` §5).
 - Ne pas multiplier le contenu « vide » : la niche se gagne par la précision, pas le volume.
