@@ -254,6 +254,33 @@ bloque l'accès sortant à ces domaines). **À confirmer/exécuter par Julien.**
 
 ---
 
+## 9. Journal — Offensive « formation Claude » (2026-07-16)
+
+Recherche de mots-clés Ubersuggest (France, fr) du 2026-07-15 : le trafic « se former à
+Claude » est réel et très peu disputé — « formation claude » 590/mois (diff. 14, CPC 3,88 €),
+« formation claude ai » 390-480 (diff. 15), « formation claude code » 390 (diff. 11, intent
+commercial), « claude ai en français » 1 300 + « claude ai français » 880 + « claude ai
+gratuit en français » 590 (diff. 27-32). « claude ai productivité » = volume nul (l'intention
+productivité s'exprime via les requêtes d'usage). Quota Ubersuggest épuisé en cours d'audit :
+« formation ia cpf », « claude ai vs chatgpt » non chiffrés.
+
+**3 articles créés (2026-07-16)**, sans cannibalisation (l'article « Formation à Claude »
+existant cible *comment former ses équipes*, pas *quelle formation choisir*) :
+- `formation-claude` — « Formation Claude : comment choisir en 2026 » (cible : formation
+  claude + formation claude ai + longue traîne gratuite/CPF/certifiante/en ligne).
+- `formation-claude-code` — « Formation Claude Code : se former en 2026 » (cible : formation
+  claude code, la meilleure opportunité volume/difficulté du lot).
+- `claude-ai-en-francais` — « Claude AI en français : le guide 2026 » (cible : claude ai en
+  français + français + gratuit en français, ~2 800/mois adressables).
+
+Maillage bidirectionnel posé : les 3 nouveaux articles ↔ formation-claude-anthropic-OF,
+claude-code-OF, claude-vs-chatgpt, claude-pour-le-marketing + services formation-ia /
+outils-ia-sur-mesure / integration-ia / audit-ia. FAQ visibles sans schema FAQPage (cf. §5).
+⚠️ Les 3 covers sont réutilisées (ia-of-cover ×2, outils-ia-cover) — à régénérer au retour
+du quota HF.
+
+---
+
 ## 8. Journal — Offensive « agence marketing claude » (2026-07-13)
 
 Audit complet GSC + DataForSEO (SERP France réelle) + crawl. Constats de grounding :
