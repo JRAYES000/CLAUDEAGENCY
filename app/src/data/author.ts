@@ -11,7 +11,8 @@ export const AUTHOR = {
     "d'un organisme de formation professionnelle (plus de 3 M€ de chiffre d'affaires depuis 2021), " +
     "il en a automatisé seul tout le back-office (administratif, commercial et marketing) avec " +
     "des outils comme Make et Claude Code. Il aide aujourd'hui les organismes de formation à " +
-    "intégrer l'IA de façon concrète et mesurable.",
+    "intégrer l'IA de façon concrète et mesurable : relances administratives passées de 2 h par jour " +
+    "à 2 h par mois, comptes rendus automatisés, coaching commercial assisté par IA.",
   knowsAbout: [
     'Intelligence artificielle',
     'Automatisation des process',
