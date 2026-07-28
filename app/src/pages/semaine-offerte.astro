@@ -69,6 +69,8 @@ const regles = [
   'Les challenges sont cadrés ensemble avant le jour 1. Un brief flou donne un livrable flou.',
   'Le consultant travaille sur vos projets, pas sur ceux de votre beau-frère.',
   'Une semaine par ami. Vous n\'avez pas 6 identités.',
+  '4 places au total, jusqu\'au 30 septembre 2026. Premier arrivé, premier servi.',
+  'Le témoignage vidéo se livre dans les 30 jours après la fin de la semaine. Passé ce délai, je vous relance, et je relance mal.',
 ];
 ---
 
@@ -83,14 +85,14 @@ const regles = [
     <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-          Réservé à mes amis entrepreneurs du web
+          Réservé à mes amis entrepreneurs du web · 4 places · jusqu'au 30 septembre 2026
         </p>
         <h1 class="mt-4 font-display text-4xl font-extrabold leading-[1.03] tracking-tight text-ink text-balance sm:text-5xl">
           Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.
         </h1>
         <p class="mt-5 text-lg leading-relaxed text-muted">
           35 heures de travail sur vos projets. 3 challenges concrets. Un reporting tous les jours.
-          Valeur réelle&nbsp;: 500 €. Prix pour vous&nbsp;: une vidéo de 2 minutes et 5 étoiles sur Google.
+          Valeur réelle&nbsp;: 500&nbsp;€. Prix pour vous&nbsp;: une vidéo de 2 minutes et 5 étoiles sur Google.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a
@@ -99,7 +101,9 @@ const regles = [
           >
             Je réserve ma semaine
           </a>
-          <span class="text-sm text-muted">Il reste des places. Combien ? Aucune idée.</span>
+          <span class="text-sm text-muted">
+            <span class="font-medium text-ink">4 places</span>, jusqu'au 30 septembre 2026. Après, ça redevient payant.
+          </span>
         </div>
       </div>
       <Image
@@ -285,10 +289,11 @@ const regles = [
         <li class="flex gap-5">
           <span aria-hidden="true" class="font-display text-3xl font-extrabold text-brand-100">1</span>
           <div>
-            <p class="text-lg font-medium">Un témoignage client en vidéo</p>
+            <p class="text-lg font-medium">Un témoignage client en vidéo, sous 30 jours</p>
             <p class="mt-1 text-brand-50">
               2 minutes, votre téléphone, votre tête, votre voix. Ce qu'on a fait, ce que ça a changé.
-              Filmé à la fin de la semaine, pas six mois plus tard quand vous aurez tout oublié.
+              À me livrer dans les 30 jours qui suivent la fin de la prestation, pas six mois plus tard
+              quand vous aurez tout oublié.
             </p>
           </div>
         </li>
@@ -367,6 +372,9 @@ const regles = [
         Un mail à <span class="font-medium text-ink">contact@claudeagency.fr</span>. Réponse le jour même,
         sauf si je dors.
       </p>
+      <p class="mt-2 text-sm font-medium text-brand-700">
+        4 places, jusqu'au 30 septembre 2026.
+      </p>
     </div>
   </section>
 
@@ -377,8 +385,9 @@ const regles = [
         Mentions parfaitement légales : aucun consultant n'a été dopé pendant la rédaction de cette page.
         Aucune puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de
         Claude Agency sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec
-        Claude, ce qui suffit largement. Offre réservée aux amis de Julien Rayes, non cumulable, non
-        transmissible, non indexée par Google (c'est fait exprès). Les 500 € correspondent à une valeur de
+        Claude, ce qui suffit largement. Offre réservée aux amis de Julien Rayes, limitée à 4 places et close
+        le 30 septembre 2026, non cumulable, non transmissible, non indexée par Google (c'est fait exprès).
+        Le témoignage vidéo est attendu dans les 30 jours suivant le dernier jour de prestation. Les 500 € correspondent à une valeur de
         prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
       </p>
     </div>
