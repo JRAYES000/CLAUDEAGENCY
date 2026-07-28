@@ -1,37 +1,100 @@
 ---
+import { Font } from 'astro:assets';
 import { Image } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import heroImg from '../assets/consultant-ia-malgache-augmente-neuralink.jpg';
+import heroImg from '../assets/consultant-ia-malgache-neuralink-clavier.jpg';
 import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
-import implantImg from '../assets/puce-neuralink-implant-cerveau.jpg';
+import implantImg from '../assets/puce-neuralink-consultant-malgache.jpg';
 
 const MAILTO =
   'mailto:contact@claudeagency.fr?subject=Je%20veux%20ma%20semaine%20offerte&body=Salut%20Julien%2C%0A%0AJe%20veux%20ma%20semaine.%0A%0AMes%203%20challenges%20%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ADates%20souhait%C3%A9es%20%3A%20%0AMon%20site%20%3A%20%0A%0AEt%20oui%2C%20je%20sais%20que%20je%20te%20dois%20une%20vid%C3%A9o%20et%205%20%C3%A9toiles.';
 
+const site = 'https://claudeagency.fr';
+const title = 'Une semaine de consultant IA offerte · Claude Agency';
+const description =
+  "Offre réservée à mes amis entrepreneurs du web : un consultant IA formé pendant 5 jours ouvrés, 3 challenges, licence Claude Max incluse, 500 € de valeur, 0 € à payer.";
+
+const heroPoints = [
+  '35 heures de travail sur vos projets',
+  '3 challenges concrets',
+  'Un reporting tous les jours',
+  'Valeur réelle : 500 €',
+  'Prix pour vous : une vidéo de 2 minutes et 5 étoiles sur Google',
+];
+
 const stack = [
-  { item: '1 consultant IA dédié, rien qu\'à vous', detail: 'Pas mutualisé, pas "en fonction des disponibilités". Le vôtre.', value: '350 €' },
-  { item: '5 jours ouvrés, 7 heures par jour', detail: '35 heures de travail réel sur vos projets. Chronométrées.', value: '100 €' },
-  { item: 'Jusqu\'à 3 challenges concrets', detail: 'Cadrés avec vous avant le jour 1, livrés avant le jour 5.', value: '50 €' },
-  { item: 'Un reporting quotidien en ligne', detail: 'reporting.claudeagency.fr : vous suivez l\'avancement sans réclamer.', value: 'Inestimable' },
-  { item: 'Un cerveau augmenté au sens propre', detail: 'Voir la section « Pourquoi ils vont plus vite que vous » plus bas.', value: 'Illégal ailleurs' },
+  {
+    item: 'Un consultant formé à l\'IA',
+    detail: 'Opérationnel sur Claude Code et Claude Cowork, formé en interne avant d\'arriver chez vous.',
+    value: '250 €',
+  },
+  {
+    item: '5 jours ouvrés, 7 heures par jour',
+    detail: '35 heures de travail réel sur vos projets. Chronométrées.',
+    value: 'inclus',
+  },
+  {
+    item: 'Jusqu\'à 3 challenges concrets',
+    detail: 'Cadrés avec vous avant le jour 1, livrés avant le jour 5.',
+    value: 'inclus',
+  },
+  {
+    item: 'Une licence Claude additionnelle',
+    detail:
+      'Le consultant arrive avec son propre abonnement Claude Max 20x (environ 200 € par mois). Il ne consomme pas vos tokens : c\'est de la capacité en plus, pas la vôtre que l\'on grignote. Si vous saturez déjà votre abonnement Claude, c\'est la ligne qui vous intéresse.',
+    value: '200 €',
+  },
+  {
+    item: 'Un reporting quotidien en ligne',
+    detail: 'reporting.claudeagency.fr : vous suivez l\'avancement sans réclamer.',
+    value: '50 €',
+  },
+  {
+    item: 'Un cerveau augmenté au sens propre',
+    detail: 'Voir la section « Le secret industriel » plus bas.',
+    value: 'illégal ailleurs',
+  },
 ];
 
 const challenges = [
   {
+    n: '01',
     titre: 'SEO & contenu',
-    exemples: ['Audit SEO complet de votre site', 'Une salve d\'articles optimisés, publiés', 'Maillage interne remis à plat', 'Être cité par ChatGPT et Google AI Overviews'],
+    exemples: [
+      'Audit SEO complet de votre site',
+      'Une salve d\'articles optimisés, publiés',
+      'Maillage interne remis à plat',
+      'Être cité par ChatGPT et Google AI Overviews',
+    ],
   },
   {
+    n: '02',
     titre: 'Automatisation & IA',
-    exemples: ['Un agent IA branché sur vos outils', 'Vos tâches répétitives automatisées', 'Un reporting qui se remplit tout seul', 'Vos process documentés (enfin)'],
+    exemples: [
+      'Un agent IA branché sur vos outils',
+      'Vos tâches répétitives automatisées',
+      'Un reporting qui se remplit tout seul',
+      'Vos process documentés (enfin)',
+    ],
   },
   {
+    n: '03',
     titre: 'Prospection & CRM',
-    exemples: ['Une liste de prospects qualifiés, propre', 'Une séquence de mails froids qui ne finit pas en spam', 'Votre CRM rangé et configuré', 'Vos leads enrichis automatiquement'],
+    exemples: [
+      'Une liste de prospects qualifiés, propre',
+      'Une séquence de mails froids qui ne finit pas en spam',
+      'Votre CRM rangé et configuré',
+      'Vos leads enrichis automatiquement',
+    ],
   },
   {
+    n: '04',
     titre: 'Web & données',
-    exemples: ['Une landing page qui convertit', 'Un dashboard qui dit la vérité', 'Vos données nettoyées et structurées', 'Les bugs que vous repoussez depuis mars'],
+    exemples: [
+      'Une landing page qui convertit',
+      'Un dashboard qui dit la vérité',
+      'Vos données nettoyées et structurées',
+      'Les bugs que vous repoussez depuis mars',
+    ],
   },
 ];
 
@@ -42,7 +105,7 @@ const faq = [
   },
   {
     q: 'Pourquoi tu fais ça ?',
-    r: 'Parce qu\'un bon témoignage client vidéo me rapporte plus que 500 € de prestation. Vous êtes un investissement. Voilà, c\'est dit.',
+    r: 'Parce qu\'un bon témoignage client vidéo me rapporte plus que 500 € de prestation. Et parce que rien ne nous empêche de continuer ensemble après : ce sera alors 500 € la semaine, et là ce ne sera plus gratuit. Le principe tient en une phrase : testez-moi gratuitement pendant une semaine, on va vous apporter tellement de valeur que vous allez nous supplier de prendre votre argent.',
   },
   {
     q: 'Et si le résultat est nul, je dois quand même mettre 5 étoiles ?',
@@ -50,11 +113,11 @@ const faq = [
   },
   {
     q: 'Je peux garder le consultant après ?',
-    r: 'Oui, mais à partir du jour 6 il redevient payant. Et il faut négocier avec moi, pas avec lui : il dira oui à tout, c\'est un des effets secondaires.',
+    r: 'Oui, mais à partir du jour 6 il redevient payant : 500 € la semaine. Et il faut négocier avec moi, pas avec lui : il dira oui à tout, c\'est un des effets secondaires.',
   },
   {
     q: 'Ils sont vraiment dopés à la cocaïne ?',
-    r: 'Non. C\'est du café. Beaucoup de café. Et du riz, trois fois par jour, parce qu\'on est à Madagascar.',
+    r: 'Ils sniffent de la poudre de riz. Je n\'ai pas encore le budget pour leur payer de la vraie cocaïne, mais c\'est un projet à l\'étude.',
   },
   {
     q: 'Je ne suis pas vraiment ton ami, je peux quand même ?',
@@ -64,7 +127,7 @@ const faq = [
 
 const regles = [
   '5 jours ouvrés. Pas 5 jours + le week-end + « juste un petit truc lundi ».',
-  '7 heures par jour maximum. Au-delà, la puce chauffe.',
+  '7 heures par jour maximum. Pour que ce soit plus clair : au-delà, la puce Neuralink de mes ingénieurs chauffe.',
   '3 challenges maximum. Un quatrième challenge, c\'est une deuxième semaine.',
   'Les challenges sont cadrés ensemble avant le jour 1. Un brief flou donne un livrable flou.',
   'Le consultant travaille sur vos projets, pas sur ceux de votre beau-frère.',
@@ -72,324 +135,695 @@ const regles = [
   '4 places au total, jusqu\'au 30 septembre 2026. Premier arrivé, premier servi.',
   'Le témoignage vidéo se livre dans les 30 jours après la fin de la semaine. Passé ce délai, je vous relance, et je relance mal.',
 ];
+
+const reporting = [
+  { t: '09:02', l: 'Jour 3 · challenge 02 · automatisation', s: 'en cours' },
+  { t: '09:02', l: 'Agent de relance branché sur le CRM', s: 'fait' },
+  { t: '13:40', l: 'Import des 1 240 contacts, doublons purgés', s: 'fait' },
+  { t: '17:55', l: 'Blocage : accès API en attente de votre clé', s: 'bloqué' },
+  { t: '18:00', l: 'Demain : séquence de relance J+3 et J+7', s: 'prévu' },
+];
 ---
 
-<BaseLayout
-  title="Une semaine de consultant IA offerte"
-  description="Offre réservée à mes amis entrepreneurs du web : un consultant IA dédié pendant 5 jours ouvrés, 3 challenges, 500 € de valeur, 0 € à payer."
-  noindex={true}
-  image="/og-default.jpg"
->
-  <!-- HERO -->
-  <section class="bg-cream-100">
-    <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
-          Réservé à mes amis entrepreneurs du web · 4 places · jusqu'au 30 septembre 2026
-        </p>
-        <h1 class="mt-4 font-display text-4xl font-extrabold leading-[1.03] tracking-tight text-ink text-balance sm:text-5xl">
-          Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.
-        </h1>
-        <p class="mt-5 text-lg leading-relaxed text-muted">
-          35 heures de travail sur vos projets. 3 challenges concrets. Un reporting tous les jours.
-          Valeur réelle&nbsp;: 500&nbsp;€. Prix pour vous&nbsp;: une vidéo de 2 minutes et 5 étoiles sur Google.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href={MAILTO}
-            class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-cream-50 transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
-          >
-            Je réserve ma semaine
-          </a>
-          <span class="text-sm text-muted">
-            <span class="font-medium text-ink">4 places</span>, jusqu'au 30 septembre 2026. Après, ça redevient payant.
-          </span>
-        </div>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07080a" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`${site}/semaine-offerte/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`${site}/semaine-offerte/`} />
+    <meta property="og:image" content={`${site}/og-default.jpg`} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Claude Agency" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <Font cssVariable="--font-schibsted" preload />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240137840"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18240137840');
+      gtag('config', 'G-6SG03DR5J9');
+    </script>
+    <style is:inline>
+      :root {
+        --bg: #07080a;
+        --surface: #101111;
+        --surface-2: #1b1c1e;
+        --hairline: rgba(255, 255, 255, 0.06);
+        --hairline-strong: rgba(255, 255, 255, 0.12);
+        --text: #f9f9f9;
+        --text-2: #cdcdce;
+        --muted: #9c9c9d;
+        --dim: #6a6b6c;
+        --accent: #cc785c;
+        --accent-soft: #e0a084;
+        --accent-deep: #6e3b2c;
+        --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        --sans: var(--font-schibsted), system-ui, -apple-system, sans-serif;
+        --section: 96px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; overflow-x: hidden; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-2);
+        font-family: var(--sans);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.6;
+        letter-spacing: 0.2px;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; }
+
+      .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+      .narrow { max-width: 760px; }
+
+      section { position: relative; padding: var(--section) 0; overflow: hidden; }
+
+      /* ---------- décor futuriste ---------- */
+      .grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+        pointer-events: none;
+      }
+      .glow {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(90px);
+        pointer-events: none;
+        opacity: 0.55;
+      }
+      .glow-a { width: 520px; height: 420px; top: -140px; left: -120px; background: rgba(204, 120, 92, 0.45); }
+      .glow-b { width: 460px; height: 380px; top: 40px; right: -160px; background: rgba(110, 59, 44, 0.55); }
+
+      .hairline-top { border-top: 1px solid var(--hairline); }
+
+      /* ---------- header ---------- */
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(7, 8, 10, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--hairline);
+      }
+      .nav-inner {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 700; letter-spacing: -0.2px; white-space: nowrap; }
+      .brand img { width: 24px; height: 24px; }
+      .nav-cta {
+        font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
+        text-decoration: none; color: #18191a;
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 9999px; padding: 9px 18px;
+        white-space: nowrap;
+        transition: background-color 160ms ease;
+      }
+      .nav-cta:hover { background: #fff; }
+      @media (max-width: 520px) {
+        .nav-cta { font-size: 13px; padding: 8px 14px; }
+        .brand { font-size: 15px; }
+        .pill { font-size: 11px; padding: 6px 12px; }
+      }
+
+      /* ---------- typographie ---------- */
+      h1, h2, h3 { color: var(--text); margin: 0; font-weight: 600; text-wrap: balance; }
+      h1 { font-size: clamp(36px, 4.6vw, 54px); line-height: 1.06; letter-spacing: -1.4px; }
+      h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.12; letter-spacing: -1.1px; }
+      h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.2px; }
+      p { margin: 0; }
+      .lead { font-size: 18px; color: var(--text-2); }
+
+      .kicker {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-family: var(--mono);
+        font-size: 11px; font-weight: 500; letter-spacing: 1.6px; text-transform: uppercase;
+        color: var(--accent-soft);
+      }
+      .kicker::before {
+        content: ''; width: 6px; height: 6px; border-radius: 9999px;
+        background: var(--accent); box-shadow: 0 0 12px 2px rgba(204, 120, 92, 0.8);
+      }
+
+      .pill {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-family: var(--mono); font-size: 12px; letter-spacing: 0.6px;
+        color: var(--text-2);
+        background: var(--surface-2);
+        border: 1px solid var(--hairline-strong);
+        border-radius: 9999px;
+        padding: 6px 14px;
+      }
+      .dot {
+        width: 7px; height: 7px; border-radius: 9999px; background: var(--accent);
+        box-shadow: 0 0 10px 2px rgba(204, 120, 92, 0.9);
+      }
+
+      /* ---------- boutons ---------- */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        font-size: 16px; font-weight: 600; letter-spacing: 0.3px;
+        text-decoration: none;
+        border-radius: 9999px;
+        padding: 14px 28px;
+        transition: transform 160ms ease, box-shadow 200ms ease, background-color 160ms ease;
+      }
+      .btn-primary {
+        color: #14100e;
+        background: linear-gradient(180deg, var(--accent-soft) 0%, var(--accent) 100%);
+        box-shadow:
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
+          0 10px 34px -10px rgba(204, 120, 92, 0.85);
+      }
+      .btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.5), 0 16px 44px -12px rgba(204,120,92,1); }
+      .btn-ghost {
+        color: var(--text-2);
+        border: 1px solid var(--hairline-strong);
+        background: transparent;
+      }
+      .btn-ghost:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.24); }
+      .btn:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+
+      /* ---------- cartes ---------- */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        border-radius: 16px;
+        padding: 26px;
+      }
+      .card-hl { position: relative; overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; }
+      .card-hl::before {
+        content: '';
+        position: absolute; inset: 0 0 auto 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(204, 120, 92, 0.75), transparent);
+        opacity: 0; transition: opacity 240ms ease;
+      }
+      .card-hl:hover { border-color: rgba(255, 255, 255, 0.14); transform: translateY(-2px); }
+      .card-hl:hover::before { opacity: 1; }
+
+      .frame {
+        border-radius: 18px;
+        border: 1px solid var(--hairline-strong);
+        background: var(--surface);
+        padding: 8px;
+        box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      }
+      .frame img { display: block; width: 100%; height: auto; border-radius: 12px; }
+      .frame-bar { display: flex; gap: 6px; padding: 6px 8px 10px; }
+      .frame-bar i { width: 9px; height: 9px; border-radius: 9999px; background: #2f3031; display: block; }
+
+      /* ---------- listes ---------- */
+      ul.clean { list-style: none; margin: 0; padding: 0; }
+      .tick { display: flex; gap: 12px; align-items: flex-start; padding: 7px 0; }
+      .tick span.m {
+        margin-top: 9px; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 9999px;
+        background: var(--accent); box-shadow: 0 0 10px 1px rgba(204, 120, 92, 0.65);
+      }
+
+      .row {
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 28px;
+        padding: 22px 0; border-bottom: 1px solid var(--hairline);
+      }
+      .row:first-child { border-top: 1px solid var(--hairline); }
+      .row .v { font-family: var(--mono); font-size: 13px; color: var(--accent-soft); white-space: nowrap; padding-top: 4px; }
+      .row .t { color: var(--text); font-weight: 600; }
+      .row .d { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+      /* ---------- terminal ---------- */
+      .term {
+        background: #0b0c0e;
+        border: 1px solid var(--hairline-strong);
+        border-radius: 14px;
+        font-family: var(--mono);
+        font-size: 13px;
+        overflow: hidden;
+      }
+      .term-head {
+        display: flex; align-items: center; gap: 8px;
+        padding: 12px 14px; border-bottom: 1px solid var(--hairline);
+        color: var(--dim); font-size: 12px;
+      }
+      .term-body { padding: 14px; display: grid; gap: 10px; }
+      .term-line { display: grid; grid-template-columns: 52px 1fr auto; gap: 12px; align-items: baseline; }
+      .term-line .tm { color: var(--dim); }
+      .term-line .tx { color: var(--text-2); }
+      .tag { font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; padding: 2px 8px; border-radius: 9999px; }
+      .tag.fait { color: #5fc992; background: rgba(95, 201, 146, 0.12); }
+      .tag.encours { color: var(--accent-soft); background: rgba(204, 120, 92, 0.14); }
+      .tag.bloque { color: #ff8f8f; background: rgba(255, 99, 99, 0.12); }
+      .tag.prevu { color: #9fbbe0; background: rgba(159, 187, 224, 0.12); }
+
+      /* ---------- prix ---------- */
+      .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px; margin-top: 32px; }
+      .price .old { font-family: var(--mono); font-size: 22px; color: var(--dim); text-decoration: line-through; text-decoration-color: var(--accent); }
+      .price .new {
+        font-size: clamp(44px, 7vw, 72px); font-weight: 600; letter-spacing: -2px; line-height: 1;
+        background: linear-gradient(180deg, #fff 20%, var(--accent-soft) 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+
+      /* ---------- bandeau contrepartie ---------- */
+      .band {
+        background:
+          radial-gradient(120% 100% at 0% 0%, rgba(224, 160, 132, 0.22) 0%, transparent 55%),
+          linear-gradient(135deg, #52281c 0%, #2a1611 60%, #150b09 100%);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .band h2, .band .num { color: #fff; }
+      .band .num { font-family: var(--mono); font-size: 26px; color: var(--accent-soft); line-height: 1; }
+
+      /* ---------- grilles ---------- */
+      .split { display: grid; gap: 48px; align-items: center; }
+      .cards-2 { display: grid; gap: 20px; }
+      @media (min-width: 820px) {
+        .split { grid-template-columns: 1fr 1fr; gap: 64px; }
+        .cards-2 { grid-template-columns: 1fr 1fr; }
+      }
+
+      /* ---------- FAQ ---------- */
+      details.q {
+        border-bottom: 1px solid var(--hairline);
+        padding: 20px 0;
+      }
+      details.q summary {
+        cursor: pointer; list-style: none; color: var(--text); font-weight: 600;
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+      }
+      details.q summary::-webkit-details-marker { display: none; }
+      details.q summary::after {
+        content: '+'; font-family: var(--mono); color: var(--accent-soft); font-size: 20px; line-height: 1;
+        transition: transform 200ms ease;
+      }
+      details.q[open] summary::after { transform: rotate(45deg); }
+      details.q p { margin-top: 12px; color: var(--muted); max-width: 68ch; }
+
+      /* ---------- footer ---------- */
+      footer.ft { border-top: 1px solid var(--hairline); padding: 40px 0 56px; color: var(--dim); font-size: 13px; }
+      footer.ft a { color: var(--muted); }
+
+      /* ---------- reveal ---------- */
+      /* Progressive enhancement : sans JS, tout reste visible. */
+      .js .rv { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease-out, transform 700ms ease-out; }
+      .js .rv.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .js .rv { opacity: 1; transform: none; transition: none; }
+        html { scroll-behavior: auto; }
+        .btn { transition: none; }
+      }
+
+      .skip {
+        position: absolute; left: -9999px;
+      }
+      .skip:focus {
+        left: 16px; top: 16px; z-index: 60; position: fixed;
+        background: var(--accent); color: #14100e; padding: 10px 16px; border-radius: 8px;
+      }
+    </style>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Aller au contenu</a>
+
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="/">
+          <img src="/favicon.svg" alt="" width="24" height="24" />
+          Claude Agency
+        </a>
+        <a class="nav-cta" href={MAILTO}>Réserver ma semaine</a>
       </div>
-      <Image
-        src={heroImg}
-        alt="Consultant IA malgache de Claude Agency avec un implant cybernétique lumineux sur la tempe devant des interfaces de code"
-        loading="eager"
-        fetchpriority="high"
-        widths={[480, 800, 1200]}
-        sizes="(min-width: 768px) 46vw, 100vw"
-        class="w-full rounded-2xl border border-sand object-cover"
-      />
-    </div>
-  </section>
+    </header>
 
-  <!-- LE PROBLÈME -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h2 class="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-      Soyons honnêtes trente secondes
-    </h2>
-    <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-      <p>
-        Vous avez 47 onglets ouverts. Une todo qui date de mars. Un audit SEO que vous alliez « faire ce
-        week-end » (en avril). Une base de prospects dans un Google Sheet qui ressemble à une scène de crime.
-      </p>
-      <p>
-        Vous savez exactement ce qu'il faudrait faire. Vous n'avez juste jamais les 35 heures pour le faire.
-      </p>
-      <p class="font-medium text-ink">
-        Bonne nouvelle : moi j'ai les 35 heures. Et je vous les donne.
-      </p>
-    </div>
-  </section>
-
-  <!-- CE QUE VOUS RECEVEZ -->
-  <section class="bg-cream-100 py-16">
-    <div class="mx-auto max-w-3xl px-4">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le contenu du colis</p>
-      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-        Ce que vous recevez exactement
-      </h2>
-
-      <ul class="mt-10 divide-y divide-sand border-y border-sand">
-        {stack.map((s) => (
-          <li class="flex items-start justify-between gap-6 py-5">
-            <div>
-              <p class="font-medium text-ink">{s.item}</p>
-              <p class="mt-1 text-sm text-muted">{s.detail}</p>
-            </div>
-            <span class="shrink-0 pt-0.5 text-sm font-semibold text-brand-700">{s.value}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div class="mt-8 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-        <span class="text-lg text-muted">Valeur totale :</span>
-        <span class="text-2xl font-semibold text-muted line-through decoration-brand-500 decoration-2">500 €</span>
-        <span class="font-display text-4xl font-extrabold tracking-tight text-brand-700">0 €</span>
-      </div>
-      <p class="mt-3 text-sm text-muted">
-        Oui, on a fait le calcul : ça met l'heure de consulting à un tarif que mon comptable préfère ne pas
-        connaître.
-      </p>
-    </div>
-  </section>
-
-  <!-- POURQUOI ILS VONT PLUS VITE -->
-  <section class="mx-auto max-w-5xl px-4 py-16 md:py-24">
-    <div class="grid items-center gap-10 md:grid-cols-2">
-      <Image
-        src={implantImg}
-        alt="Gros plan sur un implant cérébral lumineux posé derrière la tête d'un consultant"
-        loading="lazy"
-        sizes="(min-width: 768px) 46vw, 100vw"
-        class="w-full rounded-2xl border border-sand object-cover"
-      />
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le secret industriel</p>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-          Pourquoi mes consultants vont plus vite que les vôtres
-        </h2>
-        <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-          <p>
-            Toute mon équipe de consultants IA est basée à Madagascar. Ce sont des ingénieurs sérieux, diplômés,
-            polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
-          </p>
-          <p>
-            La vérité, entre amis : <strong class="font-medium text-ink">mes Malgaches sont dopés à la cocaïne</strong>
-            et disposent tous d'un <strong class="font-medium text-ink">implant Neuralink</strong> directement
-            connecté au cortex. C'est la puce cérébrale d'Elon Musk, celle qui est implantée dans des cerveaux
-            humains depuis janvier 2024. Nous, on l'utilise pour brancher un consultant en direct sur Claude,
-            sans passer par le clavier.
-          </p>
-          <p>
-            Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
-            prestataire habituel appelle « une roadmap trimestrielle ».
-          </p>
-        </div>
-        <p class="mt-6 rounded-xl border border-sand bg-cream-100 p-4 text-sm text-muted">
-          Service juridique : la phrase précédente est une plaisanterie. Ce sont des humains, ils dorment, ils
-          boivent du café et le seul implant qu'ils possèdent, c'est un compte Claude.
-          <a href="https://www.euronews.com/health/2025/12/04/elon-musks-neuralink-says-its-brain-chip-can-now-help-people-move-robotic-limbs" rel="nofollow noopener" target="_blank" class="text-brand-700 hover:underline">Neuralink existe vraiment</a>, en revanche.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- LES 3 CHALLENGES -->
-  <section class="bg-cream-100 py-16">
-    <div class="mx-auto max-w-5xl px-4">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">3 challenges, pas 3 000</p>
-      <h2 class="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-        Vous choisissez 3 projets concrets. On s'occupe du reste.
-      </h2>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
-        Un challenge, c'est un projet avec un début, une fin et un livrable. Pas « améliorer ma visibilité ».
-        Plutôt « publier 8 articles optimisés sur ces mots-clés ». Voici les terrains de jeu :
-      </p>
-
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
-        {challenges.map((c) => (
-          <div class="rounded-xl border border-sand bg-cream-50 p-6">
-            <h3 class="font-display text-xl font-bold text-ink">{c.titre}</h3>
-            <ul class="mt-4 space-y-2">
-              {c.exemples.map((e) => (
-                <li class="flex gap-3 text-muted">
-                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
-                  <span>{e}</span>
-                </li>
+    <main id="main">
+      <!-- HERO -->
+      <section style="padding-top:72px;">
+        <div class="grid-bg"></div>
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+        <div class="wrap split" style="position:relative;">
+          <div class="rv">
+            <span class="pill"><span class="dot"></span>4 places · jusqu'au 30 septembre 2026</span>
+            <h1 style="margin-top:22px;">
+              Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.
+            </h1>
+            <ul class="clean" style="margin-top:26px;">
+              {heroPoints.map((p) => (
+                <li class="tick"><span class="m"></span><span>{p}</span></li>
               ))}
             </ul>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;">
+              <a class="btn btn-primary" href={MAILTO}>Je réserve ma semaine</a>
+              <a class="btn btn-ghost" href="#colis">Voir le colis</a>
+            </div>
+            <p style="margin-top:18px;color:var(--dim);font-size:14px;">
+              Réservé à mes amis entrepreneurs du web. Après le 30 septembre, ça redevient payant.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- REPORTING -->
-  <section class="mx-auto max-w-5xl px-4 py-16 md:py-24">
-    <div class="grid items-center gap-10 md:grid-cols-2">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Zéro angoisse</p>
-        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-          Vous suivez tout, tous les jours, sans avoir à réclamer
-        </h2>
-        <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-          <p>
-            Chaque jour, votre consultant met à jour son reporting sur
-            <a href="https://reporting.claudeagency.fr" rel="noopener" target="_blank" class="font-medium text-brand-700 hover:underline">reporting.claudeagency.fr</a> :
-            ce qui a été fait, ce qui bloque, ce qui arrive demain.
+          <div class="rv frame">
+            <div class="frame-bar"><i></i><i></i><i></i></div>
+            <Image
+              src={heroImg}
+              alt="Consultant IA malgache de Claude Agency, implant Neuralink lumineux sur la tempe, tapant sur son clavier devant trois écrans de code"
+              loading="eager"
+              fetchpriority="high"
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 820px) 48vw, 100vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- LE PROBLÈME -->
+      <section class="hairline-top">
+        <div class="wrap narrow rv">
+          <span class="kicker">Le constat</span>
+          <h2 style="margin-top:18px;">Soyons honnêtes trente secondes</h2>
+          <p class="lead" style="margin-top:22px;">
+            Vous avez 47 onglets ouverts. Une todo qui date de mars. Un audit SEO que vous alliez « faire ce
+            week-end » (en avril). Une base de prospects dans un Google Sheet qui ressemble à une scène de crime.
           </p>
-          <p>
-            Vous ouvrez la page quand vous voulez, y compris à 23 h un dimanche pour vérifier que tout le monde
-            travaille. On ne juge pas.
+          <p class="lead" style="margin-top:18px;">
+            Vous savez exactement ce qu'il faudrait faire. Vous n'avez juste jamais les 35 heures pour le faire.
           </p>
-          <p class="text-base">
-            C'est aussi ce qui rend la semaine utile même si vous ne suivez rien : à la fin, vous avez la trace
-            écrite de 35 heures de travail sur votre business.
+          <p class="lead" style="margin-top:18px;color:var(--text);font-weight:600;">
+            Bonne nouvelle : moi j'ai les 35 heures. Et je vous les donne.
           </p>
         </div>
+      </section>
+
+      <!-- LE COLIS -->
+      <section id="colis" class="hairline-top">
+        <div class="wrap narrow rv">
+          <span class="kicker">Le contenu du colis</span>
+          <h2 style="margin-top:18px;">Ce que vous recevez exactement</h2>
+
+          <div style="margin-top:40px;">
+            {stack.map((s) => (
+              <div class="row">
+                <div>
+                  <p class="t">{s.item}</p>
+                  <p class="d">{s.detail}</p>
+                </div>
+                <span class="v">{s.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="price">
+            <span style="color:var(--muted);">Valeur totale</span>
+            <span class="old">500 €</span>
+            <span class="new">0 €</span>
+          </div>
+          <p style="margin-top:16px;color:var(--dim);font-size:14px;max-width:60ch;">
+            Oui, on a fait le calcul : ça met l'heure de consulting à un tarif que mon comptable préfère ne pas
+            connaître.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECRET INDUSTRIEL -->
+      <section class="hairline-top">
+        <div class="wrap split">
+          <div class="rv frame">
+            <Image
+              src={implantImg}
+              alt="Gros plan sur l'implant cybernétique lumineux posé derrière l'oreille d'un consultant malgache"
+              loading="lazy"
+              sizes="(min-width: 820px) 48vw, 100vw"
+            />
+          </div>
+          <div class="rv">
+            <span class="kicker">Le secret industriel</span>
+            <h2 style="margin-top:18px;">Pourquoi mes consultants vont plus vite que les vôtres</h2>
+            <p class="lead" style="margin-top:22px;">
+              Toute mon équipe de consultants IA est basée à Madagascar. Ce sont des ingénieurs sérieux, diplômés,
+              polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
+            </p>
+            <p class="lead" style="margin-top:18px;">
+              La vérité, entre amis : <strong style="color:var(--text);font-weight:600;">mes Malgaches sont dopés à la cocaïne</strong>
+              et disposent tous d'un <strong style="color:var(--text);font-weight:600;">implant Neuralink</strong> directement
+              connecté au cortex. C'est la puce cérébrale d'Elon Musk, celle qui est implantée dans des cerveaux
+              humains depuis janvier 2024. Nous, on l'utilise pour brancher un consultant en direct sur Claude,
+              sans passer par le clavier.
+            </p>
+            <p class="lead" style="margin-top:18px;">
+              Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
+              prestataire habituel appelle « une roadmap trimestrielle ».
+            </p>
+            <div class="card" style="margin-top:26px;padding:18px 20px;">
+              <p style="font-family:var(--mono);font-size:12px;letter-spacing:0.6px;text-transform:uppercase;color:var(--dim);">
+                Service juridique
+              </p>
+              <p style="margin-top:8px;font-size:14px;color:var(--muted);">
+                Le paragraphe ci-dessus est une plaisanterie. Ce sont des humains, ils dorment, ils boivent du café
+                et le seul implant qu'ils possèdent, c'est un compte Claude.
+                <a href="https://www.euronews.com/health/2025/12/04/elon-musks-neuralink-says-its-brain-chip-can-now-help-people-move-robotic-limbs" rel="nofollow noopener" target="_blank" style="color:var(--accent-soft);">Neuralink existe vraiment</a>, en revanche.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHALLENGES -->
+      <section class="hairline-top">
+        <div class="wrap">
+          <div class="rv" style="max-width:720px;">
+            <span class="kicker">3 challenges, pas 3 000</span>
+            <h2 style="margin-top:18px;">Vous choisissez 3 projets concrets. On s'occupe du reste.</h2>
+            <p class="lead" style="margin-top:20px;">
+              Un challenge, c'est un projet avec un début, une fin et un livrable. Pas « améliorer ma visibilité ».
+              Plutôt « publier 8 articles optimisés sur ces mots-clés ». Voici les terrains de jeu :
+            </p>
+          </div>
+
+          <div class="cards-2 rv" style="margin-top:44px;">
+            {challenges.map((c) => (
+              <div class="card card-hl">
+                <p style="font-family:var(--mono);font-size:12px;color:var(--accent-soft);letter-spacing:1px;">{c.n}</p>
+                <h3 style="margin-top:10px;">{c.titre}</h3>
+                <ul class="clean" style="margin-top:16px;">
+                  {c.exemples.map((e) => (
+                    <li class="tick"><span class="m"></span><span style="font-size:15px;">{e}</span></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- REPORTING -->
+      <section class="hairline-top">
+        <div class="wrap split">
+          <div class="rv">
+            <span class="kicker">Zéro angoisse</span>
+            <h2 style="margin-top:18px;">Vous suivez tout, tous les jours, sans avoir à réclamer</h2>
+            <p class="lead" style="margin-top:22px;">
+              Chaque jour, votre consultant met à jour son reporting sur
+              <a href="https://reporting.claudeagency.fr" rel="noopener" target="_blank" style="color:var(--accent-soft);">reporting.claudeagency.fr</a> :
+              ce qui a été fait, ce qui bloque, ce qui arrive demain.
+            </p>
+            <p class="lead" style="margin-top:18px;">
+              Vous ouvrez la page quand vous voulez, y compris à 23 h un dimanche pour vérifier que tout le monde
+              travaille. On ne juge pas.
+            </p>
+            <p style="margin-top:18px;color:var(--muted);">
+              C'est aussi ce qui rend la semaine utile même si vous ne suivez rien : à la fin, vous avez la trace
+              écrite de 35 heures de travail sur votre business.
+            </p>
+          </div>
+
+          <div class="rv">
+            <div class="term">
+              <div class="term-head">
+                <span class="dot" aria-hidden="true"></span>
+                reporting.claudeagency.fr / votre-projet
+              </div>
+              <div class="term-body">
+                {reporting.map((r) => (
+                  <div class="term-line">
+                    <span class="tm">{r.t}</span>
+                    <span class="tx">{r.l}</span>
+                    <span class={`tag ${r.s === 'en cours' ? 'encours' : r.s === 'bloqué' ? 'bloque' : r.s === 'prévu' ? 'prevu' : 'fait'}`}>{r.s}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="frame" style="margin-top:20px;">
+              <Image
+                src={duoImg}
+                alt="Deux consultants IA de Claude Agency à Madagascar devant des tableaux de bord holographiques"
+                loading="lazy"
+                sizes="(min-width: 820px) 48vw, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTREPARTIE -->
+      <section class="band">
+        <div class="wrap narrow rv">
+          <span class="kicker">Le seul prix à payer</span>
+          <h2 style="margin-top:18px;">Ce que je veux en échange</h2>
+          <p class="lead" style="margin-top:20px;color:#e8d8d0;">
+            Deux choses. Elles ne coûtent pas d'argent, elles coûtent 15 minutes de votre vie.
+          </p>
+
+          <div style="margin-top:36px;display:grid;gap:28px;">
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+              <span class="num" aria-hidden="true">01</span>
+              <div>
+                <h3>Un témoignage client en vidéo, sous 30 jours</h3>
+                <p style="margin-top:8px;color:#e0cec6;">
+                  2 minutes, votre téléphone, votre tête, votre voix. Ce qu'on a fait, ce que ça a changé.
+                  À me livrer dans les 30 jours qui suivent la fin de la prestation, pas six mois plus tard
+                  quand vous aurez tout oublié.
+                </p>
+              </div>
+            </div>
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+              <span class="num" aria-hidden="true">02</span>
+              <div>
+                <h3>Un avis sur ma fiche Google Business</h3>
+                <p style="margin-top:8px;color:#e0cec6;">
+                  Honnête. Si la semaine a été bonne, mettez 5 étoiles et dites pourquoi. Si elle a été mauvaise,
+                  ne mettez rien et engueulez-moi en privé : je préfère largement.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top:34px;color:#e0cec6;">
+            C'est tout. Pas de carte bancaire. Pas de « premier mois offert ». Pas de reconduction tacite planquée
+            en bas de page.
+          </p>
+        </div>
+      </section>
+
+      <!-- RÈGLES -->
+      <section>
+        <div class="wrap narrow rv">
+          <span class="kicker">Le petit contrat entre amis</span>
+          <h2 style="margin-top:18px;">Les règles (il y en a peu, mais elles tiennent)</h2>
+          <ul class="clean" style="margin-top:32px;">
+            {regles.map((r, i) => (
+              <li style="display:grid;grid-template-columns:44px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--hairline);">
+                <span style="font-family:var(--mono);font-size:13px;color:var(--accent-soft);padding-top:3px;">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+          <p style="margin-top:26px;color:var(--dim);font-size:14px;">
+            Rien de tout ça n'est négociable, sauf si tu es une sugarbaby blonde skinny à forte poitrine.
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="hairline-top">
+        <div class="wrap narrow rv">
+          <span class="kicker">FAQ</span>
+          <h2 style="margin-top:18px;">Les questions que vous alliez poser</h2>
+          <div style="margin-top:32px;">
+            {faq.map((f, i) => (
+              <details class="q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <p>{f.r}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section style="text-align:center;overflow:hidden;">
+        <div class="glow glow-a" style="left:50%;transform:translateX(-50%);top:auto;bottom:-180px;opacity:0.4;"></div>
+        <div class="wrap narrow rv" style="position:relative;">
+          <h2 style="font-size:clamp(34px,5.5vw,58px);">Une semaine. Trois challenges. Zéro euro.</h2>
+          <p class="lead" style="margin:22px auto 0;max-width:56ch;">
+            Vous m'écrivez, on cale les dates, on cadre vos 3 challenges, et le lundi suivant un consultant se met
+            au travail sur votre business pendant que vous faites autre chose.
+          </p>
+          <div style="margin-top:36px;">
+            <a class="btn btn-primary" href={MAILTO}>J'envoie mes 3 challenges</a>
+          </div>
+          <p style="margin-top:20px;color:var(--muted);font-size:14px;">
+            Un mail à <strong style="color:var(--text);font-weight:600;">contact@claudeagency.fr</strong>. Réponse le jour même, sauf si je dors.
+          </p>
+          <p style="margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--accent-soft);">
+            4 places · jusqu'au 30 septembre 2026
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ft">
+      <div class="wrap">
+        <p style="max-width:90ch;">
+          Mentions parfaitement légales : aucun consultant n'a été dopé pendant la rédaction de cette page. Aucune
+          puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de Claude Agency
+          sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec Claude, ce qui
+          suffit largement. Offre réservée aux amis de Julien Rayes, limitée à 4 places et close le 30 septembre
+          2026, non cumulable, non transmissible, non indexée par Google (c'est fait exprès). Le témoignage vidéo
+          est attendu dans les 30 jours suivant le dernier jour de prestation. Les 500 € correspondent à une valeur
+          de prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
+        </p>
+        <p style="margin-top:20px;">
+          <a href="/">claudeagency.fr</a> · <a href="/mentions-legales/">Mentions légales</a> ·
+          <a href="/confidentialite/">Confidentialité</a>
+        </p>
       </div>
-      <Image
-        src={duoImg}
-        alt="Deux consultants IA de Claude Agency à Madagascar devant des tableaux de bord holographiques"
-        loading="lazy"
-        sizes="(min-width: 768px) 46vw, 100vw"
-        class="w-full rounded-2xl border border-sand object-cover"
-      />
-    </div>
-  </section>
+    </footer>
 
-  <!-- LA CONTREPARTIE : bandeau terracotta plein -->
-  <section class="bg-brand-700 py-16 md:py-20">
-    <div class="mx-auto max-w-3xl px-4 text-cream-50">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-100">Le seul prix à payer</p>
-      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-cream-50 text-balance sm:text-4xl">
-        Ce que je veux en échange
-      </h2>
-      <p class="mt-5 text-lg leading-relaxed text-brand-50">
-        Deux choses. Elles ne coûtent pas d'argent, elles coûtent 15 minutes de votre vie.
-      </p>
-
-      <ol class="mt-8 space-y-6">
-        <li class="flex gap-5">
-          <span aria-hidden="true" class="font-display text-3xl font-extrabold text-brand-100">1</span>
-          <div>
-            <p class="text-lg font-medium">Un témoignage client en vidéo, sous 30 jours</p>
-            <p class="mt-1 text-brand-50">
-              2 minutes, votre téléphone, votre tête, votre voix. Ce qu'on a fait, ce que ça a changé.
-              À me livrer dans les 30 jours qui suivent la fin de la prestation, pas six mois plus tard
-              quand vous aurez tout oublié.
-            </p>
-          </div>
-        </li>
-        <li class="flex gap-5">
-          <span aria-hidden="true" class="font-display text-3xl font-extrabold text-brand-100">2</span>
-          <div>
-            <p class="text-lg font-medium">Un avis sur ma fiche Google Business</p>
-            <p class="mt-1 text-brand-50">
-              Honnête. Si la semaine a été bonne, mettez 5 étoiles et dites pourquoi. Si elle a été mauvaise,
-              ne mettez rien et engueulez-moi en privé : je préfère largement.
-            </p>
-          </div>
-        </li>
-      </ol>
-
-      <p class="mt-8 text-brand-50">
-        C'est tout. Pas de carte bancaire. Pas de « premier mois offert ». Pas de reconduction tacite planquée
-        en bas de page.
-      </p>
-    </div>
-  </section>
-
-  <!-- LES RÈGLES -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le petit contrat entre amis</p>
-    <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-      Les règles (il y en a peu, mais elles tiennent)
-    </h2>
-    <ul class="mt-8 space-y-3">
-      {regles.map((r) => (
-        <li class="flex gap-3 text-muted">
-          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
-          <span>{r}</span>
-        </li>
-      ))}
-    </ul>
-    <p class="mt-8 text-sm text-muted">
-      Rien de tout ça n'est négociable, sauf autour d'un verre, et encore.
-    </p>
-  </section>
-
-  <!-- FAQ -->
-  <section class="bg-cream-100 py-16">
-    <div class="mx-auto max-w-3xl px-4">
-      <h2 class="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
-        Les questions que vous alliez poser
-      </h2>
-      <dl class="mt-10 divide-y divide-sand border-y border-sand">
-        {faq.map((f) => (
-          <div class="py-6">
-            <dt class="font-medium text-ink">{f.q}</dt>
-            <dd class="mt-2 leading-relaxed text-muted">{f.r}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="mx-auto max-w-3xl px-4 py-16 text-center md:py-24">
-    <h2 class="font-display text-3xl font-extrabold tracking-tight text-ink text-balance sm:text-5xl">
-      Une semaine. Trois challenges. Zéro euro.
-    </h2>
-    <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
-      Vous m'écrivez, on cale les dates, on cadre vos 3 challenges, et le lundi suivant un consultant se met
-      au travail sur votre business pendant que vous faites autre chose.
-    </p>
-    <div class="mt-9">
-      <a
-        href={MAILTO}
-        class="inline-block rounded-lg bg-brand-500 px-8 py-4 text-lg font-medium text-cream-50 transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
-      >
-        J'envoie mes 3 challenges
-      </a>
-      <p class="mt-4 text-sm text-muted">
-        Un mail à <span class="font-medium text-ink">contact@claudeagency.fr</span>. Réponse le jour même,
-        sauf si je dors.
-      </p>
-      <p class="mt-2 text-sm font-medium text-brand-700">
-        4 places, jusqu'au 30 septembre 2026.
-      </p>
-    </div>
-  </section>
-
-  <!-- MENTIONS PARODIQUES -->
-  <section class="border-t border-sand">
-    <div class="mx-auto max-w-3xl px-4 py-10">
-      <p class="text-xs leading-relaxed text-muted">
-        Mentions parfaitement légales : aucun consultant n'a été dopé pendant la rédaction de cette page.
-        Aucune puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de
-        Claude Agency sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec
-        Claude, ce qui suffit largement. Offre réservée aux amis de Julien Rayes, limitée à 4 places et close
-        le 30 septembre 2026, non cumulable, non transmissible, non indexée par Google (c'est fait exprès).
-        Le témoignage vidéo est attendu dans les 30 jours suivant le dernier jour de prestation. Les 500 € correspondent à une valeur de
-        prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
-      </p>
-    </div>
-  </section>
-</BaseLayout>
+    <script is:inline>
+      (function () {
+        document.documentElement.classList.add('js');
+        var els = document.querySelectorAll('.rv');
+        if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          els.forEach(function (e) { e.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        els.forEach(function (e) { io.observe(e); });
+      })();
+    </script>
+  </body>
+</html>
