@@ -3,7 +3,7 @@ import { Font } from 'astro:assets';
 import { Image } from 'astro:assets';
 import heroImg from '../assets/consultant-ia-malgache-neuralink-clavier.jpg';
 import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
-import implantImg from '../assets/puce-neuralink-consultant-malgache.jpg';
+import implantImg from '../assets/consultants-ia-malgaches-neuralink-caricature.jpg';
 
 // CTA principal : création de l'espace client + dépôt de la demande.
 const CTA_URL = 'https://reporting.claudeagency.fr/client?nouveau=1';
@@ -519,8 +519,9 @@ const reporting = [
           <div class="rv frame" style="margin-top:34px;">
             <Image
               src={implantImg}
-              alt="Gros plan sur l'implant cybernétique lumineux posé derrière l'oreille d'un consultant malgache"
+              alt="Caricature de trois consultants malgaches équipés d'un implant Neuralink, tapant sur des claviers en flammes devant des écrans de KPI absurdes"
               loading="lazy"
+              widths={[480, 800, 1200, 1600]}
               sizes="(min-width: 860px) 46vw, 100vw"
             />
           </div>
