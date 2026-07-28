@@ -5,6 +5,9 @@ import heroImg from '../assets/consultant-ia-malgache-neuralink-clavier.jpg';
 import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
 import implantImg from '../assets/puce-neuralink-consultant-malgache.jpg';
 
+// CTA principal : création de l'espace client + dépôt de la demande.
+const CTA_URL = 'https://reporting.claudeagency.fr/client?nouveau=1';
+
 const MAILTO =
   'mailto:contact@claudeagency.fr?subject=Je%20veux%20ma%20semaine%20offerte&body=Salut%20Julien%2C%0A%0AJe%20veux%20ma%20semaine.%0A%0AMes%203%20challenges%20%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ADates%20souhait%C3%A9es%20%3A%20%0AMon%20site%20%3A%20%0A%0AEt%20oui%2C%20je%20sais%20que%20je%20te%20dois%20une%20vid%C3%A9o%20et%205%20%C3%A9toiles.';
 
@@ -24,7 +27,7 @@ const etapes = [
   {
     n: 'Jour 0',
     t: 'On cadre',
-    d: '30 minutes en visio. Vous sortez vos 3 challenges, on les transforme en livrables datés. Un brief flou donne un livrable flou, alors on ne sort pas de cet appel tant que ce n\'est pas net.',
+    d: 'Vous créez votre espace client en 2 minutes, puis on se cale 30 minutes en visio : vous sortez vos 3 challenges, on les transforme en livrables datés. Un brief flou donne un livrable flou, alors on ne sort pas de cet appel tant que ce n\'est pas net.',
   },
   {
     n: 'Jours 1 à 5',
@@ -459,7 +462,7 @@ const reporting = [
           <img src="/favicon.svg" alt="" width="22" height="22" />
           Claude Agency
         </a>
-        <a class="nav-cta" href={MAILTO}>Réserver ma semaine</a>
+        <a class="nav-cta" href={CTA_URL}>Réserver ma semaine</a>
       </div>
     </header>
 
@@ -498,7 +501,7 @@ const reporting = [
                 />
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;">
-                <a class="btn btn-primary" href={MAILTO}>Je réserve ma semaine offerte</a>
+                <a class="btn btn-primary" href={CTA_URL}>Je réserve ma semaine offerte</a>
                 <a class="btn btn-ghost" href="#colis">Voir la valeur</a>
               </div>
               <p style="margin-top:14px;color:var(--muted);font-size:14.5px;">
@@ -597,7 +600,7 @@ const reporting = [
             connaître.
           </p>
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
-            <a class="btn btn-primary" href={MAILTO}>Je prends une place</a>
+            <a class="btn btn-primary" href={CTA_URL}>Je prends une place</a>
             <span style="color:var(--muted);font-size:14.5px;">Il en reste 4. Ensuite, c'est 500 € la semaine.</span>
           </div>
         </div>
@@ -611,7 +614,7 @@ const reporting = [
             <h2 style="margin-top:16px;">Cinq jours, quatre étapes, zéro réunion inutile</h2>
             <p class="lead" style="margin-top:18px;">
               Vous n'avez rien à installer, rien à apprendre et personne à manager. Voilà exactement ce qui se
-              passe entre le moment où vous m'écrivez et le moment où vous récupérez vos livrables.
+              passe entre le moment où vous remplissez le formulaire et le moment où vous récupérez vos livrables.
             </p>
           </div>
 
@@ -814,15 +817,16 @@ const reporting = [
         <div class="wrap narrow rv" style="position:relative;">
           <h2 style="font-size:clamp(26px,3.2vw,36px);">Une semaine. Trois challenges. Zéro euro.</h2>
           <p class="lead" style="margin:20px auto 0;max-width:56ch;">
-            Vous écrivez, on cale les dates, on cadre vos 3 challenges, et lundi prochain quelqu'un travaille sur
-            votre business pendant que vous faites autre chose. Au pire, vous aurez perdu 30 minutes de visio.
+            Vous créez votre espace client en 2 minutes, on cale les dates, on cadre vos 3 challenges, et lundi
+            prochain quelqu'un travaille sur votre business pendant que vous faites autre chose. Au pire, vous
+            aurez perdu 30 minutes de visio.
           </p>
           <div style="margin-top:32px;">
-            <a class="btn btn-primary" href={MAILTO}>J'envoie mes 3 challenges</a>
+            <a class="btn btn-primary" href={CTA_URL}>Je crée mon espace et je réserve</a>
           </div>
           <p style="margin-top:18px;color:var(--muted);font-size:14.5px;">
-            Pas de carte bancaire. Pas d'abonnement. Un mail à <strong>contact@claudeagency.fr</strong>, réponse le
-            jour même, sauf si je dors.
+            Pas de carte bancaire. Pas d'abonnement. Réponse le jour même, sauf si je dors. Vous préférez
+            m'écrire ? <a href={MAILTO} style="color:var(--accent-700);">contact@claudeagency.fr</a>.
           </p>
           <p style="margin-top:6px;font-family:var(--mono);font-size:13px;color:var(--accent-700);">
             4 places · jusqu'au 30 septembre 2026
