@@ -4,9 +4,16 @@ import { Image } from 'astro:assets';
 import heroImg from '../assets/consultant-ia-malgache-neuralink-clavier.jpg';
 import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
 import implantImg from '../assets/puce-neuralink-consultant-malgache.jpg';
+import julienImg from '../assets/julien.jpg';
 
 // CTA principal : création de l'espace client + dépôt de la demande.
 const CTA_URL = 'https://reporting.claudeagency.fr/client?nouveau=1';
+
+// Compteur de places : à mettre à jour à la main dès qu'un ami réserve.
+// Une rareté qui ne bouge jamais ne crée aucune urgence.
+const PLACES_TOTAL = 4;
+const PLACES_PRISES = 0;
+const PLACES_RESTANTES = PLACES_TOTAL - PLACES_PRISES;
 
 const MAILTO =
   'mailto:contact@claudeagency.fr?subject=Je%20veux%20ma%20semaine%20offerte&body=Salut%20Julien%2C%0A%0AJe%20veux%20ma%20semaine.%0A%0AMes%203%20challenges%20%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ADates%20souhait%C3%A9es%20%3A%20%0AMon%20site%20%3A%20%0A%0AEt%20oui%2C%20je%20sais%20que%20je%20te%20dois%20une%20vid%C3%A9o%20et%205%20%C3%A9toiles.';
@@ -27,7 +34,7 @@ const etapes = [
   {
     n: 'Jour 0',
     t: 'On cadre',
-    d: 'Vous créez votre espace client en 2 minutes, puis on se cale 30 minutes en visio : vous sortez vos 3 challenges, on les transforme en livrables datés. Un brief flou donne un livrable flou, alors on ne sort pas de cet appel tant que ce n\'est pas net.',
+    d: 'Vous remplissez le brief en ligne (une dizaine de minutes, et vous pouvez le finir en deux fois), puis on se cale 30 minutes en visio : vos 3 challenges deviennent des livrables datés. Un brief flou donne un livrable flou, alors on ne sort pas de cet appel tant que ce n\'est pas net.',
   },
   {
     n: 'Jours 1 à 5',
@@ -43,6 +50,29 @@ const etapes = [
     n: 'Jour 5',
     t: 'Vous récupérez',
     d: 'Les livrables, le récapitulatif de la semaine, et la liste honnête de ce qui reste à faire. Puis vous filmez vos 2 minutes, dans les 30 jours.',
+  },
+];
+
+const semaineType = [
+  {
+    j: 'Lundi',
+    d: 'Cadrage relu, accès reçus, audit technique du site lancé. Livré : la liste des 23 trucs cassés, classés en « ça rapporte » et « ça fait joli ».',
+  },
+  {
+    j: 'Mardi',
+    d: 'Correction des 12 plus rentables. Livré : le site charge plus vite et vos balises arrêtent de se marcher dessus.',
+  },
+  {
+    j: 'Mercredi',
+    d: 'Challenge 2. Livré : un agent qui relance vos devis non signés à J+3 et J+7, branché sur votre boîte mail.',
+  },
+  {
+    j: 'Jeudi',
+    d: 'Challenge 3. Livré : une landing page pour votre offre principale, en ligne, avec le formulaire qui tombe dans votre CRM.',
+  },
+  {
+    j: 'Vendredi',
+    d: 'Finitions, documentation, passation. Livré : un récap de 2 pages pour que rien ne meure le jour où le consultant repart.',
   },
 ];
 
@@ -143,6 +173,18 @@ const faq = [
   {
     q: 'Ils sont vraiment dopés à la cocaïne ?',
     r: 'Ils sniffent de la poudre de riz. Je n\'ai pas encore le budget pour leur payer de la vraie cocaïne, mais c\'est un projet à l\'étude.',
+  },
+  {
+    q: 'Je n\'ai pas 3 challenges, j\'en ai un seul',
+    r: 'Parfait. 3 est un maximum, pas un minimum. Un seul challenge bien fait vaut mieux que trois à moitié, et c\'est souvent ce qui donne les meilleures semaines.',
+  },
+  {
+    q: 'Je n\'ai pas le temps de faire le brief',
+    r: 'Le brief, c\'est 10 minutes d\'écriture et 30 minutes en visio, et vous pouvez le remplir en deux fois. Si vous n\'avez pas 40 minutes, vous n\'aurez jamais les 35 heures non plus, et c\'est exactement le problème qu\'on essaie de vous enlever des mains.',
+  },
+  {
+    q: 'Je dois donner des accès à mes outils, ça ne m\'enchante pas',
+    r: 'Vous décidez jusqu\'où. Créez des accès dédiés, droits minimum, que vous coupez le vendredi soir. On ne demande jamais un mot de passe personnel et on ne touche pas à votre production sans sauvegarde. Et si vous ne voulez rien donner du tout, on prend un challenge qui n\'a besoin d\'aucun accès : audit, contenu, prospection.',
   },
   {
     q: 'Bon, c\'est quoi le piège ?',
@@ -312,6 +354,10 @@ const reporting = [
         border-radius: 9999px; padding: 6px 14px;
       }
       .pill .dot { width: 7px; height: 7px; border-radius: 9999px; background: var(--accent); }
+      .places { display: inline-flex; gap: 4px; }
+      .places i { width: 7px; height: 7px; border-radius: 9999px; display: block; }
+      .places i.libre { background: var(--accent); }
+      .places i.prise { background: transparent; border: 1px solid #d9bcae; }
 
       /* ---------- boutons ---------- */
       .btn {
@@ -334,6 +380,7 @@ const reporting = [
         background: var(--white); border: 1px solid var(--sand); border-radius: 16px; padding: 26px;
         box-shadow: var(--shadow-card);
       }
+      .ps { max-width: 640px; margin: 44px auto 0; text-align: left; color: var(--muted); font-size: 15.5px; }
       .card-hl { transition: transform 200ms ease, box-shadow 200ms ease; }
       .card-hl:hover { transform: translateY(-2px); box-shadow: 0 2px 6px rgba(43,39,36,.06), 0 22px 44px -24px rgba(43,39,36,.45); }
 
@@ -400,6 +447,16 @@ const reporting = [
       .band .kicker::before { background: #f3d6c9; }
       .band p { color: #f2e2da; }
       .band .num { font-family: var(--mono); font-size: 24px; color: #f3c4ae; line-height: 1.1; }
+      .video-deal {
+        margin-top: 30px; padding: 20px 22px; border-radius: 14px;
+        background: rgba(0, 0, 0, 0.18); border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .video-deal .vd-title {
+        font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase;
+        color: #f3c4ae;
+      }
+      .vd-line { display: flex; gap: 10px; padding: 5px 0; font-size: 15.5px; color: #f2e2da; }
+      .vd-line span:first-child { color: #f3c4ae; }
 
       /* ---------- grilles ---------- */
       .split { display: grid; gap: 40px; align-items: start; }
@@ -462,7 +519,7 @@ const reporting = [
           <img src="/favicon.svg" alt="" width="22" height="22" />
           Claude Agency
         </a>
-        <a class="nav-cta" href={CTA_URL}>Réserver ma semaine</a>
+        <a class="nav-cta" href={CTA_URL} data-cta="header">Réserver ma semaine</a>
       </div>
     </header>
 
@@ -472,7 +529,14 @@ const reporting = [
         <div class="grid-bg"></div>
         <div class="aura aura-a"></div>
         <div class="wrap" style="position:relative;">
-          <span class="pill rv"><span class="dot"></span>4 places · jusqu'au 30 septembre 2026</span>
+          <span class="pill rv">
+            <span class="places" aria-hidden="true">
+              {Array.from({ length: PLACES_TOTAL }).map((_, i) => (
+                <i class={i < PLACES_RESTANTES ? 'libre' : 'prise'}></i>
+              ))}
+            </span>
+            {PLACES_RESTANTES} place{PLACES_RESTANTES > 1 ? 's' : ''} sur {PLACES_TOTAL} · jusqu'au 30 septembre 2026
+          </span>
 
           <div class="split" style="margin-top:20px;">
             <div class="rv">
@@ -501,12 +565,12 @@ const reporting = [
                 />
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;">
-                <a class="btn btn-primary" href={CTA_URL}>Je réserve ma semaine offerte</a>
+                <a class="btn btn-primary" href={CTA_URL} data-cta="hero">Je réserve ma semaine offerte</a>
                 <a class="btn btn-ghost" href="#colis">Voir la valeur</a>
               </div>
               <p style="margin-top:14px;color:var(--muted);font-size:14.5px;">
-                Pas de carte bancaire. Réponse le jour même. Il reste 4 places, et après le 30 septembre ça
-                redevient payant.
+                Pas de carte bancaire. 10 minutes de brief, que vous pouvez finir plus tard. Et si la semaine ne
+                vaut rien, vous ne filmez rien et je vous en offre une deuxième.
               </p>
             </div>
           </div>
@@ -601,7 +665,7 @@ const reporting = [
             connaître.
           </p>
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
-            <a class="btn btn-primary" href={CTA_URL}>Je prends une place</a>
+            <a class="btn btn-primary" href={CTA_URL} data-cta="prix">Je prends une place</a>
             <span style="color:var(--muted);font-size:14.5px;">Il en reste 4. Ensuite, c'est 500 € la semaine.</span>
           </div>
         </div>
@@ -631,8 +695,34 @@ const reporting = [
         </div>
       </section>
 
-      <!-- CHALLENGES -->
+      <!-- SEMAINE TYPE -->
       <section class="alt hairline-top">
+        <div class="wrap narrow rv">
+          <span class="kicker">À quoi ça ressemble</span>
+          <h2 style="margin-top:16px;">Une semaine, jour par jour</h2>
+          <p class="lead" style="margin-top:18px;">
+            Pour que vous arrêtiez d'imaginer et que vous voyiez. Voici le déroulé d'une semaine avec trois
+            challenges classiques : un audit SEO, une automatisation, une landing page.
+          </p>
+
+          <ul class="clean" style="margin-top:30px;">
+            {semaineType.map((s) => (
+              <li style="display:grid;grid-template-columns:96px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--sand);">
+                <span style="font-family:var(--mono);font-size:13px;color:var(--accent-700);padding-top:3px;text-transform:uppercase;letter-spacing:0.6px;">{s.j}</span>
+                <span>{s.d}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p style="margin-top:18px;color:var(--muted);font-size:14.5px;">
+            Exemple illustratif : votre semaine dépend de vos 3 challenges, pas de ceux-là. Ce n'est pas une liste
+            de livrables garantis, c'est une idée de la densité.
+          </p>
+        </div>
+      </section>
+
+      <!-- CHALLENGES -->
+      <section class="hairline-top">
         <div class="wrap">
           <div class="rv" style="max-width:720px;">
             <span class="kicker">3 challenges, pas 3 000</span>
@@ -660,7 +750,7 @@ const reporting = [
       </section>
 
       <!-- REPORTING -->
-      <section class="hairline-top">
+      <section class="alt hairline-top">
         <div class="wrap split centered">
           <div class="rv">
             <span class="kicker">Zéro angoisse</span>
@@ -741,7 +831,17 @@ const reporting = [
             </div>
           </div>
 
-          <p style="margin-top:30px;">
+          <div class="video-deal">
+            <p class="vd-title">Ce que je fais de votre vidéo, et ce que je n'en fais pas</p>
+            <ul class="clean" style="margin-top:12px;">
+              <li class="vd-line"><span aria-hidden="true">→</span><span>Elle vit sur claudeagency.fr et sur mon LinkedIn. Pas de publicité payante avec votre tête dessus sans vous demander d'abord.</span></li>
+              <li class="vd-line"><span aria-hidden="true">→</span><span>Vous me dites stop, je la retire dans l'heure. Pas de « on en reparle », pas de délai de 30 jours planqué en petits caractères.</span></li>
+              <li class="vd-line"><span aria-hidden="true">→</span><span>Vous validez le montage avant publication. Si je vous coupe au mauvais moment et que vous avez l'air d'un escroc, c'est ma faute, pas la vôtre.</span></li>
+              <li class="vd-line"><span aria-hidden="true">→</span><span>Votre avis parle du travail livré. Pas de cette page, que personne d'autre ne verra : elle n'est ni indexée, ni partagée.</span></li>
+            </ul>
+          </div>
+
+          <p style="margin-top:26px;">
             C'est tout. Pas de carte bancaire. Pas de « premier mois offert ». Pas de reconduction tacite planquée
             en bas de page.
           </p>
@@ -763,7 +863,20 @@ const reporting = [
             </div>
             <div class="card">
               <span class="kicker">Qui vous prête ce consultant</span>
-              <h3 style="margin-top:14px;">Julien Rayes, fondateur de Claude Agency</h3>
+              <div style="display:flex;align-items:center;gap:14px;margin-top:14px;">
+                <Image
+                  src={julienImg}
+                  alt="Portrait de Julien Rayes, fondateur de Claude Agency"
+                  loading="lazy"
+                  width={64}
+                  height={64}
+                  style="width:64px;height:64px;border-radius:9999px;object-fit:cover;border:1px solid var(--sand);flex:0 0 auto;"
+                />
+                <div>
+                  <h3>Julien Rayes, fondateur de Claude Agency</h3>
+                  <p style="margin-top:2px;font-size:14px;color:var(--muted);">C'est moi qui réponds, pas un formulaire.</p>
+                </div>
+              </div>
               <p style="margin-top:12px;color:var(--muted);">
                 Directeur commercial et marketing d'un organisme de formation (plus de 3 M€ de chiffre d'affaires
                 depuis 2021), dont j'ai automatisé le back-office avec Claude avant d'en faire une agence. Mes
@@ -818,20 +931,31 @@ const reporting = [
         <div class="wrap narrow rv" style="position:relative;">
           <h2 style="font-size:clamp(26px,3.2vw,36px);">Une semaine. Trois challenges. Zéro euro.</h2>
           <p class="lead" style="margin:20px auto 0;max-width:56ch;">
-            Vous créez votre espace client en 2 minutes, on cale les dates, on cadre vos 3 challenges, et lundi
+            Vous remplissez le brief, on cale les dates, on cadre vos 3 challenges, et lundi
             prochain quelqu'un travaille sur votre business pendant que vous faites autre chose. Au pire, vous
             aurez perdu 30 minutes de visio.
           </p>
           <div style="margin-top:32px;">
-            <a class="btn btn-primary" href={CTA_URL}>Je crée mon espace et je réserve</a>
+            <a class="btn btn-primary" href={CTA_URL} data-cta="final">Je crée mon espace et je réserve</a>
           </div>
           <p style="margin-top:18px;color:var(--muted);font-size:14.5px;">
             Pas de carte bancaire. Pas d'abonnement. Réponse le jour même, sauf si je dors. Vous préférez
             m'écrire ? <a href={MAILTO} style="color:var(--accent-700);">contact@claudeagency.fr</a>.
           </p>
           <p style="margin-top:6px;font-family:var(--mono);font-size:13px;color:var(--accent-700);">
-            4 places · jusqu'au 30 septembre 2026
+            {PLACES_RESTANTES} place{PLACES_RESTANTES > 1 ? 's' : ''} sur {PLACES_TOTAL} · jusqu'au 30 septembre 2026
           </p>
+
+          <div class="card ps">
+            <p style="font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);">P.S.</p>
+            <p style="margin-top:10px;">
+              Vous êtes arrivé jusqu'ici, donc soit l'offre vous intéresse, soit vous vouliez voir jusqu'où j'irais
+              avec les blagues sur mes ingénieurs. Dans les deux cas : il reste {PLACES_RESTANTES} place{PLACES_RESTANTES > 1 ? 's' : ''}, ça
+              ferme le 30 septembre, et le seul moyen de savoir si mon équipe vaut quelque chose, c'est de la faire
+              travailler une semaine sans sortir votre carte bancaire. Le pire scénario, c'est 30 minutes de visio
+              perdues et une anecdote pour vos potes.
+            </p>
+          </div>
         </div>
       </section>
     </main>
@@ -854,6 +978,32 @@ const reporting = [
       </div>
     </footer>
 
+    <!-- Traçage : sans ça, impossible de savoir si le trou est sur la page ou sur le formulaire. -->
+    <script is:inline>
+      (function () {
+        function ev(name, params) {
+          if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+        }
+        // 1. Clics sur les CTA, par emplacement.
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest ? e.target.closest('[data-cta]') : null;
+          if (!a) return;
+          ev('cta_click', { cta_position: a.getAttribute('data-cta'), page_offre: 'semaine-offerte' });
+        });
+        // 2. Profondeur de lecture : à quel endroit ils décrochent.
+        var paliers = [25, 50, 75, 100], vus = {};
+        function scrollDepth() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          if (h <= 0) return;
+          var pct = Math.round(((window.scrollY || window.pageYOffset) / h) * 100);
+          paliers.forEach(function (p) {
+            if (pct >= p && !vus[p]) { vus[p] = 1; ev('scroll_depth', { pourcentage: p, page_offre: 'semaine-offerte' }); }
+          });
+        }
+        addEventListener('scroll', scrollDepth, { passive: true });
+        scrollDepth();
+      })();
+    </script>
     <script is:inline>
       (function () {
         var els = document.querySelectorAll('.rv');
