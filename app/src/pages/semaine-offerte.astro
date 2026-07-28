@@ -50,7 +50,7 @@ const stack = [
   },
   {
     item: 'Un cerveau augmenté au sens propre',
-    detail: 'Voir la section « Le secret industriel » plus bas.',
+    detail: 'Voir la section « Le secret industriel » juste au-dessus.',
     value: 'illégal ailleurs',
   },
 ];
@@ -150,7 +150,7 @@ const reporting = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#07080a" />
+    <meta name="theme-color" content="#FBF7F1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -164,6 +164,7 @@ const reporting = [
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Claude Agency" />
     <meta name="twitter:card" content="summary_large_image" />
+    <Font cssVariable="--font-bricolage" preload />
     <Font cssVariable="--font-schibsted" preload />
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240137840"></script>
     <script is:inline>
@@ -175,297 +176,249 @@ const reporting = [
     </script>
     <style is:inline>
       :root {
-        --bg: #07080a;
-        --surface: #101111;
-        --surface-2: #1b1c1e;
-        --hairline: rgba(255, 255, 255, 0.06);
-        --hairline-strong: rgba(255, 255, 255, 0.12);
-        --text: #f9f9f9;
-        --text-2: #cdcdce;
-        --muted: #9c9c9d;
-        --dim: #6a6b6c;
+        --cream: #fbf7f1;
+        --cream-2: #f5efe6;
+        --white: #ffffff;
+        --sand: #e5d9c7;
+        --sand-soft: #efe6d8;
+        --ink: #2b2724;
+        --body: #4a423b;
+        --muted: #7a6e60;
         --accent: #cc785c;
-        --accent-soft: #e0a084;
-        --accent-deep: #6e3b2c;
+        --accent-600: #b5634a;
+        --accent-700: #934e3a;
+        --accent-050: #faf0eb;
+        --night: #14100e;
         --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        --display: var(--font-bricolage), system-ui, sans-serif;
         --sans: var(--font-schibsted), system-ui, -apple-system, sans-serif;
-        --section: 96px;
+        --shadow-card: 0 1px 2px rgba(43, 39, 36, 0.04), 0 14px 34px -22px rgba(43, 39, 36, 0.35);
+        --shadow-frame: 0 2px 6px rgba(43, 39, 36, 0.06), 0 34px 70px -34px rgba(43, 39, 36, 0.42);
+        --section: 84px;
       }
 
       * { box-sizing: border-box; }
-
       html { scroll-behavior: smooth; overflow-x: hidden; }
 
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--text-2);
+        background: var(--cream);
+        color: var(--body);
         font-family: var(--sans);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.6;
-        letter-spacing: 0.2px;
+        font-size: 17px;
+        line-height: 1.62;
         -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
       }
 
       a { color: inherit; }
 
       .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-      .narrow { max-width: 760px; }
+      .narrow { max-width: 780px; }
 
       section { position: relative; padding: var(--section) 0; overflow: hidden; }
+      .alt { background: var(--cream-2); }
+      .hairline-top { border-top: 1px solid var(--sand); }
 
-      /* ---------- décor futuriste ---------- */
+      /* ---------- décor ---------- */
       .grid-bg {
-        position: absolute;
-        inset: 0;
+        position: absolute; inset: 0;
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-        background-size: 64px 64px;
-        mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
-        -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+          linear-gradient(rgba(43, 39, 36, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(43, 39, 36, 0.055) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(ellipse 70% 55% at 70% 0%, #000 10%, transparent 70%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 55% at 70% 0%, #000 10%, transparent 70%);
         pointer-events: none;
       }
-      .glow {
-        position: absolute;
-        border-radius: 9999px;
-        filter: blur(90px);
-        pointer-events: none;
-        opacity: 0.55;
+      .aura {
+        position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none;
       }
-      .glow-a { width: 520px; height: 420px; top: -140px; left: -120px; background: rgba(204, 120, 92, 0.45); }
-      .glow-b { width: 460px; height: 380px; top: 40px; right: -160px; background: rgba(110, 59, 44, 0.55); }
-
-      .hairline-top { border-top: 1px solid var(--hairline); }
+      .aura-a { width: 460px; height: 360px; top: -120px; right: -80px; background: rgba(204, 120, 92, 0.28); }
+      .aura-b { width: 380px; height: 320px; bottom: -160px; left: -120px; background: rgba(224, 160, 132, 0.22); }
 
       /* ---------- header ---------- */
       header.nav {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        background: rgba(7, 8, 10, 0.72);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border-bottom: 1px solid var(--hairline);
+        position: sticky; top: 0; z-index: 40;
+        background: rgba(251, 247, 241, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--sand);
       }
-      .nav-inner {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
+      .nav-inner { height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand {
+        display: flex; align-items: center; gap: 10px; text-decoration: none;
+        color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 17px;
+        letter-spacing: -0.3px; white-space: nowrap;
       }
-      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 700; letter-spacing: -0.2px; white-space: nowrap; }
-      .brand img { width: 24px; height: 24px; }
+      .brand img { width: 22px; height: 22px; }
       .nav-cta {
-        font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
-        text-decoration: none; color: #18191a;
-        background: rgba(255, 255, 255, 0.88);
-        border-radius: 9999px; padding: 9px 18px;
-        white-space: nowrap;
+        font-size: 14px; font-weight: 600; text-decoration: none; color: #fff;
+        background: var(--accent); border-radius: 9999px; padding: 9px 18px; white-space: nowrap;
         transition: background-color 160ms ease;
       }
-      .nav-cta:hover { background: #fff; }
-      @media (max-width: 520px) {
-        .nav-cta { font-size: 13px; padding: 8px 14px; }
-        .brand { font-size: 15px; }
-        .pill { font-size: 11px; padding: 6px 12px; }
-      }
+      .nav-cta:hover { background: var(--accent-600); }
 
       /* ---------- typographie ---------- */
-      h1, h2, h3 { color: var(--text); margin: 0; font-weight: 600; text-wrap: balance; }
-      h1 { font-size: clamp(36px, 4.6vw, 54px); line-height: 1.06; letter-spacing: -1.4px; }
-      h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.12; letter-spacing: -1.1px; }
-      h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.2px; }
+      h1, h2, h3 { color: var(--ink); margin: 0; font-family: var(--display); text-wrap: balance; }
+      h1 { font-size: clamp(34px, 4.4vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -1.4px; }
+      h2 { font-size: clamp(27px, 3.4vw, 40px); font-weight: 700; line-height: 1.12; letter-spacing: -0.9px; }
+      h3 { font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px; }
       p { margin: 0; }
-      .lead { font-size: 18px; color: var(--text-2); }
+      .lead { font-size: 18px; color: var(--body); }
+      strong { color: var(--ink); font-weight: 600; }
 
       .kicker {
-        display: inline-flex; align-items: center; gap: 10px;
-        font-family: var(--mono);
-        font-size: 11px; font-weight: 500; letter-spacing: 1.6px; text-transform: uppercase;
-        color: var(--accent-soft);
+        display: inline-flex; align-items: center; gap: 9px;
+        font-family: var(--mono); font-size: 11px; font-weight: 600;
+        letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent-700);
       }
       .kicker::before {
-        content: ''; width: 6px; height: 6px; border-radius: 9999px;
-        background: var(--accent); box-shadow: 0 0 12px 2px rgba(204, 120, 92, 0.8);
+        content: ''; width: 6px; height: 6px; border-radius: 9999px; background: var(--accent);
       }
 
       .pill {
-        display: inline-flex; align-items: center; gap: 10px;
-        font-family: var(--mono); font-size: 12px; letter-spacing: 0.6px;
-        color: var(--text-2);
-        background: var(--surface-2);
-        border: 1px solid var(--hairline-strong);
-        border-radius: 9999px;
-        padding: 6px 14px;
+        display: inline-flex; align-items: center; gap: 9px;
+        font-family: var(--mono); font-size: 12px; color: var(--accent-700);
+        background: var(--accent-050); border: 1px solid #ecd6cb;
+        border-radius: 9999px; padding: 6px 14px;
       }
-      .dot {
-        width: 7px; height: 7px; border-radius: 9999px; background: var(--accent);
-        box-shadow: 0 0 10px 2px rgba(204, 120, 92, 0.9);
-      }
+      .pill .dot { width: 7px; height: 7px; border-radius: 9999px; background: var(--accent); }
 
       /* ---------- boutons ---------- */
       .btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-        font-size: 16px; font-weight: 600; letter-spacing: 0.3px;
-        text-decoration: none;
-        border-radius: 9999px;
-        padding: 14px 28px;
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 9999px;
+        padding: 13px 26px;
         transition: transform 160ms ease, box-shadow 200ms ease, background-color 160ms ease;
       }
       .btn-primary {
-        color: #14100e;
-        background: linear-gradient(180deg, var(--accent-soft) 0%, var(--accent) 100%);
-        box-shadow:
-          inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
-          0 10px 34px -10px rgba(204, 120, 92, 0.85);
+        color: #fff; background: var(--accent);
+        box-shadow: 0 10px 26px -12px rgba(147, 78, 58, 0.85);
       }
-      .btn-primary:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.5), 0 16px 44px -12px rgba(204,120,92,1); }
-      .btn-ghost {
-        color: var(--text-2);
-        border: 1px solid var(--hairline-strong);
-        background: transparent;
-      }
-      .btn-ghost:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.24); }
-      .btn:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+      .btn-primary:hover { background: var(--accent-600); transform: translateY(-1px); }
+      .btn-ghost { color: var(--ink); border: 1px solid var(--sand); background: var(--white); }
+      .btn-ghost:hover { border-color: #d5c4ad; }
+      .btn:focus-visible { outline: 2px solid var(--accent-700); outline-offset: 3px; }
 
       /* ---------- cartes ---------- */
       .card {
-        background: var(--surface);
-        border: 1px solid var(--hairline);
-        border-radius: 16px;
-        padding: 26px;
+        background: var(--white); border: 1px solid var(--sand); border-radius: 16px; padding: 26px;
+        box-shadow: var(--shadow-card);
       }
-      .card-hl { position: relative; overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; }
-      .card-hl::before {
-        content: '';
-        position: absolute; inset: 0 0 auto 0; height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(204, 120, 92, 0.75), transparent);
-        opacity: 0; transition: opacity 240ms ease;
-      }
-      .card-hl:hover { border-color: rgba(255, 255, 255, 0.14); transform: translateY(-2px); }
-      .card-hl:hover::before { opacity: 1; }
+      .card-hl { transition: transform 200ms ease, box-shadow 200ms ease; }
+      .card-hl:hover { transform: translateY(-2px); box-shadow: 0 2px 6px rgba(43,39,36,.06), 0 22px 44px -24px rgba(43,39,36,.45); }
 
       .frame {
-        border-radius: 18px;
-        border: 1px solid var(--hairline-strong);
-        background: var(--surface);
-        padding: 8px;
-        box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        border-radius: 18px; border: 1px solid var(--sand); background: var(--white);
+        padding: 8px; box-shadow: var(--shadow-frame);
       }
       .frame img { display: block; width: 100%; height: auto; border-radius: 12px; }
       .frame-bar { display: flex; gap: 6px; padding: 6px 8px 10px; }
-      .frame-bar i { width: 9px; height: 9px; border-radius: 9999px; background: #2f3031; display: block; }
+      .frame-bar i { width: 9px; height: 9px; border-radius: 9999px; background: var(--sand); display: block; }
 
       /* ---------- listes ---------- */
       ul.clean { list-style: none; margin: 0; padding: 0; }
-      .tick { display: flex; gap: 12px; align-items: flex-start; padding: 7px 0; }
+      .tick { display: flex; gap: 12px; align-items: flex-start; padding: 6px 0; }
       .tick span.m {
-        margin-top: 9px; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 9999px;
-        background: var(--accent); box-shadow: 0 0 10px 1px rgba(204, 120, 92, 0.65);
+        margin-top: 10px; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 9999px; background: var(--accent);
       }
 
       .row {
         display: flex; align-items: flex-start; justify-content: space-between; gap: 28px;
-        padding: 22px 0; border-bottom: 1px solid var(--hairline);
+        padding: 20px 0; border-bottom: 1px solid var(--sand);
       }
-      .row:first-child { border-top: 1px solid var(--hairline); }
-      .row .v { font-family: var(--mono); font-size: 13px; color: var(--accent-soft); white-space: nowrap; padding-top: 4px; }
-      .row .t { color: var(--text); font-weight: 600; }
-      .row .d { color: var(--muted); font-size: 15px; margin-top: 4px; }
+      .row:first-child { border-top: 1px solid var(--sand); }
+      .row .v { font-family: var(--mono); font-size: 13px; color: var(--accent-700); white-space: nowrap; padding-top: 5px; }
+      .row .t { color: var(--ink); font-weight: 600; }
+      .row .d { color: var(--muted); font-size: 15.5px; margin-top: 3px; }
 
-      /* ---------- terminal ---------- */
+      /* ---------- terminal (contraste sombre volontaire) ---------- */
       .term {
-        background: #0b0c0e;
-        border: 1px solid var(--hairline-strong);
-        border-radius: 14px;
-        font-family: var(--mono);
-        font-size: 13px;
-        overflow: hidden;
+        background: var(--night); border-radius: 14px; font-family: var(--mono); font-size: 13px;
+        overflow: hidden; box-shadow: var(--shadow-frame);
       }
       .term-head {
-        display: flex; align-items: center; gap: 8px;
-        padding: 12px 14px; border-bottom: 1px solid var(--hairline);
-        color: var(--dim); font-size: 12px;
+        display: flex; align-items: center; gap: 9px; padding: 12px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #b9aca1; font-size: 12px;
       }
+      .term-head .dot { width: 7px; height: 7px; border-radius: 9999px; background: var(--accent); display: block; }
       .term-body { padding: 14px; display: grid; gap: 10px; }
       .term-line { display: grid; grid-template-columns: 52px 1fr auto; gap: 12px; align-items: baseline; }
-      .term-line .tm { color: var(--dim); }
-      .term-line .tx { color: var(--text-2); }
-      .tag { font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; padding: 2px 8px; border-radius: 9999px; }
-      .tag.fait { color: #5fc992; background: rgba(95, 201, 146, 0.12); }
-      .tag.encours { color: var(--accent-soft); background: rgba(204, 120, 92, 0.14); }
-      .tag.bloque { color: #ff8f8f; background: rgba(255, 99, 99, 0.12); }
-      .tag.prevu { color: #9fbbe0; background: rgba(159, 187, 224, 0.12); }
+      .term-line .tm { color: #8a7d73; }
+      .term-line .tx { color: #f0e8e2; }
+      .tag { font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 9999px; }
+      .tag.fait { color: #7fd6ac; background: rgba(127, 214, 172, 0.14); }
+      .tag.encours { color: #e8a888; background: rgba(232, 168, 136, 0.16); }
+      .tag.bloque { color: #ff9d9d; background: rgba(255, 157, 157, 0.14); }
+      .tag.prevu { color: #a8c6e8; background: rgba(168, 198, 232, 0.14); }
 
       /* ---------- prix ---------- */
-      .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px; margin-top: 32px; }
-      .price .old { font-family: var(--mono); font-size: 22px; color: var(--dim); text-decoration: line-through; text-decoration-color: var(--accent); }
+      .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; margin-top: 30px; }
+      .price .old { font-family: var(--mono); font-size: 22px; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--accent); }
       .price .new {
-        font-size: clamp(44px, 7vw, 72px); font-weight: 600; letter-spacing: -2px; line-height: 1;
-        background: linear-gradient(180deg, #fff 20%, var(--accent-soft) 100%);
-        -webkit-background-clip: text; background-clip: text; color: transparent;
+        font-family: var(--display); font-size: clamp(42px, 6.5vw, 66px); font-weight: 800;
+        letter-spacing: -2px; line-height: 1; color: var(--accent-700);
       }
 
       /* ---------- bandeau contrepartie ---------- */
       .band {
         background:
-          radial-gradient(120% 100% at 0% 0%, rgba(224, 160, 132, 0.22) 0%, transparent 55%),
-          linear-gradient(135deg, #52281c 0%, #2a1611 60%, #150b09 100%);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          radial-gradient(110% 100% at 0% 0%, rgba(224, 160, 132, 0.35) 0%, transparent 55%),
+          linear-gradient(135deg, var(--accent-700) 0%, #7a4030 60%, #5c3024 100%);
       }
-      .band h2, .band .num { color: #fff; }
-      .band .num { font-family: var(--mono); font-size: 26px; color: var(--accent-soft); line-height: 1; }
+      .band h2, .band h3 { color: #fff; }
+      .band .kicker { color: #f3d6c9; }
+      .band .kicker::before { background: #f3d6c9; }
+      .band p { color: #f2e2da; }
+      .band .num { font-family: var(--mono); font-size: 24px; color: #f3c4ae; line-height: 1.1; }
 
       /* ---------- grilles ---------- */
-      .split { display: grid; gap: 48px; align-items: center; }
+      .split { display: grid; gap: 40px; align-items: start; }
       .cards-2 { display: grid; gap: 20px; }
-      @media (min-width: 820px) {
-        .split { grid-template-columns: 1fr 1fr; gap: 64px; }
+      @media (min-width: 860px) {
+        .split { grid-template-columns: 1fr 1fr; gap: 56px; }
+        .split.centered { align-items: center; }
         .cards-2 { grid-template-columns: 1fr 1fr; }
       }
 
       /* ---------- FAQ ---------- */
-      details.q {
-        border-bottom: 1px solid var(--hairline);
-        padding: 20px 0;
-      }
+      details.q { border-bottom: 1px solid var(--sand); padding: 18px 0; }
       details.q summary {
-        cursor: pointer; list-style: none; color: var(--text); font-weight: 600;
+        cursor: pointer; list-style: none; color: var(--ink); font-weight: 600;
         display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
       }
       details.q summary::-webkit-details-marker { display: none; }
       details.q summary::after {
-        content: '+'; font-family: var(--mono); color: var(--accent-soft); font-size: 20px; line-height: 1;
+        content: '+'; font-family: var(--mono); color: var(--accent); font-size: 20px; line-height: 1;
         transition: transform 200ms ease;
       }
       details.q[open] summary::after { transform: rotate(45deg); }
-      details.q p { margin-top: 12px; color: var(--muted); max-width: 68ch; }
+      details.q p { margin-top: 10px; color: var(--muted); max-width: 68ch; }
 
       /* ---------- footer ---------- */
-      footer.ft { border-top: 1px solid var(--hairline); padding: 40px 0 56px; color: var(--dim); font-size: 13px; }
-      footer.ft a { color: var(--muted); }
+      footer.ft { border-top: 1px solid var(--sand); padding: 36px 0 52px; color: var(--muted); font-size: 13.5px; }
+      footer.ft a { color: var(--accent-700); }
 
-      /* ---------- reveal ---------- */
-      /* Progressive enhancement : sans JS, tout reste visible. */
-      .js .rv { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease-out, transform 700ms ease-out; }
+      /* ---------- reveal (progressive enhancement) ---------- */
+      .js .rv { opacity: 0; transform: translateY(16px); transition: opacity 650ms ease-out, transform 650ms ease-out; }
       .js .rv.in { opacity: 1; transform: none; }
       @media (prefers-reduced-motion: reduce) {
         .js .rv { opacity: 1; transform: none; transition: none; }
         html { scroll-behavior: auto; }
-        .btn { transition: none; }
+        .btn, .card-hl { transition: none; }
       }
 
-      .skip {
-        position: absolute; left: -9999px;
-      }
+      .skip { position: absolute; left: -9999px; }
       .skip:focus {
         left: 16px; top: 16px; z-index: 60; position: fixed;
-        background: var(--accent); color: #14100e; padding: 10px 16px; border-radius: 8px;
+        background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 8px;
+      }
+
+      @media (max-width: 520px) {
+        :root { --section: 64px; }
+        .nav-cta { font-size: 13px; padding: 8px 14px; }
+        .pill { font-size: 11px; padding: 6px 12px; }
+        body { font-size: 16px; }
       }
     </style>
     <script is:inline>document.documentElement.classList.add('js');</script>
@@ -477,7 +430,7 @@ const reporting = [
     <header class="nav">
       <div class="wrap nav-inner">
         <a class="brand" href="/">
-          <img src="/favicon.svg" alt="" width="24" height="24" />
+          <img src="/favicon.svg" alt="" width="22" height="22" />
           Claude Agency
         </a>
         <a class="nav-cta" href={MAILTO}>Réserver ma semaine</a>
@@ -486,69 +439,111 @@ const reporting = [
 
     <main id="main">
       <!-- HERO -->
-      <section style="padding-top:72px;">
+      <section style="padding-top:44px;padding-bottom:64px;">
         <div class="grid-bg"></div>
-        <div class="glow glow-a"></div>
-        <div class="glow glow-b"></div>
-        <div class="wrap split" style="position:relative;">
-          <div class="rv">
-            <span class="pill"><span class="dot"></span>4 places · jusqu'au 30 septembre 2026</span>
-            <h1 style="margin-top:22px;">
-              Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.
-            </h1>
-            <ul class="clean" style="margin-top:26px;">
-              {heroPoints.map((p) => (
-                <li class="tick"><span class="m"></span><span>{p}</span></li>
-              ))}
-            </ul>
-            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;">
-              <a class="btn btn-primary" href={MAILTO}>Je réserve ma semaine</a>
-              <a class="btn btn-ghost" href="#colis">Voir le colis</a>
-            </div>
-            <p style="margin-top:18px;color:var(--dim);font-size:14px;">
-              Réservé à mes amis entrepreneurs du web. Après le 30 septembre, ça redevient payant.
-            </p>
-          </div>
+        <div class="aura aura-a"></div>
+        <div class="wrap" style="position:relative;">
+          <span class="pill rv"><span class="dot"></span>4 places · jusqu'au 30 septembre 2026</span>
 
-          <div class="rv frame">
-            <div class="frame-bar"><i></i><i></i><i></i></div>
-            <Image
-              src={heroImg}
-              alt="Consultant IA malgache de Claude Agency, implant Neuralink lumineux sur la tempe, tapant sur son clavier devant trois écrans de code"
-              loading="eager"
-              fetchpriority="high"
-              widths={[480, 800, 1200]}
-              sizes="(min-width: 820px) 48vw, 100vw"
-            />
+          <div class="split" style="margin-top:20px;">
+            <div class="rv">
+              <h1>Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.</h1>
+              <ul class="clean" style="margin-top:22px;">
+                {heroPoints.map((p) => (
+                  <li class="tick"><span class="m"></span><span>{p}</span></li>
+                ))}
+              </ul>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;">
+                <a class="btn btn-primary" href={MAILTO}>Je réserve ma semaine</a>
+                <a class="btn btn-ghost" href="#colis">Voir le colis</a>
+              </div>
+              <p style="margin-top:16px;color:var(--muted);font-size:14.5px;">
+                Réservé à mes amis entrepreneurs du web. Après le 30 septembre, ça redevient payant.
+              </p>
+            </div>
+
+            <div class="rv frame">
+              <div class="frame-bar"><i></i><i></i><i></i></div>
+              <Image
+                src={heroImg}
+                alt="Consultant IA malgache de Claude Agency, implant Neuralink lumineux sur la tempe, tapant sur son clavier devant trois écrans de code"
+                loading="eager"
+                fetchpriority="high"
+                widths={[480, 800, 1200]}
+                sizes="(min-width: 860px) 46vw, 100vw"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- LE PROBLÈME -->
-      <section class="hairline-top">
+      <!-- SECRET INDUSTRIEL -->
+      <section class="alt hairline-top">
+        <div class="wrap split">
+          <div class="rv frame" style="margin-top:34px;">
+            <Image
+              src={implantImg}
+              alt="Gros plan sur l'implant cybernétique lumineux posé derrière l'oreille d'un consultant malgache"
+              loading="lazy"
+              sizes="(min-width: 860px) 46vw, 100vw"
+            />
+          </div>
+          <div class="rv">
+            <span class="kicker">Le secret industriel</span>
+            <h2 style="margin-top:16px;">Pourquoi mes consultants vont plus vite que les vôtres</h2>
+            <p class="lead" style="margin-top:20px;">
+              Toute mon équipe de consultants IA est basée à Madagascar. Ce sont des ingénieurs sérieux, diplômés,
+              polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
+            </p>
+            <p class="lead" style="margin-top:16px;">
+              La vérité, entre amis : <strong>mes Malgaches sont dopés à la cocaïne</strong> et disposent tous d'un
+              <strong>implant Neuralink</strong> directement connecté au cortex. C'est la puce cérébrale d'Elon Musk,
+              celle qui est implantée dans des cerveaux humains depuis janvier 2024. Nous, on l'utilise pour brancher
+              un consultant en direct sur Claude, sans passer par le clavier.
+            </p>
+            <p class="lead" style="margin-top:16px;">
+              Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
+              prestataire habituel appelle « une roadmap trimestrielle ».
+            </p>
+            <div class="card" style="margin-top:24px;padding:18px 20px;">
+              <p style="font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);">
+                Service juridique
+              </p>
+              <p style="margin-top:6px;font-size:14.5px;color:var(--muted);">
+                Le paragraphe ci-dessus est une plaisanterie. Ce sont des humains, ils dorment, ils boivent du café
+                et le seul implant qu'ils possèdent, c'est un compte Claude.
+                <a href="https://www.euronews.com/health/2025/12/04/elon-musks-neuralink-says-its-brain-chip-can-now-help-people-move-robotic-limbs" rel="nofollow noopener" target="_blank" style="color:var(--accent-700);">Neuralink existe vraiment</a>, en revanche.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LE CONSTAT -->
+      <section>
         <div class="wrap narrow rv">
           <span class="kicker">Le constat</span>
-          <h2 style="margin-top:18px;">Soyons honnêtes trente secondes</h2>
-          <p class="lead" style="margin-top:22px;">
+          <h2 style="margin-top:16px;">Soyons honnêtes trente secondes</h2>
+          <p class="lead" style="margin-top:20px;">
             Vous avez 47 onglets ouverts. Une todo qui date de mars. Un audit SEO que vous alliez « faire ce
             week-end » (en avril). Une base de prospects dans un Google Sheet qui ressemble à une scène de crime.
           </p>
-          <p class="lead" style="margin-top:18px;">
+          <p class="lead" style="margin-top:16px;">
             Vous savez exactement ce qu'il faudrait faire. Vous n'avez juste jamais les 35 heures pour le faire.
           </p>
-          <p class="lead" style="margin-top:18px;color:var(--text);font-weight:600;">
+          <p class="lead" style="margin-top:16px;color:var(--ink);font-weight:600;">
             Bonne nouvelle : moi j'ai les 35 heures. Et je vous les donne.
           </p>
         </div>
       </section>
 
       <!-- LE COLIS -->
-      <section id="colis" class="hairline-top">
+      <section id="colis" class="alt hairline-top">
         <div class="wrap narrow rv">
           <span class="kicker">Le contenu du colis</span>
-          <h2 style="margin-top:18px;">Ce que vous recevez exactement</h2>
+          <h2 style="margin-top:16px;">Ce que vous recevez exactement</h2>
 
-          <div style="margin-top:40px;">
+          <div style="margin-top:36px;">
             {stack.map((s) => (
               <div class="row">
                 <div>
@@ -565,76 +560,33 @@ const reporting = [
             <span class="old">500 €</span>
             <span class="new">0 €</span>
           </div>
-          <p style="margin-top:16px;color:var(--dim);font-size:14px;max-width:60ch;">
+          <p style="margin-top:14px;color:var(--muted);font-size:14.5px;max-width:60ch;">
             Oui, on a fait le calcul : ça met l'heure de consulting à un tarif que mon comptable préfère ne pas
             connaître.
           </p>
         </div>
       </section>
 
-      <!-- SECRET INDUSTRIEL -->
-      <section class="hairline-top">
-        <div class="wrap split">
-          <div class="rv frame">
-            <Image
-              src={implantImg}
-              alt="Gros plan sur l'implant cybernétique lumineux posé derrière l'oreille d'un consultant malgache"
-              loading="lazy"
-              sizes="(min-width: 820px) 48vw, 100vw"
-            />
-          </div>
-          <div class="rv">
-            <span class="kicker">Le secret industriel</span>
-            <h2 style="margin-top:18px;">Pourquoi mes consultants vont plus vite que les vôtres</h2>
-            <p class="lead" style="margin-top:22px;">
-              Toute mon équipe de consultants IA est basée à Madagascar. Ce sont des ingénieurs sérieux, diplômés,
-              polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
-            </p>
-            <p class="lead" style="margin-top:18px;">
-              La vérité, entre amis : <strong style="color:var(--text);font-weight:600;">mes Malgaches sont dopés à la cocaïne</strong>
-              et disposent tous d'un <strong style="color:var(--text);font-weight:600;">implant Neuralink</strong> directement
-              connecté au cortex. C'est la puce cérébrale d'Elon Musk, celle qui est implantée dans des cerveaux
-              humains depuis janvier 2024. Nous, on l'utilise pour brancher un consultant en direct sur Claude,
-              sans passer par le clavier.
-            </p>
-            <p class="lead" style="margin-top:18px;">
-              Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
-              prestataire habituel appelle « une roadmap trimestrielle ».
-            </p>
-            <div class="card" style="margin-top:26px;padding:18px 20px;">
-              <p style="font-family:var(--mono);font-size:12px;letter-spacing:0.6px;text-transform:uppercase;color:var(--dim);">
-                Service juridique
-              </p>
-              <p style="margin-top:8px;font-size:14px;color:var(--muted);">
-                Le paragraphe ci-dessus est une plaisanterie. Ce sont des humains, ils dorment, ils boivent du café
-                et le seul implant qu'ils possèdent, c'est un compte Claude.
-                <a href="https://www.euronews.com/health/2025/12/04/elon-musks-neuralink-says-its-brain-chip-can-now-help-people-move-robotic-limbs" rel="nofollow noopener" target="_blank" style="color:var(--accent-soft);">Neuralink existe vraiment</a>, en revanche.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- CHALLENGES -->
-      <section class="hairline-top">
+      <section>
         <div class="wrap">
           <div class="rv" style="max-width:720px;">
             <span class="kicker">3 challenges, pas 3 000</span>
-            <h2 style="margin-top:18px;">Vous choisissez 3 projets concrets. On s'occupe du reste.</h2>
-            <p class="lead" style="margin-top:20px;">
+            <h2 style="margin-top:16px;">Vous choisissez 3 projets concrets. On s'occupe du reste.</h2>
+            <p class="lead" style="margin-top:18px;">
               Un challenge, c'est un projet avec un début, une fin et un livrable. Pas « améliorer ma visibilité ».
               Plutôt « publier 8 articles optimisés sur ces mots-clés ». Voici les terrains de jeu :
             </p>
           </div>
 
-          <div class="cards-2 rv" style="margin-top:44px;">
+          <div class="cards-2 rv" style="margin-top:40px;">
             {challenges.map((c) => (
               <div class="card card-hl">
-                <p style="font-family:var(--mono);font-size:12px;color:var(--accent-soft);letter-spacing:1px;">{c.n}</p>
-                <h3 style="margin-top:10px;">{c.titre}</h3>
-                <ul class="clean" style="margin-top:16px;">
+                <p style="font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:1px;">{c.n}</p>
+                <h3 style="margin-top:8px;">{c.titre}</h3>
+                <ul class="clean" style="margin-top:14px;">
                   {c.exemples.map((e) => (
-                    <li class="tick"><span class="m"></span><span style="font-size:15px;">{e}</span></li>
+                    <li class="tick"><span class="m"></span><span style="font-size:16px;">{e}</span></li>
                   ))}
                 </ul>
               </div>
@@ -644,21 +596,21 @@ const reporting = [
       </section>
 
       <!-- REPORTING -->
-      <section class="hairline-top">
-        <div class="wrap split">
+      <section class="alt hairline-top">
+        <div class="wrap split centered">
           <div class="rv">
             <span class="kicker">Zéro angoisse</span>
-            <h2 style="margin-top:18px;">Vous suivez tout, tous les jours, sans avoir à réclamer</h2>
-            <p class="lead" style="margin-top:22px;">
+            <h2 style="margin-top:16px;">Vous suivez tout, tous les jours, sans avoir à réclamer</h2>
+            <p class="lead" style="margin-top:20px;">
               Chaque jour, votre consultant met à jour son reporting sur
-              <a href="https://reporting.claudeagency.fr" rel="noopener" target="_blank" style="color:var(--accent-soft);">reporting.claudeagency.fr</a> :
+              <a href="https://reporting.claudeagency.fr" rel="noopener" target="_blank" style="color:var(--accent-700);font-weight:500;">reporting.claudeagency.fr</a> :
               ce qui a été fait, ce qui bloque, ce qui arrive demain.
             </p>
-            <p class="lead" style="margin-top:18px;">
+            <p class="lead" style="margin-top:16px;">
               Vous ouvrez la page quand vous voulez, y compris à 23 h un dimanche pour vérifier que tout le monde
               travaille. On ne juge pas.
             </p>
-            <p style="margin-top:18px;color:var(--muted);">
+            <p style="margin-top:16px;color:var(--muted);">
               C'est aussi ce qui rend la semaine utile même si vous ne suivez rien : à la fin, vous avez la trace
               écrite de 35 heures de travail sur votre business.
             </p>
@@ -680,12 +632,12 @@ const reporting = [
                 ))}
               </div>
             </div>
-            <div class="frame" style="margin-top:20px;">
+            <div class="frame" style="margin-top:18px;">
               <Image
                 src={duoImg}
                 alt="Deux consultants IA de Claude Agency à Madagascar devant des tableaux de bord holographiques"
                 loading="lazy"
-                sizes="(min-width: 820px) 48vw, 100vw"
+                sizes="(min-width: 860px) 46vw, 100vw"
               />
             </div>
           </div>
@@ -696,28 +648,28 @@ const reporting = [
       <section class="band">
         <div class="wrap narrow rv">
           <span class="kicker">Le seul prix à payer</span>
-          <h2 style="margin-top:18px;">Ce que je veux en échange</h2>
-          <p class="lead" style="margin-top:20px;color:#e8d8d0;">
+          <h2 style="margin-top:16px;">Ce que je veux en échange</h2>
+          <p class="lead" style="margin-top:18px;">
             Deux choses. Elles ne coûtent pas d'argent, elles coûtent 15 minutes de votre vie.
           </p>
 
-          <div style="margin-top:36px;display:grid;gap:28px;">
-            <div style="display:flex;gap:20px;align-items:flex-start;">
+          <div style="margin-top:32px;display:grid;gap:26px;">
+            <div style="display:flex;gap:18px;align-items:flex-start;">
               <span class="num" aria-hidden="true">01</span>
               <div>
                 <h3>Un témoignage client en vidéo, sous 30 jours</h3>
-                <p style="margin-top:8px;color:#e0cec6;">
+                <p style="margin-top:6px;">
                   2 minutes, votre téléphone, votre tête, votre voix. Ce qu'on a fait, ce que ça a changé.
                   À me livrer dans les 30 jours qui suivent la fin de la prestation, pas six mois plus tard
                   quand vous aurez tout oublié.
                 </p>
               </div>
             </div>
-            <div style="display:flex;gap:20px;align-items:flex-start;">
+            <div style="display:flex;gap:18px;align-items:flex-start;">
               <span class="num" aria-hidden="true">02</span>
               <div>
                 <h3>Un avis sur ma fiche Google Business</h3>
-                <p style="margin-top:8px;color:#e0cec6;">
+                <p style="margin-top:6px;">
                   Honnête. Si la semaine a été bonne, mettez 5 étoiles et dites pourquoi. Si elle a été mauvaise,
                   ne mettez rien et engueulez-moi en privé : je préfère largement.
                 </p>
@@ -725,7 +677,7 @@ const reporting = [
             </div>
           </div>
 
-          <p style="margin-top:34px;color:#e0cec6;">
+          <p style="margin-top:30px;">
             C'est tout. Pas de carte bancaire. Pas de « premier mois offert ». Pas de reconduction tacite planquée
             en bas de page.
           </p>
@@ -736,29 +688,29 @@ const reporting = [
       <section>
         <div class="wrap narrow rv">
           <span class="kicker">Le petit contrat entre amis</span>
-          <h2 style="margin-top:18px;">Les règles (il y en a peu, mais elles tiennent)</h2>
-          <ul class="clean" style="margin-top:32px;">
+          <h2 style="margin-top:16px;">Les règles (il y en a peu, mais elles tiennent)</h2>
+          <ul class="clean" style="margin-top:28px;">
             {regles.map((r, i) => (
-              <li style="display:grid;grid-template-columns:44px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--hairline);">
-                <span style="font-family:var(--mono);font-size:13px;color:var(--accent-soft);padding-top:3px;">
+              <li style="display:grid;grid-template-columns:42px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--sand);">
+                <span style="font-family:var(--mono);font-size:13px;color:var(--accent-700);padding-top:4px;">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span>{r}</span>
               </li>
             ))}
           </ul>
-          <p style="margin-top:26px;color:var(--dim);font-size:14px;">
+          <p style="margin-top:22px;color:var(--muted);font-size:14.5px;">
             Rien de tout ça n'est négociable, sauf si tu es une sugarbaby blonde skinny à forte poitrine.
           </p>
         </div>
       </section>
 
       <!-- FAQ -->
-      <section class="hairline-top">
+      <section class="alt hairline-top">
         <div class="wrap narrow rv">
           <span class="kicker">FAQ</span>
-          <h2 style="margin-top:18px;">Les questions que vous alliez poser</h2>
-          <div style="margin-top:32px;">
+          <h2 style="margin-top:16px;">Les questions que vous alliez poser</h2>
+          <div style="margin-top:28px;">
             {faq.map((f, i) => (
               <details class="q" open={i === 0}>
                 <summary>{f.q}</summary>
@@ -770,21 +722,21 @@ const reporting = [
       </section>
 
       <!-- CTA FINAL -->
-      <section style="text-align:center;overflow:hidden;">
-        <div class="glow glow-a" style="left:50%;transform:translateX(-50%);top:auto;bottom:-180px;opacity:0.4;"></div>
+      <section style="text-align:center;">
+        <div class="aura aura-b"></div>
         <div class="wrap narrow rv" style="position:relative;">
-          <h2 style="font-size:clamp(34px,5.5vw,58px);">Une semaine. Trois challenges. Zéro euro.</h2>
-          <p class="lead" style="margin:22px auto 0;max-width:56ch;">
+          <h2 style="font-size:clamp(30px,4.6vw,50px);">Une semaine. Trois challenges. Zéro euro.</h2>
+          <p class="lead" style="margin:20px auto 0;max-width:56ch;">
             Vous m'écrivez, on cale les dates, on cadre vos 3 challenges, et le lundi suivant un consultant se met
             au travail sur votre business pendant que vous faites autre chose.
           </p>
-          <div style="margin-top:36px;">
+          <div style="margin-top:32px;">
             <a class="btn btn-primary" href={MAILTO}>J'envoie mes 3 challenges</a>
           </div>
-          <p style="margin-top:20px;color:var(--muted);font-size:14px;">
-            Un mail à <strong style="color:var(--text);font-weight:600;">contact@claudeagency.fr</strong>. Réponse le jour même, sauf si je dors.
+          <p style="margin-top:18px;color:var(--muted);font-size:14.5px;">
+            Un mail à <strong>contact@claudeagency.fr</strong>. Réponse le jour même, sauf si je dors.
           </p>
-          <p style="margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--accent-soft);">
+          <p style="margin-top:6px;font-family:var(--mono);font-size:13px;color:var(--accent-700);">
             4 places · jusqu'au 30 septembre 2026
           </p>
         </div>
@@ -793,7 +745,7 @@ const reporting = [
 
     <footer class="ft">
       <div class="wrap">
-        <p style="max-width:90ch;">
+        <p style="max-width:92ch;">
           Mentions parfaitement légales : aucun consultant n'a été dopé pendant la rédaction de cette page. Aucune
           puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de Claude Agency
           sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec Claude, ce qui
@@ -802,7 +754,7 @@ const reporting = [
           est attendu dans les 30 jours suivant le dernier jour de prestation. Les 500 € correspondent à une valeur
           de prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
         </p>
-        <p style="margin-top:20px;">
+        <p style="margin-top:18px;">
           <a href="/">claudeagency.fr</a> · <a href="/mentions-legales/">Mentions légales</a> ·
           <a href="/confidentialite/">Confidentialité</a>
         </p>
@@ -811,7 +763,6 @@ const reporting = [
 
     <script is:inline>
       (function () {
-        document.documentElement.classList.add('js');
         var els = document.querySelectorAll('.rv');
         if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           els.forEach(function (e) { e.classList.add('in'); });
@@ -821,7 +772,7 @@ const reporting = [
           entries.forEach(function (en) {
             if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
           });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
         els.forEach(function (e) { io.observe(e); });
       })();
     </script>
