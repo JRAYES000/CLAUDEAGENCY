@@ -14,11 +14,33 @@ const description =
   "Offre réservée à mes amis entrepreneurs du web : un consultant IA formé pendant 5 jours ouvrés, 3 challenges, licence Claude Max incluse, 500 € de valeur, 0 € à payer.";
 
 const heroPoints = [
-  '35 heures de travail sur vos projets',
-  '3 challenges concrets',
-  'Un reporting tous les jours',
-  'Valeur réelle : 500 €',
-  'Prix pour vous : une vidéo de 2 minutes et 5 étoiles sur Google',
+  '35 heures de travail réel, pas 35 heures de réunions',
+  '3 projets qui traînent depuis mars, terminés',
+  'Un reporting chaque soir : vous voyez ce qui avance',
+  'Valeur de la semaine : 500 €. Vous payez 0 €',
+];
+
+const etapes = [
+  {
+    n: 'Jour 0',
+    t: 'On cadre',
+    d: '30 minutes en visio. Vous sortez vos 3 challenges, on les transforme en livrables datés. Un brief flou donne un livrable flou, alors on ne sort pas de cet appel tant que ce n\'est pas net.',
+  },
+  {
+    n: 'Jours 1 à 5',
+    t: 'Il travaille',
+    d: '7 heures par jour sur vos projets. Vous n\'avez pas à le manager, à le relancer, ni à lui expliquer Claude : c\'est mon travail, pas le vôtre.',
+  },
+  {
+    n: 'Chaque soir',
+    t: 'Vous lisez',
+    d: 'Le reporting se met à jour tout seul. Ce qui a été fait, ce qui bloque, ce qui arrive demain. Vous intervenez seulement si quelque chose part de travers.',
+  },
+  {
+    n: 'Jour 5',
+    t: 'Vous récupérez',
+    d: 'Les livrables, le récapitulatif de la semaine, et la liste honnête de ce qui reste à faire. Puis vous filmez vos 2 minutes, dans les 30 jours.',
+  },
 ];
 
 const stack = [
@@ -118,6 +140,10 @@ const faq = [
   {
     q: 'Ils sont vraiment dopés à la cocaïne ?',
     r: 'Ils sniffent de la poudre de riz. Je n\'ai pas encore le budget pour leur payer de la vraie cocaïne, mais c\'est un projet à l\'étude.',
+  },
+  {
+    q: 'Bon, c\'est quoi le piège ?',
+    r: 'Le piège, c\'est que si la semaine se passe bien, vous allez avoir envie de continuer. Et là, je facture. C\'est tout le modèle : je parie 35 heures sur le fait que vous serez content.',
   },
   {
     q: 'Je ne suis pas vraiment ton ami, je peux quand même ?',
@@ -447,18 +473,23 @@ const reporting = [
 
           <div class="split" style="margin-top:20px;">
             <div class="rv">
-              <h1>Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.</h1>
-              <ul class="clean" style="margin-top:22px;">
+              <h1>Un consultant IA passe 35 heures sur votre business. Vous, vous ne payez rien.</h1>
+              <p class="lead" style="margin-top:18px;">
+                5 jours ouvrés, 3 challenges de votre choix, un reporting tous les soirs. Votre part du marché :
+                une vidéo de 2 minutes et 5 étoiles sur Google.
+              </p>
+              <ul class="clean" style="margin-top:18px;">
                 {heroPoints.map((p) => (
                   <li class="tick"><span class="m"></span><span>{p}</span></li>
                 ))}
               </ul>
               <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;">
                 <a class="btn btn-primary" href={MAILTO}>Je réserve ma semaine</a>
-                <a class="btn btn-ghost" href="#colis">Voir le colis</a>
+                <a class="btn btn-ghost" href="#colis">Voir ce que ça contient</a>
               </div>
-              <p style="margin-top:16px;color:var(--muted);font-size:14.5px;">
-                Réservé à mes amis entrepreneurs du web. Après le 30 septembre, ça redevient payant.
+              <p style="margin-top:14px;color:var(--muted);font-size:14.5px;">
+                Pas de carte bancaire. Réponse le jour même. Il reste 4 places, et après le 30 septembre ça
+                redevient payant.
               </p>
             </div>
 
@@ -523,16 +554,22 @@ const reporting = [
       <section>
         <div class="wrap narrow rv">
           <span class="kicker">Le constat</span>
-          <h2 style="margin-top:16px;">Soyons honnêtes trente secondes</h2>
+          <h2 style="margin-top:16px;">Votre todo n'a pas bougé depuis mars. Ce n'est pas un problème de compétence.</h2>
           <p class="lead" style="margin-top:20px;">
-            Vous avez 47 onglets ouverts. Une todo qui date de mars. Un audit SEO que vous alliez « faire ce
-            week-end » (en avril). Une base de prospects dans un Google Sheet qui ressemble à une scène de crime.
+            Vous avez 47 onglets ouverts. Un audit SEO que vous alliez « faire ce week-end » (en avril). Une base
+            de prospects dans un Google Sheet qui ressemble à une scène de crime. Et cet agent IA que vous
+            expliquez à vos potes depuis six mois sans l'avoir jamais branché.
           </p>
           <p class="lead" style="margin-top:16px;">
-            Vous savez exactement ce qu'il faudrait faire. Vous n'avez juste jamais les 35 heures pour le faire.
+            Vous savez exactement quoi faire. Vous savez même comment. Pendant ce temps, chaque semaine où l'audit
+            n'est pas fait est une semaine où quelqu'un d'autre publie à votre place, et le retard ne se rattrape
+            pas en travaillant un dimanche.
+          </p>
+          <p class="lead" style="margin-top:16px;">
+            Le problème n'a jamais été l'idée. C'est les 35 heures.
           </p>
           <p class="lead" style="margin-top:16px;color:var(--ink);font-weight:600;">
-            Bonne nouvelle : moi j'ai les 35 heures. Et je vous les donne.
+            Moi, j'ai les 35 heures. Et cette fois, je vous les donne.
           </p>
         </div>
       </section>
@@ -564,11 +601,39 @@ const reporting = [
             Oui, on a fait le calcul : ça met l'heure de consulting à un tarif que mon comptable préfère ne pas
             connaître.
           </p>
+          <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+            <a class="btn btn-primary" href={MAILTO}>Je prends une place</a>
+            <span style="color:var(--muted);font-size:14.5px;">Il en reste 4. Ensuite, c'est 500 € la semaine.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMENT ÇA SE PASSE -->
+      <section>
+        <div class="wrap">
+          <div class="rv" style="max-width:720px;">
+            <span class="kicker">Comment ça se passe</span>
+            <h2 style="margin-top:16px;">Cinq jours, quatre étapes, zéro réunion inutile</h2>
+            <p class="lead" style="margin-top:18px;">
+              Vous n'avez rien à installer, rien à apprendre et personne à manager. Voilà exactement ce qui se
+              passe entre le moment où vous m'écrivez et le moment où vous récupérez vos livrables.
+            </p>
+          </div>
+
+          <div class="cards-2 rv" style="margin-top:40px;">
+            {etapes.map((e) => (
+              <div class="card card-hl">
+                <p style="font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;">{e.n}</p>
+                <h3 style="margin-top:8px;">{e.t}</h3>
+                <p style="margin-top:10px;color:var(--muted);font-size:16px;">{e.d}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <!-- CHALLENGES -->
-      <section>
+      <section class="alt hairline-top">
         <div class="wrap">
           <div class="rv" style="max-width:720px;">
             <span class="kicker">3 challenges, pas 3 000</span>
@@ -596,7 +661,7 @@ const reporting = [
       </section>
 
       <!-- REPORTING -->
-      <section class="alt hairline-top">
+      <section class="hairline-top">
         <div class="wrap split centered">
           <div class="rv">
             <span class="kicker">Zéro angoisse</span>
@@ -684,8 +749,35 @@ const reporting = [
         </div>
       </section>
 
-      <!-- RÈGLES -->
+      <!-- GARANTIE + CRÉDIBILITÉ -->
       <section>
+        <div class="wrap">
+          <div class="cards-2 rv">
+            <div class="card">
+              <span class="kicker">La garantie « c'était nul »</span>
+              <h3 style="margin-top:14px;">Si la semaine ne vaut pas vos 2 minutes de vidéo, vous ne filmez rien</h3>
+              <p style="margin-top:12px;color:var(--muted);">
+                Vous ne notez rien non plus, et je vous offre une deuxième semaine pour me rattraper. Je préfère
+                perdre 70 heures que récupérer un témoignage tiède : un client mou à l'écran, ça se voit, et ça ne
+                me sert à rien.
+              </p>
+            </div>
+            <div class="card">
+              <span class="kicker">Qui vous prête ce consultant</span>
+              <h3 style="margin-top:14px;">Julien Rayes, fondateur de Claude Agency</h3>
+              <p style="margin-top:12px;color:var(--muted);">
+                Directeur commercial et marketing d'un organisme de formation (plus de 3 M€ de chiffre d'affaires
+                depuis 2021), dont j'ai automatisé le back-office avec Claude avant d'en faire une agence. Mes
+                consultants sont formés en interne sur Claude Code et Claude Cowork avant de toucher au projet
+                d'un client. Le reste de la page est une blague, cette ligne ne l'est pas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RÈGLES -->
+      <section class="alt hairline-top">
         <div class="wrap narrow rv">
           <span class="kicker">Le petit contrat entre amis</span>
           <h2 style="margin-top:16px;">Les règles (il y en a peu, mais elles tiennent)</h2>
@@ -706,13 +798,13 @@ const reporting = [
       </section>
 
       <!-- FAQ -->
-      <section class="alt hairline-top">
+      <section class="hairline-top">
         <div class="wrap narrow rv">
           <span class="kicker">FAQ</span>
           <h2 style="margin-top:16px;">Les questions que vous alliez poser</h2>
           <div style="margin-top:28px;">
             {faq.map((f, i) => (
-              <details class="q" open={i === 0}>
+              <details class="q" open>
                 <summary>{f.q}</summary>
                 <p>{f.r}</p>
               </details>
@@ -722,19 +814,20 @@ const reporting = [
       </section>
 
       <!-- CTA FINAL -->
-      <section style="text-align:center;">
+      <section class="alt hairline-top" style="text-align:center;">
         <div class="aura aura-b"></div>
         <div class="wrap narrow rv" style="position:relative;">
           <h2 style="font-size:clamp(30px,4.6vw,50px);">Une semaine. Trois challenges. Zéro euro.</h2>
           <p class="lead" style="margin:20px auto 0;max-width:56ch;">
-            Vous m'écrivez, on cale les dates, on cadre vos 3 challenges, et le lundi suivant un consultant se met
-            au travail sur votre business pendant que vous faites autre chose.
+            Vous écrivez, on cale les dates, on cadre vos 3 challenges, et lundi prochain quelqu'un travaille sur
+            votre business pendant que vous faites autre chose. Au pire, vous aurez perdu 30 minutes de visio.
           </p>
           <div style="margin-top:32px;">
             <a class="btn btn-primary" href={MAILTO}>J'envoie mes 3 challenges</a>
           </div>
           <p style="margin-top:18px;color:var(--muted);font-size:14.5px;">
-            Un mail à <strong>contact@claudeagency.fr</strong>. Réponse le jour même, sauf si je dors.
+            Pas de carte bancaire. Pas d'abonnement. Un mail à <strong>contact@claudeagency.fr</strong>, réponse le
+            jour même, sauf si je dors.
           </p>
           <p style="margin-top:6px;font-family:var(--mono);font-size:13px;color:var(--accent-700);">
             4 places · jusqu'au 30 septembre 2026
