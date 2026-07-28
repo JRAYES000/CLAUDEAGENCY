@@ -1,9 +1,9 @@
 ---
 import { Font } from 'astro:assets';
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import heroImg from '../assets/consultant-ia-malgache-neuralink-clavier.jpg';
 import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
-import implantImg from '../assets/consultants-ia-malgaches-neuralink-caricature.jpg';
+import implantImg from '../assets/puce-neuralink-consultant-malgache.jpg';
 
 // CTA principal : création de l'espace client + dépôt de la demande.
 const CTA_URL = 'https://reporting.claudeagency.fr/client?nouveau=1';
@@ -164,10 +164,6 @@ const regles = [
   '4 places au total, jusqu\'au 30 septembre 2026. Premier arrivé, premier servi.',
   'Le témoignage vidéo se livre dans les 30 jours après la fin de la semaine. Passé ce délai, je vous relance, et je relance mal.',
 ];
-
-// Version pleine résolution de la caricature, ouverte au clic (les gags écrits
-// dans l'image sont illisibles à la taille de la colonne).
-const implantFull = await getImage({ src: implantImg, width: 2090, format: 'webp', quality: 82 });
 
 const reporting = [
   { t: '09:02', l: 'Jour 3 · challenge 02 · automatisation', s: 'en cours' },
@@ -346,22 +342,6 @@ const reporting = [
         padding: 8px; box-shadow: var(--shadow-frame);
       }
       .frame img { display: block; width: 100%; height: auto; border-radius: 12px; }
-      a.frame.zoom {
-        display: block; position: relative; cursor: zoom-in; text-decoration: none;
-        transition: transform 200ms ease, box-shadow 200ms ease;
-      }
-      a.frame.zoom:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(43,39,36,.08), 0 44px 90px -40px rgba(43,39,36,.5); }
-      a.frame.zoom:focus-visible { outline: 2px solid var(--accent-700); outline-offset: 4px; }
-      .zoom-badge {
-        position: absolute; right: 18px; bottom: 18px;
-        display: inline-flex; align-items: center; justify-content: center;
-        width: 34px; height: 34px; border-radius: 9999px;
-        background: rgba(43, 39, 36, 0.72); color: #fff; font-size: 15px;
-        backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-        transition: background-color 200ms ease;
-      }
-      a.frame.zoom:hover .zoom-badge { background: var(--accent); }
-
       .frame-bar { display: flex; gap: 6px; padding: 6px 8px 10px; }
       .frame-bar i { width: 9px; height: 9px; border-radius: 9999px; background: var(--sand); display: block; }
 
@@ -536,26 +516,13 @@ const reporting = [
       <!-- SECRET INDUSTRIEL -->
       <section class="alt hairline-top">
         <div class="wrap split">
-          <div class="rv" style="margin-top:34px;">
-            <a
-              class="frame zoom"
-              href={implantFull.src}
-              target="_blank"
-              rel="noopener"
-              aria-label="Agrandir l'illustration pour lire les détails"
-            >
-              <Image
-                src={implantImg}
-                alt="Caricature de trois consultants malgaches équipés d'un implant Neuralink, tapant sur des claviers en flammes devant des écrans de KPI absurdes"
-                loading="lazy"
-                widths={[480, 800, 1200, 1600]}
-                sizes="(min-width: 860px) 46vw, 100vw"
-              />
-              <span class="zoom-badge" aria-hidden="true">⤢</span>
-            </a>
-            <p style="margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--muted);">
-              Cliquez sur l'image : tout est écrit dedans.
-            </p>
+          <div class="rv frame" style="margin-top:34px;">
+            <Image
+              src={implantImg}
+              alt="Gros plan sur l'implant cybernétique lumineux posé derrière l'oreille d'un consultant malgache"
+              loading="lazy"
+              sizes="(min-width: 860px) 46vw, 100vw"
+            />
           </div>
           <div class="rv">
             <span class="kicker">Le secret industriel</span>
