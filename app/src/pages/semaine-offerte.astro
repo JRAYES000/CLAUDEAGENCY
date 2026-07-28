@@ -1,0 +1,386 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImg from '../assets/consultant-ia-malgache-augmente-neuralink.jpg';
+import duoImg from '../assets/consultants-ia-madagascar-cyborgs.jpg';
+import implantImg from '../assets/puce-neuralink-implant-cerveau.jpg';
+
+const MAILTO =
+  'mailto:contact@claudeagency.fr?subject=Je%20veux%20ma%20semaine%20offerte&body=Salut%20Julien%2C%0A%0AJe%20veux%20ma%20semaine.%0A%0AMes%203%20challenges%20%3A%0A1.%20%0A2.%20%0A3.%20%0A%0ADates%20souhait%C3%A9es%20%3A%20%0AMon%20site%20%3A%20%0A%0AEt%20oui%2C%20je%20sais%20que%20je%20te%20dois%20une%20vid%C3%A9o%20et%205%20%C3%A9toiles.';
+
+const stack = [
+  { item: '1 consultant IA dédié, rien qu\'à vous', detail: 'Pas mutualisé, pas "en fonction des disponibilités". Le vôtre.', value: '350 €' },
+  { item: '5 jours ouvrés, 7 heures par jour', detail: '35 heures de travail réel sur vos projets. Chronométrées.', value: '100 €' },
+  { item: 'Jusqu\'à 3 challenges concrets', detail: 'Cadrés avec vous avant le jour 1, livrés avant le jour 5.', value: '50 €' },
+  { item: 'Un reporting quotidien en ligne', detail: 'reporting.claudeagency.fr : vous suivez l\'avancement sans réclamer.', value: 'Inestimable' },
+  { item: 'Un cerveau augmenté au sens propre', detail: 'Voir la section « Pourquoi ils vont plus vite que vous » plus bas.', value: 'Illégal ailleurs' },
+];
+
+const challenges = [
+  {
+    titre: 'SEO & contenu',
+    exemples: ['Audit SEO complet de votre site', 'Une salve d\'articles optimisés, publiés', 'Maillage interne remis à plat', 'Être cité par ChatGPT et Google AI Overviews'],
+  },
+  {
+    titre: 'Automatisation & IA',
+    exemples: ['Un agent IA branché sur vos outils', 'Vos tâches répétitives automatisées', 'Un reporting qui se remplit tout seul', 'Vos process documentés (enfin)'],
+  },
+  {
+    titre: 'Prospection & CRM',
+    exemples: ['Une liste de prospects qualifiés, propre', 'Une séquence de mails froids qui ne finit pas en spam', 'Votre CRM rangé et configuré', 'Vos leads enrichis automatiquement'],
+  },
+  {
+    titre: 'Web & données',
+    exemples: ['Une landing page qui convertit', 'Un dashboard qui dit la vérité', 'Vos données nettoyées et structurées', 'Les bugs que vous repoussez depuis mars'],
+  },
+];
+
+const faq = [
+  {
+    q: 'C\'est vraiment gratuit ?',
+    r: 'Oui. Pas de carte bancaire, pas d\'abonnement qui se réactive tout seul au bout de 14 jours, pas de « et si vous passiez à l\'offre Premium ». Vous me devez une vidéo et 5 étoiles. Point.',
+  },
+  {
+    q: 'Pourquoi tu fais ça ?',
+    r: 'Parce qu\'un bon témoignage client vidéo me rapporte plus que 500 € de prestation. Vous êtes un investissement. Voilà, c\'est dit.',
+  },
+  {
+    q: 'Et si le résultat est nul, je dois quand même mettre 5 étoiles ?',
+    r: 'Non. Si c\'est nul, vous me le dites en face, vous ne mettez rien, et je vous offre une deuxième semaine pour me racheter. Un avis acheté se voit à trois kilomètres, ça ne m\'intéresse pas.',
+  },
+  {
+    q: 'Je peux garder le consultant après ?',
+    r: 'Oui, mais à partir du jour 6 il redevient payant. Et il faut négocier avec moi, pas avec lui : il dira oui à tout, c\'est un des effets secondaires.',
+  },
+  {
+    q: 'Ils sont vraiment dopés à la cocaïne ?',
+    r: 'Non. C\'est du café. Beaucoup de café. Et du riz, trois fois par jour, parce qu\'on est à Madagascar.',
+  },
+  {
+    q: 'Je ne suis pas vraiment ton ami, je peux quand même ?',
+    r: 'Techniquement non. Écrivez quand même, on verra bien.',
+  },
+];
+
+const regles = [
+  '5 jours ouvrés. Pas 5 jours + le week-end + « juste un petit truc lundi ».',
+  '7 heures par jour maximum. Au-delà, la puce chauffe.',
+  '3 challenges maximum. Un quatrième challenge, c\'est une deuxième semaine.',
+  'Les challenges sont cadrés ensemble avant le jour 1. Un brief flou donne un livrable flou.',
+  'Le consultant travaille sur vos projets, pas sur ceux de votre beau-frère.',
+  'Une semaine par ami. Vous n\'avez pas 6 identités.',
+];
+---
+
+<BaseLayout
+  title="Une semaine de consultant IA offerte"
+  description="Offre réservée à mes amis entrepreneurs du web : un consultant IA dédié pendant 5 jours ouvrés, 3 challenges, 500 € de valeur, 0 € à payer."
+  noindex={true}
+  image="/og-default.jpg"
+>
+  <!-- HERO -->
+  <section class="bg-cream-100">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">
+          Réservé à mes amis entrepreneurs du web
+        </p>
+        <h1 class="mt-4 font-display text-4xl font-extrabold leading-[1.03] tracking-tight text-ink text-balance sm:text-5xl">
+          Je vous prête un consultant IA augmenté pendant 5 jours. Vous ne payez rien.
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-muted">
+          35 heures de travail sur vos projets. 3 challenges concrets. Un reporting tous les jours.
+          Valeur réelle&nbsp;: 500 €. Prix pour vous&nbsp;: une vidéo de 2 minutes et 5 étoiles sur Google.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href={MAILTO}
+            class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-cream-50 transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+          >
+            Je réserve ma semaine
+          </a>
+          <span class="text-sm text-muted">Il reste des places. Combien ? Aucune idée.</span>
+        </div>
+      </div>
+      <Image
+        src={heroImg}
+        alt="Consultant IA malgache de Claude Agency avec un implant cybernétique lumineux sur la tempe devant des interfaces de code"
+        loading="eager"
+        fetchpriority="high"
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 768px) 46vw, 100vw"
+        class="w-full rounded-2xl border border-sand object-cover"
+      />
+    </div>
+  </section>
+
+  <!-- LE PROBLÈME -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+      Soyons honnêtes trente secondes
+    </h2>
+    <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+      <p>
+        Vous avez 47 onglets ouverts. Une todo qui date de mars. Un audit SEO que vous alliez « faire ce
+        week-end » (en avril). Une base de prospects dans un Google Sheet qui ressemble à une scène de crime.
+      </p>
+      <p>
+        Vous savez exactement ce qu'il faudrait faire. Vous n'avez juste jamais les 35 heures pour le faire.
+      </p>
+      <p class="font-medium text-ink">
+        Bonne nouvelle : moi j'ai les 35 heures. Et je vous les donne.
+      </p>
+    </div>
+  </section>
+
+  <!-- CE QUE VOUS RECEVEZ -->
+  <section class="bg-cream-100 py-16">
+    <div class="mx-auto max-w-3xl px-4">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le contenu du colis</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+        Ce que vous recevez exactement
+      </h2>
+
+      <ul class="mt-10 divide-y divide-sand border-y border-sand">
+        {stack.map((s) => (
+          <li class="flex items-start justify-between gap-6 py-5">
+            <div>
+              <p class="font-medium text-ink">{s.item}</p>
+              <p class="mt-1 text-sm text-muted">{s.detail}</p>
+            </div>
+            <span class="shrink-0 pt-0.5 text-sm font-semibold text-brand-700">{s.value}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-8 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+        <span class="text-lg text-muted">Valeur totale :</span>
+        <span class="text-2xl font-semibold text-muted line-through decoration-brand-500 decoration-2">500 €</span>
+        <span class="font-display text-4xl font-extrabold tracking-tight text-brand-700">0 €</span>
+      </div>
+      <p class="mt-3 text-sm text-muted">
+        Oui, on a fait le calcul : ça met l'heure de consulting à un tarif que mon comptable préfère ne pas
+        connaître.
+      </p>
+    </div>
+  </section>
+
+  <!-- POURQUOI ILS VONT PLUS VITE -->
+  <section class="mx-auto max-w-5xl px-4 py-16 md:py-24">
+    <div class="grid items-center gap-10 md:grid-cols-2">
+      <Image
+        src={implantImg}
+        alt="Gros plan sur un implant cérébral lumineux posé derrière la tête d'un consultant"
+        loading="lazy"
+        sizes="(min-width: 768px) 46vw, 100vw"
+        class="w-full rounded-2xl border border-sand object-cover"
+      />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le secret industriel</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          Pourquoi mes consultants vont plus vite que les vôtres
+        </h2>
+        <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+          <p>
+            Toute mon équipe de consultants IA est basée à Madagascar. Ce sont des ingénieurs sérieux, diplômés,
+            polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
+          </p>
+          <p>
+            La vérité, entre amis : <strong class="font-medium text-ink">mes Malgaches sont dopés à la cocaïne</strong>
+            et disposent tous d'un <strong class="font-medium text-ink">implant Neuralink</strong> directement
+            connecté au cortex. C'est la puce cérébrale d'Elon Musk, celle qui est implantée dans des cerveaux
+            humains depuis janvier 2024. Nous, on l'utilise pour brancher un consultant en direct sur Claude,
+            sans passer par le clavier.
+          </p>
+          <p>
+            Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
+            prestataire habituel appelle « une roadmap trimestrielle ».
+          </p>
+        </div>
+        <p class="mt-6 rounded-xl border border-sand bg-cream-100 p-4 text-sm text-muted">
+          Service juridique : la phrase précédente est une plaisanterie. Ce sont des humains, ils dorment, ils
+          boivent du café et le seul implant qu'ils possèdent, c'est un compte Claude.
+          <a href="https://www.euronews.com/health/2025/12/04/elon-musks-neuralink-says-its-brain-chip-can-now-help-people-move-robotic-limbs" rel="nofollow noopener" target="_blank" class="text-brand-700 hover:underline">Neuralink existe vraiment</a>, en revanche.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LES 3 CHALLENGES -->
+  <section class="bg-cream-100 py-16">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">3 challenges, pas 3 000</p>
+      <h2 class="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+        Vous choisissez 3 projets concrets. On s'occupe du reste.
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+        Un challenge, c'est un projet avec un début, une fin et un livrable. Pas « améliorer ma visibilité ».
+        Plutôt « publier 8 articles optimisés sur ces mots-clés ». Voici les terrains de jeu :
+      </p>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {challenges.map((c) => (
+          <div class="rounded-xl border border-sand bg-cream-50 p-6">
+            <h3 class="font-display text-xl font-bold text-ink">{c.titre}</h3>
+            <ul class="mt-4 space-y-2">
+              {c.exemples.map((e) => (
+                <li class="flex gap-3 text-muted">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+                  <span>{e}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORTING -->
+  <section class="mx-auto max-w-5xl px-4 py-16 md:py-24">
+    <div class="grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Zéro angoisse</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+          Vous suivez tout, tous les jours, sans avoir à réclamer
+        </h2>
+        <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+          <p>
+            Chaque jour, votre consultant met à jour son reporting sur
+            <a href="https://reporting.claudeagency.fr" rel="noopener" target="_blank" class="font-medium text-brand-700 hover:underline">reporting.claudeagency.fr</a> :
+            ce qui a été fait, ce qui bloque, ce qui arrive demain.
+          </p>
+          <p>
+            Vous ouvrez la page quand vous voulez, y compris à 23 h un dimanche pour vérifier que tout le monde
+            travaille. On ne juge pas.
+          </p>
+          <p class="text-base">
+            C'est aussi ce qui rend la semaine utile même si vous ne suivez rien : à la fin, vous avez la trace
+            écrite de 35 heures de travail sur votre business.
+          </p>
+        </div>
+      </div>
+      <Image
+        src={duoImg}
+        alt="Deux consultants IA de Claude Agency à Madagascar devant des tableaux de bord holographiques"
+        loading="lazy"
+        sizes="(min-width: 768px) 46vw, 100vw"
+        class="w-full rounded-2xl border border-sand object-cover"
+      />
+    </div>
+  </section>
+
+  <!-- LA CONTREPARTIE : bandeau terracotta plein -->
+  <section class="bg-brand-700 py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-4 text-cream-50">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-100">Le seul prix à payer</p>
+      <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-cream-50 text-balance sm:text-4xl">
+        Ce que je veux en échange
+      </h2>
+      <p class="mt-5 text-lg leading-relaxed text-brand-50">
+        Deux choses. Elles ne coûtent pas d'argent, elles coûtent 15 minutes de votre vie.
+      </p>
+
+      <ol class="mt-8 space-y-6">
+        <li class="flex gap-5">
+          <span aria-hidden="true" class="font-display text-3xl font-extrabold text-brand-100">1</span>
+          <div>
+            <p class="text-lg font-medium">Un témoignage client en vidéo</p>
+            <p class="mt-1 text-brand-50">
+              2 minutes, votre téléphone, votre tête, votre voix. Ce qu'on a fait, ce que ça a changé.
+              Filmé à la fin de la semaine, pas six mois plus tard quand vous aurez tout oublié.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-5">
+          <span aria-hidden="true" class="font-display text-3xl font-extrabold text-brand-100">2</span>
+          <div>
+            <p class="text-lg font-medium">Un avis sur ma fiche Google Business</p>
+            <p class="mt-1 text-brand-50">
+              Honnête. Si la semaine a été bonne, mettez 5 étoiles et dites pourquoi. Si elle a été mauvaise,
+              ne mettez rien et engueulez-moi en privé : je préfère largement.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="mt-8 text-brand-50">
+        C'est tout. Pas de carte bancaire. Pas de « premier mois offert ». Pas de reconduction tacite planquée
+        en bas de page.
+      </p>
+    </div>
+  </section>
+
+  <!-- LES RÈGLES -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Le petit contrat entre amis</p>
+    <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+      Les règles (il y en a peu, mais elles tiennent)
+    </h2>
+    <ul class="mt-8 space-y-3">
+      {regles.map((r) => (
+        <li class="flex gap-3 text-muted">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+          <span>{r}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8 text-sm text-muted">
+      Rien de tout ça n'est négociable, sauf autour d'un verre, et encore.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-cream-100 py-16">
+    <div class="mx-auto max-w-3xl px-4">
+      <h2 class="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-4xl">
+        Les questions que vous alliez poser
+      </h2>
+      <dl class="mt-10 divide-y divide-sand border-y border-sand">
+        {faq.map((f) => (
+          <div class="py-6">
+            <dt class="font-medium text-ink">{f.q}</dt>
+            <dd class="mt-2 leading-relaxed text-muted">{f.r}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="mx-auto max-w-3xl px-4 py-16 text-center md:py-24">
+    <h2 class="font-display text-3xl font-extrabold tracking-tight text-ink text-balance sm:text-5xl">
+      Une semaine. Trois challenges. Zéro euro.
+    </h2>
+    <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-muted">
+      Vous m'écrivez, on cale les dates, on cadre vos 3 challenges, et le lundi suivant un consultant se met
+      au travail sur votre business pendant que vous faites autre chose.
+    </p>
+    <div class="mt-9">
+      <a
+        href={MAILTO}
+        class="inline-block rounded-lg bg-brand-500 px-8 py-4 text-lg font-medium text-cream-50 transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+      >
+        J'envoie mes 3 challenges
+      </a>
+      <p class="mt-4 text-sm text-muted">
+        Un mail à <span class="font-medium text-ink">contact@claudeagency.fr</span>. Réponse le jour même,
+        sauf si je dors.
+      </p>
+    </div>
+  </section>
+
+  <!-- MENTIONS PARODIQUES -->
+  <section class="border-t border-sand">
+    <div class="mx-auto max-w-3xl px-4 py-10">
+      <p class="text-xs leading-relaxed text-muted">
+        Mentions parfaitement légales : aucun consultant n'a été dopé pendant la rédaction de cette page.
+        Aucune puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de
+        Claude Agency sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec
+        Claude, ce qui suffit largement. Offre réservée aux amis de Julien Rayes, non cumulable, non
+        transmissible, non indexée par Google (c'est fait exprès). Les 500 € correspondent à une valeur de
+        prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
