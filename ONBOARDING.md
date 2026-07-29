@@ -34,7 +34,7 @@ _These aren't in the usage scan yet, but they're wired into this project — a t
 
 ## Team Tips
 
-- **Always confirm before merging or publishing.** Merging to the main branch auto-deploys to production (Netlify/Vercel) — so merge = publish live. Get an explicit go-ahead in the conversation every time, even for content that looks ready.
+- **Publish directly once the build passes.** Pushing to `main` auto-deploys to production via **Cloudflare Pages** — so merge = publish live. Julien has authorised the agent to publish without asking for approval each time; just run `cd app && npm run build` first, then report afterwards what went live, with full clickable URLs.
 - **Build before you commit.** Run `cd app && npm run build` and confirm it passes before committing content or code.
 - **Route the mechanical work to Haiku, keep judgment on the strong model.** Hand repo searches, link/tag audits, and SEO data collection to the `seo-researcher` sub-agent. Writing, editorial tone, internal-linking choices, and SEO calls stay on the strong model.
 - **Reserve `/fabuleux` for high-value work.** Use it for writing/reworking articles, design checks, and SEO decisions — not for chores. It pushes effort and burns more quota, so don't run it by default.
