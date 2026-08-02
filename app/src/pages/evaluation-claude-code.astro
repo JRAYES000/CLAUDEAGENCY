@@ -1,189 +1,163 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Évaluation interne des collaborateurs Claude Agency sur Claude Code et Claude.
-// Page utilitaire : noindex, absente du menu, aucune donnée envoyée.
-// Le score est calculé côté navigateur, rien ne sort de la machine du répondant.
-// Corrigé vérifié sur la documentation officielle (voir champ `source`).
-
-const PALIERS = [
-  { min: 17, titre: 'Autonome', couleur: 'brand', texte: "Vous pouvez prendre un projet client de bout en bout. Gardez la discipline de vérification : sur une mission, c'est elle qui fait la différence, pas la connaissance de l'outil." },
-  { min: 12, titre: 'Opérationnel sur cadrage', couleur: 'amber', texte: "Vous pouvez travailler sur un projet à condition qu'il soit cadré et relu. Reprenez les questions manquées ci-dessous avant de démarrer : ce sont exactement les points où une erreur coûte cher chez un client." },
-  { min: 0, titre: 'À former avant de démarrer', couleur: 'red', texte: "Il manque les bases pour intervenir seul. Priorité : le fichier CLAUDE.md, les modes de permission, et la règle « aucune vérification déclarative ». Reprenez la correction question par question." },
-];
+// Évaluation interne des collaborateurs Claude Agency.
+// Parcours question par question : on répond, on voit immédiatement pourquoi
+// chaque option est juste ou fausse, puis on avance. Aucune donnée n'est envoyée.
+// Page utilitaire : noindex, absente du menu.
+// Corrigé sourcé sur la documentation officielle (champ `source`).
 
 const DOMAINES = {
-  fondamentaux: 'Claude Code — fondamentaux',
-  avance: 'Claude Code — avancé',
-  fiabilite: 'Usage professionnel et fiabilité',
-  metier: 'Métier Claude Agency',
+  claudecode: 'Claude Code',
+  methode: 'Fiabilité et méthode',
+  seo: 'SEO client',
+  ads: 'Google Ads client',
+  perf: 'Site et performance',
+  conseil: 'Conseil et cadrage',
 };
 
+const PALIERS = [
+  {
+    min: 17,
+    titre: 'Autonome',
+    ton: 'ok',
+    texte: "Vous pouvez prendre une mission client de bout en bout. Ce qui fera la différence en clientèle, ce n'est plus la connaissance de l'outil, c'est la discipline de vérification.",
+  },
+  {
+    min: 12,
+    titre: 'Opérationnel sur cadrage',
+    ton: 'moyen',
+    texte: "Vous pouvez travailler sur un projet cadré et relu. Reprenez les questions manquées avant de démarrer : ce sont exactement les points où une erreur se paie chez le client.",
+  },
+  {
+    min: 0,
+    titre: 'À former avant de démarrer',
+    ton: 'ko',
+    texte: "Il manque des bases pour intervenir seul. Priorité : les modes de permission de Claude Code, la règle « aucune vérification déclarative », et le réflexe de mesurer avant d'affirmer.",
+  },
+];
+
 const questions = [
-  // ---------- Claude Code : fondamentaux ----------
+  // ============ Claude Code ============
   {
-    domaine: 'fondamentaux',
-    q: "Votre équipe veut partager, via le dépôt Git, les instructions que Claude Code doit lire sur chaque projet. Où placez-vous le fichier ?",
-    opts: [
-      'Dans `~/.claude/CLAUDE.md`',
-      'Dans `./CLAUDE.md` ou `./.claude/CLAUDE.md`, à la racine du projet',
-      'Dans `./CLAUDE.local.md`',
-      "Dans le dossier d'installation de Claude Code sur chaque poste",
-    ],
-    correct: 1,
-    explication: "Le CLAUDE.md « projet » vit à la racine du dépôt et se partage par le contrôle de version. `~/.claude/CLAUDE.md` est personnel à un utilisateur, et `CLAUDE.local.md` est local et se met dans le .gitignore.",
-    source: 'https://code.claude.com/docs/en/memory',
-  },
-  {
-    domaine: 'fondamentaux',
-    q: "Un collaborateur a écrit un CLAUDE.md de 600 lignes qui détaille pas à pas une procédure de migration. Que recommande la documentation ?",
-    opts: [
-      "Rien : la taille d'un CLAUDE.md n'a aucune incidence",
-      'Le dupliquer dans `CLAUDE.local.md` pour renforcer la consigne',
-      "Déplacer la procédure dans une skill, qui ne se charge qu'à l'usage, et viser moins de 200 lignes par CLAUDE.md",
-      'Le convertir en variable d\'environnement dans `settings.json`',
-    ],
-    correct: 2,
-    explication: "La doc fixe une cible : « target under 200 lines per CLAUDE.md file ». Un CLAUDE.md se charge en entier à chaque session ; une procédure multi-étapes appartient à une skill, chargée seulement quand on s'en sert.",
-    source: 'https://code.claude.com/docs/en/memory',
-  },
-  {
-    domaine: 'fondamentaux',
+    domaine: 'claudecode',
     q: 'Quelle est la différence entre `/clear` et `/compact` ?',
     opts: [
       '`/clear` résume la conversation, `/compact` repart de zéro',
       '`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer du contexte tout en la poursuivant',
-      'Les deux font la même chose, `/compact` est l\'ancien nom',
+      'Les deux font la même chose, `/compact` est simplement l\'ancien nom',
       '`/clear` ne fonctionne qu\'en mode plan',
     ],
     correct: 1,
-    explication: "`/clear` ouvre une conversation neuve : on l'utilise en changeant de sujet. `/compact` garde le fil en le résumant : on l'utilise quand la tâche continue mais que le contexte sature.",
+    pourquoi: [
+      "Inversé. C'est `/compact` qui résume, et `/clear` qui repart à zéro.",
+      "Exact. On utilise `/clear` en changeant de sujet, et `/compact` quand la tâche continue mais que le contexte sature.",
+      "Non : ce sont deux commandes distinctes, avec deux effets opposés sur l'historique.",
+      "Non, le mode de permission n'a rien à voir avec la gestion du contexte.",
+    ],
+    explication: "Confondre les deux coûte du travail : `/clear` au mauvais moment jette le contexte d'une mission en cours, et rester sans jamais compacter dégrade la qualité des réponses au fil de la conversation.",
     source: 'https://code.claude.com/docs/en/commands',
   },
   {
-    domaine: 'fondamentaux',
-    q: "En mode `acceptEdits`, qu'est-ce que Claude peut faire sans vous demander d'autorisation, en plus de lire des fichiers ?",
-    opts: [
-      "Rien de plus : seule la lecture reste automatique",
-      "Modifier des fichiers, et lancer quelques commandes courantes de gestion de fichiers (`mkdir`, `touch`, `rm`, `mv`, `cp`, `sed`) dans le répertoire de travail",
-      "N'importe quelle commande, y compris `git push --force`",
-      'Uniquement les requêtes réseau (`curl`, `wget`)',
-    ],
-    correct: 1,
-    explication: "`acceptEdits` auto-approuve les éditions de fichiers et une courte liste de commandes de gestion de fichiers, limitée au répertoire de travail. Toutes les autres commandes shell continuent de demander confirmation.",
-    source: 'https://code.claude.com/docs/en/permission-modes',
-  },
-  {
-    domaine: 'fondamentaux',
+    domaine: 'claudecode',
     q: "Que dit la documentation du mode `bypassPermissions` (activé par `--dangerously-skip-permissions`) ?",
     opts: [
       "À privilégier sur les projets clients pour aller plus vite",
       "Il ajoute une confirmation supplémentaire avant chaque commande",
-      "Il est actif par défaut et doit être désactivé",
+      "Il est actif par défaut et il faut le désactiver",
       "À n'utiliser que dans un environnement isolé (conteneur, machine virtuelle) ; sur macOS et Linux, Claude Code refuse même de démarrer dans ce mode en root ou sous `sudo`",
     ],
     correct: 3,
-    explication: "La doc est explicite : ce mode ne protège de rien, y compris de l'injection de consignes malveillantes trouvées dans un fichier ou une page web. Sur un poste de travail avec des données clients, il est à proscrire.",
+    pourquoi: [
+      "L'inverse exact de la consigne officielle. Sur un poste qui contient des données clients, c'est le pire endroit pour ce mode.",
+      "Non, il en retire : il désactive les demandes d'autorisation, il n'en ajoute pas.",
+      "Non, il n'est jamais actif par défaut. Il faut l'activer explicitement au lancement.",
+      "Exact. La doc précise aussi qu'il n'offre aucune protection contre les consignes malveillantes cachées dans un fichier ou une page web.",
+    ],
+    explication: "C'est le réglage qui transforme une erreur de jugement en incident. Sur nos postes, les dossiers Qualiopi, comptables et les données d'anciens élèves cohabitent avec le code : le mode sans garde-fou n'y a pas sa place.",
     source: 'https://code.claude.com/docs/en/permission-modes',
   },
-
-  // ---------- Claude Code : avancé ----------
   {
-    domaine: 'avance',
-    q: "Pourquoi déléguer une exploration de gros dépôt à un sous-agent plutôt que la mener dans la conversation principale ?",
+    domaine: 'claudecode',
+    q: "Vous devez explorer un dépôt client de 400 fichiers pour retrouver toutes les pages qui contiennent un ancien numéro de téléphone. Pourquoi confier ça à un sous-agent plutôt que de le faire dans la conversation principale ?",
     opts: [
-      "Le sous-agent a accès à des outils que la conversation principale n'a jamais",
+      "Le sous-agent a accès à des outils que la conversation principale n'a pas",
       "Le sous-agent tourne automatiquement sur un modèle plus puissant",
-      "C'est obligatoire dès que plus de trois fichiers sont concernés",
+      "C'est obligatoire au-delà de trois fichiers",
       "Le sous-agent travaille dans sa propre fenêtre de contexte et ne renvoie que sa synthèse",
     ],
     correct: 3,
-    explication: "Les résultats de recherche, logs et bouts de code qu'on ne relira jamais restent chez le sous-agent. La conversation principale garde son contexte pour le travail qui compte.",
+    pourquoi: [
+      "Non, c'est le contraire : on restreint souvent ses outils, justement pour l'empêcher d'écrire.",
+      "Non. Par défaut il hérite du modèle de la conversation, et on le descend souvent en Haiku pour économiser.",
+      "Aucun seuil de ce genre n'existe. Déléguer se décide sur le volume de bruit produit, pas sur un nombre de fichiers.",
+      "Exact. Les centaines de lignes de résultats de recherche restent chez lui ; vous ne récupérez que la liste utile.",
+    ],
+    explication: "Le contexte est la ressource rare d'une mission. Tout ce que vous laissez entrer dans la conversation principale (logs, code parcouru, résultats de grep) dégrade la qualité de ce qui suit.",
     source: 'https://code.claude.com/docs/en/sub-agents',
   },
   {
-    domaine: 'avance',
+    domaine: 'claudecode',
     q: "Un sous-agent porte `model: sonnet` dans son frontmatter, et la variable d'environnement `CLAUDE_CODE_SUBAGENT_MODEL` vaut `haiku`. Quel modèle tourne réellement ?",
     opts: [
-      'haiku : la variable d\'environnement passe avant le frontmatter',
+      "haiku : la variable d'environnement passe avant le frontmatter",
       'sonnet : le frontmatter du sous-agent prime toujours',
-      'Le modèle de la conversation principale, les deux réglages s\'annulant',
-      'opus : Claude Code retient le modèle le plus capable disponible',
+      "Le modèle de la conversation principale, les deux réglages s'annulant",
+      'Le modèle le plus capable disponible, par sécurité',
     ],
     correct: 0,
-    explication: "L'ordre de résolution est : variable d'environnement, puis paramètre passé à l'invocation, puis frontmatter, puis modèle de la conversation. D'où le piège : cette variable force **tous** les sous-agents sur le même modèle, rédaction comprise. Chez nous, le routage doit rester sélectif.",
+    pourquoi: [
+      "Exact. L'ordre est : variable d'environnement, puis paramètre passé à l'invocation, puis frontmatter, puis modèle de la conversation.",
+      "Non, le frontmatter arrive en troisième position seulement.",
+      "Non, il n'y a pas d'annulation : le premier niveau renseigné gagne.",
+      "Claude Code n'applique aucune escalade automatique de ce type.",
+    ],
+    explication: "Le piège est économique autant que qualitatif : cette variable force **tous** les sous-agents sur le même modèle, y compris ceux qui rédigent. Le routage doit rester sélectif, décidé tâche par tâche.",
     source: 'https://code.claude.com/docs/en/sub-agents',
   },
-  {
-    domaine: 'avance',
-    q: "Vous écrivez un hook `PreToolUse` pour empêcher une commande dangereuse. Quel code de sortie doit renvoyer votre script pour bloquer l'action ?",
-    opts: [
-      '0, un code de succès valant approbation du blocage',
-      '1, code d\'erreur générique qui interrompt la session',
-      "2 : Claude Code ignore alors la sortie standard, transmet `stderr` à Claude et bloque l'appel d'outil",
-      "Peu importe : seul le champ `matcher` détermine le blocage",
-    ],
-    correct: 2,
-    explication: "Un hook est le seul moyen d'imposer une règle de façon déterministe : contrairement à une consigne dans CLAUDE.md, il s'exécute quoi que Claude décide.",
-    source: 'https://code.claude.com/docs/en/hooks',
-  },
-  {
-    domaine: 'avance',
-    q: "Comment faire explorer le code et proposer un plan avant toute modification sur le disque ?",
-    opts: [
-      'Lancer `claude --permission-mode plan`, ou basculer en cours de session avec `Shift+Tab`',
-      'Ajouter le flag `--dry-run`',
-      'Le mode plan s\'active seul dès qu\'un CLAUDE.md est présent',
-      'Valider chaque outil un par un manuellement',
-    ],
-    correct: 0,
-    explication: "En mode plan, Claude lit et propose, sans écrire. `Shift+Tab` fait cycler les modes. C'est le bon réflexe avant de toucher au dépôt d'un client.",
-    source: 'https://code.claude.com/docs/en/permission-modes',
-  },
-  {
-    domaine: 'avance',
-    q: "Quel flag exécute Claude Code en mode non interactif, pour l'intégrer à un script ?",
-    opts: [
-      '`--ci`',
-      '`--batch`',
-      '`--script`',
-      "`-p` (ou `--print`), suivi du prompt — avec `--output-format json` pour une sortie structurée",
-    ],
-    correct: 3,
-    explication: "C'est ce qui permet de brancher Claude sur un pipeline : lui piper un diff, un log ou un export, et récupérer un résultat exploitable par un autre programme.",
-    source: 'https://code.claude.com/docs/en/headless',
-  },
 
-  // ---------- Usage professionnel et fiabilité ----------
+  // ============ Fiabilité et méthode ============
   {
-    domaine: 'fiabilite',
+    domaine: 'methode',
     q: "Vous devez trier 200 fiches d'inscription pour repérer les champs manquants : une tâche mécanique, au résultat vérifiable. Quel modèle choisir ?",
     opts: [
-      'Le modèle le plus puissant disponible, par précaution',
       'Un modèle rapide et économique, adapté aux tâches mécaniques à réponse vérifiable',
+      'Le modèle le plus puissant disponible, par précaution',
       "Aucun : une IA ne doit jamais toucher à des données d'inscription",
       'Le modèle le plus lent, la lenteur garantissant la fiabilité',
     ],
-    correct: 1,
-    explication: "Router par type de tâche, pas en bloc : les corvées vérifiables vont au modèle économique, le jugement et l'expertise au modèle fort. Prendre le plus cher partout ne réduit aucun risque, ça gonfle la facture.",
+    correct: 0,
+    pourquoi: [
+      "Exact. Corvée vérifiable, modèle économique ; jugement et expertise, modèle fort.",
+      "La puissance de raisonnement ne sert à rien ici, et elle se facture. Le résultat est vérifiable d'un coup d'œil : la « précaution » est illusoire.",
+      "Trop absolu. Le sujet n'est pas l'outil mais la donnée : anonymisée et minimisée, cette tâche est parfaitement légitime.",
+      "La lenteur n'est corrélée à aucune garantie de justesse.",
+    ],
+    explication: "Router par type de tâche, pas en bloc. Un modèle cher sur une corvée mécanique ne réduit aucun risque : il gonfle la facture d'une mission qui se vend au forfait.",
     source: null,
   },
   {
-    domaine: 'fiabilite',
-    q: "Claude vous livre un script qui calcule les heures de formation facturables à partir d'un export Excel. Que faites-vous avant de le transmettre à la comptabilité ?",
+    domaine: 'methode',
+    q: "Claude vous livre un script qui calcule les heures de formation facturables à partir d'un export Excel client. Que faites-vous avant de le transmettre à la comptabilité ?",
     opts: [
-      "Le transmettre : si Claude l'a écrit, il fonctionne",
+      "Le transmettre : s'il a été généré sans erreur, il fonctionne",
       "Le relire pour juger s'il « a l'air correct », puis le transmettre",
       "Demander à Claude si son propre script est correct et se fier à sa réponse",
       "L'exécuter sur un jeu de données dont vous connaissez déjà le résultat attendu, et comparer",
     ],
     correct: 3,
-    explication: "Seule une exécution sur un cas dont vous connaissez la bonne réponse constitue une preuve. Une relecture visuelle ou l'auto-évaluation du modèle n'en sont pas. « Ça devrait marcher » ne compte pas.",
+    pourquoi: [
+      "L'absence d'erreur à la génération ne dit rien de la justesse du calcul. Un script faux s'exécute très bien.",
+      "Une relecture attrape les fautes grossières, pas une erreur d'arrondi ou une condition inversée sur un cas limite.",
+      "Un modèle interrogé sur son propre travail a tendance à le confirmer. Ce n'est pas un signal indépendant.",
+      "Exact. C'est le seul contrôle qui produit une preuve : un résultat connu, recalculé, comparé.",
+    ],
+    explication: "« Ça devrait marcher » ne compte pas. Sur de la facturation, une erreur ne se voit pas à la relecture : elle se voit à l'exécution sur un cas dont vous connaissez la réponse.",
     source: null,
   },
   {
-    domaine: 'fiabilite',
-    q: "Claude cite un article et une source à l'appui d'une affirmation sur les obligations Qualiopi. Que faites-vous ?",
+    domaine: 'methode',
+    q: "Claude cite un article et une source à l'appui d'une affirmation sur les obligations Qualiopi de votre client. Que faites-vous ?",
     opts: [
       "Vous faites confiance : le format (auteur, titre, date) est crédible",
       "Vous ouvrez la source pour vérifier qu'elle existe et qu'elle dit bien ce qu'on lui attribue",
@@ -191,91 +165,253 @@ const questions = [
       "Vous demandez une deuxième source pour confirmer la première, sans ouvrir ni l'une ni l'autre",
     ],
     correct: 1,
-    explication: "Un modèle peut produire une référence plausible mais inexistante, ou déformer ce que dit une source réelle. Sur un livrable client, une source non ouverte est une source non vérifiée.",
+    pourquoi: [
+      "Le format crédible est précisément le problème : une référence inventée ressemble en tout point à une vraie.",
+      "Exact. Une source non ouverte est une source non vérifiée, quel que soit son air de sérieux.",
+      "Sur un sujet réglementaire, une affirmation sans source vérifiable n'a aucune valeur devant un auditeur.",
+      "Empiler des références non ouvertes multiplie le risque au lieu de le réduire.",
+    ],
+    explication: "Un modèle peut produire une référence plausible mais inexistante, ou déformer ce que dit une source réelle. Sur du réglementaire, c'est le client qui prend le risque à votre place.",
     source: null,
   },
   {
-    domaine: 'fiabilite',
+    domaine: 'methode',
     q: "Un collaborateur veut faire reformuler par Claude l'avis de suivi d'un apprenant, à partir de son dossier CPF. Quelle est la bonne pratique ?",
     opts: [
-      "Coller le dossier complet — nom, numéro, détails personnels — pour que Claude ait tout le contexte",
+      "Coller le dossier complet (nom, numéro, détails personnels) pour que Claude ait tout le contexte",
       "Coller le dossier complet mais préciser dans le prompt de « faire attention » à la confidentialité",
       "Anonymiser l'extrait et ne transmettre que ce qui est nécessaire à la tâche",
       "Renoncer : ce type de tâche est interdit, même anonymisé",
     ],
     correct: 2,
-    explication: "Minimisation : on n'envoie que le strict nécessaire, débarrassé des identifiants. Une consigne de prudence dans le prompt ne protège rien — la donnée est déjà partie.",
+    pourquoi: [
+      "Le « contexte complet » n'améliore pas une reformulation, et il transmet des données personnelles qui n'ont rien à y faire.",
+      "Une consigne de prudence dans le prompt ne protège rien : la donnée est déjà partie au moment où le modèle la lit.",
+      "Exact. On garde la matière utile à la reformulation et on retire ce qui identifie la personne.",
+      "Trop absolu, et impraticable. Correctement minimisée, la tâche est légitime.",
+    ],
+    explication: "La minimisation est la règle de base : on n'envoie que le strict nécessaire. C'est aussi ce qu'on enseigne aux équipes de nos clients, donc autant l'appliquer.",
     source: 'https://www.cnil.fr/fr/les-fiches-pratiques-ia',
   },
 
-  // ---------- Métier Claude Agency ----------
+  // ============ SEO client ============
   {
-    domaine: 'metier',
-    q: "Vous demandez à Claude Code de corriger les balises `title` de 40 articles d'un blog Astro en une seule opération. Quelle précaution prenez-vous ?",
+    domaine: 'seo',
+    q: "Un organisme de formation vous écrit : « on publie un article par semaine depuis six mois, on ne remonte toujours pas sur Google ». Quel est votre premier réflexe ?",
     opts: [
-      "Aucune : Astro régénère les pages au build, le risque est nul",
-      "Lancer sur quelques fichiers d'abord, relire le diff Git, puis committer par petits lots",
-      "Laisser faire sans relecture, c'est une tâche mécanique",
-      "Supprimer le dossier de contenu avant, pour repartir d'une base propre",
+      "Ouvrir la Search Console du client : voir quelles pages sont réellement indexées, sur quelles requêtes elles impriment déjà et à quelles positions",
+      'Proposer de doubler la cadence de publication',
+      'Proposer une campagne de netlinking pour renforcer l\'autorité du domaine',
+      'Enrichir les articles existants en y ajoutant davantage de mots-clés',
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. Les données du client répondent avant toute hypothèse : pages non indexées, requêtes déjà servies, positions proches de la première page.",
+      "Publier plus quand ce qui existe ne fonctionne pas revient à multiplier la même erreur. Et vous ne savez pas encore quelle est l'erreur.",
+      "Peut-être utile plus tard, mais c'est un investissement lourd décidé sans diagnostic. Si les pages ne sont même pas indexées, les liens n'y changeront rien.",
+      "Ajouter des mots-clés dans un texte n'est plus un levier depuis longtemps, et cela dégrade la lisibilité pour le lecteur.",
+    ],
+    explication: "Le diagnostic précède la production. La Search Console dit gratuitement si le problème est l'indexation, la pertinence, ou simplement des pages coincées en positions 8 à 15 qu'un travail ciblé ferait basculer.",
+    source: 'https://support.google.com/webmasters/answer/7576553',
+  },
+  {
+    domaine: 'seo',
+    q: "Un organisme de formation a refait son site il y a deux semaines. Les adresses de ses pages formation ont changé, et son trafic Google s'est effondré. Quelle est la cause la plus probable, et que faites-vous ?",
+    opts: [
+      "Google n'aime pas les sites récemment modifiés : il faut attendre trois mois",
+      "Les anciennes adresses renvoient une erreur 404 faute de redirections : il faut mettre en place les redirections 301 des anciennes vers les nouvelles",
+      'Le nouveau design déplaît à l\'algorithme : il faut revenir à l\'ancien',
+      'Il faut demander la désindexation du site pour repartir sur une base propre',
     ],
     correct: 1,
-    explication: "Un script de modification en masse applique la même erreur à tous les fichiers d'un coup. Un maillage interne réécrit sans contrôle a déjà vidé 62 articles chez nous : échantillon d'abord, diff Git relu ensuite.",
+    pourquoi: [
+      "Google ne pénalise pas la modification d'un site. Attendre ne répare pas des adresses cassées, ça prolonge la perte.",
+      "Exact. Sans redirection, tout l'historique accumulé par les anciennes adresses est perdu, et les liens externes pointent dans le vide.",
+      "L'algorithme n'a pas d'avis esthétique. Revenir en arrière ferait perdre le travail de refonte sans traiter la cause.",
+      "Ce serait aggraver volontairement la situation : la désindexation retire les pages des résultats.",
+    ],
+    explication: "C'est l'accident de refonte le plus courant, et le plus évitable. Sur toute migration, la cartographie ancienne adresse vers nouvelle adresse se prépare avant la mise en ligne, pas après la chute.",
+    source: 'https://developers.google.com/search/docs/crawling-indexing/301-redirects',
+  },
+  {
+    domaine: 'seo',
+    q: "Vous demandez à Claude Code de corriger les balises `title` de 40 articles du blog d'un client, en une seule opération. Quelle précaution prenez-vous ?",
+    opts: [
+      "Lancer sur quelques fichiers d'abord, relire le diff Git, puis committer par petits lots",
+      "Aucune : le site se régénère au déploiement, le risque est nul",
+      "Laisser faire sans relecture, c'est une tâche mécanique",
+      "Sauvegarder le dossier de contenu ailleurs, puis lancer sur les 40 d'un coup",
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. L'échantillon révèle l'erreur de logique avant qu'elle ne touche les 40 fichiers, et le diff la rend visible avant le commit.",
+      "La régénération ne corrige rien : elle publie fidèlement le contenu abîmé.",
+      "Le caractère mécanique est justement ce qui rend l'erreur systématique : la même faute s'applique partout, d'un coup.",
+      "Une sauvegarde permet de réparer après coup, elle n'évite pas l'incident et suppose qu'on le remarque.",
+    ],
+    explication: "Un script de modification en masse applique la même erreur à tous les fichiers en une exécution. Chez nous, un maillage interne réécrit sans contrôle a déjà vidé 62 articles.",
     source: null,
   },
   {
-    domaine: 'metier',
+    domaine: 'seo',
     q: "Sans outil de données SEO connecté, Claude vous annonce un volume de recherche mensuel précis pour un mot-clé de formation. Que faites-vous ?",
     opts: [
       "Vous l'utilisez : le modèle a été entraîné sur d'énormes volumes de données",
       "Vous le divisez par deux par précaution avant de le mettre dans le rapport",
-      "Vous ne l'utilisez pas tel quel : sans source de données connectée, ce chiffre peut être plausible et inventé — il faut le vérifier dans un outil de mots-clés",
-      "Vous l'utilisez s'il correspond à votre intuition",
+      "Vous ne l'utilisez pas tel quel : sans source de données connectée, ce chiffre peut être plausible et inventé, il faut le vérifier dans un outil de mots-clés",
+      "Vous l'utilisez s'il correspond à votre intuition du marché",
     ],
     correct: 2,
-    explication: "Un modèle de langage n'a pas d'accès direct aux bases de volumes de recherche. Un chiffre annoncé avec assurance sans outil connecté est invérifiable, et il finira dans un rapport client.",
+    pourquoi: [
+      "L'entraînement ne donne pas accès aux bases de volumes de recherche, qui sont propriétaires et changent en permanence.",
+      "Corriger arbitrairement un chiffre non fiable produit un autre chiffre non fiable, avec en plus une fausse impression de prudence.",
+      "Exact. Un chiffre est soit mesuré par un outil, soit absent du rapport.",
+      "Votre intuition n'est pas une source. Elle sert à repérer une anomalie, pas à valider une donnée.",
+    ],
+    explication: "Ce chiffre finira dans un livrable client, avec votre nom dessus. Étiquetez toujours : mesuré, estimé, ou inconnu.",
     source: null,
   },
+
+  // ============ Google Ads client ============
   {
-    domaine: 'metier',
-    q: "Un collaborateur propose de générer 200 pages de blog quasi identiques (seule la ville change) pour couvrir un maximum de mots-clés. Pourquoi est-ce risqué ?",
+    domaine: 'ads',
+    q: "Le coût par inscription d'un organisme de formation a doublé en un mois sur ses campagnes Google Ads. Par où commencez-vous ?",
     opts: [
-      "Ce n'est pas risqué : plus il y a de pages indexées, mieux c'est",
-      "Google qualifie cette pratique de « scaled content abuse » : générer massivement des pages, y compris par IA, sans valeur ajoutée réelle, pour manipuler le classement",
-      "C'est risqué seulement si les pages ne sont pas signées par un auteur",
-      "C'est risqué seulement si chaque page dépasse 10 000 caractères",
+      'Augmenter le budget quotidien pour capter plus de volume',
+      'Mettre les campagnes en pause le temps de réfléchir',
+      'Refaire toutes les annonces, elles sont probablement usées',
+      "Ouvrir le rapport sur les termes de recherche pour voir les requêtes réelles qui ont déclenché les annonces, puis exclure celles qui sont hors sujet",
     ],
-    correct: 1,
-    explication: "Les règles anti-spam de Google visent explicitement la génération massive de pages sans apport réel, IA comprise. La niche se gagne par la précision, pas par le volume.",
-    source: 'https://developers.google.com/search/docs/essentials/spam-policies',
+    correct: 3,
+    pourquoi: [
+      "Augmenter le budget sur une campagne qui dépense mal revient à financer plus vite le même gaspillage.",
+      "La mise en pause fait perdre l'historique d'apprentissage et le volume de données, sans rien vous apprendre sur la cause.",
+      "Possible à terme, mais l'usure d'annonce fait rarement doubler un coût par inscription en un mois. Vous changeriez une variable au hasard.",
+      "Exact. Les termes de recherche montrent ce que les internautes ont réellement tapé, qui n'est pas la liste de mots-clés.",
+    ],
+    explication: "La liste de mots-clés dit ce que vous avez demandé, les termes de recherche disent ce que vous avez obtenu. C'est dans l'écart entre les deux que part le budget. Attention en excluant : contrairement aux mots-clés positifs, les exclusions ne couvrent pas les variantes proches, il faut donc ajouter singulier, pluriel et synonymes.",
+    source: 'https://support.google.com/google-ads/answer/2453972?hl=fr',
   },
   {
-    domaine: 'metier',
+    domaine: 'ads',
+    q: "Le dirigeant d'un organisme de formation vous demande : « je veux être en première position sur formation CPF ». Que lui répondez-vous ?",
+    opts: [
+      "Que c'est faisable en montant suffisamment l'enchère sur ce mot-clé",
+      "Que l'objectif utile n'est pas la position mais le coût par inscription, et qu'une requête aussi large attire surtout des personnes qui ne s'inscriront pas",
+      "Que la position dépend uniquement du budget alloué à la campagne",
+      "Qu'il faut d'abord améliorer le référencement naturel avant de parler de publicité",
+    ],
+    correct: 1,
+    pourquoi: [
+      "Techniquement on peut acheter de la visibilité, mais on aurait accepté un objectif qui ne mesure rien de ce qui compte pour le client.",
+      "Exact. On requalifie la demande vers un indicateur d'activité, et on signale au passage que « formation CPF » est une requête d'exploration, pas d'inscription.",
+      "Faux : le classement dépend aussi de la qualité de l'annonce et de la page de destination, pas seulement de l'argent.",
+      "Éluder la question. Le client a une session à remplir maintenant ; le référencement naturel ne répond pas à cette échéance.",
+    ],
+    explication: "Notre travail commence par requalifier l'objectif. Un client satisfait d'être premier sur une requête qui ne convertit pas sera un client mécontent le mois suivant. À noter : la « position moyenne » n'existe même plus comme métrique, remplacée par le taux d'impressions en première position.",
+    source: 'https://support.google.com/google-ads/answer/7501826?hl=fr',
+  },
+  {
+    domaine: 'ads',
+    q: "Un organisme de formation vous dit que ses campagnes « ne convertissent pas ». En ouvrant le compte, vous constatez qu'aucun suivi des conversions n'est configuré. Que faites-vous en premier ?",
+    opts: [
+      "Vous optimisez les enchères et les annonces, on verra les conversions plus tard",
+      "Vous vous fiez au nombre de clics comme indicateur de performance en attendant",
+      "Vous mettez en place le suivi des conversions avant toute optimisation, et vous expliquez qu'aucun jugement de performance n'est possible sans lui",
+      "Vous basculez immédiatement en stratégie « Maximiser les conversions » pour que Google s'en charge",
+    ],
+    correct: 2,
+    pourquoi: [
+      "Optimiser sans mesure, c'est régler à l'aveugle. Vous ne saurez jamais si vos modifications ont amélioré ou dégradé le résultat.",
+      "Les clics mesurent le trafic, pas les inscriptions. Une campagne peut multiplier les clics et ne remplir aucune session.",
+      "Exact. Et cela vaut le retard : sans mesure, toute la mission repose sur des impressions.",
+      "Google l'exige dans l'autre sens : le suivi des conversions doit être activé pour utiliser les enchères intelligentes. Sans données, elles n'ont rien à optimiser.",
+    ],
+    explication: "C'est la première chose à vérifier en reprenant un compte, et c'est très souvent la vraie cause du « ça ne marche pas ». Comptez ensuite au moins un cycle de conversion avant de juger les résultats : modifier trop tôt relance la phase d'apprentissage.",
+    source: 'https://support.google.com/google-ads/answer/7065882?hl=fr',
+  },
+
+  // ============ Site et performance ============
+  {
+    domaine: 'perf',
+    q: "Un client vous appelle : « mon site est lent, Google me pénalise ». Quelle est la réponse techniquement juste ?",
+    opts: [
+      "C'est exact, Google applique une pénalité de classement aux sites lents",
+      "La vitesse n'a aucun effet sur le référencement, c'est un mythe",
+      "Il n'y a pas de pénalité : l'expérience sur la page est un signal parmi d'autres, mesuré par les Core Web Vitals (LCP, INP, CLS). On commence par les mesurer avant de conclure",
+      "Seul le score sur 100 de PageSpeed Insights compte, il faut viser 100",
+    ],
+    correct: 2,
+    pourquoi: [
+      "« Pénalité » désigne une sanction manuelle ou algorithmique pour non-respect des règles. La lenteur n'entre pas dans cette catégorie.",
+      "Faux dans l'autre sens. L'expérience sur la page compte, simplement moins que la pertinence du contenu.",
+      "Exact. On corrige le vocabulaire, on nomme les métriques, et on mesure avant de promettre quoi que ce soit.",
+      "Le score synthétique est un outil de diagnostic, pas l'objectif. Viser 100 conduit à optimiser des détails sans effet réel.",
+    ],
+    explication: "Les seuils « bon » à connaître : LCP sous 2,5 s, INP à 200 ms ou moins, CLS à 0,1 ou moins, au 75e centile des visites. Google écrit que ces métriques sont utilisées par ses systèmes de classement, tout en rappelant qu'il montre d'abord le contenu le plus pertinent, même si l'expérience de la page est moyenne. Le mot « pénalité » n'apparaît nulle part, et l'accepter vous engage sur une réparation que vous ne pourrez pas tenir.",
+    source: 'https://web.dev/articles/vitals',
+  },
+  {
+    domaine: 'perf',
+    q: "Le site d'un client obtient de bons résultats en test sur votre ordinateur, mais l'évaluation mobile est mauvaise. Le client répond que ses stagiaires « consultent surtout depuis un ordinateur ». Que faites-vous ?",
+    opts: [
+      "Vous vérifiez dans ses statistiques la part réelle du trafic mobile, et vous traitez le mobile séparément puisque l'évaluation de l'expérience est faite par type d'appareil",
+      "Vous vous alignez sur le client et priorisez l'ordinateur",
+      "Vous ignorez la mesure mobile, elle est connue pour être pessimiste",
+      "Vous refaites le test sur ordinateur jusqu'à obtenir un résultat satisfaisant",
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. On remplace la croyance par la donnée du client, et on traite le mobile pour ce qu'il est : une évaluation distincte.",
+      "S'aligner sur une intuition non mesurée, c'est accepter de travailler sur le mauvais problème pendant des semaines.",
+      "La mesure mobile est plus sévère parce que les conditions réelles le sont : réseau plus lent, processeur plus modeste.",
+      "Répéter un test jusqu'au résultat qui arrange, c'est fabriquer la conclusion voulue.",
+    ],
+    explication: "Le client se fonde sur son propre usage, qui n'est pas celui de ses stagiaires. Sa console d'analyse tranche la question en trente secondes. Et l'évaluation Core Web Vitals est bien segmentée entre mobile et ordinateur : un bon résultat sur l'un ne couvre pas l'autre.",
+    source: 'https://web.dev/articles/vitals',
+  },
+  {
+    domaine: 'perf',
+    q: "Après vos optimisations, le score de test du site passe de 62 à 95. Le client demande quand son trafic va augmenter. Quelle réponse est honnête ?",
+    opts: [
+      "Que le trafic devrait monter dans les jours qui viennent, l'amélioration étant spectaculaire",
+      "Que le score de test est une mesure en laboratoire : ce que Google observe, ce sont les données de terrain des visiteurs réels, qui mettent des semaines à refléter le changement, et que la vitesse ne compense pas un contenu moins pertinent",
+      "Que le trafic doublera puisque le score a presque doublé",
+      "Qu'il n'y aura aucun effet, la vitesse ne servant qu'au confort des visiteurs",
+    ],
+    correct: 1,
+    pourquoi: [
+      "Rien ne relie une amélioration de score en laboratoire à un gain de trafic à court terme. C'est une promesse qu'on ne pourra pas tenir.",
+      "Exact. On distingue mesure de laboratoire et données de terrain, on annonce un délai, et on rappelle la hiérarchie des signaux.",
+      "Un score de test n'est pas proportionnel à quoi que ce soit. Cette règle de trois n'a aucun fondement.",
+      "Trop pessimiste, et faux : l'expérience sur la page compte, et elle influence aussi le taux d'inscription.",
+    ],
+    explication: "Le chiffre à donner au client : les données de terrain sont agrégées sur une fenêtre glissante de 28 jours. Le changement ne peut donc pas être pleinement visible avant environ un mois. Annoncer ce délai tient mieux dans le temps qu'une promesse qui se retourne au premier bilan mensuel.",
+    source: 'https://web.dev/articles/lab-and-field-data-differences',
+  },
+
+  // ============ Conseil et cadrage ============
+  {
+    domaine: 'conseil',
     q: "Vous démarrez une mission d'audit IA chez un organisme de formation. Par quoi commencez-vous ?",
     opts: [
       "Par la démonstration d'un outil IA populaire, pour montrer de la valeur rapidement",
-      "Par le budget IA disponible, pour cadrer le nombre d'outils à déployer",
-      "Par un benchmark des outils utilisés par les OF concurrents",
-      "Par la cartographie des process pédagogiques et administratifs existants, pour voir où part réellement le temps",
+      "Par le budget disponible, pour cadrer le nombre d'outils à déployer",
+      "Par un comparatif des outils utilisés par les organismes concurrents",
+      "Par la cartographie des process pédagogiques et administratifs existants, pour voir où passe réellement le temps",
     ],
     correct: 3,
-    explication: "On ne peut pas identifier les tâches à fort retour sans savoir d'abord où passe le temps. La priorisation se fait ensuite en croisant fréquence, temps consommé et risque d'erreur — et le gain annoncé se mesure chez ce client, pas repris d'une moyenne.",
+    pourquoi: [
+      "Une démonstration impressionne une réunion et ne résout rien. Vous vendriez un outil avant d'avoir identifié un problème.",
+      "Le budget cadre l'ampleur, pas la pertinence. Commencer par là revient à choisir la réponse avant la question.",
+      "Ce que font les concurrents ne dit rien de l'endroit où ce client précis perd son temps.",
+      "Exact. On priorise ensuite en croisant fréquence, temps consommé et risque d'erreur.",
+    ],
+    explication: "Le gain de temps annoncé doit être mesuré chez ce client, pas repris d'une moyenne de marché. C'est ce qui rend la feuille de route défendable en comité de direction.",
     source: null,
   },
   {
-    domaine: 'metier',
-    q: "Dans la préparation d'un audit de surveillance Qualiopi, que peut faire l'IA et qu'est-ce qui reste sous responsabilité de l'organisme ?",
-    opts: [
-      "L'IA peut regrouper et organiser les preuves (émargements, enquêtes, indicateurs) ; leur exactitude et leur validité restent vérifiées par l'organisme",
-      "L'IA peut tout prendre en charge, y compris répondre à l'auditeur le jour du contrôle",
-      "L'IA ne doit toucher à aucun document lié à Qualiopi, même pour du classement",
-      "L'IA peut produire elle-même les taux de réussite sans recoupement avec les données sources",
-    ],
-    correct: 0,
-    explication: "Le Référentiel National Qualité exige des preuves traçables et cohérentes avec les données réelles. Une preuve générée sans contrôle humain, c'est une non-conformité qui attend son auditeur.",
-    source: 'https://travail-emploi.gouv.fr/qualiopi-marque-de-certification-qualite-des-prestataires-de-formation',
-  },
-  {
-    domaine: 'metier',
+    domaine: 'conseil',
     q: "Un client veut automatiser un process interne. Dans quel cas est-ce approprié, et que prévoyez-vous en cas d'échec ?",
     opts: [
       "Dès qu'un outil le permet techniquement, indépendamment de la stabilité du process",
@@ -284,7 +420,13 @@ const questions = [
       "Sans mécanisme de vérification : le client signalera lui-même une panne",
     ],
     correct: 2,
-    explication: "Un process instable oblige à réécrire les règles en permanence, et les erreurs y passent inaperçues. Une automatisation sans alerte tombe en silence — et on l'apprend par le client.",
+    pourquoi: [
+      "La faisabilité technique ne dit rien de l'opportunité. Automatiser un process instable, c'est s'engager à le réécrire sans arrêt.",
+      "L'inverse : plus un process bouge, plus l'automatisation casse et plus les erreurs passent inaperçues.",
+      "Exact. Un process stable se code une fois, et l'alerte garantit qu'une panne se voit.",
+      "Une automatisation tombe en silence. Le client s'en aperçoit plusieurs semaines plus tard, souvent par un incident.",
+    ],
+    explication: "La question à poser au client n'est pas « est-ce automatisable » mais « ce process est-il assez stable pour mériter d'être figé ». Et toute automatisation livrée sans alerte est une automatisation inachevée.",
     source: null,
   },
 ];
@@ -292,174 +434,408 @@ const questions = [
 const total = questions.length;
 
 const breadcrumb = {
-  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
     { '@type': 'ListItem', position: 2, name: 'Évaluation Claude Code' },
   ],
 };
+
+const LETTRES = ['A', 'B', 'C', 'D'];
+
+// Répartition par domaine, pour l'écran d'accueil.
+const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
+  nom,
+  n: questions.filter((q) => q.domaine === cle).length,
+}));
 ---
 <BaseLayout
-  title="Évaluation des compétences Claude Code — Claude Agency"
-  description="Test interne de 20 questions pour situer la maîtrise de Claude Code et de Claude sur les missions Claude Agency."
+  title="Évaluation des compétences Claude Code | Claude Agency"
+  description="Test interne de 20 questions pour situer la maîtrise de Claude Code et des missions Claude Agency."
   noindex={true}
   pageSchema={[breadcrumb]}
 >
-  <section class="mx-auto max-w-2xl px-4 py-14">
-    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Interne · {total} questions · 15 minutes</p>
-    <h1 class="mt-3 font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl">
-      Êtes-vous opérationnel sur Claude Code&nbsp;?
-    </h1>
-    <p class="mt-4 leading-relaxed text-muted">
-      Ce test situe votre maîtrise de Claude Code et de Claude sur les missions que mène Claude Agency :
-      audit, automatisation, Qualiopi, SEO, publicité et conversion. Le score s'affiche
-      immédiatement, avec la correction commentée. <strong class="font-semibold text-ink">Rien n'est envoyé</strong> —
-      tout se calcule dans votre navigateur.
-    </p>
-    <p class="mt-3 text-sm leading-relaxed text-muted">
-      Un QCM mesure des connaissances, pas la conduite d'une mission. Il sert à repérer les trous avant
-      de démarrer, pas à certifier.
-    </p>
-
-    <!-- Résultat (caché avant l'envoi) -->
-    <div id="resultat" hidden class="mt-8 scroll-mt-8">
-      <div id="resultat-carte" class="rounded-2xl border p-8 text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em]" id="resultat-palier"></p>
-        <p class="mt-2 font-display text-5xl font-extrabold text-ink"><span id="resultat-score"></span><span class="text-2xl text-muted">/{total}</span></p>
-        <p class="mt-4 leading-relaxed text-muted" id="resultat-conseil"></p>
+  <!-- Barre de progression, visible seulement pendant le parcours -->
+  <div id="barre" hidden class="sticky top-0 z-30 border-b border-sand bg-cream-50/95 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-2xl items-center gap-4 px-4 py-3">
+      <div class="min-w-0 flex-1">
+        <div class="flex items-baseline justify-between gap-3 text-sm">
+          <span class="truncate font-medium text-ink">Question <span id="barre-index">1</span> sur {total}</span>
+          <span class="shrink-0 tabular-nums text-ink/70"><span id="barre-justes">0</span> juste(s)</span>
+        </div>
+        <div
+          class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-sand"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax={total}
+          aria-valuenow="0"
+          aria-label="Progression dans le test"
+          id="barre-jauge"
+        >
+          <div id="barre-remplissage" class="h-full rounded-full bg-brand-500 transition-[width] duration-300 ease-out" style="width:0%"></div>
+        </div>
       </div>
-      <h2 class="mt-8 font-display text-xl font-bold text-ink">Votre profil par domaine</h2>
-      <div id="resultat-domaines" class="mt-4 space-y-3"></div>
-      <h2 class="mt-8 font-display text-xl font-bold text-ink">La correction</h2>
-      <p class="mt-1 text-sm text-muted">Relisez surtout les questions manquées : c'est là qu'est le travail.</p>
-      <div id="resultat-detail" class="mt-4 space-y-4"></div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-2xl px-4 pb-20 pt-10 sm:pt-14">
+    <!-- ---------- Accueil ---------- -->
+    <section id="accueil">
+      <h1 class="font-display text-3xl font-extrabold leading-[1.1] text-ink sm:text-4xl">
+        Êtes-vous opérationnel sur Claude Code&nbsp;?
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink/70">
+        {total} questions tirées de situations réelles de mission : un client qui ne remonte pas sur Google,
+        une campagne dont le coût par inscription s'envole, un site jugé trop lent, un dépôt à modifier sans rien casser.
+      </p>
+
+      <ul class="mt-8 space-y-3 text-ink">
+        <li class="flex gap-3">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
+          <span>Une question à la fois. La correction s'affiche <strong class="font-semibold">dès que vous répondez</strong>, option par option.</span>
+        </li>
+        <li class="flex gap-3">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
+          <span>On ne revient pas en arrière : répondez avec ce que vous savez, pas avec ce que vous cherchez.</span>
+        </li>
+        <li class="flex gap-3">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
+          <span>Rien n'est envoyé. Tout se calcule dans votre navigateur.</span>
+        </li>
+      </ul>
+
+      <dl class="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-sand pt-6 text-sm sm:grid-cols-3">
+        {repartition.map((r) => (
+          <div class="flex items-baseline justify-between gap-2 border-b border-sand/70 pb-2">
+            <dt class="text-ink/70">{r.nom}</dt>
+            <dd class="shrink-0 font-semibold tabular-nums text-ink">{r.n}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <button
+        type="button"
+        id="demarrer"
+        class="mt-8 w-full rounded-lg bg-brand-700 px-7 py-3.5 font-semibold text-white transition-colors duration-150 hover:bg-brand-800 sm:w-auto"
+      >
+        Commencer le test
+      </button>
+      <p class="mt-3 text-sm text-ink/70">Comptez une quinzaine de minutes.</p>
+    </section>
+
+    <!-- ---------- Questions ---------- -->
+    <div id="parcours" hidden>
+      <p id="annonce" class="sr-only" role="status" aria-live="polite"></p>
+
+      {questions.map((item, i) => (
+        <section class="question" data-index={i} data-correct={item.correct} data-domaine={item.domaine} hidden>
+          <p class="text-sm font-medium text-brand-700">{DOMAINES[item.domaine]}</p>
+          <h2 class="mt-2 font-display text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]" set:html={item.q.replace(/`([^`]+)`/g, '<code class="rounded bg-cream-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700">$1</code>')} />
+
+          <ul class="mt-6 space-y-2.5">
+            {item.opts.map((opt, j) => (
+              <li>
+                <button
+                  type="button"
+                  class="option group flex w-full items-start gap-3 rounded-lg border border-sand bg-white px-4 py-3.5 text-left transition-colors duration-150 hover:border-brand-300 hover:bg-brand-50"
+                  data-opt={j}
+                >
+                  <span
+                    aria-hidden="true"
+                    class="marqueur mt-px flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-sand bg-cream-50 text-xs font-semibold text-ink/70 transition-colors duration-150 group-hover:border-brand-300 group-hover:text-brand-700"
+                  >{LETTRES[j]}</span>
+                  <span class="flex-1 leading-relaxed text-ink" set:html={opt.replace(/`([^`]+)`/g, '<code class="rounded bg-cream-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700">$1</code>')} />
+                  <span class="verdict sr-only"></span>
+                </button>
+                <p class="pourquoi mt-1.5 pl-[2.25rem] pr-1 text-sm leading-relaxed text-ink/70" hidden>{item.pourquoi[j]}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div class="retenir mt-7 rounded-lg border border-sand bg-cream-100 p-5" hidden>
+            <p class="text-sm font-semibold text-ink">Ce qu'il faut retenir</p>
+            <p class="mt-1.5 leading-relaxed text-ink/80" set:html={item.explication.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-ink">$1</strong>')} />
+            {item.source && (
+              <p class="mt-3">
+                <a class="text-sm font-medium text-brand-700 underline underline-offset-2 hover:text-brand-600" href={item.source} target="_blank" rel="noopener">
+                  Vérifier sur la source officielle
+                </a>
+              </p>
+            )}
+          </div>
+
+          <button
+            type="button"
+            class="suivant mt-6 w-full rounded-lg bg-brand-700 px-7 py-3.5 font-semibold text-white transition-colors duration-150 hover:bg-brand-800"
+            hidden
+          >{i === total - 1 ? 'Voir mon résultat' : 'Question suivante'}</button>
+        </section>
+      ))}
+
+      <p class="mt-8 border-t border-sand pt-4 text-xs text-ink/70">
+        Raccourcis : touches <kbd class="rounded border border-sand bg-cream-100 px-1.5 py-0.5 font-mono">A</kbd> à <kbd class="rounded border border-sand bg-cream-100 px-1.5 py-0.5 font-mono">D</kbd> pour répondre, <kbd class="rounded border border-sand bg-cream-100 px-1.5 py-0.5 font-mono">Entrée</kbd> pour continuer.
+      </p>
+    </div>
+
+    <!-- ---------- Résultat ---------- -->
+    <section id="resultat" hidden>
+      <div id="resultat-carte" class="rounded-lg border p-8">
+        <p id="resultat-palier" class="font-display text-2xl font-bold"></p>
+        <p class="mt-1 font-display text-5xl font-extrabold tabular-nums text-ink">
+          <span id="resultat-score"></span><span class="text-2xl font-bold text-ink/70">/{total}</span>
+        </p>
+        <p id="resultat-conseil" class="mt-4 leading-relaxed text-ink/80"></p>
+      </div>
+
+      <h2 class="mt-10 font-display text-xl font-bold text-ink">Votre profil par domaine</h2>
+      <div id="resultat-domaines" class="mt-4 space-y-4"></div>
+
+      <div id="resultat-bloc-rates" hidden>
+        <h2 class="mt-10 font-display text-xl font-bold text-ink">Ce qu'il faut reprendre</h2>
+        <p class="mt-1 text-sm text-ink/70">Les questions manquées, avec la correction complète.</p>
+        <div id="resultat-rates" class="mt-4 space-y-2"></div>
+      </div>
+
+      <p id="resultat-sansfaute" hidden class="mt-10 rounded-lg border border-sand bg-cream-100 p-5 leading-relaxed text-ink">
+        Aucune erreur. Le test ne vous apprendra plus rien : la suite se joue sur une mission réelle.
+      </p>
+
       <button
         type="button"
         id="recommencer"
-        class="mt-8 w-full rounded-lg border border-sand bg-cream-50 px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-cream-100"
+        class="mt-10 w-full rounded-lg border border-sand bg-cream-50 px-7 py-3.5 font-semibold text-ink transition-colors duration-150 hover:bg-cream-100 sm:w-auto"
       >
         Recommencer le test
       </button>
-    </div>
+    </section>
+  </div>
 
-    <form id="quiz-form" class="mt-8 space-y-9">
-      {questions.map((item, i) => (
-        <fieldset class="rounded-2xl border border-sand bg-cream-50 p-5 sm:p-6" data-question={i}>
-          <legend class="px-1 font-display text-base font-bold text-ink">{i + 1}. {item.q}</legend>
-          <p class="mt-1 px-1 text-xs uppercase tracking-wider text-muted">{DOMAINES[item.domaine]}</p>
-          <div class="mt-3 space-y-2">
-            {item.opts.map((opt, j) => (
-              <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent px-2 py-2.5 text-muted transition-colors hover:bg-cream-100">
-                <input type="radio" name={`q${i}`} value={j} class="mt-1 h-4 w-4 shrink-0 accent-brand-500" />
-                <span>{opt}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-      ))}
+  <style>
+    /* La révélation enrichit un état déjà visible : si l'animation ne se joue pas,
+       le contenu reste affiché (l'attribut hidden est retiré par le script). */
+    @keyframes ev-reveal {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .ev-reveal { animation: ev-reveal 180ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 
-      <p id="quiz-error" hidden class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+    /* États de correction. Vocabulaire sémantique unique, réutilisé partout. */
+    .option[data-etat] { cursor: default; }
+    .option[data-etat="juste"] { border-color: #7d9b76; background-color: #f1f5ef; }
+    .option[data-etat="juste"] .marqueur { border-color: #7d9b76; background-color: #7d9b76; color: #fff; }
+    .option[data-etat="faux"] { border-color: #c98b80; background-color: #fbf0ee; }
+    .option[data-etat="faux"] .marqueur { border-color: #b5634a; background-color: #b5634a; color: #fff; }
+    .option[data-etat="neutre"] { opacity: 0.8; }
 
-      <button
-        type="submit"
-        class="w-full rounded-lg bg-brand-500 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-brand-600"
-      >
-        Voir mon score
-      </button>
-      <p class="text-center text-xs text-muted">Aucune donnée n'est transmise. Envoyez votre score à Julien par le canal habituel.</p>
-    </form>
-  </section>
+    .pourquoi[data-etat="juste"] { color: #46603f; }
+    .pourquoi[data-etat="faux"] { color: #8a4436; }
 
-  <script is:inline define:vars={{ questions, PALIERS, DOMAINES, total }}>
-    const form = document.getElementById('quiz-form');
-    const errEl = document.getElementById('quiz-error');
-    const resultat = document.getElementById('resultat');
+    @media (prefers-reduced-motion: reduce) {
+      .ev-reveal { animation: none; }
+    }
+  </style>
 
-    const COULEURS = {
-      brand: 'border-brand-200 bg-cream-100 text-brand-600',
-      amber: 'border-amber-200 bg-amber-50 text-amber-700',
-      red: 'border-red-200 bg-red-50 text-red-700',
-    };
+  <script is:inline define:vars={{ PALIERS, DOMAINES, total }}>
+    (function () {
+      const accueil = document.getElementById('accueil');
+      const parcours = document.getElementById('parcours');
+      const resultat = document.getElementById('resultat');
+      const barre = document.getElementById('barre');
+      const annonce = document.getElementById('annonce');
+      const sections = Array.from(document.querySelectorAll('.question'));
 
-    const reponse = (i) => {
-      const el = form.querySelector(`input[name="q${i}"]:checked`);
-      return el ? Number(el.value) : null;
-    };
+      const TONS = {
+        ok: 'border-[#7d9b76] bg-[#f1f5ef]',
+        moyen: 'border-brand-300 bg-brand-50',
+        ko: 'border-sand bg-cream-100',
+      };
+      const TONS_TEXTE = { ok: 'text-[#46603f]', moyen: 'text-brand-700', ko: 'text-ink' };
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const reponses = questions.map((_, i) => reponse(i));
-      const manquantes = reponses.reduce((acc, r, i) => (r === null ? acc.concat(i + 1) : acc), []);
-      if (manquantes.length) {
-        errEl.textContent = `Répondez à toutes les questions avant d'envoyer. Manquantes : ${manquantes.join(', ')}.`;
-        errEl.hidden = false;
-        form.querySelector(`[data-question="${manquantes[0] - 1}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-      errEl.hidden = true;
+      let index = 0;
+      let justes = 0;
+      const donnees = sections.map((s) => ({
+        correct: Number(s.dataset.correct),
+        domaine: s.dataset.domaine,
+        choisi: null,
+      }));
 
-      const juste = (i) => reponses[i] === questions[i].correct;
-      const score = questions.reduce((n, _, i) => n + (juste(i) ? 1 : 0), 0);
+      const reveler = (el) => {
+        el.hidden = false;
+        el.classList.add('ev-reveal');
+      };
 
-      // Palier global
-      const palier = PALIERS.find((p) => score >= p.min);
-      document.getElementById('resultat-carte').className = `rounded-2xl border p-8 text-center ${COULEURS[palier.couleur]}`;
-      document.getElementById('resultat-palier').textContent = palier.titre;
-      document.getElementById('resultat-score').textContent = String(score);
-      document.getElementById('resultat-conseil').textContent = palier.texte;
+      const majBarre = () => {
+        document.getElementById('barre-index').textContent = String(index + 1);
+        document.getElementById('barre-justes').textContent = String(justes);
+        const repondues = donnees.filter((d) => d.choisi !== null).length;
+        document.getElementById('barre-remplissage').style.width = `${(repondues / total) * 100}%`;
+        document.getElementById('barre-jauge').setAttribute('aria-valuenow', String(repondues));
+      };
 
-      // Détail par domaine
-      const parDomaine = {};
-      questions.forEach((q, i) => {
-        parDomaine[q.domaine] = parDomaine[q.domaine] || { bon: 0, tot: 0 };
-        parDomaine[q.domaine].tot += 1;
-        if (juste(i)) parDomaine[q.domaine].bon += 1;
+      const afficher = (i) => {
+        sections.forEach((s, n) => { s.hidden = n !== i; });
+        index = i;
+        majBarre();
+        const h = sections[i].querySelector('h2');
+        h.setAttribute('tabindex', '-1');
+        h.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const repondre = (section, j) => {
+        const i = Number(section.dataset.index);
+        if (donnees[i].choisi !== null) return;
+        const correct = donnees[i].correct;
+        donnees[i].choisi = j;
+        if (j === correct) justes += 1;
+
+        section.querySelectorAll('.option').forEach((btn, k) => {
+          btn.disabled = true;
+          btn.setAttribute('aria-disabled', 'true');
+          const etat = k === correct ? 'juste' : (k === j ? 'faux' : 'neutre');
+          btn.dataset.etat = etat;
+          if (etat !== 'neutre') {
+            btn.querySelector('.verdict').textContent =
+              etat === 'juste' ? ' (bonne réponse)' : ' (votre réponse, incorrecte)';
+          }
+          const p = btn.parentElement.querySelector('.pourquoi');
+          if (etat !== 'neutre') p.dataset.etat = etat;
+          reveler(p);
+        });
+
+        reveler(section.querySelector('.retenir'));
+        const suivant = section.querySelector('.suivant');
+        reveler(suivant);
+        annonce.textContent =
+          j === correct
+            ? `Bonne réponse. ${justes} sur ${i + 1}.`
+            : `Réponse incorrecte. La bonne réponse est l'option ${['A', 'B', 'C', 'D'][correct]}.`;
+        majBarre();
+        suivant.focus({ preventScroll: true });
+      };
+
+      const terminer = () => {
+        parcours.hidden = true;
+        barre.hidden = true;
+
+        const palier = PALIERS.find((p) => justes >= p.min);
+        const carte = document.getElementById('resultat-carte');
+        carte.className = `rounded-lg border p-8 ${TONS[palier.ton]}`;
+        const titre = document.getElementById('resultat-palier');
+        titre.textContent = palier.titre;
+        titre.className = `font-display text-2xl font-bold ${TONS_TEXTE[palier.ton]}`;
+        document.getElementById('resultat-score').textContent = String(justes);
+        document.getElementById('resultat-conseil').textContent = palier.texte;
+
+        // Profil par domaine
+        const parDom = {};
+        donnees.forEach((d) => {
+          parDom[d.domaine] = parDom[d.domaine] || { bon: 0, tot: 0 };
+          parDom[d.domaine].tot += 1;
+          if (d.choisi === d.correct) parDom[d.domaine].bon += 1;
+        });
+        document.getElementById('resultat-domaines').innerHTML = Object.keys(DOMAINES)
+          .filter((cle) => parDom[cle])
+          .map((cle) => {
+            const d = parDom[cle];
+            const pct = Math.round((d.bon / d.tot) * 100);
+            return `<div>
+              <div class="flex items-baseline justify-between gap-3 text-sm">
+                <span class="font-medium text-ink">${DOMAINES[cle]}</span>
+                <span class="shrink-0 tabular-nums text-ink/70">${d.bon}/${d.tot}</span>
+              </div>
+              <div class="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-sand">
+                <div class="h-full rounded-full bg-brand-500" style="width:${pct}%"></div>
+              </div>
+            </div>`;
+          })
+          .join('');
+
+        // Reprise des questions manquées, reconstruite depuis le DOM déjà rendu
+        const rates = sections.filter((s, i) => donnees[i].choisi !== donnees[i].correct);
+        const bloc = document.getElementById('resultat-bloc-rates');
+        const sansFaute = document.getElementById('resultat-sansfaute');
+        bloc.hidden = rates.length === 0;
+        sansFaute.hidden = rates.length !== 0;
+
+        document.getElementById('resultat-rates').innerHTML = rates
+          .map((s) => {
+            const i = Number(s.dataset.index);
+            const opts = s.querySelectorAll('.option');
+            const libelle = (k) => opts[k].querySelector('span:nth-child(2)').textContent.trim();
+            return `<details class="rounded-lg border border-sand bg-cream-50 px-5 py-4">
+              <summary class="cursor-pointer font-medium text-ink marker:text-brand-500">
+                ${i + 1}. ${s.querySelector('h2').textContent}
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-ink/70"><span class="font-semibold text-ink">Votre réponse :</span> ${libelle(donnees[i].choisi)}</p>
+              <p class="mt-2 text-sm leading-relaxed text-ink/70"><span class="font-semibold text-ink">Bonne réponse :</span> ${libelle(donnees[i].correct)}</p>
+              <p class="mt-3 text-sm leading-relaxed text-ink/80">${s.querySelector('.retenir p:nth-of-type(2)').textContent}</p>
+            </details>`;
+          })
+          .join('');
+
+        resultat.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('resultat-palier').setAttribute('tabindex', '-1');
+        document.getElementById('resultat-palier').focus({ preventScroll: true });
+      };
+
+      // Délégation : un seul écouteur pour tout le parcours
+      parcours.addEventListener('click', (e) => {
+        const opt = e.target.closest('.option');
+        if (opt && !opt.disabled) { repondre(opt.closest('.question'), Number(opt.dataset.opt)); return; }
+        if (e.target.closest('.suivant')) {
+          if (index === total - 1) terminer();
+          else afficher(index + 1);
+        }
       });
-      document.getElementById('resultat-domaines').innerHTML = Object.entries(parDomaine)
-        .map(([cle, d]) => {
-          const pct = Math.round((d.bon / d.tot) * 100);
-          return `<div>
-            <div class="flex items-baseline justify-between text-sm">
-              <span class="font-semibold text-ink">${DOMAINES[cle]}</span>
-              <span class="text-muted">${d.bon}/${d.tot}</span>
-            </div>
-            <div class="mt-1 h-2 w-full overflow-hidden rounded-full bg-cream-100">
-              <div class="h-full rounded-full bg-brand-500" style="width:${pct}%"></div>
-            </div>
-          </div>`;
-        })
-        .join('');
 
-      // Correction question par question
-      document.getElementById('resultat-detail').innerHTML = questions
-        .map((q, i) => {
-          const ok = juste(i);
-          const src = q.source
-            ? `<p class="mt-2 text-xs"><a class="text-brand-600 underline" href="${q.source}" target="_blank" rel="noopener">Source</a></p>`
-            : '';
-          const votre = ok
-            ? ''
-            : `<p class="mt-2 text-sm text-muted"><span class="font-semibold text-ink">Votre réponse :</span> ${q.opts[reponses[i]]}</p>`;
-          return `<div class="rounded-2xl border ${ok ? 'border-sand bg-cream-50' : 'border-red-200 bg-red-50'} p-5">
-            <p class="font-display text-sm font-bold text-ink">${ok ? '✅' : '❌'} ${i + 1}. ${q.q}</p>
-            ${votre}
-            <p class="mt-2 text-sm text-muted"><span class="font-semibold text-ink">Bonne réponse :</span> ${q.opts[q.correct]}</p>
-            <p class="mt-2 text-sm leading-relaxed text-muted">${q.explication}</p>
-            ${src}
-          </div>`;
-        })
-        .join('');
+      document.addEventListener('keydown', (e) => {
+        if (parcours.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+        const section = sections[index];
+        const lettre = e.key.toLowerCase();
+        const j = ['a', 'b', 'c', 'd'].indexOf(lettre);
+        if (j !== -1 && donnees[index].choisi === null) {
+          e.preventDefault();
+          repondre(section, j);
+        }
+      });
 
-      form.hidden = true;
-      resultat.hidden = false;
-      resultat.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+      document.getElementById('demarrer').addEventListener('click', () => {
+        accueil.hidden = true;
+        parcours.hidden = false;
+        barre.hidden = false;
+        afficher(0);
+      });
 
-    document.getElementById('recommencer').addEventListener('click', () => {
-      form.reset();
-      resultat.hidden = true;
-      form.hidden = false;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      document.getElementById('recommencer').addEventListener('click', () => {
+        index = 0;
+        justes = 0;
+        donnees.forEach((d) => { d.choisi = null; });
+        sections.forEach((s) => {
+          s.querySelectorAll('.option').forEach((b) => {
+            b.disabled = false;
+            b.removeAttribute('aria-disabled');
+            delete b.dataset.etat;
+            b.querySelector('.verdict').textContent = '';
+          });
+          s.querySelectorAll('.pourquoi').forEach((p) => {
+            p.hidden = true;
+            p.classList.remove('ev-reveal');
+            delete p.dataset.etat;
+          });
+          ['.retenir', '.suivant'].forEach((sel) => {
+            const el = s.querySelector(sel);
+            el.hidden = true;
+            el.classList.remove('ev-reveal');
+          });
+        });
+        resultat.hidden = true;
+        accueil.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('demarrer').focus({ preventScroll: true });
+      });
+    })();
   </script>
 </BaseLayout>
