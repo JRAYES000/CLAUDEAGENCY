@@ -1,0 +1,465 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Évaluation interne des collaborateurs Claude Agency sur Claude Code et Claude.
+// Page utilitaire : noindex, absente du menu, aucune donnée envoyée.
+// Le score est calculé côté navigateur, rien ne sort de la machine du répondant.
+// Corrigé vérifié sur la documentation officielle (voir champ `source`).
+
+const PALIERS = [
+  { min: 17, titre: 'Autonome', couleur: 'brand', texte: "Vous pouvez prendre un projet client de bout en bout. Gardez la discipline de vérification : sur une mission, c'est elle qui fait la différence, pas la connaissance de l'outil." },
+  { min: 12, titre: 'Opérationnel sur cadrage', couleur: 'amber', texte: "Vous pouvez travailler sur un projet à condition qu'il soit cadré et relu. Reprenez les questions manquées ci-dessous avant de démarrer : ce sont exactement les points où une erreur coûte cher chez un client." },
+  { min: 0, titre: 'À former avant de démarrer', couleur: 'red', texte: "Il manque les bases pour intervenir seul. Priorité : le fichier CLAUDE.md, les modes de permission, et la règle « aucune vérification déclarative ». Reprenez la correction question par question." },
+];
+
+const DOMAINES = {
+  fondamentaux: 'Claude Code — fondamentaux',
+  avance: 'Claude Code — avancé',
+  fiabilite: 'Usage professionnel et fiabilité',
+  metier: 'Métier Claude Agency',
+};
+
+const questions = [
+  // ---------- Claude Code : fondamentaux ----------
+  {
+    domaine: 'fondamentaux',
+    q: "Votre équipe veut partager, via le dépôt Git, les instructions que Claude Code doit lire sur chaque projet. Où placez-vous le fichier ?",
+    opts: [
+      'Dans `~/.claude/CLAUDE.md`',
+      'Dans `./CLAUDE.md` ou `./.claude/CLAUDE.md`, à la racine du projet',
+      'Dans `./CLAUDE.local.md`',
+      "Dans le dossier d'installation de Claude Code sur chaque poste",
+    ],
+    correct: 1,
+    explication: "Le CLAUDE.md « projet » vit à la racine du dépôt et se partage par le contrôle de version. `~/.claude/CLAUDE.md` est personnel à un utilisateur, et `CLAUDE.local.md` est local et se met dans le .gitignore.",
+    source: 'https://code.claude.com/docs/en/memory',
+  },
+  {
+    domaine: 'fondamentaux',
+    q: "Un collaborateur a écrit un CLAUDE.md de 600 lignes qui détaille pas à pas une procédure de migration. Que recommande la documentation ?",
+    opts: [
+      "Rien : la taille d'un CLAUDE.md n'a aucune incidence",
+      'Le dupliquer dans `CLAUDE.local.md` pour renforcer la consigne',
+      "Déplacer la procédure dans une skill, qui ne se charge qu'à l'usage, et viser moins de 200 lignes par CLAUDE.md",
+      'Le convertir en variable d\'environnement dans `settings.json`',
+    ],
+    correct: 2,
+    explication: "La doc fixe une cible : « target under 200 lines per CLAUDE.md file ». Un CLAUDE.md se charge en entier à chaque session ; une procédure multi-étapes appartient à une skill, chargée seulement quand on s'en sert.",
+    source: 'https://code.claude.com/docs/en/memory',
+  },
+  {
+    domaine: 'fondamentaux',
+    q: 'Quelle est la différence entre `/clear` et `/compact` ?',
+    opts: [
+      '`/clear` résume la conversation, `/compact` repart de zéro',
+      '`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer du contexte tout en la poursuivant',
+      'Les deux font la même chose, `/compact` est l\'ancien nom',
+      '`/clear` ne fonctionne qu\'en mode plan',
+    ],
+    correct: 1,
+    explication: "`/clear` ouvre une conversation neuve : on l'utilise en changeant de sujet. `/compact` garde le fil en le résumant : on l'utilise quand la tâche continue mais que le contexte sature.",
+    source: 'https://code.claude.com/docs/en/commands',
+  },
+  {
+    domaine: 'fondamentaux',
+    q: "En mode `acceptEdits`, qu'est-ce que Claude peut faire sans vous demander d'autorisation, en plus de lire des fichiers ?",
+    opts: [
+      "Rien de plus : seule la lecture reste automatique",
+      "Modifier des fichiers, et lancer quelques commandes courantes de gestion de fichiers (`mkdir`, `touch`, `rm`, `mv`, `cp`, `sed`) dans le répertoire de travail",
+      "N'importe quelle commande, y compris `git push --force`",
+      'Uniquement les requêtes réseau (`curl`, `wget`)',
+    ],
+    correct: 1,
+    explication: "`acceptEdits` auto-approuve les éditions de fichiers et une courte liste de commandes de gestion de fichiers, limitée au répertoire de travail. Toutes les autres commandes shell continuent de demander confirmation.",
+    source: 'https://code.claude.com/docs/en/permission-modes',
+  },
+  {
+    domaine: 'fondamentaux',
+    q: "Que dit la documentation du mode `bypassPermissions` (activé par `--dangerously-skip-permissions`) ?",
+    opts: [
+      "À privilégier sur les projets clients pour aller plus vite",
+      "Il ajoute une confirmation supplémentaire avant chaque commande",
+      "Il est actif par défaut et doit être désactivé",
+      "À n'utiliser que dans un environnement isolé (conteneur, machine virtuelle) ; sur macOS et Linux, Claude Code refuse même de démarrer dans ce mode en root ou sous `sudo`",
+    ],
+    correct: 3,
+    explication: "La doc est explicite : ce mode ne protège de rien, y compris de l'injection de consignes malveillantes trouvées dans un fichier ou une page web. Sur un poste de travail avec des données clients, il est à proscrire.",
+    source: 'https://code.claude.com/docs/en/permission-modes',
+  },
+
+  // ---------- Claude Code : avancé ----------
+  {
+    domaine: 'avance',
+    q: "Pourquoi déléguer une exploration de gros dépôt à un sous-agent plutôt que la mener dans la conversation principale ?",
+    opts: [
+      "Le sous-agent a accès à des outils que la conversation principale n'a jamais",
+      "Le sous-agent tourne automatiquement sur un modèle plus puissant",
+      "C'est obligatoire dès que plus de trois fichiers sont concernés",
+      "Le sous-agent travaille dans sa propre fenêtre de contexte et ne renvoie que sa synthèse",
+    ],
+    correct: 3,
+    explication: "Les résultats de recherche, logs et bouts de code qu'on ne relira jamais restent chez le sous-agent. La conversation principale garde son contexte pour le travail qui compte.",
+    source: 'https://code.claude.com/docs/en/sub-agents',
+  },
+  {
+    domaine: 'avance',
+    q: "Un sous-agent porte `model: sonnet` dans son frontmatter, et la variable d'environnement `CLAUDE_CODE_SUBAGENT_MODEL` vaut `haiku`. Quel modèle tourne réellement ?",
+    opts: [
+      'haiku : la variable d\'environnement passe avant le frontmatter',
+      'sonnet : le frontmatter du sous-agent prime toujours',
+      'Le modèle de la conversation principale, les deux réglages s\'annulant',
+      'opus : Claude Code retient le modèle le plus capable disponible',
+    ],
+    correct: 0,
+    explication: "L'ordre de résolution est : variable d'environnement, puis paramètre passé à l'invocation, puis frontmatter, puis modèle de la conversation. D'où le piège : cette variable force **tous** les sous-agents sur le même modèle, rédaction comprise. Chez nous, le routage doit rester sélectif.",
+    source: 'https://code.claude.com/docs/en/sub-agents',
+  },
+  {
+    domaine: 'avance',
+    q: "Vous écrivez un hook `PreToolUse` pour empêcher une commande dangereuse. Quel code de sortie doit renvoyer votre script pour bloquer l'action ?",
+    opts: [
+      '0, un code de succès valant approbation du blocage',
+      '1, code d\'erreur générique qui interrompt la session',
+      "2 : Claude Code ignore alors la sortie standard, transmet `stderr` à Claude et bloque l'appel d'outil",
+      "Peu importe : seul le champ `matcher` détermine le blocage",
+    ],
+    correct: 2,
+    explication: "Un hook est le seul moyen d'imposer une règle de façon déterministe : contrairement à une consigne dans CLAUDE.md, il s'exécute quoi que Claude décide.",
+    source: 'https://code.claude.com/docs/en/hooks',
+  },
+  {
+    domaine: 'avance',
+    q: "Comment faire explorer le code et proposer un plan avant toute modification sur le disque ?",
+    opts: [
+      'Lancer `claude --permission-mode plan`, ou basculer en cours de session avec `Shift+Tab`',
+      'Ajouter le flag `--dry-run`',
+      'Le mode plan s\'active seul dès qu\'un CLAUDE.md est présent',
+      'Valider chaque outil un par un manuellement',
+    ],
+    correct: 0,
+    explication: "En mode plan, Claude lit et propose, sans écrire. `Shift+Tab` fait cycler les modes. C'est le bon réflexe avant de toucher au dépôt d'un client.",
+    source: 'https://code.claude.com/docs/en/permission-modes',
+  },
+  {
+    domaine: 'avance',
+    q: "Quel flag exécute Claude Code en mode non interactif, pour l'intégrer à un script ?",
+    opts: [
+      '`--ci`',
+      '`--batch`',
+      '`--script`',
+      "`-p` (ou `--print`), suivi du prompt — avec `--output-format json` pour une sortie structurée",
+    ],
+    correct: 3,
+    explication: "C'est ce qui permet de brancher Claude sur un pipeline : lui piper un diff, un log ou un export, et récupérer un résultat exploitable par un autre programme.",
+    source: 'https://code.claude.com/docs/en/headless',
+  },
+
+  // ---------- Usage professionnel et fiabilité ----------
+  {
+    domaine: 'fiabilite',
+    q: "Vous devez trier 200 fiches d'inscription pour repérer les champs manquants : une tâche mécanique, au résultat vérifiable. Quel modèle choisir ?",
+    opts: [
+      'Le modèle le plus puissant disponible, par précaution',
+      'Un modèle rapide et économique, adapté aux tâches mécaniques à réponse vérifiable',
+      "Aucun : une IA ne doit jamais toucher à des données d'inscription",
+      'Le modèle le plus lent, la lenteur garantissant la fiabilité',
+    ],
+    correct: 1,
+    explication: "Router par type de tâche, pas en bloc : les corvées vérifiables vont au modèle économique, le jugement et l'expertise au modèle fort. Prendre le plus cher partout ne réduit aucun risque, ça gonfle la facture.",
+    source: null,
+  },
+  {
+    domaine: 'fiabilite',
+    q: "Claude vous livre un script qui calcule les heures de formation facturables à partir d'un export Excel. Que faites-vous avant de le transmettre à la comptabilité ?",
+    opts: [
+      "Le transmettre : si Claude l'a écrit, il fonctionne",
+      "Le relire pour juger s'il « a l'air correct », puis le transmettre",
+      "Demander à Claude si son propre script est correct et se fier à sa réponse",
+      "L'exécuter sur un jeu de données dont vous connaissez déjà le résultat attendu, et comparer",
+    ],
+    correct: 3,
+    explication: "Seule une exécution sur un cas dont vous connaissez la bonne réponse constitue une preuve. Une relecture visuelle ou l'auto-évaluation du modèle n'en sont pas. « Ça devrait marcher » ne compte pas.",
+    source: null,
+  },
+  {
+    domaine: 'fiabilite',
+    q: "Claude cite un article et une source à l'appui d'une affirmation sur les obligations Qualiopi. Que faites-vous ?",
+    opts: [
+      "Vous faites confiance : le format (auteur, titre, date) est crédible",
+      "Vous ouvrez la source pour vérifier qu'elle existe et qu'elle dit bien ce qu'on lui attribue",
+      "Vous ignorez la source, seule l'affirmation compte",
+      "Vous demandez une deuxième source pour confirmer la première, sans ouvrir ni l'une ni l'autre",
+    ],
+    correct: 1,
+    explication: "Un modèle peut produire une référence plausible mais inexistante, ou déformer ce que dit une source réelle. Sur un livrable client, une source non ouverte est une source non vérifiée.",
+    source: null,
+  },
+  {
+    domaine: 'fiabilite',
+    q: "Un collaborateur veut faire reformuler par Claude l'avis de suivi d'un apprenant, à partir de son dossier CPF. Quelle est la bonne pratique ?",
+    opts: [
+      "Coller le dossier complet — nom, numéro, détails personnels — pour que Claude ait tout le contexte",
+      "Coller le dossier complet mais préciser dans le prompt de « faire attention » à la confidentialité",
+      "Anonymiser l'extrait et ne transmettre que ce qui est nécessaire à la tâche",
+      "Renoncer : ce type de tâche est interdit, même anonymisé",
+    ],
+    correct: 2,
+    explication: "Minimisation : on n'envoie que le strict nécessaire, débarrassé des identifiants. Une consigne de prudence dans le prompt ne protège rien — la donnée est déjà partie.",
+    source: 'https://www.cnil.fr/fr/les-fiches-pratiques-ia',
+  },
+
+  // ---------- Métier Claude Agency ----------
+  {
+    domaine: 'metier',
+    q: "Vous demandez à Claude Code de corriger les balises `title` de 40 articles d'un blog Astro en une seule opération. Quelle précaution prenez-vous ?",
+    opts: [
+      "Aucune : Astro régénère les pages au build, le risque est nul",
+      "Lancer sur quelques fichiers d'abord, relire le diff Git, puis committer par petits lots",
+      "Laisser faire sans relecture, c'est une tâche mécanique",
+      "Supprimer le dossier de contenu avant, pour repartir d'une base propre",
+    ],
+    correct: 1,
+    explication: "Un script de modification en masse applique la même erreur à tous les fichiers d'un coup. Un maillage interne réécrit sans contrôle a déjà vidé 62 articles chez nous : échantillon d'abord, diff Git relu ensuite.",
+    source: null,
+  },
+  {
+    domaine: 'metier',
+    q: "Sans outil de données SEO connecté, Claude vous annonce un volume de recherche mensuel précis pour un mot-clé de formation. Que faites-vous ?",
+    opts: [
+      "Vous l'utilisez : le modèle a été entraîné sur d'énormes volumes de données",
+      "Vous le divisez par deux par précaution avant de le mettre dans le rapport",
+      "Vous ne l'utilisez pas tel quel : sans source de données connectée, ce chiffre peut être plausible et inventé — il faut le vérifier dans un outil de mots-clés",
+      "Vous l'utilisez s'il correspond à votre intuition",
+    ],
+    correct: 2,
+    explication: "Un modèle de langage n'a pas d'accès direct aux bases de volumes de recherche. Un chiffre annoncé avec assurance sans outil connecté est invérifiable, et il finira dans un rapport client.",
+    source: null,
+  },
+  {
+    domaine: 'metier',
+    q: "Un collaborateur propose de générer 200 pages de blog quasi identiques (seule la ville change) pour couvrir un maximum de mots-clés. Pourquoi est-ce risqué ?",
+    opts: [
+      "Ce n'est pas risqué : plus il y a de pages indexées, mieux c'est",
+      "Google qualifie cette pratique de « scaled content abuse » : générer massivement des pages, y compris par IA, sans valeur ajoutée réelle, pour manipuler le classement",
+      "C'est risqué seulement si les pages ne sont pas signées par un auteur",
+      "C'est risqué seulement si chaque page dépasse 10 000 caractères",
+    ],
+    correct: 1,
+    explication: "Les règles anti-spam de Google visent explicitement la génération massive de pages sans apport réel, IA comprise. La niche se gagne par la précision, pas par le volume.",
+    source: 'https://developers.google.com/search/docs/essentials/spam-policies',
+  },
+  {
+    domaine: 'metier',
+    q: "Vous démarrez une mission d'audit IA chez un organisme de formation. Par quoi commencez-vous ?",
+    opts: [
+      "Par la démonstration d'un outil IA populaire, pour montrer de la valeur rapidement",
+      "Par le budget IA disponible, pour cadrer le nombre d'outils à déployer",
+      "Par un benchmark des outils utilisés par les OF concurrents",
+      "Par la cartographie des process pédagogiques et administratifs existants, pour voir où part réellement le temps",
+    ],
+    correct: 3,
+    explication: "On ne peut pas identifier les tâches à fort retour sans savoir d'abord où passe le temps. La priorisation se fait ensuite en croisant fréquence, temps consommé et risque d'erreur — et le gain annoncé se mesure chez ce client, pas repris d'une moyenne.",
+    source: null,
+  },
+  {
+    domaine: 'metier',
+    q: "Dans la préparation d'un audit de surveillance Qualiopi, que peut faire l'IA et qu'est-ce qui reste sous responsabilité de l'organisme ?",
+    opts: [
+      "L'IA peut regrouper et organiser les preuves (émargements, enquêtes, indicateurs) ; leur exactitude et leur validité restent vérifiées par l'organisme",
+      "L'IA peut tout prendre en charge, y compris répondre à l'auditeur le jour du contrôle",
+      "L'IA ne doit toucher à aucun document lié à Qualiopi, même pour du classement",
+      "L'IA peut produire elle-même les taux de réussite sans recoupement avec les données sources",
+    ],
+    correct: 0,
+    explication: "Le Référentiel National Qualité exige des preuves traçables et cohérentes avec les données réelles. Une preuve générée sans contrôle humain, c'est une non-conformité qui attend son auditeur.",
+    source: 'https://travail-emploi.gouv.fr/qualiopi-marque-de-certification-qualite-des-prestataires-de-formation',
+  },
+  {
+    domaine: 'metier',
+    q: "Un client veut automatiser un process interne. Dans quel cas est-ce approprié, et que prévoyez-vous en cas d'échec ?",
+    opts: [
+      "Dès qu'un outil le permet techniquement, indépendamment de la stabilité du process",
+      "Quand le process change chaque mois : l'automatisation absorbera les changements",
+      "Quand le process est stable et documenté, avec une alerte ou un point de contrôle humain si l'automatisation échoue",
+      "Sans mécanisme de vérification : le client signalera lui-même une panne",
+    ],
+    correct: 2,
+    explication: "Un process instable oblige à réécrire les règles en permanence, et les erreurs y passent inaperçues. Une automatisation sans alerte tombe en silence — et on l'apprend par le client.",
+    source: null,
+  },
+];
+
+const total = questions.length;
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Évaluation Claude Code' },
+  ],
+};
+---
+<BaseLayout
+  title="Évaluation des compétences Claude Code — Claude Agency"
+  description="Test interne de 20 questions pour situer la maîtrise de Claude Code et de Claude sur les missions Claude Agency."
+  noindex={true}
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-14">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Interne · {total} questions · 15 minutes</p>
+    <h1 class="mt-3 font-display text-3xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-4xl">
+      Êtes-vous opérationnel sur Claude Code&nbsp;?
+    </h1>
+    <p class="mt-4 leading-relaxed text-muted">
+      Ce test situe votre maîtrise de Claude Code et de Claude sur les missions que mène Claude Agency :
+      audit, automatisation, Qualiopi, SEO, publicité et conversion. Le score s'affiche
+      immédiatement, avec la correction commentée. <strong class="font-semibold text-ink">Rien n'est envoyé</strong> —
+      tout se calcule dans votre navigateur.
+    </p>
+    <p class="mt-3 text-sm leading-relaxed text-muted">
+      Un QCM mesure des connaissances, pas la conduite d'une mission. Il sert à repérer les trous avant
+      de démarrer, pas à certifier.
+    </p>
+
+    <!-- Résultat (caché avant l'envoi) -->
+    <div id="resultat" hidden class="mt-8 scroll-mt-8">
+      <div id="resultat-carte" class="rounded-2xl border p-8 text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em]" id="resultat-palier"></p>
+        <p class="mt-2 font-display text-5xl font-extrabold text-ink"><span id="resultat-score"></span><span class="text-2xl text-muted">/{total}</span></p>
+        <p class="mt-4 leading-relaxed text-muted" id="resultat-conseil"></p>
+      </div>
+      <h2 class="mt-8 font-display text-xl font-bold text-ink">Votre profil par domaine</h2>
+      <div id="resultat-domaines" class="mt-4 space-y-3"></div>
+      <h2 class="mt-8 font-display text-xl font-bold text-ink">La correction</h2>
+      <p class="mt-1 text-sm text-muted">Relisez surtout les questions manquées : c'est là qu'est le travail.</p>
+      <div id="resultat-detail" class="mt-4 space-y-4"></div>
+      <button
+        type="button"
+        id="recommencer"
+        class="mt-8 w-full rounded-lg border border-sand bg-cream-50 px-7 py-3.5 font-semibold text-ink transition-colors hover:bg-cream-100"
+      >
+        Recommencer le test
+      </button>
+    </div>
+
+    <form id="quiz-form" class="mt-8 space-y-9">
+      {questions.map((item, i) => (
+        <fieldset class="rounded-2xl border border-sand bg-cream-50 p-5 sm:p-6" data-question={i}>
+          <legend class="px-1 font-display text-base font-bold text-ink">{i + 1}. {item.q}</legend>
+          <p class="mt-1 px-1 text-xs uppercase tracking-wider text-muted">{DOMAINES[item.domaine]}</p>
+          <div class="mt-3 space-y-2">
+            {item.opts.map((opt, j) => (
+              <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent px-2 py-2.5 text-muted transition-colors hover:bg-cream-100">
+                <input type="radio" name={`q${i}`} value={j} class="mt-1 h-4 w-4 shrink-0 accent-brand-500" />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ))}
+
+      <p id="quiz-error" hidden class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+
+      <button
+        type="submit"
+        class="w-full rounded-lg bg-brand-500 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-brand-600"
+      >
+        Voir mon score
+      </button>
+      <p class="text-center text-xs text-muted">Aucune donnée n'est transmise. Envoyez votre score à Julien par le canal habituel.</p>
+    </form>
+  </section>
+
+  <script is:inline define:vars={{ questions, PALIERS, DOMAINES, total }}>
+    const form = document.getElementById('quiz-form');
+    const errEl = document.getElementById('quiz-error');
+    const resultat = document.getElementById('resultat');
+
+    const COULEURS = {
+      brand: 'border-brand-200 bg-cream-100 text-brand-600',
+      amber: 'border-amber-200 bg-amber-50 text-amber-700',
+      red: 'border-red-200 bg-red-50 text-red-700',
+    };
+
+    const reponse = (i) => {
+      const el = form.querySelector(`input[name="q${i}"]:checked`);
+      return el ? Number(el.value) : null;
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const reponses = questions.map((_, i) => reponse(i));
+      const manquantes = reponses.reduce((acc, r, i) => (r === null ? acc.concat(i + 1) : acc), []);
+      if (manquantes.length) {
+        errEl.textContent = `Répondez à toutes les questions avant d'envoyer. Manquantes : ${manquantes.join(', ')}.`;
+        errEl.hidden = false;
+        form.querySelector(`[data-question="${manquantes[0] - 1}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      errEl.hidden = true;
+
+      const juste = (i) => reponses[i] === questions[i].correct;
+      const score = questions.reduce((n, _, i) => n + (juste(i) ? 1 : 0), 0);
+
+      // Palier global
+      const palier = PALIERS.find((p) => score >= p.min);
+      document.getElementById('resultat-carte').className = `rounded-2xl border p-8 text-center ${COULEURS[palier.couleur]}`;
+      document.getElementById('resultat-palier').textContent = palier.titre;
+      document.getElementById('resultat-score').textContent = String(score);
+      document.getElementById('resultat-conseil').textContent = palier.texte;
+
+      // Détail par domaine
+      const parDomaine = {};
+      questions.forEach((q, i) => {
+        parDomaine[q.domaine] = parDomaine[q.domaine] || { bon: 0, tot: 0 };
+        parDomaine[q.domaine].tot += 1;
+        if (juste(i)) parDomaine[q.domaine].bon += 1;
+      });
+      document.getElementById('resultat-domaines').innerHTML = Object.entries(parDomaine)
+        .map(([cle, d]) => {
+          const pct = Math.round((d.bon / d.tot) * 100);
+          return `<div>
+            <div class="flex items-baseline justify-between text-sm">
+              <span class="font-semibold text-ink">${DOMAINES[cle]}</span>
+              <span class="text-muted">${d.bon}/${d.tot}</span>
+            </div>
+            <div class="mt-1 h-2 w-full overflow-hidden rounded-full bg-cream-100">
+              <div class="h-full rounded-full bg-brand-500" style="width:${pct}%"></div>
+            </div>
+          </div>`;
+        })
+        .join('');
+
+      // Correction question par question
+      document.getElementById('resultat-detail').innerHTML = questions
+        .map((q, i) => {
+          const ok = juste(i);
+          const src = q.source
+            ? `<p class="mt-2 text-xs"><a class="text-brand-600 underline" href="${q.source}" target="_blank" rel="noopener">Source</a></p>`
+            : '';
+          const votre = ok
+            ? ''
+            : `<p class="mt-2 text-sm text-muted"><span class="font-semibold text-ink">Votre réponse :</span> ${q.opts[reponses[i]]}</p>`;
+          return `<div class="rounded-2xl border ${ok ? 'border-sand bg-cream-50' : 'border-red-200 bg-red-50'} p-5">
+            <p class="font-display text-sm font-bold text-ink">${ok ? '✅' : '❌'} ${i + 1}. ${q.q}</p>
+            ${votre}
+            <p class="mt-2 text-sm text-muted"><span class="font-semibold text-ink">Bonne réponse :</span> ${q.opts[q.correct]}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">${q.explication}</p>
+            ${src}
+          </div>`;
+        })
+        .join('');
+
+      form.hidden = true;
+      resultat.hidden = false;
+      resultat.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('recommencer').addEventListener('click', () => {
+      form.reset();
+      resultat.hidden = true;
+      form.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</BaseLayout>
