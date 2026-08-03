@@ -22,14 +22,12 @@ N'ouvrir que celui dont le déclencheur est réuni — ne pas tous les charger.
 | `NETLINKING.md` | Uniquement pour les backlinks et l'autorité de domaine |
 | `BAROMETRE-IA-OF.md` | Uniquement pour le Baromètre IA des OF |
 
-## Langue et ton
+## Ton
 
-- Répondre **toujours en français**.
 - Avec Julien (non technique) : langage simple et pédagogique, sans jargon non défini ; tout terme
   technique employé est expliqué en une phrase.
 - Dans les contenus produits (site, articles, posts, e-mails) : voix de marque **claire,
   professionnelle, chaleureuse et orientée résultats**, adaptée à des décideurs B2B, sans jargon IA.
-- Aller droit au but : la réponse d'abord, pas de formule d'introduction ni de clôture.
 - Ne jamais inventer : en cas de doute, vérifier par une recherche web. Pour un contenu destiné à la
   publication, citer les sources.
 
@@ -85,13 +83,11 @@ draft: false
 **Déploiement = `git push` sur `main` → build automatique Cloudflare Pages.**
 Le site n'est ni sur Netlify ni sur Vercel.
 
-Julien autorise l'agent à **publier directement, sans demander de validation** (règle du 25/06/2026,
-reconfirmée le 03/08/2026). Ne pas demander de confirmation avant de committer, pousser ou merger.
-Conditions à respecter :
+Pousser sans demander de validation est la règle générale (CLAUDE.md global). Ici, **pousser
+c'est publier**, d'où deux conditions propres au projet :
 
 1. **Vérifier le build** (`cd app && npm run build`) avant tout commit de contenu ou de code.
-2. Committer, pousser sur `main`.
-3. **Signaler après coup** ce qui a été publié, avec les **URLs complètes et cliquables**
+2. **Signaler après coup** ce qui a été publié, avec les **URLs complètes et cliquables**
    (`https://claudeagency.fr/...`), en précisant ce qui est déjà en ligne et ce qui ne l'est pas encore.
 
 Identité des commits : `Julien Rayes <jrayes000@gmail.com>`.
