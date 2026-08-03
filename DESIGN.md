@@ -1,4 +1,4 @@
-# Claude Partners — DESIGN
+# Claude Agency — DESIGN
 
 > Direction « B » : chaleureux & éditorial (univers Claude/Anthropic). Source de vérité du thème : `app/src/styles/global.css` (`@theme` Tailwind v4). Les valeurs ci-dessous reflètent le code en place ; pour toute NOUVELLE couleur, travailler en **OKLCH** et garder les neutres **teintés chaud** (jamais `#000`/`#fff`).
 

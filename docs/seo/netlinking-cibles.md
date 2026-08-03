@@ -4,7 +4,7 @@
 > Logique de qualification reprise de `NETLINKING.md` (DR/DA réel, pertinence thématique,
 > ancres safe, liens **gagnés/fondateurs d'abord**, aucun achat de lien douteux).
 > Asset principal à pitcher : **Baromètre de l'IA dans les organismes de formation** —
-> `https://claudepartners.fr/barometre-ia-organismes-formation/`.
+> `https://claudeagency.fr/barometre-ia-organismes-formation/`.
 > Date : 2026-06-16. DA = Domain Authority (échelle 1-100, source Ubersuggest, vérifiés ci-dessous quand `[DA xx ✓]`).
 
 ---
@@ -18,11 +18,11 @@ Domaine **neuf, 0 backlink** → on est en **phase Fondation (Mois 1-3)** :
 - Vélocité progressive : étaler les soumissions sur plusieurs jours, pas de dump de 20 liens le même jour.
 
 **NAP de référence (à coller à l'identique partout — cohérence = signal d'entité) :**
-- Nom commercial : **Claude Partners**
+- Nom commercial : **Claude Agency**
 - Éditeur juridique : ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS) — RCS Paris 924 997 539
 - Adresse : 229 rue Saint-Honoré, 75001 Paris
-- Email : contact@claudepartners.fr
-- Site : https://claudepartners.fr
+- Email : contact@claudeagency.fr
+- Site : https://claudeagency.fr
 - Dirigeant / contact : Julien Rayes
 
 ---
@@ -37,7 +37,7 @@ Domaine **neuf, 0 backlink** → on est en **phase Fondation (Mois 1-3)** :
 |---|-------|------|------------------------------|------------------------|----------|---------------------------------|
 | 1 | **Google Business Profile** | profil | https://www.google.com/business/ | Entité locale + Maps, socle NAP | **haute** | Gratuit. Lien site = nofollow mais **fondation indispensable** (entité, citations). |
 | 2 | **LinkedIn — page entreprise** | profil | https://www.linkedin.com/company/setup/new/ | Réseau pro B2B, renvoi vers articles | **haute** | Gratuit. Nofollow, mais signal de marque + diffusion. Remplir `sameAs` après (cf. SEO-STRATEGY §L2). |
-| 3 | **LinkedIn — profil Julien Rayes** | profil | https://www.linkedin.com (profil perso → expérience « Claude Partners ») | Founder-led / E-E-A-T | **haute** | Gratuit. Nofollow. Prérequis du levier founder-led (NETLINKING §1.8). |
+| 3 | **LinkedIn — profil Julien Rayes** | profil | https://www.linkedin.com (profil perso → expérience « Claude Agency ») | Founder-led / E-E-A-T | **haute** | Gratuit. Nofollow. Prérequis du levier founder-led (NETLINKING §1.8). |
 | 4 | **Pappers** `[DA 53 ✓]` | annuaire (registre) | https://www.pappers.fr — fiche auto-générée via SIREN 924 997 539 ; compléter site web/description | Registre d'entreprise FR de référence | **haute** | Gratuit. Réclamer/compléter la fiche. Lien souvent nofollow mais citation NAP forte + très haute autorité. |
 | 5 | **Societe.com** | annuaire (registre) | https://www.societe.com — réclamer la fiche entreprise | Registre d'entreprise FR | **haute** | Gratuit (option payante pour enrichir). Citation NAP. Dofollow à vérifier. |
 | 6 | **Centre Inffo** `[DA 54 ✓]` | PR / fédération | Contact presse / rédaction « Le Quotidien de la formation » via https://www.centre-inffo.fr (rubrique contact) | **Cœur de cible** : autorité institutionnelle de la formation pro FR | **haute** | Gratuit (éditorial gagné). Cible idéale pour pitcher le Baromètre (cf. e-mail C). Lien éditorial dofollow probable si repris. |
@@ -56,7 +56,7 @@ Domaine **neuf, 0 backlink** → on est en **phase Fondation (Mois 1-3)** :
 | 19 | **Malt** `[DA 53 ✓]` | profil | https://www.malt.fr — profil freelance/consultant Julien Rayes | Plateforme conseil/freelance B2B | moyenne | Gratuit. Profil = citation de marque + autorité. Lien souvent nofollow. |
 | 20 | **Welcome to the Jungle / pages entreprise** | profil | https://www.welcometothejungle.com — fiche entreprise (**éligibilité à vérifier**) | Marque employeur / B2B | moyenne | Freemium. Citation de marque. Nofollow probable. |
 | 21 | **Podcasts formation / EdTech / IA** (ex. podcasts L&D FR) | PR / founder-led | Repérage + pitch interview Julien (**cibles à identifier**) | Founder-led, autorité + lien en notes d'épisode | moyenne | Gratuit (gagné). Lien dofollow fréquent dans les show-notes. |
-| 22 | **Récupération de mentions non liées** | PR | Veille « Claude Partners » (Google Alerts) → demander le lien | N/A (toutes mentions de marque) | moyenne | Gratuit. Convertir une mention existante en lien (NETLINKING §5 Tier 0). |
+| 22 | **Récupération de mentions non liées** | PR | Veille « Claude Agency » (Google Alerts) → demander le lien | N/A (toutes mentions de marque) | moyenne | Gratuit. Convertir une mention existante en lien (NETLINKING §5 Tier 0). |
 
 > **Note sur Les Acteurs de la Compétence (ligne 7) :** le domaine testé `les-acteurs-de-la-competence.fr` ressort en DA 7 / 0 trafic — c'est probablement **un sous-domaine ou un domaine secondaire**, pas le site institutionnel principal. **Vérifier le domaine canonique** avant de juger la valeur du lien (l'autorité réelle de la fédération est sans doute portée par une autre URL).
 
@@ -73,12 +73,12 @@ Domaine **neuf, 0 backlink** → on est en **phase Fondation (Mois 1-3)** :
 *(43 caractères)*
 
 **Version 160 caractères** (meta / description courte) :
-> Claude Partners aide les organismes de formation à intégrer l'IA et automatiser leurs tâches : moins d'administratif, plus de temps pour la pédagogie.
+> Claude Agency aide les organismes de formation à intégrer l'IA et automatiser leurs tâches : moins d'administratif, plus de temps pour la pédagogie.
 
 *(148 caractères)*
 
 **Version 300 caractères** (présentation longue) :
-> Claude Partners est un cabinet de conseil dédié aux organismes de formation français. Nous vous aidons à intégrer l'intelligence artificielle et à automatiser vos tâches répétitives — conformité Qualiopi, émargement, BPF, suivi des stagiaires — pour gagner du temps et vous recentrer sur la pédagogie.
+> Claude Agency est un cabinet de conseil dédié aux organismes de formation français. Nous vous aidons à intégrer l'intelligence artificielle et à automatiser vos tâches répétitives — conformité Qualiopi, émargement, BPF, suivi des stagiaires — pour gagner du temps et vous recentrer sur la pédagogie.
 
 *(299 caractères)*
 
@@ -90,25 +90,25 @@ Domaine **neuf, 0 backlink** → on est en **phase Fondation (Mois 1-3)** :
 
 ### A. Inscription annuaire / adhésion fédération
 
-> Objet : Référencement de Claude Partners — cabinet conseil IA pour organismes de formation
+> Objet : Référencement de Claude Agency — cabinet conseil IA pour organismes de formation
 
 Bonjour [Prénom / Madame, Monsieur],
 
-Je dirige **Claude Partners**, un cabinet de conseil qui accompagne les organismes de formation français dans l'intégration de l'IA et l'automatisation de leurs tâches administratives (conformité Qualiopi, émargement, BPF, suivi des stagiaires).
+Je dirige **Claude Agency**, un cabinet de conseil qui accompagne les organismes de formation français dans l'intégration de l'IA et l'automatisation de leurs tâches administratives (conformité Qualiopi, émargement, BPF, suivi des stagiaires).
 
 [Notre activité s'inscrivant pleinement dans l'écosystème de [nom de l'annuaire / fédération], je souhaiterais référencer notre structure dans votre annuaire / rejoindre vos adhérents.]
 
 Pourriez-vous m'indiquer la marche à suivre ? Voici nos informations :
 
-- Nom : Claude Partners
-- Site : https://claudepartners.fr
+- Nom : Claude Agency
+- Site : https://claudeagency.fr
 - Activité : conseil en IA et automatisation pour organismes de formation
-- Contact : contact@claudepartners.fr
+- Contact : contact@claudeagency.fr
 
 Merci par avance, et belle journée.
 
-Julien Rayes — Claude Partners
-https://claudepartners.fr
+Julien Rayes — Claude Agency
+https://claudeagency.fr
 
 ---
 
@@ -118,7 +118,7 @@ https://claudepartners.fr
 
 Bonjour [Prénom],
 
-Je suis Julien Rayes, fondateur de **Claude Partners**, cabinet spécialisé dans l'intégration de l'IA pour les organismes de formation. J'accompagne au quotidien des OF qui veulent réduire leur charge administrative sans perdre la main sur leur métier.
+Je suis Julien Rayes, fondateur de **Claude Agency**, cabinet spécialisé dans l'intégration de l'IA pour les organismes de formation. J'accompagne au quotidien des OF qui veulent réduire leur charge administrative sans perdre la main sur leur métier.
 
 Je lis régulièrement [nom du média] et je pense pouvoir apporter à vos lecteurs un regard de terrain concret. Je vous propose une tribune inédite, par exemple :
 
@@ -131,8 +131,8 @@ Seriez-vous ouvert·e à en discuter ?
 
 Bien à vous,
 
-Julien Rayes — Claude Partners
-https://claudepartners.fr
+Julien Rayes — Claude Agency
+https://claudeagency.fr
 
 ---
 
@@ -148,24 +148,24 @@ L'objectif : rendre visible la réalité du secteur — usages réels, temps gag
 
 Je pense que ces données pourraient intéresser vos lecteurs. Je serais ravi de vous partager [les premiers résultats / l'étude complète sous embargo / des chiffres exclusifs] et de répondre à vos questions.
 
-La page de l'enquête : https://claudepartners.fr/barometre-ia-organismes-formation/
+La page de l'enquête : https://claudeagency.fr/barometre-ia-organismes-formation/
 
 Les résultats sont librement réutilisables avec un lien vers la source. Seriez-vous intéressé·e ?
 
 Bien cordialement,
 
-Julien Rayes — Claude Partners
-https://claudepartners.fr
+Julien Rayes — Claude Agency
+https://claudeagency.fr
 
 ---
 
 ## 4. Garde-fous d'ancres (rappel NETLINKING.md §4 & §6)
 
 - **Phase actuelle (Fondation, M1-3) : ~100% ancres de marque / URL nue.** **0% exact-match externe.**
-  - Ancres à utiliser : `Claude Partners`, `claudepartners.fr`, `https://claudepartners.fr`, `Claude Partners — conseil IA pour organismes de formation` (marque + descripteur).
+  - Ancres à utiliser : `Claude Agency`, `claudeagency.fr`, `https://claudeagency.fr`, `Claude Agency — conseil IA pour organismes de formation` (marque + descripteur).
 - **Plafond dur à maturité (M12+) : 5% max d'exact-match externe**, et **jamais > 1% sur une même expression** (« conseil IA organisme de formation », « agence SEO formation »…). On ne pousse PAS ce type d'ancre maintenant.
 - **Privilégier le partial-match** quand on a le choix (« accompagnement IA pour les OF », « le cabinet spécialisé formation ») plutôt que l'exact-match.
-- **Dans un formulaire d'annuaire**, le champ « nom » fixe souvent l'ancre → mettre **Claude Partners** (marque), pas un mot-clé.
+- **Dans un formulaire d'annuaire**, le champ « nom » fixe souvent l'ancre → mettre **Claude Agency** (marque), pas un mot-clé.
 - **Surveiller en valeur absolue, pas qu'en %** : niche étroite = peu de liens, donc une seule ancre optimisée de trop pèse lourd (NETLINKING §6.4).
 - **Cohérence ancre / page** : l'ancre doit décrire la page de destination (éviter l'anchorMismatch, NETLINKING §6.8).
 - **Pas d'achat de lien douteux** : pas de PBN, pas de dofollow nu payant, pas de communiqués/annuaires-fermes bas de gamme. Tout lien payant éventuel (T2 seulement) = `rel="sponsored"` + mention « article sponsorisé ».

@@ -1,4 +1,4 @@
-# Kit LinkedIn — Claude Partners
+# Kit LinkedIn — Claude Agency
 
 Document prêt à coller pour amorcer le levier LinkedIn (E-E-A-T + distribution).
 Ton conforme à `PRODUCT.md` : « vous », chaleureux, concret, orienté gain de temps,
@@ -6,10 +6,10 @@ zéro jargon IA, anti-statistiques inventées. Les champs `[entre crochets]` res
 
 ---
 
-## 1. Page entreprise « Claude Partners »
+## 1. Page entreprise « Claude Agency »
 
 **Nom de la page**
-Claude Partners
+Claude Agency
 
 **Slogan / Tagline** (≤ 120 caractères)
 > L'IA au service des organismes de formation : moins d'administratif, plus de pédagogie.
@@ -17,7 +17,7 @@ Claude Partners
 
 **Description « À propos »** (1500-2000 caractères)
 
-> Claude Partners est un cabinet de conseil qui aide les organismes de formation français à intégrer l'intelligence artificielle et à automatiser leurs process, pour gagner du temps et monter en qualité.
+> Claude Agency est un cabinet de conseil qui aide les organismes de formation français à intégrer l'intelligence artificielle et à automatiser leurs process, pour gagner du temps et monter en qualité.
 >
 > Notre conviction est simple : les organismes de formation ont tout à gagner de l'IA, mais ils manquent de temps et d'un partenaire de confiance pour s'y mettre sans se tromper. Entre Qualiopi, les conventions, l'émargement, le BPF et le montage des dossiers de financement, l'administratif déborde vite sur le temps pédagogique et commercial. Or l'essentiel de cette charge est répétitif — donc automatisable.
 >
@@ -34,13 +34,13 @@ Claude Partners
 >
 > Pour savoir ce que vous pouvez déléguer, commencez par un audit offert : vous repartez avec une feuille de route claire et chiffrée.
 >
-> En savoir plus : https://claudepartners.fr
+> En savoir plus : https://claudeagency.fr
 
 **Secteur (Industry)**
 Conseil et services aux entreprises (Business Consulting and Services)
 
 **Site web**
-https://claudepartners.fr
+https://claudeagency.fr
 
 **Localisation**
 France
@@ -49,7 +49,7 @@ France
 Organismes de formation, Qualiopi, Automatisation des process, Intelligence artificielle, Formation professionnelle, BPF (bilan pédagogique et financier), Émargement et suivi des stagiaires, Charge administrative, Conventions de formation, Conseil IA
 
 **Email de contact**
-contact@claudepartners.fr
+contact@claudeagency.fr
 
 ---
 
@@ -59,20 +59,20 @@ contact@claudepartners.fr
 > Aucune affirmation au-delà du repo. Profil perso existant : https://www.linkedin.com/in/julien-rayes/
 
 **Titre / Headline** (≤ 220 caractères)
-> Fondateur de Claude Partners | J'aide les organismes de formation à intégrer l'IA et automatiser leur back-office pour gagner du temps | Qualiopi, BPF, émargement, conventions
+> Fondateur de Claude Agency | J'aide les organismes de formation à intégrer l'IA et automatiser leur back-office pour gagner du temps | Qualiopi, BPF, émargement, conventions
 (173 caractères)
 
 **Section « Infos » (À propos)**
 
-> Je suis Julien Rayes, fondateur de Claude Partners.
+> Je suis Julien Rayes, fondateur de Claude Agency.
 >
 > Directeur commercial et marketing d'un organisme de formation professionnelle qui a dépassé 3 M€ de chiffre d'affaires depuis 2021, j'en ai automatisé seul tout le back-office — administratif, commercial et marketing — avec des outils comme Make et Claude Code.
 >
 > C'est ce qui fait ma différence : je ne théorise pas l'IA pour les organismes de formation, je l'ai déjà déployée dans l'un d'eux. Je connais de l'intérieur la charge que représentent Qualiopi, le BPF, l'émargement, les conventions et le montage des dossiers de financement — et je sais lesquelles de ces tâches se délèguent le mieux à l'automatisation.
 >
-> Avec Claude Partners, j'aide aujourd'hui les organismes de formation à intégrer l'IA de façon concrète et mesurable, du diagnostic jusqu'aux outils sur mesure. Ma méthode : un flux à la fois, l'IA prépare et l'humain valide, pour que vous gardiez toujours la main et que vous restiez autonomes.
+> Avec Claude Agency, j'aide aujourd'hui les organismes de formation à intégrer l'IA de façon concrète et mesurable, du diagnostic jusqu'aux outils sur mesure. Ma méthode : un flux à la fois, l'IA prépare et l'humain valide, pour que vous gardiez toujours la main et que vous restiez autonomes.
 >
-> Vous dirigez un organisme de formation et l'administratif vous déborde ? Parlons-en : https://claudepartners.fr
+> Vous dirigez un organisme de formation et l'administratif vous déborde ? Parlons-en : https://claudeagency.fr
 >
 > [À compléter si souhaité : zone géographique, langues, formats d'intervention.]
 
@@ -122,7 +122,7 @@ Publier le lien de l'article en **premier commentaire** juste après la mise en 
 > Sur quel indicateur perdez-vous le plus de temps à rassembler vos preuves ? Dites-le en commentaire.
 
 **Lien à placer en 1er commentaire**
-> https://claudepartners.fr/blog/automatiser-qualiopi-ia/
+> https://claudeagency.fr/blog/automatiser-qualiopi-ia/
 
 ---
 
@@ -155,7 +155,7 @@ Publier le lien de l'article en **premier commentaire** juste après la mise en 
 > Vous gérez encore l'émargement sur papier ? Racontez-moi votre organisation en commentaire, j'y répondrai.
 
 **Lien à placer en 1er commentaire**
-> https://claudepartners.fr/blog/automatiser-emargement-suivi-stagiaires/
+> https://claudeagency.fr/blog/automatiser-emargement-suivi-stagiaires/
 
 ---
 
@@ -192,7 +192,7 @@ Publier le lien de l'article en **premier commentaire** juste après la mise en 
 > Combien de jours votre dernier BPF vous a-t-il coûté ? Le chiffre m'intéresse, partagez-le.
 
 **Lien à placer en 1er commentaire**
-> https://claudepartners.fr/blog/automatiser-bpf-organisme-formation/
+> https://claudeagency.fr/blog/automatiser-bpf-organisme-formation/
 
 ---
 
@@ -229,13 +229,13 @@ Publier le lien de l'article en **premier commentaire** juste après la mise en 
 > Quelle tâche administrative vous prend le plus de temps en ce moment ? Commencez par celle-là — dites-moi laquelle en commentaire.
 
 **Lien à placer en 1er commentaire**
-> https://claudepartners.fr/blog/reduire-charge-administrative-organisme-formation/
+> https://claudeagency.fr/blog/reduire-charge-administrative-organisme-formation/
 
 ---
 
 ## 4. Note de câblage code (à faire APRÈS création de la page entreprise)
 
-Une fois la page entreprise LinkedIn « Claude Partners » créée et son URL publique connue
+Une fois la page entreprise LinkedIn « Claude Agency » créée et son URL publique connue
 (format attendu : `https://www.linkedin.com/company/<slug>/`), il faudra renseigner cette URL
 dans le code pour renforcer le signal E-E-A-T (`sameAs` schema.org). Ces fichiers ne sont
 **pas** modifiés ici — c'est une étape ultérieure.

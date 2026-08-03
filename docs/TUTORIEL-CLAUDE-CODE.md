@@ -50,7 +50,6 @@ Pour choisir parmi les sessions passées : `claude --resume`
 | `/context` | Montre ce qui occupe la mémoire de la conversation |
 | `/mcp` | Liste les connecteurs disponibles et leur état |
 | `/agents` | Gère les sous-agents (dont `seo-researcher`) |
-| `/fabuleux` | Active la discipline de travail exigeante — pour les articles et décisions SEO |
 | `/cost` | Ce que la session a consommé |
 | `Échap` | Interrompt Claude en cours de route |
 | `Échap` deux fois | Revient en arrière dans la conversation |
@@ -127,8 +126,7 @@ publication alors que tu as tranché l'inverse.
 ## 8. Ce qui n'a pas été transféré, et pourquoi
 
 - **Les skills Cowork** (`/seo`, `/prospection`, `netlinking`…) : elles sont liées à ton compte et
-  restent disponibles dans Cowork. Le projet a déjà sa propre skill `/fabuleux` dans
-  `.claude/skills/fabuleux/`. Si une skill Cowork te manque vraiment en Claude Code, on peut la
+  restent disponibles dans Cowork. Si une skill Cowork te manque vraiment en Claude Code, on peut la
   recopier dans `.claude/skills/` — dis-le et je le fais.
 - **Les tâches planifiées** : elles restent dans Cowork, qui tourne même quand le PC est éteint.
   Claude Code ne s'exécute que quand tu ouvres un terminal.

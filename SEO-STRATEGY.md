@@ -1,4 +1,4 @@
-# Stratégie SEO — Claude Partners
+# Stratégie SEO — Claude Agency
 
 > Document de pilotage SEO. Basé sur un audit réel du code source (`app/`) et des
 > données Google Search Console (`sc-domain:claudepartners.fr`) au 2026-06-14.
@@ -79,7 +79,7 @@ les citations IA), et **maille vers la page service correspondante** + CTA audit
 ### 🟠 LEVIER 2 — Signaux E-E-A-T (crédibilité humaine)
 
 Le conseil B2B récompense l'expertise humaine prouvée. Aujourd'hui l'auteur est
-« Claude Partners » (org, pas personne).
+« Claude Agency » (org, pas personne).
 
 **Checklist :**
 - [x] **Auteur nommé réel** : Julien Rayes — entité partagée `app/src/data/author.ts`. *(2026-06-14)*

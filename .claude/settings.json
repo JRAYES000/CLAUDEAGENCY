@@ -1,15 +1,52 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm ci)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run preview:*)",
+      "Bash(npx astro:*)",
+      "Bash(node --version)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git push origin main)",
+      "Bash(git pull:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "PowerShell(npm install)",
+      "PowerShell(npm ci)",
+      "PowerShell(npm run build:*)",
+      "PowerShell(npm run dev:*)",
+      "PowerShell(npm run preview:*)",
+      "PowerShell(npx astro:*)",
+      "PowerShell(git status:*)",
+      "PowerShell(git diff:*)",
+      "PowerShell(git log:*)",
+      "PowerShell(git show:*)",
+      "PowerShell(git branch:*)",
+      "PowerShell(git add:*)",
+      "PowerShell(git commit:*)",
+      "PowerShell(git push)",
+      "PowerShell(git push origin main)",
+      "PowerShell(git pull:*)",
+      "PowerShell(Get-ChildItem:*)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jq -n --arg ctx 'Garde-fous ClaudePartners : confirmer dans le fil AVANT tout merge/publication (merger = publier en prod) ; vérifier le build (cd app && npm run build) avant de committer du contenu/code ; router le mécanique vers un sous-agent Haiku (seo-researcher), garder le jugement sur le modèle fort ; /fabuleux pour le travail à forte valeur, pas pour les corvées ; tenir le ton de PRODUCT.md (chaleureux, concret, sans jargon IA).' '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:$ctx}}'",
-            "statusMessage": "Rappel des garde-fous ClaudePartners"
-          }
-        ]
-      },
       {
         "hooks": [
           {

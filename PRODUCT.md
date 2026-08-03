@@ -1,4 +1,4 @@
-# Claude Partners — PRODUCT
+# Claude Agency — PRODUCT
 
 ## Register
 **brand** — site vitrine + blog. Le design EST le produit (marketing, acquisition, crédibilité). Pas une app/dashboard.

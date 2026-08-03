@@ -61,7 +61,7 @@ chronophage pour Y % »…). Chaque chiffre marquant devient une **citation repr
 | Canal | Action |
 |---|---|
 | **Réseau direct** | Julien envoie le lien à son carnet d'OF + son propre réseau formation. |
-| **LinkedIn** | 2-3 posts (Julien + page Claude Partners) « Aidez-nous, 5 min » + relance ; groupes de responsables formation / DAF. |
+| **LinkedIn** | 2-3 posts (Julien + page Claude Agency) « Aidez-nous, 5 min » + relance ; groupes de responsables formation / DAF. |
 | **Partenaires** | Demander un relais à des certificateurs, OPCO, communautés EdTech, éditeurs d'outils formation (échange de visibilité). |
 | **Email** | Si une base d'OF existe (ex. via École Naturo / réseau pro), envoi ciblé. |
 
@@ -71,7 +71,7 @@ chronophage pour Y % »…). Chaque chiffre marquant devient une **citation repr
 
 ---
 
-## 4. Blueprint de la page de résultats (à publier sur claudepartners.fr)
+## 4. Blueprint de la page de résultats (à publier sur claudeagency.fr)
 
 > **État (juin 2026) — pages créées sur le site :**
 > - **Landing / présentation : `/barometre-ia-organismes-formation/`** — *indexable*, explique l'enquête et renvoie vers le questionnaire.
@@ -112,6 +112,6 @@ chronophage pour Y % »…). Chaque chiffre marquant devient une **citation repr
 ## 6. Qui fait quoi
 
 - **Toi (Julien)** : créer le formulaire (Tally), diffuser, collecter (~100 réponses).
-- **Moi (Claude Partners / expert)** : dès que les réponses sont là → **analyse des données, rédaction de l'étude, construction de la page de résultats** sur le site (avec schema + maillage), et **rédaction du communiqué + des posts de promo**.
+- **Moi (Claude Agency / expert)** : dès que les réponses sont là → **analyse des données, rédaction de l'étude, construction de la page de résultats** sur le site (avec schema + maillage), et **rédaction du communiqué + des posts de promo**.
 
 > **Prochaine action concrète :** valider/ajuster le questionnaire ci-dessus, puis le mettre en ligne (Tally). Dis-moi quand le lien est prêt — ou si tu veux que j'ajuste des questions avant.

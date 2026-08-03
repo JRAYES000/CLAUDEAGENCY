@@ -1,4 +1,4 @@
-# Plan éditorial longue traîne — Claude Partners
+# Plan éditorial longue traîne — Claude Agency
 
 > Cluster de contenu pour étoffer le SEO autour des douleurs opérationnelles des organismes de formation (OF) français.
 > Marché : France (locId 2250), langue FR. Données Ubersuggest collectées le 2026-06-16 (snapshots métriques `updated_at` 2025-12 pour le volume/sd ; SERP datées dans chaque analyse).
@@ -31,7 +31,7 @@ Les sujets ci-dessous comblent des **trous documentaires** (documents obligatoir
 
 ## 3. Plan priorisé (TOP 15)
 
-Services Claude Partners disponibles pour le maillage : **Automatisation des process**, **Audit & diagnostic IA**, **Outils IA sur mesure**, **Formation des équipes à l'IA**, **Optimisation de site**, **SEO**, **SEA**.
+Services Claude Agency disponibles pour le maillage : **Automatisation des process**, **Audit & diagnostic IA**, **Outils IA sur mesure**, **Formation des équipes à l'IA**, **Optimisation de site**, **SEO**, **SEA**.
 
 | # | Sujet d'article proposé | Requête cible | Vol. | sd | Intention | Gagnabilité SERP (DA concurrents) | Service à mailler | Angle douleur → IA |
 |---|---|---|---|---|---|---|---|---|
@@ -85,4 +85,4 @@ Services Claude Partners disponibles pour le maillage : **Automatisation des pro
 2. **Vague 2 (modèles & satellites Qualiopi)** : #3 remplir le BPF, #6 questionnaire satisfaction, #7 livret d'accueil, #8 règlement intérieur, #13 certification RNQ, #14 convention vs contrat.
 3. **Vague 3 (une fois quelques backlinks/positions acquis)** : #5 audit Qualiopi (sd 29), #10 RNQ, #11 OPCO+Qualiopi.
 
-Chaque article doit mailler vers le service Claude Partners indiqué et vers les articles piliers existants (`qualiopi-guide-organisme-formation`, `convention-de-formation`, `logiciel-organisme-formation`, `reduire-charge-administrative-organisme-formation`) pour renforcer le cocon sémantique.
+Chaque article doit mailler vers le service Claude Agency indiqué et vers les articles piliers existants (`qualiopi-guide-organisme-formation`, `convention-de-formation`, `logiciel-organisme-formation`, `reduire-charge-administrative-organisme-formation`) pour renforcer le cocon sémantique.

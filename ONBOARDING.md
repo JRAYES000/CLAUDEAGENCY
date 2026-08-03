@@ -25,19 +25,15 @@ Top MCP Servers:
 _These aren't in the usage scan yet, but they're wired into this project — a teammate working on SEO/content will want them._
 
 - [ ] Ubersuggest — keyword volumes, difficulty, SERP analysis, PageSpeed/site audits. Ask Julien for the shared account/API access.
-- [ ] Notion — team docs and content planning. Request access to the ClaudePartners workspace.
+- [ ] Notion — team docs and content planning. Request access to the Claude Agency workspace.
 - [ ] Supabase — project database/backend. Ask for an invite to the Supabase org.
 - [ ] GitHub — PRs, issues, CI. Connect with your own GitHub account once added to the repo.
-
-### Skills to Know About
-- [ ] /fabuleux — premium "work disposition" for high-value tasks: routes by task type (Artifact/Agentic → build then really *look* at the work with a screenshot + verify with a real build/test; Prose → criteria + write + cut, never pad; Analysis → verify every claim, useful truth over flattery). Reserve it for writing/reworking articles, design checks, and SEO calls — not for chores. It pushes effort (and tokens), so don't run it by default.
 
 ## Team Tips
 
 - **Publish directly once the build passes.** Pushing to `main` auto-deploys to production via **Cloudflare Pages** — so merge = publish live. Julien has authorised the agent to publish without asking for approval each time; just run `cd app && npm run build` first, then report afterwards what went live, with full clickable URLs.
 - **Build before you commit.** Run `cd app && npm run build` and confirm it passes before committing content or code.
 - **Route the mechanical work to Haiku, keep judgment on the strong model.** Hand repo searches, link/tag audits, and SEO data collection to the `seo-researcher` sub-agent. Writing, editorial tone, internal-linking choices, and SEO calls stay on the strong model.
-- **Reserve `/fabuleux` for high-value work.** Use it for writing/reworking articles, design checks, and SEO decisions — not for chores. It pushes effort and burns more quota, so don't run it by default.
 - **Don't set `CLAUDE_CODE_SUBAGENT_MODEL=haiku`.** It forces *every* sub-agent (including writing) onto Haiku and tanks editorial quality. The Haiku routing must stay selective, by task type.
 - **Precision over volume.** This niche is won by being precise and concrete, not by churning out empty content — keep the warm, jargon-free, ROI-focused tone from `PRODUCT.md`.
 

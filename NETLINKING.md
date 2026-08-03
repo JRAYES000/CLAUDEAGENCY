@@ -1,4 +1,4 @@
-# Stratégie Netlinking — claudepartners.fr
+# Stratégie Netlinking — claudeagency.fr
 
 > 📌 Doc de référence — synthèse d'une **recherche multi-agents** (22 agents, ~250 recherches/lectures web réelles, vérification adversariale de chaque affirmation clé) menée le 2026-06-15. Remplace le playbook initial. Particularité : plusieurs « stats » très répandues dans l'industrie (« ×2,7 », « 58% SEJ », « sandbox 3-6 mois prouvé par la fuite »…) ont été **invalidées** par les vérifications et signalées comme telles.
 
@@ -86,7 +86,7 @@ L'esprit (progressif, pas de dump) est juste et consensuel. MAIS **John Mueller*
 
 ---
 
-## 3. Stratégie recommandée pour claudepartners.fr (priorisée)
+## 3. Stratégie recommandée pour claudeagency.fr (priorisée)
 
 > Principe directeur retenu (consensus) : **contenu/topical authority d'abord → fondations → liens gagnés → achat sélectif minoritaire**. La pertinence thématique ET l'autorité réelle priment ; la vélocité reste progressive ; tout lien payant est balisé `sponsored`.
 
@@ -97,7 +97,7 @@ Avant tout netlinking externe, consolider le cluster pilier/cluster sur le cœur
 - **Pourquoi #1 :** seul levier où l'on peut utiliser de l'exact-match sans aucun risque, et c'est ce qui rend tout backlink ultérieur plus efficace.
 
 ### Priorité 2 — Fondations / liens fondateurs (mois 1-2)
-Google Business Profile, LinkedIn entreprise + profil nominatif Julien, citations NAP cohérentes, annuaires **sérieux et thématiques** : registres d'organismes de formation, écosystème Qualiopi/certificateurs, annuaires B2B/conseil légitimes. Profil d'ancres dominé par la marque + URL nue. Objectif : valider l'entité « Claude Partners ».
+Google Business Profile, LinkedIn entreprise + profil nominatif Julien, citations NAP cohérentes, annuaires **sérieux et thématiques** : registres d'organismes de formation, écosystème Qualiopi/certificateurs, annuaires B2B/conseil légitimes. Profil d'ancres dominé par la marque + URL nue. Objectif : valider l'entité « Claude Agency ».
 
 ### Priorité 3 — Page auteur / E-E-A-T (continu)
 Page auteur détaillée de Julien (expérience first-hand réelle = le « E » qui différencie d'un contenu IA), bio, preuves, HTTPS, mentions légales. **Rappel vérifié (`contesté`)** : E-E-A-T n'est **pas un score ni un facteur de ranking direct** — c'est le cadre des Quality Rater Guidelines. Ne pas sur-investir dans des signaux cosmétiques sans contenu réellement expert.
@@ -134,7 +134,7 @@ Une fois du contenu indexé et un socle gratuit en place. **Plateformes établie
 
 - **Plafond dur exact-match externe : 5% du profil total**, et **jamais >1% sur une même expression non-marque** (« conseil IA organisme de formation », « agence SEO formation »).
 - **Privilégier le partial-match** (« accompagnement IA pour OF », « le cabinet spécialisé formation ») qui contient le mot-clé sans être exact.
-- **Diversifier les variantes** plutôt que répéter : exact / partial / synonymes / longue traîne / marque+mot-clé (« Claude Partners, conseil IA pour OF »). La diversité naturelle est la meilleure protection (position Ahrefs).
+- **Diversifier les variantes** plutôt que répéter : exact / partial / synonymes / longue traîne / marque+mot-clé (« Claude Agency, conseil IA pour OF »). La diversité naturelle est la meilleure protection (position Ahrefs).
 - **Par type de page** (vérifié `medium`) : homepage ≤5% exact-match ; pages service 5-15% ; articles de blog tolèrent un peu plus en contexte éditorial. **Réserver les ancres optimisées aux liens sur les sites les plus forts** (règle SeoMix/Daniel Roch).
 - **Cohérence ancre/page obligatoire** : une ancre qui ne décrit pas la page cible (anchorMismatch) peut être dévaluée.
 
@@ -147,7 +147,7 @@ Une fois du contenu indexé et un socle gratuit en place. **Plateformes établie
 ### Tier 0 — Gratuit / fondateur (mois 1-2, zéro risque)
 - Google Business Profile, LinkedIn entreprise + profil Julien.
 - Citations NAP & annuaires **sérieux/thématiques** : registres d'OF, écosystème Qualiopi/certificateurs, annuaires B2B-conseil légitimes. (Éviter les annuaires de basse qualité, explicitement listés comme spam par Google — §1.3.)
-- Récupération des **mentions de marque non liées** (« Claude Partners ») dès qu'elles circulent.
+- Récupération des **mentions de marque non liées** (« Claude Agency ») dès qu'elles circulent.
 
 ### Tier 1 — Éditorial gagné (continu, sûr, fort en marque)
 - **Featured.com / Qwoted / Help a B2B Writer / Source of Sources** : citations d'expert (Julien).
@@ -241,7 +241,7 @@ PBN, achat de liens dofollow nu, link farming, guest posting de masse bas de gam
 ---
 
 ### Synthèse en une phrase
-Pour claudepartners.fr, le chemin le moins risqué et le plus durable est **topical authority + maillage interne d'abord, fondations ensuite, liens éditoriaux gagnés (founder-led + data) comme moteur, et achat de liens FR sélectif, balisé `sponsored` et minoritaire à partir du T2** — avec un profil d'ancres ultra-prudent (0% exact-match externe au démarrage, ≤5% à maturité), une vélocité progressive, et un filtrage qualité (trafic réel + Force Induite Babbar) sur chaque donneur.
+Pour claudeagency.fr, le chemin le moins risqué et le plus durable est **topical authority + maillage interne d'abord, fondations ensuite, liens éditoriaux gagnés (founder-led + data) comme moteur, et achat de liens FR sélectif, balisé `sponsored` et minoritaire à partir du T2** — avec un profil d'ancres ultra-prudent (0% exact-match externe au démarrage, ≤5% à maturité), une vélocité progressive, et un filtrage qualité (trafic réel + Force Induite Babbar) sur chaque donneur.
 
 ---
 
@@ -249,7 +249,11 @@ Pour claudepartners.fr, le chemin le moins risqué et le plus durable est **topi
 
 **Impact du rebrand « Claude Partners » → « Claude Agency » sur le netlinking.** La marque/entité de référence est désormais **Claude Agency** (cf. mémoire dédiée). Conséquences :
 - **Ancre de marque** = « Claude Agency » pour tous les nouveaux liens/citations. NAP cohérent (nom identique partout).
-- **À réconcilier (côté Julien — il détient les comptes)** : la fiche AnnuaireFormation et les candidatures guest post (Tree Learning, Digiformag) ont été soumises sous « Claude Partners ». Mettre à jour le nom affiché vers « Claude Agency » si possible, ou assumer une transition. Le **domaine reste `claudepartners.fr`** (inchangé).
+- **À réconcilier (côté Julien — il détient les comptes)** : la fiche AnnuaireFormation et les candidatures guest post (Tree Learning, Digiformag) ont été soumises sous « Claude Partners ». Mettre à jour le nom affiché vers « Claude Agency » si possible, ou assumer une transition.
+
+> ⚠️ Mise à jour (03/08/2026) : la phrase d'origine « le domaine reste `claudepartners.fr` » n'est
+> plus vraie. Depuis le 25/07/2026 le site est sur **`claudeagency.fr`** et `claudepartners.fr` est
+> un projet séparé. Toute nouvelle cible de lien pointe sur `claudeagency.fr`.
 
 **Quick win appliqué en autonomie (2026-06-19).** Le seul levier réellement automatisable sans Julien est la **fondation on-site / entité** (Priorité 1-3) :
 - Entité **Organization** enrichie (`foundingDate`, `founder` lié au Person Julien Rayes, `knowsAbout`) → renforce le Knowledge Graph, support direct des citations IA (GEO).
