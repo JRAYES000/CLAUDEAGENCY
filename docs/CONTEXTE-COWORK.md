@@ -67,15 +67,20 @@ collaborateur avaient **remplacé le contenu complet** de chaque article de blog
   Restes inoffensifs dans le code : un `preconnect` plausible.io et des appels `if (window.plausible)` morts.
 - **Point ouvert** : GA4 + Ads posent des cookies → une **bannière de consentement RGPD/CNIL**
   reste à mettre en place.
-- **Search Console** : propriété **préfixe d'URL** `https://claudeagency.fr/`, propriétaire
-  jrayes000@gmail.com, validée automatiquement **via le tag GA4** → ne pas retirer le gtag du site,
-  sous peine de perdre la validation. Sitemap : `/sitemap-index.xml`. Pas de propriété « domaine ».
-  Second propriétaire déclaré : alainnirinaalbert@gmail.com.
+- **Search Console** : deux propriétés, toutes deux détenues par jrayes000@gmail.com.
+  - `https://claudeagency.fr/` (**préfixe d'URL**), validée **via le tag GA4** → ne pas retirer le
+    gtag du site, sous peine de perdre la validation. C'est elle qui porte l'historique de données.
+  - `sc-domain:claudeagency.fr` (**domaine**, créée le 04/08/2026), validée par un TXT
+    `google-site-verification=…` sur `@` dans la zone Cloudflare → **ne pas supprimer ce TXT**.
+    Couvre en plus `www.`, le `http://` et les sous-domaines.
+
+  Second propriétaire déclaré sur la propriété préfixe : alainnirinaalbert@gmail.com.
+  Sitemap : `/sitemap-index.xml` (soumis sur la propriété préfixe uniquement).
 - **Accès agent à la Search Console** : via **Composio** (`COMPOSIO_SEARCH_TOOLS` puis
   `COMPOSIO_MULTI_EXECUTE_TOOL`, outils `GOOGLE_SEARCH_CONSOLE_*`). Il n'y a **pas** de MCP Search
-  Console dédié. La connexion Composio est authentifiée en **ecolenaturo@gmail.com**, pas en
-  jrayes000@gmail.com — ce compte a été ajouté en « accès total » sur la propriété le 04/08/2026
-  (`siteFullUser`). Le retirer des utilisateurs coupe toute lecture GSC par l'agent.
+  Console dédié. Une seule connexion, authentifiée en **jrayes000@gmail.com**, `siteOwner` sur les
+  deux propriétés. Piège : `sc-domain:formation-sante-bienetre.fr` est en `siteUnverifiedUser` et
+  renvoie 404 — une invitation jamais validée, ne pas l'utiliser.
 - **Audit GSC du 15/07/2026** (données 23/06–13/07) — baseline : 17 clics, 408 impressions, CTR 4,2 %,
   position moyenne 19,3 ; 65 pages indexées / 39 non indexées (dont 21 tags en noindex, volontaire).
   Priorités identifiées, dans l'ordre :
