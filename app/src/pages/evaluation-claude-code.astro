@@ -7,13 +7,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // Page utilitaire : noindex, absente du menu.
 // Corrigé sourcé sur la documentation officielle (champ `source`).
 
+// Périmètre : chaque question porte sur un point du guide interne
+// « Bien utiliser Claude — le guide simple » (Notion). Rien d'autre.
 const DOMAINES = {
-  claudecode: 'Claude Code',
-  methode: 'Fiabilité et méthode',
-  seo: 'SEO client',
-  ads: 'Google Ads client',
-  perf: 'Site et performance',
-  conseil: 'Conseil et cadrage',
+  skills: "Skills d'équipe",
+  contexte: 'Contexte et limite',
+  demande: 'Formuler sa demande',
+  verif: 'Vérifier avant de livrer',
+  missions: 'Missions et parallélisation',
+  methode: 'Méthode de travail',
 };
 
 const PALIERS = [
@@ -33,111 +35,229 @@ const PALIERS = [
     min: 0,
     titre: 'À former avant de démarrer',
     ton: 'ko',
-    texte: "Il manque des bases pour intervenir seul. Priorité : les modes de permission de Claude Code, la règle « aucune vérification déclarative », et le réflexe de mesurer avant d'affirmer.",
+    texte: "Il manque des bases pour travailler sans aide. Priorité : une conversation par sujet et /clear quand vous changez, la façon de formuler une demande (exemples, documents en haut), et le réflexe de vérifier avant d'affirmer.",
   },
 ];
 
 const questions = [
-  // ============ Claude Code ============
+  // ============ Skills d'équipe (règle 1) ============
   {
-    domaine: 'claudecode',
+    domaine: 'skills',
+    q: "Vous démarrez une refonte de page pour un client, un travail délicat où vous voulez que Claude vous challenge. Un collègue vous conseille de lancer `/phrase-magique` et `/fonce` ensemble, « pour cumuler les deux ». Que faites-vous ?",
+    opts: [
+      "Les deux : la première cadre la demande, la seconde exécute jusqu'au bout",
+      "`/fonce` seule, elle contient déjà une phase de cadrage",
+      "`/phrase-magique` seule : `/fonce` interdit à Claude de poser la moindre question, elles font le contraire l'une de l'autre",
+      "Ni l'une ni l'autre : les skills servent aux missions longues, pas aux travaux délicats",
+    ],
+    correct: 2,
+    pourquoi: [
+      "Elles ne se cumulent pas, elles s'annulent : l'une oblige Claude à vous questionner, l'autre le lui interdit.",
+      "`/fonce` ne cadre rien. Elle exige que vous ayez cadré vous-même, dans votre demande, avant de la lancer.",
+      "Exact. Travail délicat, `/phrase-magique`. Mission balisée que vous voulez voir finie sans vous, `/fonce`.",
+      "Un travail délicat est précisément le cas d'usage de `/phrase-magique`.",
+    ],
+    explication: "C'est la seule incompatibilité explicite du guide. Le critère de choix tient en une question : voulez-vous être interrogé pendant le travail, ou partir et retrouver un résultat fini ?",
+    source: null,
+  },
+  {
+    domaine: 'skills',
+    q: "Vous partez deux heures et vous lancez `/fonce`. Laquelle de ces demandes s'arrêtera au bon moment ?",
+    opts: [
+      "« Améliore le site du client pendant mon absence. »",
+      "« Corrige le script jusqu'à ce qu'il tourne sans erreur sur les 3 fichiers de test. »",
+      "« Fais du mieux que tu peux sur le site, tu as deux heures. »",
+      "« Occupe-toi de ce qui traîne sur le projet. »",
+    ],
+    correct: 1,
+    pourquoi: [
+      "« Améliorer » n'a pas de fin. Rien dans cette phrase ne dit quand s'arrêter.",
+      "Exact. La fin est vérifiable : trois fichiers, zéro erreur. Claude sait à quel moment il a terminé.",
+      "Une durée n'est pas une condition d'arrêt : elle ne dit pas ce qui doit être atteint.",
+      "« Ce qui traîne » est un périmètre inconnu, sans état final défini.",
+    ],
+    explication: "`/fonce` travaille jusqu'à ce que ce que vous avez décrit soit atteint. Le résultat dépend donc entièrement de la netteté de la fin que vous lui donnez : c'est la seule chose à soigner avant de le lancer.",
+    source: null,
+  },
+  {
+    domaine: 'skills',
+    q: "Dans votre demande à `/fonce`, vous écrivez : « rédige la page services et mets-la en ligne ». Que se passe-t-il ?",
+    opts: [
+      "Il rédige puis s'arrête : la mise en ligne est irréversible, il demandera toujours",
+      "Il publie en brouillon et attend votre validation",
+      "Il refuse la mission : une skill autonome ne publie jamais",
+      "Il publie : il ne s'arrête que devant l'irréversible que vous n'avez pas demandé — ici, vous l'avez demandé",
+    ],
+    correct: 3,
+    pourquoi: [
+      "Il s'arrête devant l'irréversible non demandé. Votre phrase, elle, le demande explicitement.",
+      "Aucune étape de brouillon intermédiaire n'est prévue.",
+      "Elle publie très bien si la demande le dit. C'est précisément le risque.",
+      "Exact. « …et mets-le en ligne » n'est pas une figure de style : ne l'écrivez que si vous le pensez.",
+    ],
+    explication: "La règle est symétrique. Ce que vous n'avez pas demandé et qui est irréversible — publier, écrire à un client, supprimer en masse — déclenche une question. Ce que vous avez demandé s'exécute. Relisez votre phrase de lancement comme un ordre, parce que c'en est un.",
+    source: null,
+  },
+  {
+    domaine: 'skills',
+    q: "Vous travaillez sur un poste où les skills d'équipe ne sont pas installées, et vous démarrez un travail de deux heures. Quelle phrase ajoutez-vous pour éviter de découvrir à la fin qu'il est parti dans la mauvaise direction ?",
+    opts: [
+      "« Donne-moi ton plan en 3 à 5 étapes avant de commencer. Je valide, puis tu fais. »",
+      "« Prends ton temps et sois rigoureux sur ce travail. »",
+      "« Préviens-moi si jamais tu as un doute en cours de route. »",
+      "« Fais une première version complète, je te dirai ensuite ce qui ne va pas. »",
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. Corriger un plan prend trente secondes ; refaire deux heures de travail, non.",
+      "Une consigne de sérieux ne crée aucun point de contrôle : vous ne verrez toujours rien avant la fin.",
+      "Le doute est justement ce qu'il ne signale pas de lui-même : il tranche et il continue.",
+      "C'est ce qui se passe par défaut. Vous découvrez l'écart quand le travail est déjà fait.",
+    ],
+    explication: "Ces phrases font à la main une partie de ce que `/phrase-magique` impose. Les autres à connaître : « reformule ma demande avant de commencer », « sois mon contradicteur, pas mon assistant », « est-ce que c'est complet ? ».",
+    source: null,
+  },
+
+  // ============ Contexte et limite (règle 7) ============
+  {
+    domaine: 'contexte',
     q: 'Quelle est la différence entre `/clear` et `/compact` ?',
     opts: [
       '`/clear` résume la conversation, `/compact` repart de zéro',
-      '`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer du contexte tout en la poursuivant',
-      'Les deux font la même chose, `/compact` est simplement l\'ancien nom',
-      '`/clear` ne fonctionne qu\'en mode plan',
+      "`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer de la place tout en la poursuivant",
+      "Les deux font la même chose, `/compact` est simplement l'ancien nom",
+      '`/clear` supprime définitivement la conversation, `/compact` l\'archive',
     ],
     correct: 1,
     pourquoi: [
       "Inversé. C'est `/compact` qui résume, et `/clear` qui repart à zéro.",
-      "Exact. On utilise `/clear` en changeant de sujet, et `/compact` quand la tâche continue mais que le contexte sature.",
-      "Non : ce sont deux commandes distinctes, avec deux effets opposés sur l'historique.",
-      "Non, le mode de permission n'a rien à voir avec la gestion du contexte.",
+      "Exact. `/clear` quand vous changez de sujet, `/compact` quand la tâche continue mais que la place manque.",
+      "Ce sont deux commandes distinctes, avec deux effets opposés sur l'historique.",
+      "`/clear` suivi d'un nom range la conversation précédente, et vous la retrouvez avec `/resume`. Rien n'est supprimé.",
     ],
-    explication: "Confondre les deux coûte du travail : `/clear` au mauvais moment jette le contexte d'une mission en cours, et rester sans jamais compacter dégrade la qualité des réponses au fil de la conversation.",
+    explication: "`/clear` est gratuit, et c'est ce qu'il faut faire 9 fois sur 10. `/compact` coûte cher : Claude relit toute la conversation pour en fabriquer le résumé. Gardez-le pour le milieu d'un gros travail, quand la suite dépend vraiment de ce que vous venez de faire ensemble.",
     source: 'https://code.claude.com/docs/en/commands',
   },
   {
-    domaine: 'claudecode',
-    q: "Que dit la documentation du mode `bypassPermissions` (activé par `--dangerously-skip-permissions`) ?",
+    domaine: 'contexte',
+    q: "Il est 16 h. Claude annonce que vous avez atteint votre limite, alors qu'il vous reste deux heures de travail. Vous êtes dans la même conversation depuis ce matin, sur trois sujets différents. Quelle est la cause la plus probable ?",
     opts: [
-      "À privilégier sur les projets clients pour aller plus vite",
-      "Il ajoute une confirmation supplémentaire avant chaque commande",
-      "Il est actif par défaut et il faut le désactiver",
-      "À n'utiliser que dans un environnement isolé (conteneur, machine virtuelle) ; sur macOS et Linux, Claude Code refuse même de démarrer dans ce mode en root ou sous `sudo`",
+      "Vous avez envoyé trop de messages : la limite compte le nombre de messages",
+      "Les réponses de Claude étaient trop longues",
+      "À chaque message, Claude relit toute la conversation depuis ce matin : ce n'est pas votre dernière question qui coûte cher, c'est tout ce qu'elle traîne derrière elle",
+      "La limite se déclenche en milieu d'après-midi, quel que soit votre usage",
     ],
-    correct: 3,
+    correct: 2,
     pourquoi: [
-      "L'inverse exact de la consigne officielle. Sur un poste qui contient des données clients, c'est le pire endroit pour ce mode.",
-      "Non, il en retire : il désactive les demandes d'autorisation, il n'en ajoute pas.",
-      "Non, il n'est jamais actif par défaut. Il faut l'activer explicitement au lancement.",
-      "Exact. La doc précise aussi qu'il n'offre aucune protection contre les consignes malveillantes cachées dans un fichier ou une page web.",
+      "Le nombre de messages pèse beaucoup moins que ce que chacun oblige à relire.",
+      "Elles comptent, mais elles ne comptent qu'une fois. Ce qui coûte, c'est de tout relire à chaque tour.",
+      "Exact. Une question d'une ligne dans une conversation de quatre heures fait relire quatre heures de discussion.",
+      "Aucune heure n'est en cause. C'est l'accumulation qui l'est.",
     ],
-    explication: "C'est le réglage qui transforme une erreur de jugement en incident. Sur nos postes, les dossiers Qualiopi, comptables et les données d'anciens élèves cohabitent avec le code : le mode sans garde-fou n'y a pas sa place.",
-    source: 'https://code.claude.com/docs/en/permission-modes',
+    explication: "D'où la règle : une conversation par sujet, et `/clear` dès que vous changez. Ce n'est pas qu'une économie — noyé sous trois sujets mélangés, Claude confond aussi les consignes.",
+    source: 'https://code.claude.com/docs/en/commands',
   },
   {
-    domaine: 'claudecode',
-    q: "Vous devez explorer un dépôt client de 400 fichiers pour retrouver toutes les pages qui contiennent un ancien numéro de téléphone. Pourquoi confier ça à un sous-agent plutôt que de le faire dans la conversation principale ?",
+    domaine: 'contexte',
+    q: "Vous vous apprêtez à lancer un gros travail dans Claude Code. Quelle commande tapez-vous d'abord, et pour quoi faire ?",
     opts: [
-      "Le sous-agent a accès à des outils que la conversation principale n'a pas",
-      "Le sous-agent tourne automatiquement sur un modèle plus puissant",
-      "C'est obligatoire au-delà de trois fichiers",
-      "Le sous-agent travaille dans sa propre fenêtre de contexte et ne renvoie que sa synthèse",
-    ],
-    correct: 3,
-    pourquoi: [
-      "Non, c'est le contraire : on restreint souvent ses outils, justement pour l'empêcher d'écrire.",
-      "Non. Par défaut il hérite du modèle de la conversation, et on le descend souvent en Haiku pour économiser.",
-      "Aucun seuil de ce genre n'existe. Déléguer se décide sur le volume de bruit produit, pas sur un nombre de fichiers.",
-      "Exact. Les centaines de lignes de résultats de recherche restent chez lui ; vous ne récupérez que la liste utile.",
-    ],
-    explication: "Le contexte est la ressource rare d'une mission. Tout ce que vous laissez entrer dans la conversation principale (logs, code parcouru, résultats de grep) dégrade la qualité de ce qui suit.",
-    source: 'https://code.claude.com/docs/en/sub-agents',
-  },
-  {
-    domaine: 'claudecode',
-    q: "Un sous-agent porte `model: sonnet` dans son frontmatter, et la variable d'environnement `CLAUDE_CODE_SUBAGENT_MODEL` vaut `haiku`. Quel modèle tourne réellement ?",
-    opts: [
-      "haiku : la variable d'environnement passe avant le frontmatter",
-      'sonnet : le frontmatter du sous-agent prime toujours',
-      "Le modèle de la conversation principale, les deux réglages s'annulant",
-      'Le modèle le plus capable disponible, par sécurité',
+      "`/context` : elle montre ce que Claude doit relire à chaque message et la place restante. Jauge déjà à moitié pleine, on fait `/clear` avant de démarrer",
+      "`/usage` : elle montre la place restante dans la conversation en cours",
+      "`/compact` : il faut toujours compacter avant un gros travail",
+      "`/doctor` : il libère de la place en réparant l'installation",
     ],
     correct: 0,
     pourquoi: [
-      "Exact. L'ordre est : variable d'environnement, puis paramètre passé à l'invocation, puis frontmatter, puis modèle de la conversation.",
-      "Non, le frontmatter arrive en troisième position seulement.",
-      "Non, il n'y a pas d'annulation : le premier niveau renseigné gagne.",
-      "Claude Code n'applique aucune escalade automatique de ce type.",
+      "Exact. Lancer une grosse mission dans une conversation encombrée, c'est partir avec le réservoir à moitié vide.",
+      "`/usage` est le compteur de votre journée, pas la jauge de la conversation en cours. Les deux servent, à des moments différents.",
+      "Compacter coûte cher, et ne sert à rien si vous changez de sujet : dans ce cas `/clear` est gratuit et plus efficace.",
+      "`/doctor` contrôle votre installation. Il n'allège pas la conversation en cours.",
     ],
-    explication: "Le piège est économique autant que qualitatif : cette variable force **tous** les sous-agents sur le même modèle, y compris ceux qui rédigent. Le routage doit rester sélectif, décidé tâche par tâche.",
-    source: 'https://code.claude.com/docs/en/sub-agents',
+    explication: "`/context` répond « où j'en suis dans cette conversation », `/usage` répond « où j'en suis dans ma journée ». `/context` avant un gros travail ; `/usage` le matin et après le déjeuner. `/context` signale aussi ce qui prend le plus de place : souvent un outil branché dont vous ne vous servez jamais.",
+    source: 'https://code.claude.com/docs/en/commands',
   },
 
-  // ============ Fiabilité et méthode ============
+  // ============ Formuler sa demande (règles 2 à 4) ============
   {
-    domaine: 'methode',
-    q: "Vous devez trier 200 fiches d'inscription pour repérer les champs manquants : une tâche mécanique, au résultat vérifiable. Quel modèle choisir ?",
+    domaine: 'demande',
+    q: "Un client veut des posts LinkedIn « dans le ton de sa marque ». Comment obtenez-vous ce ton le plus sûrement ?",
     opts: [
-      'Un modèle rapide et économique, adapté aux tâches mécaniques à réponse vérifiable',
-      'Le modèle le plus puissant disponible, par précaution',
-      "Aucun : une IA ne doit jamais toucher à des données d'inscription",
-      'Le modèle le plus lent, la lenteur garantissant la fiabilité',
+      "En décrivant le ton en détail : chaleureux, professionnel, sans jargon, phrases courtes",
+      "En demandant à Claude de deviner le ton à partir du site du client",
+      "En collant deux ou trois posts que le client juge réussis, avec la consigne d'écrire dans ce style",
+      "En corrigeant le résultat autant de fois qu'il le faudra jusqu'à tomber sur le bon ton",
+    ],
+    correct: 2,
+    pourquoi: [
+      "Décrire un ton prend dix lignes et rate souvent : deux personnes ne mettent pas la même chose derrière « chaleureux ».",
+      "Le site n'est pas forcément écrit dans le ton voulu pour LinkedIn, et vous n'avez rien validé avec le client.",
+      "Exact. Et plusieurs valent mieux qu'un seul : avec un exemple unique, Claude recopie des détails sans importance au lieu de saisir l'idée.",
+      "Vous y arriverez peut-être, en beaucoup plus de tours. L'exemple raccourcit le chemin dès le premier essai.",
+    ],
+    explication: "Montrer plutôt que décrire est une des méthodes les plus fiables. Sans exemple sous la main, faites-en fabriquer : « propose-moi 3 versions très différentes, je choisis, puis tu continues dans ce style ».",
+    source: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/multishot-prompting',
+  },
+  {
+    domaine: 'demande',
+    q: "Vous devez faire analyser un compte-rendu de 30 pages. Où placez-vous votre demande par rapport au document ?",
+    opts: [
+      "La demande d'abord, le document ensuite : Claude sait ainsi quoi chercher en lisant",
+      "Le document d'abord, la demande à la fin",
+      "L'ordre est indifférent, tout est lu en une seule fois",
+      "Ni l'un ni l'autre : mieux vaut résumer le document soi-même avant de l'envoyer",
+    ],
+    correct: 1,
+    pourquoi: [
+      "C'est l'ordre intuitif, et c'est le moins bon sur un long document.",
+      "Exact. Sur les documents longs, Anthropic a mesuré jusqu'à 30 % de qualité en plus rien qu'avec cet ordre.",
+      "L'ordre change le résultat, et il le change nettement au-delà d'une vingtaine de pages.",
+      "Résumer vous-même, c'est décider à sa place ce qui compte — et c'est justement le travail que vous lui confiez.",
+    ],
+    explication: "Le document en haut, votre demande en bas. Et le document entier, pas votre résumé : quand il manque quelque chose à Claude, il bouche le trou, et c'est là que naissent les chiffres inventés.",
+    source: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips',
+  },
+  {
+    domaine: 'demande',
+    q: "Vous faites analyser le dossier d'un client pour en tirer une note de synthèse qui lui sera envoyée. Quelle consigne ajoutez-vous pour éviter qu'une affirmation sorte de nulle part ?",
+    opts: [
+      "« Sois rigoureux et n'invente rien. »",
+      "« Vérifie tes affirmations sur Internet avant de me répondre. »",
+      "« Mets un point d'interrogation à côté de ce dont tu n'es pas sûr. »",
+      "« Cite les passages exacts sur lesquels tu t'appuies. Si l'information n'est pas dans les documents, dis-le au lieu de la deviner. »",
+    ],
+    correct: 3,
+    pourquoi: [
+      "Une consigne de sérieux ne crée aucun point de contrôle : vous ne saurez toujours pas d'où vient chaque phrase.",
+      "Une recherche externe ne dit rien du contenu du dossier client, qui est la seule source qui compte ici.",
+      "Vous lui déléguez le doute, alors que vous voulez pouvoir remonter vous-même à la source.",
+      "Exact. La citation rend chaque affirmation traçable, et l'autorisation de dire « ce n'est pas dans les documents » supprime la raison d'inventer.",
+    ],
+    explication: "C'est le meilleur garde-fou contre l'invention, et il devient obligatoire dès qu'un chiffre part chez un client.",
+    source: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips',
+  },
+  {
+    domaine: 'demande',
+    q: "Vous voulez une note courte, en paragraphes, compréhensible par un dirigeant non technique. Quelle formulation obtient le mieux ce résultat ?",
+    opts: [
+      "« 400 mots maximum, en 3 paragraphes, pour un dirigeant qui n'y connaît rien : explique chaque mot technique en une phrase. »",
+      "« Ne fais pas trop long, pas de listes à puces, et ne sois pas trop technique. »",
+      "« Fais quelque chose de court et d'accessible. »",
+      "« Évite le jargon, les énumérations et les développements inutiles. »",
     ],
     correct: 0,
     pourquoi: [
-      "Exact. Corvée vérifiable, modèle économique ; jugement et expertise, modèle fort.",
-      "La puissance de raisonnement ne sert à rien ici, et elle se facture. Le résultat est vérifiable d'un coup d'œil : la « précaution » est illusoire.",
-      "Trop absolu. Le sujet n'est pas l'outil mais la donnée : anonymisée et minimisée, cette tâche est parfaitement légitime.",
-      "La lenteur n'est corrélée à aucune garantie de justesse.",
+      "Exact. Longueur, forme et destinataire sont les trois choses qu'il ne peut pas deviner : elles y sont toutes les trois.",
+      "Dire « pas de listes à puces » attire justement son attention sur les listes à puces. Demandé à l'endroit, c'est suivi.",
+      "« Court » et « accessible » n'ont aucune valeur mesurable : chacun y met ce qu'il veut.",
+      "Trois interdictions, et toujours aucune indication de longueur, de forme ni de lecteur.",
     ],
-    explication: "Router par type de tâche, pas en bloc. Un modèle cher sur une corvée mécanique ne réduit aucun risque : il gonfle la facture d'une mission qui se vend au forfait.",
-    source: null,
+    explication: "Dites ce que vous voulez, pas ce que vous ne voulez pas. Et précisez à chaque fois : pour qui c'est écrit, quelle longueur, sous quelle forme (document, tableau, e-mail prêt à envoyer).",
+    source: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/be-clear-and-direct',
   },
+
+  // ============ Vérifier avant de livrer (règle 5) ============
   {
-    domaine: 'methode',
+    domaine: 'verif',
     q: "Claude vous livre un script qui calcule les heures de formation facturables à partir d'un export Excel client. Que faites-vous avant de le transmettre à la comptabilité ?",
     opts: [
       "Le transmettre : s'il a été généré sans erreur, il fonctionne",
@@ -152,113 +272,35 @@ const questions = [
       "Un modèle interrogé sur son propre travail a tendance à le confirmer. Ce n'est pas un signal indépendant.",
       "Exact. C'est le seul contrôle qui produit une preuve : un résultat connu, recalculé, comparé.",
     ],
-    explication: "« Ça devrait marcher » ne compte pas. Sur de la facturation, une erreur ne se voit pas à la relecture : elle se voit à l'exécution sur un cas dont vous connaissez la réponse.",
+    explication: "La première version est un brouillon, et « ça devrait marcher » ne compte pas. Sur de la facturation, une erreur ne se voit pas à la relecture : elle se voit à l'exécution sur un cas dont vous connaissez déjà la réponse.",
     source: null,
   },
   {
-    domaine: 'methode',
-    q: "Claude cite un article et une source à l'appui d'une affirmation sur les obligations Qualiopi de votre client. Que faites-vous ?",
+    domaine: 'verif',
+    q: "Claude vous écrit : « j'ai vérifié, la page s'affiche correctement ». Que doit-il s'être passé pour que cette phrase soit acceptable ?",
     opts: [
-      "Vous faites confiance : le format (auteur, titre, date) est crédible",
-      "Vous ouvrez la source pour vérifier qu'elle existe et qu'elle dit bien ce qu'on lui attribue",
-      "Vous ignorez la source, seule l'affirmation compte",
-      "Vous demandez une deuxième source pour confirmer la première, sans ouvrir ni l'une ni l'autre",
+      "Rien de particulier : il s'est relu avant de répondre",
+      "Il a ouvert la page, lancé le test ou relu la source — un constat réel. Sans ça, il doit écrire « non vérifié »",
+      "Il a fait confirmer le résultat par un second modèle",
+      "Il a annoncé son intention de vérifier au début de la tâche",
     ],
     correct: 1,
     pourquoi: [
-      "Le format crédible est précisément le problème : une référence inventée ressemble en tout point à une vraie.",
-      "Exact. Une source non ouverte est une source non vérifiée, quel que soit son air de sérieux.",
-      "Sur un sujet réglementaire, une affirmation sans source vérifiable n'a aucune valeur devant un auditeur.",
-      "Empiler des références non ouvertes multiplie le risque au lieu de le réduire.",
+      "Se relire n'est pas vérifier. Un raisonnement faux se relit très bien.",
+      "Exact. Une vérification est un constat, pas une intention annoncée.",
+      "Un second avis reste un avis. Il ne remplace pas l'ouverture de la page.",
+      "Ce qui est annoncé en début de tâche ne dit rien de ce qui a été fait à la fin.",
     ],
-    explication: "Un modèle peut produire une référence plausible mais inexistante, ou déformer ce que dit une source réelle. Sur du réglementaire, c'est le client qui prend le risque à votre place.",
+    explication: "C'est la règle que `/phrase-magique` impose d'office, et elle vaut aussi pour vous : le jour où vous écrivez « c'est en ligne » à un client, la page doit avoir été ouverte.",
     source: null,
   },
   {
-    domaine: 'methode',
-    q: "Un collaborateur veut faire reformuler par Claude l'avis de suivi d'un apprenant, à partir de son dossier CPF. Quelle est la bonne pratique ?",
-    opts: [
-      "Coller le dossier complet (nom, numéro, détails personnels) pour que Claude ait tout le contexte",
-      "Coller le dossier complet mais préciser dans le prompt de « faire attention » à la confidentialité",
-      "Anonymiser l'extrait et ne transmettre que ce qui est nécessaire à la tâche",
-      "Renoncer : ce type de tâche est interdit, même anonymisé",
-    ],
-    correct: 2,
-    pourquoi: [
-      "Le « contexte complet » n'améliore pas une reformulation, et il transmet des données personnelles qui n'ont rien à y faire.",
-      "Une consigne de prudence dans le prompt ne protège rien : la donnée est déjà partie au moment où le modèle la lit.",
-      "Exact. On garde la matière utile à la reformulation et on retire ce qui identifie la personne.",
-      "Trop absolu, et impraticable. Correctement minimisée, la tâche est légitime.",
-    ],
-    explication: "La minimisation est la règle de base : on n'envoie que le strict nécessaire. C'est aussi ce qu'on enseigne aux équipes de nos clients, donc autant l'appliquer.",
-    source: 'https://www.cnil.fr/fr/les-fiches-pratiques-ia',
-  },
-
-  // ============ SEO client ============
-  {
-    domaine: 'seo',
-    q: "Un organisme de formation vous écrit : « on publie un article par semaine depuis six mois, on ne remonte toujours pas sur Google ». Quel est votre premier réflexe ?",
-    opts: [
-      "Ouvrir la Search Console du client : voir quelles pages sont réellement indexées, sur quelles requêtes elles impriment déjà et à quelles positions",
-      'Proposer de doubler la cadence de publication',
-      'Proposer une campagne de netlinking pour renforcer l\'autorité du domaine',
-      'Enrichir les articles existants en y ajoutant davantage de mots-clés',
-    ],
-    correct: 0,
-    pourquoi: [
-      "Exact. Les données du client répondent avant toute hypothèse : pages non indexées, requêtes déjà servies, positions proches de la première page.",
-      "Publier plus quand ce qui existe ne fonctionne pas revient à multiplier la même erreur. Et vous ne savez pas encore quelle est l'erreur.",
-      "Peut-être utile plus tard, mais c'est un investissement lourd décidé sans diagnostic. Si les pages ne sont même pas indexées, les liens n'y changeront rien.",
-      "Ajouter des mots-clés dans un texte n'est plus un levier depuis longtemps, et cela dégrade la lisibilité pour le lecteur.",
-    ],
-    explication: "Le diagnostic précède la production. La Search Console dit gratuitement si le problème est l'indexation, la pertinence, ou simplement des pages coincées en positions 8 à 15 qu'un travail ciblé ferait basculer.",
-    source: 'https://support.google.com/webmasters/answer/7576553',
-  },
-  {
-    domaine: 'seo',
-    q: "Un organisme de formation a refait son site il y a deux semaines. Les adresses de ses pages formation ont changé, et son trafic Google s'est effondré. Quelle est la cause la plus probable, et que faites-vous ?",
-    opts: [
-      "Google n'aime pas les sites récemment modifiés : il faut attendre trois mois",
-      "Les anciennes adresses renvoient une erreur 404 faute de redirections : il faut mettre en place les redirections 301 des anciennes vers les nouvelles",
-      'Le nouveau design déplaît à l\'algorithme : il faut revenir à l\'ancien',
-      'Il faut demander la désindexation du site pour repartir sur une base propre',
-    ],
-    correct: 1,
-    pourquoi: [
-      "Google ne pénalise pas la modification d'un site. Attendre ne répare pas des adresses cassées, ça prolonge la perte.",
-      "Exact. Sans redirection, tout l'historique accumulé par les anciennes adresses est perdu, et les liens externes pointent dans le vide.",
-      "L'algorithme n'a pas d'avis esthétique. Revenir en arrière ferait perdre le travail de refonte sans traiter la cause.",
-      "Ce serait aggraver volontairement la situation : la désindexation retire les pages des résultats.",
-    ],
-    explication: "C'est l'accident de refonte le plus courant, et le plus évitable. Sur toute migration, la cartographie ancienne adresse vers nouvelle adresse se prépare avant la mise en ligne, pas après la chute.",
-    source: 'https://developers.google.com/search/docs/crawling-indexing/301-redirects',
-  },
-  {
-    domaine: 'seo',
-    q: "Vous demandez à Claude Code de corriger les balises `title` de 40 articles du blog d'un client, en une seule opération. Quelle précaution prenez-vous ?",
-    opts: [
-      "Lancer sur quelques fichiers d'abord, relire le diff Git, puis committer par petits lots",
-      "Aucune : le site se régénère au déploiement, le risque est nul",
-      "Laisser faire sans relecture, c'est une tâche mécanique",
-      "Sauvegarder le dossier de contenu ailleurs, puis lancer sur les 40 d'un coup",
-    ],
-    correct: 0,
-    pourquoi: [
-      "Exact. L'échantillon révèle l'erreur de logique avant qu'elle ne touche les 40 fichiers, et le diff la rend visible avant le commit.",
-      "La régénération ne corrige rien : elle publie fidèlement le contenu abîmé.",
-      "Le caractère mécanique est justement ce qui rend l'erreur systématique : la même faute s'applique partout, d'un coup.",
-      "Une sauvegarde permet de réparer après coup, elle n'évite pas l'incident et suppose qu'on le remarque.",
-    ],
-    explication: "Un script de modification en masse applique la même erreur à tous les fichiers en une exécution. Chez nous, un maillage interne réécrit sans contrôle a déjà vidé 62 articles.",
-    source: null,
-  },
-  {
-    domaine: 'seo',
+    domaine: 'verif',
     q: "Sans outil de données SEO connecté, Claude vous annonce un volume de recherche mensuel précis pour un mot-clé de formation. Que faites-vous ?",
     opts: [
       "Vous l'utilisez : le modèle a été entraîné sur d'énormes volumes de données",
       "Vous le divisez par deux par précaution avant de le mettre dans le rapport",
-      "Vous ne l'utilisez pas tel quel : sans source de données connectée, ce chiffre peut être plausible et inventé, il faut le vérifier dans un outil de mots-clés",
+      "Vous ne l'utilisez pas tel quel : sans source de données connectée, ce chiffre peut être plausible et inventé, il faut le vérifier dans un outil",
       "Vous l'utilisez s'il correspond à votre intuition du marché",
     ],
     correct: 2,
@@ -268,165 +310,125 @@ const questions = [
       "Exact. Un chiffre est soit mesuré par un outil, soit absent du rapport.",
       "Votre intuition n'est pas une source. Elle sert à repérer une anomalie, pas à valider une donnée.",
     ],
-    explication: "Ce chiffre finira dans un livrable client, avec votre nom dessus. Étiquetez toujours : mesuré, estimé, ou inconnu.",
+    explication: "Étiquetez chaque chiffre : mesuré, estimé, ou inconnu. Un chiffre sorti de mémoire est une estimation — et celui-ci finira dans un livrable avec votre nom dessus.",
     source: null,
   },
 
-  // ============ Google Ads client ============
+  // ============ Missions et parallélisation (règle 8) ============
   {
-    domaine: 'ads',
-    q: "Le coût par inscription d'un organisme de formation a doublé en un mois sur ses campagnes Google Ads. Par où commencez-vous ?",
+    domaine: 'missions',
+    q: "Un client vous confie 60 fiches formation à remettre au même format. Comment lancez-vous le travail ?",
     opts: [
-      'Augmenter le budget quotidien pour capter plus de volume',
-      'Mettre les campagnes en pause le temps de réfléchir',
-      'Refaire toutes les annonces, elles sont probablement usées',
-      "Ouvrir le rapport sur les termes de recherche pour voir les requêtes réelles qui ont déclenché les annonces, puis exclure celles qui sont hors sujet",
-    ],
-    correct: 3,
-    pourquoi: [
-      "Augmenter le budget sur une campagne qui dépense mal revient à financer plus vite le même gaspillage.",
-      "La mise en pause fait perdre l'historique d'apprentissage et le volume de données, sans rien vous apprendre sur la cause.",
-      "Possible à terme, mais l'usure d'annonce fait rarement doubler un coût par inscription en un mois. Vous changeriez une variable au hasard.",
-      "Exact. Les termes de recherche montrent ce que les internautes ont réellement tapé, qui n'est pas la liste de mots-clés.",
-    ],
-    explication: "La liste de mots-clés dit ce que vous avez demandé, les termes de recherche disent ce que vous avez obtenu. C'est dans l'écart entre les deux que part le budget. Attention en excluant : contrairement aux mots-clés positifs, les exclusions ne couvrent pas les variantes proches, il faut donc ajouter singulier, pluriel et synonymes.",
-    source: 'https://support.google.com/google-ads/answer/2453972?hl=fr',
-  },
-  {
-    domaine: 'ads',
-    q: "Le dirigeant d'un organisme de formation vous demande : « je veux être en première position sur formation CPF ». Que lui répondez-vous ?",
-    opts: [
-      "Que c'est faisable en montant suffisamment l'enchère sur ce mot-clé",
-      "Que l'objectif utile n'est pas la position mais le coût par inscription, et qu'une requête aussi large attire surtout des personnes qui ne s'inscriront pas",
-      "Que la position dépend uniquement du budget alloué à la campagne",
-      "Qu'il faut d'abord améliorer le référencement naturel avant de parler de publicité",
-    ],
-    correct: 1,
-    pourquoi: [
-      "Techniquement on peut acheter de la visibilité, mais on aurait accepté un objectif qui ne mesure rien de ce qui compte pour le client.",
-      "Exact. On requalifie la demande vers un indicateur d'activité, et on signale au passage que « formation CPF » est une requête d'exploration, pas d'inscription.",
-      "Faux : le classement dépend aussi de la qualité de l'annonce et de la page de destination, pas seulement de l'argent.",
-      "Éluder la question. Le client a une session à remplir maintenant ; le référencement naturel ne répond pas à cette échéance.",
-    ],
-    explication: "Notre travail commence par requalifier l'objectif. Un client satisfait d'être premier sur une requête qui ne convertit pas sera un client mécontent le mois suivant. À noter : la « position moyenne » n'existe même plus comme métrique, remplacée par le taux d'impressions en première position.",
-    source: 'https://support.google.com/google-ads/answer/7501826?hl=fr',
-  },
-  {
-    domaine: 'ads',
-    q: "Un organisme de formation vous dit que ses campagnes « ne convertissent pas ». En ouvrant le compte, vous constatez qu'aucun suivi des conversions n'est configuré. Que faites-vous en premier ?",
-    opts: [
-      "Vous optimisez les enchères et les annonces, on verra les conversions plus tard",
-      "Vous vous fiez au nombre de clics comme indicateur de performance en attendant",
-      "Vous mettez en place le suivi des conversions avant toute optimisation, et vous expliquez qu'aucun jugement de performance n'est possible sans lui",
-      "Vous basculez immédiatement en stratégie « Maximiser les conversions » pour que Google s'en charge",
-    ],
-    correct: 2,
-    pourquoi: [
-      "Optimiser sans mesure, c'est régler à l'aveugle. Vous ne saurez jamais si vos modifications ont amélioré ou dégradé le résultat.",
-      "Les clics mesurent le trafic, pas les inscriptions. Une campagne peut multiplier les clics et ne remplir aucune session.",
-      "Exact. Et cela vaut le retard : sans mesure, toute la mission repose sur des impressions.",
-      "Google l'exige dans l'autre sens : le suivi des conversions doit être activé pour utiliser les enchères intelligentes. Sans données, elles n'ont rien à optimiser.",
-    ],
-    explication: "C'est la première chose à vérifier en reprenant un compte, et c'est très souvent la vraie cause du « ça ne marche pas ». Comptez ensuite au moins un cycle de conversion avant de juger les résultats : modifier trop tôt relance la phase d'apprentissage.",
-    source: 'https://support.google.com/google-ads/answer/7065882?hl=fr',
-  },
-
-  // ============ Site et performance ============
-  {
-    domaine: 'perf',
-    q: "Un client vous appelle : « mon site est lent, Google me pénalise ». Quelle est la réponse techniquement juste ?",
-    opts: [
-      "C'est exact, Google applique une pénalité de classement aux sites lents",
-      "La vitesse n'a aucun effet sur le référencement, c'est un mythe",
-      "Il n'y a pas de pénalité : l'expérience sur la page est un signal parmi d'autres, mesuré par les Core Web Vitals (LCP, INP, CLS). On commence par les mesurer avant de conclure",
-      "Seul le score sur 100 de PageSpeed Insights compte, il faut viser 100",
-    ],
-    correct: 2,
-    pourquoi: [
-      "« Pénalité » désigne une sanction manuelle ou algorithmique pour non-respect des règles. La lenteur n'entre pas dans cette catégorie.",
-      "Faux dans l'autre sens. L'expérience sur la page compte, simplement moins que la pertinence du contenu.",
-      "Exact. On corrige le vocabulaire, on nomme les métriques, et on mesure avant de promettre quoi que ce soit.",
-      "Le score synthétique est un outil de diagnostic, pas l'objectif. Viser 100 conduit à optimiser des détails sans effet réel.",
-    ],
-    explication: "Les seuils « bon » à connaître : LCP sous 2,5 s, INP à 200 ms ou moins, CLS à 0,1 ou moins, au 75e centile des visites. Google écrit que ces métriques sont utilisées par ses systèmes de classement, tout en rappelant qu'il montre d'abord le contenu le plus pertinent, même si l'expérience de la page est moyenne. Le mot « pénalité » n'apparaît nulle part, et l'accepter vous engage sur une réparation que vous ne pourrez pas tenir.",
-    source: 'https://web.dev/articles/vitals',
-  },
-  {
-    domaine: 'perf',
-    q: "Le site d'un client obtient de bons résultats en test sur votre ordinateur, mais l'évaluation mobile est mauvaise. Le client répond que ses stagiaires « consultent surtout depuis un ordinateur ». Que faites-vous ?",
-    opts: [
-      "Vous vérifiez dans ses statistiques la part réelle du trafic mobile, et vous traitez le mobile séparément puisque l'évaluation de l'expérience est faite par type d'appareil",
-      "Vous vous alignez sur le client et priorisez l'ordinateur",
-      "Vous ignorez la mesure mobile, elle est connue pour être pessimiste",
-      "Vous refaites le test sur ordinateur jusqu'à obtenir un résultat satisfaisant",
+      "`/parallelisation-et-routage` : le travail est répétitif, chaque morceau part chez un assistant moins cher, et votre limite dure plus longtemps",
+      "`ultracode` : il fera travailler plusieurs Claude en même temps, donc ce sera plus rapide",
+      "Fiche par fiche dans la conversation principale, pour garder le contrôle",
+      "`/fonce` d'abord, puis `ultracode` sur le résultat pour le vérifier",
     ],
     correct: 0,
     pourquoi: [
-      "Exact. On remplace la croyance par la donnée du client, et on traite le mobile pour ce qu'il est : une évaluation distincte.",
-      "S'aligner sur une intuition non mesurée, c'est accepter de travailler sur le mauvais problème pendant des semaines.",
-      "La mesure mobile est plus sévère parce que les conditions réelles le sont : réseau plus lent, processeur plus modeste.",
-      "Répéter un test jusqu'au résultat qui arrange, c'est fabriquer la conclusion voulue.",
+      "Exact. Répétitif, découpable et vérifiable : c'est exactement le cas d'usage.",
+      "`ultracode` fait aussi travailler en parallèle, mais avec le modèle le plus cher, et pour se contredire. Sur une corvée, vous payez beaucoup pour un résultat identique.",
+      "Faisable, et c'est soixante fois le même travail dans votre conversation, donc soixante fois de la place consommée.",
+      "Empiler les deux additionne les coûts sans traiter le vrai besoin, qui est de découper.",
     ],
-    explication: "Le client se fonde sur son propre usage, qui n'est pas celui de ses stagiaires. Sa console d'analyse tranche la question en trente secondes. Et l'évaluation Core Web Vitals est bien segmentée entre mobile et ordinateur : un bon résultat sur l'un ne couvre pas l'autre.",
-    source: 'https://web.dev/articles/vitals',
-  },
-  {
-    domaine: 'perf',
-    q: "Après vos optimisations, le score de test du site passe de 62 à 95. Le client demande quand son trafic va augmenter. Quelle réponse est honnête ?",
-    opts: [
-      "Que le trafic devrait monter dans les jours qui viennent, l'amélioration étant spectaculaire",
-      "Que le score de test est une mesure en laboratoire : ce que Google observe, ce sont les données de terrain des visiteurs réels, qui mettent des semaines à refléter le changement, et que la vitesse ne compense pas un contenu moins pertinent",
-      "Que le trafic doublera puisque le score a presque doublé",
-      "Qu'il n'y aura aucun effet, la vitesse ne servant qu'au confort des visiteurs",
-    ],
-    correct: 1,
-    pourquoi: [
-      "Rien ne relie une amélioration de score en laboratoire à un gain de trafic à court terme. C'est une promesse qu'on ne pourra pas tenir.",
-      "Exact. On distingue mesure de laboratoire et données de terrain, on annonce un délai, et on rappelle la hiérarchie des signaux.",
-      "Un score de test n'est pas proportionnel à quoi que ce soit. Cette règle de trois n'a aucun fondement.",
-      "Trop pessimiste, et faux : l'expérience sur la page compte, et elle influence aussi le taux d'inscription.",
-    ],
-    explication: "Le chiffre à donner au client : les données de terrain sont agrégées sur une fenêtre glissante de 28 jours. Le changement ne peut donc pas être pleinement visible avant environ un mois. Annoncer ce délai tient mieux dans le temps qu'une promesse qui se retourne au premier bilan mensuel.",
-    source: 'https://web.dev/articles/lab-and-field-data-differences',
-  },
-
-  // ============ Conseil et cadrage ============
-  {
-    domaine: 'conseil',
-    q: "Vous démarrez une mission d'audit IA chez un organisme de formation. Par quoi commencez-vous ?",
-    opts: [
-      "Par la démonstration d'un outil IA populaire, pour montrer de la valeur rapidement",
-      "Par le budget disponible, pour cadrer le nombre d'outils à déployer",
-      "Par un comparatif des outils utilisés par les organismes concurrents",
-      "Par la cartographie des process pédagogiques et administratifs existants, pour voir où passe réellement le temps",
-    ],
-    correct: 3,
-    pourquoi: [
-      "Une démonstration impressionne une réunion et ne résout rien. Vous vendriez un outil avant d'avoir identifié un problème.",
-      "Le budget cadre l'ampleur, pas la pertinence. Commencer par là revient à choisir la réponse avant la question.",
-      "Ce que font les concurrents ne dit rien de l'endroit où ce client précis perd son temps.",
-      "Exact. On priorise ensuite en croisant fréquence, temps consommé et risque d'erreur.",
-    ],
-    explication: "Le gain de temps annoncé doit être mesuré chez ce client, pas repris d'une moyenne de marché. C'est ce qui rend la feuille de route défendable en comité de direction.",
+    explication: "Les deux outils découpent le travail, mais dans des buts opposés : le routage vous fait dépenser moins, `ultracode` vous fait dépenser beaucoup pour être sûr. Travail répétitif, c'est le routage.",
     source: null,
   },
   {
-    domaine: 'conseil',
-    q: "Un client veut automatiser un process interne. Dans quel cas est-ce approprié, et que prévoyez-vous en cas d'échec ?",
+    domaine: 'missions',
+    q: "Vous préparez un audit réglementaire qui part demain chez un client, sur un sujet où une erreur se paierait. Que faites-vous, et à quoi vous attendez-vous ?",
     opts: [
-      "Dès qu'un outil le permet techniquement, indépendamment de la stabilité du process",
-      "Quand le process change chaque mois : l'automatisation absorbera les changements",
-      "Quand le process est stable et documenté, avec une alerte ou un point de contrôle humain si l'automatisation échoue",
-      "Sans mécanisme de vérification : le client signalera lui-même une panne",
+      "Rien de particulier : une demande normale donne le même résultat",
+      "`/parallelisation-et-routage`, pour traiter les parties en même temps",
+      "`ultracode` dans le message, en sachant que votre limite s'épuisera vite",
+      "`ultracode` en permanence à partir de maintenant, pour tous vos livrables clients",
     ],
     correct: 2,
     pourquoi: [
-      "La faisabilité technique ne dit rien de l'opportunité. Automatiser un process instable, c'est s'engager à le réécrire sans arrêt.",
-      "L'inverse : plus un process bouge, plus l'automatisation casse et plus les erreurs passent inaperçues.",
-      "Exact. Un process stable se code une fois, et l'alerte garantit qu'une panne se voit.",
-      "Une automatisation tombe en silence. Le client s'en aperçoit plusieurs semaines plus tard, souvent par un incident.",
+      "Sur un livrable où l'erreur coûte cher, se priver d'une vérification contradictoire est un pari.",
+      "Le routage optimise le coût, pas la fiabilité : il confie justement les morceaux à des modèles moins chers.",
+      "Exact. Plusieurs Claude travaillent en parallèle et se contredisent pour vérifier. C'est cher, et c'est le moment de le dépenser.",
+      "Le mot ne vaut que pour le message où il est écrit — et en faire un réflexe viderait votre limite sur des demandes qui n'en avaient pas besoin.",
     ],
-    explication: "La question à poser au client n'est pas « est-ce automatisable » mais « ce process est-il assez stable pour mériter d'être figé ». Et toute automatisation livrée sans alerte est une automatisation inachevée.",
+    explication: "`ultracode` n'est pas un bouton « meilleure réponse » : sur une question simple, le résultat ne sera pas meilleur, seulement plus coûteux. Gardez-le pour ce qui part chez un client, le juridique, la santé, les contrôles avant mise en ligne. Il ne fonctionne que dans Claude Code.",
+    source: null,
+  },
+  {
+    domaine: 'missions',
+    q: "Un script client plante. Vous voulez aller plus vite en découpant le travail entre plusieurs assistants. Qu'est-ce que ça donne ?",
+    opts: [
+      "Deux fois plus rapide : chaque assistant prend une partie du script",
+      "Rien de bon : réparer un bug est une suite d'étapes où chacune dépend de la précédente, ça ne se découpe pas",
+      "Plus rapide, à condition d'utiliser `ultracode` plutôt que le routage",
+      "Plus lent, mais plus fiable",
+    ],
+    correct: 1,
+    pourquoi: [
+      "Le deuxième assistant a besoin de ce que le premier vient de trouver. Il attendrait, ou repartirait de zéro.",
+      "Exact. Les deux méthodes ont besoin de morceaux indépendants. Ici, il n'y en a pas.",
+      "Le choix de l'outil n'y change rien : le problème est la dépendance entre les étapes, pas le modèle.",
+      "Il n'y a pas d'arbitrage à faire : le découpage n'apporte simplement rien ici.",
+    ],
+    explication: "Le test tient en une question : le morceau B a-t-il besoin du résultat du morceau A ? Si oui, ni le routage ni `ultracode` n'aident. Un diagnostic, une procédure, une réparation se font en série.",
+    source: null,
+  },
+
+  // ============ Méthode de travail (règles 6, 9) ============
+  {
+    domaine: 'methode',
+    q: "Un collègue a collé toute la documentation du projet dans le `CLAUDE.md`, « pour que Claude ait tout ». Que lui dites-vous ?",
+    opts: [
+      "Rien : plus il y a de contexte, meilleures sont les réponses",
+      "Que ce fichier est relu à chaque message : chaque ligne inutile prend de la place et ralentit tout. On y met ce qu'il ne peut pas deviner, pas ce qu'il voit en ouvrant le projet",
+      "Qu'il faut le déplacer dans un dossier de documentation, Claude n'y ayant de toute façon pas accès",
+      "Qu'il faut le découper en plusieurs fichiers, la longueur totale n'ayant pas d'importance",
+    ],
+    correct: 1,
+    pourquoi: [
+      "Faux dans ce cas précis : ce contexte-là est rechargé en permanence, qu'il serve ou non.",
+      "Exact. Les faits sur le projet, vos règles, les pièges qui vous ont déjà coûté du temps — et rien d'autre.",
+      "Claude lit très bien la documentation quand il en a besoin. Le problème n'est pas l'accès, c'est le rechargement permanent.",
+      "Découper n'allège rien si tout est relu quand même.",
+    ],
+    explication: "Vous n'avez pas besoin de savoir où le fichier est rangé : dites « ajoute ça dans le `CLAUDE.md` », Claude s'en occupe. La contrainte à retenir est celle de la longueur.",
+    source: 'https://code.claude.com/docs/en/memory',
+  },
+  {
+    domaine: 'methode',
+    q: "Vous réexpliquez la même procédure de publication d'article à Claude pour la troisième fois cette semaine. Que faites-vous ?",
+    opts: [
+      "Vous demandez « transforme ce qu'on vient de faire en skill », de préférence juste après avoir fini, tant que c'est frais",
+      "Vous ajoutez la procédure complète au `CLAUDE.md` pour qu'il l'ait toujours sous les yeux",
+      "Vous gardez la demande dans un fichier texte et vous la recollez à chaque fois",
+      "Vous ne faites rien : écrire une skill demande de savoir coder",
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. Claude écrit la fiche à votre place, à partir de ce qui vient de marcher.",
+      "Le `CLAUDE.md` est fait pour les faits. Une suite d'étapes y serait relue à chaque message, même les jours où elle ne sert pas.",
+      "C'est la version manuelle, et vous continuerez à oublier une étape le lundi matin.",
+      "Aucune ligne de code n'est nécessaire : vous décrivez, Claude rédige.",
+    ],
+    explication: "La règle : la même consigne retapée plus d'une fois par jour devient une skill. Une skill ne se charge que quand vous l'appelez — elle peut donc être longue et détaillée sans jamais vous ralentir le reste du temps.",
+    source: 'https://code.claude.com/docs/en/skills',
+  },
+  {
+    domaine: 'methode',
+    q: "Vendredi 18 h, votre livrable est terminé sur votre machine. Vous le déposerez lundi matin, au calme. Quel est le problème ?",
+    opts: [
+      "Aucun, tant qu'il est déposé dans la semaine",
+      "Le fichier risque d'être perdu pendant le week-end",
+      "Un travail non déposé ne compte pas : 80 % de la note du jour vient de ce qui est sur GitHub, et votre rapport affichera un « où en es-tu ? »",
+      "Il faudra tout refaire lundi, le dépôt exigeant une version finale",
+    ],
+    correct: 2,
+    pourquoi: [
+      "La note est quotidienne. Un dépôt lundi ne rattrape pas vendredi.",
+      "C'est vrai, mais ce n'est pas la raison principale.",
+      "Exact. Déposez dès qu'une version est montrable, même imparfaite : vous en déposerez d'autres ensuite.",
+      "Rien n'exige une version finale. La première version compte déjà.",
+    ],
+    explication: "Le réflexe : le jour même, dans votre dossier du dépôt de l'équipe. Une version montrable déposée vaut mieux qu'une version parfaite gardée sur votre machine.",
     source: null,
   },
 ];
@@ -444,6 +446,13 @@ const breadcrumb = {
 
 const LETTRES = ['A', 'B', 'C', 'D'];
 
+// Micro-formatage commun à tous les textes du test : `code` et **gras**.
+// Les intitulés citent beaucoup de commandes ; sans ça les accents graves s'affichent tels quels.
+const enrichir = (t) =>
+  t
+    .replace(/`([^`]+)`/g, '<code class="rounded bg-cream-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700">$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-ink">$1</strong>');
+
 // Répartition par domaine, pour l'écran d'accueil.
 const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
   nom,
@@ -452,7 +461,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
 ---
 <BaseLayout
   title="Évaluation des compétences Claude Code | Claude Agency"
-  description="Test interne de 20 questions pour situer la maîtrise de Claude Code et des missions Claude Agency."
+  description="Test interne de 20 questions sur le guide « Bien utiliser Claude » : skills d'équipe, contexte, formulation des demandes, vérification."
   noindex={true}
   pageSchema={[breadcrumb]}
 >
@@ -486,8 +495,9 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         Êtes-vous opérationnel sur Claude Code&nbsp;?
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-ink/70">
-        {total} questions tirées de situations réelles de mission : un client qui ne remonte pas sur Google,
-        une campagne dont le coût par inscription s'envole, un site jugé trop lent, un dépôt à modifier sans rien casser.
+        {total} questions sur les règles du guide interne : une mission à confier pendant votre absence,
+        une limite de messages atteinte à 16 h, un document de 30 pages à faire analyser,
+        un livrable où l'erreur se paierait.
       </p>
 
       <ul class="mt-8 space-y-3 text-ink">
@@ -531,7 +541,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       {questions.map((item, i) => (
         <section class="question" data-index={i} data-correct={item.correct} data-domaine={item.domaine} hidden>
           <p class="text-sm font-medium text-brand-700">{DOMAINES[item.domaine]}</p>
-          <h2 class="mt-2 font-display text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]" set:html={item.q.replace(/`([^`]+)`/g, '<code class="rounded bg-cream-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700">$1</code>')} />
+          <h2 class="mt-2 font-display text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]" set:html={enrichir(item.q)} />
 
           <ul class="mt-6 space-y-2.5">
             {item.opts.map((opt, j) => (
@@ -545,17 +555,17 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
                     aria-hidden="true"
                     class="marqueur mt-px flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-sand bg-cream-50 text-xs font-semibold text-ink/70 transition-colors duration-150 group-hover:border-brand-300 group-hover:text-brand-700"
                   >{LETTRES[j]}</span>
-                  <span class="flex-1 leading-relaxed text-ink" set:html={opt.replace(/`([^`]+)`/g, '<code class="rounded bg-cream-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700">$1</code>')} />
+                  <span class="flex-1 leading-relaxed text-ink" set:html={enrichir(opt)} />
                   <span class="verdict sr-only"></span>
                 </button>
-                <p class="pourquoi mt-1.5 pl-[2.25rem] pr-1 text-sm leading-relaxed text-ink/70" hidden>{item.pourquoi[j]}</p>
+                <p class="pourquoi mt-1.5 pl-[2.25rem] pr-1 text-sm leading-relaxed text-ink/70" hidden set:html={enrichir(item.pourquoi[j])} />
               </li>
             ))}
           </ul>
 
           <div class="retenir mt-7 rounded-lg border border-sand bg-cream-100 p-5" hidden>
             <p class="text-sm font-semibold text-ink">Ce qu'il faut retenir</p>
-            <p class="mt-1.5 leading-relaxed text-ink/80" set:html={item.explication.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-ink">$1</strong>')} />
+            <p class="mt-1.5 leading-relaxed text-ink/80" set:html={enrichir(item.explication)} />
             {item.source && (
               <p class="mt-3">
                 <a class="text-sm font-medium text-brand-700 underline underline-offset-2 hover:text-brand-600" href={item.source} target="_blank" rel="noopener">
