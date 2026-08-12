@@ -18,6 +18,8 @@ N'ouvrir que celui dont le déclencheur est réuni — ne pas tous les charger.
 | `docs/CONTEXTE-COWORK.md` | **Avant tout déploiement, DNS, analytics ou incident** — et au moindre doute sur l'infra |
 | `PRODUCT.md` | Avant d'écrire ou réécrire un contenu public (article, page, post, e-mail) |
 | `DESIGN.md` | Avant de toucher au visuel : composant, page, couleur, typo |
+| `docs/seo/JOURNAL.md` | **Avant toute action SEO, sans exception** — lire les 3 dernières entrées |
+| `docs/seo/BACKLOG.md` | Dès qu'il s'agit de choisir quoi faire ensuite, ou de proposer un sujet |
 | `SEO-STRATEGY.md` | Avant une décision SEO : mot-clé, structure, balises, schema |
 | `NETLINKING.md` | Uniquement pour les backlinks et l'autorité de domaine |
 | `BAROMETRE-IA-OF.md` | Uniquement pour le Baromètre IA des OF |
@@ -68,6 +70,26 @@ draft: false
 `description` (≤ 160), `tagline`, `problem`, `deliverables[]`, `benefits[]`,
 `process[{step, detail}]`. Facultatifs : `order`, `category` (`marketing` | `ia`), `faq[{q, a}]`,
 `relatedTags[]`.
+
+## Mémoire SEO — obligatoire
+
+`docs/seo/` est la mémoire du projet SEO. Elle existe pour qu'une session ne reparte jamais de
+zéro. Mode d'emploi complet : `docs/seo/README.md`.
+
+**Avant toute action SEO** — publication, réécriture, correctif technique, audit, netlinking :
+
+1. Lire `docs/seo/JOURNAL.md` (3 dernières entrées) — ce qui a déjà été fait.
+2. Lire `docs/seo/BACKLOG.md` — section « À faire » **et** section « Écarté ».
+3. Consulter `docs/seo/REQUETES.csv` avant de cibler un mot-clé ou de proposer un sujet
+   d'article : la requête est peut-être déjà couverte par une page existante.
+4. Ne relancer un audit complet que si la dernière entrée du journal a **plus de 30 jours**.
+
+**Après toute action SEO** — écrire son entrée dans `docs/seo/JOURNAL.md` et mettre à jour les
+lignes concernées de `REQUETES.csv` / `BACKLOG.md`, **dans le même commit que l'action**. Un
+commit SEO sans ligne de journal est un commit incomplet.
+
+Chiffres : GSC via Composio (`GOOGLE_SEARCH_CONSOLE_*`, propriété `sc-domain:claudeagency.fr`),
+volumes de mots-clés via le MCP Ubersuggest. Chaque chiffre consigné porte sa source et sa date.
 
 ## Publier un article — checklist
 
