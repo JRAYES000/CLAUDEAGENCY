@@ -5,6 +5,63 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-12 — Réécriture des title/meta sur 9 pages + plan netlinking
+
+**Type :** réécriture + netlinking (préparation)
+
+**Pourquoi :** deux constats du relevé du matin. (1) Des pages ressortent en page 1 sans récolter
+un seul clic — leur balise title ne correspond pas à ce que les gens tapent réellement.
+(2) 0 backlink : aucun travail on-page ne débloquera le site sans autorité.
+
+**Fait — 9 `title` + `description` réécrits**, alignés sur les requêtes **réellement constatées
+dans GSC** pour chaque page, pas sur des requêtes supposées. Positions de départ (14/05→09/08/2026) :
+
+| URL | Requête réelle principale | Pos. | Clics |
+| :--- | :--- | ---: | ---: |
+| `/services/seo/` | agence référencement naturel claude | **3,8** | **0** |
+| `/blog/claude-ai-en-francais/` | claude francais | 4,7 | 1 |
+| `/blog/convention-de-formation/` | convention de formation mentions obligatoires | 13,8 | 0 |
+| `/blog/formation-autofinancee-france-travail/` | formation autofinancée **pole emploi** | 14,8 | 0 |
+| `/blog/feuille-emargement/` | émargement conférence / signature | 16,0 | 1 |
+| `/blog/seo-organisme-formation/` | référencement **gratuit** organisme de formation | 16,8 | 0 |
+| `/blog/livret-accueil-stagiaire/` | livret d'accueil stagiaire **entreprise** | 21,0 | 4 |
+| `/blog/questionnaire-satisfaction-formation/` | questionnaire **évaluation post formation** | 31,0 | 1 |
+| `/blog/numero-declaration-activite/` | numéro de déclaration d'activité | 33,5 | 0 |
+
+Les mots en gras sont ceux qui manquaient au title et que les gens tapent. Exemples :
+l'article « France Travail » ne contenait pas « Pôle emploi », le guide SEO ne contenait pas
+« gratuit », le livret d'accueil ne mentionnait pas « entreprise ».
+
+**Le cas le plus coûteux — `/services/seo/`.** La page est en **position 3,8** sur
+« agence référencement naturel claude » et n'a récolté **aucun clic**. Ses requêtes réelles sont
+toutes de la forme *agence de référencement + Claude* : personne ne l'atteint via une requête
+« organisme de formation ». Son ancien title, « Agence SEO Claude pour organismes de formation »,
+disqualifiait le chercheur avant le clic. Nouveau title :
+« Agence de référencement naturel & SEO avec Claude », le positionnement OF passe en description.
+**Arbitrage assumé, à revérifier dans 30 jours** — si le CTR ne bouge pas, revenir en arrière.
+
+**Fait — plan netlinking** : `docs/seo/NETLINKING-ACTIONS.md`. 13 cibles vérifiées une par une
+(URL ouverte le 12/08), réparties en 4 vagues, avec 3 messages prêts à envoyer. Point bloquant
+identifié : Claude Agency n'étant pas un OF déclaré, tous les annuaires Qualiopi lui sont fermés
+— la bonne porte est la catégorie « cabinet de conseil » des fédérations.
+
+**Deux corrections d'analyse de ce matin (j'avais conclu trop vite) :**
+- **Le doublon www n'existe pas.** `www.claudeagency.fr` redirige bien en 301 vers l'apex
+  (testé). Les URLs `www` dans GSC sont un reliquat d'indexation qui se purgera seul. Priorité
+  retirée du backlog.
+- **Les requêtes « …skills claude seo » ne sont pas des requêtes humaines.** Ce sont des
+  concaténations mécaniques (`formation seo qualiopi` + `skills claude seo`) émises par un agent
+  automatisé, qui touchent surtout `/services/seo/`. ~140 impressions de bruit, 0 clic. Rien à
+  corriger sur le site — mais **il faut les exclure de toute analyse GSC** (filtre
+  `query notContains "skills claude seo"`), sinon elles faussent le CTR et masquent les vraies
+  requêtes.
+
+**Mesure :** aucune à ce stade — les effets d'un title se voient sous 2 à 4 semaines.
+**Suite :** relever à nouveau clics / CTR / position sur ces 9 URLs **le 2026-09-11**, et le
+nombre de domaines référents. Si le CTR de `/services/seo/` reste à 0, annuler son nouveau title.
+
+---
+
 ## 2026-08-12 — Mise en place de la mémoire SEO + relevé de référence GSC
 
 **Type :** mesure + organisation
