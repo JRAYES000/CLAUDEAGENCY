@@ -39,7 +39,7 @@ claudeagency/
 │   ├── scripts/             # Outils (ex. génération du PDF lead magnet)
 │   ├── public/              # Assets statiques
 │   └── astro.config.mjs     # site, sitemap, polices, intégrations
-├── docs/                    # Documentation (seo/, superpowers/)
+├── docs/                    # Documentation (seo/, references)
 ├── CLAUDE.md                # Guide pour l'agent IA (routage modèles, garde-fous)
 ├── PRODUCT.md               # Produit, cible, marque & ton de voix
 ├── DESIGN.md                # Fondations visuelles (typo, couleurs, esthétique)
