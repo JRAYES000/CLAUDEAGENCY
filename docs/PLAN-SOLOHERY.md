@@ -66,7 +66,7 @@ cd .. && claude    # Claude Code à la racine : il lit CLAUDE.md tout seul
 ```
 
 Le repo porte déjà tout le contexte : `CLAUDE.md` (règles), `PRODUCT.md` (offre et ton),
-`DESIGN.md` (charte), `SEO-STRATEGY.md`, `NETLINKING.md`, `docs/seo/` (mémoire SEO).
+`DESIGN.md` (charte), `NETLINKING.md`, `docs/seo/` (mémoire SEO).
 Ne pas recopier ces fichiers dans les prompts : Claude Code les ouvre quand il en a besoin.
 
 ---

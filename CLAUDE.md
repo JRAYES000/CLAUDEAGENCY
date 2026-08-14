@@ -20,7 +20,7 @@ N'ouvrir que celui dont le déclencheur est réuni — ne pas tous les charger.
 | `DESIGN.md` | Avant de toucher au visuel : composant, page, couleur, typo |
 | `docs/seo/JOURNAL.md` | **Avant toute action SEO, sans exception** — lire les 3 dernières entrées |
 | `docs/seo/BACKLOG.md` | Dès qu'il s'agit de choisir quoi faire ensuite, ou de proposer un sujet |
-| `SEO-STRATEGY.md` | Avant une décision SEO : mot-clé, structure, balises, schema |
+| `docs/seo/REQUETES.csv` | Avant une décision SEO : quelle page vise quelle requête, et ce qu'elle mesure |
 | `NETLINKING.md` | Uniquement pour les backlinks et l'autorité de domaine |
 | `BAROMETRE-IA-OF.md` | Uniquement pour le Baromètre IA des OF |
 
@@ -132,7 +132,7 @@ rédaction comprise, sur Haiku. Le routage doit rester sélectif.
 - **Toujours donner les URLs complètes et cliquables** des pages créées ou modifiées.
 - Respecter le ton de `PRODUCT.md` (chaleureux, concret, ROI, français, sans jargon IA) et la charte
   de `DESIGN.md`.
-- Pas de nouveau Schema `FAQPage` / `HowTo` pour le SEO Google (voir `SEO-STRATEGY.md` §5).
+- Pas de nouveau Schema `FAQPage` / `HowTo` pour le SEO Google : Google ne les affiche plus pour les sites non institutionnels.
 - Ne pas multiplier le contenu « vide » : la niche se gagne par la précision, pas par le volume.
 - **Ne pas retirer le tag GA4** (`G-6SG03DR5J9`) du site : la propriété Search Console est validée
   par ce tag.

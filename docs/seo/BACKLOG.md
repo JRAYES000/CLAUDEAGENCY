@@ -3,12 +3,22 @@
 Prochaines actions, par ordre de priorité. **Lire aussi la section « Écarté »** avant de proposer
 quoi que ce soit : une idée qui s'y trouve a déjà été tranchée.
 
-Mise à jour le 2026-08-12 (après-midi). Priorisation à partir des données GSC mesurées (14/05→09/08/2026), pas
+Mise à jour le 2026-08-14 (ménage du dépôt). Priorisation du 2026-08-12 (après-midi) inchangée. Priorisation à partir des données GSC mesurées (14/05→09/08/2026), pas
 d'hypothèses. Dernière mesure : 49 clics, 2 797 impressions, position moyenne 33,3.
 
 ---
 
 ## À faire
+
+### ✅ 0. Cannibalisation — TRAITÉ le 2026-08-14
+
+15 articles fusionnés (blog de 69 à 54), 15 redirections 301, 88 liens internes réécrits, 5 docs
+périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOURNAL.md`.
+
+- [ ] **Au relevé du 2026-09-11** : vérifier le report des 138 impressions « logiciel bilan
+      pédagogique et financier » sur `/blog/remplir-bpf-organisme-formation/`, l'absence de 404
+      sur les 15 URL redirigées, et trancher le sort des 5 articles à 0 impression conservés.
+- [ ] Ne PAS resupprimer d'articles avant ce relevé. Le blocage reste le netlinking, pas le volume.
 
 ### 🔴 1. Netlinking — le seul levier qui débloque le reste
 

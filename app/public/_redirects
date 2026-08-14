@@ -4,3 +4,20 @@
 
 # /sitemap.xml redirige vers le vrai sitemap (Astro API route ne fonctionne pas en mode static)
 /sitemap.xml /sitemap-index.xml 301
+
+# Menage du 2026-08-14 : 15 articles fusionnes (cannibalisation). Detail : docs/seo/JOURNAL.md
+/blog/automatiser-gestion-qualiopi-ia/ /blog/automatiser-qualiopi-ia/ 301
+/blog/qualiopi-ia-gagner-5h-semaine/ /blog/automatiser-qualiopi-ia/ 301
+/blog/reduire-charge-administrative-organisme-formation/ /blog/automatiser-qualiopi-ia/ 301
+/blog/automatiser-bpf-organisme-formation/ /blog/remplir-bpf-organisme-formation/ 301
+/blog/seo-guide-complet-organisme-formation-2026/ /blog/seo-organisme-formation/ 301
+/blog/remplir-sessions-formation/ /blog/seo-organisme-formation/ 301
+/blog/rgpd-ia-organisme-formation/ /blog/donnees-stagiaires-rgpd-ia/ 301
+/blog/automatiser-emargement-suivi-stagiaires/ /blog/feuille-emargement/ 301
+/blog/audit-surveillance-qualiopi/ /blog/qualiopi-guide-organisme-formation/ 301
+/blog/financer-formation-opco-cpf-france-travail/ /blog/plan-financement-formation/ 301
+/blog/formation-claude-anthropic-organisme-formation/ /blog/formation-claude/ 301
+/blog/claude-agency-vs-concurrents/ /blog/meilleure-agence-ia-organisme-formation/ 301
+/blog/claude-code-organisme-formation/ /blog/formation-claude-code/ 301
+/blog/optimisation-site-organisme-formation/ /services/optimisation-site/ 301
+/blog/creer-organisme-formation/ /blog/numero-declaration-activite/ 301

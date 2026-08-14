@@ -5,6 +5,75 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-14 — Ménage : 15 articles fusionnés (cannibalisation) + 5 docs supprimés
+
+**Type :** consolidation de contenu + nettoyage de la documentation
+
+**Pourquoi :** audit de cannibalisation demandé par Julien. Similarité TF-IDF (bigrammes, cosinus)
+calculée entre les 69 articles, croisée avec `REQUETES.csv` : **32 paires > 0,28 de similarité,
+6 paires > 0,45**. Des articles traitant le même sujet se disputaient les mêmes requêtes. Rien
+n'était « vieux » — tout le blog date de juin-juillet 2026 — le problème était la redondance.
+
+**Fait — 15 fusions, blog de 69 à 54 articles.** Contenu utile reversé à la main dans l'article
+gardé (jamais par script, cf. incident du 03/07), ancienne URL en 301.
+
+| Supprimé | Sim. | Clics/Impr. | → Fusionné dans |
+| :--- | ---: | ---: | :--- |
+| `automatiser-gestion-qualiopi-ia` | 0,50 | 0 / 0 | `automatiser-qualiopi-ia` |
+| `qualiopi-ia-gagner-5h-semaine` | — | 0 / 0 | `automatiser-qualiopi-ia` |
+| `reduire-charge-administrative-organisme-formation` | — | 0 / 0 | `automatiser-qualiopi-ia` |
+| `automatiser-bpf-organisme-formation` | 0,52 | 0 / 138 | `remplir-bpf-organisme-formation` |
+| `seo-guide-complet-organisme-formation-2026` | 0,47 | 0 / 20 | `seo-organisme-formation` |
+| `remplir-sessions-formation` | 0,40 | 0 / 1 | `seo-organisme-formation` |
+| `rgpd-ia-organisme-formation` | 0,45 | 0 / 1 | `donnees-stagiaires-rgpd-ia` |
+| `automatiser-emargement-suivi-stagiaires` | 0,40 | 0 / 9 | `feuille-emargement` |
+| `audit-surveillance-qualiopi` | 0,39 | 0 / 9 | `qualiopi-guide-organisme-formation` |
+| `financer-formation-opco-cpf-france-travail` | 0,34 | 0 / 5 | `plan-financement-formation` |
+| `formation-claude-anthropic-organisme-formation` | — | 0 / 0 | `formation-claude` |
+| `claude-agency-vs-concurrents` | 0,36 | 0 / 40 | `meilleure-agence-ia-organisme-formation` |
+| `claude-code-organisme-formation` | 0,51 | 1 / 14 | `formation-claude-code` |
+| `optimisation-site-organisme-formation` | — | 0 / 1 | `/services/optimisation-site/` |
+| `creer-organisme-formation` | 0,47 | 0 / 2 | `numero-declaration-activite` |
+
+**Le cas à surveiller — le BPF.** `automatiser-bpf` captait 138 impressions sur « logiciel bilan
+pédagogique et financier », mais en position 34. `remplir-bpf` est deux fois plus long et en
+position 14,6. La fusion a explicitement **repris le champ lexical « logiciel BPF »** dans
+l'article gardé (nouvelle section « Quel logiciel pour préparer son BPF ? ») et son title est
+devenu « BPF : comment le remplir, avec ou sans logiciel ». **À vérifier au relevé du 11/09** :
+si les 138 impressions ne se reportent pas, le title est à revoir.
+
+**Fait — 88 liens internes réécrits** à la main, dont 34 ancres reformulées (une ancre qui citait
+le titre d'un article supprimé pointait vers un article au titre différent). Contrôle : 0 lien
+interne cassé dans le HTML généré (vérifié sur `dist/`).
+
+**Fait — 15 redirections 301** dans `app/public/_redirects`, posées dans le même commit.
+
+**Fait — 5 documents supprimés (78 Ko).** `docs/reference-technique-astro.md` (guide de
+construction d'un site déjà construit, 23 mentions de l'ancien domaine), `SEO-STRATEGY.md`
+(14/06, bâti sur les données GSC de `sc-domain:claudepartners.fr` — remplacé par ce dossier),
+`docs/seo/netlinking-cibles.md` (16/06, remplacé par `NETLINKING-ACTIONS.md` du 12/08),
+`docs/seo/audit-technique-ubersuggest.md` (crawl de l'ancien domaine), `ONBOARDING.md` (gabarit
+auto-généré vide). Les 8 références pointant vers ces fichiers ont été corrigées.
+
+**Corrigé au passage :** `docs/lead-magnet-emails.md` envoyait les liens PDF et audit vers
+`claudepartners.fr`. Bug en production sur le lead magnet, réparé.
+
+**Non fait, volontairement.** Cinq articles à 0 impression **sans doublon** ont été conservés
+(`ia-pedagogie-personnalisation`, `roi-ia-organisme-formation`, `formation-ia-equipe`,
+`tarifer-formations-organisme-formation`, `sea-google-ads-organisme-formation`). Six semaines
+d'existence sur un domaine d'autorité 1 : l'absence d'impression n'est pas une donnée. Décision
+au relevé du **11/09**. Ne pas les resupprimer sans ce relevé.
+
+**Mise en garde à retenir.** Ce ménage traite la cannibalisation, il ne débloquera pas le trafic.
+Le point de blocage reste celui du backlog : **0 backlink, autorité 1/100**. Vague 1 du netlinking
+(`NETLINKING-ACTIONS.md`) avant toute nouvelle action sur le contenu.
+
+**Mesure :** aucune à ce stade — une consolidation se lit sous 3 à 6 semaines.
+**Suite :** au relevé du **2026-09-11**, vérifier (1) le report des 138 impressions BPF,
+(2) que les 15 URL redirigées ne génèrent pas de 404 dans GSC, (3) le sort des 5 articles gardés.
+
+---
+
 ## 2026-08-12 — Réécriture des title/meta sur 9 pages + plan netlinking
 
 **Type :** réécriture + netlinking (préparation)

@@ -4,9 +4,9 @@ Ce dossier est la **mémoire du projet SEO**. Il existe pour une seule raison : 
 session ne reparte jamais de zéro, ne refasse pas une recherche déjà faite, ne republie pas un
 sujet déjà couvert et ne repropose pas une idée déjà écartée.
 
-`SEO-STRATEGY.md` (racine) reste le document de **stratégie** — ce qu'on cherche à obtenir, et
-pourquoi. Il bouge rarement. Ce dossier-ci enregistre ce qui a été **fait**, ce qui est **couvert**
-et ce qui **reste à faire**. Il bouge à chaque action.
+Ce dossier est la **seule** source SEO du dépôt depuis le 2026-08-14 : `SEO-STRATEGY.md` (racine),
+bâti sur les données de l'ancien domaine, a été supprimé. On y enregistre ce qui a été **fait**,
+ce qui est **couvert** et ce qui **reste à faire**. Il bouge à chaque action.
 
 ## Les quatre fichiers
 

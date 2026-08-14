@@ -2,6 +2,7 @@
 title: "Données stagiaires et RGPD : les obligations à connaître"
 description: "Comment collecter, stocker et protéger les données personnelles de vos stagiaires en conformité RGPD ? Guide pratique pour les organismes de formation."
 pubDate: 2026-06-30
+updatedDate: 2026-08-14
 author: "Julien Rayes"
 image: "./images/ia-of-cover.jpg"
 imageAlt: "Protection données stagiaires RGPD organisme de formation"
@@ -94,6 +95,36 @@ Si vous utilisez des outils tiers qui traitent des données de vos stagiaires (L
 
 Les grands fournisseurs (Google, Microsoft, HubSpot, Brevo) proposent des DPA standardisés à accepter dans leurs conditions.
 
+Un outil d'intelligence artificielle auquel vous confiez des données stagiaires — un assistant IA de rédaction, un LMS doté d'une fonctionnalité IA, un chatbot pédagogique — est un sous-traitant au même titre que votre LMS ou votre CRM. Cet usage soulève cependant des questions spécifiques, détaillées ci-dessous.
+
+## RGPD et IA : ce qui change concrètement
+
+L'IA générative traite vos données comme n'importe quel sous-traitant, mais son usage quotidien pose trois questions que vous ne vous posiez pas avec un logiciel classique.
+
+**Où vont mes données quand j'utilise une IA générative ?** Quand un formateur colle un CV de stagiaire dans ChatGPT pour l'analyser, les données partent vers les serveurs du fournisseur, souvent situé hors UE. C'est un transfert de données qui nécessite des garanties spécifiques. Pour ChatGPT (OpenAI), activez l'option qui désactive l'entraînement des modèles sur vos données et signez le DPA proposé aux comptes professionnels. Pour Claude (Anthropic), un DPA est également disponible pour les utilisateurs professionnels ; via l'API ou les plans Team/Enterprise, vos données ne servent pas à l'entraînement. La règle simple à retenir : ne collez jamais de données identifiantes (nom complet, numéro de sécurité sociale, coordonnées) dans une IA sans avoir vérifié au préalable les conditions de traitement de votre fournisseur.
+
+**Devez-vous informer vos stagiaires ?** Oui. Si vous utilisez l'IA pour traiter des données qui les concernent — analyser leurs réponses à une évaluation, personnaliser leur parcours, générer leurs bilans — cet usage doit apparaître dans votre politique de confidentialité et dans votre registre des traitements. Une mention simple suffit : *« Nous utilisons des outils d'intelligence artificielle pour [décrire l'usage]. Vos données ne sont pas utilisées pour entraîner ces modèles. »*
+
+**Pouvez-vous laisser l'IA décider seule ?** L'article 22 du RGPD encadre les décisions entièrement automatisées qui ont des effets significatifs sur les personnes. Vous ne pouvez pas laisser une IA décider seule qu'un stagiaire a échoué, ou lui refuser l'accès à une certification, sans intervention humaine. L'IA peut aider, suggérer, analyser — la décision finale doit rester humaine.
+
+## Cinq bonnes pratiques pour utiliser l'IA sans risque RGPD
+
+1. **Anonymisez avant de saisir.** Remplacez les identifiants par des pseudonymes avant de coller des données dans une IA générative : « Stagiaire A, session x » plutôt que « Jean Dupont, stagiaire de la session du 15 juin ». Le résultat est identique, le risque est nul.
+2. **Choisissez des outils IA avec DPA.** Privilégiez les solutions qui proposent un accord de traitement des données et qui hébergent en Europe ou offrent des garanties équivalentes.
+3. **Mettez à jour votre registre des traitements** en ajoutant une ligne pour chaque usage IA significatif : outil utilisé, données traitées, finalité, garanties mises en place.
+4. **Formez vos équipes.** Une erreur RGPD liée à l'IA est le plus souvent involontaire — un formateur qui colle un dossier complet dans ChatGPT « pour aller plus vite ». Mieux vaut former sur ce qu'on peut et ne peut pas y mettre que d'interdire l'IA.
+5. **Vérifiez vos sous-traitants existants.** Votre LMS, votre CRM ou votre outil d'émargement ont peut-être déjà activé des fonctionnalités IA sans vous le signaler. Demandez-leur explicitement s'ils utilisent l'IA pour traiter les données de vos apprenants et s'ils disposent d'un DPA à jour.
+
+## Checklist de conformité RGPD × IA
+
+- [ ] Inventaire de tous les outils IA utilisés ou envisagés
+- [ ] DPA signé avec chaque fournisseur IA
+- [ ] Registre des traitements mis à jour avec les usages IA
+- [ ] Politique de confidentialité actualisée (mention des usages IA)
+- [ ] Équipes formées aux bonnes pratiques (anonymisation, etc.)
+- [ ] Supervision humaine sur toute décision impactant un apprenant
+- [ ] Sous-traitants vérifiés sur leurs propres usages IA
+
 ## Les durées de conservation
 
 Chaque catégorie de données a une durée de conservation maximale. Au-delà, vous devez supprimer ou anonymiser :
@@ -108,13 +139,12 @@ Chaque catégorie de données a une durée de conservation maximale. Au-delà, v
 
 ## Ce que fait Claude Agency
 
-Nous accompagnons les organismes de formation dans leur mise en conformité RGPD : audit des traitements, rédaction du registre, politique de confidentialité, DPA avec vos sous-traitants. [Contactez-nous](/contact/).
+Nous accompagnons les organismes de formation dans leur mise en conformité RGPD, y compris pour leurs usages de l'intelligence artificielle : audit des traitements, rédaction du registre, politique de confidentialité, DPA avec vos sous-traitants et vos outils IA. [Contactez-nous](/contact/).
 
 *Cet article est informatif. Pour les situations complexes, consultez un DPO ou un avocat spécialisé.*
 
 ## Pour aller plus loin
 
-- **[RGPD et IA dans les organismes de formation](/blog/rgpd-ia-organisme-formation/)** — les implications du RGPD spécifiquement liées à l'utilisation de l'IA.
 - **[AI Act et organismes de formation](/blog/ai-act-organisme-formation/)** — le cadre réglementaire complémentaire au RGPD.
 - **[Attestation de formation : mentions obligatoires](/blog/attestation-de-formation/)** — la gestion des données personnelles dans vos documents officiels.
 - **[Sous-traitance pédagogique et conformité](/blog/sous-traitance-pedagogique-formation/)** — protéger les données stagiaires quand vous sous-traitez des formations.
