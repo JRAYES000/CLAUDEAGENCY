@@ -70,6 +70,17 @@ surtout `/services/seo/` et `/blog/seo-guide-complet-organisme-formation-2026/`.
 avec le filtre `query notContains "skills claude seo"`. Sans ce filtre, le CTR de `/services/seo/`
 est faussé (536 impressions affichées contre ~100 réelles) et les vraies requêtes sont noyées.
 
+### 🔴 4bis. La mesure des conversions ne fonctionne pas — constaté le 2026-08-14
+
+Les 4 événements du site appellent `window.plausible(...)` alors que **Plausible n'est chargé
+nulle part**, et GA4 ne reçoit aucun événement personnalisé. Aucune soumission de formulaire n'est
+enregistrée. Tant que ce n'est pas corrigé, **aucun chiffre de conversion n'est disponible**.
+
+- [ ] **G1** — remplacer les 4 appels par des `gtag('event', …)` et marquer les événements comme
+      conversions dans GA4. Détail : [`TACHES-SOLOHERY-SITE-CONVERSION.md`](../TACHES-SOLOHERY-SITE-CONVERSION.md).
+- [ ] Les 14 autres tâches du chantier G (preuve client, page « semaine offerte », notoriété) sont
+      dans le même document, au format des onglets du Sheet.
+
 ### 🟡 5. Sous-domaine `reporting.claudeagency.fr` indexé
 
 **Constat mesuré :** 17 impressions, position 9,2. La propriété domaine l'inclut.
@@ -107,3 +118,7 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | Pages doublons / variantes géographiques | 2026-06-14 | Offre nationale — pas de justification, risque de contenu dupliqué. |
 | Optimisation CTR comme priorité | 2026-06-19 | Écartée à l'époque faute de pages en position 4-10. **Ré-ouverte le 2026-08-12** : il y en a maintenant (voir priorité 3). |
 | Retirer le tag GA4 | — | La propriété Search Console préfixe est validée par ce tag. Le retirer casse la validation. |
+| Ouvrir un compte Instagram | 2026-08-14 | Cible B2B absente du réseau en contexte professionnel, coût de production le plus élevé de tous les canaux, aucun effet SEO (liens `nofollow`, contenu non indexé), et la page LinkedIn entreprise n'existe pas encore. Arbitrage complet dans `TACHES-SOLOHERY-SITE-CONVERSION.md` §3. |
+| Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |
+| Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |
+| Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. |
