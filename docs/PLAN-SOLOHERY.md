@@ -5,6 +5,10 @@
 > **Le suivi des tâches n'est PAS dans ce fichier.** Il vit dans le Google Sheet
 > « Plan d'action SOLOHERY — sprint 15 jours ». Une seule source de vérité pour l'avancement.
 >
+> **Lien direct vers le Sheet :** https://docs.google.com/spreadsheets/d/1BZmaiFA10tY9aKVUQkHnZRt_1RjXz2AJ26cke2gfevg/edit
+> Un onglet par chantier, plus l'onglet **« D+ · Séquences et routage »** qui porte le texte intégral
+> des 5 e-mails de prospection, le routage des 4 boîtes d'envoi et les seuils d'alerte.
+>
 > Ce document-ci porte ce qui ne change pas tous les jours : le contexte, les règles, la procédure
 > technique d'envoi et la liste des idées déjà écartées. C'est lui que Claude Code doit lire.
 
