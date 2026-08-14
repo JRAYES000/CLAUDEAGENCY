@@ -81,7 +81,9 @@ const inputClass =
         });
         var j = await res.json().catch(function () { return {}; });
         if (res.ok && j.ok) {
-          if (window.plausible) window.plausible('Lead Magnet Submit');
+          // Conversion GA4 (G-6SG03DR5J9) — distincte de la conversion Google Ads ci-dessous,
+          // qui ne remonte pas dans GA4.
+          if (typeof window.gtag === 'function') window.gtag('event', 'lead_magnet_submit');
           // Conversion Google Ads (AW-18240137840) : "Inscription" déclenchée UNIQUEMENT
           // sur une vraie soumission (et plus sur chaque chargement de /merci-ressource/).
           // On attache aussi les données utilisateur pour l'Enhanced Conversions (Google les hache).

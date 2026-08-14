@@ -103,7 +103,8 @@ const fieldCls =
           result.textContent = 'Merci ! On revient vers vous très vite avec des pistes concrètes.';
           result.className = 'text-sm text-green-700';
           form.reset();
-          if (window.plausible) window.plausible('Diagnostic Submit');
+          // Conversion GA4 (G-6SG03DR5J9) — voir le commentaire de ContactForm.astro.
+          if (typeof window.gtag === 'function') window.gtag('event', 'diagnostic_submit');
         } else {
           result.textContent = r.data.message || genericError;
           result.className = 'text-sm text-red-700';

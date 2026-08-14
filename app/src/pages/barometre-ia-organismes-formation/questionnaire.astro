@@ -202,7 +202,8 @@ const breadcrumb = {
           body: JSON.stringify(payload),
         });
         if (res.ok) {
-          if (window.plausible) window.plausible('Barometre - reponse');
+          // Conversion GA4 (G-6SG03DR5J9) — voir le commentaire de ContactForm.astro.
+          if (typeof window.gtag === 'function') window.gtag('event', 'barometre_reponse');
           showMerci();
         } else {
           throw new Error('HTTP ' + res.status);

@@ -56,6 +56,7 @@ const tasks = [
     var ctaEl = document.getElementById('calc-cta');
     if (!boxes.length || !euroEl || !hoursEl) return;
     var nf = new Intl.NumberFormat('fr-FR');
+    var sent = false;
     function update() {
       var wo = 0, wi = 0, eu = 0, any = false;
       boxes.forEach(function (b) {
@@ -76,7 +77,9 @@ const tasks = [
       hoursEl.textContent = nf.format(wo - wi) + ' h récupérées / an';
       // L'estimation suit le prospect jusqu'au formulaire de contact (message pré-rempli).
       if (ctaEl) ctaEl.href = '/contact/?estimation=' + (Math.round(eu / 10) * 10) + '&heures=' + (wo - wi);
-      if (window.plausible) window.plausible('Calculator Used');
+      // Conversion GA4 (G-6SG03DR5J9) — voir le commentaire de ContactForm.astro.
+      // Une seule fois par page : update() est rappelé à chaque case cochée.
+      if (!sent && typeof window.gtag === 'function') { sent = true; window.gtag('event', 'calculateur_utilise'); }
     }
     boxes.forEach(function (b) { b.addEventListener('change', update); });
   })();

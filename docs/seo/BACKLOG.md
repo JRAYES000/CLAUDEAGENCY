@@ -70,14 +70,17 @@ surtout `/services/seo/` et `/blog/seo-guide-complet-organisme-formation-2026/`.
 avec le filtre `query notContains "skills claude seo"`. Sans ce filtre, le CTR de `/services/seo/`
 est faussé (536 impressions affichées contre ~100 réelles) et les vraies requêtes sont noyées.
 
-### 🔴 4bis. La mesure des conversions ne fonctionne pas — constaté le 2026-08-14
+### ✅ 4bis. Mesure des conversions — CORRIGÉ le 2026-08-14 (code), reste 1 geste dans GA4
 
-Les 4 événements du site appellent `window.plausible(...)` alors que **Plausible n'est chargé
-nulle part**, et GA4 ne reçoit aucun événement personnalisé. Aucune soumission de formulaire n'est
-enregistrée. Tant que ce n'est pas corrigé, **aucun chiffre de conversion n'est disponible**.
+Les 5 événements du site appelaient `window.plausible(...)` alors que Plausible n'est chargé nulle
+part : aucune soumission n'était comptée. Remplacés par `gtag('event', …)` vers GA4. Détail et
+vérifications : entrée du 2026-08-14 (soir) dans `JOURNAL.md`.
 
-- [ ] **G1** — remplacer les 4 appels par des `gtag('event', …)` et marquer les événements comme
-      conversions dans GA4. Détail : [`TACHES-SOLOHERY-SITE-CONVERSION.md`](../TACHES-SOLOHERY-SITE-CONVERSION.md).
+- [ ] **Dans l'interface GA4** (Admin → Événements) : marquer `contact_submit`,
+      `diagnostic_submit`, `lead_magnet_submit`, `calculateur_utilise` et `barometre_reponse`
+      comme **événements clés**. Sans ce geste, ils sont enregistrés mais ne comptent pas comme
+      conversions dans les rapports.
+- [ ] Premier relevé exploitable **une semaine après la mise en production**.
 - [ ] Les 14 autres tâches du chantier G (preuve client, page « semaine offerte », notoriété) sont
       dans le même document, au format des onglets du Sheet.
 
