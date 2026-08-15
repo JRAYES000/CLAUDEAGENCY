@@ -5,6 +5,60 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-15 (3) — Plan SOLOHERY : B9 supprimée, retour à la ligne partout, onglet Mesures refondu
+
+**Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)
+
+**Pourquoi :** trois demandes de Julien — supprimer l'action B9, activer le retour automatique à la
+ligne sur l'ensemble des onglets, et simplifier l'onglet `Mesures` pour qu'il réponde à ses deux
+questions de manager : le travail a-t-il été mené jusqu'au bout, et qu'est-ce que ça a donné.
+
+**Fait — B9 supprimée, le plan passe de 76 à 75 tâches** sur les chantiers A à E (81 avec les
+6 étapes du chantier F, qui vivent hors des cinq chantiers). Les deux lignes qui en dépendaient
+sont recalées : B6 ne dépend plus de rien et son repli — commenter depuis son propre profil, avec
+Claude Agency dans le titre — devient le chemin principal ; A9 dépend de A1.
+
+**Fait — retour automatique à la ligne** sur les dix onglets, vérifié au préalable sur une cellule
+témoin : `GOOGLESHEETS_FORMAT_CELL` n'applique que les propriétés qu'on lui passe, un appel avec le
+seul `wrap_strategy` conserve fond, gras, couleur et alignement. Seuls les titres de section de
+l'onglet d'accueil restent en `OVERFLOW_CELL`, pour déborder sur leurs voisines vides plutôt que
+de s'empiler dans une colonne de 209 px.
+
+**Fait — onglet `Mesures` refondu en 5 blocs.** L'onglet était un relevé de 18 indicateurs à plat ;
+il devient un tableau de bord qui se lit dans l'ordre des questions.
+1. *Le travail a-t-il été fait ?* — six lignes calculées depuis les onglets de tâches (tâches,
+   faites, bloquées, reste à faire) et une colonne d'alerte, `⚠ Faites sans preuve`
+   (`COUNTIFS(statut="Fait" ; preuve="")`). C'est le vrai contrôle du manager : la règle du plan
+   est que sans preuve une tâche reste « En cours ».
+2. *Les objectifs sont-ils atteints ?* — les 6 objectifs chiffrés du sprint avec cible, avant,
+   après et un verdict par ligne, plus un verdict global.
+3. *Les autres chiffres* — les 9 indicateurs sans cible, avec le sens de lecture (`↑ mieux` /
+   `↓ mieux`, qui manquait pour la position moyenne et le LCP) et l'écart calculé.
+4. *L'argent dépensé* — les trois enveloppes, avec le reste calculé.
+5. *Le 27/08* — le prompt de relevé, réécrit sur les nouvelles adresses de cellules.
+
+La colonne « Skill équipe conseillée » disparaît de cet onglet : elle répétait la même
+recommandation 18 fois. Une seule colonne se saisit désormais à la main, « Après (27/08) ».
+Les renvois qui citaient l'ancienne mise en page sont corrigés : A12, E3 (prompt, livrable et
+critère) et la note « ce qu'est une skill » de l'onglet d'accueil.
+
+**Incident technique, à retenir pour toute réécriture de bloc.** Une cellule fusionnée héritée de
+l'ancienne mise en page (`B22:F22`) avalait silencieusement les écritures : l'API répondait
+`updatedCells: 4` et la relecture rendait des cellules vides. Aucun outil d'*unmerge* n'est exposé
+côté Composio — la parade est de supprimer la ligne puis d'en réinsérer une au même index, ce qui
+détruit la fusion et laisse la structure inchangée (formules et plages vérifiées après coup :
+`COUNTIF(F18:F23; …)` est bien revenu à ses bornes). **À contrôler avant de réécrire un bloc :**
+`GOOGLESHEETS_GET_SPREADSHEET_INFO` avec `fields=sheets(properties(sheetId,title),merges)`.
+
+**Point à surveiller.** Les valeurs « Avant (12/08) » de l'ancien tableau ont été écrasées par le
+premier jet du bloc 1, puis réécrites depuis le dépôt (`PLAN-SOLOHERY.md` §2 et `BACKLOG.md`) :
+0 domaine référent, 0 backlink, autorité 1/100, 49 clics, 2 797 impressions, position 33,3, LCP
+4,2 s. Une seule ne figurait nulle part — les abonnés LinkedIn : elle est à 0 parce que la page
+entreprise n'existe pas encore (c'est la tâche B10 qui la crée), et cette raison est écrite dans
+la cellule plutôt que laissée à deviner.
+
+---
+
 ## 2026-08-15 (2) — Plan SOLOHERY : revue critique des 10 onglets, 76 tâches
 
 **Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)
