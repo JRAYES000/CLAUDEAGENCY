@@ -47,10 +47,17 @@ règle qui a manqué : une décision écartée s'écrit aux deux endroits le mê
 12/09). `BACKLOG.md` ne renvoie plus à la skill `netlinking-ecole-naturo`, qui appartient à un
 autre projet et se calibre sur un site santé YMYL, mais aux 7 critères de l'onglet F.
 
-**À trancher par Julien, non corrigé.** L'onglet F exige des liens en `dofollow` alors que
-`NETLINKING.md` §6.3 impose `rel="sponsored"` sur un lien payé, au titre de la politique Google
-sur les schémas de liens et de la loi 2023-451. Les deux ne peuvent pas être vrais, et 3 000 € HT
-en dépendent.
+**Tranché par Julien le 15/08/2026 — trois arbitrages.**
+1. **Les 20 liens s'achètent en `dofollow`, risque assumé.** `NETLINKING.md` §6.3 dit l'inverse et
+   n'a pas été retiré : l'analyse reste exacte, et la décision se prend contre elle en connaissance
+   de cause. Un encadré daté la consigne, avec ce qui reste non négociable — mention « article
+   sponsorisé » visible (obligation légale française, distincte du risque Google), 0 % d'ancre
+   exacte au démarrage, filtrage qualité sur chaque donneur. À rouvrir si une pénalité manuelle
+   apparaît dans la Search Console.
+2. **Les demandes d'adhésion partent de `equipe1@claudeagency.fr`**, plus de l'adresse Gmail
+   personnelle. Corrigé à la source dans `NETLINKING-ACTIONS.md`, que lisent A7, A8, A9 et A10.
+3. **B9** : Julien ouvre l'accès à son profil LinkedIn, SOLOHERY colle. La tâche n'attend donc
+   personne, et garde son repli à 48 h.
 
 **Point mesuré au passage.** Les 2 797 impressions de référence ne sont pas filtrées du bruit
 robot (~140 affichages, 0 clic). Le point de départ du sprint est donc légèrement faux aux trois

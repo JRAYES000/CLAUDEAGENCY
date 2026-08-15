@@ -80,7 +80,7 @@ externe vers le site de chaque adhérent (vérifié sur une fiche membre).
 >
 > Bien à vous,
 > Julien Rayes — Claude Agency
-> https://claudeagency.fr — jrayes000@gmail.com
+> https://claudeagency.fr — equipe1@claudeagency.fr
 
 ### Hub France IA
 
@@ -105,7 +105,7 @@ formulaire. Tarif modulé selon le chiffre d'affaires, non publié.
 >
 > Merci d'avance,
 > Julien Rayes — Claude Agency
-> https://claudeagency.fr — jrayes000@gmail.com
+> https://claudeagency.fr — equipe1@claudeagency.fr
 
 ---
 
