@@ -131,6 +131,23 @@ c'est publier**, d'où deux conditions propres au projet :
 
 Identité des commits : `Julien Rayes <jrayes000@gmail.com>`.
 
+### Tout se termine en production — règle posée par Julien le 15/08/2026
+
+**Un travail livré est un travail sur `main`, en ligne.** Pas sur une branche laissée de côté, pas
+dans une pull request en brouillon, pas en attente d'une validation que personne n'a demandée.
+
+- Une branche de travail se **fusionne dans `main` et se pousse** dans la même session. Elle n'est
+  pas le livrable, elle est un moyen d'y arriver.
+- Une pull request ne s'ouvre **jamais en draft** sur ce projet. Si l'environnement d'exécution en
+  impose une (c'est le cas de Claude Code sur le web), elle est sortie du mode brouillon et
+  fusionnée dans la foulée.
+- Le seul motif légitime de s'arrêter avant `main` : le build échoue, ou l'action est destructrice
+  et sort du périmètre demandé. Dans ce cas on le dit, on ne laisse pas la chose en plan sans
+  prévenir.
+
+Cette règle ne lève pas les deux conditions ci-dessus : le build se vérifie avant, et les URLs en
+ligne se donnent après.
+
 ## Routage des modèles
 
 *Tâche ennuyeuse avec une bonne réponse vérifiable* → sous-agent Haiku `seo-researcher` : recherche

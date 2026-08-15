@@ -5,6 +5,57 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-15 — Plan SOLOHERY : skills d'équipe assignées, passe de cohérence, `PLAN-SOLOHERY.md` remis d'aplomb
+
+**Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)
+
+**Pourquoi :** Julien voulait que SOLOHERY sache, tâche par tâche, quelle skill d'équipe
+(`github.com/JRAYES000/marketplace-equipe`) déclencher — et que le plan cesse de se contredire.
+
+**Fait — Google Sheet du sprint.** Trois colonnes ajoutées à chaque onglet de tâches, placées
+**entre « À faire » et « Livrable attendu »** : skill conseillée, comment la déclencher, ce que ça
+change. 75 lignes annotées : 34 `phrase-magique`, 22 `fonce`, 8 `parallelisation-et-routage`,
+3 `ponytail`, 8 sans skill. `delegation-deepseek-openrouter` n'est conseillée nulle part —
+les seules tâches assez volumineuses portent des coordonnées nominatives de prospects, que la skill
+interdit d'envoyer à un modèle tiers. Deux sections ajoutées à l'onglet d'accueil : le catalogue
+des skills, et les réflexes du guide « Bien utiliser Claude » (`/clear` par sujet, `/context` avant
+un gros travail, `/compact` en dernier recours, passe de preuves en conversation neuve).
+
+**Fait — incohérences corrigées dans la Sheet.** Sept factuelles : 69 → 54 articles (onglet C et
+accueil) ; « 62 mots-clés devinés » → 53 lignes `deduite-du-slug-A-VALIDER` + 10 `deduite-A-VALIDER`
+comptées dans `REQUETES.csv` ; D4 annonçait 3 e-mails pour une séquence qui en compte 5 ; A9 et B6
+dépendaient d'une tâche `B2` qui n'existe pas ; D00a datée J1 · 14/08 alors que J1 = 13/08 partout
+ailleurs ; D11 planifiée avant la tâche dont elle dépend ; D23 due avant D12 dont elle dépend ; F1
+présentée comme « la seule étape à la main » alors que F5 (l'achat) l'est aussi ; seuil D+ qui
+parlait de « deux autres boîtes » sur une rotation qui en compte quatre.
+
+**Fait — quatre arbitrages tranchés par Julien le 15/08.**
+1. **Premier envoi au mardi 25/08**, pas le 18/08. Le 18/08 était impossible : D3 ne rend les
+   e-mails des décideurs que le 20/08. Chauffe portée à 12 jours (13 → 24/08), montée en charge de
+   l'onglet D+ décalée d'une semaine, D6 au 26/08.
+2. **Tâche B8 créée** : B3 fait écrire 10 posts LinkedIn, B4 et B5 n'en publiaient que 8.
+   À un post tous les 2 jours, la série court jusqu'au 17/09 — écrit noir sur blanc plutôt que
+   laissé implicite.
+3. **Inscriptions du webinaire (D19) → Google Sheet dédié.** Le critère exigeait qu'une inscription
+   de test « arrive dans la liste » sans jamais dire laquelle, et Brevo est interdit sur ce projet.
+4. **Dates du week-end** : seules les tâches impliquant un tiers sont décalées (A9 quittait le
+   samedi 15/08, férié). La fenêtre de B4 était arithmétiquement impossible — 4 posts « mardi ou
+   jeudi » dans une fenêtre qui ne contenait qu'un mardi — et a été refaite sur des dates explicites.
+
+**Fait — `docs/PLAN-SOLOHERY.md` corrigé sur cinq points** où il contredisait la Sheet :
+articles 69 → 54 ; « un seul enregistrement DNS » → quatre CNAME `go`, un par domaine d'envoi ;
+warm-up 14 jours → 12 jours avec départ au 25/08 ; « le premier envoi ne peut pas partir dans le
+sprint » → il part le 25/08 ; section 8 « Points à trancher par Julien » marquée périmée par la
+règle D00b du 14/08, et ligne netlinking alignée sur l'enveloppe déjà autorisée.
+
+**Non fait volontairement.** Aucune tâche du plan n'a été exécutée — seul le plan a été corrigé.
+Les chiffres « Avant » de l'onglet Mesures restent à `inconnu` sur les lignes GSC : ils sont
+annoncés sur 28 jours alors que le relevé de référence porte sur 88 jours (14/05 → 09/08). Les
+mesurer relève de la tâche C1, pas de cette passe — et écrire 49 clics dans une case « 28 jours »
+aurait été un chiffre inventé.
+
+---
+
 ## 2026-08-14 — Ménage : 15 articles fusionnés (cannibalisation) + 5 docs supprimés
 
 **Type :** consolidation de contenu + nettoyage de la documentation
