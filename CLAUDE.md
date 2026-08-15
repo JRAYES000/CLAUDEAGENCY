@@ -9,6 +9,23 @@ Code Astro dans `app/`. Contenu dans `app/src/content/blog/` et `app/src/content
 > `claudepartners.fr` est un **autre projet** (ancien nom de domaine, site autonome depuis le
 > 25/07/2026). Ne jamais employer « Claude Partners » pour désigner ce site.
 
+## Livraison : pousser sur `main` directement
+
+Julien veut les changements en production tout de suite. Commiter et **pousser sur `main`** — pas
+de branche d'attente, pas de PR en brouillon, pas de « dis-moi si je peux pousser ». L'autorisation
+est donnée ici, une fois pour toutes.
+
+Ce qui reste vrai malgré la vitesse :
+
+- **`npm run build` doit passer avant de pousser.** Le build échoue si un frontmatter s'écarte de
+  `app/src/content.config.ts` : pousser sans l'avoir lancé, c'est casser le site en ligne.
+- Une action **sortante et difficile à défaire qui dépasse le dépôt** — DNS, envoi d'un e-mail à un
+  client, suppression de données — demande toujours une confirmation en une ligne. Pousser du code
+  n'en fait pas partie. Pour l'infra, lire d'abord `docs/CONTEXTE-COWORK.md`.
+- Une action SEO garde son entrée de journal **dans le même commit** (voir plus bas). Pousser vite
+  ne dispense pas d'écrire le journal.
+- Dire ce qui a été poussé, où, et ce qui n'a pas pu être vérifié.
+
 ## Documents de référence
 
 N'ouvrir que celui dont le déclencheur est réuni — ne pas tous les charger.
