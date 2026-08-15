@@ -5,6 +5,60 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-15 (2) — Plan SOLOHERY : revue critique des 10 onglets, 76 tâches
+
+**Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)
+
+**Pourquoi :** seconde passe demandée par Julien — critiquer et améliorer chaque onglet, un
+relecteur par onglet, avec trois objectifs : compréhensible par SOLOHERY, sans incohérence,
+efficace pour Claude Code.
+
+**Fait — 7 tâches ajoutées, le plan passe de 69 à 76.** A14 (saisir le code Google reçu par
+courrier — personne ne vérifiait qu'il arrivait, alors que la validation de la fiche en dépend) ·
+A15 (relire le NAP sur les 6 fiches en ligne, seul contrôle qui protège la valeur des six autres
+tâches) · B9 (profil LinkedIn de Julien : c'était la tâche manquante derrière le trou B2, et son
+contenu dormait déjà rédigé dans `docs/seo/linkedin-kit.md`) · B10 (réserver l'URL LinkedIn que
+`app/src/layouts/BaseLayout.astro` déclare déjà dans le `sameAs` de toutes les pages, alors que la
+page n'existe pas) · D24 (suivre les réponses positives jusqu'au rendez-vous — le plan s'arrêtait
+à l'envoi) · E6 (compte des dépenses engagées : trois enveloppes couraient sans totalisation) ·
+E7 (passage de relais pour les cinq échéances de septembre).
+
+**Fait — corrections de fond.** Chaîne de dépendances de la prospection refaite : D12 dépendait de
+la mauvaise tâche et n'apparaissait dans aucun verrou de D5, on pouvait donc lancer la vague du
+25/08 avec une séquence vide. C6 visait un article supprimé le 14/08 et un autre qui avait déjà sa
+couverture : ligne réécrite sur la dette réelle (28 des 54 articles partagent la même image
+générique). C1 ne produisait aucun fichier, donc C2 n'avait rien à ouvrir quatre jours plus tard :
+deux CSV à chemin explicite. C5 demandait de mettre en noindex un sous-domaine que ce dépôt ne
+sert pas. Une trentaine de prompts « ouvre la page et remplis le formulaire » inversés : Claude
+Code n'a pas de navigateur, il rend le texte champ par champ et dit où cliquer.
+
+**Fait — onglet Mesures.** Le débat 28 jours / 88 jours tranché sur 88, la fenêtre que relève
+déjà C1 : les cases « inconnu » retrouvent leurs 49 clics et 2 797 impressions. Ajout d'une ligne
+de **verdict automatique** (objectif ≥ 5 domaines référents, atteint ou non), de trois lignes de
+suivi budgétaire et d'une colonne Écart calculée. 15 → 18 indicateurs.
+
+**Fait — onglet ⛔ Interdits, 17 → 23 lignes.** Les six ajouts vivaient ailleurs sans avoir jamais
+été écrits là : seconde fiche Google, second compte Saleshandy, envoi avant le 25/08, toucher à
+`contact@claudeagency.fr`, écrire un chiffre non vérifié, refaire une fusion d'articles avant le
+relevé du 11/09. Les huit qui manquaient côté dépôt sont ajoutés à `PLAN-SOLOHERY.md` §7, avec la
+règle qui a manqué : une décision écartée s'écrit aux deux endroits le même jour.
+
+**Fait — dans le dépôt.** DMARC recalé au 25/09 (un mois après le premier envoi du 25/08, pas
+12/09). `BACKLOG.md` ne renvoie plus à la skill `netlinking-ecole-naturo`, qui appartient à un
+autre projet et se calibre sur un site santé YMYL, mais aux 7 critères de l'onglet F.
+
+**À trancher par Julien, non corrigé.** L'onglet F exige des liens en `dofollow` alors que
+`NETLINKING.md` §6.3 impose `rel="sponsored"` sur un lien payé, au titre de la politique Google
+sur les schémas de liens et de la loi 2023-451. Les deux ne peuvent pas être vrais, et 3 000 € HT
+en dépendent.
+
+**Point mesuré au passage.** Les 2 797 impressions de référence ne sont pas filtrées du bruit
+robot (~140 affichages, 0 clic). Le point de départ du sprint est donc légèrement faux aux trois
+endroits où il est écrit. C1 relève la même fenêtre avec le filtre : c'est sa sortie qui corrigera
+les trois d'un coup. Les 49 clics ne bougent pas.
+
+---
+
 ## 2026-08-15 — Plan SOLOHERY : skills d'équipe assignées, passe de cohérence, `PLAN-SOLOHERY.md` remis d'aplomb
 
 **Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)

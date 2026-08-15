@@ -28,7 +28,7 @@ marque, **sans publier de volume de contenu**.
 | Domaines référents | **0** | Ubersuggest |
 | Autorité de domaine | **1 / 100** | Ubersuggest |
 | Clics organiques (14/05 → 09/08) | 49 | GSC, `data_state=final` |
-| Impressions | 2 797 | GSC, `data_state=final` |
+| Impressions | 2 797 | GSC, `data_state=final` — **non filtré du bruit robot**, voir ci-dessous |
 | Position moyenne | 33,3 | GSC, pondérée par impressions |
 | Articles publiés | 54 | `app/src/content/blog/`, compté le 15/08/2026 |
 | Pages services | 8 | `app/src/content/services/` |
@@ -36,6 +36,14 @@ marque, **sans publier de volume de contenu**.
 > **Le blog est passé de 69 à 54 articles le 14/08/2026** (commit `f2cef7b`) : 15 articles qui se
 > cannibalisaient ont été fusionnés, leurs URL partent en 301. Le chiffre 69 relevé au 12/08 reste
 > exact à sa date ; c'est 54 qui vaut aujourd'hui.
+
+> ⚠️ **Les 2 797 impressions ne sont pas filtrées du bruit robot.** Les requêtes contenant
+> « skills claude seo » sont émises par un agent automatisé et pèsent environ 140 affichages pour
+> 0 clic (relevé du 12/08). Le point de départ réel en impressions est donc légèrement inférieur.
+> Les 49 clics, eux, ne bougent pas — le robot ne clique jamais. La tâche C1 relève la même
+> fenêtre (14/05 → 09/08) **avec** le filtre `query notContains « skills claude seo »` : c'est sa
+> sortie qui fait foi, et elle corrigera cette ligne, l'onglet d'accueil et l'onglet Mesures d'un
+> seul coup. Repéré le 15/08/2026, non corrigé faute d'accès GSC à cet instant.
 
 **Ce que ces chiffres disent.** Le site a du contenu et Google le connaît. Ce qui manque, c'est la
 confiance. Une publication en masse d'environ 40 articles a déjà eu lieu le 30/06/2026 : mesure à
@@ -245,6 +253,19 @@ Chaque ligne a coûté du temps à quelqu'un.
 | Envoyer de la prospection depuis Brevo | 13/08/2026 | Sa politique anti-spam interdit l'envoi sans consentement explicite, avec suspension immédiate. Et le compte Brevo est celui d'École de Naturopathie & Sophrologie : la suspension frapperait l'école. |
 | Envoyer depuis `@ecole-naturo.fr` | 13/08/2026 | Domaine sur Microsoft 365, autre activité. Sa réputation ne doit pas servir de caution à de la prospection à froid. |
 | Acheter un lien sans l'avoir passé à la grille de qualification | 14/08/2026 | SOLOHERY décide seul dans l'enveloppe : 450 € HT maximum par lien, 3 000 € HT au total, et non est la réponse par défaut au-dessus du plafond. Ce qui reste interdit : acheter sans avoir passé les 7 critères du tableau 3 de l'onglet F. *(Rédaction corrigée le 15/08/2026 : la version précédente exigeait la validation de Julien et renvoyait à une skill d'un autre projet.)* |
+| Ajouter un second enregistrement SPF, ou glisser `include:saleshandy` dans l'existant | 13/08/2026 | Deux SPF sur un domaine **s'annulent tous les deux** : plus rien n'est authentifié et tout part en spam sur les 4 domaines d'envoi. Saleshandy expédie à travers la boîte Hostinger, déjà couverte. Les seuls DNS du sprint sont les 4 CNAME `go` de la tâche D0b. |
+| Committer un secret : mot de passe, jeton, clé API | 13/08/2026 | Le dépôt est **public**. Un secret entré dans l'historique Git ne s'efface pas : il faut le révoquer et le remplacer partout. Vérifier aussi `.env`, les fichiers de `docs/` et les lignes de `JOURNAL.md`. |
+| Créer une seconde fiche Google Business Profile | 15/07/2026 | La fiche existe depuis le 15/07/2026 (tâche A2). Un doublon se fusionne mal, ou se fait suspendre, et abîme la marque. On se connecte au compte existant. |
+| Ouvrir un second compte Saleshandy | 13/08/2026 | Le compte existe et il est partagé. Un second compte ferait perdre les 4 boîtes, la chauffe en cours et le départ du 25/08. |
+| Envoyer la vague 1 avant le mardi 25/08/2026 | 15/08/2026 | Chauffe de 12 jours (13 → 24/08), et les e-mails des décideurs ne sont rendus que le 20/08 par D3. Envoyer avant, c'est griller quatre domaines pour gagner une semaine. Gate supplémentaire : « Outreach Readiness » doit être verte dans TrulyInbox. |
+| Toucher à `contact@claudeagency.fr` | 14/08/2026 | Boîte sensible, décision de Julien du 13/08. Jamais connectée à Saleshandy, jamais modifiée, aucun agenda ni formulaire créé dessus. On peut y **lire** un code de vérification, sans rien changer. |
+| Écrire un chiffre qu'on n'a pas relevé | 14/08/2026 | Seule interdiction absolue du plan. On vérifie, ou on écrit « inconnu ». Un chiffre d'outil est **estimé**, jamais mesuré — Ubersuggest et le LCP « laboratoire » de PageSpeed en particulier. |
+| Supprimer ou fusionner d'autres articles avant le relevé du 11/09/2026 | 14/08/2026 | 15 articles viennent d'être fusionnés. Il faut mesurer l'effet avant d'en refaire : le report des impressions prend plusieurs semaines. Porte de sortie : le relevé de la tâche C9, le 11/09. |
+
+> **Cette liste est aussi dans l'onglet ⛔ Interdits du Sheet**, avec pour chaque ligne le signe
+> auquel on reconnaît qu'on est en train de la commettre. Les deux versions comptent 23 lignes au
+> 15/08/2026. Une décision écartée s'écrit **aux deux endroits, le même jour** — c'est faute de
+> l'avoir fait que les deux listes avaient divergé.
 
 ---
 
@@ -286,7 +307,10 @@ Chaque ligne a coûté du temps à quelqu'un.
 - **11/09/2026** — relevé de contrôle des 9 `title` / `description` réécrits le 12/08. Si le CTR de
   `/services/seo/` est toujours à 0, **revenir à l'ancien title**. Cette page est en position 3,8
   sur « agence référencement naturel claude » et ne récolte aucun clic.
-- **12/09/2026** — durcir DMARC en `p=quarantine`, après lecture des rapports.
+- **25/09/2026** — durcir DMARC en `p=quarantine` sur les 4 domaines d'envoi, après lecture des
+  rapports. Date recalée le 15/08/2026 : la règle est « un mois après le début des envois », et le
+  premier envoi est passé au 25/08. Durcir avant d'avoir lu un mois de rapports met en quarantaine
+  nos propres e-mails légitimes.
 
 ---
 

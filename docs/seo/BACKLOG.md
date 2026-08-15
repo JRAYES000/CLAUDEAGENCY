@@ -36,8 +36,11 @@ Publier un 70ᵉ article ne changera pas ça. C'est le point de blocage n°1.
 - [ ] **Vague 2** — les 2 fédérations qui comptent : Les Acteurs de la Compétence et Hub France IA
       (payantes, cotisation à demander). Messages rédigés, à envoyer.
 - [ ] **Vague 3** — Digiformag, contribution éditoriale gratuite. Message rédigé avec 3 sujets.
-- [ ] Avant tout achat de lien payant : appliquer la méthode de la skill `netlinking-ecole-naturo`
-      (DR, thématique, ancres). Voir aussi `NETLINKING.md`.
+- [ ] Avant tout achat de lien payant : passer le site donneur aux **7 critères éliminatoires du
+      tableau 3 de l'onglet F · Netlinking** du Sheet de suivi, puis classer les candidats retenus
+      sur le rapport visites estimées ÷ prix. Voir aussi `NETLINKING.md`.
+      *(Corrigé le 15/08/2026 : cette ligne renvoyait à la skill `netlinking-ecole-naturo`, qui
+      appartient à un autre projet et se calibre sur un site santé YMYL.)*
 
 **Contrainte d'éligibilité :** Claude Agency n'est pas un OF déclaré → tous les annuaires
 alimentés par la liste publique Qualiopi lui sont fermés. Ne pas y perdre de temps.
