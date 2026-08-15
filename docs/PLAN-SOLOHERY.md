@@ -73,6 +73,29 @@ Le repo porte déjà tout le contexte : `CLAUDE.md` (règles), `PRODUCT.md` (off
 `DESIGN.md` (charte), `NETLINKING.md`, `docs/seo/` (mémoire SEO).
 Ne pas recopier ces fichiers dans les prompts : Claude Code les ouvre quand il en a besoin.
 
+### Claude Code, et rien d'autre — règle posée par Julien le 15/08/2026
+
+**Tout le sprint se fait dans Claude Code**, dans le terminal, à la racine du dépôt. Pas dans
+Cowork, pas dans l'application Claude, pas dans le navigateur. Trois raisons concrètes :
+
+- C'est le seul environnement où Claude **lit le `CLAUDE.md` du dépôt tout seul**, sans qu'on ait
+  à recoller les règles à chaque conversation.
+- Les commandes du plan n'existent que là : `/clear`, `/context`, `/usage`, `/compact`, `/doctor`,
+  `/insights`, `/fewer-permission-prompts`, et le mot-clé `ultracode` de la passe de preuves.
+- La skill `skills-equipe:fonce` s'y prolonge entre les tours via `/goal` : hors Claude Code, sa
+  condition d'arrêt reste une définition, pas une relance automatique.
+
+Skills d'équipe, à installer une fois : `/plugin marketplace add JRAYES000/marketplace-equipe`
+puis `/plugin install skills-equipe@marketplace-equipe`. Pour une mise à jour, les deux commandes
+vont ensemble — `/plugin marketplace update marketplace-equipe`, puis
+`/plugin update skills-equipe@marketplace-equipe` — et on relance Claude Code.
+
+**`/clear` se tape quand on change de sujet, pas à chaque tâche.** Les lignes du Sheet qui en ont
+réellement besoin le disent dans leur colonne « Comment la déclencher » : premier prompt d'un
+chantier, reprise après un gros lot, point d'étape, passe de preuves, tâche reprise des semaines
+plus tard. Entre deux tâches qui se suivent dans le même chantier, on enchaîne — vider la
+conversation jette du contexte utile et oblige à tout réexpliquer.
+
 ---
 
 ## 5. Identité légale — à reprendre à l'identique partout
