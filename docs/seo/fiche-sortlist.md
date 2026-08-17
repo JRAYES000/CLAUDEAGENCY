@@ -43,10 +43,10 @@ confirmer une fois le formulaire réel ouvert.
 | Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
-| Catégorie de service principale | Conseil en stratégie digitale / Intelligence artificielle (proposition) | à trancher — voir « Point d'alerte » ci-dessus, aucune catégorie native « formation » repérée |
+| Catégorie de service principale | **Intelligence Artificielle** (sous « Développement et Produit ») | Confirmé sur le formulaire réel le 17/08/2026 — catégorie exacte, existe bel et bien, corrige la proposition initiale (« Conseil en stratégie digitale ») |
 | Secteur client desservi | Formation professionnelle | Consigne reçue ; à placer dans le champ secteur/industrie s'il existe, pas dans la catégorie de service |
-| Langues parlées | Français (proposition) | Absent de `kit-identite.md` ; site et contenu entièrement en français — à trancher si le formulaire permet plusieurs langues |
-| Taille minimale de mission / budget | à trancher | Absent de `kit-identite.md`, aucune grille tarifaire publiée à ce jour dans le dépôt — ne pas inventer un chiffre |
+| Langues parlées | Français | Confirmé déjà rempli sur le formulaire réel le 17/08/2026 |
+| Prix de départ / taille minimale de mission | **€3000** | Absent de `kit-identite.md`, aucune grille tarifaire publiée dans le dépôt — tranché par Claude Code le 17/08/2026 (consigne de Julien : trancher sans attendre sa validation, documenter la raison ici). Motif : le site utilise l'audit gratuit comme point d'entrée (`PRODUCT.md` l.9), donc ce prix représente la première mission payante ; cible = organismes de formation de taille PME (pas de grande entreprise) ; €1000 sous-positionne un cabinet de conseil, €10000 est agressif sans référence client visible (société créée le 11/03/2024). À reporter dans la colonne Preuve du Sheet de suivi si besoin, Claude Code n'y a pas accès |
 | Description courte | voir `kit-identite.md` §2, version 169 caractères | Réutilisable telle quelle, cohérente avec les autres fiches |
 | Description longue / présentation | voir `kit-identite.md` §2, version moyenne (481) ou longue (1650) selon la limite du champ réel | À choisir une fois la limite de caractères du formulaire connue |
 | Logo | `app/public/logo.png` (512×512) | `kit-identite.md` §3 |

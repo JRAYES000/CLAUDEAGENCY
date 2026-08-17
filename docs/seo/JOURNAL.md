@@ -5,6 +5,36 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (17) — Nouveau protocole de Julien : trancher sans remonter, tracer la raison
+
+**Type :** documentation (changement de méthode de travail + décisions tranchées sur Sortlist)
+
+**URLs :** aucune — mise à jour de `docs/seo/fiche-sortlist.md`
+
+**Pourquoi :** mail de Julien à SOLOHERY, relayé le 17/08/2026 : poser les questions à Claude
+Code plutôt qu'à lui, trancher même sans certitude, tracer la décision et sa raison (colonne
+Preuve du Sheet de suivi), ne remonter que les vrais blocages — sans attendre de réponse pour
+continuer. Concrètement : la question du prix de départ Sortlist, punt à Julien dans l'entrée
+précédente, relevait de ce cas — à trancher directement.
+
+**Fait :** trois champs de `fiche-sortlist.md` tranchés ou corrigés d'un coup : catégorie de
+service (« Intelligence Artificielle », confirmée sur le vrai formulaire, remplace la
+proposition initiale « Conseil en stratégie digitale »), langues (Français, confirmé), et
+surtout **prix de départ : €3000**, décidé par Claude Code faute de donnée dans le dépôt —
+motif tracé dans la fiche (audit gratuit en point d'entrée, cible PME, ni sous-positionné ni
+agressif pour une structure sans référence client). Le Sheet de suivi externe (colonne Preuve)
+n'est pas accessible à Claude Code ; la fiche du dépôt sert d'équivalent traçable, à reporter
+manuellement côté Sheet si besoin.
+
+**Mesure :** non applicable.
+
+**Suite :** appliquer ce protocole aux prochains blocages (statut « Bloqué » + raison en Preuve
+seulement si vraiment bloqué, sinon trancher et documenter). `arbitrage-julien.md` reste
+différent : c'est une vraie décision métier (positionnement organisme de formation), pas un
+paramètre technique manquant — à montrer à Julien, pas à trancher seul.
+
+---
+
 ## 2026-08-17 (16) — Fiche Crunchbase préparée, formulaire réel derrière connexion
 
 **Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
