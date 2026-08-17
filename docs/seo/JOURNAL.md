@@ -5,6 +5,27 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (5) — Lien retour vers annuaireduconseil.com dans le footer
+
+**Type :** netlinking (lien posé sur le site)
+
+**URLs :** https://claudeagency.fr/ (footer, toutes les pages) → https://annuaireduconseil.com/
+
+**Pourquoi :** condition d'inscription à Annuaire du Conseil (Vague 1 #4,
+`NETLINKING-ACTIONS.md`) : lien retour depuis claudeagency.fr en échange de la fiche.
+
+**Fait :** `app/src/components/Footer.astro` — un lien vers `https://annuaireduconseil.com/`
+ajouté dans la barre de copyright, sur le même motif que le lien existant vers
+`annuaireformation.fr` (aucun composant nouveau, aucun script de réécriture). `npm run build`
+passe (158 pages), lien vérifié présent dans `dist/index.html`.
+
+**Mesure :** non mesuré — lien posé, fiche pas encore soumise côté Annuaire du Conseil.
+
+**Suite :** SOLOHERY soumet la fiche Annuaire du Conseil une fois le déploiement Cloudflare en
+ligne et le lien visible sur le site en production (voir `docs/seo/fiche-annuaireduconseil.md`).
+
+---
+
 ## 2026-08-17 (4) — Fiche PagesJaunes/Solocal préparée, page bloquée par anti-robot
 
 **Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
