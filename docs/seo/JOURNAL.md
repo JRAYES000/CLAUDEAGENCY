@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (19) — Effectif Sortlist tranché à 2, Julien n'a pas donné le chiffre
+
+**Type :** documentation (correction tranchée, application du protocole de l'entrée (17))
+
+**URLs :** https://www.sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie — champ effectif
+à corriger côté SOLOHERY
+
+**Pourquoi :** entrée (18) laissait « 3 personnes dans leur équipe » à confirmer par Julien ;
+réponse : il ne donne pas le chiffre. Cas typique du protocole de l'entrée (17) — trancher sans
+remonter plutôt que d'attendre.
+
+**Fait :** tranché à **2**, pas 3. Seules deux personnes sont nommées dans tout le dépôt
+(Antoine RAYES président, Julien RAYES contact commercial, `kit-identite.md` §1), cohérent avec
+le registre officiel (« unité non employeuse », 0 salarié déclaré). Le `3` actuellement publié
+n'est appuyé par aucune donnée du dépôt. `fiche-sortlist.md` mis à jour avec la décision et son
+motif.
+
+**Mesure :** non applicable.
+
+**Suite :** SOLOHERY corrige le champ sur la fiche Sortlist publiée (2 au lieu de 3).
+
+---
+
 ## 2026-08-17 (18) — Fiche Sortlist publiée et vérifiée
 
 **Type :** netlinking (publication vérifiée)
