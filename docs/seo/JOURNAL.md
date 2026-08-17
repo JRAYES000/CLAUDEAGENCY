@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (7) — Description inédite rédigée pour la fiche Annuaire du Conseil
+
+**Type :** netlinking (préparation, aucune fiche soumise)
+
+**URLs :** aucune — document interne `docs/seo/fiche-annuaireduconseil.md`
+
+**Pourquoi :** l'entrée précédente signalait que ce site exige une description « unique, jamais
+publiée ailleurs en ligne » — les trois descriptions de `kit-identite.md` ne convenaient pas.
+
+**Fait :** description de 387 caractères rédigée pour cette seule fiche, mêmes faits que
+`kit-identite.md` (cabinet parisien, organismes de formation francophones, automatisation des
+obligations administratives, autonomie des équipes) mais entièrement reformulés — vérifié à la
+relecture qu'aucune phrase des trois descriptions existantes ni du site n'est reprise. Aucune
+limite de caractères trouvée sur `/info/useCondition` : ciblée par défaut sur 300-400. Longueur
+recomptée mécaniquement (Node) après écriture dans le fichier, pas estimée. Section dédiée
+ajoutée dans `fiche-annuaireduconseil.md`, tableau et marche à suivre mis à jour en conséquence.
+
+**Mesure :** non mesuré — texte prêt, rien de soumis.
+
+**Suite :** SOLOHERY colle cette description à l'étape 6 de la marche à suivre.
+
+---
+
 ## 2026-08-17 (6) — Fiche Annuaire du Conseil préparée, formulaire réel derrière connexion
 
 **Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)

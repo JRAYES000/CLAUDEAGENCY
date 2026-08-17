@@ -35,6 +35,21 @@ Citations exactes de `/info/useCondition` :
 - « Aucune information ne sera communiquée à un tiers. »
 - Aucun délai de validation n'est précisé.
 
+## Description — 387 caractères
+
+Rédigée pour cette fiche uniquement, jamais publiée ailleurs. Mêmes faits que
+`kit-identite.md` (cabinet de conseil, organismes de formation francophones, automatisation des
+obligations administratives, formation à l'autonomie, diagnostic préalable), entièrement
+reformulés — aucune phrase des trois descriptions existantes ni du site claudeagency.fr n'est
+reprise. Aucune limite de caractères n'est affichée sur `/info/useCondition` ni sur les pages
+accessibles du site ; ciblée par défaut sur 300-400 caractères comme demandé.
+
+> Ce cabinet parisien conseille les organismes de formation francophones (France, Belgique,
+> Suisse, Luxembourg) sur l'intégration concrète de l'intelligence artificielle. Il repère les
+> tâches administratives les plus lourdes — indicateurs Qualiopi, bilan pédagogique et financier,
+> suivi des présences — les automatise une à une, puis rend les équipes autonomes sur les outils
+> mis en place.
+
 ## Champs à remplir
 
 | Champ | Valeur à coller | Remarque |
@@ -46,7 +61,7 @@ Citations exactes de `/info/useCondition` :
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
 | Catégorie | Cabinet de conseil (secondaire : Conseil en intelligence artificielle) | `kit-identite.md` §3 |
-| Description | à trancher — **ne pas réutiliser** les textes de `kit-identite.md` §2 | Doit être unique et inédite en ligne (règle explicite du site) ; à rédiger spécifiquement pour cette fiche |
+| Description | voir section « Description » ci-dessus (387 caractères) | Rédigée spécifiquement pour cette fiche, jamais publiée ailleurs |
 | Mots-clés | à trancher | Non couvert par `kit-identite.md` ; proposition : organismes de formation, Qualiopi, automatisation, IA, conseil |
 | Lien retour vers annuaireduconseil.com | déjà posé | Footer de `claudeagency.fr`, ajouté et poussé le 2026-08-17 (commit `6781807`) — condition remplie avant soumission |
 | **Preuve — URL de la fiche publiée** | *(à coller par SOLOHERY après validation)* | Vide, volontairement |
@@ -62,9 +77,8 @@ Citations exactes de `/info/useCondition` :
    d'un paiement.
 4. Coller nom, URL, adresse, téléphone, e-mail depuis le tableau ci-dessus.
 5. Choisir la catégorie « Cabinet de conseil » (ou équivalent le plus proche affiché).
-6. Rédiger une description neuve et inédite pour cette fiche — ne pas copier les descriptions de
-   `kit-identite.md`, déjà publiées ailleurs (LinkedIn notamment). Long et soigné plutôt que court,
-   selon la règle du site.
+6. Coller la description de la section « Description » ci-dessus (387 caractères, rédigée pour
+   cette fiche, jamais publiée ailleurs).
 7. Renseigner les mots-clés proposés si le champ existe, ou choisir librement.
 8. **S'arrêter et relire avant de valider** si le parcours pousse vers l'offre Premium ou
    réclame une carte bancaire à un moment quelconque : ce plan ne couvre que l'inscription
