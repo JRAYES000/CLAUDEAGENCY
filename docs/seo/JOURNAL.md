@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (14) — Fiche Annuaire du Conseil soumise, en attente de modération
+
+**Type :** netlinking (soumission faite par SOLOHERY)
+
+**URLs :** https://claudeagency.fr — statut affiché sur le tableau de bord
+annuaireduconseil.com : **En attente**, gratuit. Aucune URL de fiche publique encore attribuée.
+
+**Pourquoi :** dernière étape de la préparation `fiche-annuaireduconseil.md` (entrées (6), (7),
+(12), (13)) : le formulaire réel a été rempli et validé par SOLOHERY.
+
+**Fait :** message « Le site a été soumis avec succès. » constaté. Le tableau de bord du compte
+confirme l'entrée `https://claudeagency.fr`, statut « En attente ». Pas de casse rejetée malgré
+l'écart de majuscule signalé plus tôt entre le code attendu et le footer réel. Champ **Preuve**
+de `fiche-annuaireduconseil.md` **laissé vide** : pas de fiche publique en ligne à cette heure,
+seulement une entrée en modération — écrire une URL maintenant serait une preuve inventée.
+
+**Mesure :** non applicable — en attente de validation par l'annuaire.
+
+**Suite :** vérifier le statut du compte annuaireduconseil.com plus tard ; dès qu'il passe de
+« En attente » à publié, coller l'URL de la fiche publique dans la ligne Preuve de
+`fiche-annuaireduconseil.md` et clore l'item #4 de la Vague 1 dans `NETLINKING-ACTIONS.md`.
+
+---
+
 ## 2026-08-17 (13) — Description étoffée à 1 469 caractères pour Annuaire du Conseil
 
 **Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
