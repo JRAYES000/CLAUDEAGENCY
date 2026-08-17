@@ -5,6 +5,33 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (13) — Description étoffée à 1 469 caractères pour Annuaire du Conseil
+
+**Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
+
+**URLs :** aucune nouvelle — mise à jour de `docs/seo/fiche-annuaireduconseil.md`
+
+**Pourquoi :** le formulaire réel affiche 5000 caractères disponibles pour la description ; les
+387 caractères d'abord fournis (entrée précédente) ont été jugés trop courts une fois le champ
+vu en vrai.
+
+**Fait :** description réécrite à 1 469 caractères (compté mécaniquement, `wc -m`), toujours
+entièrement reformulée par rapport aux trois descriptions de `kit-identite.md`, au site
+claudeagency.fr et à la version de 387 caractères elle-même — même règle du site respectée
+(« originale et unique, pas de copier-coller »). Mêmes faits, développés : charge administrative
+concrète (Qualiopi, BPF, émargement, dossiers de financement, conventions), méthode
+automatisation sous contrôle humain, formation à l'autonomie, refus du jargon. `fiche-annuaireduconseil.md`
+mis à jour : section Description, ligne du tableau, ligne « Nom du site » confirmée (`Claude
+Agency`, champ unique vu sur le formulaire réel — plus d'ambiguïté avec la raison sociale
+légale), ligne Twitter ajoutée (facultatif, à laisser vide).
+
+**Mesure :** non mesuré — soumission en cours côté SOLOHERY, pas encore publiée.
+
+**Suite :** SOLOHERY colle l'URL de la fiche publiée dans la ligne Preuve de
+`fiche-annuaireduconseil.md` une fois validée.
+
+---
+
 ## 2026-08-17 (12) — Catégories réelles relevées sur le formulaire Annuaire du Conseil
 
 **Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)

@@ -35,33 +35,48 @@ Citations exactes de `/info/useCondition` :
 - « Aucune information ne sera communiquée à un tiers. »
 - Aucun délai de validation n'est précisé.
 
-## Description — 387 caractères
+## Description — 1 469 caractères
 
-Rédigée pour cette fiche uniquement, jamais publiée ailleurs. Mêmes faits que
-`kit-identite.md` (cabinet de conseil, organismes de formation francophones, automatisation des
-obligations administratives, formation à l'autonomie, diagnostic préalable), entièrement
-reformulés — aucune phrase des trois descriptions existantes ni du site claudeagency.fr n'est
-reprise. Aucune limite de caractères n'est affichée sur `/info/useCondition` ni sur les pages
-accessibles du site ; ciblée par défaut sur 300-400 caractères comme demandé.
+Le formulaire réel affiche 5000 caractères disponibles (vu le 17/08/2026) : la version de 387
+caractères d'abord rédigée était trop courte pour le champ, remplacée par celle-ci, étoffée sur
+les mêmes faits et toujours entièrement reformulée — aucune phrase des trois descriptions de
+`kit-identite.md`, du site claudeagency.fr, ni de la version de 387 caractères, n'est reprise.
+Longueur recomptée mécaniquement (`wc -m`) après écriture dans le fichier, pas estimée.
 
-> Ce cabinet parisien conseille les organismes de formation francophones (France, Belgique,
-> Suisse, Luxembourg) sur l'intégration concrète de l'intelligence artificielle. Il repère les
-> tâches administratives les plus lourdes — indicateurs Qualiopi, bilan pédagogique et financier,
-> suivi des présences — les automatise une à une, puis rend les équipes autonomes sur les outils
-> mis en place.
+> Claude Agency est un cabinet de conseil parisien spécialisé dans l'adoption de l'intelligence
+> artificielle par les organismes de formation francophones : France, Belgique, Suisse et
+> Luxembourg. Sa cible n'est pas le grand public, mais un métier précis, avec ses propres
+> contraintes administratives.
+>
+> Les responsables pédagogiques et administratifs d'un organisme de formation consacrent une
+> part importante de leur temps à des tâches répétitives : constitution des preuves Qualiopi,
+> remplissage du bilan pédagogique et financier, suivi des feuilles d'émargement, montage des
+> dossiers de financement, rédaction des conventions. Ce temps administratif empiète directement
+> sur le temps pédagogique et commercial.
+>
+> Claude Agency identifie, dans chaque structure, les tâches les plus chronophages et les
+> automatise une par une, en gardant chaque automatisation sous contrôle humain : l'outil
+> prépare, la personne valide. Une fois l'automatisation posée, l'équipe est formée à s'en servir
+> seule, sans dépendre d'un prestataire externe pour la faire fonctionner au quotidien.
+>
+> Le cabinet ne vend pas de solution technique clé en main déconnectée du métier : chaque
+> intervention part d'un audit du fonctionnement réel de l'organisme, pas d'un outil générique
+> plaqué dessus. L'objectif est mesurable : du temps administratif récupéré, documenté, sans
+> jargon technique inutile pour des équipes qui ne sont pas censées devenir informaticiennes.
 
 ## Champs à remplir
 
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (e-mail + mot de passe) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom du site / raison sociale | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)` ou `Claude Agency` selon le champ demandé | NAP verbatim en `kit-identite.md` §1 ; à trancher entre raison sociale légale et nom commercial si le formulaire ne précise pas lequel |
+| Nom du site | `Claude Agency` | Champ unique « Nom du site », pas de champ séparé pour la raison sociale légale — tranché, confirmé sur le formulaire réel le 17/08/2026 |
 | URL du site | `https://claudeagency.fr` | `kit-identite.md` §1 |
 | Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
 | Catégorie | Conseil en stratégie digitale | Liste réelle vue le 17/08/2026 sur le formulaire : **un seul choix possible** (pas multi comme d'abord supposé). Ni « intelligence artificielle » ni « cabinet de conseil » n'y figurent ; « Conseil en stratégie digitale » décrit le service vendu (à préférer à « Conseil en formation », qui décrirait la clientèle visée et se lirait à tort comme « organisation de programmes de formation interne »). Repli : « Conseil en innovation ». Éviter « Conseil en recrutement », sans rapport. Suggérer `Intelligence artificielle` dans le champ libre « Proposer des catégories » si le formulaire le permet en plus du choix unique |
-| Description | voir section « Description » ci-dessus (387 caractères) | Rédigée spécifiquement pour cette fiche, jamais publiée ailleurs |
+| Description | voir section « Description » ci-dessus (1 469 caractères) | Rédigée spécifiquement pour cette fiche, jamais publiée ailleurs ; champ « originale et unique, pas de copier-coller » (5000 caractères disponibles, vu sur le formulaire réel) |
+| Titre du Twitter / Adresse du Twitter (URL) | laisser vide | Facultatif (pas d'astérisque) ; aucun compte X/Twitter documenté dans `kit-identite.md` |
 | Mots-clés | à trancher | Non couvert par `kit-identite.md` ; proposition : organismes de formation, Qualiopi, automatisation, IA, conseil |
 | Lien retour vers annuaireduconseil.com | déjà posé | Footer de `claudeagency.fr`, ajouté et poussé le 2026-08-17 (commit `6781807`) — condition remplie avant soumission |
 | **Preuve — URL de la fiche publiée** | *(à coller par SOLOHERY après validation)* | Vide, volontairement |
