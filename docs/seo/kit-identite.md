@@ -43,6 +43,19 @@ cible de 200 caractères que le même document fixe ligne 37.
 > Claude Agency accompagne les organismes de formation dans l'adoption de l'IA : audit,
 > automatisation du back-office (Qualiopi, BPF, émargement) et formation des équipes.
 
+### Description moyenne — 481 caractères
+
+Condensée à partir des mêmes sources que les deux autres (aucun fait nouveau) : la phrase
+d'ouverture et l'énumération de services de `NETLINKING-ACTIONS.md`, la méthode et la promesse
+d'autonomie de `linkedin-kit.md`. Cible visée par le prompt initial : ~500 caractères.
+
+> Claude Agency est un cabinet de conseil qui aide les organismes de formation français à
+> intégrer l'intelligence artificielle et à automatiser leurs process : audit et diagnostic IA,
+> automatisation du back-office (Qualiopi, BPF, émargement, dossiers de financement) et
+> formation des équipes. Notre méthode : un flux à la fois, l'IA prépare, l'humain valide — vous
+> gardez toujours la main. Pas de jargon, pas de dépendance : nous formons et outillons pour que
+> vous restiez autonomes.
+
 ### Description longue — 1650 caractères
 
 Source : `docs/seo/linkedin-kit.md` (section « Description « À propos » », page entreprise
@@ -79,10 +92,8 @@ LinkedIn), calibrée pour la fourchette 1500-2000 caractères que le même docum
 >
 > En savoir plus : https://claudeagency.fr
 
-**À trancher.** Ni `NETLINKING-ACTIONS.md` ni `linkedin-kit.md` ne contiennent de texte rédigé
-à ~500 caractères — seulement le court (169, calibré 200) et le long (1650, calibré 1500-2000).
-Si un annuaire de la Vague 1 impose un champ à ~500 caractères, ce texte reste à rédiger : ce kit
-ne l'invente pas.
+La version longue (1650 caractères) reste disponible ci-dessus pour tout usage qui accepte un
+texte plus développé (page « À propos » LinkedIn notamment, sa source d'origine).
 
 ---
 
@@ -97,7 +108,16 @@ ne l'invente pas.
 | Année de création | 11/03/2024 | Information fournie et vérifiée le 13/08/2026 |
 | Effectif | à trancher | Non prouvé dans le dépôt ni dans les informations fournies |
 | E-mail public | contact@claudeagency.fr | Information fournie et vérifiée le 13/08/2026 |
-| Logo | PNG : `app/public/logo.png` (512×512) · SVG : `app/public/favicon.svg` | Fichiers présents dans le dépôt |
+| Logo | PNG : `app/public/logo.png` (512×512) · SVG : `app/public/favicon.svg` — même étoile à 12 branches, même couleur `#CC785C`, vérifié visuellement (voir note ci-dessous) | Fichiers présents dans le dépôt |
+
+**Note sur le logo — vérifié visuellement.** `logo.png` et `favicon.svg` sont le même symbole :
+une étoile à 12 branches avec un point central, en `#CC785C` (le orange-terracotta de la marque
+Claude/Anthropic), sans texte. Ce n'est **pas** une favicon simplifiée distincte d'un « vrai »
+logo : le PNG utilisé comme logo du site est exactement ce même symbole, juste en raster. Donc le
+SVG demandé existe bel et bien dans le dépôt et correspond au logo réellement utilisé.
+Ce qui n'existe en revanche **pas** dans le dépôt : un logotype avec le texte « Claude Agency »
+(nom de marque écrit) — seul le symbole existe, en PNG et en SVG. Si un annuaire exige un logo
+avec le nom de l'entreprise inscrit dessus, ce fichier reste à créer : à trancher avec Julien.
 
 **Point d'éligibilité à rappeler sur chaque fiche** (`NETLINKING-ACTIONS.md` l.8-12) : Claude
 Agency est un cabinet de conseil, pas un organisme de formation déclaré — les annuaires alimentés

@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (2) — Kit d'identité : description ~500 caractères ajoutée, logo SVG vérifié
+
+**Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)
+
+**URLs :** aucune — document interne `docs/seo/kit-identite.md`
+
+**Pourquoi :** relecture de Julien sur l'entrée précédente : la cible ~500 caractères du prompt
+initial n'était pas couverte (seulement 169 et 1650), et l'hypothèse sur `favicon.svg` comme
+« logo SVG » n'avait pas été vérifiée visuellement.
+
+**Fait :** description moyenne de 481 caractères ajoutée dans `kit-identite.md`, condensée à
+partir des mêmes phrases déjà sourcées (aucun fait nouveau) — les trois longueurs (169 / 481 /
+1650) coexistent désormais, chacune avec sa longueur exacte et sa source. `logo.png` et
+`favicon.svg` comparés (lecture du SVG + rendu visuel du PNG) : même étoile à 12 branches, même
+couleur `#CC785C`, sans texte — ce n'est pas une favicon distincte d'un logo, les deux fichiers
+sont bien le même symbole en deux formats. Noté cependant : aucun logotype avec le texte « Claude
+Agency » n'existe dans le dépôt, seulement le symbole seul.
+
+**Mesure :** non mesuré — document de préparation, aucune fiche encore soumise.
+
+**Suite :** utiliser ce kit pour créer les 6 fiches de la Vague 1 ; trancher avec Julien si un
+annuaire exige un logo avec le nom de l'entreprise inscrit dessus (absent du dépôt).
+
+---
+
 ## 2026-08-17 — Kit d'identité : NAP source unique + descriptions + champs annuaires
 
 **Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)
