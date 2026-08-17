@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (12) — Catégories réelles relevées sur le formulaire Annuaire du Conseil
+
+**Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
+
+**URLs :** aucune nouvelle — mise à jour de `docs/seo/fiche-annuaireduconseil.md`
+
+**Pourquoi :** SOLOHERY était sur le formulaire réel d'annuaireduconseil.com et a montré la liste
+de catégories, absente de tout ce que `kit-identite.md` ou la fiche pouvaient deviner à l'avance
+(ni « cabinet de conseil » ni « intelligence artificielle » n'y figurent).
+
+**Fait :** recommandation initiale de trois catégories, corrigée en direct par SOLOHERY — **un
+seul choix est possible** sur ce formulaire, pas plusieurs. Retenu : **Conseil en stratégie
+digitale** (décrit le service vendu), au lieu de « Conseil en formation » qui décrirait à tort la
+clientèle visée et se lirait comme « organisation de programmes de formation interne ». Repli :
+« Conseil en innovation ». Écarté : « Conseil en recrutement », resté surligné sur la capture
+envoyée, sans rapport avec l'activité. Ligne « Catégorie » et étape 5 de la marche à suivre
+mises à jour dans `fiche-annuaireduconseil.md` avec cette valeur unique.
+
+**Mesure :** non mesuré — soumission en cours côté SOLOHERY, pas encore publiée.
+
+**Suite :** SOLOHERY colle l'URL de la fiche publiée dans la ligne Preuve de
+`fiche-annuaireduconseil.md` une fois validée.
+
+---
+
 ## 2026-08-17 (11) — Fiche Sortlist préparée, formulaire réel derrière connexion
 
 **Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)

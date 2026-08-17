@@ -60,7 +60,7 @@ accessibles du site ; ciblée par défaut sur 300-400 caractères comme demandé
 | Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
-| Catégorie | Cabinet de conseil (secondaire : Conseil en intelligence artificielle) | `kit-identite.md` §3 |
+| Catégorie | Conseil en stratégie digitale | Liste réelle vue le 17/08/2026 sur le formulaire : **un seul choix possible** (pas multi comme d'abord supposé). Ni « intelligence artificielle » ni « cabinet de conseil » n'y figurent ; « Conseil en stratégie digitale » décrit le service vendu (à préférer à « Conseil en formation », qui décrirait la clientèle visée et se lirait à tort comme « organisation de programmes de formation interne »). Repli : « Conseil en innovation ». Éviter « Conseil en recrutement », sans rapport. Suggérer `Intelligence artificielle` dans le champ libre « Proposer des catégories » si le formulaire le permet en plus du choix unique |
 | Description | voir section « Description » ci-dessus (387 caractères) | Rédigée spécifiquement pour cette fiche, jamais publiée ailleurs |
 | Mots-clés | à trancher | Non couvert par `kit-identite.md` ; proposition : organismes de formation, Qualiopi, automatisation, IA, conseil |
 | Lien retour vers annuaireduconseil.com | déjà posé | Footer de `claudeagency.fr`, ajouté et poussé le 2026-08-17 (commit `6781807`) — condition remplie avant soumission |
@@ -76,7 +76,9 @@ accessibles du site ; ciblée par défaut sur 300-400 caractères comme demandé
    **ne pas** prendre l'option Premium, qui supprime l'obligation de lien retour en échange
    d'un paiement.
 4. Coller nom, URL, adresse, téléphone, e-mail depuis le tableau ci-dessus.
-5. Choisir la catégorie « Cabinet de conseil » (ou équivalent le plus proche affiché).
+5. Choisir **« Conseil en stratégie digitale »** (choix unique, repli : « Conseil en
+   innovation ») ; ajouter `Intelligence artificielle` dans le champ « Proposer des
+   catégories » si le formulaire le permet en plus.
 6. Coller la description de la section « Description » ci-dessus (387 caractères, rédigée pour
    cette fiche, jamais publiée ailleurs).
 7. Renseigner les mots-clés proposés si le champ existe, ou choisir librement.
