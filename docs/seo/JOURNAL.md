@@ -5,6 +5,38 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (8) — Vérification officielle du statut NDA / Qualiopi (SIREN 924997539)
+
+**Type :** audit (vérification réglementaire, aucune fiche modifiée)
+
+**URLs :** https://recherche-entreprises.api.gouv.fr/search?q=924997539 — API officielle
+agrégeant SIRENE et les données du Ministère du Travail
+
+**Pourquoi :** `kit-identite.md` (§3) et `NETLINKING-ACTIONS.md` (l.8-12) affirmaient sans
+vérification que Claude Agency est un cabinet de conseil non déclaré organisme de formation,
+avec les annuaires Qualiopi fermés en conséquence. Vérification demandée avant de trancher la
+catégorie des 6 fiches de la Vague 1 et l'éligibilité aux deux fédérations de la Vague 2.
+
+**Fait :** requête API sur le SIREN 924 997 539. Réponse : `est_organisme_formation: true`,
+`liste_id_organisme_formation: ["11757002275"]` (NDA 11 75 70022 75, champ documenté dans le
+schéma OpenAPI de l'API comme provenant du Ministère du Travail) et `est_qualiopi: true`, donnée
+mise à jour le 16/08/2026. **Ce constat contredit l'hypothèse posée dans les deux fichiers
+ci-dessus** : ce SIREN est bien un organisme de formation déclaré, certifié Qualiopi. Section
+« 4. Statut réglementaire » ajoutée dans `kit-identite.md` avec le détail et les sources. Le NAF
+85.59B n'a pas été utilisé comme preuve (générique, ne prouve rien seul). Conséquence actée pour
+ce constat (consigne reçue) : rien à soumettre côté annuaires Qualiopi, les listes publiques
+recopiant déjà le fichier du Ministère du Travail — ils restent donc écartés (onglet
+⛔ Interdits). La catégorie des 6 fiches et l'éligibilité aux deux fédérations ne sont **pas**
+modifiées ici : décision qui revient à Julien.
+
+**Mesure :** non applicable — vérification documentaire, aucune fiche soumise.
+
+**Suite :** Julien tranche si la catégorie des 6 fiches (`kit-identite.md` §3) et le bandeau
+d'éligibilité de `NETLINKING-ACTIONS.md` (l.8-12) doivent être mis à jour (« organisme de
+formation » en plus de ou à la place de « cabinet de conseil »).
+
+---
+
 ## 2026-08-17 (7) — Description inédite rédigée pour la fiche Annuaire du Conseil
 
 **Type :** netlinking (préparation, aucune fiche soumise)

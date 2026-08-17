@@ -137,6 +137,37 @@ mélanger les deux dans une même fiche.
 
 ---
 
+## 4. Statut réglementaire
+
+Vérifié le 17/08/2026 via l'API officielle `recherche-entreprises.api.gouv.fr` (agrège les
+données SIRENE et les données du Ministère du Travail), sur la fiche du SIREN 924 997 539.
+
+**NDA : oui — 11 75 70022 75** — https://recherche-entreprises.api.gouv.fr/search?q=924997539 —
+donnée mise à jour le 16/08/2026 (champ `date_mise_a_jour` de la réponse). Champ source :
+`liste_id_organisme_formation`, documenté dans le schéma OpenAPI de l'API comme « Liste des
+numéro de déclaration d'activité des établissements organismes de formation (source : Ministère
+du Travail) ».
+
+**Qualiopi : oui** — même URL, même date de mise à jour (16/08/2026). Champ source :
+`est_qualiopi: true`. L'API ne détaille pas l'organisme certificateur ni la date de validité du
+certificat ; à compléter si un formulaire l'exige.
+
+Le NAF 85.59B (code générique « autres enseignements ») ne fonde ce constat en rien — les deux
+champs officiels ci-dessus sont la seule preuve retenue.
+
+**⚠️ Contredit l'hypothèse posée plus haut (§3, « point d'éligibilité ») et dans
+`NETLINKING-ACTIONS.md` (l.8-12), qui présentent Claude Agency comme un cabinet de conseil non
+déclaré organisme de formation, avec les annuaires Qualiopi fermés en conséquence. Les données
+officielles disent l'inverse pour ce SIREN. Conséquence actée pour cette vérification (consigne
+reçue) : rien à soumettre côté annuaires Qualiopi — les listes publiques ne font que recopier le
+fichier du Ministère du Travail, aucune démarche manuelle n'est donc utile, et les annuaires
+alimentés par la liste Qualiopi restent écartés (onglet ⛔ Interdits de `NETLINKING-ACTIONS.md`).
+En revanche, la case « catégorie » des 6 fiches (§3 ci-dessus) et l'éligibilité aux deux
+fédérations de la Vague 2 restent à trancher par Julien à la lumière de ce constat — non
+modifiées ici, hors périmètre de cette vérification.**
+
+---
+
 ## Reste
 
 - Logo : symbole seul (favicon.svg / logo.png), pas de wordmark pour l'instant — à revoir si un
