@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 — Kit d'identité : NAP source unique + descriptions + champs annuaires
+
+**Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)
+
+**URLs :** aucune — document interne `docs/seo/kit-identite.md`
+
+**Pourquoi :** la Vague 1 de `NETLINKING-ACTIONS.md` (6 fiches à créer) demande un NAP identique
+sur toutes les fiches sous peine de dédoublement d'entité côté Google. Le kit centralise le NAP,
+les deux descriptions déjà rédigées et les champs récurrents des annuaires pour que SOLOHERY
+copie sans reformuler.
+
+**Fait :** `docs/seo/kit-identite.md` créé avec le NAP fourni le 13/08/2026 (nom, adresse,
+téléphone) en bloc de code intouché, la description courte de `NETLINKING-ACTIONS.md` (169
+caractères, calibrée 200) et la description longue de `linkedin-kit.md` (1650 caractères,
+calibrée 1500-2000), et un tableau des champs annuaires (catégories, zone, langue, année de
+création, e-mail public, logo PNG/SVG du dépôt). Effectif marqué « à trancher », non prouvé.
+Aucun texte à ~500 caractères ne s'est trouvé dans les deux sources : signalé plutôt qu'inventé.
+
+**Mesure :** non mesuré — document de préparation, aucune fiche encore soumise.
+
+**Suite :** utiliser ce kit pour créer les 6 fiches de la Vague 1 ; rédiger le texte ~500
+caractères si un annuaire l'exige.
+
+---
+
 ## 2026-08-15 (3) — Plan SOLOHERY : B9 supprimée, retour à la ligne partout, onglet Mesures refondu
 
 **Type :** documentation de pilotage (aucune page, aucun contenu publié, aucun lien modifié)
