@@ -5,6 +5,39 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (11) — Fiche Sortlist préparée, formulaire réel derrière connexion
+
+**Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
+
+**URLs :** aucune publiée — document interne `docs/seo/fiche-sortlist.md` ; cible visée :
+https://www.sortlist.fr/providers/pricing
+
+**Pourquoi :** item #5 de la Vague 1 (`NETLINKING-ACTIONS.md`). SOLOHERY doit pouvoir créer le
+compte et soumettre la fiche sans deviner les champs.
+
+**Fait :** offre gratuite confirmée toujours active sur la page Tarifs (lue avec succès via le
+panneau navigateur, après plusieurs échecs de rendu — la page répond, la limite était côté
+session). Le formulaire de création de profil vit derrière un compte : non créé, hors périmètre
+de Claude Code. `help.sortlist.com` (centre d'aide) a renvoyé une erreur 403 dans cette session,
+donc pas de détail supplémentaire sur les champs de ce côté. Liste de champs reconstituée à
+partir du contenu que Sortlist décrit lui-même pour le profil gratuit (comparatif Gratuit /
+Sortlist+) et de la structure standard déjà validée pour les 5 autres fiches
+(`kit-identite.md` §3). `fiche-sortlist.md` créé : tableau Champ/Valeur/Remarque, marche à
+suivre en 11 étapes. Trouvé et signalé : Sortlist n'affiche aucune catégorie de service
+« formation », la consigne « secteur : formation professionnelle » devra probablement se placer
+dans un champ secteur-client plutôt que dans la catégorie de service — marqué « à trancher ».
+Champs absents du kit (langues, taille minimale de mission, image de couverture, photos
+d'équipe, réalisations, avis clients) tous marqués « à trancher » ou laissés vides ; aucune
+référence client inventée, conformément à la consigne.
+
+**Mesure :** non mesuré — document de préparation, rien de soumis.
+
+**Suite :** SOLOHERY crée le compte, ajuste l'ordre des champs sur le formulaire réel, tranche
+catégorie de service vs secteur, publie, colle l'URL dans la ligne Preuve de
+`fiche-sortlist.md`.
+
+---
+
 ## 2026-08-17 (10) — Deuxième source distincte pour le statut Qualiopi (SIREN 924997539)
 
 **Type :** audit (correction de rigueur méthodologique, aucune fiche modifiée)
