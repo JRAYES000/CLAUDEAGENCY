@@ -13,6 +13,16 @@ annuaires alimentés par la liste Qualiopi, aujourd'hui explicitement fermés da
 l'activité passée (l'école de naturopathie), garder la position actuelle « cabinet de conseil »
 sans y toucher.
 
+**⚠️ Nouvelle preuve du 17/08/2026 qui affaiblit l'option 2 : ce n'est pas un vestige.** En
+travaillant sur la tâche A2 (fiche Google Business existante), SOLOHERY a montré une capture de
+cette fiche : « ECOLE DE NATUROPATHIE & SOPH... », **4,9/5 sur 32 avis Google, 3,8/5 sur 2 avis
+Trustpilot**, catégorie « Centre de formation continue », avec des avis récents et concrets
+d'élèves (« j'ai récemment eu l'opportunité de suivre la formation en naturopathie... », « visité
+en avril »). L'activité de naturopathie est **active aujourd'hui**, pas passée. Ça bloque de fait
+A2 : compléter cette fiche pour en faire la vitrine Google de Claude Agency (Vague 1, netlinking
+IA) mélangerait sous un seul profil deux publics sans rapport, et diluerait une réputation déjà
+établie — décision à prendre avant de toucher à cette fiche, pas après.
+
 Rien n'a été modifié en attendant la réponse.
 
 ## Fichiers/sections à mettre à jour selon la réponse (aucun touché à ce jour)

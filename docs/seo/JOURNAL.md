@@ -5,6 +5,34 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (20) — Blocage réel identifié sur A2 : la fiche Google Business est active
+
+**Type :** audit (constat, aucune fiche modifiée — tâche A2 hors dépôt, sur le Sheet externe)
+
+**URLs :** aucune — capture d'écran fournie par SOLOHERY, mise à jour de
+`docs/seo/arbitrage-julien.md`
+
+**Pourquoi :** SOLOHERY a demandé quoi écrire en Preuve pour la tâche A2 (marquée « Bloqué » sur
+le Sheet), sans connaître la raison exacte du blocage — rien dans le dépôt ne l'expliquait.
+
+**Fait :** capture montrant la fiche Google Business existante (« ECOLE DE NATUROPATHIE &
+SOPH... ») : 4,9/5 sur 32 avis Google, 3,8/5 sur 2 avis Trustpilot, catégorie « Centre de
+formation continue », avis récents et concrets d'élèves en naturopathie. **Ce n'est pas une
+fiche vide à compléter : c'est une activité active**, pas un vestige — contredit directement
+l'option 2 d'`arbitrage-julien.md » (« traiter comme un vestige de l'activité passée »), mise à
+jour en conséquence avec cette preuve. Le blocage réel d'A2 : compléter cette fiche pour en
+faire la vitrine Google de Claude Agency mélangerait deux publics sans rapport (élèves en
+naturopathie / dirigeants d'organismes de formation) et diluerait une réputation déjà établie —
+décision de fond à prendre avant de toucher à la fiche, pas un problème d'accès ou
+d'identifiants.
+
+**Mesure :** non applicable — constat, rien à mesurer.
+
+**Suite :** Julien tranche `arbitrage-julien.md`, avec cette preuve en plus. A2 reste bloquée
+jusque-là.
+
+---
+
 ## 2026-08-17 (19) — Effectif Sortlist tranché à 2, Julien n'a pas donné le chiffre
 
 **Type :** documentation (correction tranchée, application du protocole de l'entrée (17))
