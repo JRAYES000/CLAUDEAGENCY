@@ -5,6 +5,35 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (10) — Deuxième source distincte pour le statut Qualiopi (SIREN 924997539)
+
+**Type :** audit (correction de rigueur méthodologique, aucune fiche modifiée)
+
+**URLs :** https://annuaire-entreprises.data.gouv.fr/entreprise/924997539 (nouvelle), en plus de
+https://recherche-entreprises.api.gouv.fr/search?q=924997539 (entrée (8))
+
+**Pourquoi :** le critère de validation d'A13 exige deux listes officielles consultées
+séparément, chacune avec sa propre URL. L'entrée (8) ne citait qu'une seule source agrégée pour
+NDA et Qualiopi — signalé comme non conforme.
+
+**Fait :** page `annuaire-entreprises.data.gouv.fr` atteinte via le panneau navigateur (l'échec
+précédent, entrée (8), était une limite de session, pas du site) : section « Labels et
+certificats » confirme « Organisme de formation (certifié Qualiopi) », mise à jour le
+17/08/2026. `kit-identite.md` §4 mis à jour avec les deux URL et leurs dates respectives.
+Tentative faite d'atteindre une troisième source réellement indépendante d'un organisme
+certificateur (API dédiée `entreprise.api.gouv.fr/catalogue/carif_oref/…`, opérée par un
+CARIF-OREF) : bloquée par une exigence de clé API absente de cette session — noté comme tel
+plutôt que recopié une deuxième fois. Honnêteté ajoutée dans le fichier : les deux URL retenues
+sont distinctes mais s'appuient sur la même chaîne de données publiques (INSEE, DGFiP, Douanes,
+MTPEI, INPI), pas sur deux registres tenus par des organismes différents.
+
+**Mesure :** non applicable — vérification documentaire.
+
+**Suite :** aucune — seul `kit-identite.md` §4 a été touché, conformément à la consigne de ne
+rien modifier ailleurs avant la réponse de Julien sur `arbitrage-julien.md`.
+
+---
+
 ## 2026-08-17 (9) — Note d'arbitrage envoyée à Julien (statut organisme de formation)
 
 **Type :** documentation (préparation de décision, aucune fiche/section substantielle modifiée)

@@ -139,8 +139,7 @@ mélanger les deux dans une même fiche.
 
 ## 4. Statut réglementaire
 
-Vérifié le 17/08/2026 via l'API officielle `recherche-entreprises.api.gouv.fr` (agrège les
-données SIRENE et les données du Ministère du Travail), sur la fiche du SIREN 924 997 539.
+Vérifié sur le SIREN 924 997 539, via deux URL distinctes consultées séparément.
 
 **NDA : oui — 11 75 70022 75** — https://recherche-entreprises.api.gouv.fr/search?q=924997539 —
 donnée mise à jour le 16/08/2026 (champ `date_mise_a_jour` de la réponse). Champ source :
@@ -148,9 +147,21 @@ donnée mise à jour le 16/08/2026 (champ `date_mise_a_jour` de la réponse). Ch
 numéro de déclaration d'activité des établissements organismes de formation (source : Ministère
 du Travail) ».
 
-**Qualiopi : oui** — même URL, même date de mise à jour (16/08/2026). Champ source :
-`est_qualiopi: true`. L'API ne détaille pas l'organisme certificateur ni la date de validité du
-certificat ; à compléter si un formulaire l'exige.
+**Qualiopi : oui** — https://annuaire-entreprises.data.gouv.fr/entreprise/924997539 (page
+consultée directement le 17/08/2026, distincte de l'URL ci-dessus) — section « Labels et
+certificats » : « Organisme de formation (certifié Qualiopi) », mise à jour le 17/08/2026. Cette
+page ne détaille pas l'organisme certificateur ni la date de validité du certificat ; à compléter
+si un formulaire l'exige.
+
+**Note d'honnêteté sur l'indépendance des sources.** Les deux URL sont réellement distinctes
+(API JSON vs page de l'Annuaire des Entreprises) et ont été consultées séparément. Elles ne sont
+en revanche pas deux registres tenus par des organismes différents : les deux s'appuient sur la
+même chaîne de données publiques (INSEE, DGFiP, Douanes, MTPEI/Ministère du Travail, INPI) — pas
+sur, par exemple, un registre propre à un organisme certificateur Qualiopi consulté en direct.
+Tentative faite d'atteindre une troisième source réellement indépendante (l'API Qualiopi
+dédiée `entreprise.api.gouv.fr/catalogue/carif_oref/certifications_qualiopi_france_competences`,
+opérée par un CARIF-OREF) : elle exige une clé API dont je ne dispose pas dans cette session,
+donc non vérifiée.
 
 Le NAF 85.59B (code générique « autres enseignements ») ne fonde ce constat en rien — les deux
 champs officiels ci-dessus sont la seule preuve retenue.
