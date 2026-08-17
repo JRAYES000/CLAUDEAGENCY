@@ -5,6 +5,32 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (15) — Décision de Julien : nom légal partout, pas « Claude Agency »
+
+**Type :** documentation (arbitrage, une fiche déjà soumise concernée)
+
+**URLs :** aucune — mise à jour de `kit-identite.md`, `fiche-sortlist.md`,
+`fiche-annuaireduconseil.md`
+
+**Pourquoi :** SOLOHERY a posé la question en direct à Julien pendant la soumission Sortlist :
+« dois-je toujours utiliser le nom ECOLE DE NATUROPATHIE ET SOPHROLOGIE comme nom de
+l'établissement ? » Réponse : **oui**, pour toutes les inscriptions prévues.
+
+**Fait :** décision consignée dans `kit-identite.md` §3, remplaçant les mentions « à trancher »
+laissées jusqu'ici entre raison sociale légale et marque commerciale. `fiche-sortlist.md` corrigé
+avant soumission (le champ « Nom de l'entreprise » était encore ouvert). **Point d'alerte :**
+`fiche-annuaireduconseil.md` a déjà été soumis avec `Claude Agency` (entrée (14)), avant cette
+décision — la fiche est encore au statut « En attente », donc modifiable via « Modifier » sur le
+tableau de bord, mais je ne l'ai pas éditée : correction laissée à la décision de Julien
+(éditer la fiche déjà soumise, ou la laisser telle quelle).
+
+**Mesure :** non applicable.
+
+**Suite :** Julien confirme s'il faut éditer la fiche Annuaire du Conseil déjà soumise. Toute
+fiche future (Sortlist en cours, PagesJaunes, Crunchbase, etc.) utilise le nom légal.
+
+---
+
 ## 2026-08-17 (14) — Fiche Annuaire du Conseil soumise, en attente de modération
 
 **Type :** netlinking (soumission faite par SOLOHERY)

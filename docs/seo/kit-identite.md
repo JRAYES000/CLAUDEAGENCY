@@ -127,7 +127,16 @@ manque.
 **Point d'éligibilité à rappeler sur chaque fiche** (`NETLINKING-ACTIONS.md` l.8-12) : Claude
 Agency est un cabinet de conseil, pas un organisme de formation déclaré — les annuaires alimentés
 par la liste Qualiopi (Pronéo, AnnuaireQualiopi.fr, lifelong-learning.lu) sont fermés et ne doivent
-pas être tentés.
+pas être tentés. **À relire à la lumière de `arbitrage-julien.md` : le SIREN a en réalité un NDA
+actif et une certification Qualiopi (voir §4 ci-dessous) — arbitrage en attente.**
+
+**Décidé par Julien le 17/08/2026, question posée en direct pendant la soumission Sortlist :
+utiliser `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` comme nom d'établissement sur toutes les
+inscriptions aux annuaires prévues, pas `Claude Agency`.** Remplace toute mention contraire
+laissée plus haut dans ce document ou dans les fiches déjà préparées (`fiche-sortlist.md`,
+`fiche-annuaireduconseil.md`). Conséquence à traiter : la fiche Annuaire du Conseil est déjà
+soumise avec `Claude Agency` (statut « En attente » au 17/08/2026, encore modifiable) —
+correction non faite tant que Julien n'a pas confirmé s'il faut l'éditer ou la laisser.
 
 **Écart à connaître entre e-mail public et e-mail de prospection.** Le NAP ci-dessus donne
 `contact@claudeagency.fr` comme e-mail public (information fournie le 13/08/2026).

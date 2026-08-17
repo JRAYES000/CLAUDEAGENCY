@@ -69,7 +69,7 @@ Longueur recomptée mécaniquement (`wc -m`) après écriture dans le fichier, p
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (e-mail + mot de passe) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom du site | `Claude Agency` | Champ unique « Nom du site », pas de champ séparé pour la raison sociale légale — tranché, confirmé sur le formulaire réel le 17/08/2026 |
+| Nom du site | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | ⚠️ **Déjà soumis avec `Claude Agency`** avant l'arbitrage de Julien du 17/08/2026 (nom légal partout, pas la marque) — statut « En attente » au moment de l'arbitrage, encore modifiable via « Modifier » sur le tableau de bord. Correction non faite tant que Julien n'a pas confirmé s'il faut éditer la fiche déjà soumise ou la laisser telle quelle |
 | URL du site | `https://claudeagency.fr` | `kit-identite.md` §1 |
 | Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |

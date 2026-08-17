@@ -38,7 +38,7 @@ confirmer une fois le formulaire réel ouvert.
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (e-mail + mot de passe) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom de l'agence | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)` ou `Claude Agency` selon le champ demandé | NAP verbatim, `kit-identite.md` §1 ; à trancher entre raison sociale légale et nom commercial si le formulaire ne précise pas lequel |
+| Nom de l'agence | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Tranché par Julien le 17/08/2026 en direct : nom légal partout, pas `Claude Agency`, sur toutes les inscriptions à venir (voir `kit-identite.md` §3) |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
 | Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
