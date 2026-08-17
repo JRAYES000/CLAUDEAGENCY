@@ -5,6 +5,32 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (6) — Fiche Annuaire du Conseil préparée, formulaire réel derrière connexion
+
+**Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
+
+**URLs :** aucune publiée — document interne `docs/seo/fiche-annuaireduconseil.md` ; cible
+visée : https://annuaireduconseil.com/webmaster-submit-website.html
+
+**Pourquoi :** item #4 de la Vague 1, condition remplie côté site (lien retour posé au footer,
+entrée précédente). SOLOHERY doit pouvoir soumettre la fiche sans deviner les champs.
+
+**Fait :** page d'accueil et page de règles (`/info/useCondition`) lues avec succès, mais le
+formulaire de soumission du site vit derrière un compte (e-mail/mot de passe) — non créé, hors
+périmètre de Claude Code. Liste de champs reconstituée à partir des règles publiées et de la
+structure standard d'un annuaire. Trouvé et consigné : la description doit être **unique, jamais
+publiée ailleurs en ligne** — les textes de `kit-identite.md` (dont le long, déjà sur LinkedIn) ne
+conviennent donc pas ici, une description neuve reste à rédiger. `fiche-annuaireduconseil.md`
+créé : tableau Champ/Valeur/Remarque, marche à suivre en 10 étapes qui s'arrête avant l'offre
+Premium payante, ligne Preuve laissée vide.
+
+**Mesure :** non mesuré — document de préparation, rien de soumis.
+
+**Suite :** SOLOHERY vérifie que le lien retour est en ligne (déploiement Cloudflare), rédige la
+description unique demandée, puis exécute les 10 étapes.
+
+---
+
 ## 2026-08-17 (5) — Lien retour vers annuaireduconseil.com dans le footer
 
 **Type :** netlinking (lien posé sur le site)
