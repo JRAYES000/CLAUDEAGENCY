@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (4) — Fiche PagesJaunes/Solocal préparée, page bloquée par anti-robot
+
+**Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
+
+**URLs :** aucune publiée — document interne `docs/seo/fiche-pagesjaunes-solocal.md` ; cible
+visée : https://www.solocal.com/landing/inscription-gratuite-pagesjaunes
+
+**Pourquoi :** item #3 de la Vague 1 (`NETLINKING-ACTIONS.md`). SOLOHERY doit pouvoir coller les
+valeurs sans deviner ni recopier de mémoire.
+
+**Fait :** trois tentatives de lecture de la page (`WebFetch`, navigateur x2) ont échoué —
+`WebFetch` renvoie 403, le navigateur affiche l'interstitiel Cloudflare « Just a moment… ».
+Basculé sur la liste de champs standard d'une fiche Solocal, croisée avec `NETLINKING-ACTIONS.md`
+l.35-37. `docs/seo/fiche-pagesjaunes-solocal.md` créé : tableau Champ/Valeur/Remarque rempli
+depuis `kit-identite.md` (NAP verbatim), horaires et effectif marqués « à trancher », marche à
+suivre en 12 étapes qui s'arrête avant toute demande de moyen de paiement, ligne « Preuve »
+laissée vide pour SOLOHERY. Aucun compte créé, aucun mot de passe saisi, aucune fiche soumise.
+
+**Mesure :** non mesuré — document de préparation, rien de publié.
+
+**Suite :** SOLOHERY exécute les 12 étapes, colle l'URL de la fiche dans la ligne Preuve du
+document une fois validée.
+
+---
+
 ## 2026-08-17 (3) — Kit d'identité : logo tranché — symbole seul, pas de wordmark
 
 **Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)
