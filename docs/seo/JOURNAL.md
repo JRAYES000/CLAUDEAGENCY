@@ -5,6 +5,33 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (16) — Fiche Crunchbase préparée, formulaire réel derrière connexion
+
+**Type :** netlinking (préparation, aucune fiche soumise, aucun compte créé)
+
+**URLs :** aucune publiée — document interne `docs/seo/fiche-crunchbase.md` ; cible visée :
+https://www.crunchbase.com/add-new
+
+**Pourquoi :** item #6 de la Vague 1 (`NETLINKING-ACTIONS.md`), lien nofollow — intérêt en
+signal d'entité pour Google/moteurs IA, pas en autorité SEO.
+
+**Fait :** `/add-new` a renvoyé une 403 en accès direct et via le panneau navigateur (deux
+échecs, pas de troisième tentative). Champs reconstitués depuis les articles d'aide officiels de
+Crunchbase (compte requis, Nom + Description obligatoires, modération humaine + automatique
+avant publication, délai non précisé). Nom légal utilisé (`ECOLE DE NATUROPATHIE ET
+SOPHROLOGIE`, décision de Julien de l'entrée (15)). Descriptions traduites en anglais ; NAP
+volontairement non traduit (adresse, téléphone au format inchangé). Effectif et financement
+marqués **« inconnu »**, conformément à la consigne — aucune valeur approchée. LinkedIn de
+l'entreprise marqué « à trancher », page pas encore confirmée en ligne.
+
+**Mesure :** non mesuré — document de préparation, rien de soumis.
+
+**Suite :** SOLOHERY crée le compte, ajuste l'ordre des champs sur le formulaire réel, soumet,
+attend la modération, colle l'URL du profil publié dans la ligne Preuve de
+`fiche-crunchbase.md`.
+
+---
+
 ## 2026-08-17 (15) — Décision de Julien : nom légal partout, pas « Claude Agency »
 
 **Type :** documentation (arbitrage, une fiche déjà soumise concernée)
