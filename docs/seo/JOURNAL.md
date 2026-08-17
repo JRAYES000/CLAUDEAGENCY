@@ -5,6 +5,36 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (9) — Note d'arbitrage envoyée à Julien (statut organisme de formation)
+
+**Type :** documentation (préparation de décision, aucune fiche/section substantielle modifiée)
+
+**URLs :** aucune — document interne `docs/seo/arbitrage-julien.md`
+
+**Pourquoi :** l'entrée (8) ci-dessous a mis au jour une contradiction confirmée par vérification
+indépendante côté Julien : le NDA/Qualiopi réel de ce SIREN contredit la position « cabinet de
+conseil, pas organisme de formation » de `kit-identite.md` §3 et `NETLINKING-ACTIONS.md` l.8-12.
+Julien a demandé une note d'arbitrage plutôt qu'une correction directe, et a précisé qu'aucune
+autre fiche ne devait être touchée avant sa réponse.
+
+**Fait :** `docs/seo/arbitrage-julien.md` créé — deux options (se déclarer organisme de formation
+vs. traiter le NDA/Qualiopi comme un vestige de l'ancienne activité), et la liste précise des
+fichiers/sections à modifier selon la réponse. En reconstituant cette liste, trouvé une troisième
+source jusque-là non repérée : `PLAN-SOLOHERY.md` §7, ligne « Annuaires Qualiopi » (l.247),
+écartée le 12/08/2026 avec la note « à réexaminer si la tâche A13 révèle un NDA » — exactement ce
+qui vient de se produire — plus l'onglet ⛔ Interdits du Google Sheet qui la miroir. Trouvé aussi
+que la phrase de clôture ajoutée dans `kit-identite.md` §4 (entrée (8)) cite à tort « onglet
+⛔ Interdits de `NETLINKING-ACTIONS.md` » : cette liste vit en réalité dans `PLAN-SOLOHERY.md` §7,
+pas dans `NETLINKING-ACTIONS.md` — corrigé nulle part encore, seulement noté dans la note
+d'arbitrage, conformément à la consigne de ne rien toucher d'autre.
+
+**Mesure :** non applicable — document de préparation, aucune fiche soumise.
+
+**Suite :** attendre la réponse de Julien, puis mettre à jour dans un seul lot les cinq
+emplacements listés dans `arbitrage-julien.md` (dont la correction de citation ci-dessus).
+
+---
+
 ## 2026-08-17 (8) — Vérification officielle du statut NDA / Qualiopi (SIREN 924997539)
 
 **Type :** audit (vérification réglementaire, aucune fiche modifiée)
