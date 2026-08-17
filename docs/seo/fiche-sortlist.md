@@ -54,7 +54,7 @@ confirmer une fois le formulaire réel ouvert.
 | Photos d'équipe | à trancher | Absent du dépôt — non fourni |
 | Réalisations / travaux (portfolio) | à trancher | Rien à coller sans inventer — proposer d'y renvoyer vers les articles du blog ou les pages `services/` en attendant de vrais cas clients |
 | Avis / références clients | **laisser vide** | Aucune référence client disponible (société créée le 11/03/2024) — n'en inventer aucune, consigne explicite |
-| **Preuve — URL de la fiche publiée** | *(à coller par SOLOHERY après publication)* | Vide, volontairement |
+| **Preuve — URL de la fiche publiée** | https://www.sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie | Publiée et vérifiée le 17/08/2026 : nom légal, slogan, description, logo, langue conformes ; aucun avis inventé. Écart constaté : « 3 personnes dans leur équipe » affiché (la fiche proposait `1` par défaut) — à confirmer si c'est le vrai chiffre. Bannière : le logo apparaît étiré en pleine largeur, pas une vraie image de couverture — à améliorer plus tard, non bloquant |
 
 ## Marche à suivre
 

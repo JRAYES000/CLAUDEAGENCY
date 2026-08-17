@@ -5,6 +5,33 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (18) — Fiche Sortlist publiée et vérifiée
+
+**Type :** netlinking (publication vérifiée)
+
+**URLs :** https://www.sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie — **en ligne**,
+Vague 1 item #5 clos
+
+**Pourquoi :** dernière étape de `fiche-sortlist.md` : SOLOHERY a rempli et publié la fiche,
+capture d'écran envoyée pour vérification.
+
+**Fait :** comparaison champ par champ avec la fiche préparée. Conformes : nom légal (« École de
+Naturopathie et Sophrologie »), slogan officiel du site (`BaseLayout.astro:22`), description
+481 caractères de `kit-identite.md`, logo, langue Français, aucun avis client inventé (« Aucun
+avis pour le moment » affiché, exact). Deux écarts constatés et notés, non bloquants : « 3
+personnes dans leur équipe » affiché au lieu du `1` par défaut proposé (à confirmer que c'est le
+vrai chiffre) ; la bannière du haut affiche le logo étiré en pleine largeur plutôt qu'une vraie
+image de couverture (absente du dépôt, comme signalé dès la préparation). Prix de départ et
+onglet Services non vérifiés (hors du champ visible sur la capture envoyée). Champ **Preuve** de
+`fiche-sortlist.md` rempli avec l'URL et le constat de vérification.
+
+**Mesure :** non mesuré — fiche tout juste publiée, pas de trafic ni de lead à ce stade.
+
+**Suite :** confirmer le vrai effectif si « 3 » n'est pas exact ; envisager une vraie bannière
+plus tard ; item #5 de la Vague 1 clos dans `NETLINKING-ACTIONS.md` (à cocher).
+
+---
+
 ## 2026-08-17 (17) — Nouveau protocole de Julien : trancher sans remonter, tracer la raison
 
 **Type :** documentation (changement de méthode de travail + décisions tranchées sur Sortlist)
