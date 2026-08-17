@@ -5,6 +5,27 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (3) — Kit d'identité : logo tranché — symbole seul, pas de wordmark
+
+**Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)
+
+**URLs :** aucune — document interne `docs/seo/kit-identite.md`
+
+**Pourquoi :** point laissé ouvert par l'entrée précédente (absence de logotype avec le texte
+« Claude Agency »). Julien tranche : le symbole seul suffit, cohérent avec le site
+claudeagency.fr qui utilise lui-même du texte stylé en HTML plutôt qu'un logo graphique avec le
+nom intégré.
+
+**Fait :** `kit-identite.md` mis à jour — la note sur le logo acte la décision au lieu de la
+lister comme ouverte, et une section « Reste » ajoutée en fin de document reprend les deux points
+encore ouverts (logo à revoir si un annuaire l'exige explicitement, effectif non prouvé).
+
+**Mesure :** non mesuré — document de préparation, aucune fiche encore soumise.
+
+**Suite :** utiliser ce kit pour créer les 6 fiches de la Vague 1.
+
+---
+
 ## 2026-08-17 (2) — Kit d'identité : description ~500 caractères ajoutée, logo SVG vérifié
 
 **Type :** netlinking (préparation, aucun lien créé, aucune fiche soumise)

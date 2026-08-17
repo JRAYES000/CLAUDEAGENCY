@@ -116,8 +116,13 @@ Claude/Anthropic), sans texte. Ce n'est **pas** une favicon simplifiée distinct
 logo : le PNG utilisé comme logo du site est exactement ce même symbole, juste en raster. Donc le
 SVG demandé existe bel et bien dans le dépôt et correspond au logo réellement utilisé.
 Ce qui n'existe en revanche **pas** dans le dépôt : un logotype avec le texte « Claude Agency »
-(nom de marque écrit) — seul le symbole existe, en PNG et en SVG. Si un annuaire exige un logo
-avec le nom de l'entreprise inscrit dessus, ce fichier reste à créer : à trancher avec Julien.
+(nom de marque écrit) — seul le symbole existe, en PNG et en SVG.
+
+**Décidé par Julien le 17/08/2026 : le symbole seul (favicon.svg / logo.png) est utilisé pour
+toutes les fiches annuaires, pas de logo avec texte pour l'instant.** Confirmé : le site
+claudeagency.fr utilise lui-même du texte stylé en HTML pour son nom, pas un logo graphique avec
+le nom intégré — l'absence de wordmark dans le dépôt reflète donc un choix déjà fait, pas un
+manque.
 
 **Point d'éligibilité à rappeler sur chaque fiche** (`NETLINKING-ACTIONS.md` l.8-12) : Claude
 Agency est un cabinet de conseil, pas un organisme de formation déclaré — les annuaires alimentés
@@ -129,3 +134,11 @@ pas être tentés.
 `NETLINKING-ACTIONS.md` (arbitrage de Julien du 15/08/2026) utilise `equipe1@claudeagency.fr` pour
 les demandes d'adhésion aux fédérations — un usage différent, pas une contradiction : ne pas
 mélanger les deux dans une même fiche.
+
+---
+
+## Reste
+
+- Logo : symbole seul (favicon.svg / logo.png), pas de wordmark pour l'instant — à revoir si un
+  annuaire de la Vague 1 l'exige explicitement.
+- Effectif : à trancher, non prouvé.
