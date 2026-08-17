@@ -55,7 +55,7 @@ confirmer une fois le formulaire réel ouvert.
 | Réalisations / travaux (portfolio) | à trancher | Rien à coller sans inventer — proposer d'y renvoyer vers les articles du blog ou les pages `services/` en attendant de vrais cas clients |
 | Avis / références clients | **laisser vide** | Aucune référence client disponible (société créée le 11/03/2024) — n'en inventer aucune, consigne explicite |
 | **Preuve — URL de la fiche publiée** | https://www.sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie | Publiée et vérifiée le 17/08/2026 : nom légal, slogan, description, logo, langue conformes ; aucun avis inventé. Bannière : le logo apparaît étiré en pleine largeur, pas une vraie image de couverture — à améliorer plus tard, non bloquant |
-| Taille d'équipe — correction | **2**, pas 3 | Julien n'a pas donné le vrai chiffre ; tranché par Claude Code : seules deux personnes sont nommées dans tout le dépôt (Antoine RAYES président, Julien RAYES contact commercial, `kit-identite.md` §1), cohérent avec le registre officiel (« unité non employeuse », 0 salarié). Le `3` affiché n'est appuyé par aucune donnée du dépôt. À corriger sur la fiche publiée par SOLOHERY |
+| Taille d'équipe — correction | **2**, corrigé | Julien n'a pas donné le vrai chiffre ; tranché par Claude Code : seules deux personnes sont nommées dans tout le dépôt (Antoine RAYES président, Julien RAYES contact commercial, `kit-identite.md` §1), cohérent avec le registre officiel (« unité non employeuse », 0 salarié). **Corrigé sur la fiche publiée par SOLOHERY le 17/08/2026, non vérifié visuellement par Claude Code** |
 
 ## Marche à suivre
 
