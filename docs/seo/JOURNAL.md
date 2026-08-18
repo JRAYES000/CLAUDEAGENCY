@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (39) — Liste de prospection LinkedIn — un lien LinkedIn confirmé par recoupement
+
+**Type :** prospection LinkedIn, hors périmètre SEO (suite de l'entrée 38).
+
+**Pourquoi :** Julien a trouvé lui-même un lien LinkedIn pour une fiche marquée « inconnu » et a
+demandé une vérification par recoupement avant intégration — même exigence que pour la tentative
+précédente (entrée non journalisée : lien proposé pour une autre fiche, rejeté après recoupement
+car il pointait vers une personne différente occupant un poste différent au sein de la même
+structure ; fiche laissée en « inconnu », rien modifié).
+
+**Fait :** recoupement par recherche croisée (3 sources indépendantes convergentes : LinkedIn,
+TheOrg.com, communiqué officiel déjà cité en source de la fiche) confirmant que le lien pointe
+bien vers la bonne personne, au bon poste, dans la bonne structure. Une fiche mise à jour :
+« inconnu » → lien LinkedIn confirmé. Aucun lien reconstruit à partir d'un nom.
+
+**Mesure :** 30 fiches inchangées en nombre, 13 avec lien LinkedIn confirmé désormais (contre 12
+à l'entrée 38), 17 en « inconnu ».
+
+**Suite :** Julien recherche un lien pour une autre fiche encore marquée « inconnu » (Afpa) ; même
+protocole de vérification prévu avant intégration.
+
+---
+
 ## 2026-08-18 (38) — Liste de prospection LinkedIn (30 dirigeants OF) — recherche et correction
 
 **Type :** prospection LinkedIn, hors périmètre SEO (loggé ici faute d'autre journal suivi dans
