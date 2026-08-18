@@ -5,6 +5,36 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (29) — Candidature Digiformag recalée : anglais requis, 3 sujets déjà publiés
+
+**Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)
+
+**URLs :** https://www.digiformag.com/en/join-digiformag/, formulaire lu en entier le 18/08/2026
+(cookies acceptés via JS, `get_page_text` propre ensuite)
+
+**Pourquoi :** le brouillon existant dans `NETLINKING-ACTIONS.md` (Vague 3) n'avait jamais été
+confronté au vrai formulaire ni à l'état actuel du blog.
+
+**Fait :** deux points d'alerte trouvés. (1) Le formulaire est **entièrement en anglais**, avec
+prérequis explicite « Mastering the English language » — recherche de version française sans
+résultat (aucun lien de langue dans le DOM). Le brouillon français a été recalé en anglais. (2)
+**Les 3 sujets prévus sont déjà publiés quasi mot pour mot** : Qualiopi ≈
+`automatiser-qualiopi-ia.mdx`, BPF ≈ `remplir-bpf-organisme-formation.mdx`, AI Act ≈
+`ai-act-organisme-formation.mdx` (titre quasi identique). Trois angles voisins proposés à la
+place, vérifiés contre les articles les plus proches (`indicateurs-qualiopi.mdx`,
+`evaluer-apprenants-ia.mdx`, `sous-traitance-pedagogique-formation.mdx`) pour éviter un nouveau
+doublon. Champs réels relevés (Name, E-mail, réseaux, bio auteur, liens vers d'autres sites,
+sujets, RGPD) — **point d'honnêteté signalé** : le champ « articles sur d'autres sites » n'a pas
+de vraie réponse (aucune contribution externe connue), le blog propre proposé comme meilleure
+preuve disponible, à confirmer avant l'envoi unique. `NETLINKING-ACTIONS.md` mis à jour.
+
+**Mesure :** non applicable — préparation, rien envoyé.
+
+**Suite :** SOLOHERY tranche le point d'honnêteté, envoie. Pas de relance avant 15 jours
+(rédaction éditoriale, pas service client) ; candidature unique, pas de deuxième essai.
+
+---
+
 ## 2026-08-18 (28) — A8 : dernier champ tranché par SOLOHERY (Conférence)
 
 **Type :** netlinking (mise à jour mineure, formulaire toujours pas soumis à ma connaissance)

@@ -246,35 +246,78 @@ objet » dans Preuve, avec les deux dates d'envoi (14/08 et 21/08).
 Média spécialisé formation professionnelle et e-learning. Contribution gratuite, sous réserve
 d'acceptation de la rédaction. C'est le seul lien éditorial gratuit identifié.
 
-- Page : https://www.digiformag.com/en/join-digiformag/
-- À fournir : coordonnées, profil LinkedIn, bio auteur, liens vers des articles déjà publiés,
-  sujets proposés.
+- Page : https://www.digiformag.com/en/join-digiformag/ — **aucune version française trouvée**
+  (recherche de lien de langue dans le DOM le 18/08/2026 : aucun résultat, seuls des liens
+  Cookiebot/LinkedIn non pertinents matchaient). C'est la seule version.
 
-**Message à envoyer**, avec trois sujets déjà cadrés (proposer des sujets précis triple les
-chances d'acceptation par rapport à une candidature générique) :
+**⚠️ Point d'alerte trouvé en lisant le vrai formulaire.** La page est **entièrement en anglais**
+et liste comme prérequis explicite : *« Mastering the English language »*. Le brouillon
+précédent (ci-dessous, remplacé) était rédigé en français — recalé en anglais pour correspondre
+à ce que le formulaire demande réellement.
 
-> Objet : Proposition de contribution — IA et automatisation en organisme de formation
->
-> Bonjour,
->
-> Je dirige Claude Agency, un cabinet qui accompagne les organismes de formation dans l'usage
-> concret de l'IA. J'écris régulièrement sur le sujet et j'aimerais proposer des contributions à
-> Digiformag.
->
-> Trois sujets sur lesquels j'ai de la matière de terrain, chiffrée :
->
-> 1. Préparer un audit Qualiopi avec l'IA : ce qui marche vraiment, ce qui fait perdre du temps.
-> 2. Automatiser le BPF sans logiciel dédié — la méthode et ses limites.
-> 3. Ce que l'AI Act change concrètement pour un organisme de formation en 2026.
->
-> Vous trouverez mes articles publiés sur https://claudeagency.fr/blog/ et mon profil sur
-> [lien LinkedIn].
->
-> Dites-moi si l'un de ces angles vous intéresse, ou si vous préférez orienter le sujet
-> autrement.
->
-> Bien cordialement,
-> Julien Rayes — Claude Agency
+**⚠️ Second point : les 3 sujets initialement prévus sont déjà publiés, quasi mot pour mot.**
+Vérifié contre `app/src/content/blog/` :
+- Sujet 1 (audit Qualiopi) ≈ `automatiser-qualiopi-ia.mdx`, déjà publié : « Automatiser la
+  conformité Qualiopi avec l'IA » — description mentionne explicitement les « audits de
+  surveillance ».
+- Sujet 2 (BPF sans logiciel) ≈ `remplir-bpf-organisme-formation.mdx`, déjà publié : « BPF :
+  comment le remplir, avec ou sans logiciel ».
+- Sujet 3 (AI Act 2026) ≈ `ai-act-organisme-formation.mdx`, déjà publié : « AI Act et organismes
+  de formation : ce qui change en 2026 » — titre quasi identique.
+
+Trois angles voisins proposés à la place (vérifiés non couverts par `indicateurs-qualiopi.mdx`,
+`evaluer-apprenants-ia.mdx` et `sous-traitance-pedagogique-formation.mdx`, les articles les plus
+proches) — voir le champ « topics » ci-dessous.
+
+**Champs du formulaire réel, dans l'ordre (relevé le 18/08/2026)** :
+
+| Champ | Valeur à coller |
+| :--- | :--- |
+| Name — First | Julien |
+| Name — Last | Rayes |
+| E-mail * | contact@claudeagency.fr — pas equipe1@ : ce n'est pas une demande d'adhésion à une fédération (`kit-identite.md` §3 réserve equipe1@ à cet usage précis) |
+| Your networks — Site / Blog | https://claudeagency.fr/blog/ |
+| Your networks — Linkedin | https://www.linkedin.com/in/julien-rayes/ |
+| Your networks — Other | (vide) |
+| Write your author bio in a few lines * | voir bloc « Bio » ci-dessous |
+| Links to articles you write for other sites * | ⚠️ voir « point d'honnêteté » ci-dessous avant de coller |
+| What topics would you like to address? * | voir bloc « Sujets » ci-dessous |
+| Accord de confidentialité * | cocher |
+
+**Point d'honnêteté sur le champ « Links to articles you write for other sites ».** Ce champ
+demande des articles publiés sur **d'autres sites**, pas sur le sien. Aucune trace dans le dépôt
+d'une contribution de Julien Rayes publiée ailleurs que sur `claudeagency.fr`. Faute de mieux, la
+valeur proposée est le blog propre du site (`https://claudeagency.fr/blog/`) — ce n'est pas
+littéralement la bonne réponse à la question posée, seulement la meilleure preuve d'écriture
+disponible. Décision à confirmer par SOLOHERY/Julien avant l'envoi unique de cette candidature.
+
+**Bio (anglais, quelques lignes comme demandé)** :
+
+> Julien Rayes leads Claude Agency, a consulting firm helping French-speaking training
+> organizations (France, Belgium, Switzerland, Luxembourg) adopt AI in their day-to-day
+> operations: Qualiopi compliance, BPF reporting, attendance tracking, and hands-on staff
+> training on AI tools.
+
+**Sujets (anglais, 3 angles voisins des articles déjà publiés)** :
+
+> 1. Common mistakes AI makes when reasoning about Qualiopi compliance — and how to catch them
+>    before your auditor does.
+> 2. What's still blocking BPF automation in French training organizations, despite the tools
+>    already available.
+> 3. The AI Act's high-risk classification and what it means specifically for automated learner
+>    assessment tools.
+
+**Marche à suivre**
+
+1. Ouvrir https://www.digiformag.com/en/join-digiformag/, accepter les cookies si la bannière
+   bloque le formulaire.
+2. Remplir les champs dans l'ordre du tableau ci-dessus.
+3. Trancher le point d'honnêteté sur « Links to articles you write for other sites » avant de
+   coller quoi que ce soit — candidature unique, pas de deuxième essai.
+4. Coller la bio et les 3 sujets tels que rédigés ci-dessus (anglais).
+5. Cocher l'accord de confidentialité, cliquer Send.
+6. Noter la date d'envoi dans **Preuve**. **Pas de relance avant 15 jours** — c'est une
+   rédaction éditoriale, pas un service client.
 
 ---
 
