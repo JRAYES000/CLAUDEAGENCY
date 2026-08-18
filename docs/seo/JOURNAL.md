@@ -5,6 +5,28 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (32) — Federgon ajouté à la liste de suivi, statut A8 corrigé
+
+**Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)
+
+**URLs :** aucune — mise à jour de `docs/seo/arbitrage-julien.md`
+
+**Pourquoi :** l'e-mail Federgon (entrée (31)) utilise aussi « cabinet de conseil français »,
+même position en attente d'arbitrage que A7/A8. Julien a demandé son ajout à la liste de suivi
+des contacts externes pour en avoir la liste complète.
+
+**Fait :** ligne Federgon ajoutée au tableau (date prévue 17/08/2026, formulation engagée citée).
+Au passage, la ligne A8 était restée « pas encore envoyé » alors que l'envoi a été confirmé par
+SOLOHERY dans cette même session — corrigée à « Envoyé le 18/08/2026 », même fichier, même
+tableau, écart trop proche pour le laisser traîner.
+
+**Mesure :** non applicable.
+
+**Suite :** A9 (Digiformag) utilise aussi « consulting firm » en anglais dans sa bio — pas ajouté
+ici, Julien n'en a pas fait la demande ; à signaler s'il veut que la liste couvre aussi cet envoi.
+
+---
+
 ## 2026-08-18 (31) — E-mail d'éligibilité Federgon préparé, adresse revérifiée
 
 **Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)

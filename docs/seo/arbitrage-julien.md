@@ -53,7 +53,8 @@ but de cette liste, elle ne remplace pas les fichiers/sections ci-dessus.
 | # tâche | Fédération / tiers | Date d'envoi | Formulation engagée |
 | :--- | :--- | :--- | :--- |
 | A7 | Les Acteurs de la Compétence (ex-FFP) | **Envoyé le 18/08/2026** | Champ Message : « Cabinet de conseil en IA pour organismes de formation. » Confirmation reçue sur la page après soumission. |
-| A8 | Hub France IA | Préparé, pas encore envoyé (SOLOHERY envoie) | Champ « Pourquoi rejoindre le Hub France IA ? » : « Cabinet de conseil en IA pour organismes de formation français et francophones... » |
+| A8 | Hub France IA | **Envoyé le 18/08/2026** (confirmé par SOLOHERY) | Champ « Pourquoi rejoindre le Hub France IA ? » : « Cabinet de conseil en IA pour organismes de formation français et francophones... » |
+| Federgon | Federgon (Belgique) | Prévu le 17/08/2026 (SOLOHERY envoie) | Corps de l'e-mail : « cabinet de conseil français spécialisé dans l'intelligence artificielle appliquée à la formation professionnelle ». Simple question d'éligibilité, pas de dossier. |
 
 Les deux messages ont été gardés tels quels en connaissance de cause (voir `NETLINKING-ACTIONS.md`,
 sections respectives) : une demande d'info à une fédération n'engage rien juridiquement, mais
