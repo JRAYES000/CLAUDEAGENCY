@@ -280,16 +280,23 @@ proches) — voir le champ « topics » ci-dessous.
 | Your networks — Linkedin | https://www.linkedin.com/in/julien-rayes/ |
 | Your networks — Other | (vide) |
 | Write your author bio in a few lines * | voir bloc « Bio » ci-dessous |
-| Links to articles you write for other sites * | ⚠️ voir « point d'honnêteté » ci-dessous avant de coller |
+| Links to articles you write for other sites * | ⚠️ SOLOHERY tranche entre les deux options ci-dessous avant de coller |
 | What topics would you like to address? * | voir bloc « Sujets » ci-dessous |
 | Accord de confidentialité * | cocher |
 
-**Point d'honnêteté sur le champ « Links to articles you write for other sites ».** Ce champ
-demande des articles publiés sur **d'autres sites**, pas sur le sien. Aucune trace dans le dépôt
-d'une contribution de Julien Rayes publiée ailleurs que sur `claudeagency.fr`. Faute de mieux, la
-valeur proposée est le blog propre du site (`https://claudeagency.fr/blog/`) — ce n'est pas
-littéralement la bonne réponse à la question posée, seulement la meilleure preuve d'écriture
-disponible. Décision à confirmer par SOLOHERY/Julien avant l'envoi unique de cette candidature.
+**Champ « Links to articles you write for other sites » — deux options, à trancher par SOLOHERY
+avant l'envoi (candidature à essai unique, je ne choisis pas à sa place) :**
+
+Ce champ demande des articles publiés sur **d'autres sites**, pas sur le sien. Aucune trace dans
+le dépôt d'une contribution de Julien Rayes publiée ailleurs que sur `claudeagency.fr` — je n'ai
+trouvé aucune autre référence.
+
+- **Option A — répondre honnêtement qu'il n'y en a pas encore.** Laisser le champ vide, ou écrire
+  une mention explicite du type *« This would be my first contribution to an outside
+  publication. »* — colle à la réalité, mais peut affaiblir la candidature sur ce critère précis.
+- **Option B — une autre référence, si Julien en a une que je n'ai pas trouvée** (une tribune,
+  une interview écrite, un article invité sur un autre média, même ancien) — à fournir par
+  SOLOHERY/Julien, je ne peux pas la deviner.
 
 **Bio (anglais, quelques lignes comme demandé)** :
 
@@ -326,7 +333,37 @@ disponible. Décision à confirmer par SOLOHERY/Julien avant l'envoi unique de c
 | Cible | URL | Pourquoi c'est moins sûr |
 | :--- | :--- | :--- |
 | **myRHline — annuaire RH** | https://landing.myrhline.com/espace-annonceurs | Aucun tarif public, pas de formulaire libre — il faut passer par un commercial. |
-| **Federgon (Belgique)** | https://federgon.be/fr/devenir-membre/ | Fédération des services RH : le rattachement d'un cabinet IA/formation n'est pas garanti. À valider avec eux (membership@federgon.be) avant de monter un dossier. |
+| **Federgon (Belgique)** | https://federgon.be/fr/devenir-membre/ | Fédération des services RH : le rattachement d'un cabinet IA/formation n'est pas garanti. Question d'éligibilité envoyée avant tout dossier — voir ci-dessous. |
+
+### Federgon — question d'éligibilité par e-mail
+
+Adresse vérifiée le 18/08/2026 sur https://federgon.be/fr/devenir-membre/ : **toujours
+membership@federgon.be**, section Contact de la page (« Vous voulez devenir membre ou obtenir
+plus d'informations ? »), aucune autre adresse d'adhésion mentionnée.
+
+**E-mail prêt à envoyer — pas de dossier, pas de pièce jointe, une seule question :**
+
+> **À :** membership@federgon.be
+> **Objet :** Question d'éligibilité — cabinet de conseil français (IA / formation
+> professionnelle)
+>
+> Bonjour,
+>
+> Je dirige Claude Agency, un cabinet de conseil français spécialisé dans l'intelligence
+> artificielle appliquée à la formation professionnelle. Avant de préparer un dossier, je
+> souhaite vérifier un point d'éligibilité : un cabinet de conseil établi en France peut-il
+> adhérer à Federgon ? Merci d'avance pour votre retour.
+>
+> Bien cordialement,
+> Julien Rayes — Claude Agency
+> https://claudeagency.fr
+
+**Marche à suivre**
+
+1. Envoyer l'e-mail ci-dessus tel quel à membership@federgon.be, le 17/08/2026.
+2. Noter la date d'envoi dans **Preuve**.
+3. Sans réponse au 27/08/2026 : statut « Sans objet » dans Preuve, avec la date d'envoi. Pas de
+   relance intermédiaire prévue — une seule question, une seule échéance.
 | **Societe.com** | — | Les deux URL de revendication de fiche testées renvoient une 404. À vérifier à la main. |
 
 ---

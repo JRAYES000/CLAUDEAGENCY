@@ -5,6 +5,47 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (31) — E-mail d'éligibilité Federgon préparé, adresse revérifiée
+
+**Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)
+
+**URLs :** https://federgon.be/fr/devenir-membre/, revérifiée le 18/08/2026
+
+**Pourquoi :** item Vague 4 « à explorer, sans garantie » — le rattachement d'un cabinet IA/
+formation à cette fédération RH belge n'est pas garanti ; une question d'éligibilité par e-mail,
+sans dossier, teste le terrain avant tout effort de constitution de dossier.
+
+**Fait :** adresse `membership@federgon.be` confirmée toujours exacte (section Contact de la
+page, aucune autre adresse d'adhésion mentionnée). E-mail rédigé : une seule question, 3 phrases
+de corps, pas de dossier ni pièce jointe, comme demandé. `NETLINKING-ACTIONS.md` mis à jour.
+
+**Mesure :** non applicable — préparation, rien envoyé.
+
+**Suite :** SOLOHERY envoie le 17/08 (date déjà fixée dans la consigne), note la date dans
+Preuve. Pas de relance intermédiaire — sans réponse au 27/08 : « Sans objet ».
+
+---
+
+## 2026-08-18 (30) — Champ « Links to articles » Digiformag : deux options tranchées par SOLOHERY
+
+**Type :** documentation (candidature déjà envoyée, entrée rétroactive — édition faite avant
+l'envoi mais pas commitée sur consigne explicite « ne commit rien pour l'instant »)
+
+**URLs :** aucune nouvelle — `docs/seo/NETLINKING-ACTIONS.md`
+
+**Fait :** deux options neutres écrites pour le champ obligatoire « Links to articles you write
+for other sites » (vide/mention explicite de première contribution externe, ou une référence de
+Julien non trouvée dans le dépôt), sans trancher à la place de SOLOHERY — candidature à essai
+unique. Une erreur de collage a aussi été repérée en cours de route (les 3 sujets d'abord collés
+dans ce champ au lieu de « What topics would you like to address? ») et corrigée avant l'envoi
+final. La candidature a depuis été envoyée (confirmé par SOLOHERY) ; laquelle des deux options a
+été retenue n'a pas été précisée dans la conversation.
+
+**Suite :** aucune — clôturé, ce commit ne fait que documenter ce qui avait été préparé avant
+l'envoi.
+
+---
+
 ## 2026-08-18 (29) — Candidature Digiformag recalée : anglais requis, 3 sujets déjà publiés
 
 **Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)
