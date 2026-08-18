@@ -48,7 +48,7 @@ Combien de fois ressaisissez-vous la même information d'un outil à l'autre, su
 
 « Claude, c'est encore un outil en anglais ? » C'est la question qu'on nous pose le plus souvent — et la réponse surprend : non, Claude fonctionne entièrement en français, orthographe, registre professionnel et nuances comprises.
 
-Ce qui change vraiment une fois qu'on s'en sert au travail :
+Ce qui change une fois qu'on s'en sert au travail :
 • L'abonnement Claude Pro coûte une vingtaine d'euros par mois et débloque les Projets, où Claude garde vos documents et consignes en mémoire d'une conversation à l'autre.
 • Notre repère simple : si Claude vous fait gagner plus d'une heure par mois, l'abonnement est rentabilisé. Dans les organismes de formation qu'on accompagne, on parle plutôt d'heures gagnées par semaine.
 • Le point qui débloque tout : donner du contexte. « Rédige un e-mail de relance » donne un résultat banal ; préciser la situation et le ton donne un résultat utilisable directement.
@@ -88,7 +88,7 @@ Quelle tâche de votre organisme gagnerait le plus à être accélérée par l'I
 
 Un futur stagiaire tape « formation [votre spécialité] » sur Google. Si ce n'est pas vous qui apparaissez, c'est un concurrent — et chaque mois, des candidats potentiels prennent ce chemin sans jamais vous voir.
 
-Ce qui fait vraiment la différence pour un organisme de formation :
+Ce qui fait la différence pour un organisme de formation :
 • Chaque formation mérite sa propre page, avec son propre contenu : regrouper toutes vos formations sur une seule page catalogue est l'erreur la plus fréquente.
 • Au-delà de 3 secondes de chargement, une part importante des visiteurs mobiles quitte la page avant même de la lire.
 • Le SEO local (fiche Google Business Profile complète, avis authentiques) est souvent le gain le plus rapide pour un organisme qui recrute sur une zone précise.
@@ -96,7 +96,7 @@ Ce qui fait vraiment la différence pour un organisme de formation :
 
 Le SEO demande de la méthode et de la régularité, pas des coups ponctuels.
 
-Vous savez déjà sur quels mots-clés votre organisme est visible aujourd'hui, ou c'est encore une zone d'ombre ?
+Savez-vous précisément sur quels mots-clés votre organisme est visible aujourd'hui ?
 
 **1er commentaire :** https://claudeagency.fr/blog/seo-organisme-formation/
 
@@ -128,7 +128,7 @@ Votre livret d'accueil est-il à jour aujourd'hui, ou mériterait-il d'y regarde
 
 Deux stagiaires oublient de signer la dernière demi-journée d'une session. Trois semaines plus tard, l'OPCO réclame les feuilles avant paiement : le règlement correspondant est suspendu.
 
-Ce que dit vraiment une feuille d'émargement :
+Ce que dit une feuille d'émargement :
 • Ce n'est pas une formalité de plus : c'est la preuve de réalisation qui sécurise votre trésorerie face aux financeurs et à l'auditeur Qualiopi.
 • Le point le plus souvent négligé : la signature doit être recueillie par demi-journée, jamais une seule fois en début de session.
 • Pour faire foi, une feuille doit être nominative, datée et horodatée, et conservée de façon fiable — sur papier comme en numérique.
@@ -156,7 +156,7 @@ Ce que montre notre comparatif des principales solutions :
 
 Le bon critère n'est jamais « le meilleur LMS » dans l'absolu, mais celui qui correspond à votre taille et à votre priorité.
 
-Votre LMS actuel, vous l'avez choisi sur quel critère en premier ?
+Quel critère a pesé le plus dans le choix de votre LMS actuel : budget, conformité Qualiopi, ou autre chose ?
 
 **1er commentaire :** https://claudeagency.fr/blog/lms-organisme-formation/
 
@@ -176,7 +176,7 @@ Ce qu'il faut savoir sur ce numéro à 11 chiffres délivré par la DREETS :
 
 Le NDA vous rend déclaré, Qualiopi vous rend finançable : les deux sont distincts, et l'ordre naturel reste NDA d'abord, Qualiopi ensuite.
 
-Votre dernier BPF a été transmis dans les temps, ou c'est un point à vérifier ?
+Votre dernier BPF a-t-il été transmis dans les temps ?
 
 **1er commentaire :** https://claudeagency.fr/blog/numero-declaration-activite/
 
@@ -188,13 +188,13 @@ Votre dernier BPF a été transmis dans les temps, ou c'est un point à vérifie
 
 Un bon prompt (une bonne instruction) fait toute la différence entre une réponse générique et un contenu immédiatement utilisable. Pour un formateur, c'est souvent là que tout se joue.
 
-Quelques réflexes qui changent vraiment les résultats :
+Quelques réflexes qui changent les résultats :
 • Précisez toujours le profil des apprenants, la durée et le format (présentiel, distanciel, blended) : un prompt vague donne une structure générique.
 • Demandez explicitement de varier les niveaux cognitifs (mémorisation, compréhension, application, analyse) pour un quiz réellement utile en évaluation.
 • Pour adapter un même contenu à plusieurs publics, demandez trois versions distinctes plutôt qu'une reformulation unique : débutants, intermédiaires, experts.
 • Pour un bilan de compétences, cadrez le format dès le départ : bienveillant, précis sur les compétences acquises, honnête sur les axes de progression, et court.
 
-L'IA ne remplace pas le formateur : elle lui libère du temps pour se concentrer sur l'animation et la relation avec les apprenants.
+Un bon prompt ne remplace pas votre expertise pédagogique : il vous fait gagner le temps de mise en forme, pour le réinvestir dans l'animation et vos apprenants.
 
 Quelle tâche répétitive de votre préparation de cours aimeriez-vous déléguer en premier ?
 

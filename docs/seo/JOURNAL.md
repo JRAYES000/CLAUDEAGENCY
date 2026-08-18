@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (37) — Relecture stylistique libre des 10 posts LinkedIn
+
+**Type :** relecture (correctif sur le livrable de l'entrée 36, même fichier)
+
+**Pourquoi :** demande explicite de contrôle qualité au-delà des règles écrites de la skill —
+répétitions de structure entre posts, tournures artificielles, fluidité accroche/question,
+cohérence du vouvoiement.
+
+**Fait :** 4 posts (2, 4, 6, 9) partageaient le mot « vraiment » exactement à la même place
+(juste avant les puces) → retiré. 4 posts (2, 4, 5, 8) fermaient sur le même moule de question
+« …, ou … ? » → reformulé pour 4 et 8. Posts 6 et 7, adjacents, utilisaient la même inversion
+« Votre X, vous l'avez Y ? » → question du post 7 réécrite. Post 9 se refermait sur « l'IA ne
+remplace pas le formateur, elle libère du temps », un cliché générique que l'anti-référence
+« agence IA générique interchangeable » de `PRODUCT.md` demande justement d'éviter → reformulé
+en ancrant la phrase sur le prompt (sujet réel du post) plutôt que sur l'IA en général.
+Vouvoiement : aucune dérive trouvée. Recontrôlé après coup : les 10 posts restent dans
+[900, 1300] signes, zéro lien dans le corps, zéro boucle de négation-contraste.
+
+**Mesure :** non applicable (rédaction).
+
+**Suite :** aucune, sauf nouvelle relecture demandée. Publication manuelle toujours en attente
+(cf. entrée 36).
+
+---
+
 ## 2026-08-18 (36) — 10 posts LinkedIn rédigés depuis le blog (sprint de distribution)
 
 **Type :** rédaction (publication à faire manuellement sur LinkedIn, hors périmètre agent)
