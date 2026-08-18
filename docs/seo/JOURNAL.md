@@ -5,6 +5,28 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (40) — Visuels LinkedIn (bannière + gabarit de post) générés localement
+
+**Type :** prospection LinkedIn, hors périmètre SEO (préparation de la page entreprise, suite des
+entrées 38-39).
+
+**Pourquoi :** amorcer la page entreprise LinkedIn « Claude Agency » (étape B7) avec des visuels à
+la charte, sans dépendance à un service externe.
+
+**Fait :** 2 SVG source + 2 PNG générés via `app/scripts/svg-to-png-linkedin.mjs` (sharp, en local) :
+bannière page entreprise (1128×191) et gabarit de post réutilisable (1080×1080, zone de titre à
+remplir). Palette strictement limitée aux 3 couleurs demandées : `#FBF7F1` (crème), `#CC785C`
+(terracotta), `#2B2724` (encre) — vérifié par grep sur les 2 SVG après une première version qui
+utilisait aussi les neutres `#7A6E60`/`#E5D9C7` de `DESIGN.md`, corrigée sur retour de Julien.
+Fichiers dans `docs/seo/visuels-linkedin/`.
+
+**Mesure :** 2 SVG, 2 PNG aux dimensions exactes demandées, 3 couleurs uniques par fichier.
+
+**Suite :** SOLOHERY charge `banniere-page-entreprise.png` comme image de couverture de la page
+entreprise LinkedIn une fois celle-ci créée (crayon « Modifier la page » → Image de couverture).
+
+---
+
 ## 2026-08-18 (39) — Liste de prospection LinkedIn — un lien LinkedIn confirmé par recoupement
 
 **Type :** prospection LinkedIn, hors périmètre SEO (suite de l'entrée 38).

@@ -12,19 +12,19 @@
 
   <!-- zone de titre à remplir -->
   <rect x="90" y="260" width="900" height="520" fill="none"
-        stroke="#E5D9C7" stroke-width="3" stroke-dasharray="14 10" rx="16"/>
+        stroke="#CC785C" stroke-width="3" stroke-dasharray="14 10" rx="16"/>
   <text x="540" y="500" text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif" font-weight="800"
         font-size="46" fill="#2B2724">[ ZONE TITRE ]</text>
   <text x="540" y="556" text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif" font-weight="400"
-        font-size="26" fill="#7A6E60">Remplacer par l'accroche du post (2 à 4 lignes courtes)</text>
+        font-size="26" fill="#2B2724">Remplacer par l'accroche du post (2 à 4 lignes courtes)</text>
 
   <!-- séparateur -->
-  <line x1="500" y1="850" x2="580" y2="850" stroke="#E5D9C7" stroke-width="3"/>
+  <line x1="500" y1="850" x2="580" y2="850" stroke="#CC785C" stroke-width="3"/>
 
   <!-- attribution -->
   <text x="540" y="905" text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif" font-weight="400"
-        font-size="27" fill="#7A6E60">— Claude Agency</text>
+        font-size="27" fill="#2B2724">— Claude Agency</text>
 </svg>
