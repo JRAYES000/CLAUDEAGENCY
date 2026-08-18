@@ -55,8 +55,9 @@ but de cette liste, elle ne remplace pas les fichiers/sections ci-dessus.
 | A7 | Les Acteurs de la Compétence (ex-FFP) | **Envoyé le 18/08/2026** | Champ Message : « Cabinet de conseil en IA pour organismes de formation. » Confirmation reçue sur la page après soumission. |
 | A8 | Hub France IA | **Envoyé le 18/08/2026** (confirmé par SOLOHERY) | Champ « Pourquoi rejoindre le Hub France IA ? » : « Cabinet de conseil en IA pour organismes de formation français et francophones... » |
 | Federgon | Federgon (Belgique) | Prévu le 17/08/2026 (SOLOHERY envoie) | Corps de l'e-mail : « cabinet de conseil français spécialisé dans l'intelligence artificielle appliquée à la formation professionnelle ». Simple question d'éligibilité, pas de dossier. |
+| A9 | Digiformag (candidature contributeur) | **Envoyé** (confirmé par SOLOHERY, date exacte non précisée) | Bio auteur, en anglais : « a consulting firm that helps French-speaking training organizations... ». |
 
-Les deux messages ont été gardés tels quels en connaissance de cause (voir `NETLINKING-ACTIONS.md`,
-sections respectives) : une demande d'info à une fédération n'engage rien juridiquement, mais
+Ces messages ont été gardés tels quels en connaissance de cause (voir `NETLINKING-ACTIONS.md`,
+sections respectives) : une demande d'info ou une candidature n'engage rien juridiquement, mais
 **une fois envoyée, la formulation est dans la boîte mail du destinataire** — c'est ça que cette
 liste garde en mémoire, pas le fichier du dépôt qui peut se corriger d'un coup.

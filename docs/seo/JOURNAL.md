@@ -5,6 +5,27 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (33) — A9 (Digiformag) ajouté à la liste de suivi
+
+**Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)
+
+**URLs :** aucune — mise à jour de `docs/seo/arbitrage-julien.md`
+
+**Pourquoi :** signalé en une ligne à l'entrée (32), confirmé par Julien : la bio anglaise
+envoyée à Digiformag (A9) utilise « consulting firm », même position en attente d'arbitrage que
+A7/A8/Federgon.
+
+**Fait :** ligne A9 ajoutée au tableau, citant la phrase exacte engagée. Date d'envoi exacte non
+précisée dans la conversation (SOLOHERY a confirmé l'envoi sans donner l'heure/jour précis au-delà
+du 18/08/2026 déjà connu). Phrase de clôture du tableau généralisée (« ces messages », plus « les
+deux ») vu que la liste compte maintenant quatre entrées.
+
+**Mesure :** non applicable.
+
+**Suite :** aucune connue — liste à jour avec les quatre envois identifiés à ce jour.
+
+---
+
 ## 2026-08-18 (32) — Federgon ajouté à la liste de suivi, statut A8 corrigé
 
 **Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)
