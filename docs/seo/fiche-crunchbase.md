@@ -35,8 +35,9 @@ SOLOHERY doit comparer cette liste à l'ordre réel une fois connecté et l'ajus
 | Compte (authentification) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
 | Nom de l'organisation | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Nom légal, décision de Julien du 17/08/2026 (`kit-identite.md` §3) — champ obligatoire |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
-| Description courte / tagline | *AI adoption and back-office automation consulting for training organizations.* | Traduite, jamais publiée ailleurs en anglais ; champ obligatoire |
-| Description complète | voir section « Description (anglais) » ci-dessous | Traduite depuis `kit-identite.md` §2 (version moyenne) |
+| Description* | voir section « Description » ci-dessous | Confirmé sur le formulaire réel le 17/08/2026 : interface en français, un seul champ Description obligatoire (pas de tagline séparée). Décidé en français, pas en anglais comme prévu initialement — `kit-identite.md` §2, version moyenne, réutilisée telle quelle |
+| Également connu sous le nom de | `Claude Agency` | Champ confirmé sur le formulaire réel — bon endroit pour la marque commerciale, ne contredit pas le nom légal du champ Nom |
+| Nom légal | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Champ confirmé sur le formulaire réel, identique au champ Nom |
 | Siège social / Headquarters | `229 rue Saint-Honoré, 75001 Paris, France` | NAP non traduit tel que demandé — « rue Saint-Honoré » reste en français |
 | Téléphone | `07 56 81 34 44` | Format inchangé, non converti en `+33` |
 | E-mail de contact | `contact@claudeagency.fr` | `kit-identite.md` §1 |
@@ -49,14 +50,17 @@ SOLOHERY doit comparer cette liste à l'ordre réel une fois connecté et l'ajus
 | LinkedIn de l'entreprise | à trancher | Page LinkedIn en cours de création ailleurs dans la Vague 1 (item #2) — URL non confirmée à ce jour, ne pas en inventer une |
 | **Preuve — URL du profil publié** | *(à coller par SOLOHERY après validation)* | Vide, volontairement |
 
-## Description (anglais) — traduite depuis `kit-identite.md` §2
+## Description — français, `kit-identite.md` §2 (version moyenne, 481 caractères)
 
-> Claude Agency is a consulting firm that helps French-speaking training organizations adopt
-> artificial intelligence and automate their processes: AI audit and diagnostics, back-office
-> automation (Qualiopi compliance, financial and pedagogical reporting, attendance tracking,
-> funding applications), and staff training. Our method: one workflow at a time — AI prepares,
-> humans validate — you always stay in control. No jargon, no dependency: we train and equip
-> teams to remain autonomous.
+Interface Crunchbase constatée en français le 17/08/2026 — décidé de rester en français plutôt
+que de traduire, contrairement à la préparation initiale.
+
+> Claude Agency est un cabinet de conseil qui aide les organismes de formation français à
+> intégrer l'intelligence artificielle et à automatiser leurs process : audit et diagnostic IA,
+> automatisation du back-office (Qualiopi, BPF, émargement, dossiers de financement) et
+> formation des équipes. Notre méthode : un flux à la fois, l'IA prépare, l'humain valide — vous
+> gardez toujours la main. Pas de jargon, pas de dépendance : nous formons et outillons pour que
+> vous restiez autonomes.
 
 ## Marche à suivre
 

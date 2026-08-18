@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (21) — Fiche Crunchbase recalée sur le vrai formulaire (français, pas anglais)
+
+**Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
+
+**URLs :** aucune nouvelle — mise à jour de `docs/seo/fiche-crunchbase.md`
+
+**Pourquoi :** SOLOHERY a montré le vrai formulaire `/add-new` : interface en français, pas en
+anglais comme supposé dans la préparation initiale (hypothèse de bon sens à l'époque — base
+mondiale à vocation anglophone — mais démentie par le formulaire réel).
+
+**Fait :** description remise en français (`kit-identite.md` §2, version moyenne, 481
+caractères), remplace la version anglaise préparée. Deux champs réels découverts, absents de la
+préparation initiale : « Également connu sous le nom de » → `Claude Agency` (bon endroit pour la
+marque commerciale, ne contredit pas le nom légal) et « Nom légal » → même valeur que le champ
+Nom. Champ « Description » confirmé unique et obligatoire, pas de tagline séparée comme supposé.
+
+**Mesure :** non mesuré — soumission en cours côté SOLOHERY, pas encore publiée.
+
+**Suite :** SOLOHERY termine le formulaire (date de fondation, secteur, logo), soumet, colle
+l'URL du profil publié dans la ligne Preuve de `fiche-crunchbase.md`.
+
+---
+
 ## 2026-08-17 (20) — Blocage réel identifié sur A2 : la fiche Google Business est active
 
 **Type :** audit (constat, aucune fiche modifiée — tâche A2 hors dépôt, sur le Sheet externe)
