@@ -8,9 +8,6 @@
 //
 // Variable d'env Cloudflare Pages (Production + Preview) :
 //   HOSTINGER_MAIL_TOKEN = jeton API Hostinger Mail (hPanel), portée : boîte contact@claudeagency.fr
-//
-// Repli : tant que HOSTINGER_MAIL_TOKEN est absent, on passe par Mailjet (MJ_APIKEY /
-// MJ_SECRETKEY, mêmes clés que /api/subscribe). À retirer une fois la bascule confirmée.
 const TO_EMAIL = 'contact@claudeagency.fr';
 const FROM_NAME = 'Formulaire claudeagency.fr';
 // Identifiant public de la boîte côté API Hostinger (pas un secret) — GET /api/v1/me le renvoie.
@@ -38,9 +35,9 @@ const SUBJECTS = {
 const MAX_ROWS = 40;
 const MAX_VALUE = 500;
 
-export async function onRequestGet({ env }) {
+export async function onRequestGet() {
   // Health-check + détecteur de version de déploiement.
-  return json({ ok: true, endpoint: 'contact', mode: env.HOSTINGER_MAIL_TOKEN ? 'hostinger-v1' : 'mailjet-fallback' });
+  return json({ ok: true, endpoint: 'contact', mode: 'hostinger-v1' });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -84,9 +81,8 @@ export async function onRequestPost({ request, env }) {
   const text = rows.map(([label, value]) => `${label} : ${value}`).join('\n');
   const html = buildHtml(rows, email, name);
 
-  const sent = env.HOSTINGER_MAIL_TOKEN
-    ? await sendViaHostinger(env.HOSTINGER_MAIL_TOKEN, { subject, text, html })
-    : await sendViaMailjet(env, { subject, text, html, email, name });
+  if (!env.HOSTINGER_MAIL_TOKEN) return json({ ok: false, message: 'Configuration serveur manquante.' }, 500);
+  const sent = await sendViaHostinger(env.HOSTINGER_MAIL_TOKEN, { subject, text, html });
 
   if (!sent) return json({ ok: false, message: "L'envoi a échoué. Réessayez dans un instant." }, 502);
   return json({ ok: true });
@@ -100,34 +96,6 @@ async function sendViaHostinger(token, { subject, text, html }) {
       body: JSON.stringify({ to: [TO_EMAIL], displayName: FROM_NAME, subject, text, html }),
     });
     return res.ok; // 204 attendu
-  } catch {
-    return false;
-  }
-}
-
-// Repli temporaire — à supprimer une fois HOSTINGER_MAIL_TOKEN en place et vérifié.
-async function sendViaMailjet(env, { subject, text, html, email, name }) {
-  const apiKey = env.MJ_APIKEY;
-  const secret = env.MJ_SECRETKEY;
-  if (!apiKey || !secret) return false;
-  try {
-    const res = await fetch('https://api.mailjet.com/v3.1/send', {
-      method: 'POST',
-      headers: { Authorization: 'Basic ' + btoa(`${apiKey}:${secret}`), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        Messages: [
-          {
-            From: { Email: TO_EMAIL, Name: FROM_NAME },
-            To: [{ Email: TO_EMAIL, Name: 'Claude Agency' }],
-            ...(email ? { ReplyTo: { Email: email, Name: name || email } } : {}),
-            Subject: subject,
-            TextPart: text,
-            HTMLPart: html,
-          },
-        ],
-      }),
-    });
-    return res.ok;
   } catch {
     return false;
   }
