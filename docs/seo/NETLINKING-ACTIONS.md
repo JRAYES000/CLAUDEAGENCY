@@ -149,23 +149,75 @@ formulaire. Tarif modulé selon le chiffre d'affaires, non publié.
 
 - Page adhésion : https://www.hub-franceia.fr/devenir-membre-v2/
 
-**Message à envoyer** :
+**Condition d'entrée — formule sans cotisation : inconnu.** Page et formulaire complet lus en
+entier le 18/08/2026 (via extraction directe du DOM, pas seulement l'arbre d'accessibilité —
+leçon tirée d'A7 où une citation avait été tronquée). Aucune mention de « membre associé »,
+« communauté gratuite » ou statut sans cotisation dans le formulaire ni sur la page. Une
+recherche web complémentaire trouve une mention d'« adhésion gratuite un an » mais réservée aux
+participants de programmes spécifiques (accélérateur), pas une catégorie de membre standard —
+ne tranche donc pas la question. D'où « inconnu », pas « non ». Source :
+https://www.hub-franceia.fr/devenir-membre-v2/, consultée le 18/08/2026.
 
-> Objet : Adhésion — cabinet de conseil en IA appliquée à la formation professionnelle
->
+**Point utile trouvé en lisant le formulaire réel.** Le champ « Type de structure » propose une
+option qui couvre à la fois organisme de formation et cabinet de conseil dans la même case :
+« Organisme de formation - Cabinet d'avocats - Conseil en recrutement innovation transformation
+financement » (texte intégral vérifié dans le DOM). Contrairement à A7, ce choix n'a donc pas à
+attendre l'arbitrage de `arbitrage-julien.md` : la même option est correcte quelle que soit
+l'issue.
+
+**Message à envoyer** — champ par champ, dans l'ordre réel du formulaire (relevé le 18/08/2026,
+formulaire complet, pas le paragraphe générique d'avant) :
+
+| Champ du formulaire | Valeur à coller |
+| :--- | :--- |
+| Société * | ECOLE DE NATUROPATHIE ET SOPHROLOGIE (nom légal, décision de Julien du 17/08/2026) |
+| Siret | 924 997 539 00011 |
+| Civilité * | Mr |
+| Nom * | Rayes |
+| Prénom * | Julien |
+| Email * | equipe1@claudeagency.fr (arbitrage de Julien du 15/08/2026 pour les fédérations) |
+| Fonction * | Contact commercial |
+| Adresse * | 229 rue Saint-Honoré |
+| Code postal * | 75001 |
+| Ville * | Paris |
+| Pays * | France |
+| Type de structure | Organisme de formation - Cabinet d'avocats - Conseil en recrutement innovation transformation financement — voir « point utile » ci-dessus |
+| Année de création de votre organisation | 2024 |
+| Montant de votre dernier CA | À renseigner — aucune donnée financière dans le dépôt, ne pas choisir une tranche au hasard ; l'option « A renseigner » existe et évite d'inventer un chiffre |
+| Comment avez-vous connu le Hub France IA ? | à trancher par SOLOHERY — aucune option « moteur de recherche » sur ce formulaire (contrairement à A7), choix réels : Bouche à oreille / Conférence / Webinaire / Salon / Réseaux Sociaux / Autre |
+| Pourquoi rejoindre le Hub France IA ? | voir bloc ci-dessous — aucune limite de caractères constatée sur ce champ |
+| Avez-vous un code promotionnel ? | laisser vide |
+| Case liste de diffusion | à cocher si SOLOHERY accepte de recevoir les communications — facultatif, pas une case RGPD de soumission |
+
+**Message (champ « Pourquoi rejoindre le Hub France IA ? »)** :
+
+> Cabinet de conseil en IA pour organismes de formation français et francophones : audit,
+> automatisation du back-office (Qualiopi, BPF, émargement), formation des équipes. Existe-t-il
+> une formule d'adhésion sans cotisation (membre associé, communauté) pour une structure de
+> moins de 5 salariés ? Merci de nous indiquer la grille tarifaire et les étapes de candidature.
+
+**Marche à suivre**
+
+1. Ouvrir https://www.hub-franceia.fr/devenir-membre-v2/, dérouler jusqu'au formulaire.
+2. Remplir les champs dans l'ordre du tableau ci-dessus.
+3. Trancher le champ « Comment avez-vous connu... » selon le canal réel.
+4. Cliquer « Valider » — ce lien déclenche une étape de validation avant l'envoi final,
+   vérifier qu'aucun champ obligatoire (*) n'est resté vide.
+5. Noter la date d'envoi dans **Preuve**. Formule sans cotisation confirmée : rejoindre, noter
+   la date. Toute formule qui réclame un règlement : décliner et écrire la raison dans Preuve —
+   ce plan ne souscrit rien.
+
+**Relance — à envoyer le 21/08/2026 si aucune réponse** (le 15 août tombe au milieu du délai,
+un silence avant le 18/08 ne veut rien dire) :
+
 > Bonjour,
->
-> Claude Agency est un cabinet de conseil spécialisé dans l'application de l'IA au secteur de la
-> formation professionnelle. Nous accompagnons des organismes de formation français et
-> francophones sur trois volets : audit des usages, automatisation de leur back-office, et
-> montée en compétence de leurs équipes sur les outils d'IA générative.
->
-> Nous souhaitons rejoindre le Hub en tant que cabinet de conseil. Pourriez-vous me communiquer
-> la grille de cotisation applicable et les étapes de la candidature ?
->
-> Merci d'avance,
-> Julien Rayes — Claude Agency
-> https://claudeagency.fr — equipe1@claudeagency.fr
+> Je me permets de relancer ma demande du 14/08 (formule d'adhésion sans cotisation pour une
+> structure de moins de 5 salariés, grille tarifaire et étapes de candidature).
+> Une réponse rapide nous aiderait à trancher notre calendrier d'adhésion.
+> Merci d'avance, Julien Rayes — Claude Agency.
+
+**Filet.** Sans réponse au 21/08 : relance ci-dessus. Sans réponse au 27/08 : statut « Sans
+objet » dans Preuve, avec les deux dates d'envoi (14/08 et 21/08).
 
 ---
 

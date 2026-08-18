@@ -5,6 +5,34 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (25) — Message Hub France IA préparé, même travail qu'A7
+
+**Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)
+
+**URLs :** https://www.hub-franceia.fr/devenir-membre-v2/, formulaire complet lu le 18/08/2026
+
+**Pourquoi :** même exercice qu'A7 (entrée (24)), sur la deuxième fédération de la Vague 2.
+
+**Fait :** formulaire réel lu en entier via extraction DOM directe dès le départ (pas l'arbre
+d'accessibilité tronqué — leçon tirée d'A7). **Condition d'entrée : inconnu**, aucune formule
+sans cotisation trouvée sur la page ni le formulaire ; une mention web d'« adhésion gratuite un
+an » concerne un programme accélérateur ponctuel, pas une catégorie de membre standard — ne
+tranche pas la question. Point utile trouvé : le champ « Type de structure » propose une option
+qui couvre à la fois « organisme de formation » et « cabinet ... conseil » dans la même case
+(texte intégral vérifié : « Organisme de formation - Cabinet d'avocats - Conseil en recrutement
+innovation transformation financement ») — contrairement à A7, ce choix n'attend pas l'arbitrage
+de `arbitrage-julien.md`, il est correct dans les deux cas. Message reformulé dans l'ordre réel
+du formulaire (Société, Siret, civilité, nom, prénom, email equipe1@, fonction, adresse, champ
+« Pourquoi rejoindre » avec la question sur les structures <5 salariés, CA laissé « à
+renseigner » plutôt qu'une tranche inventée). `NETLINKING-ACTIONS.md` mis à jour.
+
+**Mesure :** non applicable — préparation, rien envoyé par Claude Code.
+
+**Suite :** SOLOHERY envoie, tranche le champ « Comment avez-vous connu... », note la date
+d'envoi dans Preuve. Relance le 21/08 si silence, « Sans objet » le 27/08 sinon.
+
+---
+
 ## 2026-08-18 (24) — A7 envoyé : deux arbitrages tranchés, message soumis par Claude Code
 
 **Type :** netlinking (envoi effectué directement par Claude Code, sur consigne explicite)
