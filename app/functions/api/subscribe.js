@@ -18,9 +18,10 @@ const FROM_NAME = 'Julien Rayes — Claude Agency';
 const MAILBOX_ID = 'ACcae43ae70041b0ddda143fd8795d';
 const HOSTINGER_API = `https://api.mail.hostinger.com/api/v1/mailboxes/${MAILBOX_ID}/send`;
 
-export async function onRequestGet() {
-  // Health-check + détecteur de version de déploiement.
-  return json({ ok: true, endpoint: 'subscribe', mode: 'hostinger-brevo-v1' });
+export async function onRequestGet({ env }) {
+  // Health-check + détecteur de version de déploiement. `brevo` dit seulement si la clé est
+  // présente (jamais sa valeur) : sans elle, le guide part quand même, sans ajout à la liste.
+  return json({ ok: true, endpoint: 'subscribe', mode: 'hostinger-brevo-v1', brevo: !!env.BREVO_API_KEY });
 }
 
 export async function onRequestPost({ request, env }) {
