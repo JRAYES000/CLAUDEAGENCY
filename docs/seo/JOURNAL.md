@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (36) — 10 posts LinkedIn rédigés depuis le blog (sprint de distribution)
+
+**Type :** rédaction (publication à faire manuellement sur LinkedIn, hors périmètre agent)
+
+**Fait :** sélection des 10 articles `type_page=article` de `REQUETES.csv` par
+`impressions_90j` décroissante (fichier présent dans `app/src/content/blog/`, articles
+fusionnés le 14/08 écartés) : logiciel-organisme-formation (404), claude-ai-en-francais (110),
+formation-claude (82), seo-organisme-formation (68), livret-accueil-stagiaire (58),
+feuille-emargement (50), lms-organisme-formation (46), numero-declaration-activite (45),
+prompts-ia-formateurs (40), evaluer-apprenants-ia (38). 10 posts rédigés à la main (900-1300
+signes, format `linkedin-kit.md` : accroche, points concrets, question, lien en 1er
+commentaire), puis 2e passe de vérification : chaque chiffre cité est retrouvé mot pour mot
+dans l'article source (table de correspondance en fin de fichier) ; aucun chiffre supprimé.
+Livrable : `docs/seo/posts-linkedin-sprint.md`.
+
+**Mesure :** non applicable (rédaction, pas de publication).
+
+**Suite :** publication manuelle sur LinkedIn par Julien (ou SOLOHERY), un post à la fois,
+lien en premier commentaire. `REQUETES.csv` et `BACKLOG.md` non modifiés — ce sprint ne change
+pas le statut SEO des articles sources.
+
+---
+
 ## 2026-08-18 (35) — Chemin de revendication Societe.com trouvé, gratuit jusqu'au compte
 
 **Type :** netlinking (audit, aucun compte créé — SOLOHERY revendique)
