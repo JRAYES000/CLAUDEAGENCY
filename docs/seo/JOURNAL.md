@@ -5,6 +5,38 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (23) — Message Les Acteurs de la Compétence recalé sur le vrai formulaire
+
+**Type :** netlinking (préparation, aucun envoi effectué par Claude Code)
+
+**URLs :** https://lesacteursdelacompetence.fr/devenir-adherent/, lue en entier (formulaire
+compris) le 18/08/2026
+
+**Pourquoi :** le message de `NETLINKING-ACTIONS.md` (Vague 2, section « Les Acteurs de la
+Compétence ») était un paragraphe générique, pas relevé sur le vrai formulaire, et ne posait pas
+la question d'une formule sans cotisation demandée pour cet envoi.
+
+**Fait :** page lue en entier via le panneau navigateur (le `main` innerText ne renvoyait rien,
+contenu dans des accordéons repliés — `read_page` en a extrait le formulaire complet). **Aucune
+formule sans cotisation trouvée** (« membre associé », « observateur » absents de la page et
+d'une recherche sur les statuts) — noté **inconnu**, pas « non », faute de preuve exhaustive.
+**Point d'alerte trouvé en cherchant** : la condition d'éligibilité exige « au moins un salarié »
+— le registre officiel du SIREN (tâche A13) indique 0 salarié déclaré (« unité non employeuse »).
+Éligibilité elle-même incertaine, pas seulement le tarif. Message reformulé à 21 champs dans
+l'ordre exact du formulaire réel (civilité, nom, prénom, qualité, e-mail equipe1@, téléphone au
+format +33, message 300 caractères max avec la question sur les structures <5 salariés, nom
+commercial, site, année, domaine d'intervention — « Conseil aux entreprises de formation et CFA »
+existe tel quel —, SIRET, effectif à 0 sans l'arrondir pour paraître éligible, adresse, dirigeant
+Antoine RAYES, etc.). Relance à 4 lignes ajoutée pour le 21/08, filet « Sans objet » au 27/08.
+`NETLINKING-ACTIONS.md` mis à jour en conséquence.
+
+**Mesure :** non applicable — préparation, rien envoyé par Claude Code (SOLOHERY envoie).
+
+**Suite :** SOLOHERY envoie le message, tranche le champ « Comment avez-vous connu... », note la
+date d'envoi dans Preuve. Relance le 21/08 si silence, « Sans objet » le 27/08 sinon.
+
+---
+
 ## 2026-08-17 (22) — Description Crunchbase raccourcie à 114 caractères, limite 2-140 découverte
 
 **Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)

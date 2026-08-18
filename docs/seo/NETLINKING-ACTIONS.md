@@ -55,32 +55,84 @@ Fédération de référence du secteur formation en France. L'annuaire des membr
 externe vers le site de chaque adhérent (vérifié sur une fiche membre).
 
 - Page adhésion : https://lesacteursdelacompetence.fr/devenir-adherent/
-- Conditions : société ou association d'au moins 1 salarié, 1 an d'activité minimum sur le marché
-  concurrentiel, indépendance économique. La catégorie « cabinets de conseil & accompagnement
-  pour organismes de formation » est explicitement prévue.
+- Conditions (texte exact de la page, section « Conditions d'adhésion ») : « Vous êtes une
+  entreprise du développement des compétences (société ou association) d'au moins un salarié »,
+  « depuis 1 an au moins, une activité axée principalement sur le marché concurrentiel »,
+  « économiquement indépendant ». La catégorie « Conseil aux entreprises de formation et CFA »
+  existe telle quelle dans le menu « Domaines d'intervention » du formulaire réel.
 - À fournir : statuts, éléments financiers, ancienneté.
 
-**Message à envoyer** (via le formulaire de la page adhésion) :
+**Condition d'entrée — formule sans cotisation : inconnu.** Page `/devenir-adherent/` lue en
+entier le 18/08/2026 (formulaire complet compris) : un seul parcours d'adhésion y est décrit,
+aucune mention de « membre associé », « membre observateur » ou statut gratuit. Recherche web
+complémentaire (statuts de la fédération) sans résultat. Absence de preuve sur cette page ≠ preuve
+d'absence ailleurs (statuts non trouvés) — d'où « inconnu », pas « non ». Source :
+https://lesacteursdelacompetence.fr/devenir-adherent/, consultée le 18/08/2026.
 
-> Objet : Demande d'information — adhésion cabinet de conseil
->
+**⚠️ Point d'alerte trouvé en lisant les conditions au mot près.** La fédération exige « au moins
+un salarié ». Le registre officiel du SIREN 924 997 539 (tâche A13) indique **« unité non
+employeuse »** — 0 salarié déclaré. Antoine RAYES (président) et Julien RAYES (contact
+commercial) sont des dirigeants, pas des salariés au sens de cette condition. L'éligibilité
+elle-même est donc incertaine, indépendamment de la question du tarif — c'est pour ça que la
+question posée dans le message ci-dessous porte explicitement sur les structures de moins de 5
+salariés : la réponse tranchera aussi ce point.
+
+**Message à envoyer** — champ par champ, dans l'ordre réel du formulaire (relevé le 18/08/2026
+sur la page, pas supposé) :
+
+| Champ du formulaire | Valeur à coller |
+| :--- | :--- |
+| Civilité | Mr |
+| Votre nom | Rayes |
+| Votre prénom | Julien |
+| Qualité | Contact commercial |
+| Votre adresse e-mail | equipe1@claudeagency.fr (arbitrage de Julien du 15/08/2026 pour les demandes de fédération, `kit-identite.md` §3) |
+| Votre numéro de téléphone | +33 sélectionné, puis `7 56 81 34 44` (sans le 0 initial, réparti dans les 5 cases) |
+| Votre message (300 caractères max) | voir bloc ci-dessous |
+| Nom commercial | Claude Agency — champ explicitement « nom commercial », distinct du nom légal ; le N° SIRET ci-dessous porte l'identité légale exacte |
+| Votre site internet | https://claudeagency.fr |
+| Année de création | 2024 |
+| Domaines d'intervention | Conseil aux entreprises de formation et CFA — option exacte du menu réel |
+| N° SIRET | 924 997 539 00011 |
+| Effectif (salariés) | **0** — donnée officielle exacte (« unité non employeuse ») ; contredit la condition « au moins un salarié », voir le point d'alerte ci-dessus. Ne pas mettre un autre chiffre pour paraître éligible |
+| Adresse | 229 rue Saint-Honoré |
+| Ville | Paris |
+| Département | 75 |
+| Code postal | 75001 |
+| Pays | France (déjà présélectionné) |
+| Dirigeant | Antoine RAYES |
+| Adresse email du dirigeant | contact@claudeagency.fr — aucune adresse personnelle d'Antoine RAYES dans le dépôt, meilleure valeur disponible |
+| Comment avez-vous connu Les Acteurs de la Compétence ? | à trancher par SOLOHERY — je ne sais pas par quel canal la fédération a été repérée (recherche sectorielle, pas un vrai clic sur un moteur de recherche ni un événement) |
+| RGPD | cocher |
+
+**Message (275 caractères, compté mécaniquement, limite réelle 300)** :
+
+> Cabinet de conseil en IA pour organismes de formation. Nous étudions une adhésion : existe-t-il
+> une formule sans cotisation (membre associé/observateur) pour une structure de moins de 5
+> salariés ? Merci de nous envoyer le dossier et les tarifs. Cordialement, Julien Rayes.
+
+**Marche à suivre**
+
+1. Ouvrir https://lesacteursdelacompetence.fr/devenir-adherent/, dérouler jusqu'au formulaire en
+   bas de page.
+2. Remplir les champs dans l'ordre du tableau ci-dessus.
+3. Trancher le champ « Comment avez-vous connu... » selon le canal réel.
+4. Cocher RGPD, cliquer Envoyer.
+5. Noter la date d'envoi dans **Preuve**. Si une formule sans cotisation est confirmée dans la
+   réponse : rejoindre et noter la date dans Preuve. Si toute formule proposée réclame un
+   règlement : décliner, passer à la suite — ce plan ne souscrit rien.
+
+**Relance — à envoyer le 21/08/2026 si aucune réponse** (le 15 août tombe au milieu du délai, un
+silence avant le 18/08 ne veut rien dire) :
+
 > Bonjour,
->
-> Je dirige Claude Agency, un cabinet de conseil qui accompagne les organismes de formation dans
-> l'adoption de l'intelligence artificielle : audit de leurs process, automatisation du
-> back-office (préparation Qualiopi, BPF, émargement, suivi des stagiaires) et formation de leurs
-> équipes.
->
-> Nous travaillons exclusivement avec des organismes de formation, et j'ai vu que votre formulaire
-> d'adhésion prévoit la catégorie « cabinets de conseil & accompagnement pour organismes de
-> formation ». J'aimerais savoir ce que couvre l'adhésion, quel est le montant de la cotisation
-> pour une structure de notre taille, et quelles pièces vous demandez au dossier.
->
-> Je reste disponible pour un échange si c'est plus simple.
->
-> Bien à vous,
-> Julien Rayes — Claude Agency
-> https://claudeagency.fr — equipe1@claudeagency.fr
+> Je me permets de relancer ma demande du 14/08 (formule d'adhésion sans cotisation pour une
+> structure de moins de 5 salariés, dossier et tarifs).
+> Une réponse rapide nous aiderait à trancher notre calendrier d'adhésion.
+> Merci d'avance, Julien Rayes — Claude Agency.
+
+**Filet.** Sans réponse au 21/08 : relance ci-dessus. Sans réponse au 27/08 : statut « Sans
+objet » dans Preuve, avec les deux dates d'envoi (14/08 et 21/08).
 
 ### Hub France IA
 
