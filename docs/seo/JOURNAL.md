@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (44) — Nouvelle revérification sameAs LinkedIn : toujours correct, rien à toucher
+
+**Type :** SEO technique (schema.org / E-E-A-T), même consigne que les entrées 42-43, reçue une
+seconde fois (avec le même avertissement sur un slug `claudeagency-fr` faux).
+
+**Pourquoi :** consigne reçue de comparer le `sameAs` LinkedIn de `BaseLayout.astro` (objet
+organization) et `author.ts` (`AUTHOR_SAMEAS`) à l'adresse réelle `https://www.linkedin.com/company/claude-agency-fr/`,
+sans se fier à l'avertissement joint.
+
+**Fait :** état réel relu avant toute édition, pas l'avertissement. Les deux fichiers déclarent
+déjà `https://www.linkedin.com/company/claude-agency-fr/`, identique à l'adresse réelle — aucun
+changement depuis l'entrée 43. Sameas de l'objet founder (profil personnel de Julien) non touché.
+Page reconfirmée en ligne (chargement direct : nom, description, site web, effectif, secteur,
+localisation affichés, contenu conforme à `linkedin-kit.md`). `cd app && npm run build` repassé :
+158 pages, aucune erreur ; JSON-LD Organization extrait de `dist/index.html` confirme le `sameAs`
+correct.
+
+**Mesure :** 0 écart trouvé, pour la deuxième fois. Avertissement de la consigne obsolète par
+rapport à l'état du dépôt, comme à l'entrée 43.
+
+**Suite :** aucune. Rien commité côté code — seule cette entrée de vérification.
+
+---
+
 ## 2026-08-18 (43) — Revérification sameAs LinkedIn : déjà correct, rien à toucher
 
 **Type :** SEO technique (schema.org / E-E-A-T), vérification suite à l'entrée 42.
