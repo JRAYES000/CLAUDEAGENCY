@@ -72,7 +72,7 @@ Ce qu'on observe dans les organismes de formation accompagnés, une fois l'équi
 • Compte rendu d'une visioconférence : de 1h à 5 min.
 • Réponse à un appel d'offres : de 3h à 45 min.
 
-Le point commun à ces gains : ce n'est jamais un cours générique sur « découvrir l'IA » qui les produit, c'est un atelier construit sur vos vrais documents — votre convention, votre programme, vos e-mails de relance.
+Le point commun à ces gains : ils viennent toujours d'un atelier construit sur vos vrais documents — votre convention, votre programme, vos e-mails de relance — jamais d'un cours générique sur « découvrir l'IA ».
 
 Notre conseil avant toute formation payante : commencez par le gratuit, une semaine sur vos vraies tâches. Vous saurez alors précisément ce qu'il vous manque.
 
@@ -114,7 +114,7 @@ Ce qu'il faut savoir sur le livret d'accueil du stagiaire :
 • Un livret de 4 à 6 pages, clair et bien rangé, vaut mieux qu'un pavé que personne ne lit.
 • Il doit rester cohérent avec le programme et la convention : les trois documents doivent raconter la même histoire.
 
-Le vrai problème n'est pas de le rédiger une fois, c'est de le tenir à jour à chaque session sans tout réécrire.
+Le vrai problème arrive après la rédaction : le tenir à jour à chaque session, sans tout réécrire.
 
 Votre livret d'accueil est-il à jour aujourd'hui, ou mériterait-il d'y regarder de plus près ?
 
@@ -235,7 +235,9 @@ Votre organisme mesure-t-il déjà l'impact des formations à froid, 30 ou 90 jo
 | 3 | « de 45 min à 10 min » | « Rédaction d'une convention : de 45 min à 10 min » |
 | 3 | « de 1h à 5 min » | « Compte rendu de visioconférence : de 1h à 5 min » |
 | 3 | « de 3h à 45 min » | « Réponse à un appel d'offres : de 3h à 45 min » |
+| 3 | « une semaine » | « utilisez Claude **une semaine** sur vos vraies tâches » |
 | 4 | « 3 secondes » | « au-delà de 3 secondes de chargement, une part importante des visiteurs mobiles quitte la page avant même de la lire » |
+| 5 | « six mois » | « une personne qui a quitté l'équipe il y a **six mois** » |
 | 5 | « 8 à 9 rubriques clés » | « Prévoyez **8 à 9 rubriques** clés : organisme, objectifs, évaluation, règlement, accessibilité, contacts, réclamations, sécurité » |
 | 5 | « 4 à 6 pages » | « Un livret de **4 à 6 pages**, clair et bien rangé, vaut mieux qu'un pavé que personne ne lit » |
 | 6 | « Deux stagiaires […] dernière demi-journée » | « deux stagiaires oublient de signer la dernière demi-journée » |
@@ -246,5 +248,6 @@ Votre organisme mesure-t-il déjà l'impact des formations à froid, 30 ou 90 jo
 | 8 | « 11 chiffres » | « l'identifiant à **11 chiffres** attribué à tout organisme de formation » |
 | 8 | « 3 mois » | « **3 mois** : c'est le délai dont vous disposez pour déposer votre déclaration après la signature de votre première convention » |
 | 8 | « 30 jours » | « **30 jours** : c'est le délai dont dispose la DREETS pour instruire votre dossier » |
+| 8 | « deux raisons » | « **Deux causes principales** : L'absence de transmission du bilan pédagogique et financier (BPF)… L'absence d'activité de formation sur la période » |
 | 9 | — | supprimé (aucun chiffre présent dans ce post : l'article source est un recueil de prompts, sans statistique à citer) |
 | 10 | « 30 à 90 jours » | « L'évaluation à froid (**30-90 jours** après) » / « un email automatique […] est envoyé à **J+30 et J+90** » |
