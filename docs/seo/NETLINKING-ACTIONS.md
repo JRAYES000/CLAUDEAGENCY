@@ -343,6 +343,8 @@ plus d'informations ? »), aucune autre adresse d'adhésion mentionnée.
 
 **E-mail prêt à envoyer — pas de dossier, pas de pièce jointe, une seule question :**
 
+> **De :** equipe1@claudeagency.fr (arbitrage de Julien du 15/08/2026 pour les demandes de
+> fédération, `kit-identite.md` §3 — même adresse que A7 et A8, Federgon est une fédération)
 > **À :** membership@federgon.be
 > **Objet :** Question d'éligibilité — cabinet de conseil français (IA / formation
 > professionnelle)

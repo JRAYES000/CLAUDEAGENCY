@@ -5,6 +5,28 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (34) — Adresse expéditeur A10 (Federgon) ajoutée : equipe1@claudeagency.fr
+
+**Type :** documentation (correction d'un oubli, aucun envoi effectué)
+
+**URLs :** aucune — mise à jour de `docs/seo/NETLINKING-ACTIONS.md`
+
+**Pourquoi :** SOLOHERY a demandé quelle adresse utiliser comme expéditeur pour A10, l'e-mail
+Federgon préparé n'en précisait pas — oubli constaté en comparant à A7/A8/A9.
+
+**Fait :** vérifié les trois envois précédents : A7 et A8 (adhésions à des fédérations) utilisent
+`equipe1@claudeagency.fr` (arbitrage de Julien du 15/08/2026, `kit-identite.md` §3) ; A9
+(candidature éditoriale Digiformag, pas une fédération) utilise délibérément
+`contact@claudeagency.fr`. Federgon est une fédération et l'e-mail est une question d'adhésion —
+rentre dans la règle d'A7/A8. Ligne « De : equipe1@claudeagency.fr » ajoutée au bloc e-mail prêt
+à envoyer dans `NETLINKING-ACTIONS.md`.
+
+**Mesure :** non applicable.
+
+**Suite :** SOLOHERY envoie A10 depuis equipe1@claudeagency.fr.
+
+---
+
 ## 2026-08-18 (33) — A9 (Digiformag) ajouté à la liste de suivi
 
 **Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)
