@@ -31,7 +31,12 @@ const FIELDS = [
 const SUBJECTS = {
   contact: 'Nouveau message depuis claudeagency.fr',
   diagnostic: 'Nouveau diagnostic — claudeagency.fr',
+  barometre: 'Nouvelle réponse au Baromètre IA',
 };
+
+// Garde-fous sur les lignes envoyées par le client (mode barometre) : l'endpoint est public.
+const MAX_ROWS = 40;
+const MAX_VALUE = 500;
 
 export async function onRequestGet({ env }) {
   // Health-check + détecteur de version de déploiement.
@@ -49,18 +54,32 @@ export async function onRequestPost({ request, env }) {
 
   if (data.botcheck) return json({ ok: true }); // honeypot rempli => bot, on ignore silencieusement
 
+  const form = String(data.form || '');
   const email = String(data.email || '').trim();
-  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    return json({ ok: false, message: 'Merci de saisir un email valide.' }, 400);
-  }
   const name = String(data.name || '').trim();
-  if (!name) return json({ ok: false, message: 'Merci de saisir votre nom.' }, 400);
+  let subject;
+  let rows;
 
-  const subject = `${SUBJECTS[String(data.form || '')] || SUBJECTS.contact} — ${name}`;
-  const rows = FIELDS.filter(([key]) => String(data[key] || '').trim()).map(([key, label]) => [
-    label,
-    String(data[key]).trim(),
-  ]);
+  if (form === 'barometre') {
+    // Réponse au Baromètre : anonyme par conception, ni nom ni email exigés.
+    // Les libellés viennent du questionnaire, qui seul connaît l'intitulé de ses questions.
+    rows = (Array.isArray(data.fields) ? data.fields : [])
+      .filter((r) => Array.isArray(r) && String(r[0] || '').trim() && String(r[1] || '').trim())
+      .slice(0, MAX_ROWS)
+      .map((r) => [String(r[0]).trim().slice(0, 120), String(r[1]).trim().slice(0, MAX_VALUE)]);
+    if (!rows.length) return json({ ok: false, message: 'Réponse vide.' }, 400);
+    subject = email ? `${SUBJECTS.barometre} — ${email}` : `${SUBJECTS.barometre} — anonyme`;
+  } else {
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      return json({ ok: false, message: 'Merci de saisir un email valide.' }, 400);
+    }
+    if (!name) return json({ ok: false, message: 'Merci de saisir votre nom.' }, 400);
+    subject = `${SUBJECTS[form] || SUBJECTS.contact} — ${name}`;
+    rows = FIELDS.filter(([key]) => String(data[key] || '').trim()).map(([key, label]) => [
+      label,
+      String(data[key]).trim(),
+    ]);
+  }
 
   const text = rows.map(([label, value]) => `${label} : ${value}`).join('\n');
   const html = buildHtml(rows, email, name);
@@ -100,7 +119,7 @@ async function sendViaMailjet(env, { subject, text, html, email, name }) {
           {
             From: { Email: TO_EMAIL, Name: FROM_NAME },
             To: [{ Email: TO_EMAIL, Name: 'Claude Agency' }],
-            ReplyTo: { Email: email, Name: name },
+            ...(email ? { ReplyTo: { Email: email, Name: name || email } } : {}),
             Subject: subject,
             TextPart: text,
             HTMLPart: html,
@@ -116,23 +135,29 @@ async function sendViaMailjet(env, { subject, text, html, email, name }) {
 
 // L'API Hostinger n'accepte pas de Reply-To : on rend l'adresse du prospect cliquable
 // (mailto pré-rempli) pour qu'un clic ouvre une réponse qui lui est bien adressée.
+// Une réponse au Baromètre peut être anonyme : dans ce cas, aucun lien de réponse.
 function buildHtml(rows, email, name) {
   const cell = 'padding:6px 14px 6px 0;color:#666;vertical-align:top;white-space:nowrap';
-  const reply = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Votre demande sur claudeagency.fr')}`;
-  return (
+  const reply = email
+    ? `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Votre demande sur claudeagency.fr')}`
+    : '';
+  const table =
     '<table style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:15px">' +
     rows
       .map(([label, value]) => {
         const shown =
-          label === 'Email'
+          reply && value === email
             ? `<a href="${reply}" style="color:#0b5fff">${escapeHtml(value)}</a>`
             : escapeHtml(value).replace(/\n/g, '<br>');
         return `<tr><td style="${cell}">${escapeHtml(label)}</td><td style="padding:6px 0"><strong>${shown}</strong></td></tr>`;
       })
       .join('') +
-    '</table>' +
+    '</table>';
+  if (!reply) return table;
+  return (
+    table +
     `<p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:14px">` +
-    `<a href="${reply}" style="color:#0b5fff">Répondre à ${escapeHtml(name)}</a></p>`
+    `<a href="${reply}" style="color:#0b5fff">Répondre à ${escapeHtml(name || email)}</a></p>`
   );
 }
 

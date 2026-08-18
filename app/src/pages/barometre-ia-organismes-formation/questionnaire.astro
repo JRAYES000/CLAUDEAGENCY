@@ -30,6 +30,13 @@ const questions = [
   { id: 'budget', type: 'radio', q: 'Budget annuel envisagé (IA / automatisation)', opts: ['0 €', 'Moins de 500 €', '500 à 2 000 €', '2 000 à 10 000 €', 'Plus de 10 000 €'] },
 ];
 
+// Libellés des champs pour la notification e-mail (l'ordre suit celui du questionnaire).
+const LABELS = Object.fromEntries([
+  ...questions.map((q) => [q.id, q.q]),
+  ['accompagnement', 'Souhaite être accompagné'],
+  ['email', 'Email'],
+]);
+
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -123,7 +130,7 @@ const breadcrumb = {
     </form>
   </section>
 
-  <script is:inline define:vars={{ ENDPOINT, SUPA_KEY }}>
+  <script is:inline define:vars={{ ENDPOINT, SUPA_KEY, LABELS }}>
     const form = document.getElementById('barometre-form');
     const merci = document.getElementById('barometre-merci');
     const errEl = document.getElementById('barometre-error');
@@ -145,6 +152,25 @@ const breadcrumb = {
       form.hidden = true;
       merci.hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Notification e-mail à contact@claudeagency.fr — best-effort : la réponse est déjà
+    // enregistrée en base, un échec de notification ne doit jamais bloquer le visiteur.
+    const notifier = (payload) => {
+      const fields = Object.entries(LABELS)
+        .map(([key, label]) => {
+          const v = payload[key];
+          if (v === null || v === undefined || v === false || v === '') return null;
+          return [label, Array.isArray(v) ? v.join(', ') : v === true ? 'Oui' : String(v)];
+        })
+        .filter(Boolean);
+      if (!fields.length) return;
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ form: 'barometre', email: payload.email || '', fields }),
+        keepalive: true,
+      }).catch(() => {});
     };
 
     form.addEventListener('submit', async (e) => {
@@ -203,6 +229,7 @@ const breadcrumb = {
         });
         if (res.ok) {
           if (window.plausible) window.plausible('Barometre - reponse');
+          notifier(payload); // best-effort : la réponse est déjà en base, on ne bloque pas dessus
           showMerci();
         } else {
           throw new Error('HTTP ' + res.status);
