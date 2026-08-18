@@ -165,6 +165,21 @@ financement » (texte intégral vérifié dans le DOM). Contrairement à A7, ce 
 attendre l'arbitrage de `arbitrage-julien.md` : la même option est correcte quelle que soit
 l'issue.
 
+**Condition d'effectif minimum : aucune trouvée, vérifié le 18/08/2026 (après coup, pas fait au
+premier passage).** Scan du texte complet de la page (recherche « critère », « salarié »,
+« effectif », « minimum », « ancienneté ») : une seule occurrence, « Vous ne remplissez pas les
+critères ? Contactez Nicolas pour étudier votre situation. » — aucun critère chiffré publié,
+contrairement à la page équivalente des Acteurs de la Compétence (A7). Une exigence « 2 ans
+d'existence, 2 salariés minimum » existe bien pour un programme Hub France IA, mais c'est un
+« Appel à manifestation d'intérêt » spécifique (catalogue des offreurs IA), pas l'adhésion
+générale via ce formulaire — pas confondu avec la condition générale.
+
+**Preuve — positionnement « cabinet de conseil en IA » (champ 16) : gardé tel quel, même
+arbitrage qu'A7.** Motif : cohérent avec la position actuellement en vigueur partout ailleurs
+dans le dépôt (rien d'autre n'a changé en attendant `arbitrage-julien.md`) ; une demande d'info à
+une association n'engage rien et devient sans objet d'elle-même si l'arbitrage bascule plus
+tard — pas de raison de trancher différemment d'une action de même nature.
+
 **Message à envoyer** — champ par champ, dans l'ordre réel du formulaire (relevé le 18/08/2026,
 formulaire complet, pas le paragraphe générique d'avant) :
 
@@ -183,7 +198,7 @@ formulaire complet, pas le paragraphe générique d'avant) :
 | Pays * | France |
 | Type de structure | Organisme de formation - Cabinet d'avocats - Conseil en recrutement innovation transformation financement — voir « point utile » ci-dessus |
 | Année de création de votre organisation | 2024 |
-| Montant de votre dernier CA | À renseigner — aucune donnée financière dans le dépôt, ne pas choisir une tranche au hasard ; l'option « A renseigner » existe et évite d'inventer un chiffre |
+| Montant de votre dernier CA | À renseigner — **vraie réponse, pas un placeholder cassé** : option à part entière du menu réel (distincte de l'état vide par défaut « ---- Sélectionnez une valeur ---- »), signifie « à préciser plus tard sur demande ». Aucune donnée financière dans le dépôt (société créée en mars 2024), pas de tranche inventée. À remplacer par un vrai chiffre uniquement si SOLOHERY en connaît un et préfère le communiquer d'emblée — optionnel, pas bloquant |
 | Comment avez-vous connu le Hub France IA ? | à trancher par SOLOHERY — aucune option « moteur de recherche » sur ce formulaire (contrairement à A7), choix réels : Bouche à oreille / Conférence / Webinaire / Salon / Réseaux Sociaux / Autre |
 | Pourquoi rejoindre le Hub France IA ? | voir bloc ci-dessous — aucune limite de caractères constatée sur ce champ |
 | Avez-vous un code promotionnel ? | laisser vide |
@@ -201,9 +216,12 @@ formulaire complet, pas le paragraphe générique d'avant) :
 1. Ouvrir https://www.hub-franceia.fr/devenir-membre-v2/, dérouler jusqu'au formulaire.
 2. Remplir les champs dans l'ordre du tableau ci-dessus.
 3. Trancher le champ « Comment avez-vous connu... » selon le canal réel.
-4. Cliquer « Valider » — ce lien déclenche une étape de validation avant l'envoi final,
+4. **Point d'action optionnel — Montant du dernier CA :** laisser « A renseigner » (réponse
+   valide) sauf si SOLOHERY connaît le vrai chiffre d'affaires et préfère le communiquer
+   d'emblée — ne pas deviner une tranche.
+5. Cliquer « Valider » — ce lien déclenche une étape de validation avant l'envoi final,
    vérifier qu'aucun champ obligatoire (*) n'est resté vide.
-5. Noter la date d'envoi dans **Preuve**. Formule sans cotisation confirmée : rejoindre, noter
+6. Noter la date d'envoi dans **Preuve**. Formule sans cotisation confirmée : rejoindre, noter
    la date. Toute formule qui réclame un règlement : décliner et écrire la raison dans Preuve —
    ce plan ne souscrit rien.
 

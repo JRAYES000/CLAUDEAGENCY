@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (26) — A8 : deux points ajustés avant envoi, effectif minimum vérifié après coup
+
+**Type :** documentation (arbitrage + vérification complémentaire, aucun envoi effectué)
+
+**URLs :** aucune nouvelle — mise à jour de `docs/seo/NETLINKING-ACTIONS.md`
+
+**Pourquoi :** avant l'envoi d'A8, Julien a demandé deux vérifications : condition d'effectif
+minimum (comme A7) non explicitement checkée au premier passage, et confirmation que « A
+renseigner » sur le CA est une vraie réponse et pas un placeholder oublié.
+
+**Fait :** condition d'effectif vérifiée après coup — **aucune condition chiffrée trouvée**
+(scan du texte complet de la page, une seule occurrence de « critères », non détaillée ; une
+exigence « 2 salariés, 2 ans » existe mais pour un programme distinct, l'AMI catalogue des
+offreurs, pas l'adhésion générale). « A renseigner » confirmé comme option à part entière du
+menu réel, distincte de l'état vide par défaut — gardé tel quel, point d'action optionnel ajouté
+à la marche à suivre plutôt qu'un blocage. Positionnement « cabinet de conseil en IA » du champ
+16 : gardé tel quel, même motif qu'A7 (cohérent avec le reste du dépôt, n'engage rien).
+
+**Mesure :** non applicable.
+
+**Suite :** SOLOHERY envoie A8 avec ces deux points réglés.
+
+---
+
 ## 2026-08-18 (25) — Message Hub France IA préparé, même travail qu'A7
 
 **Type :** netlinking (préparation, aucun envoi effectué — SOLOHERY envoie)
