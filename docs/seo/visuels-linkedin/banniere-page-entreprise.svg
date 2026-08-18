@@ -7,13 +7,12 @@
   <!-- bandeau terracotta plein (gauche) -->
   <rect x="0" y="0" width="360" height="191" fill="#CC785C"/>
 
-  <!-- wordmark sur le bandeau terracotta -->
-  <text x="180" y="86" text-anchor="middle"
+  <!-- wordmark sur le bandeau terracotta : une seule ligne, casée en haut du bandeau
+       pour rester visible malgré le logo de page (cercle) que LinkedIn superpose
+       en bas à gauche de la couverture -->
+  <text x="180" y="60" text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif" font-weight="800"
-        font-size="34" letter-spacing="2" fill="#FBF7F1">CLAUDE</text>
-  <text x="180" y="126" text-anchor="middle"
-        font-family="Arial, Helvetica, sans-serif" font-weight="800"
-        font-size="34" letter-spacing="2" fill="#FBF7F1">AGENCY</text>
+        font-size="32" letter-spacing="2" fill="#FBF7F1">CLAUDE AGENCY</text>
 
   <!-- tagline sur fond crème -->
   <text x="404" y="86" font-family="Arial, Helvetica, sans-serif" font-weight="700"

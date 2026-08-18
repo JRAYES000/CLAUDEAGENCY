@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (41) — Audit page entreprise LinkedIn + correction bannière (logo masquant le wordmark)
+
+**Type :** prospection LinkedIn, hors périmètre SEO (suite de l'entrée 40).
+
+**Pourquoi :** demande explicite d'audit de https://www.linkedin.com/company/claude-agency-fr/
+après mise en ligne de la bannière par Solohery.
+
+**Fait :** vérification en vue « membre » (page admin) : tagline, descriptif, spécialisations,
+secteur et site web correspondent mot pour mot à `docs/seo/linkedin-kit.md`. Défaut trouvé : le
+logo de page (cercle) que LinkedIn superpose en bas à gauche de la couverture cachait la seconde
+ligne du wordmark (« AGENCY » réduit à un fragment « CY » visible). Corrigé dans
+`banniere-page-entreprise.svg` : wordmark repassé sur une seule ligne, remonté en haut du bandeau
+terracotta, hors de la zone que le logo recouvre. PNG régénéré (toujours 1128×191,
+3 couleurs `#FBF7F1`/`#CC785C`/`#2B2724`).
+
+**Mesure :** 1 défaut visuel trouvé et corrigé, 0 autre écart de contenu constaté.
+
+**Suite :** ré-uploader `banniere-page-entreprise.png` sur la page entreprise (attente d'accord
+avant toute action sur le compte LinkedIn) ; câblage `sameAs` (point 4 de `linkedin-kit.md`)
+toujours en attente, page maintenant vérifiée en ligne.
+
+---
+
 ## 2026-08-18 (40) — Visuels LinkedIn (bannière + gabarit de post) générés localement
 
 **Type :** prospection LinkedIn, hors périmètre SEO (préparation de la page entreprise, suite des
