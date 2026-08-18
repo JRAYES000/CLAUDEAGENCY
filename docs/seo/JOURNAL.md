@@ -5,6 +5,33 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (38) — Liste de prospection LinkedIn (30 dirigeants OF) — recherche et correction
+
+**Type :** prospection LinkedIn, hors périmètre SEO (loggé ici faute d'autre journal suivi dans
+le dépôt ; aucune ligne de `REQUETES.csv` ni `BACKLOG.md` concernée).
+
+**Pourquoi :** demande explicite — constituer une liste de 30 dirigeants d'organismes de
+formation (France/Belgique/Suisse) pour amorcer le levier LinkedIn (invitations et commentaires
+manuels, SOLOHERY), en complément du sprint notoriété de `PLAN-SOLOHERY.md`.
+
+**Fait :** recherche manuelle par sources publiques, sans délégation à un sous-agent ni à un
+modèle externe (donnée personnelle). Une fiche hors périmètre (contact rattaché à un centre de
+ressources du secteur, pas à un organisme de formation dispensant des cours — donc pas un
+client-cible au sens de `PRODUCT.md`) repérée en relecture et remplacée par un dirigeant d'un
+organisme de formation professionnelle réel, même méthode de sourcing (aucun lien LinkedIn
+reconstruit à partir d'un nom).
+
+**Mesure :** 30 fiches (15 France, 8 Belgique, 7 Suisse), 12 avec lien LinkedIn confirmé en
+source, 18 en « inconnu ». Détail des noms **volontairement absent de ce journal public** :
+fichier `docs/prive/linkedin-30-dirigeants.md`, hors dépôt (`.gitignore`), consultable en local.
+
+**Suite :** deuxième volet (commentaires quotidiens sur 3 publications) en attente que Julien/
+SOLOHERY transmette les publications du jour. Journal dédié déjà en place :
+`docs/prive/linkedin-journal-engagement.md` (hors dépôt, une ligne par commentaire réellement
+posté).
+
+---
+
 ## 2026-08-18 (37) — Relecture stylistique libre des 10 posts LinkedIn
 
 **Type :** relecture (correctif sur le livrable de l'entrée 36, même fichier)

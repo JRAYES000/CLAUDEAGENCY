@@ -25,3 +25,6 @@
 
 # Réglages locaux Claude Code (allowlist de permissions perso)
 .claude/settings.local.json
+
+# Données personnelles de prospection — jamais commitées
+/docs/prive/
