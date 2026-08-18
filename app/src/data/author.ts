@@ -27,7 +27,7 @@ export const AUTHOR = {
 // sameAs : profils réels et vérifiés de l'auteur (LinkedIn personnel + entreprise). Ne jamais inventer de profil.
 const AUTHOR_SAMEAS = [
   'https://www.linkedin.com/in/julien-rayes/',
-  'https://www.linkedin.com/company/claudeagency-fr/',
+  'https://www.linkedin.com/company/claude-agency-fr/',
 ];
 export function authorPerson(site: URL) {
   const base = site.toString().replace(/\/$/, '');

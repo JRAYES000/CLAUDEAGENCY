@@ -5,6 +5,28 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (42) — Câblage sameAs LinkedIn (point 4 de linkedin-kit.md), corrige un slug faux
+
+**Type :** SEO technique (schema.org / E-E-A-T), suite des entrées 40-41.
+
+**Pourquoi :** la page entreprise LinkedIn est maintenant créée et vérifiée en ligne (entrée 41) ;
+`linkedin-kit.md` prévoyait de câbler son URL dans le `sameAs` de l'Organization une fois cette
+condition remplie.
+
+**Fait :** en cherchant où ajouter l'URL, trouvé qu'elle y était déjà (`app/src/data/author.ts`
+et `app/src/layouts/BaseLayout.astro`) mais avec un slug faux : `claudeagency-fr` (sans tiret) au
+lieu du vrai slug vérifié `claude-agency-fr`. Un troisième endroit avait la même faute :
+`app/src/pages/llms.txt.ts` (fiche LinkedIn du flux AEO/GEO). Les 3 corrigés. `npm run build`
+repassé après chaque édition — 158 pages, aucune erreur. Confirmé dans `dist/a-propos/index.html`
+que le JSON-LD Person expose désormais la bonne URL.
+
+**Mesure :** 3 occurrences du slug faux corrigées, 0 restante (`grep -rn claudeagency-fr src dist`
+vide après correction).
+
+**Suite :** aucune, le câblage documenté dans `linkedin-kit.md` (point 4) est terminé.
+
+---
+
 ## 2026-08-18 (41) — Audit page entreprise LinkedIn + correction bannière (logo masquant le wordmark)
 
 **Type :** prospection LinkedIn, hors périmètre SEO (suite de l'entrée 40).

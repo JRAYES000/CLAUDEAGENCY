@@ -21,7 +21,7 @@ export const GET: APIRoute = async () => {
 - Spécialisation exclusive : organismes de formation francophones (CFA, OF indépendants, centres Qualiopi, formateurs indépendants)
 - Périmètre géographique : France, Belgique, Suisse, Luxembourg
 - Contact : contact@claudeagency.fr
-- LinkedIn : https://www.linkedin.com/company/claudeagency-fr/
+- LinkedIn : https://www.linkedin.com/company/claude-agency-fr/
 
 ## Ce que fait Claude Agency
 
