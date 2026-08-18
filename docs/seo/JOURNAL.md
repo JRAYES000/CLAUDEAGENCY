@@ -5,6 +5,20 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (28) — A8 : dernier champ tranché par SOLOHERY (Conférence)
+
+**Type :** netlinking (mise à jour mineure, formulaire toujours pas soumis à ma connaissance)
+
+**URLs :** aucune — mise à jour de `docs/seo/NETLINKING-ACTIONS.md`
+
+**Fait :** SOLOHERY a choisi « Conférence » pour « Comment avez-vous connu le Hub France IA ? »,
+seul champ resté « à trancher ». Fiche mise à jour en conséquence — A8 n'a plus de champ en
+suspens côté préparation.
+
+**Suite :** SOLOHERY soumet, note la date dans Preuve.
+
+---
+
 ## 2026-08-18 (27) — Liste de suivi des envois externes ajoutée à arbitrage-julien.md
 
 **Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)

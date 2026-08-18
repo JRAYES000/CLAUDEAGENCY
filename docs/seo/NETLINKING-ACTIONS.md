@@ -199,7 +199,7 @@ formulaire complet, pas le paragraphe générique d'avant) :
 | Type de structure | Organisme de formation - Cabinet d'avocats - Conseil en recrutement innovation transformation financement — voir « point utile » ci-dessus |
 | Année de création de votre organisation | 2024 |
 | Montant de votre dernier CA | À renseigner — **vraie réponse, pas un placeholder cassé** : option à part entière du menu réel (distincte de l'état vide par défaut « ---- Sélectionnez une valeur ---- »), signifie « à préciser plus tard sur demande ». Aucune donnée financière dans le dépôt (société créée en mars 2024), pas de tranche inventée. À remplacer par un vrai chiffre uniquement si SOLOHERY en connaît un et préfère le communiquer d'emblée — optionnel, pas bloquant |
-| Comment avez-vous connu le Hub France IA ? | à trancher par SOLOHERY — aucune option « moteur de recherche » sur ce formulaire (contrairement à A7), choix réels : Bouche à oreille / Conférence / Webinaire / Salon / Réseaux Sociaux / Autre |
+| Comment avez-vous connu le Hub France IA ? | Conférence — tranché par SOLOHERY, canal réel confirmé le 18/08/2026 |
 | Pourquoi rejoindre le Hub France IA ? | voir bloc ci-dessous — aucune limite de caractères constatée sur ce champ |
 | Avez-vous un code promotionnel ? | laisser vide |
 | Case liste de diffusion | à cocher si SOLOHERY accepte de recevoir les communications — facultatif, pas une case RGPD de soumission |
