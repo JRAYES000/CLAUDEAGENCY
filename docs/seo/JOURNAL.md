@@ -5,6 +5,38 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (24) — A7 envoyé : deux arbitrages tranchés, message soumis par Claude Code
+
+**Type :** netlinking (envoi effectué directement par Claude Code, sur consigne explicite)
+
+**URLs :** https://lesacteursdelacompetence.fr/devenir-adherent/ — formulaire soumis le
+18/08/2026
+
+**Pourquoi :** Julien a demandé de trancher deux points en suspens avant l'envoi (effectif=0
+incompatible avec la condition d'éligibilité ; formulation « cabinet de conseil » non arbitrée
+en interne), puis d'envoyer directement — changement par rapport au plan initial où SOLOHERY
+envoyait.
+
+**Fait :** deux arbitrages tranchés et motivés (détail dans `NETLINKING-ACTIONS.md`) : envoyer
+quand même malgré l'incompatibilité effectif/condition (coût nul, réponse écrite = preuve
+documentée) ; garder la formulation « cabinet de conseil en IA » (cohérente avec la position
+actuelle du reste du dépôt, n'engage rien). Formulaire rempli champ par champ (21 champs) via le
+panneau navigateur, **vérifié dans le DOM réel** (`document.getElementById` sur le vrai
+`id="forminator-module-11391"`, pas seulement l'arbre d'accessibilité — une première vérification
+via `querySelector('form')` avait ciblé le mauvais formulaire, la recherche du site, corrigée
+avant l'envoi) : toutes les valeurs confirmées correctes avant soumission. Champ « Comment
+avez-vous connu... » tranché à « Moteur de recherche », faute de réponse sur le vrai canal.
+Soumis : confirmation constatée sur la page (« Merci de nous avoir contactés... »), formulaire
+réinitialisé — signal déterministe de succès, pas déclaré sans preuve.
+
+**Mesure :** non applicable — envoi tout juste effectué, aucune réponse encore reçue.
+
+**Suite :** relance le 21/08/2026 si silence (texte déjà prêt dans `NETLINKING-ACTIONS.md`) ;
+« Sans objet » le 27/08 si toujours rien. Si la fédération confirme une formule sans cotisation
+compatible avec 0 salarié : rejoindre. Sinon : décliner, ce plan ne souscrit rien.
+
+---
+
 ## 2026-08-18 (23) — Message Les Acteurs de la Compétence recalé sur le vrai formulaire
 
 **Type :** netlinking (préparation, aucun envoi effectué par Claude Code)
