@@ -366,7 +366,41 @@ plus d'informations ? »), aucune autre adresse d'adhésion mentionnée.
 2. Noter la date d'envoi dans **Preuve**.
 3. Sans réponse au 27/08/2026 : statut « Sans objet » dans Preuve, avec la date d'envoi. Pas de
    relance intermédiaire prévue — une seule question, une seule échéance.
-| **Societe.com** | — | Les deux URL de revendication de fiche testées renvoient une 404. À vérifier à la main. |
+| **Societe.com** | https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html | Chemin trouvé le 18/08/2026 (les deux anciennes URL de revendication testées le 12/08 en 404 n'ont pas été retentées) — voir détail ci-dessous. |
+
+### Societe.com — chemin de revendication trouvé
+
+**Fiche :** https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html —
+atteinte sans erreur le 18/08/2026, données à jour (SIREN, dirigeant Antoine RAYES, adresse
+conformes à `kit-identite.md`).
+
+**Revendication :** pas d'URL séparée — un bouton **« Revendiquer cette entreprise »**
+(affiché « Associer à mon compte », bandeau « Nouveau • Espace Pro 100% Gratuit ») sur la fiche
+elle-même. Cliqué et observé le 18/08/2026 (clic réel via le panneau navigateur, requêtes
+réseau consultées) :
+- **Compte demandé : oui** — le clic charge un module d'inscription (`auth-lite.html`) qui
+  affiche « Créer un compte gratuitement pour bénéficier des services gratuits de Societe.com »
+  : e-mail, numéro de téléphone, validation par lien envoyé par e-mail.
+- **Règlement demandé : non** — rien dans ce formulaire ne mentionne de paiement ; le bandeau de
+  la fiche annonce explicitement « 100% Gratuit ». Pas de mur payant rencontré à ce stade.
+- Étape suivante après création de compte (association effective du compte à la fiche
+  entreprise) non testée — création de compte hors périmètre de Claude Code.
+
+**Source :** constaté directement (navigation, clic, inspection des requêtes réseau et du DOM),
+pas une citation tierce.
+
+**Marche à suivre**
+
+1. Ouvrir https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html.
+2. Cliquer « Revendiquer cette entreprise » / « Associer à mon compte ».
+3. Créer le compte gratuit (e-mail + téléphone), valider via le lien reçu par e-mail — étape
+   SOLOHERY, hors périmètre de Claude Code.
+4. Une fois connecté, suivre le parcours d'association à la fiche avec le NAP de
+   `kit-identite.md` §1 (nom, adresse, téléphone au mot près).
+5. **Si une contrepartie financière apparaît à un moment du parcours** (non observée jusqu'ici,
+   mais l'étape post-compte n'a pas été testée) : s'arrêter, ne rien souscrire, noter la raison
+   dans Preuve.
+6. Noter la date et le résultat dans **Preuve**.
 
 ---
 

@@ -5,6 +5,34 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (35) — Chemin de revendication Societe.com trouvé, gratuit jusqu'au compte
+
+**Type :** netlinking (audit, aucun compte créé — SOLOHERY revendique)
+
+**URLs :** https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html
+
+**Pourquoi :** item Vague 4, deux anciennes URL de revendication en 404 depuis le 12/08 — pas
+retentées, cherché un nouveau chemin depuis la fiche elle-même.
+
+**Fait :** fiche atteinte sans erreur, données conformes à `kit-identite.md`. Bouton
+« Revendiquer cette entreprise » cliqué réellement (panneau navigateur, pas une simulation) :
+déclenche un module d'inscription gratuite (e-mail + téléphone, validation par lien) — « Créer
+un compte gratuitement pour bénéficier des services gratuits de Societe.com », confirmé par les
+requêtes réseau observées (`auth-lite.html`). **Aucune contrepartie financière rencontrée**
+jusqu'à ce stade — bandeau « 100% Gratuit » sur la fiche. Étape post-création de compte
+(association effective à la fiche) non testée, hors périmètre de Claude Code. Deux tentatives de
+clic infructueuses en cours de route (`.click()` JS synthétique, puis clic réel via ref) avant de
+trouver la bonne piste de diagnostic (requêtes réseau) — changé d'approche plutôt que de boucler
+sur le clic. `NETLINKING-ACTIONS.md` mis à jour avec le chemin complet et une marche à suivre.
+
+**Mesure :** non applicable.
+
+**Suite :** SOLOHERY crée le compte gratuit, associe la fiche avec le NAP de `kit-identite.md`,
+note le résultat dans Preuve. Si un règlement apparaît en cours de route (non observé jusqu'ici) :
+s'arrêter, noter la raison, « Sans objet ».
+
+---
+
 ## 2026-08-18 (34) — Adresse expéditeur A10 (Federgon) ajoutée : equipe1@claudeagency.fr
 
 **Type :** documentation (correction d'un oubli, aucun envoi effectué)
