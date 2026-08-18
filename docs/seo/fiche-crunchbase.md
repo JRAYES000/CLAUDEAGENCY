@@ -35,7 +35,7 @@ SOLOHERY doit comparer cette liste à l'ordre réel une fois connecté et l'ajus
 | Compte (authentification) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
 | Nom de l'organisation | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Nom légal, décision de Julien du 17/08/2026 (`kit-identite.md` §3) — champ obligatoire |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
-| Description* | voir section « Description » ci-dessous | Confirmé sur le formulaire réel le 17/08/2026 : interface en français, un seul champ Description obligatoire (pas de tagline séparée). Décidé en français, pas en anglais comme prévu initialement — `kit-identite.md` §2, version moyenne, réutilisée telle quelle |
+| Description* | *Cabinet de conseil : IA et automatisation du back-office (Qualiopi, BPF, émargement) pour organismes de formation.* | Champ limité à **2-140 caractères** (erreur constatée sur le formulaire réel avec la version 481c) — 114 caractères, compté mécaniquement (`wc -m`). Français, pas anglais. Reformulée pour la contrainte, mêmes faits que `kit-identite.md` §2 |
 | Également connu sous le nom de | `Claude Agency` | Champ confirmé sur le formulaire réel — bon endroit pour la marque commerciale, ne contredit pas le nom légal du champ Nom |
 | Nom légal | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Champ confirmé sur le formulaire réel, identique au champ Nom |
 | Siège social / Headquarters | `229 rue Saint-Honoré, 75001 Paris, France` | NAP non traduit tel que demandé — « rue Saint-Honoré » reste en français |
@@ -50,17 +50,15 @@ SOLOHERY doit comparer cette liste à l'ordre réel une fois connecté et l'ajus
 | LinkedIn de l'entreprise | à trancher | Page LinkedIn en cours de création ailleurs dans la Vague 1 (item #2) — URL non confirmée à ce jour, ne pas en inventer une |
 | **Preuve — URL du profil publié** | *(à coller par SOLOHERY après validation)* | Vide, volontairement |
 
-## Description — français, `kit-identite.md` §2 (version moyenne, 481 caractères)
+## Description — 114 caractères (champ réel limité à 2-140)
 
 Interface Crunchbase constatée en français le 17/08/2026 — décidé de rester en français plutôt
-que de traduire, contrairement à la préparation initiale.
+que de traduire, contrairement à la préparation initiale. Version 481 caractères de
+`kit-identite.md` §2 essayée en premier, **rejetée par le formulaire** (« La longueur doit être
+comprise entre 2 et 140 ») — reformulée courte ci-dessous, mêmes faits.
 
-> Claude Agency est un cabinet de conseil qui aide les organismes de formation français à
-> intégrer l'intelligence artificielle et à automatiser leurs process : audit et diagnostic IA,
-> automatisation du back-office (Qualiopi, BPF, émargement, dossiers de financement) et
-> formation des équipes. Notre méthode : un flux à la fois, l'IA prépare, l'humain valide — vous
-> gardez toujours la main. Pas de jargon, pas de dépendance : nous formons et outillons pour que
-> vous restiez autonomes.
+> Cabinet de conseil : IA et automatisation du back-office (Qualiopi, BPF, émargement) pour
+> organismes de formation.
 
 ## Marche à suivre
 

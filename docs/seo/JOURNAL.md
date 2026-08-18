@@ -5,6 +5,28 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-17 (22) — Description Crunchbase raccourcie à 114 caractères, limite 2-140 découverte
+
+**Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
+
+**URLs :** aucune nouvelle — mise à jour de `docs/seo/fiche-crunchbase.md`
+
+**Pourquoi :** la version 481 caractères collée dans le champ Description a été rejetée par le
+formulaire réel : « La longueur doit être comprise entre 2 et 140. » — limite non documentée
+nulle part avant ce test.
+
+**Fait :** description reformulée à 114 caractères (compté mécaniquement, `wc -m`), mêmes faits
+que `kit-identite.md` §2, en français : « Cabinet de conseil : IA et automatisation du
+back-office (Qualiopi, BPF, émargement) pour organismes de formation. » `fiche-crunchbase.md`
+mis à jour (tableau + section Description) pour refléter la contrainte réelle.
+
+**Mesure :** non mesuré — soumission en cours côté SOLOHERY, pas encore publiée.
+
+**Suite :** SOLOHERY termine le formulaire (date de fondation, secteur, logo), soumet, colle
+l'URL du profil publié dans la ligne Preuve de `fiche-crunchbase.md`.
+
+---
+
 ## 2026-08-17 (21) — Fiche Crunchbase recalée sur le vrai formulaire (français, pas anglais)
 
 **Type :** netlinking (correction de fiche, SOLOHERY en train de soumettre en direct)
