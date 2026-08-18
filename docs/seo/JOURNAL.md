@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (43) — Revérification sameAs LinkedIn : déjà correct, rien à toucher
+
+**Type :** SEO technique (schema.org / E-E-A-T), vérification suite à l'entrée 42.
+
+**Pourquoi :** consigne reçue de comparer le `sameAs` LinkedIn de `BaseLayout.astro` (objet
+organization) et `author.ts` (`AUTHOR_SAMEAS`) à l'adresse réelle de la page entreprise, avec un
+avertissement signalant que le fichier déclarerait encore le slug faux `claudeagency-fr`
+(sans tiret) — ce qui casserait le `sameAs` sur toutes les pages du site tant que non corrigé.
+
+**Fait :** vérifié l'état réel avant toute édition (le fichier n'a pas été relu à l'aveugle sur la
+foi de l'avertissement). Constat : le slug faux n'y est plus — il a déjà été corrigé le jour même,
+entrée 42 / commit `a682218`. Les deux fichiers déclarent `https://www.linkedin.com/company/claude-agency-fr/`,
+identique à l'adresse réelle donnée. Page confirmée en ligne (chargement direct de
+`linkedin.com/company/claude-agency-fr/` : nom, description, site web, effectif et localisation
+affichés, contenu conforme à `linkedin-kit.md`). Sameas de l'objet founder (profil personnel de
+Julien) non touché. `cd app && npm run build` repassé : 158 pages, aucune erreur ; JSON-LD
+Organization du build confirme `sameAs` correct.
+
+**Mesure :** 0 écart trouvé entre le `sameAs` déclaré et l'adresse réelle ; avertissement de la
+consigne obsolète par rapport à l'état du dépôt.
+
+**Suite :** aucune. Rien commité côté code — seule cette entrée de vérification.
+
+---
+
 ## 2026-08-18 (42) — Câblage sameAs LinkedIn (point 4 de linkedin-kit.md), corrige un slug faux
 
 **Type :** SEO technique (schema.org / E-E-A-T), suite des entrées 40-41.
