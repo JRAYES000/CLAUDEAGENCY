@@ -42,3 +42,20 @@ Rien n'a été modifié en attendant la réponse.
 - Onglet **⛔ Interdits** du Google Sheet, même ligne — à modifier en miroir le même jour que
   `PLAN-SOLOHERY.md` §7 (règle posée par le fichier lui-même, l.265-268). Hors accès de Claude
   Code : à faire par Julien ou SOLOHERY.
+
+## Envois externes déjà engagés sur « cabinet de conseil » — à recontacter si l'arbitrage bascule
+
+Ces messages ont été envoyés (ou préparés pour l'être) à des tiers en affirmant la position
+« cabinet de conseil en IA », pas « organisme de formation ». Si Julien tranche pour l'option 1,
+ces contacts ont reçu l'ancienne position et devront être recontactés ou corrigés — c'est le seul
+but de cette liste, elle ne remplace pas les fichiers/sections ci-dessus.
+
+| # tâche | Fédération / tiers | Date d'envoi | Formulation engagée |
+| :--- | :--- | :--- | :--- |
+| A7 | Les Acteurs de la Compétence (ex-FFP) | **Envoyé le 18/08/2026** | Champ Message : « Cabinet de conseil en IA pour organismes de formation. » Confirmation reçue sur la page après soumission. |
+| A8 | Hub France IA | Préparé, pas encore envoyé (SOLOHERY envoie) | Champ « Pourquoi rejoindre le Hub France IA ? » : « Cabinet de conseil en IA pour organismes de formation français et francophones... » |
+
+Les deux messages ont été gardés tels quels en connaissance de cause (voir `NETLINKING-ACTIONS.md`,
+sections respectives) : une demande d'info à une fédération n'engage rien juridiquement, mais
+**une fois envoyée, la formulation est dans la boîte mail du destinataire** — c'est ça que cette
+liste garde en mémoire, pas le fichier du dépôt qui peut se corriger d'un coup.

@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-18 (27) — Liste de suivi des envois externes ajoutée à arbitrage-julien.md
+
+**Type :** documentation (traçabilité, aucune fiche/section substantielle modifiée ailleurs)
+
+**URLs :** aucune — mise à jour de `docs/seo/arbitrage-julien.md`
+
+**Pourquoi :** A7 et A8 sont prêts (A7 déjà envoyé, A8 en attente d'envoi par SOLOHERY), tous
+deux affirmant « cabinet de conseil » à des tiers. Julien a demandé un suivi visible de ces
+envois pour recontacter les destinataires si l'arbitrage bascule vers « organisme de formation ».
+
+**Fait :** section « Envois externes déjà engagés sur cabinet de conseil » ajoutée à
+`arbitrage-julien.md` — tableau avec fédération, date d'envoi, formulation exacte engagée, pour
+A7 (Les Acteurs de la Compétence, envoyé le 18/08/2026) et A8 (Hub France IA, préparé, pas encore
+envoyé). Distincte de la liste « Fichiers/sections à mettre à jour » déjà présente : celle-ci
+suit ce qui est dans le dépôt et se corrige d'un coup, la nouvelle suit ce qui est déjà parti
+vers l'extérieur et ne se corrige qu'en recontactant le destinataire.
+
+**Mesure :** non applicable.
+
+**Suite :** ajouter une ligne à ce tableau à chaque futur envoi qui engage la même formulation
+(items restants de la Vague 2, relances). Mettre à jour dès qu'un contact est recontacté après
+un éventuel changement de position.
+
+---
+
 ## 2026-08-18 (26) — A8 : deux points ajustés avant envoi, effectif minimum vérifié après coup
 
 **Type :** documentation (arbitrage + vérification complémentaire, aucun envoi effectué)
