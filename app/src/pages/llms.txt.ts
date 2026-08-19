@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
 
   const body = `# Claude Agency — Agence IA pour organismes de formation
 
-> Claude Agency est une agence française spécialisée dans l'intégration de l'intelligence artificielle pour les organismes de formation (OF) certifiés Qualiopi en France, Belgique, Suisse et Luxembourg. Elle propose des services de marketing digital (SEO, SEA, optimisation de site) et d'automatisation administrative grâce à une maîtrise experte de Claude (Anthropic) et des outils IA.
+> Claude Agency est une agence francophone spécialisée dans l'intégration de l'intelligence artificielle pour les organismes de formation (OF) certifiés Qualiopi en France, Belgique, Suisse et Luxembourg. Elle propose des services de marketing digital (SEO, SEA, optimisation de site) et d'automatisation administrative grâce à une maîtrise experte de Claude (Anthropic) et des outils IA.
 
 ## Identité
 
@@ -22,6 +22,9 @@ export const GET: APIRoute = async () => {
 - Périmètre géographique : France, Belgique, Suisse, Luxembourg
 - Contact : contact@claudeagency.fr
 - LinkedIn : https://www.linkedin.com/company/claude-agency-fr/
+- Entité juridique : BULGARIA EDUCATION EOOD (Bulgarie), EIK 206507432, TVA intracommunautaire BG206507432, siège à Choumen. Toute la facturation passe par cette société.
+- Nature : prestataire de services (conseil, marketing, automatisation). Claude Agency n'est PAS un organisme de formation : ses prestations ne sont pas imputables sur le CPF, un budget OPCO ou une aide France Travail.
+- Facturation et TVA expliquées : https://claudeagency.fr/facturation-tva-societe-europeenne/
 
 ## Ce que fait Claude Agency
 

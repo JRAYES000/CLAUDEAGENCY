@@ -5,6 +5,64 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (45) — Changement d'entite editrice : BULGARIA EDUCATION EOOD, + 1 page indexee
+
+**Type :** contenu + SEO technique (identite de l'editeur, schema.org Organization, nouvelle page).
+
+**Pourquoi :** decision de Julien : toute la facturation passe desormais par BULGARIA EDUCATION EOOD
+(societe bulgare). L'ancienne mention d'editeur (ECOLE DE NATUROPATHIE ET SOPHROLOGIE, SAS, RCS Paris
+924 997 539) etait la seule entite nommee sur tout le site. Demande jointe : rassurer les clients
+francais sur le droit de facturer depuis un autre Etat membre.
+
+**Donnees legales verifiees avant ecriture** (pieces fournies + controle en direct) :
+EIK 206507432, immatriculee au registre du commerce bulgare le 13/05/2021 ; TVA BG206507432 —
+**verifiee en direct sur l'API VIES le 19/08/2026** (`isValid: true`, raison sociale et adresse
+concordantes) ; siege ul. Saedinenie 66, ent. 1, ap. 15, 9700 Choumen ; gerante et associee unique
+Krasimira Pencheva Cholakova ; IBAN BG49IORT80481493566100 (Investbank, Sofia). Zone euro depuis le
+01/01/2026 (source : Banque de France / BCE, consultee le 19/08/2026). Le capital social (20 leva)
+n'est volontairement pas publie.
+
+**Fait :**
+
+- `mentions-legales.astro` reecrit : editeur = BULGARIA EDUCATION EOOD, directeur de publication
+  Julien Rayes ; sections ajoutees « Droit applicable » (dir. 2000/31/CE, art. 56 TFUE), « Nature de
+  l'activite », « Facturation et TVA » (art. 44 dir. 2006/112/CE, art. 283-2 CGI), « Verifier notre
+  identite » (VIES + registre bulgare), « Coordonnees bancaires » (avec avertissement anti-fraude au
+  faux fournisseur), « Protection des donnees ». Page toujours en `noindex`.
+- **Nouvelle page indexee** `/facturation-tva-societe-europeenne/` — « Facturer avec une societe
+  europeenne : TVA et garanties ». Traite l'autoliquidation, le cas de l'OF exonere de TVA (cout
+  final identique a une agence francaise, seule difference : formalite du numero de TVA intracom),
+  les recours (reglements 1215/2012, 593/2008, 861/2007), et dit explicitement que les prestations
+  ne sont pas financables. Schema : BreadcrumbList seul — **pas de FAQPage**, conformement au
+  garde-fou du CLAUDE.md.
+- `confidentialite.astro` : responsable de traitement nomme (il ne l'etait pas — manquement RGPD
+  art. 13 corrige au passage), autorite de controle KZLD + droit de saisir la CNIL.
+- `BaseLayout.astro` (Organization) : `legalName`, `vatID`, `taxID`, `address` (BG) ajoutes.
+  `areaServed` FR/BE/CH/LU inchange — c'est le marche, pas le siege.
+- `Footer.astro` : lien « Facturation & TVA » sous Legal.
+- `services/[...id].astro` : bandeau de bas de page vers la nouvelle page, sur les 8 pages service.
+- `llms.txt.ts` : entite juridique, nature de prestataire (pas OF), lien vers la page facturation.
+- `agence-marketing-claude.astro` + `llms.txt.ts` : « agence francaise » -> « agence francophone »
+  (l'affirmation devenait fausse).
+- `content/services/formation-ia.mdx` : la FAQ repondait « finançable selon votre situation » a la
+  question du financement. Corrige en « Non » motive — c'etait la seule promesse a risque du site.
+
+**Mesure :** `npm run build` -> exit 0, **159 pages** (158 avant, +1). Verifie dans `dist/` :
+la nouvelle page est generee et presente dans `sitemap-0.xml` ; le JSON-LD de `index.html` expose
+`legalName`, `vatID: BG206507432`, `addressCountry: BG` ; `grep` sur tout `dist/` ne trouve plus
+aucune occurrence de « NATUROPATHIE » ni de « 924 997 539 ».
+
+**Suite :**
+
+- Ajouter la ligne de la nouvelle page a `REQUETES.csv` au prochain releve GSC (fait ce jour,
+  statut `nouveau`, position a mesurer le 2026-09-11).
+- **Point a trancher hors depot** : verifier avec un conseil que l'offre « Formation IA » (ateliers
+  facturés par une societe non declaree en France) ne releve pas de l'obligation de declaration
+  d'activite de l'art. L.6351-1 du code du travail. Le site ne promet plus aucun financement, ce qui
+  couvre le risque commercial ; la qualification juridique de la prestation reste a confirmer.
+
+---
+
 ## 2026-08-18 (44) — Nouvelle revérification sameAs LinkedIn : toujours correct, rien à toucher
 
 **Type :** SEO technique (schema.org / E-E-A-T), même consigne que les entrées 42-43, reçue une
