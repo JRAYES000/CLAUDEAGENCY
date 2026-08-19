@@ -73,7 +73,7 @@ surtout `/services/seo/` et `/blog/seo-guide-complet-organisme-formation-2026/`.
 avec le filtre `query notContains "skills claude seo"`. Sans ce filtre, le CTR de `/services/seo/`
 est faussé (536 impressions affichées contre ~100 réelles) et les vraies requêtes sont noyées.
 
-### 🟠 5. Sous-domaine `reporting.claudeagency.fr` indexé — TRANCHÉ le 2026-08-19
+### ✅ 5. Sous-domaine `reporting.claudeagency.fr` indexé — RÉSOLU le 2026-08-19
 
 **Constat mesuré :** 17 impressions, position 9,2. La propriété domaine l'inclut.
 
@@ -81,9 +81,11 @@ est faussé (536 impressions affichées contre ~100 réelles) et les vraies requ
 de connexion vers un tableau de bord interne (reporting collaborateurs, clients suivis, tarifs
 jour), pas un contenu présentable au public ; aucune page publique n'existe sur ce sous-domaine.
 
-- [ ] SOLOHERY pose la règle Cloudflare (détail dans `JOURNAL.md`, entrée du 2026-08-19) — hors
-      dépôt, ce sous-domaine n'étant pas servi par ce repo.
-- [ ] Une fois posée, vérifier `curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag`.
+Règle Cloudflare posée par SOLOHERY (Transform Rule, `X-Robots-Tag: noindex, nofollow` sur
+`http.host eq "reporting.claudeagency.fr"`), vérifiée en direct :
+`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` → `X-Robots-Tag: noindex, nofollow`.
+Reste à observer : la désindexation effective côté Google (GSC) prend plusieurs jours/semaines,
+rien à revérifier ici avant le prochain audit GSC de routine.
 
 ### 🟡 6. Requêtes à fort volume où le site est trop loin
 

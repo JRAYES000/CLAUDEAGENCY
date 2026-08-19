@@ -125,8 +125,10 @@ Vérifié `curl -sI` : pas de `x-robots-tag` actuellement sur la réponse.
    valeur `noindex, nofollow`.
 4. Déployer (Deploy).
 
-**Suite :** en attente que SOLOHERY pose la règle. Vérification à relancer ensuite :
-`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` doit renvoyer la ligne.
+**Suite :** SOLOHERY a posé la Transform Rule dans Cloudflare le jour même. Vérifié en direct :
+`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` → `X-Robots-Tag: noindex,
+nofollow`. Terminé côté site ; la désindexation effective dans Google (GSC) est une question de
+jours/semaines, rien à faire de plus ici.
 
 ---
 
