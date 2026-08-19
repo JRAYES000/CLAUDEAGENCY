@@ -5,6 +5,39 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (45) — Export GSC filtré (requêtes + pages), fenêtre 2026-05-21 → 2026-08-16
+
+**Type :** extraction de données (GSC via Composio).
+
+**Pourquoi :** `REQUETES.csv` attribue 536 impressions à `/services/seo/` sur la requête cible
+« agence référencement naturel claude », un total qui inclut du bruit non lié à l'activité réelle :
+un agent automatisé a généré des recherches contenant « skills claude seo » (~140 impressions,
+0 clic), gonflant artificiellement les chiffres de cette page.
+
+**Fait :** connexion Composio à Google Search Console établie (1ʳᵉ tentative en échec — token OAuth
+sans le scope `webmasters`, `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT` sur `LIST_SITES` et
+`SEARCH_ANALYTICS_QUERY` ; reconnexion avec le bon scope validée par Julien). Fenêtre demandée :
+88 jours, référence 2026-05-14 → 2026-08-09. Dernière date disponible en `data_state=final` :
+2026-08-16 (retard GSC de 3 jours par rapport à aujourd'hui). Fenêtre équivalente la plus récente
+retenue : **2026-05-21 → 2026-08-16**. Deux exports générés sur `sc-domain:claudeagency.fr` avec
+filtre `query notContains "skills claude seo"`, triés par impressions décroissantes :
+- `docs/seo/export-gsc-2026-08-13-requetes.csv` — 222 lignes (`requete,clics,impressions,ctr,position`)
+- `docs/seo/export-gsc-2026-08-13-pages.csv` — 51 lignes (`url,clics,impressions,ctr,position`)
+
+**Mesure (GSC via Composio, 2026-05-21→2026-08-16) :** total requêtes après filtre = 8 clics /
+1 717 impressions ; total pages après filtre = 9 clics / 1 864 impressions. Écart entre les deux
+totaux attendu : GSC compte dans les agrégats par page des requêtes rares qu'il anonymise et
+n'affiche jamais comme ligne distincte dans l'export par requête — les deux totaux ne se
+recoupent donc pas exactement, mais chacun est correct pour son fichier. Référence non filtrée sur
+la même fenêtre (`dimensions=[]`) : 51 clics / 3 369 impressions. `/services/seo/` passe de
+536 impressions (chiffre non filtré de `REQUETES.csv`) à **134 impressions filtrées** sur cette
+fenêtre. Contrôle `grep -ci "skills claude seo"` sur les deux CSV : 0 occurrence, confirmé.
+
+**Suite :** `REQUETES.csv` n'a pas été mis à jour avec ces chiffres filtrés — hors périmètre de
+cette extraction, à faire dans une passe dédiée si la ligne `/services/seo/` doit être corrigée.
+
+---
+
 ## 2026-08-18 (44) — Nouvelle revérification sameAs LinkedIn : toujours correct, rien à toucher
 
 **Type :** SEO technique (schema.org / E-E-A-T), même consigne que les entrées 42-43, reçue une
