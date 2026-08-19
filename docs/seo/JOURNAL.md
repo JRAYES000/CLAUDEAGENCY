@@ -5,6 +5,37 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (53) — Sous-domaine `reporting.claudeagency.fr` indexé : décision noindex
+
+**Type :** décision + correctif technique (à finaliser hors dépôt).
+
+**URLs :** https://reporting.claudeagency.fr
+
+**Pourquoi :** sous-domaine indexé (17 impressions, position 9,2, propriété `sc-domain`), lié
+depuis le menu du site sous « Admin » (`app/src/components/Header.astro`). Non servi par ce
+dépôt (aucune page dans `app/src/pages/`, absent du sitemap) : impossible d'y poser un `noindex`
+depuis le code.
+
+**Fait :** contenu récupéré par requête HTTP directe (`curl`, pas de navigateur) — visiteur non
+connecté : titre `<title>Reporting Claude — administration</title>`, un écran de connexion
+(email + mot de passe, lien « mot de passe oublié »), et derrière, un tableau de bord interne
+(reporting collaborateurs, suivi client, tarifs jour) chargé en JS côté client. Aucune page
+publique présentable. Décision : `noindex`, consignée dans `BACKLOG.md` section 5, SOLOHERY seul.
+Vérifié `curl -sI` : pas de `x-robots-tag` actuellement sur la réponse.
+
+**Manœuvre Cloudflare pour SOLOHERY** (dashboard Cloudflare, zone `claudeagency.fr`) :
+1. Menu **Règles** (Rules) → **Transformations de réponse HTTP** (Transform Rules → HTTP
+   Response Header Modification) → **Créer une règle**.
+2. Condition : champ **Nom d'hôte** (Hostname) `equals` `reporting.claudeagency.fr`.
+3. Action : **Définir en dynamique** (Set dynamic) le champ En-tête **`X-Robots-Tag`** avec la
+   valeur `noindex, nofollow`.
+4. Déployer (Deploy).
+
+**Suite :** en attente que SOLOHERY pose la règle. Vérification à relancer ensuite :
+`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` doit renvoyer la ligne.
+
+---
+
 ## 2026-08-19 (52) — Remesure du LCP mobile (accueil) : échec puis succès après clé API fournie
 
 **Type :** mesure.

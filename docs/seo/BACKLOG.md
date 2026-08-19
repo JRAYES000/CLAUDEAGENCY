@@ -73,11 +73,17 @@ surtout `/services/seo/` et `/blog/seo-guide-complet-organisme-formation-2026/`.
 avec le filtre `query notContains "skills claude seo"`. Sans ce filtre, le CTR de `/services/seo/`
 est faussé (536 impressions affichées contre ~100 réelles) et les vraies requêtes sont noyées.
 
-### 🟡 5. Sous-domaine `reporting.claudeagency.fr` indexé
+### 🟠 5. Sous-domaine `reporting.claudeagency.fr` indexé — TRANCHÉ le 2026-08-19
 
 **Constat mesuré :** 17 impressions, position 9,2. La propriété domaine l'inclut.
 
-- [ ] Confirmer avec Julien s'il doit être public. Si non : `noindex` + exclusion du sitemap.
+**Décision (SOLOHERY, seul) :** `noindex` — la page servie à un visiteur non connecté est un écran
+de connexion vers un tableau de bord interne (reporting collaborateurs, clients suivis, tarifs
+jour), pas un contenu présentable au public ; aucune page publique n'existe sur ce sous-domaine.
+
+- [ ] SOLOHERY pose la règle Cloudflare (détail dans `JOURNAL.md`, entrée du 2026-08-19) — hors
+      dépôt, ce sous-domaine n'étant pas servi par ce repo.
+- [ ] Une fois posée, vérifier `curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag`.
 
 ### 🟡 6. Requêtes à fort volume où le site est trop loin
 
