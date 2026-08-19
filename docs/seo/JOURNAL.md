@@ -5,6 +5,40 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (59) — Nouvel article : OPCO et Qualiopi (vague longue traîne 2/3)
+
+**Type :** publication.
+
+**URLs :** https://claudeagency.fr/blog/opco-qualiopi-financement/
+
+**Pourquoi :** sujet #11 du plan éditorial longue traîne, vérifié non cannibalisé avant écriture
+(`plan-financement-formation.mdx` reste sur l'opérationnel OPCO — liste, procédures, délais —
+sans traiter l'angle conditionnalité Qualiopi). Remplace le sujet #13 initialement prévu,
+abandonné après avoir constaté qu'il dupliquait `qualiopi-guide-organisme-formation.mdx` (voir
+entrée 58 et décision de Julien dans `BACKLOG.md` n°8).
+
+**Fait :** article rédigé (1224 mots). Recherche web avant rédaction : une affirmation trouvée
+sur un blog SEO tiers (« fin de la sélection imposée des OPCO en octobre 2026 ») n'a pas pu être
+recoupée par un texte réglementaire ni une deuxième source indépendante — **volontairement
+exclue** de l'article plutôt que publiée sur une seule source non vérifiable. Contenu final
+limité aux faits recoupés par au moins deux sources indépendantes (conditionnalité Qualiopi
+depuis le 1er janvier 2022, nécessité du référencement propre à chaque OPCO). Frontmatter
+conforme (`description` raccourcie de 171 à 153 caractères après un premier dépassement).
+Couverture réutilisée (`financer-formation-cover.png`, déjà utilisée par
+`formation-autofinancee-france-travail.mdx`). Maillage à la main : 3 liens sortants
+(`qualiopi-guide-organisme-formation`, `plan-financement-formation`,
+`numero-declaration-activite`) + service `audit-ia` ; 1 lien entrant ajouté dans
+`plan-financement-formation.mdx` (section OPCO) pour éviter l'article orphelin. `npm run build`
+passé (161 pages, 58 articles de blog). `REQUETES.csv` et `BACKLOG.md` (n°8) mis à jour dans ce
+commit.
+
+**Mesure :** non mesuré — article tout juste publié.
+
+**Suite :** dernier volet de cette vague : enrichir `qualiopi-guide-organisme-formation.mdx`
+(remplace le sujet #13, décision Julien) plutôt qu'écrire un 3e article neuf.
+
+---
+
 ## 2026-08-19 (58) — Nouvel article : règlement intérieur d'un OF (vague longue traîne 1/3)
 
 **Type :** publication.

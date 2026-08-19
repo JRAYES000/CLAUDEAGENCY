@@ -105,9 +105,8 @@ sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'exis
 
 - [x] **Règlement intérieur d'un OF** — publié le 2026-08-19 :
       [`/blog/reglement-interieur-organisme-formation/`](https://claudeagency.fr/blog/reglement-interieur-organisme-formation/).
-- [ ] **OPCO et Qualiopi : ce que la certification change pour le financement** — sujet #11 du
-      plan, vérifié non cannibalisé (`plan-financement-formation.mdx` reste sur l'opérationnel
-      OPCO, pas sur la conditionnalité Qualiopi). À rédiger.
+- [x] **OPCO et Qualiopi : ce que la certification change pour le financement** — publié le
+      2026-08-19 : [`/blog/opco-qualiopi-financement/`](https://claudeagency.fr/blog/opco-qualiopi-financement/).
 - [ ] **Enrichir `qualiopi-guide-organisme-formation.mdx`** — remplace le sujet #13
       (« Certification RNQ : étapes pour l'obtenir »), abandonné : le guide couvre déjà les
       étapes d'obtention, le cycle d'audit et les coûts (voir « Écarté » ci-dessous). Décision de
