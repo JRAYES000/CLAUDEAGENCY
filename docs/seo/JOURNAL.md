@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (61) — Visuels LinkedIn posts 2 à 4 du sprint (suite entrée 39)
+
+**Type :** prospection LinkedIn, hors périmètre SEO (visuels pour la programmation des posts du
+sprint `docs/seo/posts-linkedin-sprint.md`).
+
+**Pourquoi :** Julien programme les posts 2, 3 et 4 sur SOLOHERY (post 1 déjà publié le 18/08 sans
+visuel dédié) ; demande de visuels carrés prêts à joindre à chaque post.
+
+**Fait :** 3 SVG source + 3 PNG (1080×1080) générés via `app/scripts/svg-to-png-linkedin.mjs`
+(sharp, en local), sur le même gabarit que `gabarit-post.svg` (bandeau terracotta, zone titre en
+tirets, attribution) : `post2-claude-ai-francais`, `post3-formation-claude`,
+`post4-seo-organisme-formation`. Accroche de chaque visuel reprise du post correspondant dans
+`posts-linkedin-sprint.md` (question ou chiffre déjà vérifié en 2e passe du même fichier — aucun
+chiffre nouveau introduit). Palette strictement limitée aux 3 couleurs `#FBF7F1`/`#CC785C`/
+`#2B2724`, vérifiée par grep sur les 3 SVG. Fichiers dans `docs/seo/visuels-linkedin/`.
+
+**Mesure :** 3 SVG, 3 PNG à 1080×1080 (dimensions confirmées par le script), 3 couleurs uniques par
+fichier.
+
+**Suite :** Julien joint chaque PNG à son post correspondant sur SOLOHERY au moment de la
+programmation.
+
+---
+
 ## 2026-08-19 (60) — Enrichissement qualiopi-guide-organisme-formation.mdx (vague longue traîne 3/3)
 
 **Type :** reecriture.

@@ -7,6 +7,9 @@ const dir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../do
 const targets = [
   { svg: "banniere-page-entreprise.svg", png: "banniere-page-entreprise.png", width: 1128, height: 191 },
   { svg: "gabarit-post.svg", png: "gabarit-post.png", width: 1080, height: 1080 },
+  { svg: "post2-claude-ai-francais.svg", png: "post2-claude-ai-francais.png", width: 1080, height: 1080 },
+  { svg: "post3-formation-claude.svg", png: "post3-formation-claude.png", width: 1080, height: 1080 },
+  { svg: "post4-seo-organisme-formation.svg", png: "post4-seo-organisme-formation.png", width: 1080, height: 1080 },
 ];
 
 for (const t of targets) {
