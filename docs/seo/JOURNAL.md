@@ -5,7 +5,7 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
-## 2026-08-19 (45) — Changement d'entite editrice : BULGARIA EDUCATION EOOD, + 1 page indexee
+## 2026-08-19 (55) — Changement d'entite editrice : BULGARIA EDUCATION EOOD, + 1 page indexee
 
 **Type :** contenu + SEO technique (identite de l'editeur, schema.org Organization, nouvelle page).
 
@@ -47,7 +47,8 @@ n'est volontairement pas publie.
 - `content/services/formation-ia.mdx` : la FAQ repondait « finançable selon votre situation » a la
   question du financement. Corrige en « Non » motive — c'etait la seule promesse a risque du site.
 
-**Mesure :** `npm run build` -> exit 0, **159 pages** (158 avant, +1). Verifie dans `dist/` :
+**Mesure :** `npm run build` -> exit 0, **159 pages** (158 avant, +1), mesure faite avant
+la fusion des entrees 45-54 poussees en parallele ; build repasse apres fusion. Verifie dans `dist/` :
 la nouvelle page est generee et presente dans `sitemap-0.xml` ; le JSON-LD de `index.html` expose
 `legalName`, `vatID: BG206507432`, `addressCountry: BG` ; `grep` sur tout `dist/` ne trouve plus
 aucune occurrence de « NATUROPATHIE » ni de « 924 997 539 ».
@@ -60,6 +61,398 @@ aucune occurrence de « NATUROPATHIE » ni de « 924 997 539 ».
   facturés par une societe non declaree en France) ne releve pas de l'obligation de declaration
   d'activite de l'art. L.6351-1 du code du travail. Le site ne promet plus aucun financement, ce qui
   couvre le risque commercial ; la qualification juridique de la prestation reste a confirmer.
+||||||| 98d0f0c
+
+---
+
+## 2026-08-19 (54) — Couvertures dédiées pour les 5 articles génériques les plus vus
+
+**Type :** correctif contenu (image + `imageAlt`).
+
+**URLs :**
+- https://claudeagency.fr/blog/lms-organisme-formation/
+- https://claudeagency.fr/blog/evaluer-apprenants-ia/
+- https://claudeagency.fr/blog/make-automatisation-organisme-formation/
+- https://claudeagency.fr/blog/accessibilite-formation-ia/
+- https://claudeagency.fr/blog/ai-act-organisme-formation/
+
+**Pourquoi :** 28 des 54 articles du blog partageaient encore la couverture générique
+`ia-of-cover.jpg`. Croisement avec `docs/seo/export-gsc-2026-08-13-pages.csv` : 12 des 28 avaient
+au moins une ligne dans l'export GSC, 16 à 0 impression. Les 5 plus fortes impressions retenues
+en priorité (`lms-organisme-formation` 33, `evaluer-apprenants-ia` 24,
+`make-automatisation-organisme-formation` 14, `accessibilite-formation-ia` 12,
+`ai-act-organisme-formation` 9).
+
+**Fait :** description image et `imageAlt` préparés par Claude pour chacun des 5, conformes à la
+palette chaude crème/terracotta de `DESIGN.md` ; images générées par SOLOHERY (plusieurs allers-
+retours de prompt nécessaires sur 2 des 5, pour corriger palette froide, expression tendue et
+décor en studio photo plutôt qu'en salle de formation réelle) ; déposées dans
+`app/src/content/blog/images/` puis récupérées via `git pull` (upload fait directement sur
+GitHub). Frontmatter des 5 articles mis à jour (`image` + `imageAlt` uniquement, rien d'autre) ;
+`npm run build` passé (158 pages). 23 articles restent sur la couverture générique.
+
+**Mesure :** pas de mesure d'impact court terme prévue — image seule, sans changement de contenu
+ni de requête ciblée.
+
+**Suite :** reprendre la liste des 23 articles restants au prochain lot, même méthode (croisement
+GSC → priorisation impressions → prompt DESIGN.md → génération manuelle → branchement).
+
+---
+
+## 2026-08-19 (53) — Sous-domaine `reporting.claudeagency.fr` indexé : décision noindex
+
+**Type :** décision + correctif technique (à finaliser hors dépôt).
+
+**URLs :** https://reporting.claudeagency.fr
+
+**Pourquoi :** sous-domaine indexé (17 impressions, position 9,2, propriété `sc-domain`), lié
+depuis le menu du site sous « Admin » (`app/src/components/Header.astro`). Non servi par ce
+dépôt (aucune page dans `app/src/pages/`, absent du sitemap) : impossible d'y poser un `noindex`
+depuis le code.
+
+**Fait :** contenu récupéré par requête HTTP directe (`curl`, pas de navigateur) — visiteur non
+connecté : titre `<title>Reporting Claude — administration</title>`, un écran de connexion
+(email + mot de passe, lien « mot de passe oublié »), et derrière, un tableau de bord interne
+(reporting collaborateurs, suivi client, tarifs jour) chargé en JS côté client. Aucune page
+publique présentable. Décision : `noindex`, consignée dans `BACKLOG.md` section 5, SOLOHERY seul.
+Vérifié `curl -sI` : pas de `x-robots-tag` actuellement sur la réponse.
+
+**Manœuvre Cloudflare pour SOLOHERY** (dashboard Cloudflare, zone `claudeagency.fr`) :
+1. Menu **Règles** (Rules) → **Transformations de réponse HTTP** (Transform Rules → HTTP
+   Response Header Modification) → **Créer une règle**.
+2. Condition : champ **Nom d'hôte** (Hostname) `equals` `reporting.claudeagency.fr`.
+3. Action : **Définir en dynamique** (Set dynamic) le champ En-tête **`X-Robots-Tag`** avec la
+   valeur `noindex, nofollow`.
+4. Déployer (Deploy).
+
+**Suite :** en attente que SOLOHERY pose la règle. Vérification à relancer ensuite :
+`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` doit renvoyer la ligne.
+
+---
+
+## 2026-08-19 (52) — Remesure du LCP mobile (accueil) : échec puis succès après clé API fournie
+
+**Type :** mesure.
+
+**URLs :** https://claudeagency.fr/
+
+**Pourquoi :** les corrections LCP du 2026-06-16 (`perf-lcp-mobile.md`) n'avaient jamais été
+remesurées ; vérifier si le LCP mobile est repassé sous la cible de 2,5 s (mesuré à 4,2 s
+lors de l'audit).
+
+**Fait :** deux tentatives dans la même session. (1) MCP Ubersuggest connecté au projet :
+aucun outil `pagespeed_audit` ni équivalent Core Web Vitals/LCP parmi ses endpoints (vérifié
+via son propre outil de documentation) ; API PageSpeed Insights sans clé → `429`, quota
+journalier à 0. (2) Une clé API PageSpeed Insights a été générée (Google Cloud Console) et
+fournie en cours de session → mesure relancée avec succès via `runPagespeed?strategy=mobile`
+(clé utilisée uniquement pour cet appel, non stockée dans le dépôt ni en mémoire).
+
+**Mesure :** LCP mobile = **2,7 s** (lab data Lighthouse 13.4.1, `largest-contentful-paint`
+numericValue = 2676,7 ms), mesuré le 2026-08-19T09:34:23Z via l'API PageSpeed Insights. Score
+performance mobile global : 0,96/1. Encore au-dessus de la cible de 2,5 s (écart 0,2 s), mais
+net progrès depuis les 4,2 s du 2026-06-16. Pas de données terrain (CrUX) disponibles pour ce
+domaine. Ligne mise à jour dans `PERFORMANCES.csv` (date_releve 2026-08-14, conservée telle
+que fixée à l'origine de cette entrée).
+
+**Suite :** cible de 2,5 s pas encore atteinte (écart 0,2 s). Si prioritaire : revisiter les
+opportunités mobile encore ouvertes depuis l'audit initial (JS Google Ads gtag.js, ~54 ko,
+arbitrage propriétaire non tranché — voir corrections ci-dessus dans `perf-lcp-mobile.md`),
+ou relancer une mesure PageSpeed dans quelques semaines une fois plus de trafic mobile pour
+obtenir des données CrUX terrain.
+
+---
+
+## 2026-08-19 (51) — Maillage interne manuel sur les 20 pages sous-performantes
+
+**Type :** maillage interne (à la main, article par article — aucun script).
+
+**Pourquoi :** sélection des URLs `/blog/` à 0 ou 1 clic les plus vues dans
+`export-gsc-2026-08-13-pages.csv`, pour leur ajouter des liens internes vers des pages plus
+susceptibles de convertir (articles proches, pages `/services/`).
+
+**Correction de méthode en cours de route :** 6 URLs du CSV n'avaient pas de fichier `.mdx`
+correspondant. Vérifié en ligne (`curl -sI`) sur demande explicite avant de trancher : les 6
+redirigent en 301 (`app/public/_redirects`), aucune n'est en 404 — elles proviennent du ménage
+de cannibalisation de l'entrée du 2026-08-14 (15 articles fusionnés), et l'export GSC du 08-13
+a été pris la veille. Leurs impressions ont été rattachées à la page cible pour un classement
+correct : `automatiser-bpf-organisme-formation` (138 impr.) → `remplir-bpf-organisme-formation`
+(8 → 146, passe de #16 à #2) ; `claude-agency-vs-concurrents` (26) →
+`meilleure-agence-ia-organisme-formation` (entre dans le top 20, remplace
+`convention-de-formation`, sorti à 4 impr.) ; `claude-code-organisme-formation` (8) →
+`formation-claude-code` (31 → 39) ; `audit-surveillance-qualiopi` (3) →
+`qualiopi-guide-organisme-formation` (10 → 13) ; `automatiser-emargement-suivi-stagiaires` (1)
+→ `feuille-emargement` (13 → 14).
+
+**Fait :** 3 liens proposés par article pour les 20 articles retenus (60 propositions), rédigés
+à la main dans `docs/seo/maillage-interne-2026-08-19-proposition.md`, relus et validés par
+SOLOHERY avant application. Appliqués fichier par fichier en 4 lots de 5 — jamais de
+chercher-remplacer global, un seul fichier édité à la fois, contrôle du diff après chaque lot —
+en réaction directe à l'incident du 03/07/2026 (script de maillage ayant vidé 62 articles).
+Chaque nouveau lien est un **nouveau paragraphe ajouté**, jamais une modification d'une phrase
+existante, pour garantir un diff purement additif.
+
+**Vérifié :** `cd app && npm run build` après chaque lot (4/4 passés), puis `git diff --stat`
+sur les 5 fichiers du lot — uniquement des lignes ajoutées, aucune supprimée, sur les 4 lots.
+
+**Mesure :** 60 liens ajoutés sur 20 articles (`logiciel-organisme-formation`,
+`remplir-bpf-organisme-formation`, `formation-claude`, `lms-organisme-formation`,
+`formation-claude-code`, `claude-ai-en-francais`, `meilleure-agence-ia-organisme-formation`,
+`ai-act-organisme-formation`, `evaluer-apprenants-ia`, `livret-accueil-stagiaire`,
+`outils-ia-organisme-formation`, `make-automatisation-organisme-formation`,
+`feuille-emargement`, `numero-declaration-activite`, `qualiopi-guide-organisme-formation`,
+`accessibilite-formation-ia`, `seo-organisme-formation`,
+`cas-usage-claude-organisme-formation`, `claude-pour-le-marketing`,
+`formation-autofinancee-france-travail`), en 4 commits (un par lot de 5). Chaque article garde
+au moins 1 lien vers une page `/services/` parmi ses 3 nouveaux liens.
+
+**Suite :** `convention-de-formation.mdx` (4 impressions, sorti du top 20 par la correction
+ci-dessus) a 3 propositions de liens rédigées mais non appliquées — dans
+`maillage-interne-2026-08-19-proposition.md` si besoin de les reprendre plus tard.
+
+---
+
+## 2026-08-19 (50) — Cumul www + non-www sur les 2 derniers doublons signalés à l'entrée 49
+
+**Type :** correction de données (suite directe de l'entrée 49, même fichier).
+
+**Pourquoi :** l'entrée 49 signalait sans les traiter 2 lignes déjà mises à jour à l'entrée 48
+(`lms-organisme-formation`, `make-automatisation-organisme-formation`) dont la variante `www.`
+existe aussi dans `export-gsc-2026-08-13-pages.csv` avec des impressions non nulles, non
+fusionnées. Demande explicite de cumuler les deux variantes, même méthode que le repêchage de
+l'entrée 49.
+
+**Fait :** contrairement au repêchage (une seule variante disponible → substitution), ici les
+**deux** variantes existent → somme des `clics`/`impressions`, position recalculée en moyenne
+pondérée par les impressions de chaque variante (méthode standard d'agrégation GSC quand deux
+lignes se combinent) :
+- `lms-organisme-formation` : non-www (0 clic, 33 impr., position 60.3) + www (0 clic, 6 impr.,
+  position 20.7) → **0 clic, 39 impr., position 54.2**.
+- `make-automatisation-organisme-formation` : non-www (0 clic, 14 impr., position 19.9) + www
+  (0 clic, 1 impr., position 21.0) → **0 clic, 15 impr., position 19.9** (position quasi
+  inchangée, le poids de la variante www est marginal).
+
+`source_requete` reste `sous-seuil-GSC` sur les deux lignes (le cumul reste une métrique de page,
+pas une requête précise — même limite qu'aux entrées 48-49). `date_position` déjà à 2026-08-13,
+inchangée.
+
+**Vérifié :** script de comparaison ligne à ligne contre `git show HEAD:` (commit de l'entrée 49)
+— 0 colonne touchée hors des 5 autorisées, 87 lignes de données inchangées en nombre.
+
+**Mesure — total final sur les 63 lignes traitées depuis l'entrée 48 :**
+- **32 / 63** ont désormais des métriques mises à jour depuis les exports GSC du 13/08 (28 par
+  correspondance exacte à l'entrée 48, +4 par correspondance www/non-www à l'entrée 49, dont 2
+  recalculées en cumul ici — ce sont les mêmes 32 lignes, pas un ajout).
+- **31 / 63** restent sans aucune donnée GSC dans ces deux exports (URL absente, ni en exact ni
+  en www) — `clics_90j`/`impressions_90j`/`position`/`date_position` inchangés depuis avant
+  l'entrée 48.
+- Sur l'ensemble des 63 : **0** requête réelle mesurée, **63** `sous-seuil-GSC` (inchangé depuis
+  l'entrée 48 — aucune de ces trois passes n'a permis d'attribuer une requête précise à une URL,
+  seulement des métriques de page).
+
+**Suite :** aucune connue. Les 31 lignes sans donnée resteraient à traiter par une extraction GSC
+filtrée par page si un besoin futur l'exige (option déjà écartée à l'entrée 48, coût ~31 appels).
+
+---
+
+## 2026-08-19 (49) — Correction d'attribution sur l'entrée 48 + repêchage www/non-www (4 lignes)
+
+**Type :** correction de journal (attribution erronée) + correction de données (suite directe de
+l'entrée 48, même fichier).
+
+**Pourquoi :** deux questions posées après coup sur l'entrée 48. (1) L'entrée écrivait « Décision
+(Julien) » pour le choix « tout en sous-seuil-GSC » — jamais vérifié. (2) Demande de retenter les
+35 lignes non mises à jour en normalisant www/non-www avant comparaison, comme un précédent
+similaire (C1).
+
+**Fait — correction d'attribution :** vérification faite sur la mémoire `user-role-claude-agency` :
+« Son manager est Julien » — l'utilisateur de cette session **n'est pas** Julien. La décision
+« tout en sous-seuil-GSC » vient d'une réponse donnée dans ce chat, pas d'une validation directe et
+constatée de Julien lui-même. La formule « Décision (Julien) » de l'entrée 48 était une
+affirmation non vérifiée (calquée par réflexe sur les entrées où Julien tranche réellement, ex.
+entrées 17-19) — corrigée dans l'entrée 48 elle-même plutôt que réécrite en douce.
+
+**Fait — repêchage www/non-www :** deuxième passe sur les 35 lignes sans correspondance de
+l'entrée 48, comparaison URL normalisée (`www.` retiré) contre `export-gsc-2026-08-13-pages.csv`.
+**4 lignes** avaient une correspondance uniquement en variante `www.` : `remplir-bpf-organisme-formation`
+(8 impressions, position 23.5), `qualiopi-guide-organisme-formation` (10, position 41.2),
+`catalogue-formation-organisme` (1, position 45.0), `linkedin-organisme-formation` (3, position
+7.0). Leurs `clics_90j`/`impressions_90j`/`position`/`date_position` mis à jour depuis cette
+variante ; `source_requete` reste `sous-seuil-GSC` (la normalisation www donne la métrique de
+page, pas une requête précise — même limite qu'à l'entrée 48). Les 31 lignes restantes n'ont
+toujours aucune correspondance, ni exacte ni www. **Point non traité, signalé :** 2 des 28 lignes
+déjà mises à jour à l'entrée 48 (`lms-organisme-formation`, `make-automatisation-organisme-formation`)
+ont *aussi* une variante `www.` distincte dans l'export (respectivement 6 et 1 impressions
+supplémentaires, non fusionnées) — hors du périmètre demandé ici (« les 35 lignes »), à traiter
+séparément si besoin de cumuler les deux variantes.
+
+**Vérifié :** script de comparaison ligne à ligne contre `git show HEAD:` (commit de l'entrée 48) —
+0 colonne touchée hors des 5 autorisées, 87 lignes de données inchangées en nombre.
+`grep -c "A-VALIDER" docs/seo/REQUETES.csv` → 0 confirmé ; `grep -c "sous-seuil-GSC"` → 63
+inchangé (le repêchage ne change que les métriques, pas le statut de la requête).
+
+**Mesure :** 4/35 lignes repêchées par normalisation www ; 31/35 toujours sans donnée GSC pour
+cette URL. Comptage final requêtes réelles / sous-seuil-GSC inchangé : 0 / 63.
+
+**Suite :** si les 2 doublons www non fusionnés (`lms-organisme-formation`,
+`make-automatisation-organisme-formation`) doivent être corrigés, le faire dans une passe dédiée —
+demande explicite requise, périmètre de celle-ci limité aux 35 lignes signalées.
+
+---
+
+## 2026-08-19 (48) — 63 requêtes devinées passées en sous-seuil-GSC, blocage de méthode remonté à Julien
+
+**Type :** correction de données (nettoyage `source_requete` / `requete_cible`), suite des entrées
+45-46 (mêmes exports GSC du 13/08).
+
+**Pourquoi :** 63 lignes de `REQUETES.csv` portaient une `requete_cible` devinée (53
+`deduite-du-slug-A-VALIDER`, 10 `deduite-A-VALIDER`), jamais confrontée à une vraie mesure GSC.
+Consigne reçue : pour chacune, chercher dans `export-gsc-2026-08-13-requetes.csv` la requête qui
+apporte le plus d'impressions à l'URL de la ligne, sans rien déduire du slug.
+
+**Blocage trouvé avant toute édition :** `export-gsc-2026-08-13-requetes.csv` (222 requêtes) et
+`export-gsc-2026-08-13-pages.csv` (50 URLs) sont deux exports **globaux et distincts**
+(confirmé par l'entrée 45 : 1717 impressions au total côté requêtes, 1864 côté pages — les deux
+totaux ne se recoupent pas). Aucune colonne commune entre les deux fichiers : impossible de savoir
+objectivement quelle requête, parmi les 222, est associée à une URL précise. Croisement des 63
+URLs avec `pages.csv` : 28 URLs ont un total d'impressions connu mais sans requête attribuable
+(la seule façon de "trouver" une requête aurait été de faire correspondre son texte au sujet de
+la page — exactement le "déduire du slug" interdit par la consigne) ; 4 autres n'existent dans
+l'export qu'en variante `www.` (piège déjà documenté à l'entrée 46).
+
+**Décision (tranchée dans ce chat, remontée avant d'exécuter — voir correction entrée 49 : pas une
+validation directe de Julien) :** aucune des 63 lignes ne peut prétendre à une
+`requete_cible` mesurée — les 63 passent en `source_requete = sous-seuil-GSC`, `requete_cible`
+inchangée. Pour les 28 URLs retrouvées **à l'identique** (correspondance exacte, sans tolérance
+www/non-www) dans `pages.csv` avec des impressions non nulles, `clics_90j`, `impressions_90j`,
+`position` et `date_position` sont mis à jour depuis cet export (fenêtre 2026-05-21 → 2026-08-16,
+date de mesure enregistrée : 2026-08-13). Les 35 autres lignes (URL absente de l'export ou variante
+www non prise en compte) gardent leurs anciennes valeurs de `clics_90j`/`impressions_90j`/
+`position`/`date_position` — aucune donnée fiable pour les changer.
+
+**Fait :** script Node.js (`reconcile.js`, jetable, hors dépôt) appliqué sur `REQUETES.csv` :
+correspondance exacte URL → `export-gsc-2026-08-13-pages.csv`, arrondi de la position à 1 décimale
+pour rester au format existant (`31.0`, pas `41.986784140969164`). Vérifié après coup par un
+second script de comparaison ligne à ligne avec `git show HEAD:` : 0 colonne touchée en dehors des
+5 autorisées (`source_requete`, `clics_90j`, `impressions_90j`, `position`, `date_position`),
+87 lignes de données avant/après identiques en nombre, aucun ajout ni suppression, aucun
+réordonnancement.
+
+**Mesure :** 63/63 lignes traitées. **0** requêtes réelles mesurées (`GSC 2026-08-13 (requete
+reelle mesuree)`) — **63** `sous-seuil-GSC`. Sur ces 63 : 28 avec métriques mises à jour depuis
+`pages.csv`, 35 inchangées faute de correspondance.
+
+**Suite :** si une vraie mesure page×requête est un jour nécessaire pour ces URLs, il faudra une
+extraction GSC filtrée par page (Composio), pas les deux exports globaux du 13/08 — signalé à
+Julien comme option 2, non retenue ici (aurait changé la date de mesure et pris ~32 appels). Les
+28 lignes dont les métriques ont bougé peuvent faire remonter ou descendre leur position dans un
+tri par `impressions_90j` (notamment B3, déjà signalé sensible à ce fichier depuis l'entrée 46) —
+non revérifié ici, hors périmètre de cette passe.
+
+---
+
+## 2026-08-19 (47) — Décision Julien : les 3 pages de bruit non corrigées restent en l'état
+
+**Type :** décision (clôt le point « Suite » de l'entrée 46, sans nouvelle donnée).
+
+**Fait :** vérification de l'impact du bruit « skills claude seo » sur B3 (sélection des 10
+articles LinkedIn) — aucun changement de classement, les 3 pages signalées à l'entrée 46
+(`/services/optimisation-site/`, `/blog/seo-guide-complet-organisme-formation-2026/`,
+variante www de `/blog/seo-organisme-formation/`) sont hors du périmètre `type_page = article`
+utilisé par B3, ou déjà exclues par sa règle anti-redirection.
+
+**Décision (Julien) :** ces 3 lignes restent **en l'état, non corrigées**. Aucun impact démontré
+sur une tâche active ; chacune porte sa propre complexité plutôt qu'une simple correction de
+chiffre — `/services/optimisation-site/` est hors périmètre articles, la page redirigée est déjà
+gérée par la règle d'exclusion de B3, et le doublon www/non-www de `seo-organisme-formation` est
+un problème de configuration GSC (canonicalisation), pas un chiffre à corriger dans
+`REQUETES.csv`.
+
+**Statut :** connu, non prioritaire. Pas d'action tant qu'aucune tâche future ne dépend de ces
+chiffres précis (ex. une nouvelle sélection d'articles basée sur `impressions_90j`) — à
+réinvestiguer seulement dans ce cas.
+
+---
+
+## 2026-08-19 (46) — Correction REQUETES.csv (536→134 impressions) + audit exhaustif du bruit « skills claude seo »
+
+**Type :** correction de données + audit (suite directe de l'entrée 45).
+
+**Pourquoi :** l'entrée 45 avait filtré le bruit d'un agent automatisé sur deux exports GSC neufs,
+sans toucher à `REQUETES.csv` lui-même. Julien a demandé la correction de la ligne
+`/services/seo/` avec le chiffre filtré, et un audit du reste du fichier pour le même bruit.
+
+**Fait — correction appliquée :** ligne `agence référencement naturel claude` /
+`https://claudeagency.fr/services/seo/` : `impressions_90j` 536 → **134** (chiffre filtré de
+l'entrée 45), `date_maj` → 2026-08-19. Seules ces deux colonnes touchées.
+
+**Alerte sur la précision de cette correction :** le 536 d'origine ne se reconstruit pas
+proprement à partir de l'API. Une requête GSC non filtrée sur une fenêtre de 90 jours calée
+exactement sur la date de mesure d'origine (2026-05-15 → 2026-08-12, se terminant le
+2026-08-12 comme `date_maj` d'origine) donne **705 impressions** pour cette page — pas 536.
+La méthode ou la fenêtre exacte de la mesure d'origine (536) reste donc inconnue (UI GSC avec un
+préréglage « 3 derniers mois » qui ne correspond pas forcément à 90 jours calendaires, ou
+`search_type`/property différents). 134 est le chiffre filtré le plus récent et fiable
+disponible (extraction C1, fenêtre 2026-05-21 → 2026-08-16), mais ce n'est **pas** un
+« 536 moins le bruit » recalculé sur une fenêtre identique — à traiter comme la meilleure
+estimation actuelle, pas comme une reconstruction exacte.
+
+**Audit exhaustif — requête GSC `query contains "skills claude seo"`, group by page, fenêtre
+2026-05-15 → 2026-08-12 (calée sur la date de mesure d'origine de `REQUETES.csv`) :** 4 pages
+touchées au total, pas seulement `/services/seo/` :
+
+| Page (GSC) | Impressions bruit | Ligne REQUETES.csv correspondante | Statut |
+|---|---|---|---|
+| `https://claudeagency.fr/services/seo/` | 146 | ligne 2, 536→**134** | corrigé |
+| `https://claudeagency.fr/services/optimisation-site/` | 10 | ligne 28, `impressions_90j`=25 (~40 % de bruit potentiel) | **signalé, non corrigé** |
+| `https://claudeagency.fr/blog/seo-guide-complet-organisme-formation-2026/` | 21 | ligne 32, `impressions_90j`=20 — page redirigée 301 depuis le 2026-08-14 vers `seo-organisme-formation` ; le bruit (21) dépasse même l'`impressions_90j` affiché (20), signe que la quasi-totalité du trafic récent de cette page est du bruit | **signalé, non corrigé** |
+| `https://www.claudeagency.fr/blog/seo-organisme-formation/` (variante **www**) | 23 | ligne 9 suit l'URL **sans www** (`https://claudeagency.fr/blog/seo-organisme-formation/`, `impressions_90j`=68) — GSC compte les deux variantes comme des pages distinctes ; le bruit mesuré ne tombe pas exactement sur l'URL trackée | **signalé, non corrigé** |
+
+Ces 3 lignes n'ont pas été corrigées : contrairement à `/services/seo/`, aucun chiffre cible
+n'avait été validé pour elles, et chacune porte une ambiguïté propre (fenêtre non garantie
+identique, page redirigée, variante d'URL). Une correction sans validation aurait remplacé une
+imprécision connue par une autre non vérifiée.
+
+**Impact potentiel ailleurs signalé, non traité :** toute tâche ou fichier qui s'appuie sur le tri
+par `impressions_90j` décroissant de `REQUETES.csv` (notamment le choix d'articles par volume
+d'impressions, ex. B3) a pu se baser sur les anciens chiffres non filtrés des 4 pages ci-dessus,
+avant correction. Non vérifié ici, hors périmètre de cette passe.
+
+**Suite :** si Julien valide des chiffres cibles pour les 3 lignes signalées, les corriger dans
+une passe dédiée. Vérifier séparément si B3 ou d'autres décisions déjà prises doivent être
+revues.
+
+---
+
+## 2026-08-19 (45) — Export GSC filtré (requêtes + pages), fenêtre 2026-05-21 → 2026-08-16
+
+**Type :** extraction de données (GSC via Composio).
+
+**Pourquoi :** `REQUETES.csv` attribue 536 impressions à `/services/seo/` sur la requête cible
+« agence référencement naturel claude », un total qui inclut du bruit non lié à l'activité réelle :
+un agent automatisé a généré des recherches contenant « skills claude seo » (~140 impressions,
+0 clic), gonflant artificiellement les chiffres de cette page.
+
+**Fait :** connexion Composio à Google Search Console établie (1ʳᵉ tentative en échec — token OAuth
+sans le scope `webmasters`, `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT` sur `LIST_SITES` et
+`SEARCH_ANALYTICS_QUERY` ; reconnexion avec le bon scope validée par Julien). Fenêtre demandée :
+88 jours, référence 2026-05-14 → 2026-08-09. Dernière date disponible en `data_state=final` :
+2026-08-16 (retard GSC de 3 jours par rapport à aujourd'hui). Fenêtre équivalente la plus récente
+retenue : **2026-05-21 → 2026-08-16**. Deux exports générés sur `sc-domain:claudeagency.fr` avec
+filtre `query notContains "skills claude seo"`, triés par impressions décroissantes :
+- `docs/seo/export-gsc-2026-08-13-requetes.csv` — 222 lignes (`requete,clics,impressions,ctr,position`)
+- `docs/seo/export-gsc-2026-08-13-pages.csv` — 51 lignes (`url,clics,impressions,ctr,position`)
+
+**Mesure (GSC via Composio, 2026-05-21→2026-08-16) :** total requêtes après filtre = 8 clics /
+1 717 impressions ; total pages après filtre = 9 clics / 1 864 impressions. Écart entre les deux
+totaux attendu : GSC compte dans les agrégats par page des requêtes rares qu'il anonymise et
+n'affiche jamais comme ligne distincte dans l'export par requête — les deux totaux ne se
+recoupent donc pas exactement, mais chacun est correct pour son fichier. Référence non filtrée sur
+la même fenêtre (`dimensions=[]`) : 51 clics / 3 369 impressions. `/services/seo/` passe de
+536 impressions (chiffre non filtré de `REQUETES.csv`) à **134 impressions filtrées** sur cette
+fenêtre. Contrôle `grep -ci "skills claude seo"` sur les deux CSV : 0 occurrence, confirmé.
+
+**Suite :** `REQUETES.csv` n'a pas été mis à jour avec ces chiffres filtrés — hors périmètre de
+cette extraction, à faire dans une passe dédiée si la ligne `/services/seo/` doit être corrigée.
 
 ---
 

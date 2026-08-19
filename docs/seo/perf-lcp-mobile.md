@@ -116,3 +116,28 @@ puis un 200. Toute chaîne > 1 hop = à corriger dans les Redirect Rules.
 ## Résultat build
 `npm run build` : **0 erreur**, 50 pages générées. Preload émis et cohérent avec le
 `srcset` de l'image hero (mêmes fichiers hashés, donc pas de double téléchargement).
+
+## Remesure — 2026-08-19
+
+Corrections ci-dessus (préchargement, suppression animation LCP) jamais remesurées depuis
+l'audit du 2026-06-16, jusqu'à ce jour.
+
+Première tentative (deux sources autorisées) infructueuse : **MCP Ubersuggest** sans outil
+`pagespeed_audit` ni équivalent Core Web Vitals (vérifié dans la liste complète de ses
+endpoints) ; **API PageSpeed Insights** sans clé → `429 RESOURCE_EXHAUSTED`, quota 0. Une clé
+API PageSpeed Insights a ensuite été générée et fournie en cours de session ; mesure relancée
+avec succès.
+
+**Résultat** (`pagespeedonline.googleapis.com/v5/runPagespeed`, `strategy=mobile`, mesuré le
+2026-08-19T09:34:23Z) :
+
+- **LCP mobile : 2,7 s** (lab data Lighthouse 13.4.1 ; audit `largest-contentful-paint`,
+  numericValue = 2676,7 ms) — encore au-dessus de la cible de 2,5 s (écart 0,2 s), mais net
+  progrès depuis les 4,2 s de l'audit du 2026-06-16.
+- Score performance mobile global : 0,96/1.
+- Pas de données terrain (CrUX) disponibles pour ce domaine (`loadingExperience` vide dans la
+  réponse) — trafic réel probablement insuffisant pour que Google en publie. La valeur ci-dessus
+  est une mesure **en laboratoire** (Lighthouse), pas un vécu utilisateur agrégé.
+
+Consigné dans `PERFORMANCES.csv`. Clé API utilisée uniquement pour cet appel, non stockée
+dans le dépôt.
