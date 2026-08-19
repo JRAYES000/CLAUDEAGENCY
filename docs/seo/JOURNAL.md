@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (47) — Décision Julien : les 3 pages de bruit non corrigées restent en l'état
+
+**Type :** décision (clôt le point « Suite » de l'entrée 46, sans nouvelle donnée).
+
+**Fait :** vérification de l'impact du bruit « skills claude seo » sur B3 (sélection des 10
+articles LinkedIn) — aucun changement de classement, les 3 pages signalées à l'entrée 46
+(`/services/optimisation-site/`, `/blog/seo-guide-complet-organisme-formation-2026/`,
+variante www de `/blog/seo-organisme-formation/`) sont hors du périmètre `type_page = article`
+utilisé par B3, ou déjà exclues par sa règle anti-redirection.
+
+**Décision (Julien) :** ces 3 lignes restent **en l'état, non corrigées**. Aucun impact démontré
+sur une tâche active ; chacune porte sa propre complexité plutôt qu'une simple correction de
+chiffre — `/services/optimisation-site/` est hors périmètre articles, la page redirigée est déjà
+gérée par la règle d'exclusion de B3, et le doublon www/non-www de `seo-organisme-formation` est
+un problème de configuration GSC (canonicalisation), pas un chiffre à corriger dans
+`REQUETES.csv`.
+
+**Statut :** connu, non prioritaire. Pas d'action tant qu'aucune tâche future ne dépend de ces
+chiffres précis (ex. une nouvelle sélection d'articles basée sur `impressions_90j`) — à
+réinvestiguer seulement dans ce cas.
+
+---
+
 ## 2026-08-19 (46) — Correction REQUETES.csv (536→134 impressions) + audit exhaustif du bruit « skills claude seo »
 
 **Type :** correction de données + audit (suite directe de l'entrée 45).
