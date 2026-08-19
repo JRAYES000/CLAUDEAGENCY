@@ -5,6 +5,43 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (58) — Nouvel article : règlement intérieur d'un OF (vague longue traîne 1/3)
+
+**Type :** publication.
+
+**URLs :** https://claudeagency.fr/blog/reglement-interieur-organisme-formation/
+
+**Pourquoi :** suite de `plan-editorial-longue-traine.md` (sujet #8), max 3 articles cette vague
+sur consigne explicite de Julien (leçon du 30/06/2026 : plus de publication en masse). Avant
+d'écrire, vérification cannibalisation des 3 sujets proposés (#8, #9, #12) : #9 (déclaration
+d'activité, procédure pas à pas) et #12 (BPF qui/délais) se sont révélés **déjà traités** en
+profondeur par `numero-declaration-activite.mdx` et `remplir-bpf-organisme-formation.mdx` —
+aucun article écrit pour ces deux-là, remplacés par #13 puis #11 (voir entrées suivantes).
+Détail complet dans `BACKLOG.md`, section « Écarté ».
+
+**Fait :** article rédigé (1505 mots), sourcé (Code du travail L6352-3 à L6352-5, R6352-1 à
+R6352-15, et loi n° 2026-534 du 25 juin 2026 pour la mise à jour anti-fraude — vérifiée par
+recoupement de deux sources indépendantes avant publication, une première source citait un
+mécanisme non confirmé). Frontmatter conforme au schéma (`title` raccourci de 71 à 68
+caractères après échec du premier `npm run build`). Couverture réutilisée
+(`creer-organisme-formation-cover.webp`, déjà utilisée par un article voisin) plutôt qu'image
+générée : cohérent avec la pratique actuelle du dépôt (couvertures dédiées ajoutées par lots
+a posteriori). Maillage à la main : 3 liens sortants (`numero-declaration-activite`,
+`livret-accueil-stagiaire`, `qualiopi-guide-organisme-formation`) + service
+`outils-ia-sur-mesure` ; 1 lien entrant ajouté dans `numero-declaration-activite.mdx` (le mot
+« règlement intérieur » de sa liste d'obligations de fonctionnement, déjà présent, transformé en
+lien) pour éviter l'article orphelin. `npm run build` passé (160 pages). `REQUETES.csv` et
+`BACKLOG.md` (section « À faire » n°8 et « Écarté ») mis à jour dans ce commit.
+
+**Mesure :** non mesuré — article tout juste publié, aucune donnée GSC possible avant plusieurs
+jours/semaines d'indexation.
+
+**Suite :** 2 sujets restants de cette vague — #11 (OPCO et Qualiopi) à rédiger, #13 remplacé par
+un enrichissement de `qualiopi-guide-organisme-formation.mdx` (décision Julien, voir
+`BACKLOG.md` n°8).
+
+---
+
 ## 2026-08-19 (57) — Couvertures dédiées, lot 3/N (5 articles supplémentaires)
 
 **Type :** correctif contenu (image + `imageAlt`).

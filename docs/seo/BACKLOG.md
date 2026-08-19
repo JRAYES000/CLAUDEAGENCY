@@ -98,6 +98,23 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | `claude seo agency` (anglais) | 107 | 57,6 | `/services/seo/` |
 | `agence claude code` | 37 | 66,1 | — |
 
+### 🟢 8. Vague longue traîne « documents & démarches obligatoires » (3 articles max)
+
+Suite de `plan-editorial-longue-traine.md`, avec vérification cannibalisation avant chaque
+sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'existant).
+
+- [x] **Règlement intérieur d'un OF** — publié le 2026-08-19 :
+      [`/blog/reglement-interieur-organisme-formation/`](https://claudeagency.fr/blog/reglement-interieur-organisme-formation/).
+- [ ] **OPCO et Qualiopi : ce que la certification change pour le financement** — sujet #11 du
+      plan, vérifié non cannibalisé (`plan-financement-formation.mdx` reste sur l'opérationnel
+      OPCO, pas sur la conditionnalité Qualiopi). À rédiger.
+- [ ] **Enrichir `qualiopi-guide-organisme-formation.mdx`** — remplace le sujet #13
+      (« Certification RNQ : étapes pour l'obtenir »), abandonné : le guide couvre déjà les
+      étapes d'obtention, le cycle d'audit et les coûts (voir « Écarté » ci-dessous). Décision de
+      Julien le 2026-08-19 : enrichir l'existant plutôt qu'écrire un article redondant. Chercher
+      un angle réellement manquant (ex. liste/comparatif des organismes certificateurs
+      accrédités COFRAC) avant de toucher au fichier.
+
 ### ⚪ 7. Dette de la mémoire elle-même
 
 - [ ] `REQUETES.csv` : 62 lignes sur 87 ont une requête cible marquée
@@ -120,3 +137,8 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | Pages doublons / variantes géographiques | 2026-06-14 | Offre nationale — pas de justification, risque de contenu dupliqué. |
 | Optimisation CTR comme priorité | 2026-06-19 | Écartée à l'époque faute de pages en position 4-10. **Ré-ouverte le 2026-08-12** : il y en a maintenant (voir priorité 3). |
 | Retirer le tag GA4 | — | La propriété Search Console préfixe est validée par ce tag. Le retirer casse la validation. |
+| Sujet #9 « Déclaration d'activité, procédure pas à pas » (plan longue traîne) | 2026-08-19 | Déjà traité : `numero-declaration-activite.mdx` a déjà le tableau étapes/pièces et les délais (3 mois / 30 jours). |
+| Sujet #12 « BPF : qui dépose, quels délais » (plan longue traîne) | 2026-08-19 | Déjà traité : `remplir-bpf-organisme-formation.mdx` a déjà « Qui doit remplir le BPF ? » et « Quand faut-il le transmettre ? ». |
+| Sujet #14 « Convention vs contrat de formation » (plan longue traîne) | 2026-08-19 | Déjà traité : `convention-de-formation.mdx` a un H2 dédié « Convention ou contrat de formation : lequel utiliser ? » avec tableau comparatif. |
+| Sujet #13 « Certification RNQ : étapes pour l'obtenir » (plan longue traîne) | 2026-08-19 | Déjà traité : `qualiopi-guide-organisme-formation.mdx` couvre déjà les étapes d'obtention (L99-123), le cycle d'audit (L125-181) et les coûts (L209+). Remplacé par un enrichissement de ce guide (voir « À faire » n°8). |
+| Sujets #5 « Audit Qualiopi initial vs surveillance » et #10 « RNQ : qu'est-ce que » (plan longue traîne) | 2026-08-19 | Probablement déjà traités par `qualiopi-guide-organisme-formation.mdx` (sections cycle d'audit et RNQ 7 critères/32 indicateurs), vérification faite sur les titres de section seulement — **à re-vérifier ligne à ligne** avant de les reproposer, pas encore écarté avec certitude comme #9/#12/#13/#14. |
