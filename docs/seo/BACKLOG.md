@@ -98,7 +98,7 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | `claude seo agency` (anglais) | 107 | 57,6 | `/services/seo/` |
 | `agence claude code` | 37 | 66,1 | — |
 
-### 🟢 8. Vague longue traîne « documents & démarches obligatoires » (3 articles max)
+### ✅ 8. Vague longue traîne « documents & démarches obligatoires » — TERMINÉE le 2026-08-19
 
 Suite de `plan-editorial-longue-traine.md`, avec vérification cannibalisation avant chaque
 sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'existant).
@@ -107,12 +107,11 @@ sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'exis
       [`/blog/reglement-interieur-organisme-formation/`](https://claudeagency.fr/blog/reglement-interieur-organisme-formation/).
 - [x] **OPCO et Qualiopi : ce que la certification change pour le financement** — publié le
       2026-08-19 : [`/blog/opco-qualiopi-financement/`](https://claudeagency.fr/blog/opco-qualiopi-financement/).
-- [ ] **Enrichir `qualiopi-guide-organisme-formation.mdx`** — remplace le sujet #13
-      (« Certification RNQ : étapes pour l'obtenir »), abandonné : le guide couvre déjà les
-      étapes d'obtention, le cycle d'audit et les coûts (voir « Écarté » ci-dessous). Décision de
-      Julien le 2026-08-19 : enrichir l'existant plutôt qu'écrire un article redondant. Chercher
-      un angle réellement manquant (ex. liste/comparatif des organismes certificateurs
-      accrédités COFRAC) avant de toucher au fichier.
+- [x] **Enrichir `qualiopi-guide-organisme-formation.mdx`** — fait le 2026-08-19 : nouvelle
+      sous-section « Comment choisir son organisme certificateur ? » (accréditation COFRAC,
+      critères de choix, vérification sur cofrac.fr). Remplace le sujet #13 (« Certification RNQ :
+      étapes pour l'obtenir »), abandonné car déjà couvert par ce guide. Vague longue traîne
+      « documents & démarches obligatoires » terminée (3/3).
 
 ### ⚪ 7. Dette de la mémoire elle-même
 

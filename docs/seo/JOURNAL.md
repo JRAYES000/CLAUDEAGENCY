@@ -5,6 +5,34 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (60) — Enrichissement qualiopi-guide-organisme-formation.mdx (vague longue traîne 3/3)
+
+**Type :** reecriture.
+
+**URLs :** https://claudeagency.fr/blog/qualiopi-guide-organisme-formation/
+
+**Pourquoi :** clôt la vague longue traîne. Sujet #13 (« Certification RNQ : étapes pour
+l'obtenir ») abandonné le 2026-08-19 (entrée 58/59, décision Julien) car déjà couvert en
+profondeur par ce guide. Plutôt qu'un article redondant, recherche d'un angle réellement absent :
+le guide liste « choisir un organisme certificateur accrédité COFRAC » comme étape 4 sans jamais
+expliquer comment choisir.
+
+**Fait :** nouvelle sous-section « Comment choisir son organisme certificateur ? » insérée après
+la liste des étapes (accréditation COFRAC obligatoire, ~39 certificateurs en 2026, critères de
+choix pratiques, vérification sur cofrac.fr). Sourcé par recoupement de plusieurs résultats de
+recherche convergents (pas de contradiction rencontrée, contrairement aux deux vérifications
+précédentes de cette vague). `updatedDate` passé à 2026-08-19. `npm run build` passé. Article
+passé de 3362 à 4231 mots ; `REQUETES.csv` (ligne existante mise à jour, pas de nouvelle ligne)
+et `BACKLOG.md` (n°8, vague marquée terminée) mis à jour dans ce commit.
+
+**Mesure :** non mesuré — pas de changement de requête ciblée, ajout de contenu sur une page déjà
+indexée.
+
+**Suite :** rien pour cette vague. Prochaine action SEO à choisir selon `BACKLOG.md` — le
+netlinking (n°1) reste le point de blocage identifié, pas la production d'articles.
+
+---
+
 ## 2026-08-19 (59) — Nouvel article : OPCO et Qualiopi (vague longue traîne 2/3)
 
 **Type :** publication.
