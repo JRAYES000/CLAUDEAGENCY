@@ -56,8 +56,19 @@ rapide de ma part le matin même — laissée ici pour qu'on ne la reprenne pas.
 9 `title` + `description` réécrits, alignés sur les requêtes réellement constatées dans GSC.
 Détail, positions de départ et arbitrages : entrée du 2026-08-12 dans `JOURNAL.md`.
 
-- [ ] **Relever le résultat le 2026-09-11** : clics, CTR et position de ces 9 URLs.
-      Si le CTR de `/services/seo/` est toujours à 0, revenir à l'ancien title.
+- [ ] **Relever le résultat le 2026-09-11** : clics, CTR et position des 9 URLs ci-dessous,
+      à comparer aux valeurs de départ (14/05→09/08/2026) :
+      `/services/seo/` (pos. 3,8, 0 clic) · `/blog/claude-ai-en-francais/` (4,7, 1 clic) ·
+      `/blog/convention-de-formation/` (13,8, 0 clic) ·
+      `/blog/formation-autofinancee-france-travail/` (14,8, 0 clic) ·
+      `/blog/feuille-emargement/` (16,0, 1 clic) ·
+      `/blog/seo-organisme-formation/` (16,8, 0 clic) ·
+      `/blog/livret-accueil-stagiaire/` (21,0, 4 clics) ·
+      `/blog/questionnaire-satisfaction-formation/` (31,0, 1 clic) ·
+      `/blog/numero-declaration-activite/` (33,5, 0 clic).
+      **Règle déjà arbitrée pour `/services/seo/`** : si toujours 0 clic le 11/09 (position 3,8,
+      zéro récolte), remettre l'ancien title « Agence SEO Claude pour organismes de formation »
+      — l'effet d'un title se voit 2 à 4 semaines après changement.
 - [ ] Pages non traitées faute de données : `/blog/attestation-de-formation/` et
       `/blog/automatiser-relances-stagiaires/` — leurs requêtes sont sous le seuil
       d'anonymisation GSC. Rien à aligner tant qu'on ne sait pas sur quoi elles ressortent.

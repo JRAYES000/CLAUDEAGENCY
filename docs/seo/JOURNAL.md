@@ -5,6 +5,31 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (62) — Rappel du relevé du 11/09 détaillé dans BACKLOG.md (9 URLs title/meta)
+
+**Type :** organisation (pas d'action SEO, Claude Code n'a pas d'agenda — le rappel se pose dans
+le dépôt, l'événement calendrier est créé à la main par SOLOHERY).
+
+**Pourquoi :** la case à cocher existante de `BACKLOG.md` (section 3, entrée du 2026-08-12) disait
+« clics, CTR et position de ces 9 URLs » sans les lister — un relevé qui doit rouvrir
+`JOURNAL.md` pour retrouver la liste n'est pas un rappel autonome.
+
+**Fait :** case enrichie dans `BACKLOG.md` (section 3, « Pages en striking distance ») : les 9
+URLs recopiées avec leur position et clics de départ, et la règle déjà arbitrée pour
+`/services/seo/` (toujours 0 clic le 11/09, position 3,8, zéro récolte → retour à l'ancien title
+« Agence SEO Claude pour organismes de formation » ; l'effet d'un title se voit 2 à 4 semaines
+après changement).
+
+**Mesure :** aucune, entrée d'organisation.
+
+**Suite :** événement calendrier à créer à la main par SOLOHERY au 2026-09-11 (Claude Code ne peut
+pas poser de rappel qui sonne) :
+1. Date : 2026-09-11
+2. Titre : Relevé SEO — 9 URLs title/meta (`/services/seo/` : garder ou revenir en arrière ?)
+3. Fichier à ouvrir : `docs/seo/BACKLOG.md`, section 3 « Pages en striking distance »
+
+---
+
 ## 2026-08-19 (61) — Visuels LinkedIn posts 2 à 4 du sprint (suite entrée 39)
 
 **Type :** prospection LinkedIn, hors périmètre SEO (visuels pour la programmation des posts du
