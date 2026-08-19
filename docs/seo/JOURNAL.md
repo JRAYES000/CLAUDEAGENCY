@@ -5,6 +5,40 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (54) — Couvertures dédiées pour les 5 articles génériques les plus vus
+
+**Type :** correctif contenu (image + `imageAlt`).
+
+**URLs :**
+- https://claudeagency.fr/blog/lms-organisme-formation/
+- https://claudeagency.fr/blog/evaluer-apprenants-ia/
+- https://claudeagency.fr/blog/make-automatisation-organisme-formation/
+- https://claudeagency.fr/blog/accessibilite-formation-ia/
+- https://claudeagency.fr/blog/ai-act-organisme-formation/
+
+**Pourquoi :** 28 des 54 articles du blog partageaient encore la couverture générique
+`ia-of-cover.jpg`. Croisement avec `docs/seo/export-gsc-2026-08-13-pages.csv` : 12 des 28 avaient
+au moins une ligne dans l'export GSC, 16 à 0 impression. Les 5 plus fortes impressions retenues
+en priorité (`lms-organisme-formation` 33, `evaluer-apprenants-ia` 24,
+`make-automatisation-organisme-formation` 14, `accessibilite-formation-ia` 12,
+`ai-act-organisme-formation` 9).
+
+**Fait :** description image et `imageAlt` préparés par Claude pour chacun des 5, conformes à la
+palette chaude crème/terracotta de `DESIGN.md` ; images générées par SOLOHERY (plusieurs allers-
+retours de prompt nécessaires sur 2 des 5, pour corriger palette froide, expression tendue et
+décor en studio photo plutôt qu'en salle de formation réelle) ; déposées dans
+`app/src/content/blog/images/` puis récupérées via `git pull` (upload fait directement sur
+GitHub). Frontmatter des 5 articles mis à jour (`image` + `imageAlt` uniquement, rien d'autre) ;
+`npm run build` passé (158 pages). 23 articles restent sur la couverture générique.
+
+**Mesure :** pas de mesure d'impact court terme prévue — image seule, sans changement de contenu
+ni de requête ciblée.
+
+**Suite :** reprendre la liste des 23 articles restants au prochain lot, même méthode (croisement
+GSC → priorisation impressions → prompt DESIGN.md → génération manuelle → branchement).
+
+---
+
 ## 2026-08-19 (53) — Sous-domaine `reporting.claudeagency.fr` indexé : décision noindex
 
 **Type :** décision + correctif technique (à finaliser hors dépôt).

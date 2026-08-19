@@ -100,8 +100,10 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 
 - [ ] `REQUETES.csv` : 62 lignes sur 87 ont une requête cible marquée
       `deduite-du-slug-A-VALIDER`. À corriger au fil de l'eau, pas en une passe.
-- [ ] Régénérer les 2 couvertures temporaires (`indicateurs-qualiopi`, `audit-surveillance-qualiopi`)
-      — en attente depuis le 2026-06-15.
+- [x] Couvertures temporaires — TRAITÉ, vérifié le 2026-08-19 : `indicateurs-qualiopi.mdx` a déjà
+      sa couverture dédiée (`indicateurs-qualiopi-cover.webp`) ; `audit-surveillance-qualiopi`
+      n'est pas un article mais une requête mappée sur `qualiopi-guide-organisme-formation.mdx`,
+      qui a aussi sa couverture dédiée (`qualiopi-guide-cover.webp`). Ligne périmée.
 
 ---
 
