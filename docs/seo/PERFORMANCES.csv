@@ -1,4 +1,5 @@
 date_releve,periode_debut,periode_fin,source,propriete,metrique,valeur,note
+2026-08-14,2026-08-14,2026-08-14,PageSpeed,https://claudeagency.fr/,lcp_mobile,inconnu,tentative 2026-08-19: Ubersuggest sans outil pagespeed_audit; API PageSpeed Insights quota 429
 2026-08-12,2026-05-14,2026-08-09,GSC,sc-domain:claudeagency.fr,clics,49,data_state=final
 2026-08-12,2026-05-14,2026-08-09,GSC,sc-domain:claudeagency.fr,impressions,2797,data_state=final
 2026-08-12,2026-05-14,2026-08-09,GSC,sc-domain:claudeagency.fr,ctr_pct,1.75,recalcule clics/impressions

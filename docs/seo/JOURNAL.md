@@ -5,6 +5,32 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (52) — Tentative de remesure du LCP mobile (accueil) — échec, inconnu
+
+**Type :** mesure.
+
+**URLs :** https://claudeagency.fr/
+
+**Pourquoi :** les corrections LCP du 2026-06-16 (`perf-lcp-mobile.md`) n'ont jamais été
+remesurées ; vérifier si le LCP mobile est repassé sous la cible de 2,5 s (mesuré à 4,2 s
+lors de l'audit).
+
+**Fait :** deux sources tentées, les deux autorisées pour cette tâche. (1) MCP Ubersuggest
+connecté au projet : aucun outil `pagespeed_audit` ni équivalent Core Web Vitals/LCP parmi
+ses endpoints (vérifié via son propre outil de documentation). (2) API PageSpeed Insights
+(`runPagespeed`, `strategy=mobile`) : appel direct → `429`, quota journalier à 0 sans clé API
+(aucune clé configurée dans le dépôt ni l'environnement).
+
+**Mesure :** LCP mobile = **inconnu** (aucune des deux sources n'a répondu, valeur non
+déduite du score global). Ligne ajoutée dans `PERFORMANCES.csv` à la date 2026-08-14 (date
+imposée par la consigne reçue pour cette entrée) ; la tentative a réellement eu lieu ce jour,
+2026-08-19.
+
+**Suite :** obtenir une clé API PageSpeed Insights ou identifier un outil MCP Core Web Vitals
+distinct pour pouvoir remesurer.
+
+---
+
 ## 2026-08-19 (51) — Maillage interne manuel sur les 20 pages sous-performantes
 
 **Type :** maillage interne (à la main, article par article — aucun script).

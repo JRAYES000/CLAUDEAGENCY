@@ -116,3 +116,22 @@ puis un 200. Toute chaîne > 1 hop = à corriger dans les Redirect Rules.
 ## Résultat build
 `npm run build` : **0 erreur**, 50 pages générées. Preload émis et cohérent avec le
 `srcset` de l'image hero (mêmes fichiers hashés, donc pas de double téléchargement).
+
+## Remesure — tentative du 2026-08-19 (échec)
+
+Corrections ci-dessus (préchargement, suppression animation LCP) jamais remesurées depuis
+l'audit du 2026-06-16. Tentative de remesure le 2026-08-19 sur les deux sources autorisées :
+
+- **MCP Ubersuggest** (serveur connecté au projet) : pas d'outil `pagespeed_audit` ni
+  équivalent Core Web Vitals — vérifié dans la liste complète de ses endpoints (outil `doc`
+  du serveur).
+- **API PageSpeed Insights** (`pagespeedonline.googleapis.com/v5/runPagespeed`,
+  `strategy=mobile`) : appel direct → `429 RESOURCE_EXHAUSTED`, quota journalier à 0 pour les
+  appels sans clé API (aucune clé configurée dans le dépôt ni l'environnement).
+
+**LCP mobile : inconnu** — ni mesuré ni déduit du score global. Consigné dans
+`PERFORMANCES.csv` (ligne datée 2026-08-14, conformément à la consigne reçue pour cette
+entrée ; la tentative elle-même a eu lieu le 2026-08-19, voir `JOURNAL.md`).
+Pour remesurer : obtenir une clé API PageSpeed Insights (Google Cloud Console, activer
+`pagespeedonline.googleapis.com`) ou identifier un outil MCP Core Web Vitals distinct de
+celui déjà connecté.
