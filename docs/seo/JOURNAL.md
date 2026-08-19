@@ -5,6 +5,42 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (56) — Couvertures dédiées, lot 2/N (5 articles supplémentaires)
+
+**Type :** correctif contenu (image + `imageAlt`).
+
+**URLs :**
+- https://claudeagency.fr/blog/linkedin-organisme-formation/
+- https://claudeagency.fr/blog/sous-traitance-pedagogique-formation/
+- https://claudeagency.fr/blog/crm-organisme-formation/
+- https://claudeagency.fr/blog/objectifs-pedagogiques-ia/
+- https://claudeagency.fr/blog/prospection-commerciale-organisme-formation/
+
+**Pourquoi :** suite du lot 1 (entrée 54). 23 articles restaient sur `ia-of-cover.jpg` après le
+premier lot. Croisement avec `docs/seo/export-gsc-2026-08-13-pages.csv` : seuls 7 des 23 avaient
+au moins une impression. Les 3 premiers départagés nettement (`linkedin-organisme-formation` 3,
+`sous-traitance-pedagogique-formation` 2, `crm-organisme-formation` 2). 4 articles à égalité à 1
+impression pour les 4e/5e places : départagés par position moyenne dans le CSV —
+`objectifs-pedagogiques-ia` (1 clic, position 3) et `prospection-commerciale-organisme-formation`
+(position 4) retenus devant `donnees-stagiaires-rgpd-ia` (position 25) et
+`catalogue-formation-organisme` (position 45).
+
+**Fait :** description image et `imageAlt` préparés par Claude, conformes à `DESIGN.md` ; images
+générées par SOLOHERY (nouveaux allers-retours de prompt sur `prospection-commerciale-organisme-
+formation` : téléphone fixe anachronique et fond en dégradé façon studio corrigés en smartphone +
+mur en aplat) ; déposées via upload GitHub direct, récupérées par `git pull`. Un fichier uploadé
+avec un nom fautif (`objectifs-pedagogiques-ia-cover..webp`, double point) renommé avant
+branchement. Frontmatter des 5 articles mis à jour (`image` + `imageAlt` uniquement) ; `npm run
+build` passé (159 pages). Compteur `ia-of-cover.jpg` : 23 → 18.
+
+**Mesure :** pas de mesure d'impact court terme prévue — image seule, sans changement de contenu
+ni de requête ciblée.
+
+**Suite :** 18 articles restent sur la couverture générique, à traiter en lot suivant, même
+méthode.
+
+---
+
 ## 2026-08-19 (55) — Changement d'entite editrice : BULGARIA EDUCATION EOOD, + 1 page indexee
 
 **Type :** contenu + SEO technique (identite de l'editeur, schema.org Organization, nouvelle page).
