@@ -5,6 +5,55 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (51) — Maillage interne manuel sur les 20 pages sous-performantes
+
+**Type :** maillage interne (à la main, article par article — aucun script).
+
+**Pourquoi :** sélection des URLs `/blog/` à 0 ou 1 clic les plus vues dans
+`export-gsc-2026-08-13-pages.csv`, pour leur ajouter des liens internes vers des pages plus
+susceptibles de convertir (articles proches, pages `/services/`).
+
+**Correction de méthode en cours de route :** 6 URLs du CSV n'avaient pas de fichier `.mdx`
+correspondant. Vérifié en ligne (`curl -sI`) sur demande explicite avant de trancher : les 6
+redirigent en 301 (`app/public/_redirects`), aucune n'est en 404 — elles proviennent du ménage
+de cannibalisation de l'entrée du 2026-08-14 (15 articles fusionnés), et l'export GSC du 08-13
+a été pris la veille. Leurs impressions ont été rattachées à la page cible pour un classement
+correct : `automatiser-bpf-organisme-formation` (138 impr.) → `remplir-bpf-organisme-formation`
+(8 → 146, passe de #16 à #2) ; `claude-agency-vs-concurrents` (26) →
+`meilleure-agence-ia-organisme-formation` (entre dans le top 20, remplace
+`convention-de-formation`, sorti à 4 impr.) ; `claude-code-organisme-formation` (8) →
+`formation-claude-code` (31 → 39) ; `audit-surveillance-qualiopi` (3) →
+`qualiopi-guide-organisme-formation` (10 → 13) ; `automatiser-emargement-suivi-stagiaires` (1)
+→ `feuille-emargement` (13 → 14).
+
+**Fait :** 3 liens proposés par article pour les 20 articles retenus (60 propositions), rédigés
+à la main dans `docs/seo/maillage-interne-2026-08-19-proposition.md`, relus et validés par
+SOLOHERY avant application. Appliqués fichier par fichier en 4 lots de 5 — jamais de
+chercher-remplacer global, un seul fichier édité à la fois, contrôle du diff après chaque lot —
+en réaction directe à l'incident du 03/07/2026 (script de maillage ayant vidé 62 articles).
+Chaque nouveau lien est un **nouveau paragraphe ajouté**, jamais une modification d'une phrase
+existante, pour garantir un diff purement additif.
+
+**Vérifié :** `cd app && npm run build` après chaque lot (4/4 passés), puis `git diff --stat`
+sur les 5 fichiers du lot — uniquement des lignes ajoutées, aucune supprimée, sur les 4 lots.
+
+**Mesure :** 60 liens ajoutés sur 20 articles (`logiciel-organisme-formation`,
+`remplir-bpf-organisme-formation`, `formation-claude`, `lms-organisme-formation`,
+`formation-claude-code`, `claude-ai-en-francais`, `meilleure-agence-ia-organisme-formation`,
+`ai-act-organisme-formation`, `evaluer-apprenants-ia`, `livret-accueil-stagiaire`,
+`outils-ia-organisme-formation`, `make-automatisation-organisme-formation`,
+`feuille-emargement`, `numero-declaration-activite`, `qualiopi-guide-organisme-formation`,
+`accessibilite-formation-ia`, `seo-organisme-formation`,
+`cas-usage-claude-organisme-formation`, `claude-pour-le-marketing`,
+`formation-autofinancee-france-travail`), en 4 commits (un par lot de 5). Chaque article garde
+au moins 1 lien vers une page `/services/` parmi ses 3 nouveaux liens.
+
+**Suite :** `convention-de-formation.mdx` (4 impressions, sorti du top 20 par la correction
+ci-dessus) a 3 propositions de liens rédigées mais non appliquées — dans
+`maillage-interne-2026-08-19-proposition.md` si besoin de les reprendre plus tard.
+
+---
+
 ## 2026-08-19 (50) — Cumul www + non-www sur les 2 derniers doublons signalés à l'entrée 49
 
 **Type :** correction de données (suite directe de l'entrée 49, même fichier).
