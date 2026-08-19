@@ -24,8 +24,9 @@ chiffre nouveau introduit). Palette strictement limitée aux 3 couleurs `#FBF7F1
 **Mesure :** 3 SVG, 3 PNG à 1080×1080 (dimensions confirmées par le script), 3 couleurs uniques par
 fichier.
 
-**Suite :** Julien joint chaque PNG à son post correspondant sur SOLOHERY au moment de la
-programmation.
+**Suite :** posts 2, 3 et 4 programmés par Julien sur SOLOHERY le 19/08 (visuels joints). Reste, le
+jour de chaque publication : coller l'URL de l'article en 1er commentaire (jamais dans le corps du
+post).
 
 ---
 
