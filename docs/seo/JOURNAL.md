@@ -5,6 +5,49 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (50) — Cumul www + non-www sur les 2 derniers doublons signalés à l'entrée 49
+
+**Type :** correction de données (suite directe de l'entrée 49, même fichier).
+
+**Pourquoi :** l'entrée 49 signalait sans les traiter 2 lignes déjà mises à jour à l'entrée 48
+(`lms-organisme-formation`, `make-automatisation-organisme-formation`) dont la variante `www.`
+existe aussi dans `export-gsc-2026-08-13-pages.csv` avec des impressions non nulles, non
+fusionnées. Demande explicite de cumuler les deux variantes, même méthode que le repêchage de
+l'entrée 49.
+
+**Fait :** contrairement au repêchage (une seule variante disponible → substitution), ici les
+**deux** variantes existent → somme des `clics`/`impressions`, position recalculée en moyenne
+pondérée par les impressions de chaque variante (méthode standard d'agrégation GSC quand deux
+lignes se combinent) :
+- `lms-organisme-formation` : non-www (0 clic, 33 impr., position 60.3) + www (0 clic, 6 impr.,
+  position 20.7) → **0 clic, 39 impr., position 54.2**.
+- `make-automatisation-organisme-formation` : non-www (0 clic, 14 impr., position 19.9) + www
+  (0 clic, 1 impr., position 21.0) → **0 clic, 15 impr., position 19.9** (position quasi
+  inchangée, le poids de la variante www est marginal).
+
+`source_requete` reste `sous-seuil-GSC` sur les deux lignes (le cumul reste une métrique de page,
+pas une requête précise — même limite qu'aux entrées 48-49). `date_position` déjà à 2026-08-13,
+inchangée.
+
+**Vérifié :** script de comparaison ligne à ligne contre `git show HEAD:` (commit de l'entrée 49)
+— 0 colonne touchée hors des 5 autorisées, 87 lignes de données inchangées en nombre.
+
+**Mesure — total final sur les 63 lignes traitées depuis l'entrée 48 :**
+- **32 / 63** ont désormais des métriques mises à jour depuis les exports GSC du 13/08 (28 par
+  correspondance exacte à l'entrée 48, +4 par correspondance www/non-www à l'entrée 49, dont 2
+  recalculées en cumul ici — ce sont les mêmes 32 lignes, pas un ajout).
+- **31 / 63** restent sans aucune donnée GSC dans ces deux exports (URL absente, ni en exact ni
+  en www) — `clics_90j`/`impressions_90j`/`position`/`date_position` inchangés depuis avant
+  l'entrée 48.
+- Sur l'ensemble des 63 : **0** requête réelle mesurée, **63** `sous-seuil-GSC` (inchangé depuis
+  l'entrée 48 — aucune de ces trois passes n'a permis d'attribuer une requête précise à une URL,
+  seulement des métriques de page).
+
+**Suite :** aucune connue. Les 31 lignes sans donnée resteraient à traiter par une extraction GSC
+filtrée par page si un besoin futur l'exige (option déjà écartée à l'entrée 48, coût ~31 appels).
+
+---
+
 ## 2026-08-19 (49) — Correction d'attribution sur l'entrée 48 + repêchage www/non-www (4 lignes)
 
 **Type :** correction de journal (attribution erronée) + correction de données (suite directe de
