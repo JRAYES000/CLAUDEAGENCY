@@ -5,29 +5,35 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
-## 2026-08-19 (52) — Tentative de remesure du LCP mobile (accueil) — échec, inconnu
+## 2026-08-19 (52) — Remesure du LCP mobile (accueil) : échec puis succès après clé API fournie
 
 **Type :** mesure.
 
 **URLs :** https://claudeagency.fr/
 
-**Pourquoi :** les corrections LCP du 2026-06-16 (`perf-lcp-mobile.md`) n'ont jamais été
+**Pourquoi :** les corrections LCP du 2026-06-16 (`perf-lcp-mobile.md`) n'avaient jamais été
 remesurées ; vérifier si le LCP mobile est repassé sous la cible de 2,5 s (mesuré à 4,2 s
 lors de l'audit).
 
-**Fait :** deux sources tentées, les deux autorisées pour cette tâche. (1) MCP Ubersuggest
-connecté au projet : aucun outil `pagespeed_audit` ni équivalent Core Web Vitals/LCP parmi
-ses endpoints (vérifié via son propre outil de documentation). (2) API PageSpeed Insights
-(`runPagespeed`, `strategy=mobile`) : appel direct → `429`, quota journalier à 0 sans clé API
-(aucune clé configurée dans le dépôt ni l'environnement).
+**Fait :** deux tentatives dans la même session. (1) MCP Ubersuggest connecté au projet :
+aucun outil `pagespeed_audit` ni équivalent Core Web Vitals/LCP parmi ses endpoints (vérifié
+via son propre outil de documentation) ; API PageSpeed Insights sans clé → `429`, quota
+journalier à 0. (2) Une clé API PageSpeed Insights a été générée (Google Cloud Console) et
+fournie en cours de session → mesure relancée avec succès via `runPagespeed?strategy=mobile`
+(clé utilisée uniquement pour cet appel, non stockée dans le dépôt ni en mémoire).
 
-**Mesure :** LCP mobile = **inconnu** (aucune des deux sources n'a répondu, valeur non
-déduite du score global). Ligne ajoutée dans `PERFORMANCES.csv` à la date 2026-08-14 (date
-imposée par la consigne reçue pour cette entrée) ; la tentative a réellement eu lieu ce jour,
-2026-08-19.
+**Mesure :** LCP mobile = **2,7 s** (lab data Lighthouse 13.4.1, `largest-contentful-paint`
+numericValue = 2676,7 ms), mesuré le 2026-08-19T09:34:23Z via l'API PageSpeed Insights. Score
+performance mobile global : 0,96/1. Encore au-dessus de la cible de 2,5 s (écart 0,2 s), mais
+net progrès depuis les 4,2 s du 2026-06-16. Pas de données terrain (CrUX) disponibles pour ce
+domaine. Ligne mise à jour dans `PERFORMANCES.csv` (date_releve 2026-08-14, conservée telle
+que fixée à l'origine de cette entrée).
 
-**Suite :** obtenir une clé API PageSpeed Insights ou identifier un outil MCP Core Web Vitals
-distinct pour pouvoir remesurer.
+**Suite :** cible de 2,5 s pas encore atteinte (écart 0,2 s). Si prioritaire : revisiter les
+opportunités mobile encore ouvertes depuis l'audit initial (JS Google Ads gtag.js, ~54 ko,
+arbitrage propriétaire non tranché — voir corrections ci-dessus dans `perf-lcp-mobile.md`),
+ou relancer une mesure PageSpeed dans quelques semaines une fois plus de trafic mobile pour
+obtenir des données CrUX terrain.
 
 ---
 

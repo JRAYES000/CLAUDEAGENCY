@@ -117,21 +117,27 @@ puis un 200. Toute chaîne > 1 hop = à corriger dans les Redirect Rules.
 `npm run build` : **0 erreur**, 50 pages générées. Preload émis et cohérent avec le
 `srcset` de l'image hero (mêmes fichiers hashés, donc pas de double téléchargement).
 
-## Remesure — tentative du 2026-08-19 (échec)
+## Remesure — 2026-08-19
 
 Corrections ci-dessus (préchargement, suppression animation LCP) jamais remesurées depuis
-l'audit du 2026-06-16. Tentative de remesure le 2026-08-19 sur les deux sources autorisées :
+l'audit du 2026-06-16, jusqu'à ce jour.
 
-- **MCP Ubersuggest** (serveur connecté au projet) : pas d'outil `pagespeed_audit` ni
-  équivalent Core Web Vitals — vérifié dans la liste complète de ses endpoints (outil `doc`
-  du serveur).
-- **API PageSpeed Insights** (`pagespeedonline.googleapis.com/v5/runPagespeed`,
-  `strategy=mobile`) : appel direct → `429 RESOURCE_EXHAUSTED`, quota journalier à 0 pour les
-  appels sans clé API (aucune clé configurée dans le dépôt ni l'environnement).
+Première tentative (deux sources autorisées) infructueuse : **MCP Ubersuggest** sans outil
+`pagespeed_audit` ni équivalent Core Web Vitals (vérifié dans la liste complète de ses
+endpoints) ; **API PageSpeed Insights** sans clé → `429 RESOURCE_EXHAUSTED`, quota 0. Une clé
+API PageSpeed Insights a ensuite été générée et fournie en cours de session ; mesure relancée
+avec succès.
 
-**LCP mobile : inconnu** — ni mesuré ni déduit du score global. Consigné dans
-`PERFORMANCES.csv` (ligne datée 2026-08-14, conformément à la consigne reçue pour cette
-entrée ; la tentative elle-même a eu lieu le 2026-08-19, voir `JOURNAL.md`).
-Pour remesurer : obtenir une clé API PageSpeed Insights (Google Cloud Console, activer
-`pagespeedonline.googleapis.com`) ou identifier un outil MCP Core Web Vitals distinct de
-celui déjà connecté.
+**Résultat** (`pagespeedonline.googleapis.com/v5/runPagespeed`, `strategy=mobile`, mesuré le
+2026-08-19T09:34:23Z) :
+
+- **LCP mobile : 2,7 s** (lab data Lighthouse 13.4.1 ; audit `largest-contentful-paint`,
+  numericValue = 2676,7 ms) — encore au-dessus de la cible de 2,5 s (écart 0,2 s), mais net
+  progrès depuis les 4,2 s de l'audit du 2026-06-16.
+- Score performance mobile global : 0,96/1.
+- Pas de données terrain (CrUX) disponibles pour ce domaine (`loadingExperience` vide dans la
+  réponse) — trafic réel probablement insuffisant pour que Google en publie. La valeur ci-dessus
+  est une mesure **en laboratoire** (Lighthouse), pas un vécu utilisateur agrégé.
+
+Consigné dans `PERFORMANCES.csv`. Clé API utilisée uniquement pour cet appel, non stockée
+dans le dépôt.
