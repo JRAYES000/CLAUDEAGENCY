@@ -5,6 +5,44 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (57) — Couvertures dédiées, lot 3/N (5 articles supplémentaires)
+
+**Type :** correctif contenu (image + `imageAlt`).
+
+**URLs :**
+- https://claudeagency.fr/blog/prompts-ia-formateurs/
+- https://claudeagency.fr/blog/claude-vs-chatgpt-organisme-formation/
+- https://claudeagency.fr/blog/automatiser-relances-stagiaires/
+- https://claudeagency.fr/blog/tunnel-vente-organisme-formation/
+- https://claudeagency.fr/blog/attestation-de-formation/
+
+**Pourquoi :** suite des lots 1 et 2 (entrées 54, 56). Sur les 18 articles restants, seuls 2
+avaient une ligne dans `export-gsc-2026-08-13-pages.csv` (`donnees-stagiaires-rgpd-ia` et
+`catalogue-formation-organisme`, 1 impression chacun) — insuffisant pour départager un top 5.
+Complété avec `docs/seo/REQUETES.csv` (colonne `impressions_90j`, même mesure GSC sur fenêtre
+plus large, vérifiée cohérente avec `export-gsc-2026-08-13-pages.csv` sur les 10 articles déjà
+traités). Avec cette source, `donnees-stagiaires-rgpd-ia` et `catalogue-formation-organisme`
+retombent en fait très bas (1 impression sur 90 jours) ; le vrai top 5 est
+`prompts-ia-formateurs` (40), `claude-vs-chatgpt-organisme-formation` (31),
+`automatiser-relances-stagiaires` (16), puis `tunnel-vente-organisme-formation` et
+`attestation-de-formation` à égalité (15) — départagés par clics (3 vs 0) et position (4,9 vs
+7,1) en faveur de `tunnel-vente-organisme-formation`.
+
+**Fait :** description image et `imageAlt` préparés par Claude, conformes à `DESIGN.md` ; images
+générées par SOLOHERY et validées du premier coup (aucun aller-retour de prompt nécessaire cette
+fois) ; déposées via upload GitHub direct, récupérées par `git pull`. Frontmatter des 5 articles
+mis à jour (`image` + `imageAlt` uniquement) ; `npm run build` passé (159 pages). Compteur
+`ia-of-cover.jpg` : 18 → 13.
+
+**Mesure :** pas de mesure d'impact court terme prévue — image seule, sans changement de contenu
+ni de requête ciblée.
+
+**Suite :** 13 articles restent sur la couverture générique, à traiter en lot suivant, même
+méthode (la source `export-gsc-2026-08-13-pages.csv` seule risque de ne plus suffire à
+départager — `REQUETES.csv` sera la source principale pour les lots suivants).
+
+---
+
 ## 2026-08-19 (56) — Couvertures dédiées, lot 2/N (5 articles supplémentaires)
 
 **Type :** correctif contenu (image + `imageAlt`).
