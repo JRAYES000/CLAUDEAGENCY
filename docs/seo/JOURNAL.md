@@ -5,6 +5,56 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (48) — 63 requêtes devinées passées en sous-seuil-GSC, blocage de méthode remonté à Julien
+
+**Type :** correction de données (nettoyage `source_requete` / `requete_cible`), suite des entrées
+45-46 (mêmes exports GSC du 13/08).
+
+**Pourquoi :** 63 lignes de `REQUETES.csv` portaient une `requete_cible` devinée (53
+`deduite-du-slug-A-VALIDER`, 10 `deduite-A-VALIDER`), jamais confrontée à une vraie mesure GSC.
+Consigne reçue : pour chacune, chercher dans `export-gsc-2026-08-13-requetes.csv` la requête qui
+apporte le plus d'impressions à l'URL de la ligne, sans rien déduire du slug.
+
+**Blocage trouvé avant toute édition :** `export-gsc-2026-08-13-requetes.csv` (222 requêtes) et
+`export-gsc-2026-08-13-pages.csv` (50 URLs) sont deux exports **globaux et distincts**
+(confirmé par l'entrée 45 : 1717 impressions au total côté requêtes, 1864 côté pages — les deux
+totaux ne se recoupent pas). Aucune colonne commune entre les deux fichiers : impossible de savoir
+objectivement quelle requête, parmi les 222, est associée à une URL précise. Croisement des 63
+URLs avec `pages.csv` : 28 URLs ont un total d'impressions connu mais sans requête attribuable
+(la seule façon de "trouver" une requête aurait été de faire correspondre son texte au sujet de
+la page — exactement le "déduire du slug" interdit par la consigne) ; 4 autres n'existent dans
+l'export qu'en variante `www.` (piège déjà documenté à l'entrée 46).
+
+**Décision (Julien, remontée avant d'exécuter) :** aucune des 63 lignes ne peut prétendre à une
+`requete_cible` mesurée — les 63 passent en `source_requete = sous-seuil-GSC`, `requete_cible`
+inchangée. Pour les 28 URLs retrouvées **à l'identique** (correspondance exacte, sans tolérance
+www/non-www) dans `pages.csv` avec des impressions non nulles, `clics_90j`, `impressions_90j`,
+`position` et `date_position` sont mis à jour depuis cet export (fenêtre 2026-05-21 → 2026-08-16,
+date de mesure enregistrée : 2026-08-13). Les 35 autres lignes (URL absente de l'export ou variante
+www non prise en compte) gardent leurs anciennes valeurs de `clics_90j`/`impressions_90j`/
+`position`/`date_position` — aucune donnée fiable pour les changer.
+
+**Fait :** script Node.js (`reconcile.js`, jetable, hors dépôt) appliqué sur `REQUETES.csv` :
+correspondance exacte URL → `export-gsc-2026-08-13-pages.csv`, arrondi de la position à 1 décimale
+pour rester au format existant (`31.0`, pas `41.986784140969164`). Vérifié après coup par un
+second script de comparaison ligne à ligne avec `git show HEAD:` : 0 colonne touchée en dehors des
+5 autorisées (`source_requete`, `clics_90j`, `impressions_90j`, `position`, `date_position`),
+87 lignes de données avant/après identiques en nombre, aucun ajout ni suppression, aucun
+réordonnancement.
+
+**Mesure :** 63/63 lignes traitées. **0** requêtes réelles mesurées (`GSC 2026-08-13 (requete
+reelle mesuree)`) — **63** `sous-seuil-GSC`. Sur ces 63 : 28 avec métriques mises à jour depuis
+`pages.csv`, 35 inchangées faute de correspondance.
+
+**Suite :** si une vraie mesure page×requête est un jour nécessaire pour ces URLs, il faudra une
+extraction GSC filtrée par page (Composio), pas les deux exports globaux du 13/08 — signalé à
+Julien comme option 2, non retenue ici (aurait changé la date de mesure et pris ~32 appels). Les
+28 lignes dont les métriques ont bougé peuvent faire remonter ou descendre leur position dans un
+tri par `impressions_90j` (notamment B3, déjà signalé sensible à ce fichier depuis l'entrée 46) —
+non revérifié ici, hors périmètre de cette passe.
+
+---
+
 ## 2026-08-19 (47) — Décision Julien : les 3 pages de bruit non corrigées restent en l'état
 
 **Type :** décision (clôt le point « Suite » de l'entrée 46, sans nouvelle donnée).
