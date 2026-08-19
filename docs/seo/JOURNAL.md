@@ -5,6 +5,51 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (49) — Correction d'attribution sur l'entrée 48 + repêchage www/non-www (4 lignes)
+
+**Type :** correction de journal (attribution erronée) + correction de données (suite directe de
+l'entrée 48, même fichier).
+
+**Pourquoi :** deux questions posées après coup sur l'entrée 48. (1) L'entrée écrivait « Décision
+(Julien) » pour le choix « tout en sous-seuil-GSC » — jamais vérifié. (2) Demande de retenter les
+35 lignes non mises à jour en normalisant www/non-www avant comparaison, comme un précédent
+similaire (C1).
+
+**Fait — correction d'attribution :** vérification faite sur la mémoire `user-role-claude-agency` :
+« Son manager est Julien » — l'utilisateur de cette session **n'est pas** Julien. La décision
+« tout en sous-seuil-GSC » vient d'une réponse donnée dans ce chat, pas d'une validation directe et
+constatée de Julien lui-même. La formule « Décision (Julien) » de l'entrée 48 était une
+affirmation non vérifiée (calquée par réflexe sur les entrées où Julien tranche réellement, ex.
+entrées 17-19) — corrigée dans l'entrée 48 elle-même plutôt que réécrite en douce.
+
+**Fait — repêchage www/non-www :** deuxième passe sur les 35 lignes sans correspondance de
+l'entrée 48, comparaison URL normalisée (`www.` retiré) contre `export-gsc-2026-08-13-pages.csv`.
+**4 lignes** avaient une correspondance uniquement en variante `www.` : `remplir-bpf-organisme-formation`
+(8 impressions, position 23.5), `qualiopi-guide-organisme-formation` (10, position 41.2),
+`catalogue-formation-organisme` (1, position 45.0), `linkedin-organisme-formation` (3, position
+7.0). Leurs `clics_90j`/`impressions_90j`/`position`/`date_position` mis à jour depuis cette
+variante ; `source_requete` reste `sous-seuil-GSC` (la normalisation www donne la métrique de
+page, pas une requête précise — même limite qu'à l'entrée 48). Les 31 lignes restantes n'ont
+toujours aucune correspondance, ni exacte ni www. **Point non traité, signalé :** 2 des 28 lignes
+déjà mises à jour à l'entrée 48 (`lms-organisme-formation`, `make-automatisation-organisme-formation`)
+ont *aussi* une variante `www.` distincte dans l'export (respectivement 6 et 1 impressions
+supplémentaires, non fusionnées) — hors du périmètre demandé ici (« les 35 lignes »), à traiter
+séparément si besoin de cumuler les deux variantes.
+
+**Vérifié :** script de comparaison ligne à ligne contre `git show HEAD:` (commit de l'entrée 48) —
+0 colonne touchée hors des 5 autorisées, 87 lignes de données inchangées en nombre.
+`grep -c "A-VALIDER" docs/seo/REQUETES.csv` → 0 confirmé ; `grep -c "sous-seuil-GSC"` → 63
+inchangé (le repêchage ne change que les métriques, pas le statut de la requête).
+
+**Mesure :** 4/35 lignes repêchées par normalisation www ; 31/35 toujours sans donnée GSC pour
+cette URL. Comptage final requêtes réelles / sous-seuil-GSC inchangé : 0 / 63.
+
+**Suite :** si les 2 doublons www non fusionnés (`lms-organisme-formation`,
+`make-automatisation-organisme-formation`) doivent être corrigés, le faire dans une passe dédiée —
+demande explicite requise, périmètre de celle-ci limité aux 35 lignes signalées.
+
+---
+
 ## 2026-08-19 (48) — 63 requêtes devinées passées en sous-seuil-GSC, blocage de méthode remonté à Julien
 
 **Type :** correction de données (nettoyage `source_requete` / `requete_cible`), suite des entrées
@@ -25,7 +70,8 @@ URLs avec `pages.csv` : 28 URLs ont un total d'impressions connu mais sans requ�
 la page — exactement le "déduire du slug" interdit par la consigne) ; 4 autres n'existent dans
 l'export qu'en variante `www.` (piège déjà documenté à l'entrée 46).
 
-**Décision (Julien, remontée avant d'exécuter) :** aucune des 63 lignes ne peut prétendre à une
+**Décision (tranchée dans ce chat, remontée avant d'exécuter — voir correction entrée 49 : pas une
+validation directe de Julien) :** aucune des 63 lignes ne peut prétendre à une
 `requete_cible` mesurée — les 63 passent en `source_requete = sous-seuil-GSC`, `requete_cible`
 inchangée. Pour les 28 URLs retrouvées **à l'identique** (correspondance exacte, sans tolérance
 www/non-www) dans `pages.csv` avec des impressions non nulles, `clics_90j`, `impressions_90j`,
