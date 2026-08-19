@@ -5,6 +5,56 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-19 (46) — Correction REQUETES.csv (536→134 impressions) + audit exhaustif du bruit « skills claude seo »
+
+**Type :** correction de données + audit (suite directe de l'entrée 45).
+
+**Pourquoi :** l'entrée 45 avait filtré le bruit d'un agent automatisé sur deux exports GSC neufs,
+sans toucher à `REQUETES.csv` lui-même. Julien a demandé la correction de la ligne
+`/services/seo/` avec le chiffre filtré, et un audit du reste du fichier pour le même bruit.
+
+**Fait — correction appliquée :** ligne `agence référencement naturel claude` /
+`https://claudeagency.fr/services/seo/` : `impressions_90j` 536 → **134** (chiffre filtré de
+l'entrée 45), `date_maj` → 2026-08-19. Seules ces deux colonnes touchées.
+
+**Alerte sur la précision de cette correction :** le 536 d'origine ne se reconstruit pas
+proprement à partir de l'API. Une requête GSC non filtrée sur une fenêtre de 90 jours calée
+exactement sur la date de mesure d'origine (2026-05-15 → 2026-08-12, se terminant le
+2026-08-12 comme `date_maj` d'origine) donne **705 impressions** pour cette page — pas 536.
+La méthode ou la fenêtre exacte de la mesure d'origine (536) reste donc inconnue (UI GSC avec un
+préréglage « 3 derniers mois » qui ne correspond pas forcément à 90 jours calendaires, ou
+`search_type`/property différents). 134 est le chiffre filtré le plus récent et fiable
+disponible (extraction C1, fenêtre 2026-05-21 → 2026-08-16), mais ce n'est **pas** un
+« 536 moins le bruit » recalculé sur une fenêtre identique — à traiter comme la meilleure
+estimation actuelle, pas comme une reconstruction exacte.
+
+**Audit exhaustif — requête GSC `query contains "skills claude seo"`, group by page, fenêtre
+2026-05-15 → 2026-08-12 (calée sur la date de mesure d'origine de `REQUETES.csv`) :** 4 pages
+touchées au total, pas seulement `/services/seo/` :
+
+| Page (GSC) | Impressions bruit | Ligne REQUETES.csv correspondante | Statut |
+|---|---|---|---|
+| `https://claudeagency.fr/services/seo/` | 146 | ligne 2, 536→**134** | corrigé |
+| `https://claudeagency.fr/services/optimisation-site/` | 10 | ligne 28, `impressions_90j`=25 (~40 % de bruit potentiel) | **signalé, non corrigé** |
+| `https://claudeagency.fr/blog/seo-guide-complet-organisme-formation-2026/` | 21 | ligne 32, `impressions_90j`=20 — page redirigée 301 depuis le 2026-08-14 vers `seo-organisme-formation` ; le bruit (21) dépasse même l'`impressions_90j` affiché (20), signe que la quasi-totalité du trafic récent de cette page est du bruit | **signalé, non corrigé** |
+| `https://www.claudeagency.fr/blog/seo-organisme-formation/` (variante **www**) | 23 | ligne 9 suit l'URL **sans www** (`https://claudeagency.fr/blog/seo-organisme-formation/`, `impressions_90j`=68) — GSC compte les deux variantes comme des pages distinctes ; le bruit mesuré ne tombe pas exactement sur l'URL trackée | **signalé, non corrigé** |
+
+Ces 3 lignes n'ont pas été corrigées : contrairement à `/services/seo/`, aucun chiffre cible
+n'avait été validé pour elles, et chacune porte une ambiguïté propre (fenêtre non garantie
+identique, page redirigée, variante d'URL). Une correction sans validation aurait remplacé une
+imprécision connue par une autre non vérifiée.
+
+**Impact potentiel ailleurs signalé, non traité :** toute tâche ou fichier qui s'appuie sur le tri
+par `impressions_90j` décroissant de `REQUETES.csv` (notamment le choix d'articles par volume
+d'impressions, ex. B3) a pu se baser sur les anciens chiffres non filtrés des 4 pages ci-dessus,
+avant correction. Non vérifié ici, hors périmètre de cette passe.
+
+**Suite :** si Julien valide des chiffres cibles pour les 3 lignes signalées, les corriger dans
+une passe dédiée. Vérifier séparément si B3 ou d'autres décisions déjà prises doivent être
+revues.
+
+---
+
 ## 2026-08-19 (45) — Export GSC filtré (requêtes + pages), fenêtre 2026-05-21 → 2026-08-16
 
 **Type :** extraction de données (GSC via Composio).
