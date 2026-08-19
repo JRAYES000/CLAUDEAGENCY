@@ -6,6 +6,10 @@ Production : **https://claudeagency.fr**
 
 Code Astro dans `app/`. Contenu dans `app/src/content/blog/` et `app/src/content/services/`.
 
+> Entité éditrice et facturière : **BULGARIA EDUCATION EOOD** (Bulgarie, EIK 206507432,
+> TVA BG206507432). Claude Agency est un **prestataire de services**, PAS un organisme de
+> formation : ne jamais écrire qu'une prestation est finançable CPF, OPCO ou France Travail.
+
 > `claudepartners.fr` est un **autre projet** (ancien nom de domaine, site autonome depuis le
 > 25/07/2026). Ne jamais employer « Claude Partners » pour désigner ce site.
 
