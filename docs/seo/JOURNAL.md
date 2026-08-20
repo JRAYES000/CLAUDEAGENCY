@@ -5,6 +5,44 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-20 (63) — Contrôle DNS SPF/DKIM/DMARC des 4 domaines d'envoi (D0c) — bascule Saleshandy bloquée
+
+**Type :** audit technique (DNS), hors périmètre SEO.
+
+**Pourquoi :** contrôle SPF/DKIM/DMARC demandé sur les 4 domaines d'envoi Saleshandy
+(`claudeagency.fr`, `claudeagency.eu`, `claudepro.fr`, `claudepartners.fr`) avant la bascule
+mail-tester.com de la tâche D0c. L'accès Saleshandy est bloqué (identifiants Notion invalides,
+en attente de confirmation de Julien) ; le contrôle DNS ne dépend pas de cet accès — résolveurs
+publics uniquement — donc lancé pendant que le blocage Saleshandy attend.
+
+**Fait :** interrogation directe des résolveurs publics (`nslookup -type=TXT`) sur les 4 domaines.
+
+| Domaine | SPF | DKIM `hostingermail-a` | DKIM `mailjet` | DMARC |
+| :--- | :--- | :--- | :--- | :--- |
+| claudeagency.fr | 1 seul enregistrement, `include:_spf.mail.hostinger.com include:spf.mailjet.com ~all` | actif | actif | `p=none; rua=mailto:jrayes000@gmail.com` |
+| claudeagency.eu | 1 seul enregistrement, `include:_spf.mail.hostinger.com ~all` | actif | absent | `p=none; rua=mailto:contact@claudepartners.fr; fo=1` |
+| claudepro.fr | 1 seul enregistrement, `include:_spf.mail.hostinger.com ~all` | actif | absent | `p=none; rua=mailto:contact@claudepartners.fr; fo=1` |
+| claudepartners.fr | 1 seul enregistrement, `include:_spf.mail.hostinger.com include:spf.mailjet.com ~all` | actif | actif | `p=none; rua=mailto:contact@claudepartners.fr; fo=1` |
+
+**Aucun domaine n'a plus d'un enregistrement SPF** — la règle de la section 7 de `PLAN-SOLOHERY.md`
+(« jamais un second SPF ») est respectée sur les 4. DKIM `hostingermail-a` répond sur les 4 ;
+fait à noter sans en tirer d'alarme : la clé publique renvoyée est identique caractère pour
+caractère sur les 4 domaines (`hostingermail-b` et `-c` vides partout, rotation normale Hostinger).
+DMARC toujours `p=none` sur les 4 — cohérent avec l'échéance du 25/09/2026 (`PLAN-SOLOHERY.md`
+§6.4), pas encore due, conforme à la consigne « pas de DMARC durci avant ».
+
+**Mesure :** mesuré — `nslookup -type=TXT` le 2026-08-20 sur résolveur système Windows.
+
+**Suite :**
+- Test mail-tester.com (9/10 minimum sur les 4 boîtes) et vérification « Outreach Readiness »
+  TrulyInbox : **Bloqué** — accès Saleshandy non résolu, identifiants Notion invalides, en attente
+  de Julien, au 2026-08-20. À reporter dans la colonne Preuve du Sheet de suivi (tâche D0c) une
+  fois l'accès débloqué.
+- DMARC `p=quarantine` sur les 4 domaines : ne pas y toucher avant le 25/09/2026 et une lecture des
+  rapports sans anomalie — aucune action prise ici, conforme à `PLAN-SOLOHERY.md` §6.4.
+
+---
+
 ## 2026-08-19 (62) — Rappel du relevé du 11/09 détaillé dans BACKLOG.md (9 URLs title/meta)
 
 **Type :** organisation (pas d'action SEO, Claude Code n'a pas d'agenda — le rappel se pose dans
