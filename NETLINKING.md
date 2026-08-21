@@ -176,6 +176,32 @@ PBN, achat de liens dofollow nu, link farming, guest posting de masse bas de gam
 **6.3 — Lien payant dofollow nu = schéma de liens.** Conformité Google (§1.4) **et** droit français : un contenu acheté est juridiquement une **publicité**. L'**ARPP** et la **loi influence n°2023-451 (9 juin 2023)** imposent la mention « Publicité »/« article sponsorisé » ; absence de mention = publicité trompeuse sanctionnable (DGCCRF). **Olivier Andrieu le corrige lui-même** dans sa vidéo N°217. → **`rel="sponsored"` + mention légale, systématiquement.**
 > ⚠️ Correctif de vérif : la formule « acheter des liens = aucun risque judiciaire » (Andrieu N°216) est **inexacte** une fois l'obligation de divulgation prise en compte.
 
+> ### 🟠 Décision du 15/08/2026 — risque assumé, en connaissance de cause
+>
+> **Julien a tranché : les 20 liens du sprint netlinking s'achètent en `dofollow`, pas en
+> `sponsored`.** L'analyse ci-dessus n'est pas retirée — elle reste exacte, et c'est précisément
+> pour ça qu'elle est conservée : la décision se prend contre elle, en connaissance de cause, pas
+> par ignorance.
+>
+> **Le raisonnement retenu.** Un lien `sponsored` ne transmet quasiment pas d'autorité. Or
+> l'objectif du sprint est de faire remonter un domaine à 1/100 d'autorité : acheter 3 000 € HT de
+> liens qui n'en transmettent pas revient à payer de la visibilité au prix du référencement. C'est
+> par ailleurs la pratique dominante du marché français du netlinking, ce qui rend la sanction
+> statistiquement rare — mais lourde quand elle tombe.
+>
+> **Ce qui reste obligatoire malgré cette décision**, et qui n'est pas négociable :
+> - **la mention « article sponsorisé » visible sur la page hôte.** Elle couvre l'obligation légale
+>   française (loi 2023-451, ARPP, DGCCRF) sans toucher à l'attribut du lien. Le risque assumé est
+>   celui de Google, pas celui du droit de la consommation ;
+> - **le profil d'ancres du §6.4** : 0 % d'ancre exact-match externe au démarrage, ≤ 5 % à maturité.
+>   C'est lui le signal n°1 d'un profil artificiel, bien avant l'attribut `rel` ;
+> - **le filtrage qualité du §5** sur chaque site donneur — trafic organique réel et thématique
+>   compatible. Un lien dofollow sur un site dévalué cumule les deux risques sans aucun gain.
+>
+> **À rouvrir si** : une pénalité manuelle apparaît dans la Search Console, ou si un audit de profil
+> montre une dévaluation. Grille opérationnelle : onglet `F · Netlinking` du Sheet de suivi,
+> tableau 3, contrôle n°6.
+
 **6.4 — Sur-optimisation des ancres = signal #1 d'un profil artificiel.** Surtout sur un domaine jeune sans marque pour diluer. En niche étroite, quelques ancres exact-match de trop pèsent lourd en proportion → **surveiller en valeur absolue**.
 
 **6.5 — Vélocité trop rapide / pic soudain.** Passer de 0 à des dizaines de liens d'un coup est le signal d'achat le plus évident. (Nuance vérifiée §2.7 : ce n'est pas la vitesse brute mais le caractère non naturel — mais sur un domaine neuf les deux se confondent.) Étaler dans le temps.

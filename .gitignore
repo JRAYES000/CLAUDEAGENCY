@@ -26,6 +26,9 @@
 # Réglages locaux Claude Code (allowlist de permissions perso)
 .claude/settings.local.json
 
+# Données personnelles de prospection — jamais commitées
+/docs/prive/
+
 # Données de prospection de claudepartners.fr : profils LinkedIn nominatifs,
 # e-mails de personnes physiques. Dépôt public — ne jamais versionner ici.
 /partenaires-ia/
@@ -35,3 +38,7 @@
 /*.png
 /.tmp-linkedin/
 /app/public/images/
+
+# Modeles d'e-mails d'outreach netlinking : nomment des interlocuteurs tiers.
+# Volontairement hors git (decision du 2026-08-21).
+/netlinking/outreach-emails.md

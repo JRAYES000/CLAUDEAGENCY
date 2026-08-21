@@ -118,8 +118,8 @@ Claude Code le *fait* (il réécrit le title, le H1 et le maillage, puis publie)
 - **Le connecteur DataForSEO** → ajouté à la configuration Claude Code de ce projet.
 
 Deux corrections faites au passage : la documentation disait que le site était déployé sur
-Netlify/Vercel (c'est **Cloudflare Pages**), et `ONBOARDING.md` demandait une validation avant chaque
-publication alors que tu as tranché l'inverse.
+Netlify/Vercel (c'est **Cloudflare Pages**), et un ancien `ONBOARDING.md` demandait une validation avant
+chaque publication alors que tu as tranché l'inverse — ce fichier a été supprimé le 2026-08-14.
 
 ---
 

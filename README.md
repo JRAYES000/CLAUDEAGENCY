@@ -39,11 +39,10 @@ claudeagency/
 │   ├── scripts/             # Outils (ex. génération du PDF lead magnet)
 │   ├── public/              # Assets statiques
 │   └── astro.config.mjs     # site, sitemap, polices, intégrations
-├── docs/                    # Documentation (seo/, superpowers/)
+├── docs/                    # Documentation (seo/, references)
 ├── CLAUDE.md                # Guide pour l'agent IA (routage modèles, garde-fous)
 ├── PRODUCT.md               # Produit, cible, marque & ton de voix
 ├── DESIGN.md                # Fondations visuelles (typo, couleurs, esthétique)
-├── SEO-STRATEGY.md          # Pilotage SEO
 ├── NETLINKING.md            # Stratégie d'autorité / backlinks
 └── BAROMETRE-IA-OF.md       # Spéc. du Baromètre IA des OF
 ```
@@ -66,7 +65,7 @@ npm run preview    # prévisualise le build localement
 
 - **Articles de blog** : `app/src/content/blog/` (MDX, avec frontmatter).
 - **Services** : `app/src/content/services/`.
-- Le SEO se gagne par la **précision**, pas le volume : éviter le contenu « vide ». Voir `SEO-STRATEGY.md`.
+- Le SEO se gagne par la **précision**, pas le volume : éviter le contenu « vide ». Voir `docs/seo/`.
 
 ## Documentation projet
 
@@ -75,7 +74,7 @@ npm run preview    # prévisualise le build localement
 | `CLAUDE.md` | Guide agent : routage des modèles, discipline de travail, garde-fous |
 | `PRODUCT.md` | Raison d'être, utilisateurs, marque, ton, principes stratégiques |
 | `DESIGN.md` | Univers visuel (crème / terracotta / encre, serif éditorial) |
-| `SEO-STRATEGY.md` | Stratégie et pilotage SEO |
+| `docs/seo/` | Mémoire SEO : journal, requêtes, backlog, performances |
 | `NETLINKING.md` | Autorité et acquisition de liens |
 | `BAROMETRE-IA-OF.md` | Spécification du Baromètre IA |
 
