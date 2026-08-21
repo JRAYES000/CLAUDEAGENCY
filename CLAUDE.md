@@ -115,6 +115,20 @@ update_sequence_settings(sequenceId, settings=[{ code: 2, value: "Répondez « S
 
 Les 5 séquences existantes ont été francisées le 21/08/2026.
 
+**Trois autres pièges, constatés le 21/08/2026.**
+
+- **Le Markdown n'est pas interprété.** SalesHandy envoie le corps en HTML brut : `<b>` et
+  `<strong>` rendent bien, `**texte**` arrive chez le destinataire avec ses astérisques visibles.
+  Écrire les gras en HTML, jamais en Markdown — y compris dans les propriétés `Mail 1` et
+  `Relance J5` de la base Notion « Cibles — Prospection OF », qui alimentent les séquences.
+- **`create_schedule` du MCP est cassé.** Il renvoie `400 Schedule not found` tout en créant quand
+  même un planning « New Schedule N » aux valeurs par défaut. Ne pas réessayer : passer par
+  *Settings → Des horaires* dans l'interface, et supprimer les plannings fantômes laissés derrière.
+- **Le formulaire d'un compte mail se ré-hydrate après l'affichage de la page.** Une saisie faite
+  juste après la navigation est écrasée en silence : aucune erreur, et *Save* réagit normalement.
+  Attendre que le formulaire affiche ses valeurs avant de saisir, puis contrôler par
+  `list_email_accounts` — l'écran seul ne prouve rien.
+
 ## Routage des modèles
 
 *Tâche mécanique à réponse vérifiable* → sous-agent `seo-researcher` (`.claude/agents/`, `model:
