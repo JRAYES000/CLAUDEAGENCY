@@ -42,3 +42,7 @@
 # Modeles d'e-mails d'outreach netlinking : nomment des interlocuteurs tiers.
 # Volontairement hors git (decision du 2026-08-21).
 /netlinking/outreach-emails.md
+
+# Dossiers et sauvegardes de travail locaux (plans de session, copies de CLAUDE.md).
+/.planning/
+/CLAUDE.md.bak-*

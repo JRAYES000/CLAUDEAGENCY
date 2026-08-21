@@ -46,8 +46,6 @@ sitemap à IndexNow. Il ne s'exécute qu'avec `CF_PAGES` ou `FORCE_INDEXNOW` —
 - **Se méfier des scripts qui réécrivent des fichiers en masse** (maillage interne notamment) : le
   03/07/2026, 62 commits « seo: add internal links » ont remplacé le contenu complet des articles
   qu'ils touchaient. Détail dans `docs/CONTEXTE-COWORK.md` §2.
-- **`.planning/` n'est ni suivi ni ignoré** (`git status` → `?? .planning/`) : un `git add -A`
-  l'embarque en production. Le vérifier avant tout commit global.
 - Pas de nouveau Schema `FAQPage` / `HowTo` pour le SEO Google : il ne les affiche plus pour les
   sites non institutionnels.
 - Ne pas multiplier le contenu « vide » : la niche se gagne par la précision, pas par le volume.
