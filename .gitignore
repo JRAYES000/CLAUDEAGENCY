@@ -25,3 +25,13 @@
 
 # Réglages locaux Claude Code (allowlist de permissions perso)
 .claude/settings.local.json
+
+# Données de prospection de claudepartners.fr : profils LinkedIn nominatifs,
+# e-mails de personnes physiques. Dépôt public — ne jamais versionner ici.
+/partenaires-ia/
+
+# Captures de revue et brouillons visuels (même règle que /cp-*.png ci-dessus).
+# attest_preview.png contenait une élève nommée et une signature scannée.
+/*.png
+/.tmp-linkedin/
+/app/public/images/
