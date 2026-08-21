@@ -99,6 +99,22 @@ volumes de mots-clés via le MCP Ubersuggest. Chaque chiffre consigné porte sa 
 
 Identité des commits : `Julien Rayes <jrayes000@gmail.com>`.
 
+## Prospection e-mail (SalesHandy)
+
+Le texte de désinscription est un réglage **par séquence**, pas un réglage de compte. SalesHandy
+en pose un par défaut, **en anglais**, sur **chaque séquence nouvellement créée** — y compris
+celles créées par le MCP : *Reply 'Stop' if you'd prefer not to receive messages at this time.*
+Il n'existe aucun réglage global pour l'éviter : il faut le remplacer après chaque création, sinon
+une phrase anglaise part en bas d'une prospection française.
+
+Le remplacement se fait par le code de réglage `2` (`unsubscribe-text`) :
+
+```
+update_sequence_settings(sequenceId, settings=[{ code: 2, value: "Répondez « Stop » si vous préférez ne plus recevoir de messages." }])
+```
+
+Les 5 séquences existantes ont été francisées le 21/08/2026.
+
 ## Routage des modèles
 
 *Tâche mécanique à réponse vérifiable* → sous-agent `seo-researcher` (`.claude/agents/`, `model:
