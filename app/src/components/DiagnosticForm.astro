@@ -1,7 +1,6 @@
 ---
-// Formulaire de diagnostic qualifiant — Web3Forms (même clé/flux que ContactForm).
+// Formulaire de diagnostic qualifiant — endpoint maison /api/contact (même flux que ContactForm).
 // Capte rôle + priorité + maturité pour segmenter le lead avant l'audit.
-const ACCESS_KEY = '3e5769c5-994f-4c15-8f58-c18cad18c96d';
 const roles = [
   "Dirigeant·e d'organisme de formation",
   'Responsable pédagogique',
@@ -25,10 +24,8 @@ const maturites = [
 const fieldCls =
   'mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500';
 ---
-<form id="diagnostic-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-  <input type="hidden" name="access_key" value={ACCESS_KEY} />
-  <input type="hidden" name="subject" value="Nouveau diagnostic — claudeagency.fr" />
-  <input type="hidden" name="redirect" value="https://claudeagency.fr/merci/" />
+<form id="diagnostic-form" action="/api/contact" method="POST" class="space-y-5">
+  <input type="hidden" name="form" value="diagnostic" />
   <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
   <div>
@@ -94,10 +91,10 @@ const fieldCls =
       var json = JSON.stringify(Object.fromEntries(new FormData(form)));
       btn.disabled = true; btn.textContent = 'Envoi en cours…';
       result.textContent = 'Envoi en cours…'; result.className = 'text-sm text-muted';
-      fetch('https://api.web3forms.com/submit', {
+      fetch('/api/contact', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: json,
       }).then(function (res) {
-        return res.json().then(function (data) { return { ok: res.status === 200, data: data }; });
+        return res.json().then(function (data) { return { ok: res.ok && data.ok, data: data }; });
       }).then(function (r) {
         if (r.ok) {
           result.textContent = 'Merci ! On revient vers vous très vite avec des pistes concrètes.';

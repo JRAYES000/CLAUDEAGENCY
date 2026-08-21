@@ -36,8 +36,11 @@ Publier un 70ᵉ article ne changera pas ça. C'est le point de blocage n°1.
 - [ ] **Vague 2** — les 2 fédérations qui comptent : Les Acteurs de la Compétence et Hub France IA
       (payantes, cotisation à demander). Messages rédigés, à envoyer.
 - [ ] **Vague 3** — Digiformag, contribution éditoriale gratuite. Message rédigé avec 3 sujets.
-- [ ] Avant tout achat de lien payant : appliquer la méthode de la skill `netlinking-ecole-naturo`
-      (DR, thématique, ancres). Voir aussi `NETLINKING.md`.
+- [ ] Avant tout achat de lien payant : passer le site donneur aux **7 critères éliminatoires du
+      tableau 3 de l'onglet F · Netlinking** du Sheet de suivi, puis classer les candidats retenus
+      sur le rapport visites estimées ÷ prix. Voir aussi `NETLINKING.md`.
+      *(Corrigé le 15/08/2026 : cette ligne renvoyait à la skill `netlinking-ecole-naturo`, qui
+      appartient à un autre projet et se calibre sur un site santé YMYL.)*
 
 **Contrainte d'éligibilité :** Claude Agency n'est pas un OF déclaré → tous les annuaires
 alimentés par la liste publique Qualiopi lui sont fermés. Ne pas y perdre de temps.
@@ -53,8 +56,19 @@ rapide de ma part le matin même — laissée ici pour qu'on ne la reprenne pas.
 9 `title` + `description` réécrits, alignés sur les requêtes réellement constatées dans GSC.
 Détail, positions de départ et arbitrages : entrée du 2026-08-12 dans `JOURNAL.md`.
 
-- [ ] **Relever le résultat le 2026-09-11** : clics, CTR et position de ces 9 URLs.
-      Si le CTR de `/services/seo/` est toujours à 0, revenir à l'ancien title.
+- [ ] **Relever le résultat le 2026-09-11** : clics, CTR et position des 9 URLs ci-dessous,
+      à comparer aux valeurs de départ (14/05→09/08/2026) :
+      `/services/seo/` (pos. 3,8, 0 clic) · `/blog/claude-ai-en-francais/` (4,7, 1 clic) ·
+      `/blog/convention-de-formation/` (13,8, 0 clic) ·
+      `/blog/formation-autofinancee-france-travail/` (14,8, 0 clic) ·
+      `/blog/feuille-emargement/` (16,0, 1 clic) ·
+      `/blog/seo-organisme-formation/` (16,8, 0 clic) ·
+      `/blog/livret-accueil-stagiaire/` (21,0, 4 clics) ·
+      `/blog/questionnaire-satisfaction-formation/` (31,0, 1 clic) ·
+      `/blog/numero-declaration-activite/` (33,5, 0 clic).
+      **Règle déjà arbitrée pour `/services/seo/`** : si toujours 0 clic le 11/09 (position 3,8,
+      zéro récolte), remettre l'ancien title « Agence SEO Claude pour organismes de formation »
+      — l'effet d'un title se voit 2 à 4 semaines après changement.
 - [ ] Pages non traitées faute de données : `/blog/attestation-de-formation/` et
       `/blog/automatiser-relances-stagiaires/` — leurs requêtes sont sous le seuil
       d'anonymisation GSC. Rien à aligner tant qu'on ne sait pas sur quoi elles ressortent.
@@ -84,11 +98,19 @@ vérifications : entrée du 2026-08-14 (soir) dans `JOURNAL.md`.
 - [ ] Les 14 autres tâches du chantier G (preuve client, page « semaine offerte », notoriété) sont
       dans le même document, au format des onglets du Sheet.
 
-### 🟡 5. Sous-domaine `reporting.claudeagency.fr` indexé
+### ✅ 5. Sous-domaine `reporting.claudeagency.fr` indexé — RÉSOLU le 2026-08-19
 
 **Constat mesuré :** 17 impressions, position 9,2. La propriété domaine l'inclut.
 
-- [ ] Confirmer avec Julien s'il doit être public. Si non : `noindex` + exclusion du sitemap.
+**Décision (SOLOHERY, seul) :** `noindex` — la page servie à un visiteur non connecté est un écran
+de connexion vers un tableau de bord interne (reporting collaborateurs, clients suivis, tarifs
+jour), pas un contenu présentable au public ; aucune page publique n'existe sur ce sous-domaine.
+
+Règle Cloudflare posée par SOLOHERY (Transform Rule, `X-Robots-Tag: noindex, nofollow` sur
+`http.host eq "reporting.claudeagency.fr"`), vérifiée en direct :
+`curl -sI https://reporting.claudeagency.fr | grep -i x-robots-tag` → `X-Robots-Tag: noindex, nofollow`.
+Reste à observer : la désindexation effective côté Google (GSC) prend plusieurs jours/semaines,
+rien à revérifier ici avant le prochain audit GSC de routine.
 
 ### 🟡 6. Requêtes à fort volume où le site est trop loin
 
@@ -101,12 +123,29 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | `claude seo agency` (anglais) | 107 | 57,6 | `/services/seo/` |
 | `agence claude code` | 37 | 66,1 | — |
 
+### ✅ 8. Vague longue traîne « documents & démarches obligatoires » — TERMINÉE le 2026-08-19
+
+Suite de `plan-editorial-longue-traine.md`, avec vérification cannibalisation avant chaque
+sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'existant).
+
+- [x] **Règlement intérieur d'un OF** — publié le 2026-08-19 :
+      [`/blog/reglement-interieur-organisme-formation/`](https://claudeagency.fr/blog/reglement-interieur-organisme-formation/).
+- [x] **OPCO et Qualiopi : ce que la certification change pour le financement** — publié le
+      2026-08-19 : [`/blog/opco-qualiopi-financement/`](https://claudeagency.fr/blog/opco-qualiopi-financement/).
+- [x] **Enrichir `qualiopi-guide-organisme-formation.mdx`** — fait le 2026-08-19 : nouvelle
+      sous-section « Comment choisir son organisme certificateur ? » (accréditation COFRAC,
+      critères de choix, vérification sur cofrac.fr). Remplace le sujet #13 (« Certification RNQ :
+      étapes pour l'obtenir »), abandonné car déjà couvert par ce guide. Vague longue traîne
+      « documents & démarches obligatoires » terminée (3/3).
+
 ### ⚪ 7. Dette de la mémoire elle-même
 
 - [ ] `REQUETES.csv` : 62 lignes sur 87 ont une requête cible marquée
       `deduite-du-slug-A-VALIDER`. À corriger au fil de l'eau, pas en une passe.
-- [ ] Régénérer les 2 couvertures temporaires (`indicateurs-qualiopi`, `audit-surveillance-qualiopi`)
-      — en attente depuis le 2026-06-15.
+- [x] Couvertures temporaires — TRAITÉ, vérifié le 2026-08-19 : `indicateurs-qualiopi.mdx` a déjà
+      sa couverture dédiée (`indicateurs-qualiopi-cover.webp`) ; `audit-surveillance-qualiopi`
+      n'est pas un article mais une requête mappée sur `qualiopi-guide-organisme-formation.mdx`,
+      qui a aussi sa couverture dédiée (`qualiopi-guide-cover.webp`). Ligne périmée.
 
 ---
 
@@ -121,6 +160,11 @@ Impressions réelles mais positions hors jeu — à traiter **après** le netlin
 | Pages doublons / variantes géographiques | 2026-06-14 | Offre nationale — pas de justification, risque de contenu dupliqué. |
 | Optimisation CTR comme priorité | 2026-06-19 | Écartée à l'époque faute de pages en position 4-10. **Ré-ouverte le 2026-08-12** : il y en a maintenant (voir priorité 3). |
 | Retirer le tag GA4 | — | La propriété Search Console préfixe est validée par ce tag. Le retirer casse la validation. |
+| Sujet #9 « Déclaration d'activité, procédure pas à pas » (plan longue traîne) | 2026-08-19 | Déjà traité : `numero-declaration-activite.mdx` a déjà le tableau étapes/pièces et les délais (3 mois / 30 jours). |
+| Sujet #12 « BPF : qui dépose, quels délais » (plan longue traîne) | 2026-08-19 | Déjà traité : `remplir-bpf-organisme-formation.mdx` a déjà « Qui doit remplir le BPF ? » et « Quand faut-il le transmettre ? ». |
+| Sujet #14 « Convention vs contrat de formation » (plan longue traîne) | 2026-08-19 | Déjà traité : `convention-de-formation.mdx` a un H2 dédié « Convention ou contrat de formation : lequel utiliser ? » avec tableau comparatif. |
+| Sujet #13 « Certification RNQ : étapes pour l'obtenir » (plan longue traîne) | 2026-08-19 | Déjà traité : `qualiopi-guide-organisme-formation.mdx` couvre déjà les étapes d'obtention (L99-123), le cycle d'audit (L125-181) et les coûts (L209+). Remplacé par un enrichissement de ce guide (voir « À faire » n°8). |
+| Sujets #5 « Audit Qualiopi initial vs surveillance » et #10 « RNQ : qu'est-ce que » (plan longue traîne) | 2026-08-19 | Probablement déjà traités par `qualiopi-guide-organisme-formation.mdx` (sections cycle d'audit et RNQ 7 critères/32 indicateurs), vérification faite sur les titres de section seulement — **à re-vérifier ligne à ligne** avant de les reproposer, pas encore écarté avec certitude comme #9/#12/#13/#14. |
 | Ouvrir un compte Instagram | 2026-08-14 | Cible B2B absente du réseau en contexte professionnel, coût de production le plus élevé de tous les canaux, aucun effet SEO (liens `nofollow`, contenu non indexé), et la page LinkedIn entreprise n'existe pas encore. Arbitrage complet dans `TACHES-SOLOHERY-SITE-CONVERSION.md` §3. |
 | Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |
 | Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |

@@ -28,15 +28,27 @@ marque, **sans publier de volume de contenu**.
 | Domaines référents | **0** | Ubersuggest |
 | Autorité de domaine | **1 / 100** | Ubersuggest |
 | Clics organiques (14/05 → 09/08) | 49 | GSC, `data_state=final` |
-| Impressions | 2 797 | GSC, `data_state=final` |
+| Impressions | 2 797 | GSC, `data_state=final` — **non filtré du bruit robot**, voir ci-dessous |
 | Position moyenne | 33,3 | GSC, pondérée par impressions |
-| Articles publiés | 69 | `app/src/content/blog/` |
+| Articles publiés | 54 | `app/src/content/blog/`, compté le 15/08/2026 |
 | Pages services | 8 | `app/src/content/services/` |
+
+> **Le blog est passé de 69 à 54 articles le 14/08/2026** (commit `f2cef7b`) : 15 articles qui se
+> cannibalisaient ont été fusionnés, leurs URL partent en 301. Le chiffre 69 relevé au 12/08 reste
+> exact à sa date ; c'est 54 qui vaut aujourd'hui.
+
+> ⚠️ **Les 2 797 impressions ne sont pas filtrées du bruit robot.** Les requêtes contenant
+> « skills claude seo » sont émises par un agent automatisé et pèsent environ 140 affichages pour
+> 0 clic (relevé du 12/08). Le point de départ réel en impressions est donc légèrement inférieur.
+> Les 49 clics, eux, ne bougent pas — le robot ne clique jamais. La tâche C1 relève la même
+> fenêtre (14/05 → 09/08) **avec** le filtre `query notContains « skills claude seo »` : c'est sa
+> sortie qui fait foi, et elle corrigera cette ligne, l'onglet d'accueil et l'onglet Mesures d'un
+> seul coup. Repéré le 15/08/2026, non corrigé faute d'accès GSC à cet instant.
 
 **Ce que ces chiffres disent.** Le site a du contenu et Google le connaît. Ce qui manque, c'est la
 confiance. Une publication en masse d'environ 40 articles a déjà eu lieu le 30/06/2026 : mesure à
 six semaines, impressions en hausse, quasiment aucun clic, position moyenne dégradée à 33,3.
-Écrire un 70ᵉ article ne débloquera rien. D'où l'ordre des chantiers : **l'autorité d'abord**.
+Écrire un article de plus ne débloquera rien. D'où l'ordre des chantiers : **l'autorité d'abord**.
 
 ---
 
@@ -68,6 +80,29 @@ cd .. && claude    # Claude Code à la racine : il lit CLAUDE.md tout seul
 Le repo porte déjà tout le contexte : `CLAUDE.md` (règles), `PRODUCT.md` (offre et ton),
 `DESIGN.md` (charte), `NETLINKING.md`, `docs/seo/` (mémoire SEO).
 Ne pas recopier ces fichiers dans les prompts : Claude Code les ouvre quand il en a besoin.
+
+### Claude Code, et rien d'autre — règle posée par Julien le 15/08/2026
+
+**Tout le sprint se fait dans Claude Code**, dans le terminal, à la racine du dépôt. Pas dans
+Cowork, pas dans l'application Claude, pas dans le navigateur. Trois raisons concrètes :
+
+- C'est le seul environnement où Claude **lit le `CLAUDE.md` du dépôt tout seul**, sans qu'on ait
+  à recoller les règles à chaque conversation.
+- Les commandes du plan n'existent que là : `/clear`, `/context`, `/usage`, `/compact`, `/doctor`,
+  `/insights`, `/fewer-permission-prompts`, et le mot-clé `ultracode` de la passe de preuves.
+- La skill `skills-equipe:fonce` s'y prolonge entre les tours via `/goal` : hors Claude Code, sa
+  condition d'arrêt reste une définition, pas une relance automatique.
+
+Skills d'équipe, à installer une fois : `/plugin marketplace add JRAYES000/marketplace-equipe`
+puis `/plugin install skills-equipe@marketplace-equipe`. Pour une mise à jour, les deux commandes
+vont ensemble — `/plugin marketplace update marketplace-equipe`, puis
+`/plugin update skills-equipe@marketplace-equipe` — et on relance Claude Code.
+
+**`/clear` se tape quand on change de sujet, pas à chaque tâche.** Les lignes du Sheet qui en ont
+réellement besoin le disent dans leur colonne « Comment la déclencher » : premier prompt d'un
+chantier, reprise après un gros lot, point d'étape, passe de preuves, tâche reprise des semaines
+plus tard. Entre deux tâches qui se suivent dans le même chantier, on enchaîne — vider la
+conversation jette du contexte utile et oblige à tout réexpliquer.
 
 ---
 
@@ -103,8 +138,14 @@ Interrogation directe des résolveurs `1.1.1.1` et `8.8.8.8`. Ce ne sont pas des
 | DMARC | `v=DMARC1; p=none; rua=mailto:jrayes000@gmail.com` | Surveillance seule — correct pour démarrer |
 | Vérification Google | `google-site-verification=EW4quu5PsO…` | **Ne jamais supprimer** : valide la propriété Search Console |
 
-**SPF, DKIM et DMARC sont déjà en place et corrects.** Il n'y a **qu'un seul enregistrement DNS à
-créer** sur tout ce chantier : le CNAME de suivi de l'étape 3.
+**SPF, DKIM et DMARC sont déjà en place et corrects.** Les seuls enregistrements DNS à créer sur
+tout ce chantier sont les **CNAME de suivi de l'étape 3**.
+
+> **Corrigé le 15/08/2026 : il y en a quatre, pas un.** Ce paragraphe a été écrit le 13/08 en
+> supposant une seule boîte d'envoi sur `claudeagency.fr`. Le routage arrêté depuis (onglet
+> « D+ · Séquences et routage ») fait tourner **quatre** boîtes sur quatre domaines —
+> `claudeagency.fr`, `claudeagency.eu`, `claudepro.fr`, `claudepartners.fr` — et Saleshandy exige
+> un domaine de suivi par domaine d'envoi. C'est la tâche D0b.
 
 ### 6.2 Les six étapes, dans l'ordre
 
@@ -120,8 +161,9 @@ sens**, envoi et réception.
 *Piège :* ne tester que l'envoi. Sans IMAP fonctionnel, Saleshandy ne voit pas les réponses et
 continue d'envoyer des relances à des gens qui ont déjà répondu.
 
-**3 — Custom tracking domain (Cloudflare).**
-Zone `claudeagency.fr` → DNS → Add record :
+**3 — Custom tracking domain — quatre fois, une par domaine d'envoi.**
+Dans **chacune** des quatre zones (`claudeagency.fr`, `claudeagency.eu`, `claudepro.fr`,
+`claudepartners.fr`), selon l'hébergeur DNS de la zone → DNS → Add record :
 
 | Champ | Valeur |
 | :--- | :--- |
@@ -131,7 +173,8 @@ Zone `claudeagency.fr` → DNS → Add record :
 | TTL | `3600` |
 | Proxy | **DNS only — nuage GRIS** |
 
-Puis Saleshandy → Settings → Custom Tracking Domain → Add → `go.claudeagency.fr` → Verify.
+Puis Saleshandy → Settings → Custom Tracking Domain → Add → `go.` suivi du domaine de **cette**
+boîte → Verify. Quatre fois.
 Propagation de quelques minutes à 72 h, contrôlable sur whatsmydns.net.
 *Piège :* laisser le nuage orange. Proxifié, le suivi ne fonctionne pas — c'est le point n°1
 d'échec de cette étape.
@@ -145,11 +188,20 @@ l'`include` existant.
 *Piège :* ajouter `include:saleshandy` ou créer un second enregistrement SPF. **Deux SPF sur un
 domaine invalident les deux**, et le protocole plafonne à 10 résolutions DNS.
 
-**5 — Warm-up, 14 jours pleins.**
-Activer TrulyInbox (inclus dans l'abonnement Saleshandy) et le laisser tourner **14 jours minimum**
+**5 — Warm-up, du 13 au 24/08 — la vague 1 part le mardi 25/08.**
+Activer TrulyInbox (inclus dans l'abonnement Saleshandy) et le laisser tourner **12 jours pleins**
 avant le premier envoi réel.
-*Piège :* envoyer avant la fin. Une boîte neuve qui expédie 50 e-mails le premier jour est classée
-spam par construction, et le domaine met des mois à s'en remettre.
+*Piège :* envoyer avant la fin. Une boîte qui expédie 50 e-mails le premier jour est classée spam
+par construction, et le domaine met des mois à s'en remettre.
+*Gate supplémentaire :* dans TrulyInbox, la colonne « Outreach Readiness » doit être **verte**.
+Tant qu'elle ne l'est pas, on n'envoie pas — même si la date prévue est passée.
+
+> **Arbitré le 15/08/2026 : 12 jours, et départ le 25/08.** Ce paragraphe demandait 14 jours ; la
+> Sheet en annonçait 5. Ni l'un ni l'autre ne tenait. Les 14 jours visaient une boîte neuve, or les
+> quatre boîtes existaient déjà. Et les 5 jours étaient de toute façon impossibles : la tâche D3 ne
+> rend les e-mails des décideurs que le 20/08, et D11 nettoie la liste après. Le 25/08 est la
+> première date qui satisfait les trois contraintes — chauffe, dépendances, et fenêtre d'envoi
+> mardi-jeudi.
 
 **6 — Contrôle final et plafonds.**
 Test vers `mail-tester.com` depuis Saleshandy : viser **9/10 minimum**. Vérifier aussi sur
@@ -161,9 +213,11 @@ arrivent en boîte de réception — bien plus que le choix de l'outil.
 
 ### 6.3 Deux conséquences de calendrier
 
-**Le premier envoi ne peut pas partir dans le sprint.** Warm-up démarré le 13/08 + 14 jours = 27/08
-au plus tôt, soit le jour du bilan. Ce qui sera mesurable au 27/08 : la liste, le LinkedIn et l'état
-de préparation technique — pas les résultats e-mail, qui arriveront début septembre.
+**Le premier envoi part le 25/08, deux jours avant le bilan.** Warm-up du 13 au 24/08, vague 1 le
+mardi 25/08 (voir l'encadré de l'étape 5). Ce qui sera mesurable au 27/08 : la liste, le LinkedIn,
+l'état de préparation technique et les tout premiers rebonds — **pas** les taux de réponse, qui
+arriveront début septembre. Une grande partie des réponses tombe aux e-mails 3, 4 et 5, soit à
+partir du 3/09 avec la cadence de l'onglet D+.
 
 **Le domaine principal convient pour 100 contacts, pas pour 5 000.** À 100 prospects, envoyer depuis
 `claudeagency.fr` est le bon choix : meilleure crédibilité, volume sans danger. À 5 000 contacts et
@@ -198,14 +252,39 @@ Chaque ligne a coûté du temps à quelqu'un.
 | Analyser GSC sans le filtre anti-bruit | 12/08/2026 | Les requêtes contenant « skills claude seo » sont émises par un agent automatisé. Sans `query notContains`, le CTR de `/services/seo/` est faussé. |
 | Envoyer de la prospection depuis Brevo | 13/08/2026 | Sa politique anti-spam interdit l'envoi sans consentement explicite, avec suspension immédiate. Et le compte Brevo est celui d'École de Naturopathie & Sophrologie : la suspension frapperait l'école. |
 | Envoyer depuis `@ecole-naturo.fr` | 13/08/2026 | Domaine sur Microsoft 365, autre activité. Sa réputation ne doit pas servir de caution à de la prospection à froid. |
-| Acheter un lien sans validation de Julien | — | Tout achat engage un budget. Appliquer d'abord la méthode de qualification de la skill `netlinking-ecole-naturo`. |
+| Acheter un lien sans l'avoir passé à la grille de qualification | 14/08/2026 | SOLOHERY décide seul dans l'enveloppe : 450 € HT maximum par lien, 3 000 € HT au total, et non est la réponse par défaut au-dessus du plafond. Ce qui reste interdit : acheter sans avoir passé les 7 critères du tableau 3 de l'onglet F. *(Rédaction corrigée le 15/08/2026 : la version précédente exigeait la validation de Julien et renvoyait à une skill d'un autre projet.)* |
+| Ajouter un second enregistrement SPF, ou glisser `include:saleshandy` dans l'existant | 13/08/2026 | Deux SPF sur un domaine **s'annulent tous les deux** : plus rien n'est authentifié et tout part en spam sur les 4 domaines d'envoi. Saleshandy expédie à travers la boîte Hostinger, déjà couverte. Les seuls DNS du sprint sont les 4 CNAME `go` de la tâche D0b. |
+| Committer un secret : mot de passe, jeton, clé API | 13/08/2026 | Le dépôt est **public**. Un secret entré dans l'historique Git ne s'efface pas : il faut le révoquer et le remplacer partout. Vérifier aussi `.env`, les fichiers de `docs/` et les lignes de `JOURNAL.md`. |
+| Créer une seconde fiche Google Business Profile | 15/07/2026 | La fiche existe depuis le 15/07/2026 (tâche A2). Un doublon se fusionne mal, ou se fait suspendre, et abîme la marque. On se connecte au compte existant. |
+| Ouvrir un second compte Saleshandy | 13/08/2026 | Le compte existe et il est partagé. Un second compte ferait perdre les 4 boîtes, la chauffe en cours et le départ du 25/08. |
+| Envoyer la vague 1 avant le mardi 25/08/2026 | 15/08/2026 | Chauffe de 12 jours (13 → 24/08), et les e-mails des décideurs ne sont rendus que le 20/08 par D3. Envoyer avant, c'est griller quatre domaines pour gagner une semaine. Gate supplémentaire : « Outreach Readiness » doit être verte dans TrulyInbox. |
+| Toucher à `contact@claudeagency.fr` | 14/08/2026 | Boîte sensible, décision de Julien du 13/08. Jamais connectée à Saleshandy, jamais modifiée, aucun agenda ni formulaire créé dessus. On peut y **lire** un code de vérification, sans rien changer. |
+| Écrire un chiffre qu'on n'a pas relevé | 14/08/2026 | Seule interdiction absolue du plan. On vérifie, ou on écrit « inconnu ». Un chiffre d'outil est **estimé**, jamais mesuré — Ubersuggest et le LCP « laboratoire » de PageSpeed en particulier. |
+| Supprimer ou fusionner d'autres articles avant le relevé du 11/09/2026 | 14/08/2026 | 15 articles viennent d'être fusionnés. Il faut mesurer l'effet avant d'en refaire : le report des impressions prend plusieurs semaines. Porte de sortie : le relevé de la tâche C9, le 11/09. |
+
+> **Cette liste est aussi dans l'onglet ⛔ Interdits du Sheet**, avec pour chaque ligne le signe
+> auquel on reconnaît qu'on est en train de la commettre. Les deux versions comptent 23 lignes au
+> 15/08/2026. Une décision écartée s'écrit **aux deux endroits, le même jour** — c'est faute de
+> l'avoir fait que les deux listes avaient divergé.
 
 ---
 
-## 8. Points à trancher par Julien
+## 8. Points tranchés — cette section est périmée depuis le 14/08/2026
 
-Ces décisions ne se délèguent pas : elles engagent un budget, une identité juridique ou une donnée
-que seul Julien détient.
+> ⚠️ **À lire avant le tableau.** Cette section listait les décisions réservées à Julien. La règle
+> **D00b, posée le 14/08/2026**, l'a rendue caduque : *SOLOHERY décide tout seul, aucune tâche
+> n'attend une réponse de Julien, et si une phrase semble demander une validation, elle est
+> périmée.* Les enveloppes sont autorisées jusqu'au 31/12/2026 — netlinking 3 000 € HT dont 450 €
+> HT par lien, outils de prospection 120 € HT par mois, adhésions 500 € HT par an et par organisme
+> et 1 000 € HT au total, le reste uniquement s'il est gratuit. **Au-dessus d'un plafond, on
+> n'achète pas** : on écrit le prix, la raison et la date dans la colonne Preuve, et on passe à la
+> suite.
+>
+> Le tableau ci-dessous est conservé pour le contexte de chaque question, pas pour son statut
+> bloquant. Où chacune en est au 15/08/2026 : **Saleshandy payant** → tranché, c'est la tâche D0e,
+> à faire avant le 20/08. **Cotisations fédérations** → SOLOHERY adhère seul sous 500 € HT par an
+> (A7, A8). **`reporting.claudeagency.fr`** → SOLOHERY tranche seul (C5). Seul **l'accès de
+> SOLOHERY** reste un vrai prérequis matériel.
 
 | Question | Pourquoi c'est bloquant | Tâches |
 | :--- | :--- | :--- |
@@ -228,7 +307,10 @@ que seul Julien détient.
 - **11/09/2026** — relevé de contrôle des 9 `title` / `description` réécrits le 12/08. Si le CTR de
   `/services/seo/` est toujours à 0, **revenir à l'ancien title**. Cette page est en position 3,8
   sur « agence référencement naturel claude » et ne récolte aucun clic.
-- **12/09/2026** — durcir DMARC en `p=quarantine`, après lecture des rapports.
+- **25/09/2026** — durcir DMARC en `p=quarantine` sur les 4 domaines d'envoi, après lecture des
+  rapports. Date recalée le 15/08/2026 : la règle est « un mois après le début des envois », et le
+  premier envoi est passé au 25/08. Durcir avant d'avoir lu un mois de rapports met en quarantaine
+  nos propres e-mails légitimes.
 
 ---
 

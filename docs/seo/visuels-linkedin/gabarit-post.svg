@@ -1,0 +1,30 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <title>Claude Agency — gabarit de post LinkedIn</title>
+
+  <!-- fond crème -->
+  <rect x="0" y="0" width="1080" height="1080" fill="#FBF7F1"/>
+
+  <!-- bandeau terracotta plein -->
+  <rect x="0" y="0" width="1080" height="126" fill="#CC785C"/>
+  <text x="540" y="79" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-weight="800"
+        font-size="27" letter-spacing="4.5" fill="#FBF7F1">CLAUDE AGENCY</text>
+
+  <!-- zone de titre à remplir -->
+  <rect x="90" y="260" width="900" height="520" fill="none"
+        stroke="#CC785C" stroke-width="3" stroke-dasharray="14 10" rx="16"/>
+  <text x="540" y="500" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-weight="800"
+        font-size="46" fill="#2B2724">[ ZONE TITRE ]</text>
+  <text x="540" y="556" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-weight="400"
+        font-size="26" fill="#2B2724">Remplacer par l'accroche du post (2 à 4 lignes courtes)</text>
+
+  <!-- séparateur -->
+  <line x1="500" y1="850" x2="580" y2="850" stroke="#CC785C" stroke-width="3"/>
+
+  <!-- attribution -->
+  <text x="540" y="905" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-weight="400"
+        font-size="27" fill="#2B2724">— Claude Agency</text>
+</svg>
