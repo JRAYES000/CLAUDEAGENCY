@@ -84,6 +84,20 @@ surtout `/services/seo/` et `/blog/seo-guide-complet-organisme-formation-2026/`.
 avec le filtre `query notContains "skills claude seo"`. Sans ce filtre, le CTR de `/services/seo/`
 est faussé (536 impressions affichées contre ~100 réelles) et les vraies requêtes sont noyées.
 
+### ✅ 4bis. Mesure des conversions — CORRIGÉ le 2026-08-14 (code), reste 1 geste dans GA4
+
+Les 5 événements du site appelaient `window.plausible(...)` alors que Plausible n'est chargé nulle
+part : aucune soumission n'était comptée. Remplacés par `gtag('event', …)` vers GA4. Détail et
+vérifications : entrée du 2026-08-14 (soir) dans `JOURNAL.md`.
+
+- [ ] **Dans l'interface GA4** (Admin → Événements) : marquer `contact_submit`,
+      `diagnostic_submit`, `lead_magnet_submit`, `calculateur_utilise` et `barometre_reponse`
+      comme **événements clés**. Sans ce geste, ils sont enregistrés mais ne comptent pas comme
+      conversions dans les rapports.
+- [ ] Premier relevé exploitable **une semaine après la mise en production**.
+- [ ] Les 14 autres tâches du chantier G (preuve client, page « semaine offerte », notoriété) sont
+      dans le même document, au format des onglets du Sheet.
+
 ### ✅ 5. Sous-domaine `reporting.claudeagency.fr` indexé — RÉSOLU le 2026-08-19
 
 **Constat mesuré :** 17 impressions, position 9,2. La propriété domaine l'inclut.
@@ -151,3 +165,7 @@ sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'exis
 | Sujet #14 « Convention vs contrat de formation » (plan longue traîne) | 2026-08-19 | Déjà traité : `convention-de-formation.mdx` a un H2 dédié « Convention ou contrat de formation : lequel utiliser ? » avec tableau comparatif. |
 | Sujet #13 « Certification RNQ : étapes pour l'obtenir » (plan longue traîne) | 2026-08-19 | Déjà traité : `qualiopi-guide-organisme-formation.mdx` couvre déjà les étapes d'obtention (L99-123), le cycle d'audit (L125-181) et les coûts (L209+). Remplacé par un enrichissement de ce guide (voir « À faire » n°8). |
 | Sujets #5 « Audit Qualiopi initial vs surveillance » et #10 « RNQ : qu'est-ce que » (plan longue traîne) | 2026-08-19 | Probablement déjà traités par `qualiopi-guide-organisme-formation.mdx` (sections cycle d'audit et RNQ 7 critères/32 indicateurs), vérification faite sur les titres de section seulement — **à re-vérifier ligne à ligne** avant de les reproposer, pas encore écarté avec certitude comme #9/#12/#13/#14. |
+| Ouvrir un compte Instagram | 2026-08-14 | Cible B2B absente du réseau en contexte professionnel, coût de production le plus élevé de tous les canaux, aucun effet SEO (liens `nofollow`, contenu non indexé), et la page LinkedIn entreprise n'existe pas encore. Arbitrage complet dans `TACHES-SOLOHERY-SITE-CONVERSION.md` §3. |
+| Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |
+| Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |
+| Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. |

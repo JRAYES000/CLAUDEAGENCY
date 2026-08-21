@@ -45,7 +45,9 @@
       if (res.ok && data.ok) {
         result.textContent = 'Merci, votre message a bien été envoyé.'; result.className = 'text-sm text-green-700';
         form.reset();
-        if (window.plausible) window.plausible('Contact Form Submit');
+        // Conversion GA4 (G-6SG03DR5J9). Avant le 2026-08-14 cet appel visait Plausible,
+        // qui n'a jamais été chargé sur le site : aucune soumission n'était comptée.
+        if (typeof window.gtag === 'function') window.gtag('event', 'contact_submit');
       } else { result.textContent = data.message || genericError; result.className = 'text-sm text-red-700'; }
     } catch { result.textContent = genericError; result.className = 'text-sm text-red-700'; }
     finally {

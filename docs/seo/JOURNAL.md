@@ -1990,6 +1990,82 @@ aurait été un chiffre inventé.
 
 ---
 
+## 2026-08-14 (soir) — Correctif G1 : les 4 conversions branchées sur GA4
+
+**Type :** correctif technique (mesure)
+
+**Pourquoi :** l'analyse du matin a montré que les événements de conversion appelaient
+`window.plausible(...)` alors que Plausible n'est chargé nulle part. Aucune soumission de
+formulaire n'était comptée depuis la mise en ligne du site.
+
+**Fait — 5 appels remplacés** par `gtag('event', …)` vers GA4 (`G-6SG03DR5J9`), déjà chargé :
+
+| Fichier | Ancien appel | Nouvel événement GA4 |
+| :--- | :--- | :--- |
+| `ContactForm.astro` | `Contact Form Submit` | `contact_submit` |
+| `DiagnosticForm.astro` | `Diagnostic Submit` | `diagnostic_submit` |
+| `LeadMagnet.astro` | `Lead Magnet Submit` | `lead_magnet_submit` |
+| `TimeSavingsCalculator.astro` | `Calculator Used` | `calculateur_utilise` |
+| `barometre…/questionnaire.astro` | `Barometre - reponse` | `barometre_reponse` |
+
+Le 5ᵉ (baromètre) n'était pas dans le périmètre de G1 — même bug d'une ligne, corrigé au passage.
+
+**Corrigé au passage :** le calculateur envoyait son événement à **chaque case cochée**. Un
+drapeau le limite à un envoi par page, sinon la donnée est inexploitable.
+
+**Non touché, volontairement :** le tag GA4 et les deux conversions Google Ads
+(`AW-18240137840`, dont les Enhanced Conversions du lead magnet) sont inchangés.
+
+**Vérifié :** `npm run build` en code 0, 158 pages. Dans `dist/` : les 5 événements présents,
+`G-6SG03DR5J9` sur les 158 pages, la conversion Ads du lead magnet sur ses 55 pages. Plus aucun
+`window.plausible` dans `app/src/`.
+
+**Reste à faire — manuel, dans l'interface GA4 :** marquer les 5 événements comme
+**événements clés** (Admin → Événements). Sans cela ils sont enregistrés mais ne comptent pas
+comme conversions dans les rapports.
+
+**Mesure :** premier relevé exploitable une semaine après la mise en production.
+
+---
+
+## 2026-08-14 — Analyse du site (conversion + notoriété) : chantier G et arbitrage Instagram/YouTube
+
+**Type :** analyse, aucune modification du site
+
+**Pourquoi :** Julien demande quelles tâches déléguer à SOLOHERY pour améliorer le site, sa
+conversion ou la notoriété — et si un compte Instagram ou une chaîne YouTube sont pertinents.
+
+**Trouvé — la mesure des conversions ne fonctionne pas.** Les 4 événements du site
+(`Contact Form Submit`, `Diagnostic Submit`, `Lead Magnet Submit`, `Calculator Used`) appellent
+`window.plausible(...)`, **et Plausible n'est chargé nulle part** (aucune occurrence de
+`plausible.io` ni de `data-domain` dans le dépôt). GA4 est bien chargé mais ne reçoit aucun
+événement personnalisé : le seul `gtag('event', …)` du site vise Google Ads. **Aucune soumission
+de formulaire n'est donc enregistrée aujourd'hui.** Correctif = tâche G1, non appliqué à ce stade.
+
+**Trouvé — zéro preuve client** sur l'ensemble du site (aucun témoignage, logo, avis ou cas
+nommé), alors que `/semaine-offerte/` est précisément conçue pour en produire (témoignage vidéo +
+avis Google en échange d'une semaine offerte) et n'est reliée à rien. → G7, G8, G9.
+
+**Audit mécanique des 54 articles — rien à corriger :** 0 `title` > 70 car., 0 `description`
+> 160 car., 0 article sans image, **2 orphelins** (`cas-usage-claude-organisme-formation`,
+`meilleure-agence-ia-organisme-formation`) → à joindre au lot de C3.
+
+**Relevé Ubersuggest du 14/08/2026 :** 0 backlink, 0 domaine référent, autorité **1/100**,
+3 mots-clés positionnés. Inchangé depuis le 12/08 — normal, la vague 1 vient d'être lancée.
+Seule requête sortante : « agence claude », position 19.
+
+**Écrit :** [`docs/TACHES-SOLOHERY-SITE-CONVERSION.md`](../TACHES-SOLOHERY-SITE-CONVERSION.md) —
+15 tâches (G1 à G15) au format des onglets du Sheet, plus l'arbitrage Instagram/YouTube :
+**Instagram non** (cible B2B absente, aucun effet SEO, et la page LinkedIn entreprise n'existe pas
+encore) ; **YouTube oui mais sans format « chaîne »** — bibliothèque de 5 à 8 vidéos utilitaires
+servant d'abord à héberger les témoignages, à démarrer seulement après 4 semaines de LinkedIn.
+
+**Mesure :** aucune — analyse seule, le site n'a pas été modifié.
+**Suite :** G1 avant toute discussion chiffrée sur le taux de transformation ; sans lui, il n'y a
+pas de donnée à lire.
+
+---
+
 ## 2026-08-14 — Ménage : 15 articles fusionnés (cannibalisation) + 5 docs supprimés
 
 **Type :** consolidation de contenu + nettoyage de la documentation
