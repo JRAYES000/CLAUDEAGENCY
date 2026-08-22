@@ -5,6 +5,58 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-22 (65) — Relevé GSC hebdomadaire (fenêtre 10/08→19/08, comparée à 31/07→09/08)
+
+**Type :** mesure.
+
+**URLs :** sc-domain:claudeagency.fr (propriété domaine, pas d'URL précise).
+
+**Pourquoi :** relevé de routine (tâche planifiée hebdomadaire `suivi-seo-hebdo-claudeagency`).
+Note de cadrage : la cible d'origine de cette tâche (`plan-actions-seo-claudeagency.md` dans un
+dossier `CLAUDE PARTNERS` qui n'existe plus) et sa méthode d'accès GSC (Claude in Chrome sur la
+propriété préfixe URL) sont périmées depuis le passage à ce dossier `docs/seo/` le 2026-08-14. Ce
+relevé utilise donc le protocole actuel : Composio `GOOGLE_SEARCH_CONSOLE_SEARCH_ANALYTICS_QUERY`
+sur `sc-domain:claudeagency.fr`.
+
+**Fait :**
+- Comparaison de deux fenêtres de 10 jours pleines (les 2-3 derniers jours avant le 22/08 sont
+  incomplets côté GSC, donc exclus) : 31/07→09/08 contre 10/08→19/08.
+  31/07→09/08 : 9 clics, 905 impressions, CTR 0,99 %. 10/08→19/08 : 8 clics, 769 impressions,
+  CTR 1,04 %. Écart : -1 clic, -136 impressions — dans le bruit vu le volume à un chiffre.
+- Cumul depuis le lancement (14/05→19/08) : 58 clics, 3755 impressions, CTR 1,54 % — soit +9 clics
+  et +958 impressions par rapport au cumul du 12/08 (49 clics, 2797 impressions, au 09/08).
+- `/services/seo/` : 198 impressions sur 10-19/08 (168 la semaine d'avant), toujours 0 clic global.
+  Mais en excluant les requêtes bot « skills claude seo » (BACKLOG.md n°4), les deux requêtes
+  ciblées par le changement de title du 12/08 sont en excellente position depuis le 12/08 :
+  « agence référencement claude » pos. 2,0 (6 impr.) et « agence référencement naturelle claude »
+  pos. 1,8 (5 impr.), toujours 0 clic. Ce n'est donc plus un problème de position (la position 3,8
+  notée le 12/08 dans BACKLOG.md est dépassée, en mieux) mais un problème de CTR sur un title/
+  snippet déjà en position 2. À relire avant l'arbitrage du 11/09 : la règle « si 0 clic le 11/09,
+  revenir à l'ancien title » mérite d'être réexaminée à la lumière de ce chiffre — revenir en
+  arrière ferait perdre une position 2 obtenue ; le problème semble être ailleurs (meta
+  description / snippet), pas le ranking.
+- `/blog/feuille-emargement/` : 12 impressions / 0 clic sur 10-19/08 (position ~17), 1 clic au
+  cumul 14/05→19/08 (position 13,6). Pas de mouvement notable.
+- Indexation : le compteur `indexed` du sitemap Search Console affiche 0/72 — connu pour être
+  peu fiable/en retard sur ce type de site, et contredit par les dizaines de pages qui génèrent
+  des impressions dans ces mêmes relevés (donc bien indexées en pratique). Pas d'alerte à en tirer.
+- Les 6 URLs de contrôle listées dans l'ancienne tâche planifiée (`/services/audit-ia/`,
+  `/services/automatisation/`, `/services/outils-ia-sur-mesure/`, `/services/sea/`, etc.)
+  n'existent plus : l'arborescence `/services/` a changé (aujourd'hui : `/seo/`, `/formation-ia/`,
+  `/integration-ia/`, `/optimisation-site/`). Contrôle non applicable tel quel.
+
+**Mesure :** mesuré — Composio GSC, `sc-domain:claudeagency.fr`, le 2026-08-22 (chaque chiffre
+avec sa fenêtre, détail ci-dessus). Lignes ajoutées dans `PERFORMANCES.csv` dans ce commit.
+
+**Suite :**
+- Relire l'arbitrage `/services/seo/` du 11/09 (`BACKLOG.md` section 3) à la lumière de la
+  position 2 sur requêtes filtrées avant de décider un retour en arrière du title — le vrai sujet
+  semble être la meta description / le CTR, pas le ranking.
+- La tâche planifiée `suivi-seo-hebdo-claudeagency` (Cowork) pointe vers des fichiers et une
+  méthode d'accès GSC obsolètes depuis le 2026-08-14 (détail dans Pourquoi ci-dessus). À corriger :
+  cible `docs/seo/JOURNAL.md` + `PERFORMANCES.csv` dans `CLAUDEAGENCY`, méthode Composio GSC
+  `sc-domain:claudeagency.fr`, pas le dossier `CLAUDE PARTNERS` ni Claude in Chrome.
+---
 ## 2026-08-22 (64) — Socle GEO : `llms.txt` existait déjà, corrigé et hiérarchisé
 
 **Type :** technique (GEO / citabilité IA).

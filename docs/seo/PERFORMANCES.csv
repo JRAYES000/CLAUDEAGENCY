@@ -16,3 +16,9 @@ date_releve,periode_debut,periode_fin,source,propriete,metrique,valeur,note
 2026-07-15,,,GSC,https://claudeagency.fr/,pages_indexees,65,39 non indexees dont 21 tags noindex volontaires
 2026-06-19,,,GSC,https://claudeagency.fr/,pages_indexees,41,crawl du 2026-06-18 consigne dans SEO-STRATEGY.md
 2026-06-19,,,GSC,https://claudeagency.fr/,impressions,13,ordre de grandeur consigne dans SEO-STRATEGY.md
+2026-08-22,2026-08-10,2026-08-19,GSC,sc-domain:claudeagency.fr,clics,8,fenetre 10j comparable a 31/07-09/08 (9 clics)
+2026-08-22,2026-08-10,2026-08-19,GSC,sc-domain:claudeagency.fr,impressions,769,fenetre 10j comparable a 31/07-09/08 (905 impressions)
+2026-08-22,2026-08-10,2026-08-19,GSC,sc-domain:claudeagency.fr,ctr_pct,1.04,recalcule clics/impressions
+2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,clics,58,cumul depuis lancement, vs 49 au 09/08
+2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,impressions,3755,cumul depuis lancement, vs 2797 au 09/08
+2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,ctr_pct,1.54,recalcule clics/impressions
