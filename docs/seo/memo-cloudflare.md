@@ -11,6 +11,29 @@
 
 ---
 
+## 0. À lire avant de toucher au DNS ou aux projets Pages  *(vérifié le 2026-08-22)*
+
+Le nommage est trompeur, à cause du rebrand. État réel, relevé par l'API Cloudflare :
+
+| Ce qu'on voit | Ce que c'est vraiment |
+|---|---|
+| Projet Pages **`claudepartners`** (`claudepartners.pages.dev`) | **Le site Claude Agency**, construit depuis ce dépôt (`JRAYES000/CLAUDEAGENCY`, ex-`claudepartners`). C'est le projet *propre* de `claudeagency.fr`, pas un emprunt. |
+| Projet Pages **`claudepartners-web`** | Le site **claudepartners.fr**, l'annuaire de prestataires — un **autre** site, un **autre** dépôt. |
+| `claudeagency.fr` → CNAME `claudepartners.pages.dev` (proxifié) | Adressage **correct** : c'est l'adresse technique du projet ci-dessus. `claudeagency.fr` y est déclaré comme domaine personnalisé. |
+| `www.claudeagency.fr` → même CNAME | Volontaire : `www` n'est **pas** un domaine personnalisé du projet, il est redirigé vers l'apex par la Redirect Rule du §3. |
+
+Conséquences pratiques :
+
+- **Ne pas supprimer ni « nettoyer » le projet `claudepartners`** en le prenant pour un
+  doublon de `claudepartners-web` : ça met `claudeagency.fr` hors ligne. Cloudflare Pages
+  ne sait pas renommer un projet ; le nom restera trompeur tant qu'on ne recrée pas le
+  projet (ce qui implique une coupure du site).
+- **Ne pas « corriger » le CNAME de l'apex** vers un autre `*.pages.dev` : il n'existe pas
+  d'autre projet pour ce site.
+- Les deux enregistrements DNS portent désormais un commentaire en ce sens dans Cloudflare.
+
+---
+
 ## 1. Always Use HTTPS  *(perf + sécurité)*
 **Où :** SSL/TLS → **Edge Certificates** → activer **Always Use HTTPS**.
 **Effet :** toute requête `http://` est redirigée en `https://` au bord du réseau (301).
@@ -93,6 +116,7 @@ côté serveur.
 ---
 
 ## Récapitulatif — checklist
+- [x] 0. Carte des projets Pages relue avant toute action DNS (§0)
 - [ ] 1. Always Use HTTPS activé
 - [ ] 2. HSTS activé (max-age court → puis 6-12 mois + preload)
 - [ ] 3. Redirect Rules www→apex et *.pages.dev→apex (301)
@@ -107,13 +131,13 @@ curl -sIL http://www.claudeagency.fr/
 
 ---
 
-## 6. Rediriger l'ancien domaine claudepartners.fr → claudeagency.fr  *(SEO critique — rebrand)*
-Depuis le rebrand, le site doit être servi sur **claudeagency.fr**. L'ancien domaine
-**claudepartners.fr** sert encore le **même contenu** (même projet Pages) → **contenu dupliqué**.
-Mettre une redirection **301** de tout `claudepartners.fr` vers `claudeagency.fr`.
-**Où :** **Rules → Redirect Rules → Create rule** (sur la zone `claudepartners.fr`).
-- When : `Hostname equals claudepartners.fr` (faire aussi `www.claudepartners.fr`)
-- Then : *Dynamic* → `concat("https://claudeagency.fr", http.request.uri.path)`
-- Status : **301**, *Preserve query string* : activé.
-**Garder** la zone `claudepartners.fr` dans Cloudflare uniquement pour cette redirection.
-**Vérif :** `curl -sIL https://claudepartners.fr/` → **301** → `https://claudeagency.fr/`
+## 6. ~~Rediriger l'ancien domaine claudepartners.fr → claudeagency.fr~~  *(ANNULÉ — ne pas appliquer)*
+
+> ⚠️ **Consigne périmée, dangereuse depuis le 2026-07-25.** Elle datait de l'époque où
+> `claudepartners.fr` servait encore l'ancien contenu de l'agence. Ce n'est plus le cas :
+> `claudepartners.fr` est aujourd'hui **un site à part entière** — l'annuaire de prestataires,
+> projet Pages `claudepartners-web`, dépôt `JRAYES000/claudepartners-fr`, ~91 fiches publiées.
+> Le rediriger en 301 vers `claudeagency.fr` **supprimerait ce site des moteurs**.
+> Il n'y a plus de contenu dupliqué entre les deux domaines (vérifié le 2026-08-22 :
+> `https://claudepartners.fr/` rend l'annuaire, `https://claudeagency.fr/` rend l'agence).
+> **Rien à faire.** Voir le §0 pour la carte des projets.
