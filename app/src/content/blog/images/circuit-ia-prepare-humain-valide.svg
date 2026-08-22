@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Le circuit en trois étapes : l'IA collecte et classe les preuves, l'humain valide, le dossier Qualiopi reste à jour">
+  <style>
+    text { font-family: 'Schibsted Grotesk', 'Segoe UI', system-ui, sans-serif; }
+    .titre { font-size: 19px; font-weight: 700; fill: #2B2724; }
+    .etape { font-size: 15px; font-weight: 700; fill: #2B2724; }
+    .sub { font-size: 12.5px; fill: #7A6E60; }
+    .num { font-size: 14px; font-weight: 700; fill: #FBF7F1; }
+  </style>
+  <rect width="800" height="250" fill="#FBF7F1"/>
+  <text x="400" y="34" text-anchor="middle" class="titre">L'IA prépare, l'humain valide</text>
+
+  <!-- Étape 1 -->
+  <rect x="15" y="62" width="220" height="128" rx="12" fill="#F5EFE6" stroke="#E5D9C7" stroke-width="1.5"/>
+  <circle cx="43" cy="90" r="14" fill="#CC785C"/>
+  <text x="43" y="95" text-anchor="middle" class="num">1</text>
+  <text x="125" y="125" text-anchor="middle" class="etape">L'IA collecte et classe</text>
+  <text x="125" y="147" text-anchor="middle" class="sub">conventions, émargements,</text>
+  <text x="125" y="165" text-anchor="middle" class="sub">questionnaires, veille</text>
+
+  <!-- Flèche 1 -->
+  <line x1="240" y1="126" x2="278" y2="126" stroke="#B5634A" stroke-width="2.5"/>
+  <polygon points="278,119 290,126 278,133" fill="#B5634A"/>
+
+  <!-- Étape 2 -->
+  <rect x="290" y="62" width="220" height="128" rx="12" fill="#F5EFE6" stroke="#E5D9C7" stroke-width="1.5"/>
+  <circle cx="318" cy="90" r="14" fill="#CC785C"/>
+  <text x="318" y="95" text-anchor="middle" class="num">2</text>
+  <text x="400" y="125" text-anchor="middle" class="etape">L'humain valide</text>
+  <text x="400" y="147" text-anchor="middle" class="sub">relecture avant d'entrer</text>
+  <text x="400" y="165" text-anchor="middle" class="sub">au dossier officiel</text>
+
+  <!-- Flèche 2 -->
+  <line x1="515" y1="126" x2="553" y2="126" stroke="#B5634A" stroke-width="2.5"/>
+  <polygon points="553,119 565,126 553,133" fill="#B5634A"/>
+
+  <!-- Étape 3 -->
+  <rect x="565" y="62" width="220" height="128" rx="12" fill="#934E3A"/>
+  <circle cx="593" cy="90" r="14" fill="#FBF7F1"/>
+  <text x="593" y="95" text-anchor="middle" style="font-size:14px;font-weight:700;fill:#934E3A;">3</text>
+  <text x="675" y="125" text-anchor="middle" style="font-size:15px;font-weight:700;fill:#FBF7F1;">Le dossier reste à jour</text>
+  <text x="675" y="147" text-anchor="middle" style="font-size:12.5px;fill:#F5E0D6;">chaque preuve datée,</text>
+  <text x="675" y="165" text-anchor="middle" style="font-size:12.5px;fill:#F5E0D6;">indicateur par indicateur</text>
+
+  <text x="400" y="230" text-anchor="middle" class="sub">Le circuit qui tient un dossier Qualiopi prêt pour l'audit, toute l'année.</text>
+</svg>

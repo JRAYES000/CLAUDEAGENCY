@@ -5,6 +5,44 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-22 (66) — Réécriture conversion de l'article automatiser-qualiopi-ia
+
+**Type :** réécriture (copywriting + images).
+
+**URLs :** https://claudeagency.fr/blog/automatiser-qualiopi-ia/
+
+**Pourquoi :** demande de Julien. Cette page est la destination du lien du mail E1 de la
+prospection SalesHandy (50 dirigeants d'OF, départ le 25/08) : décision de l'optimiser pour ce
+lecteur-là d'abord (choix explicite de Julien), le SEO de la page étant par ailleurs
+« publiée sans impression » et le blocage du site restant le netlinking.
+
+**Fait :**
+- Restructuration : accroche sur la douleur (preuves éparpillées) avec réponse directe conservée
+  en tête (citabilité IA) ; **tableau des 7 critères et preuves attendues** ajouté, car c'est la
+  promesse exacte du mail E1 (« les preuves attendues indicateur par indicateur »), source citée
+  (Référentiel national qualité, arrêté du 6 juin 2019, travail-emploi.gouv.fr, URL vérifiée 200) ;
+  preuve sociale (citation chiffrée Julien) remontée avant le premier CTA ; sections redondantes
+  fusionnées (« Comment Claude Agency met en place », « Déléguer plutôt qu'embaucher »).
+- CTA : bandeau terracotta plein (conforme DESIGN.md) vers **/contact/** (Calendly, conversion
+  Google Ads trackée), choix arbitré par Julien contre le lien cal.com de la séquence. Second CTA
+  texte en fin de FAQ, inchangé.
+- 2 images ajoutées dans le corps : schéma SVG « L'IA prépare, l'humain valide » (2 Ko, palette
+  du site) et illustration webp générée (Pollinations flux, gratuit, 29 Ko, nature morte du
+  classeur d'audit — 2 essais avec visage écartés, rendu IA peu crédible).
+- Tirets cadratins absents de la nouvelle copy (règle DESIGN.md). Tous les liens internes
+  existants conservés (17 liens internes sur la page rendue), URL inchangée (lien codé en dur
+  dans SalesHandy + 3 redirections 301 entrantes).
+- `updatedDate: 2026-08-22`, meta description resserrée.
+
+**Mesure :** mesuré — build local `npm run build` exit 0 (162 pages) ; page rendue contrôlée en
+dev (tableau 8 lignes, CTA brand-700 vers /contact/, 2 nouvelles images servies en 200,
+console sans erreur) ; 1 446 mots rendus (849 avant). Contrôle visuel pixel : non vérifié
+(panneau navigateur non affiché côté poste). Publication et vérification de l'URL en ligne :
+voir Suite.
+
+**Suite :** au relevé hebdo, suivre clics/impressions de la page et le taux de RDV /contact/
+sur la fenêtre de la vague 1 (25/08 →).
+
 ## 2026-08-22 (65) — Relevé GSC hebdomadaire (fenêtre 10/08→19/08, comparée à 31/07→09/08)
 
 **Type :** mesure.
