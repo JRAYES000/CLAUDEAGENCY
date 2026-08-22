@@ -138,6 +138,25 @@ sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'exis
       étapes pour l'obtenir »), abandonné car déjà couvert par ce guide. Vague longue traîne
       « documents & démarches obligatoires » terminée (3/3).
 
+### 🟡 9. Socle GEO — le code est fait, le réseau reste à vérifier
+
+`llms.txt` est en place et corrigé (entrée du 2026-08-22 dans `JOURNAL.md`) : brouillons exclus,
+14 articles de référence en tête, 5 pages indexables ajoutées, `robots.txt` qui le déclare.
+Il reste un seul point, hors code :
+
+- [ ] **Vérifier que Cloudflare ne bloque pas les bots IA** (`memo-cloudflare.md` §4, case 4 de
+      la checklist, jamais cochée). Le *Managed robots.txt* de Cloudflare bloque par défaut
+      GPTBot, ClaudeBot et Google-Extended : si c'est actif, le `robots.txt` du dépôt et le
+      `llms.txt` sont sans effet, les moteurs IA n'accèdent pas au site. Contrôle :
+      `curl -s https://claudeagency.fr/robots.txt` doit rendre le fichier du dépôt, **sans**
+      `Disallow` visant ces bots. **Infaisable depuis une session cloud** (egress bloqué vers le
+      domaine, et le jeton Cloudflare disponible n'a aucun droit sur la zone `claudeagency.fr`) :
+      à faire depuis le poste, ou par Julien dans Cloudflare → Security → Settings → AI Crawl Control.
+- [ ] **Ne jamais créer `app/public/llms.txt`.** Le fichier est une route Astro
+      (`app/src/pages/llms.txt.ts`) qui se régénère à chaque build ; un fichier statique dans
+      `public/` l'écraserait et figerait la liste d'articles. Deux sessions s'y sont déjà trompées
+      en cherchant le fichier dans `public/` et en concluant qu'il n'existait pas.
+
 ### ⚪ 7. Dette de la mémoire elle-même
 
 - [ ] `REQUETES.csv` : 62 lignes sur 87 ont une requête cible marquée

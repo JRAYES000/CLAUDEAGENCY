@@ -5,6 +5,64 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-22 (64) — Socle GEO : `llms.txt` existait déjà, corrigé et hiérarchisé
+
+**Type :** technique (GEO / citabilité IA).
+
+**URLs :** https://claudeagency.fr/llms.txt · https://claudeagency.fr/robots.txt
+
+**Pourquoi :** tâche « llms.txt + socle GEO » du backlog de pilotage `visibilite-ops`, ouverte
+sur le constat « `llms.txt` n'existe pas sur claudeagency.fr (vérifié le 21/08), alors que
+`robots.txt` y renvoie ». **Ce constat est faux** : `app/src/pages/llms.txt.ts` est sur `main`
+depuis le 2026-08-18 (commit `7801371`) et le build l'émet bien. L'erreur vient probablement
+d'une recherche dans `app/public/` (le fichier est une route Astro, pas un fichier statique)
+ou d'une tentative d'ouvrir l'URL depuis une session cloud, où l'egress vers le domaine est
+bloqué — une requête qui échoue n'y prouve pas l'absence du fichier. Consigné ici pour qu'aucune
+session ne recrée `app/public/llms.txt` : il écraserait la route et figerait le contenu.
+
+**Fait :** trois corrections sur le socle existant, aucune création.
+
+1. **Brouillons exclus.** `llms.txt.ts` appelait `getCollection('blog')` sans filtre, alors que
+   `/blog/`, `/blog/[...id]`, `/blog/tags/[tag]`, `/services/[...id]` et `/rss.xml` filtrent tous
+   `!data.draft`. Aucun article n'est en brouillon aujourd'hui, donc rien n'a fuité ; mais le
+   premier `draft: true` aurait envoyé les moteurs IA sur une page non construite. Filtre aligné.
+2. **Section « Articles de référence »** ajoutée avant la liste complète : 14 piliers choisis à la
+   main (jamais par script, cf. incident du 03/07) sur les positions et impressions de
+   `REQUETES.csv` et la couverture des deux clusters — documents obligatoires d'un OF
+   (`qualiopi-guide-organisme-formation`, `indicateurs-qualiopi`, `remplir-bpf-organisme-formation`,
+   `convention-de-formation`, `numero-declaration-activite`, `livret-accueil-stagiaire`,
+   `questionnaire-satisfaction-formation`) et adoption de l'IA (`integrer-ia-organisme-formation`,
+   `automatiser-qualiopi-ia`, `creer-supports-formation-ia`, `prompts-ia-formateurs`,
+   `claude-vs-chatgpt-organisme-formation`, `logiciel-organisme-formation`,
+   `seo-organisme-formation`). Un slug de cette liste devenu introuvable **fait échouer le build**
+   — garde-fou testé pour de vrai, pas supposé (voir Mesure).
+3. **Cinq pages indexables manquaient** dans « Pages principales » : `/blog/`, `/diagnostic/`,
+   `/barometre-ia-organismes-formation/`, `/ressources/10-automatisations-ia/`,
+   `/facturation-tva-societe-europeenne/`. Ajoutées. Ajouté aussi en fin de fichier : date du
+   dernier article publié (calculée, pas écrite en dur), lien sitemap, lien RSS, autorisation
+   explicite de citation avec lien vers la source. `robots.txt` déclare désormais l'URL complète
+   de `llms.txt` en commentaire dédié, au lieu d'une simple mention dans l'en-tête.
+
+Aucun Schema `FAQPage`/`HowTo` ajouté (la section « Questions fréquentes » de `llms.txt` est du
+texte, pas du balisage). Aucun contenu d'article touché.
+
+**Mesure :** mesuré le 2026-08-22 en local, build de production (`npm run build`, Node 22.22.2) :
+- build **code de sortie 0**, 162 pages, `dist/llms.txt` passé de **23 325 à 28 781 octets** ;
+- **les 77 URLs distinctes citées dans `llms.txt` ont toutes un fichier construit dans `dist/`**
+  — contrôle automatisé, zéro manquant : aucun lien mort servi aux moteurs IA ;
+- **aucune page `noindex`** n'y figure (contrôle sur les 10 chemins exclus du sitemap) ;
+- garde-fou vérifié en le déclenchant : un slug bidon dans `REFERENCE_SLUGS` fait sortir le build
+  en **code 1** avec le message attendu ; ligne retirée, build revert vert.
+Deux avertissements de police (`Bricolage Grotesque`, `Schibsted Grotesk`) apparaissent au build :
+`fonts.google.com` renvoie 403 depuis le bac à sable cloud. Sans rapport avec ce changement, et
+sans effet sur le code de sortie.
+
+**Suite :** un point reste ouvert et ne dépend pas du code — le *Managed robots.txt* de Cloudflare
+peut bloquer GPTBot/ClaudeBot/Google-Extended au niveau du réseau, ce qui rendrait tout ce socle
+inerte (`memo-cloudflare.md` §4, case toujours non cochée). Invérifiable depuis une session cloud :
+l'egress vers le domaine est bloqué, et le jeton Cloudflare disponible n'a aucun droit sur la zone
+`claudeagency.fr`. Remonté à Julien comme décision sur son tableau de bord.
+
 ## 2026-08-20 (63) — Contrôle DNS SPF/DKIM/DMARC des 4 domaines d'envoi (D0c) — bascule Saleshandy bloquée
 
 **Type :** audit technique (DNS), hors périmètre SEO.

@@ -38,4 +38,8 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# --- Reperes pour les moteurs et assistants IA ---
+# Fiche de synthese du site (positionnement, pages piliers, articles de reference) :
+# https://claudeagency.fr/llms.txt
+
 Sitemap: https://claudeagency.fr/sitemap-index.xml
