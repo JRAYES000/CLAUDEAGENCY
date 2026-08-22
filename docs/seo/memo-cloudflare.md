@@ -100,6 +100,30 @@ niche B2B pauvre en sources). Si tu ne vises pas le GEO, laisse bloqué **et** r
 **Vérif :** `curl -s https://claudeagency.fr/robots.txt` → ne doit pas contenir de
 `Disallow` ciblant GPTBot/ClaudeBot/Google-Extended.
 
+**Constat du 2026-08-22 (intendant) — rien n'était bloqué, rien n'a été modifié.**
+La prémisse ci-dessus ne s'est pas vérifiée sur cette zone : aucun blocage n'était actif.
+Relevé dans le tableau de bord Cloudflare (zone `claudeagency.fr`, compte
+`Jrayes000@gmail.com`, plan Free) :
+- *Security → Settings* : **Block AI bots** = « Blocks AI Bots scope: Do not block (off) »
+  (réglage marqué « Deprecating on September 15 ») ; **AI Labyrinth** désactivé ;
+  **Bot fight mode** désactivé.
+- *AI Crawl Control → Security* : **aucune** case « Block Crawler » cochée, sur la liste
+  complète des robots (option « Show inactive crawlers » activée). Sur 24 h :
+  ClaudeBot 23 passages, BingBot 19, Googlebot 12, OAI-SearchBot 8, ChatGPT-User 5,
+  GPTBot 2, CCBot 1, PerplexityBot 1, Meta-ExternalAgent 1 — `Unsuccessful: 0` partout.
+- *Security → Security rules* : Custom rules 0/5, Rate limiting 0/1, Managed rules aucune.
+- `robots.txt` servi par l'edge = celui du dépôt, sans `Disallow` : Cloudflare n'injecte
+  aucun *Managed robots.txt* sur cette zone.
+- Requête réelle en se présentant comme GPTBot, ClaudeBot, CCBot, PerplexityBot,
+  OAI-SearchBot et Googlebot : **HTTP 200** sur `/` et sur `/robots.txt`.
+
+Google-Extended n'apparaît pas dans AI Crawl Control : ce n'est pas un robot mais un jeton
+qui ne se pilote que par `robots.txt`, où il est déjà en `Allow: /`.
+
+*À savoir :* le réglage **Block AI bots** disparaît le 15 septembre 2026. Son remplaçant,
+AI Crawl Control, est déjà en place et n'a rien de bloqué — il n'y a donc rien à refaire à
+cette date. Même constat le même jour sur la zone `claudepartners.fr` : aucun robot bloqué.
+
 ---
 
 ## 5. Email Address Obfuscation  *(corrige le lien e-mail « 404 » de /contact/)*
@@ -120,7 +144,7 @@ côté serveur.
 - [ ] 1. Always Use HTTPS activé
 - [ ] 2. HSTS activé (max-age court → puis 6-12 mois + preload)
 - [ ] 3. Redirect Rules www→apex et *.pages.dev→apex (301)
-- [ ] 4. AI Crawl Control : bots IA autorisés (ou `llms.txt` retiré)
+- [x] 4. AI Crawl Control : bots IA autorisés — vérifié le 2026-08-22, aucun blocage actif (§4)
 - [ ] 5. /contact/ : lien e-mail vérifié (obfuscation OFF seulement si cassé)
 
 **Contrôle final unique :**
