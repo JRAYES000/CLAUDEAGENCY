@@ -4,8 +4,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // Landing / page de présentation du Baromètre IA des OF.
 // Rôle : expliquer l'enquête, sa valeur, et renvoyer vers le questionnaire.
 // SEO : page INDEXABLE (contenu réel, utile, citable) — c'est le point d'entrée
-// public de l'étude. La page de résultats (/resultats/) reste en noindex tant
-// qu'elle n'a pas de données. Voir plan : BAROMETRE-IA-OF.md.
+// public de l'étude. La page de résultats n'existe pas encore : elle sera créée
+// le jour où la collecte donne de vrais chiffres, jamais avant (règle de Julien
+// du 23/08 : une page qui ne doit pas être vue ne se publie pas, elle ne se cache
+// pas derrière un noindex). Voir plan : BAROMETRE-IA-OF.md.
 
 // Questionnaire natif (formulaire on-site → Supabase). Voir ./questionnaire.astro.
 const QUESTIONNAIRE_URL = '/barometre-ia-organismes-formation/questionnaire/';
@@ -119,9 +121,8 @@ const breadcrumb = {
 
     <div class="mt-12 rounded-2xl border border-sand bg-cream-50 p-6">
       <p class="text-sm leading-relaxed text-muted">
-        Les résultats agrégés seront publiés sur cette page :
-        <a href="/barometre-ia-organismes-formation/resultats/" class="font-semibold text-brand-700 hover:underline">les résultats du baromètre</a>
-        (en cours de collecte). Cette enquête s'inscrit dans notre travail d'accompagnement des OF : voir
+        Les résultats agrégés seront publiés ici même dès la fin de la collecte.
+        Cette enquête s'inscrit dans notre travail d'accompagnement des OF : voir
         <a href="/blog/integrer-ia-organisme-formation/" class="font-semibold text-brand-700 hover:underline">notre guide pour intégrer l'IA dans un organisme de formation</a>.
       </p>
     </div>
