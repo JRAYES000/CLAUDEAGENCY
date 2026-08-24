@@ -5,6 +5,45 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-24 (67) — 4 livrables RGPD de la prospection B2B (D14), avant le premier envoi du 25/08
+
+**Type :** conformité (RGPD), hors périmètre SEO strict — journalisé car l'action touche le dépôt et
+le site (CLAUDE.md : toute action sur le dépôt garde une entrée SEO/journal dans le même commit).
+
+**URLs :** `https://claudeagency.fr/donnees-prospection/` (nouvelle page), `https://claudeagency.fr/confidentialite/` (lien ajouté).
+
+**Pourquoi :** tâche D14 du Sheet SOLOHERY — se mettre en règle CNIL B2B avant la vague 1 (50
+contacts, départ mardi 25/08). Sans ces livrables, l'opposition (« stop ») n'a nulle part où
+s'enregistrer côté équipe (D13) et la page promise en signature n'existe pas encore (note laissée
+dans D12 : « Restera avant le 25/08 : … l'adresse de /donnees-prospection dans la signature »).
+
+**Fait :**
+1. `docs/prospection/registre-traitements.md` créé : finalité, base légale, données traitées,
+   conservation (3 ans sans contact), tableau source/date des lots importés.
+2. `app/src/pages/donnees-prospection.astro` créé et lié depuis `/confidentialite` (une ligne).
+3. `docs/prospection/sequence-5-emails.md` resynchronisé sur l'état réel du Sheet (2 e-mails E1/E2
+   depuis le 22/08/2026, pas 5) ; ligne de transparence CNIL ajoutée en texte simple, sans URL, dans
+   la signature des 2 e-mails du Sheet (onglet D+, lignes 35-36) — un lien de plus aurait dépassé la
+   règle « un lien maximum » de `docs/PLAN-SOLOHERY.md` §7, jugé trop risqué à la veille du premier
+   envoi.
+4. Nouvel onglet Sheet « DNC · Opposition » créé (vide, pas encore de vague envoyée) : liste prête à
+   recevoir les oppositions dès qu'elles arrivent, et procédure d'activation dans Saleshandy écrite
+   pour quand l'accès sera rétabli (bloqué depuis le 20/08, voir entrée #63).
+
+**Correction notée en cours de route :** la tâche D14 citait `moncompteformation.gouv.fr` comme
+source du lot ; le fichier réel (`docs/prospection/liste-100-of.csv`) donne
+`recherche-entreprises.api.gouv.fr`. Le registre documente la source vérifiée, pas celle annoncée.
+
+**Mesure :** mesuré — build Astro (`npm run build`) exit 0, 163 pages construites (Node local) ;
+`dist/donnees-prospection/index.html` présent et généré.
+
+**Suite :**
+- Saleshandy toujours bloqué (identifiants Notion invalides) : brancher la liste DNC dès l'accès
+  rétabli, transférer les entrées de l'onglet Sheet vers la liste de suppression native Saleshandy.
+- Adresse postale de la signature toujours non vérifiée (point ouvert, hors périmètre D14).
+
+---
+
 ## 2026-08-22 (66) — Réécriture conversion de l'article automatiser-qualiopi-ia
 
 **Type :** réécriture (copywriting + images).
