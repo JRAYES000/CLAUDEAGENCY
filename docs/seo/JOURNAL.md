@@ -5,6 +5,35 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-25 (68) — Page webinaire Qualiopi (16/09) + Google Form d'inscription
+
+**Type :** publication, hors périmètre SEO strict — journalisé car l'action touche le dépôt et
+le site (CLAUDE.md : toute action sur le dépôt garde une entrée SEO/journal dans le même commit).
+
+**URLs :** `https://claudeagency.fr/webinaire/` (nouvelle page).
+
+**Pourquoi :** organiser un webinaire gratuit « Préparer son audit Qualiopi sans y passer ses
+soirées », mardi 16/09/2026 12h30-13h15, avec inscriptions collectées hors Brevo (interdit sur ce
+projet, la suspension frapperait le compte de l'école partenaire).
+
+**Fait :**
+1. Google Sheet dédié « Inscriptions webinaire 16/09 » créé (colonnes `date`, `nom`, `e-mail`,
+   `organisme`, `accepte_contact`), via Composio (le connecteur Drive natif ne permet pas d'écrire
+   des cellules — voir la mémoire correspondante).
+2. Google Form créé à la main (l'agent n'a pas de navigateur) : 4 champs (nom, e-mail avec
+   validation, organisme, consentement en case à cocher jamais pré-cochée), lié en réponses au
+   Sheet ci-dessus.
+3. `app/src/pages/webinaire.astro` créé : titre, sujet, date, plan des 45 minutes (30 min de
+   contenu + 15 de questions), iframe du Google Form intégrée.
+
+**Mesure :** mesuré — build Astro (`npm run build`) exit 0, 163 pages construites ;
+`dist/webinaire/index.html` présent avec l'iframe du bon formulaire.
+
+**Suite :** inscription de test à faire depuis la page en ligne une fois publiée, puis vérifier
+que la ligne atterrit bien dans le Sheet (pas dans un classeur créé par erreur par Google Forms).
+
+---
+
 ## 2026-08-24 (67) — 4 livrables RGPD de la prospection B2B (D14), avant le premier envoi du 25/08
 
 **Type :** conformité (RGPD), hors périmètre SEO strict — journalisé car l'action touche le dépôt et

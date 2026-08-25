@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Webinaire' },
+  ],
+};
+
+const plan = [
+  { t: '0–5 min', d: "Cadrage : pourquoi un audit Qualiopi prend des soirées entières, et où part vraiment le temps." },
+  { t: '5–25 min', d: "Ce qu'on peut déléguer à une machine : rassembler les preuves, tenir le classeur à jour, croiser les indicateurs avec le référentiel." },
+  { t: '25–30 min', d: "Ce qu'on ne délègue pas : le jugement sur ce qui est probant, les décisions, la relation avec l'auditeur." },
+  { t: '30–45 min', d: 'Questions en direct.' },
+];
+---
+<BaseLayout
+  title="Webinaire : préparer son audit Qualiopi"
+  description="Webinaire gratuit le mardi 16/09/2026, 12h30-13h15 : ce qu'on peut déléguer à une machine pour préparer son audit Qualiopi, et ce qu'on ne peut pas."
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Webinaire gratuit</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+        Préparer son audit Qualiopi sans y passer ses soirées
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-muted">
+        Ce qu'on peut déléguer à une machine, et ce qu'on ne peut pas.
+      </p>
+      <p class="mt-6 font-medium text-ink">Mardi 16/09/2026, 12h30–13h15</p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="font-display text-2xl font-bold text-ink">Au programme (45 minutes)</h2>
+      <ul class="mt-6 space-y-4">
+        {plan.map((p) => (
+          <li class="flex gap-4">
+            <span class="w-24 shrink-0 font-mono text-sm text-brand-700">{p.t}</span>
+            <span class="text-muted">{p.d}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="font-display text-2xl font-bold text-ink">Je m'inscris</h2>
+      <div class="mt-6 overflow-hidden rounded-2xl border border-sand">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSduhNE3P9shjRl-dkQy11GVlhvmRW0JpRgcQrapB-g3zTSrAg/viewform?embedded=true"
+          width="100%"
+          height="1050"
+          title="Formulaire d'inscription au webinaire du 16/09"
+          loading="lazy"
+        >Chargement du formulaire…</iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
