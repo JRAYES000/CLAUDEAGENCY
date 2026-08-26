@@ -65,6 +65,10 @@ ligne 62 — sinon elle y entre malgré son `noindex`. Sept chemins y sont déj�
 Le formulaire d'inscription passe par `app/functions/api/subscribe.js` (Cloudflare Pages Function).
 C'est **le seul code serveur du projet** : toute modification du formulaire le concerne.
 
+**Brouillons LinkedIn : `docs/prive/sortants/`**, jamais à la racine ni dans `app/`. Le dossier est
+couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs
+commentaires, et ce dépôt est public.
+
 ## Mémoire SEO — obligatoire
 
 `docs/seo/` est la mémoire du projet SEO. Elle existe pour qu'une session ne reparte jamais de
