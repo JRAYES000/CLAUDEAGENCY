@@ -5,6 +5,29 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-26 (70) — Cibles netlinking : top 10 requêtes + profil donneur (docs/seo/netlinking-cible.md)
+
+**Type :** netlinking (synthèse), hors périmètre édition de contenu — journalisé car un nouveau
+fichier est ajouté au dépôt dans le même commit.
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-cible.md`.
+
+**Fait :** extrait des 91 lignes de `REQUETES.csv` les 10 requêtes au plus fort `impressions_90j`
+(tri seul, aucun recalcul) : logiciel organisme de formation (404), claude agency marque (227),
+agence marketing claude (188), automatiser bpf organisme formation (138), agence référencement
+naturel claude (134), claude français (110), blog (79), formation claude (70), référencement
+gratuit organisme de formation (68), livret d'accueil stagiaire entreprise (58). Tentative de
+compléter les `source_volume = inconnu` via Ubersuggest France : app.neilpatel.com ne rend pas
+d'arbre exploitable en scraping automatisé et la navigation directe est refusée — deux tentatives
+infructueuses, arrêt sans invention de chiffre. 9 des 10 lignes restent `inconnu`. Profil du site
+donneur idéal rédigé à partir de `PRODUCT.md` (cible OF, Qualiopi, ton) et `NETLINKING.md` §6.9
+(niche étroite, ne jamais diluer vers du hors-sujet) et §6.7 (fermes de liens déguisées, filtre
+sur le ratio de pages réellement trafiquées).
+
+**Mesure :** non applicable — fichier de synthèse, pas de mesure GSC.
+
+---
+
 ## 2026-08-26 (69) — Catalogue de netlinking à 26 sites (docs/seo/netlinking-catalogue.csv)
 
 **Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
