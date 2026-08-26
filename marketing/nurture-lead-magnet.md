@@ -41,7 +41,7 @@ Une question pour la mettre en place ? Répondez à cet email, je lis tout.
 
 — Julien Rayes, Claude Partners
 
-**CTA (bouton) :** Voir la méthode complète → `https://claudepartners.fr/blog/reduire-charge-administrative-organisme-formation/`
+**CTA (bouton) :** Voir la méthode complète → `https://claudeagency.fr/blog/automatiser-qualiopi-ia/`
 
 ---
 
@@ -63,7 +63,7 @@ Le guide que vous avez reçu, c'est cette expérience condensée. La vraie quest
 
 — Julien Rayes, Claude Partners
 
-**CTA (bouton) :** Voir où vous gagneriez le plus (2 min) → `https://claudepartners.fr/diagnostic/`
+**CTA (bouton) :** Voir où vous gagneriez le plus (2 min) → `https://claudeagency.fr/diagnostic/`
 
 ---
 
@@ -85,9 +85,9 @@ Sans engagement, sans relance insistante. Si ce n'est pas le moment, vous le sau
 
 — Julien Rayes, Claude Partners
 
-**CTA (bouton) :** Réserver mon audit offert (30 min) → `https://claudepartners.fr/contact/`
+**CTA (bouton) :** Réserver mon audit offert (30 min) → `https://claudeagency.fr/contact/`
 
-*P.S. Vous préférez commencer par écrit ? Le diagnostic prend 2 minutes : `https://claudepartners.fr/diagnostic/`*
+*P.S. Vous préférez commencer par écrit ? Le diagnostic prend 2 minutes : `https://claudeagency.fr/diagnostic/`*
 
 ---
 
@@ -109,7 +109,7 @@ Une autre question vous retient ? Répondez à cet email, j'y réponds personnel
 
 — Julien Rayes, Claude Partners
 
-**CTA (bouton) :** En parler 30 min (audit offert) → `https://claudepartners.fr/contact/`
+**CTA (bouton) :** En parler 30 min (audit offert) → `https://claudeagency.fr/contact/`
 
 ---
 
@@ -129,9 +129,9 @@ Dans tous les cas, merci de votre attention, et bonne continuation à votre orga
 
 — Julien Rayes, Claude Partners
 
-**CTA (bouton) :** Réserver mon audit offert → `https://claudepartners.fr/contact/`
+**CTA (bouton) :** Réserver mon audit offert → `https://claudeagency.fr/contact/`
 
-*P.S. Je continue à publier des cas concrets sur le blog : `https://claudepartners.fr/blog/`*
+*P.S. Je continue à publier des cas concrets sur le blog : `https://claudeagency.fr/blog/`*
 
 ---
 
