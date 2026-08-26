@@ -1,10 +1,11 @@
 // Génère un CSV importable dans Google Ads Editor (interface FR) : campagne OF + 2 groupes + mots-clés + RSA + négatifs.
 // En-têtes en anglais (reconnus par Editor) + VALEURS en français (requis par Editor FR).
 const fs = require('fs');
+const path = require('path');
 
 const CAMPAIGN = 'Claude Partners - OF | Search';
-const FINAL_HOME = 'https://claudepartners.fr/';
-const FINAL_SEO = 'https://claudepartners.fr/services/seo/';
+const FINAL_HOME = 'https://claudeagency.fr/';
+const FINAL_SEO = 'https://claudeagency.fr/services/seo/';
 
 const headers = [
   'Campaign','Campaign Type','Campaign Daily Budget','Bid Strategy Type','Networks','Languages','Location','Campaign Status',
@@ -72,5 +73,8 @@ const esc = (v) => {
 };
 const lines = [headers.map(esc).join(',')];
 for (const r of rows) lines.push(headers.map(h => esc(r[h])).join(','));
-fs.writeFileSync('C:/Users/julien/CLAUDEPARTNERS/google-ads/claude-partners-OF-campagne.csv', '﻿' + lines.join('\r\n'), 'utf8');
+// BOM + CRLF : c'est ce qu'attend Google Ads Editor sous Windows, on le garde.
+// git stocke le fichier en LF ; sans quoi chaque regeneration reecrit les 35 lignes
+// et noie le changement reel dans un diff de fins de ligne.
+fs.writeFileSync(path.join(__dirname, 'claude-partners-OF-campagne.csv'), '﻿' + lines.join('\r\n'), 'utf8');
 console.log('OK rows=' + rows.length);
