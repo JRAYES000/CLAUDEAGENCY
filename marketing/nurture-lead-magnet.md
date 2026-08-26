@@ -1,6 +1,6 @@
 # Séquence de nurture — Lead magnet « 10 automatisations IA »
 
-> **Type :** Lead nurture B2B (pré-vente) · **Déclencheur :** inscription à la liste Mailjet `10523019` (Ressources – 10 automatisations IA)
+> **Type :** Lead nurture B2B (pré-vente) · **Déclencheur :** inscription à la liste **Brevo `12`** (« Claude Agency - 10 automatisations IA »), alimentée par `app/functions/api/subscribe.js`
 > **Objectif principal :** réserver un **audit offert** (`/contact/` → Calendly). Objectif secondaire : diagnostic (`/diagnostic/`).
 > **Audience :** responsables d'organismes de formation (dirigeant·e, resp. pédagogique/admin, formateur·rice indépendant·e) ayant téléchargé le guide.
 > **Sortie de séquence :** réservation d'un audit, réponse à un email, ou désinscription.
@@ -137,19 +137,27 @@ Dans tous les cas, merci de votre attention, et bonne continuation à votre orga
 
 ## Mise en œuvre — 2 options pour envoyer la séquence
 
-La livraison J0 part déjà en **transactionnel gratuit** (`subscribe.js`). Les relances (emails 2 à 6) doivent être déclenchées sur un calendrier. Deux voies :
+La livraison J0 part déjà en **transactionnel** : `subscribe.js` envoie le guide par l'API de la boîte Hostinger, puis inscrit le contact dans Brevo. Les relances (emails 2 à 6) restent à déclencher sur un calendrier — **aucune n'est en place à ce jour**. Deux voies :
 
-**Option A — Mailjet Premium (~27 $/mois) · simple et fiable (recommandé pour lancer)**
-- Automation Mailjet : déclencheur « contact ajouté à la liste 10523019 » → 5 étapes avec délais J+2 / J+4 / J+7 / J+11 / J+16.
-- Tu colles les 6 emails (le J0 peut aussi y être migré pour tout centraliser).
-- Avantage : zéro code, gestion désinscription/stats native. Inconvénient : 27 $/mois.
+**Option A — Automation Brevo · zéro code**
+- Automation Brevo : déclencheur « contact ajouté à la liste 12 » → 5 étapes avec délais J+2 / J+4 / J+7 / J+11 / J+16.
+- Tu colles les 6 emails (le J0 peut y être migré pour tout centraliser).
+- Avantage : zéro code, désinscription et statistiques natives.
+- **Coût à relever dans le compte avant de s'engager**, pas à reprendre d'ici : il dépend du plan Brevo en cours.
 
-**Option B — Cron serverless gratuit (0 $, plus d'ingénierie)**
-- Stocker la **date d'inscription** comme propriété Mailjet dans `subscribe.js` (1 ligne).
-- Un **Cloudflare Worker planifié** (cron quotidien) lit la liste, calcule J+N depuis l'inscription, envoie l'email du jour via l'API transactionnelle (gratuite), et marque l'étape (propriété `nurture_step`) pour ne pas renvoyer.
-- Avantage : 0 $. Inconvénient : à développer + tester (dédup, désinscription à gérer).
+**Option B — Cron serverless (plus d'ingénierie)**
+- Stocker la **date d'inscription** en attribut de contact Brevo dans `subscribe.js`.
+  ⚠️ L'attribut doit **exister au préalable dans le compte** : `subscribe.js` documente qu'un attribut inconnu fait échouer tout l'appel.
+- Un **Cloudflare Worker planifié** (cron quotidien) lit la liste, calcule J+N depuis l'inscription, envoie l'email du jour, et marque l'étape (attribut `NURTURE_STEP`) pour ne pas renvoyer.
+- Inconvénient : à développer et tester (déduplication, désinscription à gérer soi-même).
 
-➡️ **Reco : Option A pour démarrer maintenant** (le coût est négligeable vs un seul client gagné), bascule possible vers B plus tard si tu veux supprimer l'abonnement.
+➡️ **Reco : Option A**, sous réserve du relevé de coût ci-dessus.
+
+**Garde-fou commun aux deux voies — le compte Brevo est partagé entre les activités.**
+Il porte aussi L'Ossature et École Naturo : **35 modèles et 6 listes au 2026-08-26**, dont
+une seule appartient à Claude Agency. Toute automation doit filtrer sur la **liste 12** ou
+sur l'attribut **`MARQUE = Claude Agency`**, que `subscribe.js` renseigne déjà — sans ce
+filtre, elle arroserait les contacts des autres activités.
 
 ## Recommandation complémentaire (hors séquence)
-- **Brancher le diagnostic sur Mailjet** : aujourd'hui les leads diagnostic (rôle/priorité/maturité = segmentation en or) partent seulement par email via Web3Forms. Les faire aussi entrer dans Mailjet permettrait de les nurturer et de **personnaliser la séquence par priorité**. Petit dev serverless (même principe que `subscribe.js`).
+- **Brancher le diagnostic sur Brevo** : aujourd'hui les leads diagnostic (rôle/priorité/maturité = segmentation en or) partent seulement par email via Web3Forms. Les faire aussi entrer dans Brevo permettrait de les nurturer et de **personnaliser la séquence par priorité**. Petit dev serverless (même principe que `subscribe.js`).
