@@ -5,7 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 // direct (POST client) à Supabase (projet « Claude Agency »), table
 // public.barometre_reponses, protégée en insert-only (RLS, clé publishable).
 // La clé publishable est PUBLIQUE par conception (RLS empêche toute lecture).
-// Page noindex (utilitaire) — la landing /barometre.../ porte le SEO.
+// La landing /barometre.../ porte le SEO ; cette page est indexable elle aussi
+// (regle de Julien du 23/08 : aucune page en noindex).
 
 const SUPA_URL = 'https://ifutijlvjgkdaonxzzpi.supabase.co';
 const SUPA_KEY = 'sb_publishable_AMATmViFhzzEHM7t1GYHhQ_0I68c4c4';
@@ -49,7 +50,6 @@ const breadcrumb = {
 <BaseLayout
   title="Questionnaire — Baromètre IA des organismes de formation"
   description="Répondez au Baromètre 2026 de l'IA dans les organismes de formation français : 5 minutes, anonyme."
-  noindex={true}
   pageSchema={[breadcrumb]}
 >
   <section class="mx-auto max-w-2xl px-4 py-14">

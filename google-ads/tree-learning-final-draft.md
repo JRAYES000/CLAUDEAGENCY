@@ -60,7 +60,7 @@ Un OF manipule des données sensibles : identités, financeurs, parcours, parfoi
 
 ### Tracer plutôt que remplacer la preuve
 
-Les démarches qualité reposent sur la preuve : qui a fait quoi, quand, avec quel outil. Bien pensée, l'automatisation aide surtout à collecter, dater et classer les preuves attendues plutôt qu'à les fabriquer. C'est utile au moment de [structurer sa démarche Qualiopi](https://claudepartners.fr/blog/qualiopi-guide-organisme-formation/) et de relier chaque processus au bon élément de preuve. Ce cadrage en amont rend une automatisation utile le jour d'un audit, plutôt que dangereuse.
+Les démarches qualité reposent sur la preuve : qui a fait quoi, quand, avec quel outil. Bien pensée, l'automatisation aide surtout à collecter, dater et classer les preuves attendues plutôt qu'à les fabriquer. C'est utile au moment de [structurer sa démarche Qualiopi](https://claudeagency.fr/blog/qualiopi-guide-organisme-formation/) et de relier chaque processus au bon élément de preuve. Ce cadrage en amont rend une automatisation utile le jour d'un audit, plutôt que dangereuse.
 
 ### Garder l'humain là où c'est non négociable
 

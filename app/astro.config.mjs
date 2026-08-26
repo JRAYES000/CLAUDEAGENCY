@@ -56,10 +56,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      // Exclut toutes les pages noindex — jamais d'URL noindex dans le sitemap.
-      // NB: la page résultats du baromètre est en noindex tant qu'elle est vide (scaffold) → exclue ici.
-      //     La landing du baromètre, elle, reste indexable et présente dans le sitemap.
-      filter: (page) => !['/merci', '/mentions-legales', '/confidentialite', '/blog/tags/', '/semaine-offerte', '/barometre-ia-organismes-formation/resultats', '/barometre-ia-organismes-formation/questionnaire'].some((p) => page.includes(p)),
+      // Règle de Julien du 23/08 : aucune page du site n'est en noindex, donc plus
+      // rien n'est exclu du sitemap. Seules restent hors sitemap la 404 et la
+      // redirection /sitemap.xml, qu'Astro génère et qui ne sont pas des pages.
       serialize(item) {
         if (item.url === 'https://claudeagency.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;

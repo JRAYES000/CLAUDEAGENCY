@@ -4,7 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // Évaluation interne des collaborateurs Claude Agency.
 // Parcours question par question : on répond, on voit immédiatement pourquoi
 // chaque option est juste ou fausse, puis on avance. Aucune donnée n'est envoyée.
-// Page utilitaire : noindex, absente du menu.
+// Page utilitaire : absente du menu, mais indexable — regle de Julien du 23/08,
+// aucune page des deux sites n'est en noindex.
 // Corrigé sourcé sur la documentation officielle (champ `source`).
 
 // Périmètre : chaque question porte sur un point du guide interne
@@ -462,7 +463,6 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
 <BaseLayout
   title="Évaluation des compétences Claude Code | Claude Agency"
   description="Test interne de 20 questions sur le guide « Bien utiliser Claude » : skills d'équipe, contexte, formulation des demandes, vérification."
-  noindex={true}
   pageSchema={[breadcrumb]}
 >
   <!-- Barre de progression, visible seulement pendant le parcours -->

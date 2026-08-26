@@ -12,7 +12,7 @@
 |---|---|
 | Nom | **Claude Agency** |
 | URL publique LinkedIn | `linkedin.com/company/claude-agency` (à réserver) |
-| Site web | `https://claudepartners.fr` |
+| Site web | `https://claudeagency.fr` |
 | Secteur | **Services et conseil en informatique** (ou « Conseil en gestion ») |
 | Taille | **2-10 employés** |
 | Type | Société privée |
@@ -36,7 +36,7 @@ Notre méthode en 3 temps : on diagnostique vos priorités à plus fort ROI, on 
 Vous dirigez ou pilotez un organisme de formation et le marketing ou l'administratif passe toujours après la pédagogie ? Parlons-en.
 
 → Audit offert, sans engagement : vous repartez avec une feuille de route chiffrée, avec ou sans nous.
-🔗 claudepartners.fr · ✉️ contact@claudeagency.fr
+🔗 claudeagency.fr · ✉️ contact@claudeagency.fr
 
 ## Hashtags / spécialités (à renseigner dans « Spécialités »)
 
