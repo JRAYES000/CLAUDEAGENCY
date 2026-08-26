@@ -5,6 +5,46 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-26 (69) — Catalogue de netlinking à 26 sites (docs/seo/netlinking-catalogue.csv)
+
+**Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
+journalisé car un nouveau fichier est ajouté au dépôt dans le même commit.
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-catalogue.csv`.
+
+**Pourquoi :** SOLOHERY avait fourni 12 portes d'entrée déjà vérifiées le 16/08/2026 pour du
+netlinking gratuit (formation professionnelle, Qualiopi, RH, EdTech, IA appliquée aux entreprises,
+entrepreneuriat B2B). Consigne : porter la liste à au moins 25 sites sans rien fabriquer, chaque
+ligne devant porter la preuve (URL de la page + date de vérification).
+
+**Fait :** repris les 12 sites fournis tels quels (date de vérification conservée : 16/08/2026).
+Testé ~43 candidats supplémentaires (blogs métier, médias à tribunes, annuaires professionnels)
+via 6 vagues de sous-agents `Explore`/`sonnet` lancés en parallèle (skill
+`parallelisation-et-routage`), chacun chargé de trouver et lire intégralement la page de
+contribution réelle, d'écarter tout site payant, annuaire Qualiopi ou plateforme de vente de
+liens, et de ne rien inscrire si la page était introuvable après recherche raisonnable.
+14 candidats confirmés ouverts et gratuits sur les ~43 testés (taux ~33 %) : Actu IA, Culture RH,
+MyRHline, Cadre Dirigeant Magazine, Économie Matin, Wydden (suite éditoriale de 1001startups.fr,
+dont le domaine d'origine redirige désormais vers wydden.com), Le Coin des Entrepreneurs,
+Maddyness, FrenchWeb, Le Monde Informatique, Institut Sapiens, Comarketing-News, Alliancy,
+ITespresso. Total : **26 lignes** dans `docs/seo/netlinking-catalogue.csv`.
+
+Rejets notables (non inscrits, avec la raison) : Focus RH et Chef d'Entreprise.com (sites
+inaccessibles au fetch après plusieurs tentatives), Centre Inffo (en liquidation judiciaire
+depuis le 08/07/2026, aucune page de contribution active), Créer Mon Entreprise (plateforme
+payante Bulldoz), Ludovia Magazine (doublon de Ludomag, déjà dans la liste des 12). Les exclusions
+de la consigne (Guide Social, La Digital Learning Academy, Thot Cursus, Educavox, MentionMatch,
+les-ia.fr) n'ont pas été re-proposées.
+
+**Mesure :** non applicable — fichier de données, pas de mesure GSC.
+
+**Suite :** SOLOHERY relit le CSV et colle son chemin (`docs/seo/netlinking-catalogue.csv`) en
+Preuve. Le Monde du Chiffre (lemondeduchiffre.fr) restait en cours de vérification à la clôture de
+cette entrée, sans effet sur le total déjà au-delà du seuil — à tester dans une prochaine passe si
+une marge supplémentaire est utile.
+
+---
+
 ## 2026-08-25 (68) — Page webinaire Qualiopi (16/09) + Google Form d'inscription
 
 **Type :** publication, hors périmètre SEO strict — journalisé car l'action touche le dépôt et
