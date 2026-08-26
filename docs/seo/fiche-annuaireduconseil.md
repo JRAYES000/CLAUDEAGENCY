@@ -1,5 +1,9 @@
 # Fiche Annuaire du Conseil — inscription gratuite avec lien retour
 
+> **Identité changée le 26/08/2026.** Julien a tranché : le site s'inscrit au nom de la société
+> bulgare `BULGARIA EDUCATION EOOD`, celle que ses mentions légales déclarent. Les valeurs
+> ci-dessous ont été repassées. Voir `kit-identite.md`, encadré en tête.
+
 Vague 1, item #4 de `docs/seo/NETLINKING-ACTIONS.md` : gratuit à condition de poser un lien retour
 vers `annuaireduconseil.com` (fait, voir `JOURNAL.md` du 2026-08-17, footer de `claudeagency.fr`).
 URL de départ : https://annuaireduconseil.com/
@@ -69,9 +73,9 @@ Longueur recomptée mécaniquement (`wc -m`) après écriture dans le fichier, p
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (e-mail + mot de passe) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom du site | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | ⚠️ **Déjà soumis avec `Claude Agency`** avant l'arbitrage de Julien du 17/08/2026 (nom légal partout, pas la marque) — statut « En attente » au moment de l'arbitrage, encore modifiable via « Modifier » sur le tableau de bord. Correction non faite tant que Julien n'a pas confirmé s'il faut éditer la fiche déjà soumise ou la laisser telle quelle |
+| Nom du site | `BULGARIA EDUCATION EOOD` | ⚠️ **La fiche est déjà soumise avec `Claude Agency`** (statut « En attente » au 17/08/2026, encore modifiable via « Modifier » sur le tableau de bord). Sa correction est une tâche à part, au backlog de `visibilite-ops` : elle demande de rouvrir le formulaire chez un tiers |
 | URL du site | `https://claudeagency.fr` | `kit-identite.md` §1 |
-| Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
+| Adresse | `ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
 | Catégorie | Conseil en stratégie digitale | Liste réelle vue le 17/08/2026 sur le formulaire : **un seul choix possible** (pas multi comme d'abord supposé). Ni « intelligence artificielle » ni « cabinet de conseil » n'y figurent ; « Conseil en stratégie digitale » décrit le service vendu (à préférer à « Conseil en formation », qui décrirait la clientèle visée et se lirait à tort comme « organisation de programmes de formation interne »). Repli : « Conseil en innovation ». Éviter « Conseil en recrutement », sans rapport. Suggérer `Intelligence artificielle` dans le champ libre « Proposer des catégories » si le formulaire le permet en plus du choix unique |

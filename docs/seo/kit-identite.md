@@ -2,34 +2,67 @@
 
 Source unique du NAP (Nom, Adresse, Téléphone) pour les six fiches de la Vague 1 de
 `docs/seo/NETLINKING-ACTIONS.md` (Google Business Profile, LinkedIn, PagesJaunes/Solocal,
-Annuaire du Conseil, Sortlist, Crunchbase) et pour toute fiche future. Informations vérifiées le
-13/08/2026.
+Annuaire du Conseil, Sortlist, Crunchbase) et pour toute fiche future.
 
 **Règle absolue : le nom, l'adresse et le téléphone se copient d'ici au mot près, jamais de
 mémoire, jamais reformulés.** Une virgule d'écart entre deux fiches et Google peut considérer
 qu'il s'agit de deux entreprises différentes (dédoublement d'entité, dilution du Knowledge Graph).
 
+> ### ⚠️ Changement d'entité — arbitré par Julien le 26/08/2026
+>
+> Ce kit déclarait jusqu'ici la SAS française `ECOLE DE NATUROPATHIE ET SOPHROLOGIE`, sur la foi
+> d'une décision de Julien du 17/08/2026. Le **19/08**, le site est passé à une autre société
+> éditrice, et personne n'avait repassé ce kit depuis : il déclarait donc une entreprise que
+> claudeagency.fr ne reconnaît plus.
+>
+> **Julien a tranché le 26/08 : c'est la société bulgare `BULGARIA EDUCATION EOOD` qui s'inscrit
+> partout.** La décision du 17/08 est périmée et ne se réactive pas. Motif : un annuaire vérifie
+> l'identité en ouvrant les mentions légales du site, et une fiche qui annonce une autre société
+> que celles-ci se fait refuser — ou, pire, passe et laisse une contradiction vérifiable par
+> n'importe qui.
+>
+> **La seule source des valeurs ci-dessous est `app/src/pages/mentions-legales.astro`**, qui est
+> ce que le public et les annuaires peuvent lire. Le jour où cette page change, ce kit change le
+> même jour — c'est ce délai-là qui a coûté une semaine cette fois-ci.
+
 ---
 
 ## 1. NAP à copier tel quel
 
+Relevé le 26/08/2026 dans `app/src/pages/mentions-legales.astro`.
+
 ```
-Nom       : ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)
-Adresse   : 229 rue Saint-Honoré, 75001 Paris
+Nom       : BULGARIA EDUCATION EOOD
+Adresse   : ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie
 Téléphone : 07 56 81 34 44
 ```
 
-Identifiants légaux associés, à saisir quand un formulaire les demande (ne font pas partie du NAP
-au sens strict, mais viennent de la même source vérifiée le 13/08/2026) :
+**Le téléphone reste français, et c'est délibéré.** C'est le seul numéro qui sonne. Un numéro
+bulgare inventé casserait le NAP — précisément ce que Google recoupe d'une fiche à l'autre — pour
+un gain d'apparence. Une société établie en Bulgarie qui travaille en France au titre de la libre
+prestation de services n'a rien d'anormal à joindre par un numéro français.
 
-- SIREN : 924 997 539
-- SIRET : 924 997 539 00011
-- RCS : Paris
-- NAF/APE : 85.59B
-- Président : Antoine RAYES
+Identifiants légaux associés, à saisir quand un formulaire les demande (ne font pas partie du NAP
+au sens strict, même source, même date) :
+
+- Forme juridique : EOOD — société à responsabilité limitée à associé unique de droit bulgare
+- EIK (numéro d'identification unique) : 206 507 432
+- TVA intracommunautaire : BG 206 507 432
+- Registre : registre du commerce et des personnes morales sans but lucratif de Bulgarie
+- Immatriculée le : 13/05/2021
+- Directeur de la publication : Julien Rayes
 - Contact commercial : Julien RAYES
 - E-mail : contact@claudeagency.fr
 - Site web : https://claudeagency.fr
+
+**Ce qui ne se déclare plus nulle part** : SIREN, SIRET, RCS Paris, code NAF, président Antoine
+RAYES, numéro de déclaration d'activité, certification Qualiopi. Tout cela appartient à la SAS
+française, qui n'édite plus le site — voir §4. Un formulaire qui exige un SIRET français est un
+annuaire fermé, pas un champ à remplir approximativement.
+
+**Deux vérifications qu'un annuaire peut faire lui-même**, et qu'on peut lui donner d'avance :
+service VIES de la Commission européenne (choisir « BG », saisir `206507432`) et
+`portal.registryagency.bg` (rechercher l'EIK `206507432`).
 
 ---
 
@@ -105,7 +138,8 @@ texte plus développé (page « À propos » LinkedIn notamment, sa source d'ori
 | Catégorie secondaire | Conseil en intelligence artificielle | `NETLINKING-ACTIONS.md` l.36 |
 | Zone d'intervention | France, Belgique, Suisse, Luxembourg (organismes de formation francophones) | `CLAUDE.md` |
 | Langues | Français | Site et contenu du dépôt entièrement en français, aucune version traduite publiée |
-| Année de création | 11/03/2024 | Information fournie et vérifiée le 13/08/2026 |
+| Pays du siège | Bulgarie | Mentions légales, relues le 26/08/2026 |
+| Année de création | 2021 — immatriculation du 13/05/2021 | Mentions légales, relues le 26/08/2026. **Ce n'est plus 11/03/2024** : cette date était celle de la SAS française |
 | Effectif | à trancher | Non prouvé dans le dépôt ni dans les informations fournies |
 | E-mail public | contact@claudeagency.fr | Information fournie et vérifiée le 13/08/2026 |
 | Logo | PNG : `app/public/logo.png` (512×512) · SVG : `app/public/favicon.svg` — même étoile à 12 branches, même couleur `#CC785C`, vérifié visuellement (voir note ci-dessous) | Fichiers présents dans le dépôt |
@@ -124,19 +158,21 @@ claudeagency.fr utilise lui-même du texte stylé en HTML pour son nom, pas un l
 le nom intégré — l'absence de wordmark dans le dépôt reflète donc un choix déjà fait, pas un
 manque.
 
-**Point d'éligibilité à rappeler sur chaque fiche** (`NETLINKING-ACTIONS.md` l.8-12) : Claude
-Agency est un cabinet de conseil, pas un organisme de formation déclaré — les annuaires alimentés
-par la liste Qualiopi (Pronéo, AnnuaireQualiopi.fr, lifelong-learning.lu) sont fermés et ne doivent
-pas être tentés. **À relire à la lumière de `arbitrage-julien.md` : le SIREN a en réalité un NDA
-actif et une certification Qualiopi (voir §4 ci-dessous) — arbitrage en attente.**
+**Point d'éligibilité à rappeler sur chaque fiche** : Claude Agency est un prestataire de
+services, pas un organisme de formation — les annuaires alimentés par la liste Qualiopi (Pronéo,
+AnnuaireQualiopi.fr, lifelong-learning.lu) sont fermés et ne doivent pas être tentés. **Le
+changement d'entité du 26/08 clôt le doute qui traînait ici** : le NDA et la certification Qualiopi
+constatés en §4 appartiennent à la SAS française, qui n'édite plus le site. La société bulgare n'en
+a aucun des deux, et les mentions légales le disent en toutes lettres (« Ce n'est pas un organisme
+de formation »). Il n'y a plus d'arbitrage en attente sur ce point.
 
-**Décidé par Julien le 17/08/2026, question posée en direct pendant la soumission Sortlist :
-utiliser `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` comme nom d'établissement sur toutes les
-inscriptions aux annuaires prévues, pas `Claude Agency`.** Remplace toute mention contraire
-laissée plus haut dans ce document ou dans les fiches déjà préparées (`fiche-sortlist.md`,
-`fiche-annuaireduconseil.md`). Conséquence à traiter : la fiche Annuaire du Conseil est déjà
-soumise avec `Claude Agency` (statut « En attente » au 17/08/2026, encore modifiable) —
-correction non faite tant que Julien n'a pas confirmé s'il faut l'éditer ou la laisser.
+**Décidé par Julien le 26/08/2026 : le nom d'établissement de toutes les inscriptions est
+`BULGARIA EDUCATION EOOD`** (voir l'encadré en tête de fichier), pas `Claude Agency`, qui reste la
+marque commerciale et se met dans le champ « nom commercial » quand un formulaire en propose un.
+Cette décision **remplace celle du 17/08/2026**, qui désignait la SAS française et avait été prise
+deux jours avant le basculement d'entité. Conséquence à traiter, inscrite au backlog de
+`visibilite-ops` : les fiches déjà soumises portent l'ancienne identité et sont à reprendre une
+par une — c'est un travail de correction chez des tiers, pas une ligne à changer ici.
 
 **Écart à connaître entre e-mail public et e-mail de prospection.** Le NAP ci-dessus donne
 `contact@claudeagency.fr` comme e-mail public (information fournie le 13/08/2026).
@@ -146,7 +182,14 @@ mélanger les deux dans une même fiche.
 
 ---
 
-## 4. Statut réglementaire
+## 4. Statut réglementaire — ne concerne plus l'entité qui s'inscrit
+
+> **Tout ce paragraphe porte sur la SAS française `ECOLE DE NATUROPATHIE ET SOPHROLOGIE`, qui
+> n'édite plus claudeagency.fr depuis le 19/08/2026.** Il est conservé parce que le constat était
+> juste et qu'il a servi à écarter les annuaires Qualiopi, mais **rien de ce qu'il contient ne se
+> déclare sur une fiche** : ni le NDA, ni la certification Qualiopi, ni le SIREN. L'entité qui
+> s'inscrit désormais est bulgare et n'a aucun de ces statuts. Écrire l'un d'eux sur un formulaire
+> serait une fausse déclaration, pas un raccourci.
 
 Vérifié sur le SIREN 924 997 539, via deux URL distinctes consultées séparément.
 

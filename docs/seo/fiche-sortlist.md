@@ -1,5 +1,15 @@
 # Fiche Sortlist — inscription gratuite (Vague 1, item #5)
 
+> **Identité changée le 26/08/2026.** Julien a tranché : le site s'inscrit au nom de la société
+> bulgare `BULGARIA EDUCATION EOOD`, celle que ses mentions légales déclarent. Les valeurs
+> ci-dessous ont été repassées. Voir `kit-identite.md`, encadré en tête.
+>
+> **À vérifier avant toute chose : cette fiche est-elle déjà publiée ?** Une ligne plus bas
+> (« Taille d'équipe ») dit qu'une correction a été portée « sur la fiche publiée par SOLOHERY le
+> 17/08/2026 », alors que le suivi de `visibilite-ops` la classe seulement « préparée ». Les deux
+> ne peuvent pas être vrais. Si elle est en ligne, elle porte l'ancienne identité et rejoint la
+> tâche de correction des fiches déjà parties.
+
 Vague 1, item #5 de `docs/seo/NETLINKING-ACTIONS.md` : « Gratuit (profil de base) ».
 URL de départ : https://www.sortlist.fr/providers/pricing
 
@@ -38,9 +48,9 @@ confirmer une fois le formulaire réel ouvert.
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (e-mail + mot de passe) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom de l'agence | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Tranché par Julien le 17/08/2026 en direct : nom légal partout, pas `Claude Agency`, sur toutes les inscriptions à venir (voir `kit-identite.md` §3) |
+| Nom de l'agence | `BULGARIA EDUCATION EOOD` | Tranché par Julien le **26/08/2026** : nom légal partout, pas `Claude Agency`. Remplace sa décision du 17/08, qui désignait la SAS française (voir `kit-identite.md`, encadré en tête) |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
-| Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
+| Adresse | `ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie` | NAP verbatim, `kit-identite.md` §1 |
 | Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
 | Catégorie de service principale | **Intelligence Artificielle** (sous « Développement et Produit ») | Confirmé sur le formulaire réel le 17/08/2026 — catégorie exacte, existe bel et bien, corrige la proposition initiale (« Conseil en stratégie digitale ») |

@@ -1,5 +1,9 @@
 # Fiche Crunchbase — ajout d'organisation (Vague 1, item #6)
 
+> **Identité changée le 26/08/2026.** Julien a tranché : le site s'inscrit au nom de la société
+> bulgare `BULGARIA EDUCATION EOOD`, celle que ses mentions légales déclarent. Les valeurs
+> ci-dessous ont été repassées. Voir `kit-identite.md`, encadré en tête.
+
 Vague 1, item #6 de `docs/seo/NETLINKING-ACTIONS.md` : « Gratuit — Nofollow ». Lien nofollow, donc
 pas de puissance SEO directe — l'intérêt est que Google et les moteurs IA voient que Claude Agency
 existe (signal d'entité, pas de netlinking).
@@ -33,16 +37,16 @@ SOLOHERY doit comparer cette liste à l'ordre réel une fois connecté et l'ajus
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
 | Compte (authentification) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
-| Nom de l'organisation | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Nom légal, décision de Julien du 17/08/2026 (`kit-identite.md` §3) — champ obligatoire |
+| Nom de l'organisation | `BULGARIA EDUCATION EOOD` | Nom légal, décision de Julien du **26/08/2026** (`kit-identite.md`, encadré en tête) — champ obligatoire |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
 | Description* | *Cabinet de conseil : IA et automatisation du back-office (Qualiopi, BPF, émargement) pour organismes de formation.* | Champ limité à **2-140 caractères** (erreur constatée sur le formulaire réel avec la version 481c) — 114 caractères, compté mécaniquement (`wc -m`). Français, pas anglais. Reformulée pour la contrainte, mêmes faits que `kit-identite.md` §2 |
 | Également connu sous le nom de | `Claude Agency` | Champ confirmé sur le formulaire réel — bon endroit pour la marque commerciale, ne contredit pas le nom légal du champ Nom |
-| Nom légal | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` | Champ confirmé sur le formulaire réel, identique au champ Nom |
-| Siège social / Headquarters | `229 rue Saint-Honoré, 75001 Paris, France` | NAP non traduit tel que demandé — « rue Saint-Honoré » reste en français |
+| Nom légal | `BULGARIA EDUCATION EOOD` | Champ confirmé sur le formulaire réel, identique au champ Nom |
+| Siège social / Headquarters | `ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie` | NAP verbatim, `kit-identite.md` §1. Si le formulaire impose une ville d'une liste, choisir **Shumen, Bulgaria** |
 | Téléphone | `07 56 81 34 44` | Format inchangé, non converti en `+33` |
 | E-mail de contact | `contact@claudeagency.fr` | `kit-identite.md` §1 |
-| Date de fondation | `11/03/2024` | `kit-identite.md` §3, vérifié au registre officiel (`annuaire-entreprises.data.gouv.fr`) |
-| Statut d'activité | Active | Constaté au registre officiel le 17/08/2026 (« EN ACTIVITÉ ») |
+| Date de fondation | `13/05/2021` | `kit-identite.md` §1, date d'immatriculation au registre du commerce bulgare. **Ce n'est plus 11/03/2024** : c'était la date de la SAS française |
+| Statut d'activité | Active | Vérifiable sur `portal.registryagency.bg` (EIK `206507432`) et au service VIES (« BG », `206507432`) |
 | Secteur / Industries (proposition) | Artificial Intelligence, Consulting, Professional Training & Coaching | Non vu sur un vrai formulaire — à ajuster selon la liste réelle de tags Crunchbase |
 | Nombre d'employés | **inconnu** | Invérifiable de façon fiable — consigne explicite : ne pas approcher un chiffre |
 | Financement (levées de fonds) | **inconnu** | Invérifiable — même consigne, ne pas écrire « aucun » ni un montant |

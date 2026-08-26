@@ -5,11 +5,32 @@
 
 Toutes les URL ci-dessous ont été ouvertes et vérifiées le 12/08/2026.
 
-> **Un point d'éligibilité à connaître.** Claude Agency est un **cabinet de conseil**, pas un
-> organisme de formation déclaré. Tous les annuaires alimentés automatiquement par la liste
+> ### ⚠️ Identité changée — arbitré par Julien le 26/08/2026
+>
+> Ce document a été écrit quand claudeagency.fr était édité par la SAS française `ECOLE DE
+> NATUROPATHIE ET SOPHROLOGIE`. Depuis le **19/08/2026**, c'est la société bulgare `BULGARIA
+> EDUCATION EOOD` (EIK 206 507 432) qui édite le site, facture et porte les contrats — et Julien
+> a tranché le **26/08** que c'est elle, et elle seule, qui s'inscrit dans les annuaires.
+>
+> **Le NAP et les identifiants légaux ne se prennent donc plus ici, mais dans `kit-identite.md`
+> §1**, qui a été repassé. Chaque SIRET, adresse parisienne ou raison sociale française encore
+> présent plus bas dans ce fichier est **la trace de ce qui a été envoyé avant la décision**, pas
+> une valeur à recopier : ces tableaux sont conservés tels quels parce qu'ils disent la vérité sur
+> ce qui est parti, et les réécrire effacerait cette trace.
+>
+> Conséquence sur les annuaires français qui exigent un SIRET : ils nous sont fermés. C'est le
+> prix annoncé et accepté de la décision.
+
+> **Un point d'éligibilité à connaître.** Claude Agency est un **prestataire de services**, pas un
+> organisme de formation. Tous les annuaires alimentés automatiquement par la liste
 > publique Qualiopi (Pronéo, AnnuaireQualiopi.fr, lifelong-learning.lu) sont donc **fermés**.
 > En revanche, les catégories « cabinet de conseil » et « prestataire du secteur formation »
 > existent chez les fédérations ci-dessous — c'est la bonne porte d'entrée.
+>
+> **Le changement d'entité clôt le doute qui pesait sur ce point.** Le NDA et la certification
+> Qualiopi relevés le 17/08 appartiennent au SIREN français, qui n'édite plus le site : la société
+> bulgare n'a ni l'un ni l'autre, et les mentions légales le disent en toutes lettres. La question
+> ouverte dans `arbitrage-julien.md` est donc close, dans le sens de l'option 2.
 
 ---
 
@@ -77,8 +98,10 @@ elle-même est donc incertaine, indépendamment de la question du tarif — c'es
 question posée dans le message ci-dessous porte explicitement sur les structures de moins de 5
 salariés : la réponse tranchera aussi ce point.
 
-**Message à envoyer** — champ par champ, dans l'ordre réel du formulaire (relevé le 18/08/2026
-sur la page, pas supposé) :
+**Message envoyé le 18/08/2026** — champ par champ, dans l'ordre réel du formulaire (relevé le
+18/08/2026 sur la page, pas supposé). ⚠️ **Parti sous l'ancienne identité française**, huit jours
+avant la décision du 26/08 : le tableau est conservé comme trace de ce qui a été envoyé, il ne se
+recopie pas tel quel. Toute reprise se fait avec le NAP de `kit-identite.md` §1.
 
 | Champ du formulaire | Valeur à coller |
 | :--- | :--- |
@@ -180,8 +203,10 @@ dans le dépôt (rien d'autre n'a changé en attendant `arbitrage-julien.md`) ; 
 une association n'engage rien et devient sans objet d'elle-même si l'arbitrage bascule plus
 tard — pas de raison de trancher différemment d'une action de même nature.
 
-**Message à envoyer** — champ par champ, dans l'ordre réel du formulaire (relevé le 18/08/2026,
-formulaire complet, pas le paragraphe générique d'avant) :
+**Message envoyé le 18/08/2026** — champ par champ, dans l'ordre réel du formulaire (relevé le
+18/08/2026, formulaire complet, pas le paragraphe générique d'avant). ⚠️ **Parti sous l'ancienne
+identité française**, huit jours avant la décision du 26/08 : trace de ce qui a été envoyé, pas
+une valeur à recopier. Toute reprise se fait avec le NAP de `kit-identite.md` §1.
 
 | Champ du formulaire | Valeur à coller |
 | :--- | :--- |

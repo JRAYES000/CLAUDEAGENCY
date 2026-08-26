@@ -1,5 +1,14 @@
 # Fiche PagesJaunes / Solocal — inscription gratuite
 
+> **Identité changée le 26/08/2026.** Julien a tranché : le site s'inscrit au nom de la société
+> bulgare `BULGARIA EDUCATION EOOD`, celle que ses mentions légales déclarent. Les valeurs
+> ci-dessous ont été repassées. Voir `kit-identite.md`, encadré en tête.
+>
+> **Danger propre à cette fiche : PagesJaunes est un annuaire d'entreprises françaises et demande
+> très probablement un SIRET.** Nous n'en avons plus. Si le champ est obligatoire, **on ne
+> soumet pas** — on ne saisit surtout pas l'ancien SIRET, qui appartient à une société qui
+> n'édite pas ce site. Constater le blocage et le noter vaut mieux qu'une fiche fausse.
+
 Vague 1, item #3 de `docs/seo/NETLINKING-ACTIONS.md` : inscription libre, gratuite, aucune
 validation extérieure. URL de départ :
 https://www.solocal.com/landing/inscription-gratuite-pagesjaunes
@@ -25,10 +34,10 @@ contenu, pas forcément la séquence exacte des pages.
 
 | Champ | Valeur à coller | Remarque |
 | :--- | :--- | :--- |
-| Raison sociale | `ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)` | NAP verbatim, `kit-identite.md` §1 |
-| Adresse | `229 rue Saint-Honoré, 75001 Paris` | NAP verbatim, `kit-identite.md` §1 |
-| Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 |
-| SIRET | `924 997 539 00011` | `kit-identite.md` §1 |
+| Raison sociale | `BULGARIA EDUCATION EOOD` | NAP verbatim, `kit-identite.md` §1 — **changé le 26/08/2026**, voir l'avertissement en tête de fiche |
+| Adresse | `ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie` | NAP verbatim, `kit-identite.md` §1 |
+| Téléphone | `07 56 81 34 44` | NAP verbatim, `kit-identite.md` §1 — inchangé, seul numéro qui sonne |
+| SIRET | **aucun** — ne rien saisir | La société éditrice est bulgare : EIK `206 507 432`, TVA `BG 206 507 432`. Si le champ SIRET est obligatoire, **la fiche ne se soumet pas** (voir l'avertissement en tête) |
 | Site web | `https://claudeagency.fr` | `kit-identite.md` §1 |
 | E-mail public | `contact@claudeagency.fr` | `kit-identite.md` §1 |
 | Catégorie d'activité principale | Cabinet de conseil | `kit-identite.md` §3 |
@@ -39,7 +48,7 @@ contenu, pas forcément la séquence exacte des pages.
 | Zone d'intervention / zone de chalandise | France, Belgique, Suisse, Luxembourg (organismes de formation francophones) | `kit-identite.md` §3 |
 | Horaires d'ouverture | à trancher | Non couvert par `kit-identite.md` ; Claude Agency est un cabinet de conseil, pas un commerce à horaires fixes — à décider avec Julien (ex. « sur rendez-vous ») |
 | Effectif | à trancher | Non prouvé, `kit-identite.md` §3 |
-| Année de création | `11/03/2024` | `kit-identite.md` §1 |
+| Année de création | `2021` — immatriculation du 13/05/2021 | `kit-identite.md` §1. **Ce n'est plus 11/03/2024** : c'était la date de la SAS française |
 | Compte de connexion (e-mail + mot de passe Solocal) | à trancher | Création de compte hors périmètre de Claude Code — à faire par SOLOHERY directement |
 | **Preuve — URL de la fiche publiée** | *(à coller par SOLOHERY après validation)* | Vide, volontairement |
 

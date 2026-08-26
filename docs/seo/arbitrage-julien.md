@@ -1,4 +1,26 @@
-# Arbitrage à trancher — statut organisme de formation (SIREN 924 997 539)
+# Arbitrage — statut organisme de formation (SIREN 924 997 539)
+
+> ## ✅ Clos le 26/08/2026 — c'est l'option 2, et ce n'est plus un choix
+>
+> Cet arbitrage est devenu sans objet, et pas parce qu'on a préféré une option à l'autre : **la
+> question ne se pose plus au même sujet**. Depuis le 19/08/2026, claudeagency.fr n'est plus édité
+> par le SIREN 924 997 539 mais par la société bulgare `BULGARIA EDUCATION EOOD`, et Julien a
+> tranché le 26/08 que c'est elle qui s'inscrit partout.
+>
+> Le NDA et la certification Qualiopi constatés ci-dessous appartiennent à la SAS française. La
+> société bulgare n'en a aucun des deux. **L'option 1 (se positionner comme organisme de
+> formation) est donc fermée par les faits**, pas par une préférence : la revendiquer serait une
+> fausse déclaration. Les annuaires alimentés par la liste Qualiopi restent écartés, et les
+> mentions légales du site disent déjà « ce n'est pas un organisme de formation ».
+>
+> Le constat ci-dessous reste vrai et se conserve pour ce qu'il vaut : il documente l'activité de
+> naturopathie, bien réelle, qui explique pourquoi la fiche Google Business existante ne peut pas
+> devenir la vitrine de Claude Agency. **Ce point-là, lui, reste entier** — c'est une question de
+> réputation et de public, pas d'entité juridique. Il vit désormais dans le backlog de
+> `visibilite-ops`, pas ici.
+>
+> Les fichiers listés en bas de page ont été repassés le 26/08 : `kit-identite.md` (§1, §3 et §4)
+> et `NETLINKING-ACTIONS.md` (bandeau d'éligibilité).
 
 Constat vérifié (tâche A13, 17/08/2026, source `recherche-entreprises.api.gouv.fr`, données
 Ministère du Travail) : le SIREN 924 997 539 (ECOLE DE NATUROPATHIE ET SOPHROLOGIE, entité légale

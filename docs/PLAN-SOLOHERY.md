@@ -110,14 +110,24 @@ conversation jette du contexte utile et oblige à tout réexpliquer.
 
 Claude Agency est une **marque**, pas une société. Elle est exploitée par :
 
-- **Dénomination** : ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)
-- **SIREN** 924 997 539 · **SIRET du siège** 924 997 539 00011 · RCS Paris
-- **Siège** : 229 rue Saint-Honoré, 75001 Paris
-- **Code NAF** 85.59B — Autres formes d'enseignement · créée le 11/03/2024 · active
-- **Président** : Antoine RAYES · **fondateur, signature commerciale** : Julien RAYES
+- **Dénomination** : BULGARIA EDUCATION EOOD
+- **Forme** : société à responsabilité limitée à associé unique de droit bulgare
+- **EIK** 206 507 432 · **TVA** BG 206 507 432 · registre du commerce bulgare
+- **Siège** : ul. Saedinenie n° 66, ent. 1, ap. 15, 9700 Choumen (Shumen), Bulgarie
+- **Immatriculée le** 13/05/2021 · active
+- **Directeur de la publication, signature commerciale** : Julien RAYES
 
-Source : `recherche-entreprises.api.gouv.fr`, consultée le 13/08/2026. Ces données sont déjà celles
-des mentions légales du site.
+Source : `app/src/pages/mentions-legales.astro`, relu le 26/08/2026 — c'est ce que le site publie,
+donc ce qu'un tiers peut vérifier.
+
+> **Changement du 26/08/2026, à connaître avant de remplir quoi que ce soit.** Jusqu'à cette date,
+> cette section déclarait la SAS française `ECOLE DE NATUROPATHIE ET SOPHROLOGIE` (SIREN
+> 924 997 539, 229 rue Saint-Honoré à Paris, créée le 11/03/2024). Le site a changé de société
+> éditrice le 19/08 et Julien a tranché le 26/08 : **c'est la société bulgare qui s'inscrit
+> partout**. Les anciennes valeurs ne se saisissent plus nulle part, et le SIRET, le RCS, le code
+> NAF, le numéro de déclaration d'activité et la certification Qualiopi disparaissent avec elles —
+> ils appartiennent à une société qui n'édite plus ce site. Un formulaire qui exige un SIRET
+> français est un formulaire qu'on n'envoie pas.
 
 > **Le NAP — nom, adresse, téléphone — doit être identique au mot près** sur le site et sur les six
 > fiches d'annuaire. Une variation d'écriture annule le bénéfice d'entité recherché.
