@@ -5,6 +5,49 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-26 (72) — Reprise Ubersuggest en scraping direct sur les 41 candidats : échec confirmé
+
+**Type :** netlinking (mesure), tentative de récupération sur `docs/seo/netlinking-candidats.csv`
+(fichier inchangé — voir « Fait »).
+
+**URLs :** aucune publication.
+
+**Pourquoi :** l'entrée (71) laissait `trafic_estime`/`autorite`/`backlinks`/`ref_domains` à
+`inconnu` sur les 41 sites (API Ahrefs bloquée `Insufficient plan`). Consigne explicite : reprendre
+via Ubersuggest France en scraping web direct (WebFetch sur les pages de résultats, sans
+automatisation de formulaire), même méthode que l'entrée (70), avec un plafond de 2 tentatives par
+site avant d'écrire `inconnu`.
+
+**Fait :** 1 test manuel préalable (digiformag.com) puis 4 lots de 10-11 domaines en parallèle,
+soit les 41 sites, chacun avec jusqu'à 2 tentatives :
+- Tentative 1 : `https://app.neilpatel.com/en/domain_overview?domain=<domaine>&lang=fr&locId=2250`
+  → squelette JavaScript vide sur les 41/41 domaines testés (page rendue côté client, HTML brut ne
+  contient que le titre "Ubersuggest", aucune donnée SSR — confirme et généralise le constat déjà
+  fait en (70) sur `app.neilpatel.com`).
+- Tentative 2 : `https://neilpatel.com/backlinks/?domain=<domaine>` → `403 Forbidden` systématique
+  sur les 41/41 domaines (blocage anti-bot, pas un problème par domaine).
+
+Aucune 3ᵉ URL essayée (règle des 2 tentatives respectée). **`docs/seo/netlinking-candidats.csv`
+n'a pas été modifié** : les 4 colonnes métriques étaient déjà à `inconnu` sur toutes les lignes et
+le restent — rien à réécrire.
+
+**Mesure :** **0 site sur 41** avec au moins une métrique chiffrée récupérée. **41 sites sur 41**
+restent entièrement `inconnu` sur `trafic_estime`, `autorite`, `backlinks`, `ref_domains`. Échec
+structurel et non probabiliste : les deux URLs testées sont des applications rendues côté client
+(React/Next.js) — le paramètre `domain` ne change rien à ce constat, confirmé sur 41 domaines
+distincts couvrant des profils très différents (institutionnel, média, blog, podcast, PME).
+
+**Suite :** aucune voie de scraping direct WebFetch ne fonctionne sur Ubersuggate/Neil Patel dans
+cet environnement, ni pour les mots-clés (70) ni pour les métriques de domaine (71→72). Les options
+qui restent, à trancher par Julien : (a) reconnecter un vrai MCP Ubersuggest (mentionné comme
+« disponible » dans `docs/seo/README.md` mais absent des connecteurs actifs de cette session) ;
+(b) mettre à niveau l'abonnement Ahrefs déjà connecté (voir entrée 71) ; (c) une saisie manuelle
+ponctuelle par Julien sur les sites jugés prioritaires, hors scraping automatisé. Sans l'une de ces
+trois options, `netlinking-candidats.csv` reste sans données de trafic/autorité pour filtrer les
+41 candidats avant sélection finale par F4.
+
+---
+
 ## 2026-08-26 (71) — 41 sites candidats netlinking, métriques bloquées (docs/seo/netlinking-candidats.csv)
 
 **Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
