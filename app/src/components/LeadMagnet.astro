@@ -1,7 +1,8 @@
 ---
 // src/components/LeadMagnet.astro
 // Bloc CTA + formulaire d'inscription au lead magnet.
-// Poste vers la Pages Function /api/subscribe, qui appelle l'API Mailjet côté serveur
+// Poste vers la Pages Function /api/subscribe, qui envoie le guide par la boîte
+// Hostinger puis inscrit le contact dans Brevo (liste 12), côté serveur
 // (clé jamais exposée au client). Voir app/functions/api/subscribe.js.
 interface Props { variant?: 'compact' | 'full'; }
 const { variant = 'compact' } = Astro.props;
