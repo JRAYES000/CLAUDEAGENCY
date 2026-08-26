@@ -5,6 +5,55 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-26 (71) — 41 sites candidats netlinking, métriques bloquées (docs/seo/netlinking-candidats.csv)
+
+**Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
+journalisé car un nouveau fichier est ajouté au dépôt (commit `1eb72dc`, séparé du présent commit
+de journal par erreur d'exécution — un premier `git commit -m` sans pathspec avait embarqué deux
+fichiers déjà en staging appartenant à un autre chantier ; corrigé par `git reset --soft` puis
+recommit ciblé sur le seul fichier CSV, sans rien perdre).
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-candidats.csv`.
+
+**Pourquoi :** porter la liste de candidats netlinking de 26 (`netlinking-catalogue.csv`, F1) à
+40 sites francophones minimum, en vue de la sélection finale des 20 retenus par F4 (qui écrit seul
+dans le Sheet — rien écrit ici).
+
+**Fait :** 41 sites francophones réels et vérifiés (aucun fabriqué) : les 26 du catalogue moins
+`culture-rh.com` (payant — 700 à 9000 € selon `NETLINKING-ACTIONS.md`, contradiction avec la fiche
+catalogue non explicite sur ce point, tranchée en faveur de la recherche antérieure plus détaillée),
+soit 25, complétés par 16 nouveaux sites trouvés via 3 recherches web parallèles (thèmes
+business/marketing B2B, IA/emploi, formation professionnelle) puis 1 recherche complémentaire
+(thème emploi/RH) — chaque page de contribution vérifiée par lecture directe (WebFetch), pas de
+simple résultat de recherche pris pour argent comptant. `skills.hr` écarté malgré l'absence de
+paiement confirmé : la page mélange "contributeur" et "partenaire" sans trancher, doute réel jugé
+suffisant pour exclure. `tree-learning.fr` inclus avec une note : candidature déjà relancée côté
+Claude Agency (`NETLINKING.md` §9), pas une piste neuve.
+
+Colonne `contrepartie_demandee` : reprise telle quelle du catalogue pour les 25 sites F1 ; pour les
+16 nouveaux, résumée à partir de la page de contribution réellement lue. Aucune ligne "absente" —
+toutes les pages trouvées documentaient une contrepartie.
+
+**Blocage constaté sur les métriques.** L'outil `domain_overview` (Ubersuggest, langue fr,
+locId 2250, un seul appel/site) décrit dans la consigne n'existe dans aucun MCP connecté à cet
+environnement. Substitution tentée par l'API Ahrefs déjà connectée (3 appels/site :
+`site-explorer-metrics`, `site-explorer-domain-rating`, `site-explorer-backlinks-stats`,
+`country=FR`) via 4 sous-agents en parallèle (~10 domaines chacun) : **échec systémique et
+identique sur les 4 lots** — erreur `Insufficient plan` dès les tout premiers appels de chaque lot,
+confirmée indépendamment 4 fois avant arrêt (règle des deux tentatives infructueuses respectée,
+pas de tentative supplémentaire pour ne pas gaspiller de quota). `trafic_estime`, `autorite`,
+`backlinks`, `ref_domains` = `inconnu` sur les 41 lignes. **Action requise côté Julien** : vérifier
+ou mettre à niveau l'abonnement de l'API Ahrefs reliée au connecteur, ou reconnecter un MCP
+Ubersuggest, avant de relancer cette collecte.
+
+**Mesure :** non applicable — aucune métrique de trafic/autorité obtenue (voir blocage ci-dessus).
+
+**Suite :** relancer la collecte des 4 colonnes métriques une fois l'accès API débloqué (41 domaines
+déjà listés, pas besoin de refaire la recherche de sites) ; puis F4 sélectionne les 20 retenus et
+les écrit dans le Sheet.
+
+---
+
 ## 2026-08-26 (70) — Cibles netlinking : top 10 requêtes + profil donneur (docs/seo/netlinking-cible.md)
 
 **Type :** netlinking (synthèse), hors périmètre édition de contenu — journalisé car un nouveau
