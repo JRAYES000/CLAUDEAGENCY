@@ -5,6 +5,65 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-27 (73) — F4 : qualification des 41 candidats netlinking, 12 sites retenus sur 20 (quota non atteint)
+
+**Type :** netlinking (qualification + sélection), `docs/seo/netlinking-candidats.csv` (mis à jour)
+et onglet Google Sheet « F · Netlinking », tableau 5 (lignes 46-57, colonnes B à G).
+
+**URLs :** aucune publication — préparation des démarches F5, pas d'envoi.
+
+**Pourquoi :** F3 avait livré 41 sites candidats avec trafic/autorité `inconnu` sur les 4 colonnes
+(Ahrefs bloqué, Ubersuggest inaccessible en scraping — entrées 71-72). F4 applique les 7 contrôles
+éliminatoires du tableau 3 à ces 41 sites malgré l'absence de mesure de trafic, deux décisions de
+cadrage prises en amont : (a) les contrôles 2 (trafic) et 3 (courbe de trafic) sont traités comme
+non éliminatoires puisque non mesurables — statut « ok », constat « inconnu » ; (b) le critère de
+classement de repli, en l'absence de trafic, est la facilité d'entrée seule (page en libre-service
+ouverte à tous > prise de contact à froid).
+
+**Fait :** qualification des 41 sites en sous-agents autonomes (un par site, visite réelle des
+pages de contribution, d'un article déjà publié et du sitemap via WebFetch/WebSearch), résultats
+persistés individuellement puis agrégés.
+- **27 sites gardés**, **14 refusés** sur un contrôle éliminatoire (détail des motifs dans le CSV,
+  colonne `motif_f4`) : le motif dominant est le contrôle 6 (pas de lien réel dans le corps du texte
+  malgré une contrepartie gratuite annoncée — 8 sites : economiematin.fr, wydden.com, maddyness.com,
+  lemondeinformatique.fr, institutsapiens.fr, alliancy.fr, itespresso.fr, visionarymarketing.com) et
+  le contrôle 5 (offre commerciale de liens/articles sponsorisés en parallèle de la voie gratuite —
+  5 sites : agoravox.fr, actuia.com, frenchweb.fr, comarketing-news.fr, talks.freelancerepublik.com) ;
+  1 refus sur le contrôle 4 (blog-nouvelles-technologies.fr, ~10 articles/jour, seuil dépassé).
+- **Répartition des 27 gardés par voie** (déterminée par le catalogue F1/F3, pas par F4) :
+  25 article invité/tribune, 2 annuaire/répertoire (francenum.gouv.fr, zoneia.fr), **0 réciprocité**.
+- **Classement et sélection** : les 27 gardés classés par facilité d'entrée (immédiate puis froide),
+  puis par nombre de contrôles « ambigu » (confiance décroissante) à égalité de facilité. Retenus
+  aux quotas du tableau 2, dans la limite des candidats disponibles : **10/10 article invité/tribune**,
+  **2/8 annuaire/répertoire** (tous les candidats disponibles), **0/2 réciprocité** (aucun candidat
+  dans le lot F3). **Total retenu : 12 sites sur 20** — manque **8 sites**, entièrement dû à la
+  pénurie de candidats annuaire/répertoire et réciprocité dans le lot F3, pas à un rejet sur
+  contrôle : 15 sites supplémentaires ont passé les 7 contrôles mais restent hors sélection faute
+  de place dans leur voie (marqués « qualifié, non retenu (quota) » dans le CSV, motif détaillé).
+- **Ancres et pages visées** (tableau 4), quotas mis à l'échelle de 12 sites (au lieu de 20, ratios
+  conservés) : ancres 6 marque / 3 passe-partout / 2 phrase naturelle / 1 mot-clé exact
+  (« logiciel organisme de formation », mot-clé n°1 de F2/`netlinking-cible.md`) ; pages visées
+  5 accueil / 4 service (seo, sea, formation-ia, outils-ia-sur-mesure — 4 distinctes) / 2 nouvel
+  article (réglement-interieur-organisme-formation, opco-qualiopi-financement, publiés le
+  2026-08-19) / 1 meilleur article (prompts-ia-formateurs, 7 clics_90j, le plus haut de
+  `REQUETES.csv`). Une seule ancre et une seule page par site, ancre choisie pour correspondre au
+  sujet réel de la page visée.
+- Sheet « F · Netlinking » tableau 5, lignes 46-57, colonnes B à G écrites (colonne A et H/I/J non
+  touchées) ; relu par `GOOGLESHEETS_BATCH_GET` après écriture, conforme. CSV
+  `netlinking-candidats.csv` : deux colonnes ajoutées (`statut_f4`, `motif_f4`) sur les 41 lignes.
+
+**Mesure :** 41/41 sites qualifiés, 27 gardés (66 %), 14 refusés (34 %). 12 sites écrits dans le
+registre (60 % de l'objectif de 20), shortfall de 8 documenté et non comblé par repêchage (consigne
+explicite de F4 : ne pas repêcher en cas de pénurie).
+
+**Suite :** le manque de candidats annuaire/répertoire (2 sur 8 requis) et réciprocité (0 sur 2
+requis) est structurel au lot F3, pas à F4 — si le tableau 2 doit être rempli à 20, il faut
+retourner à F3 pour chercher spécifiquement des annuaires professionnels et des opportunités de
+réciprocité, thèmes quasi absents du lot initial de 41. F5 (envoi des propositions, à la main par
+Julien) peut démarrer sur les 12 lignes déjà qualifiées sans attendre ce complément.
+
+---
+
 ## 2026-08-26 (72) — Reprise Ubersuggest en scraping direct sur les 41 candidats : échec confirmé
 
 **Type :** netlinking (mesure), tentative de récupération sur `docs/seo/netlinking-candidats.csv`
