@@ -5,6 +5,48 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-27 (76) — Ubersuggest sur claudeagency.fr : domaines référents/backlinks/autorité toujours inaccessibles, échec confirmé par un mécanisme distinct de F3
+
+**Type :** mesure (tentative), `docs/seo/PERFORMANCES.csv` (3 lignes ajoutées).
+
+**URLs :** aucune publication — outil testé : `https://neilpatel.com/backlinks/` (Backlink Checker
+Ubersuggest, domaine testé `claudeagency.fr`), plus une tentative sur
+`https://app.neilpatel.com/en/backlinks?domain=claudeagency.fr` avant de trouver la bonne page.
+
+**Pourquoi :** relevé demandé pour comparer au point du 12/08 (0 domaine référent, 0 backlink,
+autorité 1/100) et répondre à la question « 5 domaines référents, oui ou non ? ». Consigne
+explicite de ne pas recycler l'échec de F3 (entrées 71-72, `domain_overview` : squelette JS vide
+puis 403) sans retester, le rapport backlinks n'étant pas forcément la même page.
+
+**Fait :** vérification faite avant conclusion, comme demandé — deux pages distinctes de
+`domain_overview` existent bien : `app.neilpatel.com/en/backlinks?domain=` (redirige vers la page
+d'accueil, aucune donnée) et le vrai « Backlink Checker » public sur `neilpatel.com/backlinks/`
+(formulaire URL + bouton « Check the backlinks »), jamais testé en F3. Panneau navigateur utilisé
+(pas WebFetch, méthode différente de F3 pour écarter un biais anti-bot) :
+1. Bannière cookies refusée (« Decline all »).
+2. Champ domaine rempli avec `claudeagency.fr` (confirmé par lecture directe du DOM).
+3. Tentative 1 — clic sur le bouton de soumission (coordonnées confirmées exactes par le
+   `getBoundingClientRect` du bouton) : aucun changement de page, **aucune requête réseau
+   déclenchée** (vérifié sur le journal réseau du panneau — uniquement des assets statiques et un
+   beacon de tracking, aucun appel vers une API de résultats).
+4. Tentative 2 — focus champ + touche Entrée : même constat, aucune requête déclenchée.
+
+**Mesure :** **échec, 0 métrique récupérée**, sur les 2 tentatives autorisées. Constat différent de
+F3 : pas de squelette JS vide, pas de 403 — le formulaire ne déclenche tout simplement aucun appel
+réseau dans cet environnement (panneau navigateur), sur la bonne page cette fois. `domaines_referents`,
+`backlinks`, `autorite_domaine` écrits `inconnu` dans `PERFORMANCES.csv` (date 2026-08-27),
+**aucune estimation**. Comparaison au 12/08 : **impossible à chiffrer** (12/08 : 0/0/1 pour ces
+trois métriques ; 27/08 : inconnu/inconnu/inconnu). Réponse à « 5 domaines référents, oui ou non ? » :
+**inconnue** — aucune mesure ne permet de trancher, ni dans un sens ni dans l'autre.
+
+**Suite :** troisième constat d'affilée (F2, F3, cette entrée) que les outils Ubersuggest/Neil
+Patel ne répondent pas depuis cet environnement (WebFetch et panneau navigateur), sous trois formes
+d'échec différentes (JS vide, 403, aucune requête). Les options déjà remontées en (72) restent
+valables : MCP Ubersuggest dédié, mise à niveau Ahrefs, ou saisie manuelle par Julien. Sans l'une
+des trois, `netlinking-candidats.csv` et cette mesure de suivi continueront à rester `inconnu`.
+
+---
+
 ## 2026-08-27 (75) — Societe.com : chemin de revendication re-vérifié, aucune nouvelle URL testée
 
 **Type :** netlinking (vérification), `docs/seo/NETLINKING-ACTIONS.md` vague 4, ligne Societe.com

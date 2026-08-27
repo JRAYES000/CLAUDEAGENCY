@@ -22,3 +22,6 @@ date_releve,periode_debut,periode_fin,source,propriete,metrique,valeur,note
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,clics,58,cumul depuis lancement, vs 49 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,impressions,3755,cumul depuis lancement, vs 2797 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,ctr_pct,1.54,recalcule clics/impressions
+2026-08-27,,,Ubersuggest,claudeagency.fr (FR),domaines_referents,inconnu,scraping/interaction echoue - Backlink Checker neilpatel.com ne repond pas (clic + touche Entree, aucune requete reseau declenchee)
+2026-08-27,,,Ubersuggest,claudeagency.fr (FR),backlinks,inconnu,scraping/interaction echoue - meme page/meme constat que domaines_referents
+2026-08-27,,,Ubersuggest,claudeagency.fr (FR),autorite_domaine,inconnu,scraping/interaction echoue - meme page/meme constat que domaines_referents
