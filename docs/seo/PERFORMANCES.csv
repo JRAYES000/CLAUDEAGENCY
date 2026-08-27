@@ -22,6 +22,6 @@ date_releve,periode_debut,periode_fin,source,propriete,metrique,valeur,note
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,clics,58,cumul depuis lancement, vs 49 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,impressions,3755,cumul depuis lancement, vs 2797 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,ctr_pct,1.54,recalcule clics/impressions
-2026-08-27,,,Ubersuggest,claudeagency.fr (FR),domaines_referents,inconnu,scraping/interaction echoue - Backlink Checker neilpatel.com ne repond pas (clic + touche Entree, aucune requete reseau declenchee)
-2026-08-27,,,Ubersuggest,claudeagency.fr (FR),backlinks,inconnu,scraping/interaction echoue - meme page/meme constat que domaines_referents
-2026-08-27,,,Ubersuggest,claudeagency.fr (FR),autorite_domaine,inconnu,scraping/interaction echoue - meme page/meme constat que domaines_referents
+2026-08-27,,,Ahrefs,claudeagency.fr (FR),domaines_referents,8,releve manuel SOLOHERY (ahrefs.com backlink checker) - remplace le inconnu Ubersuggest du meme jour (outil inaccessible); dont 2 spam/ferme de liens et 6 reels (dont 1 domaine propre claudepartners.fr) - detail JOURNAL entree 77
+2026-08-27,,,Ahrefs,claudeagency.fr (FR),backlinks,11,releve manuel SOLOHERY (ahrefs.com backlink checker) - 82% dofollow - remplace le inconnu Ubersuggest du meme jour
+2026-08-27,,,Ahrefs,claudeagency.fr (FR),autorite_domaine,2.1,Domain Rating Ahrefs (pas la meme echelle que Ubersuggest 0-100) - releve manuel SOLOHERY - remplace le inconnu Ubersuggest du meme jour

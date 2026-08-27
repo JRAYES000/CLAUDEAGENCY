@@ -5,6 +5,51 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-27 (77) — Ahrefs manuel (SOLOHERY) remplace les `inconnu` Ubersuggest de l'entrée (76) : 8 domaines référents, 11 backlinks, DR 2,1
+
+**Type :** mesure (correction), `docs/seo/PERFORMANCES.csv` (3 lignes du 27/08 remplacées, pas
+ajoutées) et onglet Google Sheet « Mesures », lignes 18/28/29, colonne « Après (27/08) ».
+
+**URLs :** aucune publication — relevé sur `ahrefs.com` (backlink checker), pas de scraping ni
+d'automatisation, lecture manuelle par SOLOHERY.
+
+**Pourquoi :** l'entrée (76), il y a quelques minutes, concluait à `inconnu` sur les 3 métriques
+après échec confirmé d'Ubersuggest (3ᵉ échec indépendant du même outil sur ce projet, après F2 et
+F3). SOLOHERY a contourné en relevant à la main sur Ahrefs, un outil différent, jamais annoncé
+comme source cible dans la tâche initiale. **Source réelle = Ahrefs, pas Ubersuggest** — les 3
+lignes `inconnu` du 27/08 (commit `5ac2587`) sont remplacées, pas complétées à côté : deux lignes
+`Ubersuggest`/`inconnu` et `Ahrefs`/`chiffré` à la même date auraient fait doublon dans le suivi.
+
+**Fait :** 8 domaines référents (75 % dofollow), 11 backlinks (82 % dofollow), Domain Rating 2,1 —
+échelle Ahrefs, **pas comparable point à point** à l'échelle Ubersuggest 0-100 utilisée le 12/08
+(autorité 1/100 à l'époque). Détail des 8 domaines référents, qualifié un par un par SOLOHERY :
+- **4 réels et externes non spam** : technique-de-vente.com (DR45), intelligence-artificielle.com
+  (DR59), byothe.fr (DR47, mention de claudepartners.fr qui redirige en 301 vers claudeagency.fr),
+  annuaireformation.fr (DR47, même chemin via claudepartners.fr).
+- **1 domaine propre** : claudepartners.fr (DR2) — autre produit Claude Agency, pas un tiers
+  (`CLAUDE.md` : ne jamais confondre ce domaine avec le site ici présent, mais il compte bien comme
+  domaine référent technique).
+- **1 soumission connue** : annuaireduconseil.com (DR49) — déjà répertorié en F3 complémentaire
+  (entrée 74), notre propre démarche F5, pas une mention spontanée.
+- **2 spam** : linkgenius.shop (DR21) et ranksupreme.shop (DR17), fermes de liens, mentions
+  automatiques non sollicitées.
+
+**Mesure :** **mesuré** (relevé manuel Ahrefs par SOLOHERY, pas par Claude Code — aucun outil
+interrogé ici, donnée reçue et retranscrite). Comparaison au 12/08 (0 domaine référent, 0 backlink,
+autorité 1/100) : **+8 domaines référents, +11 backlinks** ; autorité non comparable (échelle
+différente, Ahrefs DR 2,1 vs Ubersuggest 1/100 — ordre de grandeur similaire mais aucun calcul
+d'écart légitime entre les deux). Réponse à « 5 domaines référents, oui ou non ? » :
+**oui sur les 8 bruts** (objectif de 5 dépassé) et **oui aussi filtré sans les 2 spam** (6 restants,
+objectif encore dépassé) — le verdict ne dépend pas du choix de filtrage.
+
+**Suite :** les 2 domaines spam (linkgenius.shop, ranksupreme.shop) n'appellent pas d'action de
+désaveu à ce stade (DR faible, volume faible) mais à surveiller si le pattern se répète au prochain
+relevé. Le format Ahrefs manuel (SOLOHERY, hors automatisation) reste la seule voie de mesure fiable
+tant que les 3 blocages identifiés en (72) (MCP Ubersuggest, abonnement Ahrefs API, saisie manuelle)
+ne sont pas résolus côté outillage.
+
+---
+
 ## 2026-08-27 (76) — Ubersuggest sur claudeagency.fr : domaines référents/backlinks/autorité toujours inaccessibles, échec confirmé par un mécanisme distinct de F3
 
 **Type :** mesure (tentative), `docs/seo/PERFORMANCES.csv` (3 lignes ajoutées).
