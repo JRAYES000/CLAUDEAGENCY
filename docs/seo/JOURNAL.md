@@ -5,6 +5,69 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-27 (74) — F3 complémentaire : 8 sites annuaire/répertoire + réciprocité, 20/20 atteint
+
+**Type :** netlinking (recherche + qualification + sélection), `docs/seo/netlinking-candidats.csv`
+(8 lignes ajoutées) et onglet Google Sheet « F · Netlinking », tableau 5 (lignes 58-65, colonnes
+B à G) — complète l'entrée (73).
+
+**URLs :** aucune publication — préparation des démarches F5.
+
+**Pourquoi :** l'entrée (73) avait retenu 12 sites sur 20 : le lot de 41 candidats issu de F3 ne
+comptait que 2 annuaires/répertoires et 0 réciprocité, très en dessous des quotas du tableau 2
+(8 et 2). Contrairement à F3/F4, cette étape combine recherche ET qualification dans le même
+sous-agent : chaque worker devait trouver un candidat crédible dans une niche donnée puis lui
+appliquer directement les 7 contrôles (mêmes règles qu'en F4 : contrôles 2/3 non éliminatoires).
+
+**Fait :** pilote de 3 sous-agents (2 annuaires, 1 réciprocité) puis deux vagues complémentaires
+(6 + 2 workers) sur des niches distinctes (annuaires IA, RH, EdTech, SaaS, marketing digital,
+conseil/transformation digitale, automatisation/no-code, formateurs indépendants, associations
+L&D, consultants business généralistes) :
+- **8 sites trouvés et gardés** sur 11 niches explorées : entreprise-ia.com, tool-advisor.fr,
+  lannuaire.digital, forinov.fr, conseilleurs.fr, index-ia.fr (annuaire/répertoire) ;
+  annuaireduconseil.com, saas-connection.com (réciprocité).
+- **3 niches infructueuses**, documentées sans repêchage : formateurs indépendants (les deux
+  candidats crédibles soit paient le référencement soit ne publient aucun lien de site
+  personnel), associations professionnelles L&D (le modèle associatif loi 1901 français repose
+  presque systématiquement sur une cotisation payante pour figurer dans l'annuaire — constat
+  structurel, pas un raté ponctuel), consultants business généralistes (buffer, hors quota).
+- **Un reclassement de voie** : `annuaireduconseil.com`, trouvé en cherchant un annuaire RH,
+  exige en réalité un lien retour obligatoire vers son propre site — c'est la définition même de
+  la réciprocité (« leur lien chez nous, le nôtre chez eux »), pas un annuaire simple. Reclassé
+  en conséquence ; ce constat a aussi permis d'atteindre le quota de 2 réciprocités sans creuser
+  davantage cette voie, structurellement rare dans le lot F1/F3.
+- Écarté en cours de recherche (documenté dans les notes des sous-agents, non journalisé site par
+  site) : plusieurs candidats à lien retour obligatoire (francesaas.fr, systemproject.fr),
+  plusieurs annuaires à référencement payant (repertoire-formations.com, CSFC-Fédération, ANDRH,
+  Le Lab RH, GARF/AFREF), un annuaire sans lien cliquable vers le site externe
+  (intervenantformation.fr), deux annuaires hors-thème (mon-presta.fr, jeveuxunfreelance.fr).
+- **Tableau 4 recalculé sur l'ensemble des 20 lignes** (et non plus mis à l'échelle de 12) : les
+  8 nouveaux sites complètent exactement les quotas manquants — ancres 4 marque/2 passe-partout/
+  2 phrase naturelle/0 mot-clé exact (déjà posé en (73)) ; pages visées 3 accueil/2 service
+  (`services/integration-ia/`, `services/audit-ia/` — 2 services supplémentaires, toujours
+  distincts des 4 déjà utilisés)/2 nouvel article (réutilisation des 2 mêmes URLs qu'en (73),
+  usage normal : plusieurs sites différents peuvent pointer vers la même page cible)/1 meilleur
+  article (idem, réutilisation de `prompts-ia-formateurs`). Total vérifié sur les 20 lignes :
+  **10 marque / 5 passe-partout / 4 phrase naturelle / 1 mot-clé exact** et **8 accueil / 6 page
+  de service (6 pages distinctes) / 4 nouvel article / 2 meilleur article** — conforme au tableau
+  4 au chiffre près.
+- Sheet « F · Netlinking » tableau 5, lignes 58-65, colonnes B à G écrites (colonne A et H/I/J
+  non touchées) ; relu par `GOOGLESHEETS_BATCH_GET` après écriture sur l'ensemble des 20 lignes,
+  conforme (TOTAL « Sites qualifiés sur 20 » = 20). Ligne de suivi F4 (tableau 1) mise à jour en
+  conséquence.
+
+**Mesure :** **20 sites sur 20** dans le registre final (12 de F4 + 8 de ce complément).
+**49 sites au total** qualifiés à un moment ou un autre du chantier F3→F4 (41 initiaux + 8 trouvés
+ici), 35 gardés (27 + 8), 14 refusés (tous dans le lot initial des 41 — les 8 nouveaux ont tous
+été gardés dès qu'ils passaient les 7 contrôles, l'échec se produisant en amont côté recherche,
+pas côté qualification).
+
+**Suite :** F5 (envoi des propositions, à la main par Julien) peut démarrer sur les 20 lignes
+qualifiées, cadence 2 en août / 3 en septembre / 3 en octobre / 4/mois ensuite (NETLINKING.md).
+Aucun repêchage nécessaire, aucun manque à signaler.
+
+---
+
 ## 2026-08-27 (73) — F4 : qualification des 41 candidats netlinking, 12 sites retenus sur 20 (quota non atteint)
 
 **Type :** netlinking (qualification + sélection), `docs/seo/netlinking-candidats.csv` (mis à jour)
