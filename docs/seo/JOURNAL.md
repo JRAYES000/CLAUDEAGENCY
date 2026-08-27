@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-27 (75) — Societe.com : chemin de revendication re-vérifié, aucune nouvelle URL testée
+
+**Type :** netlinking (vérification), `docs/seo/NETLINKING-ACTIONS.md` vague 4, ligne Societe.com
+et section détail.
+
+**URLs :** https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html —
+aucune autre URL tentée (les deux du 12/08 restent évitées, déjà en 404).
+
+**Pourquoi :** demande de confirmer que le chemin de revendication trouvé le 18/08/2026 tient
+toujours, sans retenter les URL en échec ni cliquer « Revendiquer » (geste réservé à SOLOHERY).
+
+**Fait :** fiche ouverte le 27/08/2026 — atteinte sans erreur, données identiques au 18/08 (SIREN
+924997539, dirigeant Antoine RAYES, adresse conformes à `kit-identite.md`), source de la fiche
+mise à jour au 26/08/2026, bouton « Associer à mon compte » toujours présent. Pas de re-clic sur
+le bouton : le détail compte/règlement déjà documenté le 18/08/2026 n'a pas été retesté.
+
+**Vérifié :** page chargée en direct (panneau navigateur), texte de page lu — aucune erreur 404,
+contenu conforme à la fiche entreprise.
+
+**Reste :** l'étape post-création de compte (association effective) reste non testée — hors
+périmètre Claude Code, geste SOLOHERY.
+
+---
+
 ## 2026-08-27 (74) — F3 complémentaire : 8 sites annuaire/répertoire + réciprocité, 20/20 atteint
 
 **Type :** netlinking (recherche + qualification + sélection), `docs/seo/netlinking-candidats.csv`

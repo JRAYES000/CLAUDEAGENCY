@@ -366,13 +366,15 @@ plus d'informations ? »), aucune autre adresse d'adhésion mentionnée.
 2. Noter la date d'envoi dans **Preuve**.
 3. Sans réponse au 27/08/2026 : statut « Sans objet » dans Preuve, avec la date d'envoi. Pas de
    relance intermédiaire prévue — une seule question, une seule échéance.
-| **Societe.com** | https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html | Chemin trouvé le 18/08/2026 (les deux anciennes URL de revendication testées le 12/08 en 404 n'ont pas été retentées) — voir détail ci-dessous. |
+| **Societe.com** | https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html | Chemin trouvé le 18/08/2026, fiche re-vérifiée atteignable le 27/08/2026 (les deux anciennes URL de revendication testées le 12/08 en 404 n'ont pas été retentées) — voir détail ci-dessous. |
 
 ### Societe.com — chemin de revendication trouvé
 
 **Fiche :** https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html —
 atteinte sans erreur le 18/08/2026, données à jour (SIREN, dirigeant Antoine RAYES, adresse
-conformes à `kit-identite.md`).
+conformes à `kit-identite.md`). Re-vérifiée le 27/08/2026 : toujours atteinte, mêmes données
+(source de la fiche mise à jour au 26/08/2026), même bouton d'association — pas de 4e URL testée,
+pas de re-clic sur « Revendiquer » (geste réservé à SOLOHERY).
 
 **Revendication :** pas d'URL séparée — un bouton **« Revendiquer cette entreprise »**
 (affiché « Associer à mon compte », bandeau « Nouveau • Espace Pro 100% Gratuit ») sur la fiche
