@@ -28,6 +28,8 @@
 
 # Données personnelles de prospection — jamais commitées
 /docs/prive/
+/docs/prospection/*.csv
+/docs/prospection/vague1-notes-linkedin.md
 
 # Données de prospection de claudepartners.fr : profils LinkedIn nominatifs,
 # e-mails de personnes physiques. Dépôt public — ne jamais versionner ici.
