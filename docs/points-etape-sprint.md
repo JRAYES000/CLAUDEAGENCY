@@ -73,6 +73,16 @@ laissée à Julien, non prise. Reste non résolu à ce jour.
 | D11 — vérificateur Saleshandy à 0 crédit | Déjà tranché le 22/08 (règle D00b) : envoi sans vérification, risque assumé. Aucune nouvelle décision requise ici — signalé seulement parce que le Statut Sheet dit encore « Bloqué » alors que la décision est appliquée depuis le 22/08 | Aucune — correction de Statut hors périmètre de ce document | 22/08/2026 (rappelé le 28/08) |
 | A2/A14 — fiche Google naturopathie comme vitrine Claude Agency | Mise en pause explicite pour le reste du sprint : ne pas compléter cette fiche tant que la fiche mystère « Claude Agency » (bloc 2) n'est pas éclaircie — les deux se recoupent, trancher l'une sans l'autre créerait potentiellement deux fiches Google concurrentes pour la même entité | Attendre la réponse de Julien sur la fiche mystère avant de rouvrir A2/A14 | 28/08/2026 |
 
+**Exception à la règle « aucune ne renvoie à Julien » — A2/A14, seule ligne concernée.**
+Établir l'origine de la fiche Google Business mystère (bloc 2) suppose un accès direct au compte
+Google qui l'a créée — un fait technique à constater, pas un arbitrage à trancher avec les
+informations disponibles ici. Aucune information supplémentaire, aucun délai de réflexion
+n'y changerait quoi que ce soit : SOLOHERY n'a physiquement pas cet accès. C'est différent de D0b
+et D11 ci-dessus, deux vraies décisions de gestion (DNS à créer, envoi sans vérificateur) que
+SOLOHERY a tranchées seul faute d'y voir un enjeu qui dépasse son mandat. La règle vise à empêcher
+de renvoyer par confort une décision qu'on pourrait prendre soi-même — pas à exiger une vérification
+matériellement impossible sans l'accès qu'on n'a pas.
+
 **Deux points restent explicitement en attente de Julien, non retranchés ici :**
 
 - **Fiche Google Business « Claude Agency » mystère** (bloc 2) — origine inconnue, coexiste avec le

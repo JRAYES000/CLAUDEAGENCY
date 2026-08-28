@@ -5,6 +5,30 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (83) — Correction E1 suite passe de preuves (E5, ultracode)
+
+**Type :** correction, tâche E1 du Sheet SOLOHERY. 2 non-conformités relevées par une vérification
+indépendante (protocole E5/ultracode) sur `docs/points-etape-sprint.md` et la cellule Preuve
+(colonne N) de la ligne E1 de l'onglet `E · Pilotage`.
+
+**Non-conformité 1 (critère « les décisions collées dans Preuve »).** La Preuve d'E1 ne contenait
+qu'une description de la rédaction du bloc 3 (« rédigé avec une correction... »), pas les décisions
+elles-mêmes. **Corrigé :** la cellule contient maintenant le tableau réel des 3 blocages (D0b, D11,
+A2/A14 — décision, première action, date), recopié depuis `docs/points-etape-sprint.md`.
+
+**Non-conformité 2 (critère « aucune [décision] ne renvoie à Julien »).** La décision A2/A14
+renvoyait explicitement à Julien (« attendre la réponse de Julien sur la fiche mystère »), en
+contradiction directe avec le critère. **Ce renvoi est maintenu**, mais documenté comme exception
+légitime, dans le fichier et dans la Preuve : établir l'origine de la fiche Google Business mystère
+suppose un accès direct au compte Google que SOLOHERY n'a pas — un fait technique à constater, pas
+un arbitrage de gestion que SOLOHERY pourrait trancher seul avec les informations disponibles,
+contrairement à D0b et D11 (deux vraies décisions internes, tranchées seul). La règle vise à éviter
+les décisions renvoyées par confort, pas les vérifications matériellement hors de portée.
+
+**Fichiers touchés :** `docs/points-etape-sprint.md` (ajout du paragraphe d'exception après le
+tableau de décisions, bloc 3 d'E1) et la cellule Preuve d'E1 dans le Sheet (mise à jour via
+Composio, relue après écriture pour confirmer).
+
 ## 2026-08-28 (82) — E3 : bilan de fin de sprint SOLOHERY
 
 **Objectif 5 domaines référents : ATTEINT - 8 domaines, source Ahrefs (Domain Rating, Backlink Checker), relevé le 27/08.**
