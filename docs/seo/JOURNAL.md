@@ -5,6 +5,33 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (80) — PLAN-SOLOHERY.md : le blocage TrulyInbox du 20/08 devient sans objet, campagne Saleshandy suspendue le 25/08
+
+**Type :** journal (mise à jour de statut), pas de publication sur le site.
+
+**URLs :** aucune — document interne `docs/PLAN-SOLOHERY.md`.
+
+**Pourquoi :** le blocage TrulyInbox/Saleshandy consigné le 20/08/2026 (accès SSO manquant,
+remonté à Julien faute d'alternative sous D00b) restait en staging, non committé, donc invisible
+pour toute session suivante — contraire à la règle du projet (« une action sans entrée journal
+n'existe pas »). Il ne peut pas être supprimé : il est resté factuellement vrai jusqu'au bout,
+seul le chantier qu'il concernait a changé de statut.
+
+**Fait :** Julien a suspendu la campagne Saleshandy (onglets D et D+ du Sheet SOLOHERY) le
+25/08/2026, après une analyse montrant seulement 18 % d'adresses exploitables sur les 50 contacts
+de la vague 1 — base de données jugée mauvaise. Une note a été ajoutée à la suite du blocage
+existant dans `docs/PLAN-SOLOHERY.md` (§5) : « Devenu sans objet le 25/08/2026 […] Aucune action
+requise sur ce blocage TrulyInbox, le chantier qu'il concernait est à l'arrêt. » Le blocage
+d'origine n'a pas été effacé, seulement complété — la trace des deux faits (blocage réel, puis
+suspension du chantier) reste lisible.
+
+**Mesure :** non mesuré — mise à jour de statut, pas une métrique.
+
+**Suite :** rien en attente côté TrulyInbox/Saleshandy. Toute reprise de la prospection SOLOHERY
+part d'une nouvelle base de données, pas de celle jugée mauvaise le 25/08.
+
+---
+
 ## 2026-08-28 (79) — Réciprocité Annuaire du Conseil : lien retour déjà posé et déjà en ligne, vérifié en production
 
 **Type :** vérification (aucun code touché) — clôt le « Suite » de l'entrée 2026-08-17 (5).

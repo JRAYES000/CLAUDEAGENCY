@@ -203,6 +203,24 @@ Tant qu'elle ne l'est pas, on n'envoie pas — même si la date prévue est pass
 > première date qui satisfait les trois contraintes — chauffe, dépendances, et fenêtre d'envoi
 > mardi-jeudi.
 
+> ⛔ **Blocage constaté le 20/08/2026 : impossible de vérifier le gate « Outreach Readiness ».**
+> Le bouton SSO « Aller à TrulyInbox » (Saleshandy → Email Warm-up) ne connecte pas automatiquement
+> : il renvoie sur la page d'inscription publique de TrulyInbox (`app.trulyinbox.com/login`), sans
+> session héritée de Saleshandy. Preuve : tentative de connexion le 20/08/2026 avec
+> `contact@claudeagency.fr` (compte au nom duquel Saleshandy est ouvert, section 8) → refusée,
+> champ mot de passe en erreur. Un compte TrulyInbox distinct fait pourtant tourner la chauffe des
+> 4 boîtes depuis le 13/08/2026 (7 jours à cette date) : ce n'est ni un problème de configuration
+> ni une décision à trancher seul — c'est un accès manquant, la seule catégorie de blocage que
+> D00b (section 8) laisse remonter à Julien. **Tant que cet accès n'est pas récupéré, le statut
+> « Outreach Readiness » reste invérifié et la vague 1 du 25/08 ne peut pas être confirmée dans les
+> temps.** Action attendue de Julien : confirmer l'e-mail (et réinitialiser le mot de passe si
+> besoin) du compte TrulyInbox associé à la chauffe en cours.
+>
+> **Devenu sans objet le 25/08/2026** — Julien a suspendu la campagne Saleshandy (onglets D et D+),
+> suite à une analyse montrant seulement 18 % d'adresses exploitables sur les 50 contacts de la
+> vague 1. Aucune action requise sur ce blocage TrulyInbox, le chantier qu'il concernait est à
+> l'arrêt.
+
 **6 — Contrôle final et plafonds.**
 Test vers `mail-tester.com` depuis Saleshandy : viser **9/10 minimum**. Vérifier aussi sur
 `dmarcguide.globalcyberalliance.org`.
