@@ -5,6 +5,32 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (79) — Réciprocité Annuaire du Conseil : lien retour déjà posé et déjà en ligne, vérifié en production
+
+**Type :** vérification (aucun code touché) — clôt le « Suite » de l'entrée 2026-08-17 (5).
+
+**URLs :** https://claudeagency.fr/ (footer, toutes les pages) → https://annuaireduconseil.com/ ;
+fiche en réciprocité : https://annuaireduconseil.com/claude-agency-s854.html (publiée le
+20/08/2026, confirmée en ligne par l'entrée (78) de la veille).
+
+**Pourquoi :** demande de poser le lien retour dû en contrepartie de la fiche. Avant d'écrire, jeu
+de vérifications habituel : le lien existe déjà dans `app/src/components/Footer.astro` depuis
+l'entrée 2026-08-17 (5) (commit `58d393f`, déjà fusionné dans `origin/main`) — même motif que le
+lien `annuaireformation.fr`, aucun composant nouveau.
+
+**Fait :** aucune modification de fichier — le lien était déjà là. Vérifié en direct sur
+`https://claudeagency.fr/` (footer, propriété `href` de l'ancre « annuaire du conseil ») : pointe
+bien vers `https://annuaireduconseil.com/`. Pas de build ni de commit de code : rien n'a changé
+dans `app/`.
+
+**Mesure :** non mesuré — vérification de présence, pas une métrique de trafic ou d'autorité.
+
+**Suite :** rien en attente côté claudeagency.fr sur ce point ; l'écart de nom sur la fiche
+Annuaire du Conseil (« Claude Agency » au lieu de « ECOLE DE NATUROPATHIE ET SOPHROLOGIE ») reste
+en attente de l'arbitrage de Julien, déjà noté dans l'entrée (78).
+
+---
+
 ## 2026-08-28 (78) — A15 : relecture NAP sur les fiches en ligne — 2 mismatches de nom déjà connus, Google Business confirmé en double statut
 
 **Type :** audit (contrôle), pas de publication. Source du NAP de référence :
