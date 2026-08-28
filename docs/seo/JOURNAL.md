@@ -5,6 +5,54 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (78) — A15 : relecture NAP sur les fiches en ligne — 2 mismatches de nom déjà connus, Google Business confirmé en double statut
+
+**Type :** audit (contrôle), pas de publication. Source du NAP de référence :
+`docs/seo/kit-identite.md` §1 (Nom `ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)`, Adresse `229 rue
+Saint-Honoré, 75001 Paris`, Téléphone `07 56 81 34 44`) et §3 (décision de Julien du 17/08/2026
+d'utiliser ce nom, pas `Claude Agency`, sur les fiches annuaires).
+
+**URLs vérifiées :**
+
+| Fiche | Nom affiché | Adresse affichée | Téléphone affiché | Identique au mot près | À corriger |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| A4 Annuaire du Conseil (annuaireduconseil.com/claude-agency-s854.html) | Claude Agency | 229 rue Saint-Honoré, 75001, Paris, France | 07 56 81 34 44 | Non (nom) | Remplacer « Claude Agency » par « ECOLE DE NATUROPATHIE ET SOPHROLOGIE » — écart déjà identifié dans `kit-identite.md` §3, correction en attente de l'arbitrage de Julien (fiche modifiable, statut « En attente ») |
+| A5 Sortlist (sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie) | École de Naturopathie et Sophrologie | 229 Rue Saint-Honoré, Paris, France (pas de code postal affiché) | Non affiché publiquement (masqué derrière le formulaire de devis) | Non (adresse incomplète, téléphone non lisible) | Compléter le code postal si le back-office Sortlist le permet ; téléphone non vérifiable depuis la fiche publique, pas d'action possible sans accès au compte |
+| A6 Crunchbase (crunchbase.com/organization/ecole-de-naturopathie-et-sophrologie) | non lisible | non lisible | non lisible | Non | Fiche bloquée par une vérification anti-bot Cloudflare, confirmé par deux méthodes indépendantes (navigateur : page « Un instant… » ; WebFetch : 403 Forbidden). Pas d'action à ce stade, à retenter plus tard |
+| A11 Societe.com (societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html) | ECOLE DE NATUROPATHIE ET SOPHROLOGIE | 229 RUE SAINT-HONORE, 75001 PARIS | Masqué derrière un bouton « Afficher le numéro » — non lisible sans interaction | Non (téléphone non lisible) | Rien à corriger sur nom/adresse (identiques au fond) ; fiche officielle générée depuis Sirene/RNE, pas un formulaire éditable par nous |
+| B1 LinkedIn (linkedin.com/company/claude-agency-fr) | Claude Agency | 229 rue Saint-Honoré, 75001 Paris, Île-de-France, FR | Non affiché (LinkedIn n'expose pas de champ téléphone public sur une page entreprise) | Non (nom) | Le nom « Claude Agency » est le nom de la page LinkedIn elle-même (identifiant de la page) — non renommable sans démarche dédiée, à trancher par Julien si jugé prioritaire |
+
+**Comptage claudeagency.fr :** sur les 5 fiches ci-dessus, **2 pointent vers claudeagency.fr** (A4
+« Lien du site », B1 « Site web »). Sortlist et Societe.com n'affichent aucun lien de site public
+sur leur fiche ; Crunchbase non vérifiable (voir ci-dessus).
+
+**Cas particulier A3 — PagesJaunes, trouvée.** Aucune URL n'était connue (Sheet : « Inscription en
+cours de validation »). Retrouvée par recherche interne PagesJaunes : **URL
+`https://www.pagesjaunes.fr/pros/64069516`**, catégorie « Lycées d'enseignement général et
+technologique privés ». Nom affiché « ECOLE DE NATUROPATHIE ET SOPHROLOGIE » (identique), adresse
+« 229 rue St Honoré / 229 r St Honoré, 75001 Paris » (abréviation « St » au lieu de
+« Saint-Honoré » en toutes lettres — écart de forme à signaler, pas un « au mot près » strict).
+Aucun téléphone ni lien de site affiché ; la page elle-même prévient que sa description est
+« générée automatiquement et peut comporter des erreurs ». Ne pointe pas vers claudeagency.fr. Pas
+compté dans le tableau ni dans le comptage ci-dessus, comme demandé.
+
+**Cas particulier A2 — Google Business Profile, incohérence confirmée, non tranchée.** Le Sheet
+indique statut « Bloqué » (arbitrage de Julien en attente). Une recherche Google Maps
+(« Claude Agency agence de marketing ») fait pourtant remonter une fiche active : nom « Claude
+Agency », catégorie « Agence de marketing », marquée « Ouvert », téléphone `+33 7 56 81 34 44`
+(= `07 56 81 34 44`, identique au NAP), lien « Site Web » vers `https://claudeagency.fr/`, aucun
+avis. La page de détail complète (via l'ID de lieu) renvoie « Indisponible » — impossible de
+confirmer l'adresse complète depuis cette vue précise. **Constat posé sans arbitrage : les deux
+états (Sheet « Bloqué » / fiche en ligne validée) coexistent bel et bien**, comme signalé dans la
+demande — décision laissée à Julien, non prise ici. Pas compté dans le tableau ni dans le comptage
+claudeagency.fr ci-dessus, comme demandé.
+
+**Suite :** aucune correction appliquée dans cette entrée — c'est une relecture, pas un correctif.
+Les deux écarts de nom (A4, B1) étaient déjà connus (`kit-identite.md` §3) ; rien de nouveau à
+trancher sauf l'incohérence Google Business (A2), déjà en attente de Julien.
+
+---
+
 ## 2026-08-27 (77) — Ahrefs manuel (SOLOHERY) remplace les `inconnu` Ubersuggest de l'entrée (76) : 8 domaines référents, 11 backlinks, DR 2,1
 
 **Type :** mesure (correction), `docs/seo/PERFORMANCES.csv` (3 lignes du 27/08 remplacées, pas
