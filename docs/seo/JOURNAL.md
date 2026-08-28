@@ -5,6 +5,104 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (82) — E3 : bilan de fin de sprint SOLOHERY
+
+**Objectif 5 domaines référents : ATTEINT - 8 domaines, source Ahrefs (Domain Rating, Backlink Checker), relevé le 27/08.**
+
+**Type :** bilan (synthèse de fin de sprint), tâche E3 du Sheet SOLOHERY. Aucune cellule Statut/Preuve
+du Sheet modifiée par ce document — uniquement `docs/seo/JOURNAL.md`.
+
+**URLs :** aucune publication — synthèse de `docs/seo/JOURNAL.md` (entrées 69-81), du Sheet SOLOHERY
+(`1BZmaiFA10tY9aKVUQkHnZRt_1RjXz2AJ26cke2gfevg`, onglet Mesures relu en direct ce jour) et de
+`docs/points-etape-sprint.md` (E2, E6).
+
+**Nuance sur le « 8 » (déjà actée en E2, à ne pas perdre) :** ce chiffre est une **mesure globale**
+Ahrefs (Domain Rating, Backlink Checker), tout l'historique du domaine confondu — y compris 2 sites
+de spam jamais sollicités (linkgenius.shop DR21, ranksupreme.shop DR17). Le **rendement propre à la
+campagne de netlinking F1-F6** lancée ce sprint est très inférieur : **1 domaine référent confirmé
+en ligne** (annuaireduconseil.com, lien vérifié le 17/08) sur **20 candidats qualifiés**, 2 autres
+démarches envoyées sans confirmation à ce jour (digiformag.com, zoneia.fr), 17 jamais encore
+contactés (quota mensuel d'envoi de 2/mois tenu). Le tableau F6 du Sheet l'annonçait déjà lui-même
+avant le fait : ce chantier n'apporte aucun domaine référent d'ici le 27/08 (délai de publication de
+1 à 4 semaines après un envoi). Les deux chiffres — 8 global, 1 propre à F1-F6 — mesurent deux
+populations différentes ; ne pas les opposer comme une contradiction.
+
+**Vérification de la colonne « Après » (étape 2 de la tâche) — résultat négatif, pas la confirmation
+attendue.** Relecture en direct du Sheet (`GOOGLESHEETS_BATCH_GET`, `Mesures!A17:H36`, 28/08/2026),
+pas une relecture du journal seul. Sur les 15 lignes E18:E23 et E28:E36, **3 cellules restent
+vides** : **E30** (abonnés page LinkedIn — la page elle-même n'existe pas encore, tâche B10 non
+faite), **E34** (LCP mobile — deux méthodes de mesure tentées et documentées en entrée 81, échec des
+deux, cellule volontairement laissée vide plutôt qu'un chiffre inventé) et **E36** (rendez-vous
+obtenus — mesure à la main par Julien sur son agenda, hors accès de Claude Code). Les 12 autres
+cellules du périmètre (E18, E19, E20, E21, E22, E23, E28, E29, E31, E32, E33, E35) sont bien
+remplies, valeurs conformes à celles communiquées pour cette tâche. Ces 3 vides ne sont pas un
+oubli : ils sont documentés comme volontaires dans l'entrée 81 et dans la colonne « Où le lire » du
+Sheet lui-même (outil ou accès hors du périmètre de Claude Code). Signalé plutôt que rapporté comme
+« rien à signaler ».
+
+**Tableau des 15 indicateurs, 12/08 → 27/08 :**
+
+| Indicateur | Cible | Avant (12/08) | Après (27/08) | Écart | Verdict | Mesure |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Domaines référents | 5 | 0 | 8 | +8 | ✅ ATTEINT | mesuré (Ahrefs manuel, mesure globale — voir nuance ci-dessus) |
+| Fiches d'entreprise en ligne et vérifiables | 6 | 0 | 1 | +1 | ❌ NON ATTEINT | mesuré |
+| Posts publiés sur la page LinkedIn | 10 | 0 | 4 | +4 | ❌ NON ATTEINT | mesuré |
+| Articles avec maillage interne posé | 20 | 0 | 20 | +20 | ✅ ATTEINT | mesuré (`git log`, entrée 81) |
+| E-mails de prospection envoyés | 50 | 0 | 32 | +32 | ❌ NON ATTEINT | mesuré (Saleshandy, voir « Ce qui n'a pas marché ») |
+| Boîtes d'envoi connectées à Saleshandy | 4 | 0 | 4 | +4 | ✅ ATTEINT | mesuré |
+| Backlinks (tous sites confondus) | — | 0 | 11 | +11 | — | mesuré (Ahrefs manuel) |
+| Autorité de domaine (Domain Rating) | — | 1 | 2,1 | +1,1 | — | mesuré, mais échelle non comparable au 1/100 Ubersuggest du 12/08 (entrée 77) |
+| Abonnés page LinkedIn | — | 0 | *(vide)* | *(vide)* | — | **inconnu** — page pas encore créée (tâche B10) |
+| Clics Google (88 j) | — | 49 | 9 | -40 | — | mesuré (Search Console) |
+| Impressions Google (88 j) | — | 2797 | 2081 | -716 | — | mesuré (Search Console) |
+| Position moyenne Google | — | 33,3 | 52,1 | +18,8 (dégradation) | — | mesuré (Search Console) |
+| LCP mobile de l'accueil (s) | réf. < 2,5 | 4,2 | *(vide)* | *(vide)* | — | **inconnu** — 2 méthodes tentées, 2 échecs (entrée 81) |
+| Réponses positives à la prospection | — | 0 | 0 | 0 | — | mesuré (Saleshandy) |
+| Rendez-vous obtenus | — | 0 | *(vide)* | *(vide)* | — | **inconnu** — agenda Julien, hors accès Claude Code |
+
+**Ce qui n'a pas marché, et pourquoi.**
+
+- **Campagne de prospection Saleshandy (D5/D7).** 32 e-mails partis sur 50 contacts importés (18
+  jamais envoyés, campagne suspendue le 25/08 avant leur départ). Sur les 32 partis : 12 délivrés,
+  19 rebonds (14 block + 5 hard), 1 échec — **59 % de taux de rebond**, mesuré directement dans
+  Saleshandy (`get_sequence_stats`, séquence `glwGO3M0w6`, entrée 81). Cause identifiée dans le point
+  d'étape E2 : 55 des 100 adresses de la liste étaient **reconstituées** au format prénom.nom@,
+  jamais vérifiées, faute de crédit sur le vérificateur Saleshandy (D11, bloqué depuis le 22/08,
+  décision assumée d'envoyer sans nettoyage). La liste n'a jamais été nettoyée en amont : c'est la
+  cause directe du rebond, pas un problème de délivrabilité générale des boîtes (D0c/D0e en feu
+  vert). Julien a suspendu la campagne le 25/08 sur ce constat. **D7 (bilan chiffré Saleshandy) n'a
+  pas été fait comme tâche séparée : sans objet depuis la suspension** — ce paragraphe et E22 du
+  tableau ci-dessus en tiennent lieu.
+- **Indicateurs Search Console en recul, pas seulement une position dégradée.** Les trois chiffres
+  du tableau ci-dessus (clics -40, impressions -716, position +18,8) reculent ensemble sur la
+  fenêtre 88 jours, recoupé sur une seconde fenêtre indépendante en entrée 81 (même ordre de
+  grandeur, donc pas un artefact du jour de mesure). Aucune cause tranchée à ce stade : signalé pour
+  que le chantier C (SEO on-site) ou un futur audit y regarde avant le prochain point d'étape — voir
+  aussi l'hypothèse ouverte en entrée 65 (30-40 articles publiés d'un coup le 30/06).
+
+**Bloc 4 — état des 3 familles d'accès (E40-E42), reporté depuis `docs/points-etape-sprint.md`,
+section E6 (relevé du 28/08/2026) :**
+
+| Famille | Ce qui marche | Ce qui est bloqué | Palliatif |
+| :--- | :--- | :--- | :--- |
+| **1. Outils** | Saleshandy (9 boîtes connectées, healthScore 95-97, testé en direct le 28/08 — séquence à l'arrêt sur décision, pas une panne) ; Search Console (connecteur actif) ; connecteurs MCP Google Sheets/Composio (actifs, preuve directe) | Ubersuggest (3 échecs de scraping confirmés) ; Ahrefs API du plan connecté (« Insufficient plan », 4 échecs) ; TrulyInbox (inconnu, dernière preuve du 14/08, 14 jours périmée) | Ahrefs/Ubersuggest remplacés par un relevé manuel sur ahrefs.com (SOLOHERY, entrée 77) ; TrulyInbox sans palliatif nécessaire tant que la campagne reste à l'arrêt |
+| **2. Adhésions et fiches** | A3, A4, A5, A6, A11 : 5 accès libres et gratuits, aucune contrepartie financière relevée | A2 (bloqué, en attente de l'arbitrage de Julien — fiche Google naturopathie vs vitrine Claude Agency) ; A7/A8 (relancées le 18/08, sans réponse) ; A10 (statut « Fait » mais Preuve vide, inconnu) | A2 en pause explicite ; A7/A8 à relancer puis passage « Sans objet » si toujours muettes ; A10 à documenter avant de conclure |
+| **3. Liens** | 1 démarche confirmée en ligne (annuaireduconseil.com, lien vérifié) sur 20 sites qualifiés | 2 démarches envoyées sans confirmation (digiformag.com, zoneia.fr) ; 17 sites qualifiés jamais contactés, quota mensuel d'août déjà atteint | Cadence du plan tenue telle quelle (2 en août / 3 en septembre / 3 en octobre / 4/mois ensuite), aucune accélération pour compenser |
+
+**Aucun des 3 accès en attente (A2, A7/A8, A10) ne réclame de règlement au 28/08** — signalé dans
+l'entrée E6 source, repris ici tel quel.
+
+**Mesure :** mesuré pour les 12 cellules remplies du tableau (sources détaillées ci-dessus, la
+plupart déjà mesurées en entrée 81 et reprises sans nouveau relevé) ; **inconnu**, explicitement,
+pour E30/E34/E36.
+
+**Suite :** les 3 cellules vides (E30, E34, E36) restent à combler par SOLOHERY, hors périmètre
+Claude Code (création de la page LinkedIn, clé API PageSpeed ou relevé manuel, agenda de Julien).
+Les deux points ouverts de l'entrée 81 restent également en attente d'arbitrage SOLOHERY : le sens
+à donner au recul Search Console, et la méthode de mesure du LCP mobile.
+
+---
+
 ## 2026-08-28 (81) — Onglet Mesures rempli (colonne « Après ») : verdict du sprint à 3/6, deux écarts signalés avant écriture
 
 **Type :** mesure — colonne « Après (27/08) » de l'onglet Mesures du Sheet SOLOHERY (cellules
