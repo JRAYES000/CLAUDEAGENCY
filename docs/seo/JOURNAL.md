@@ -5,6 +5,90 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (81) — Onglet Mesures rempli (colonne « Après ») : verdict du sprint à 3/6, deux écarts signalés avant écriture
+
+**Type :** mesure — colonne « Après (27/08) » de l'onglet Mesures du Sheet SOLOHERY (cellules
+E19, E21-E23, E31-E33, E35). Pas de publication sur le site, aucun fichier du dépôt modifié.
+
+**URLs :** aucune — écriture directe dans le Google Sheet
+(id `1BZmaiFA10tY9aKVUQkHnZRt_1RjXz2AJ26cke2gfevg`, onglet Mesures).
+
+**Fait, chiffre par chiffre :**
+- **E19 — Fiches d'entreprise en ligne et vérifiables : 1** (mesuré, source : tableau A15 déjà
+  produit le 28/08, entrée (78) de ce journal — réutilisé tel quel, pas rerelevé). Sur les 6
+  fiches A2/A3/A4/A5/A6/A11 : seule A4 (Annuaire du Conseil) affiche publiquement les trois champs
+  nom + adresse + téléphone. A2 (adresse indisponible), A3 (téléphone absent), A5 et A11
+  (téléphone masqué derrière un bouton/formulaire), A6 (bloquée par Cloudflare) n'affichent pas
+  les trois. Cible 6 → **NON ATTEINT**.
+- **E21 — Articles avec maillage interne posé : 20** (mesuré, source : `git log`, 4 commits
+  `9d24b84`/`82f1737`/`a45cd1e`/`605701d` du 19/08/2026, « feat(blog): maillage interne lot 1-4/4 »,
+  3 liens par article choisis à la main d'après `docs/seo/maillage-interne-2026-08-19-proposition.md`
+  — confirmé fait par Julien lui-même, pas par script). Les 20 fichiers :
+  `accessibilite-formation-ia`, `ai-act-organisme-formation`, `cas-usage-claude-organisme-formation`,
+  `claude-ai-en-francais`, `claude-pour-le-marketing`, `evaluer-apprenants-ia`,
+  `feuille-emargement`, `formation-autofinancee-france-travail`, `formation-claude-code`,
+  `formation-claude`, `livret-accueil-stagiaire`, `lms-organisme-formation`,
+  `logiciel-organisme-formation`, `make-automatisation-organisme-formation`,
+  `meilleure-agence-ia-organisme-formation`, `numero-declaration-activite`,
+  `outils-ia-organisme-formation`, `qualiopi-guide-organisme-formation`,
+  `remplir-bpf-organisme-formation`, `seo-organisme-formation` (`.mdx`, `app/src/content/blog/`).
+  Cible 20 → **ATTEINT**.
+- **E22 — E-mails de prospection envoyés : 32, pas 50.** ⚠️ Écart avec la consigne reçue.
+  La demande initiale disait de reporter 50 tel quel (contacts importés dans la vague 1, D5). Mesuré
+  directement dans Saleshandy (`get_sequence_stats`, séquence `glwGO3M0w6` « Prospection OF - Claude
+  Agency », 28/08/2026) : `emails.total = 32`, dont 12 délivrés, 19 rebonds (14 block + 5 hard), 1
+  échec. Les 18 e-mails restants (programmés le 26/08) ne sont jamais partis : la campagne a été
+  suspendue le 25/08 avant leur envoi (entrée 80). 50 est le nombre de contacts **importés**, pas
+  le nombre d'e-mails **envoyés** — la ligne du Sheet mesure explicitement l'« envoyé ». Écrit 32,
+  la valeur mesurée, pas la valeur demandée : c'est aussi la première preuve chiffrée du diagnostic
+  de Julien (18 % d'adresses exploitables ↔ 19 rebonds sur 32 envois mesurés = 59 % de rebond).
+  Cible 50 → **NON ATTEINT** (était probablement déjà vrai avec 50 contacts, mais franchement faux
+  avec 32 envoyés).
+- **E23 — Boîtes connectées à Saleshandy : 4** (déjà connu, D0f, non recalculé). Cible 4 →
+  **ATTEINT**.
+- **E31/E32/E33 — Search Console, 88 derniers jours (30/05→25/08/2026, data_state=final, filtre
+  requête ne contient pas « skills claude seo »), source `GOOGLE_SEARCH_CONSOLE_SEARCH_ANALYTICS_QUERY`
+  dimension `query`, 246 lignes agrégées :**
+  - Clics : **9** (Avant 12/08 : 49 — écart **-40**).
+  - Impressions : **2081** (Avant : 2797 — écart **-716**).
+  - Position moyenne pondérée par les impressions : **52,1** (Avant : 33,3 — écart **+18,8**, une
+    dégradation puisqu'un écart négatif serait la bonne nouvelle ici).
+  ⚠️ **Les trois chiffres reculent, pas seulement la position déjà notée « dégradée » en Backlog**
+  (30-40 articles publiés d'un coup le 30/06). Recoupé sur une seconde fenêtre demandée en
+  comparaison, 14/05→09/08/2026 (204 lignes) : clics 8, impressions 1490, position 51,07 — même
+  ordre de grandeur, donc pas un artefact de la fenêtre du jour. Constat posé, aucune cause
+  tranchée ici : signalé pour que le chantier C (SEO on-site) ou un futur audit y regarde avant le
+  prochain point d'étape.
+- **E34 — LCP mobile (terrain + laboratoire) : laissé vide, INCONNU.** Deux méthodes tentées,
+  aucune n'a abouti : (1) API publique PageSpeed Insights via `WebFetch` → HTTP 429 (quota anonyme
+  épuisé, pas de clé API configurée), deux essais ; (2) interface `pagespeed.web.dev` dans le
+  navigateur → la requête d'analyse part bien (confirmé par `read_network_requests`, job
+  `huap7880jz`) mais reste bloquée sur « Analyse en cours » plus de 2 minutes, aucune réponse de
+  résultat. Arrêté après ces deux méthodes distinctes plutôt que de reformuler la même requête en
+  boucle. Cellule laissée vide plutôt qu'un chiffre inventé, conforme à la règle de l'onglet. Pour
+  la rendre mesurable : une clé API PageSpeed Insights, ou un relevé manuel par SOLOHERY sur
+  `pagespeed.web.dev`.
+- **E35 — Réponses positives à la prospection : 0.** Rien à trancher : `get_sequence_stats`
+  (`replied: "0"`) et `get_email_list` filtré sur la séquence (`sequenceIds: ["glwGO3M0w6"]`)
+  renvoient tous deux zéro réponse, positive ou non. La séquence elle-même est déjà `active: false`
+  dans Saleshandy — confirmation indépendante de la suspension du 25/08 (entrée 80), côté outil
+  cette fois, pas seulement côté Sheet SOLOHERY.
+- **Laissées vides pour SOLOHERY, comme demandé :** E20 (posts LinkedIn), E30 (abonnés LinkedIn),
+  E36 (rendez-vous), E40-E42 (accès, relevé E6).
+
+**Verdict du sprint (ligne calculée, E24) :** passe de 1/6 à **3/6 objectifs atteints**
+(Domaines référents ✅, Maillage interne ✅, Boîtes connectées ✅ ; Fiches en ligne ❌, E-mails
+envoyés ❌, Posts LinkedIn à renseigner).
+
+**Mesure :** mesuré pour tous les chiffres écrits, sauf E19 qui réutilise une mesure déjà datée du
+28/08 (A15) au lieu d'un nouveau relevé — signalé explicitement, pas caché.
+
+**Suite :** deux points à trancher par SOLOHERY, pas par Claude — (1) le sens à donner à la
+dégradation des trois indicateurs Search Console (clics/impressions/position) avant le prochain
+point d'étape ; (2) LCP mobile toujours à mesurer, méthode à choisir (clé API ou relevé manuel).
+
+---
+
 ## 2026-08-28 (80) — PLAN-SOLOHERY.md : le blocage TrulyInbox du 20/08 devient sans objet, campagne Saleshandy suspendue le 25/08
 
 **Type :** journal (mise à jour de statut), pas de publication sur le site.
