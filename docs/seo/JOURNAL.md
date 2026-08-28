@@ -5,6 +5,468 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (79) — Réciprocité Annuaire du Conseil : lien retour déjà posé et déjà en ligne, vérifié en production
+
+**Type :** vérification (aucun code touché) — clôt le « Suite » de l'entrée 2026-08-17 (5).
+
+**URLs :** https://claudeagency.fr/ (footer, toutes les pages) → https://annuaireduconseil.com/ ;
+fiche en réciprocité : https://annuaireduconseil.com/claude-agency-s854.html (publiée le
+20/08/2026, confirmée en ligne par l'entrée (78) de la veille).
+
+**Pourquoi :** demande de poser le lien retour dû en contrepartie de la fiche. Avant d'écrire, jeu
+de vérifications habituel : le lien existe déjà dans `app/src/components/Footer.astro` depuis
+l'entrée 2026-08-17 (5) (commit `58d393f`, déjà fusionné dans `origin/main`) — même motif que le
+lien `annuaireformation.fr`, aucun composant nouveau.
+
+**Fait :** aucune modification de fichier — le lien était déjà là. Vérifié en direct sur
+`https://claudeagency.fr/` (footer, propriété `href` de l'ancre « annuaire du conseil ») : pointe
+bien vers `https://annuaireduconseil.com/`. Pas de build ni de commit de code : rien n'a changé
+dans `app/`.
+
+**Mesure :** non mesuré — vérification de présence, pas une métrique de trafic ou d'autorité.
+
+**Suite :** rien en attente côté claudeagency.fr sur ce point ; l'écart de nom sur la fiche
+Annuaire du Conseil (« Claude Agency » au lieu de « ECOLE DE NATUROPATHIE ET SOPHROLOGIE ») reste
+en attente de l'arbitrage de Julien, déjà noté dans l'entrée (78).
+
+---
+
+## 2026-08-28 (78) — A15 : relecture NAP sur les fiches en ligne — 2 mismatches de nom déjà connus, Google Business confirmé en double statut
+
+**Type :** audit (contrôle), pas de publication. Source du NAP de référence :
+`docs/seo/kit-identite.md` §1 (Nom `ECOLE DE NATUROPATHIE ET SOPHROLOGIE (SAS)`, Adresse `229 rue
+Saint-Honoré, 75001 Paris`, Téléphone `07 56 81 34 44`) et §3 (décision de Julien du 17/08/2026
+d'utiliser ce nom, pas `Claude Agency`, sur les fiches annuaires).
+
+**URLs vérifiées :**
+
+| Fiche | Nom affiché | Adresse affichée | Téléphone affiché | Identique au mot près | À corriger |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| A4 Annuaire du Conseil (annuaireduconseil.com/claude-agency-s854.html) | Claude Agency | 229 rue Saint-Honoré, 75001, Paris, France | 07 56 81 34 44 | Non (nom) | Remplacer « Claude Agency » par « ECOLE DE NATUROPATHIE ET SOPHROLOGIE » — écart déjà identifié dans `kit-identite.md` §3, correction en attente de l'arbitrage de Julien (fiche modifiable, statut « En attente ») |
+| A5 Sortlist (sortlist.fr/agency/ecole-de-naturopathie-et-sophrologie) | École de Naturopathie et Sophrologie | 229 Rue Saint-Honoré, Paris, France (pas de code postal affiché) | Non affiché publiquement (masqué derrière le formulaire de devis) | Non (adresse incomplète, téléphone non lisible) | Compléter le code postal si le back-office Sortlist le permet ; téléphone non vérifiable depuis la fiche publique, pas d'action possible sans accès au compte |
+| A6 Crunchbase (crunchbase.com/organization/ecole-de-naturopathie-et-sophrologie) | non lisible | non lisible | non lisible | Non | Fiche bloquée par une vérification anti-bot Cloudflare, confirmé par deux méthodes indépendantes (navigateur : page « Un instant… » ; WebFetch : 403 Forbidden). Pas d'action à ce stade, à retenter plus tard |
+| A11 Societe.com (societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html) | ECOLE DE NATUROPATHIE ET SOPHROLOGIE | 229 RUE SAINT-HONORE, 75001 PARIS | Masqué derrière un bouton « Afficher le numéro » — non lisible sans interaction | Non (téléphone non lisible) | Rien à corriger sur nom/adresse (identiques au fond) ; fiche officielle générée depuis Sirene/RNE, pas un formulaire éditable par nous |
+| B1 LinkedIn (linkedin.com/company/claude-agency-fr) | Claude Agency | 229 rue Saint-Honoré, 75001 Paris, Île-de-France, FR | Non affiché (LinkedIn n'expose pas de champ téléphone public sur une page entreprise) | Non (nom) | Le nom « Claude Agency » est le nom de la page LinkedIn elle-même (identifiant de la page) — non renommable sans démarche dédiée, à trancher par Julien si jugé prioritaire |
+
+**Comptage claudeagency.fr :** sur les 5 fiches ci-dessus, **2 pointent vers claudeagency.fr** (A4
+« Lien du site », B1 « Site web »). Sortlist et Societe.com n'affichent aucun lien de site public
+sur leur fiche ; Crunchbase non vérifiable (voir ci-dessus).
+
+**Cas particulier A3 — PagesJaunes, trouvée.** Aucune URL n'était connue (Sheet : « Inscription en
+cours de validation »). Retrouvée par recherche interne PagesJaunes : **URL
+`https://www.pagesjaunes.fr/pros/64069516`**, catégorie « Lycées d'enseignement général et
+technologique privés ». Nom affiché « ECOLE DE NATUROPATHIE ET SOPHROLOGIE » (identique), adresse
+« 229 rue St Honoré / 229 r St Honoré, 75001 Paris » (abréviation « St » au lieu de
+« Saint-Honoré » en toutes lettres — écart de forme à signaler, pas un « au mot près » strict).
+Aucun téléphone ni lien de site affiché ; la page elle-même prévient que sa description est
+« générée automatiquement et peut comporter des erreurs ». Ne pointe pas vers claudeagency.fr. Pas
+compté dans le tableau ni dans le comptage ci-dessus, comme demandé.
+
+**Cas particulier A2 — Google Business Profile, incohérence confirmée, non tranchée.** Le Sheet
+indique statut « Bloqué » (arbitrage de Julien en attente). Une recherche Google Maps
+(« Claude Agency agence de marketing ») fait pourtant remonter une fiche active : nom « Claude
+Agency », catégorie « Agence de marketing », marquée « Ouvert », téléphone `+33 7 56 81 34 44`
+(= `07 56 81 34 44`, identique au NAP), lien « Site Web » vers `https://claudeagency.fr/`, aucun
+avis. La page de détail complète (via l'ID de lieu) renvoie « Indisponible » — impossible de
+confirmer l'adresse complète depuis cette vue précise. **Constat posé sans arbitrage : les deux
+états (Sheet « Bloqué » / fiche en ligne validée) coexistent bel et bien**, comme signalé dans la
+demande — décision laissée à Julien, non prise ici. Pas compté dans le tableau ni dans le comptage
+claudeagency.fr ci-dessus, comme demandé.
+
+**Suite :** aucune correction appliquée dans cette entrée — c'est une relecture, pas un correctif.
+Les deux écarts de nom (A4, B1) étaient déjà connus (`kit-identite.md` §3) ; rien de nouveau à
+trancher sauf l'incohérence Google Business (A2), déjà en attente de Julien.
+
+---
+
+## 2026-08-27 (77) — Ahrefs manuel (SOLOHERY) remplace les `inconnu` Ubersuggest de l'entrée (76) : 8 domaines référents, 11 backlinks, DR 2,1
+
+**Type :** mesure (correction), `docs/seo/PERFORMANCES.csv` (3 lignes du 27/08 remplacées, pas
+ajoutées) et onglet Google Sheet « Mesures », lignes 18/28/29, colonne « Après (27/08) ».
+
+**URLs :** aucune publication — relevé sur `ahrefs.com` (backlink checker), pas de scraping ni
+d'automatisation, lecture manuelle par SOLOHERY.
+
+**Pourquoi :** l'entrée (76), il y a quelques minutes, concluait à `inconnu` sur les 3 métriques
+après échec confirmé d'Ubersuggest (3ᵉ échec indépendant du même outil sur ce projet, après F2 et
+F3). SOLOHERY a contourné en relevant à la main sur Ahrefs, un outil différent, jamais annoncé
+comme source cible dans la tâche initiale. **Source réelle = Ahrefs, pas Ubersuggest** — les 3
+lignes `inconnu` du 27/08 (commit `5ac2587`) sont remplacées, pas complétées à côté : deux lignes
+`Ubersuggest`/`inconnu` et `Ahrefs`/`chiffré` à la même date auraient fait doublon dans le suivi.
+
+**Fait :** 8 domaines référents (75 % dofollow), 11 backlinks (82 % dofollow), Domain Rating 2,1 —
+échelle Ahrefs, **pas comparable point à point** à l'échelle Ubersuggest 0-100 utilisée le 12/08
+(autorité 1/100 à l'époque). Détail des 8 domaines référents, qualifié un par un par SOLOHERY :
+- **4 réels et externes non spam** : technique-de-vente.com (DR45), intelligence-artificielle.com
+  (DR59), byothe.fr (DR47, mention de claudepartners.fr qui redirige en 301 vers claudeagency.fr),
+  annuaireformation.fr (DR47, même chemin via claudepartners.fr).
+- **1 domaine propre** : claudepartners.fr (DR2) — autre produit Claude Agency, pas un tiers
+  (`CLAUDE.md` : ne jamais confondre ce domaine avec le site ici présent, mais il compte bien comme
+  domaine référent technique).
+- **1 soumission connue** : annuaireduconseil.com (DR49) — déjà répertorié en F3 complémentaire
+  (entrée 74), notre propre démarche F5, pas une mention spontanée.
+- **2 spam** : linkgenius.shop (DR21) et ranksupreme.shop (DR17), fermes de liens, mentions
+  automatiques non sollicitées.
+
+**Mesure :** **mesuré** (relevé manuel Ahrefs par SOLOHERY, pas par Claude Code — aucun outil
+interrogé ici, donnée reçue et retranscrite). Comparaison au 12/08 (0 domaine référent, 0 backlink,
+autorité 1/100) : **+8 domaines référents, +11 backlinks** ; autorité non comparable (échelle
+différente, Ahrefs DR 2,1 vs Ubersuggest 1/100 — ordre de grandeur similaire mais aucun calcul
+d'écart légitime entre les deux). Réponse à « 5 domaines référents, oui ou non ? » :
+**oui sur les 8 bruts** (objectif de 5 dépassé) et **oui aussi filtré sans les 2 spam** (6 restants,
+objectif encore dépassé) — le verdict ne dépend pas du choix de filtrage.
+
+**Suite :** les 2 domaines spam (linkgenius.shop, ranksupreme.shop) n'appellent pas d'action de
+désaveu à ce stade (DR faible, volume faible) mais à surveiller si le pattern se répète au prochain
+relevé. Le format Ahrefs manuel (SOLOHERY, hors automatisation) reste la seule voie de mesure fiable
+tant que les 3 blocages identifiés en (72) (MCP Ubersuggest, abonnement Ahrefs API, saisie manuelle)
+ne sont pas résolus côté outillage.
+
+---
+
+## 2026-08-27 (76) — Ubersuggest sur claudeagency.fr : domaines référents/backlinks/autorité toujours inaccessibles, échec confirmé par un mécanisme distinct de F3
+
+**Type :** mesure (tentative), `docs/seo/PERFORMANCES.csv` (3 lignes ajoutées).
+
+**URLs :** aucune publication — outil testé : `https://neilpatel.com/backlinks/` (Backlink Checker
+Ubersuggest, domaine testé `claudeagency.fr`), plus une tentative sur
+`https://app.neilpatel.com/en/backlinks?domain=claudeagency.fr` avant de trouver la bonne page.
+
+**Pourquoi :** relevé demandé pour comparer au point du 12/08 (0 domaine référent, 0 backlink,
+autorité 1/100) et répondre à la question « 5 domaines référents, oui ou non ? ». Consigne
+explicite de ne pas recycler l'échec de F3 (entrées 71-72, `domain_overview` : squelette JS vide
+puis 403) sans retester, le rapport backlinks n'étant pas forcément la même page.
+
+**Fait :** vérification faite avant conclusion, comme demandé — deux pages distinctes de
+`domain_overview` existent bien : `app.neilpatel.com/en/backlinks?domain=` (redirige vers la page
+d'accueil, aucune donnée) et le vrai « Backlink Checker » public sur `neilpatel.com/backlinks/`
+(formulaire URL + bouton « Check the backlinks »), jamais testé en F3. Panneau navigateur utilisé
+(pas WebFetch, méthode différente de F3 pour écarter un biais anti-bot) :
+1. Bannière cookies refusée (« Decline all »).
+2. Champ domaine rempli avec `claudeagency.fr` (confirmé par lecture directe du DOM).
+3. Tentative 1 — clic sur le bouton de soumission (coordonnées confirmées exactes par le
+   `getBoundingClientRect` du bouton) : aucun changement de page, **aucune requête réseau
+   déclenchée** (vérifié sur le journal réseau du panneau — uniquement des assets statiques et un
+   beacon de tracking, aucun appel vers une API de résultats).
+4. Tentative 2 — focus champ + touche Entrée : même constat, aucune requête déclenchée.
+
+**Mesure :** **échec, 0 métrique récupérée**, sur les 2 tentatives autorisées. Constat différent de
+F3 : pas de squelette JS vide, pas de 403 — le formulaire ne déclenche tout simplement aucun appel
+réseau dans cet environnement (panneau navigateur), sur la bonne page cette fois. `domaines_referents`,
+`backlinks`, `autorite_domaine` écrits `inconnu` dans `PERFORMANCES.csv` (date 2026-08-27),
+**aucune estimation**. Comparaison au 12/08 : **impossible à chiffrer** (12/08 : 0/0/1 pour ces
+trois métriques ; 27/08 : inconnu/inconnu/inconnu). Réponse à « 5 domaines référents, oui ou non ? » :
+**inconnue** — aucune mesure ne permet de trancher, ni dans un sens ni dans l'autre.
+
+**Suite :** troisième constat d'affilée (F2, F3, cette entrée) que les outils Ubersuggest/Neil
+Patel ne répondent pas depuis cet environnement (WebFetch et panneau navigateur), sous trois formes
+d'échec différentes (JS vide, 403, aucune requête). Les options déjà remontées en (72) restent
+valables : MCP Ubersuggest dédié, mise à niveau Ahrefs, ou saisie manuelle par Julien. Sans l'une
+des trois, `netlinking-candidats.csv` et cette mesure de suivi continueront à rester `inconnu`.
+
+---
+
+## 2026-08-27 (75) — Societe.com : chemin de revendication re-vérifié, aucune nouvelle URL testée
+
+**Type :** netlinking (vérification), `docs/seo/NETLINKING-ACTIONS.md` vague 4, ligne Societe.com
+et section détail.
+
+**URLs :** https://www.societe.com/societe/ecole-de-naturopathie-et-sophrologie-924997539.html —
+aucune autre URL tentée (les deux du 12/08 restent évitées, déjà en 404).
+
+**Pourquoi :** demande de confirmer que le chemin de revendication trouvé le 18/08/2026 tient
+toujours, sans retenter les URL en échec ni cliquer « Revendiquer » (geste réservé à SOLOHERY).
+
+**Fait :** fiche ouverte le 27/08/2026 — atteinte sans erreur, données identiques au 18/08 (SIREN
+924997539, dirigeant Antoine RAYES, adresse conformes à `kit-identite.md`), source de la fiche
+mise à jour au 26/08/2026, bouton « Associer à mon compte » toujours présent. Pas de re-clic sur
+le bouton : le détail compte/règlement déjà documenté le 18/08/2026 n'a pas été retesté.
+
+**Vérifié :** page chargée en direct (panneau navigateur), texte de page lu — aucune erreur 404,
+contenu conforme à la fiche entreprise.
+
+**Reste :** l'étape post-création de compte (association effective) reste non testée — hors
+périmètre Claude Code, geste SOLOHERY.
+
+---
+
+## 2026-08-27 (74) — F3 complémentaire : 8 sites annuaire/répertoire + réciprocité, 20/20 atteint
+
+**Type :** netlinking (recherche + qualification + sélection), `docs/seo/netlinking-candidats.csv`
+(8 lignes ajoutées) et onglet Google Sheet « F · Netlinking », tableau 5 (lignes 58-65, colonnes
+B à G) — complète l'entrée (73).
+
+**URLs :** aucune publication — préparation des démarches F5.
+
+**Pourquoi :** l'entrée (73) avait retenu 12 sites sur 20 : le lot de 41 candidats issu de F3 ne
+comptait que 2 annuaires/répertoires et 0 réciprocité, très en dessous des quotas du tableau 2
+(8 et 2). Contrairement à F3/F4, cette étape combine recherche ET qualification dans le même
+sous-agent : chaque worker devait trouver un candidat crédible dans une niche donnée puis lui
+appliquer directement les 7 contrôles (mêmes règles qu'en F4 : contrôles 2/3 non éliminatoires).
+
+**Fait :** pilote de 3 sous-agents (2 annuaires, 1 réciprocité) puis deux vagues complémentaires
+(6 + 2 workers) sur des niches distinctes (annuaires IA, RH, EdTech, SaaS, marketing digital,
+conseil/transformation digitale, automatisation/no-code, formateurs indépendants, associations
+L&D, consultants business généralistes) :
+- **8 sites trouvés et gardés** sur 11 niches explorées : entreprise-ia.com, tool-advisor.fr,
+  lannuaire.digital, forinov.fr, conseilleurs.fr, index-ia.fr (annuaire/répertoire) ;
+  annuaireduconseil.com, saas-connection.com (réciprocité).
+- **3 niches infructueuses**, documentées sans repêchage : formateurs indépendants (les deux
+  candidats crédibles soit paient le référencement soit ne publient aucun lien de site
+  personnel), associations professionnelles L&D (le modèle associatif loi 1901 français repose
+  presque systématiquement sur une cotisation payante pour figurer dans l'annuaire — constat
+  structurel, pas un raté ponctuel), consultants business généralistes (buffer, hors quota).
+- **Un reclassement de voie** : `annuaireduconseil.com`, trouvé en cherchant un annuaire RH,
+  exige en réalité un lien retour obligatoire vers son propre site — c'est la définition même de
+  la réciprocité (« leur lien chez nous, le nôtre chez eux »), pas un annuaire simple. Reclassé
+  en conséquence ; ce constat a aussi permis d'atteindre le quota de 2 réciprocités sans creuser
+  davantage cette voie, structurellement rare dans le lot F1/F3.
+- Écarté en cours de recherche (documenté dans les notes des sous-agents, non journalisé site par
+  site) : plusieurs candidats à lien retour obligatoire (francesaas.fr, systemproject.fr),
+  plusieurs annuaires à référencement payant (repertoire-formations.com, CSFC-Fédération, ANDRH,
+  Le Lab RH, GARF/AFREF), un annuaire sans lien cliquable vers le site externe
+  (intervenantformation.fr), deux annuaires hors-thème (mon-presta.fr, jeveuxunfreelance.fr).
+- **Tableau 4 recalculé sur l'ensemble des 20 lignes** (et non plus mis à l'échelle de 12) : les
+  8 nouveaux sites complètent exactement les quotas manquants — ancres 4 marque/2 passe-partout/
+  2 phrase naturelle/0 mot-clé exact (déjà posé en (73)) ; pages visées 3 accueil/2 service
+  (`services/integration-ia/`, `services/audit-ia/` — 2 services supplémentaires, toujours
+  distincts des 4 déjà utilisés)/2 nouvel article (réutilisation des 2 mêmes URLs qu'en (73),
+  usage normal : plusieurs sites différents peuvent pointer vers la même page cible)/1 meilleur
+  article (idem, réutilisation de `prompts-ia-formateurs`). Total vérifié sur les 20 lignes :
+  **10 marque / 5 passe-partout / 4 phrase naturelle / 1 mot-clé exact** et **8 accueil / 6 page
+  de service (6 pages distinctes) / 4 nouvel article / 2 meilleur article** — conforme au tableau
+  4 au chiffre près.
+- Sheet « F · Netlinking » tableau 5, lignes 58-65, colonnes B à G écrites (colonne A et H/I/J
+  non touchées) ; relu par `GOOGLESHEETS_BATCH_GET` après écriture sur l'ensemble des 20 lignes,
+  conforme (TOTAL « Sites qualifiés sur 20 » = 20). Ligne de suivi F4 (tableau 1) mise à jour en
+  conséquence.
+
+**Mesure :** **20 sites sur 20** dans le registre final (12 de F4 + 8 de ce complément).
+**49 sites au total** qualifiés à un moment ou un autre du chantier F3→F4 (41 initiaux + 8 trouvés
+ici), 35 gardés (27 + 8), 14 refusés (tous dans le lot initial des 41 — les 8 nouveaux ont tous
+été gardés dès qu'ils passaient les 7 contrôles, l'échec se produisant en amont côté recherche,
+pas côté qualification).
+
+**Suite :** F5 (envoi des propositions, à la main par Julien) peut démarrer sur les 20 lignes
+qualifiées, cadence 2 en août / 3 en septembre / 3 en octobre / 4/mois ensuite (NETLINKING.md).
+Aucun repêchage nécessaire, aucun manque à signaler.
+
+---
+
+## 2026-08-27 (73) — F4 : qualification des 41 candidats netlinking, 12 sites retenus sur 20 (quota non atteint)
+
+**Type :** netlinking (qualification + sélection), `docs/seo/netlinking-candidats.csv` (mis à jour)
+et onglet Google Sheet « F · Netlinking », tableau 5 (lignes 46-57, colonnes B à G).
+
+**URLs :** aucune publication — préparation des démarches F5, pas d'envoi.
+
+**Pourquoi :** F3 avait livré 41 sites candidats avec trafic/autorité `inconnu` sur les 4 colonnes
+(Ahrefs bloqué, Ubersuggest inaccessible en scraping — entrées 71-72). F4 applique les 7 contrôles
+éliminatoires du tableau 3 à ces 41 sites malgré l'absence de mesure de trafic, deux décisions de
+cadrage prises en amont : (a) les contrôles 2 (trafic) et 3 (courbe de trafic) sont traités comme
+non éliminatoires puisque non mesurables — statut « ok », constat « inconnu » ; (b) le critère de
+classement de repli, en l'absence de trafic, est la facilité d'entrée seule (page en libre-service
+ouverte à tous > prise de contact à froid).
+
+**Fait :** qualification des 41 sites en sous-agents autonomes (un par site, visite réelle des
+pages de contribution, d'un article déjà publié et du sitemap via WebFetch/WebSearch), résultats
+persistés individuellement puis agrégés.
+- **27 sites gardés**, **14 refusés** sur un contrôle éliminatoire (détail des motifs dans le CSV,
+  colonne `motif_f4`) : le motif dominant est le contrôle 6 (pas de lien réel dans le corps du texte
+  malgré une contrepartie gratuite annoncée — 8 sites : economiematin.fr, wydden.com, maddyness.com,
+  lemondeinformatique.fr, institutsapiens.fr, alliancy.fr, itespresso.fr, visionarymarketing.com) et
+  le contrôle 5 (offre commerciale de liens/articles sponsorisés en parallèle de la voie gratuite —
+  5 sites : agoravox.fr, actuia.com, frenchweb.fr, comarketing-news.fr, talks.freelancerepublik.com) ;
+  1 refus sur le contrôle 4 (blog-nouvelles-technologies.fr, ~10 articles/jour, seuil dépassé).
+- **Répartition des 27 gardés par voie** (déterminée par le catalogue F1/F3, pas par F4) :
+  25 article invité/tribune, 2 annuaire/répertoire (francenum.gouv.fr, zoneia.fr), **0 réciprocité**.
+- **Classement et sélection** : les 27 gardés classés par facilité d'entrée (immédiate puis froide),
+  puis par nombre de contrôles « ambigu » (confiance décroissante) à égalité de facilité. Retenus
+  aux quotas du tableau 2, dans la limite des candidats disponibles : **10/10 article invité/tribune**,
+  **2/8 annuaire/répertoire** (tous les candidats disponibles), **0/2 réciprocité** (aucun candidat
+  dans le lot F3). **Total retenu : 12 sites sur 20** — manque **8 sites**, entièrement dû à la
+  pénurie de candidats annuaire/répertoire et réciprocité dans le lot F3, pas à un rejet sur
+  contrôle : 15 sites supplémentaires ont passé les 7 contrôles mais restent hors sélection faute
+  de place dans leur voie (marqués « qualifié, non retenu (quota) » dans le CSV, motif détaillé).
+- **Ancres et pages visées** (tableau 4), quotas mis à l'échelle de 12 sites (au lieu de 20, ratios
+  conservés) : ancres 6 marque / 3 passe-partout / 2 phrase naturelle / 1 mot-clé exact
+  (« logiciel organisme de formation », mot-clé n°1 de F2/`netlinking-cible.md`) ; pages visées
+  5 accueil / 4 service (seo, sea, formation-ia, outils-ia-sur-mesure — 4 distinctes) / 2 nouvel
+  article (réglement-interieur-organisme-formation, opco-qualiopi-financement, publiés le
+  2026-08-19) / 1 meilleur article (prompts-ia-formateurs, 7 clics_90j, le plus haut de
+  `REQUETES.csv`). Une seule ancre et une seule page par site, ancre choisie pour correspondre au
+  sujet réel de la page visée.
+- Sheet « F · Netlinking » tableau 5, lignes 46-57, colonnes B à G écrites (colonne A et H/I/J non
+  touchées) ; relu par `GOOGLESHEETS_BATCH_GET` après écriture, conforme. CSV
+  `netlinking-candidats.csv` : deux colonnes ajoutées (`statut_f4`, `motif_f4`) sur les 41 lignes.
+
+**Mesure :** 41/41 sites qualifiés, 27 gardés (66 %), 14 refusés (34 %). 12 sites écrits dans le
+registre (60 % de l'objectif de 20), shortfall de 8 documenté et non comblé par repêchage (consigne
+explicite de F4 : ne pas repêcher en cas de pénurie).
+
+**Suite :** le manque de candidats annuaire/répertoire (2 sur 8 requis) et réciprocité (0 sur 2
+requis) est structurel au lot F3, pas à F4 — si le tableau 2 doit être rempli à 20, il faut
+retourner à F3 pour chercher spécifiquement des annuaires professionnels et des opportunités de
+réciprocité, thèmes quasi absents du lot initial de 41. F5 (envoi des propositions, à la main par
+Julien) peut démarrer sur les 12 lignes déjà qualifiées sans attendre ce complément.
+
+---
+
+## 2026-08-26 (72) — Reprise Ubersuggest en scraping direct sur les 41 candidats : échec confirmé
+
+**Type :** netlinking (mesure), tentative de récupération sur `docs/seo/netlinking-candidats.csv`
+(fichier inchangé — voir « Fait »).
+
+**URLs :** aucune publication.
+
+**Pourquoi :** l'entrée (71) laissait `trafic_estime`/`autorite`/`backlinks`/`ref_domains` à
+`inconnu` sur les 41 sites (API Ahrefs bloquée `Insufficient plan`). Consigne explicite : reprendre
+via Ubersuggest France en scraping web direct (WebFetch sur les pages de résultats, sans
+automatisation de formulaire), même méthode que l'entrée (70), avec un plafond de 2 tentatives par
+site avant d'écrire `inconnu`.
+
+**Fait :** 1 test manuel préalable (digiformag.com) puis 4 lots de 10-11 domaines en parallèle,
+soit les 41 sites, chacun avec jusqu'à 2 tentatives :
+- Tentative 1 : `https://app.neilpatel.com/en/domain_overview?domain=<domaine>&lang=fr&locId=2250`
+  → squelette JavaScript vide sur les 41/41 domaines testés (page rendue côté client, HTML brut ne
+  contient que le titre "Ubersuggest", aucune donnée SSR — confirme et généralise le constat déjà
+  fait en (70) sur `app.neilpatel.com`).
+- Tentative 2 : `https://neilpatel.com/backlinks/?domain=<domaine>` → `403 Forbidden` systématique
+  sur les 41/41 domaines (blocage anti-bot, pas un problème par domaine).
+
+Aucune 3ᵉ URL essayée (règle des 2 tentatives respectée). **`docs/seo/netlinking-candidats.csv`
+n'a pas été modifié** : les 4 colonnes métriques étaient déjà à `inconnu` sur toutes les lignes et
+le restent — rien à réécrire.
+
+**Mesure :** **0 site sur 41** avec au moins une métrique chiffrée récupérée. **41 sites sur 41**
+restent entièrement `inconnu` sur `trafic_estime`, `autorite`, `backlinks`, `ref_domains`. Échec
+structurel et non probabiliste : les deux URLs testées sont des applications rendues côté client
+(React/Next.js) — le paramètre `domain` ne change rien à ce constat, confirmé sur 41 domaines
+distincts couvrant des profils très différents (institutionnel, média, blog, podcast, PME).
+
+**Suite :** aucune voie de scraping direct WebFetch ne fonctionne sur Ubersuggate/Neil Patel dans
+cet environnement, ni pour les mots-clés (70) ni pour les métriques de domaine (71→72). Les options
+qui restent, à trancher par Julien : (a) reconnecter un vrai MCP Ubersuggest (mentionné comme
+« disponible » dans `docs/seo/README.md` mais absent des connecteurs actifs de cette session) ;
+(b) mettre à niveau l'abonnement Ahrefs déjà connecté (voir entrée 71) ; (c) une saisie manuelle
+ponctuelle par Julien sur les sites jugés prioritaires, hors scraping automatisé. Sans l'une de ces
+trois options, `netlinking-candidats.csv` reste sans données de trafic/autorité pour filtrer les
+41 candidats avant sélection finale par F4.
+
+---
+
+## 2026-08-26 (71) — 41 sites candidats netlinking, métriques bloquées (docs/seo/netlinking-candidats.csv)
+
+**Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
+journalisé car un nouveau fichier est ajouté au dépôt (commit `1eb72dc`, séparé du présent commit
+de journal par erreur d'exécution — un premier `git commit -m` sans pathspec avait embarqué deux
+fichiers déjà en staging appartenant à un autre chantier ; corrigé par `git reset --soft` puis
+recommit ciblé sur le seul fichier CSV, sans rien perdre).
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-candidats.csv`.
+
+**Pourquoi :** porter la liste de candidats netlinking de 26 (`netlinking-catalogue.csv`, F1) à
+40 sites francophones minimum, en vue de la sélection finale des 20 retenus par F4 (qui écrit seul
+dans le Sheet — rien écrit ici).
+
+**Fait :** 41 sites francophones réels et vérifiés (aucun fabriqué) : les 26 du catalogue moins
+`culture-rh.com` (payant — 700 à 9000 € selon `NETLINKING-ACTIONS.md`, contradiction avec la fiche
+catalogue non explicite sur ce point, tranchée en faveur de la recherche antérieure plus détaillée),
+soit 25, complétés par 16 nouveaux sites trouvés via 3 recherches web parallèles (thèmes
+business/marketing B2B, IA/emploi, formation professionnelle) puis 1 recherche complémentaire
+(thème emploi/RH) — chaque page de contribution vérifiée par lecture directe (WebFetch), pas de
+simple résultat de recherche pris pour argent comptant. `skills.hr` écarté malgré l'absence de
+paiement confirmé : la page mélange "contributeur" et "partenaire" sans trancher, doute réel jugé
+suffisant pour exclure. `tree-learning.fr` inclus avec une note : candidature déjà relancée côté
+Claude Agency (`NETLINKING.md` §9), pas une piste neuve.
+
+Colonne `contrepartie_demandee` : reprise telle quelle du catalogue pour les 25 sites F1 ; pour les
+16 nouveaux, résumée à partir de la page de contribution réellement lue. Aucune ligne "absente" —
+toutes les pages trouvées documentaient une contrepartie.
+
+**Blocage constaté sur les métriques.** L'outil `domain_overview` (Ubersuggest, langue fr,
+locId 2250, un seul appel/site) décrit dans la consigne n'existe dans aucun MCP connecté à cet
+environnement. Substitution tentée par l'API Ahrefs déjà connectée (3 appels/site :
+`site-explorer-metrics`, `site-explorer-domain-rating`, `site-explorer-backlinks-stats`,
+`country=FR`) via 4 sous-agents en parallèle (~10 domaines chacun) : **échec systémique et
+identique sur les 4 lots** — erreur `Insufficient plan` dès les tout premiers appels de chaque lot,
+confirmée indépendamment 4 fois avant arrêt (règle des deux tentatives infructueuses respectée,
+pas de tentative supplémentaire pour ne pas gaspiller de quota). `trafic_estime`, `autorite`,
+`backlinks`, `ref_domains` = `inconnu` sur les 41 lignes. **Action requise côté Julien** : vérifier
+ou mettre à niveau l'abonnement de l'API Ahrefs reliée au connecteur, ou reconnecter un MCP
+Ubersuggest, avant de relancer cette collecte.
+
+**Mesure :** non applicable — aucune métrique de trafic/autorité obtenue (voir blocage ci-dessus).
+
+**Suite :** relancer la collecte des 4 colonnes métriques une fois l'accès API débloqué (41 domaines
+déjà listés, pas besoin de refaire la recherche de sites) ; puis F4 sélectionne les 20 retenus et
+les écrit dans le Sheet.
+
+---
+
+## 2026-08-26 (70) — Cibles netlinking : top 10 requêtes + profil donneur (docs/seo/netlinking-cible.md)
+
+**Type :** netlinking (synthèse), hors périmètre édition de contenu — journalisé car un nouveau
+fichier est ajouté au dépôt dans le même commit.
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-cible.md`.
+
+**Fait :** extrait des 91 lignes de `REQUETES.csv` les 10 requêtes au plus fort `impressions_90j`
+(tri seul, aucun recalcul) : logiciel organisme de formation (404), claude agency marque (227),
+agence marketing claude (188), automatiser bpf organisme formation (138), agence référencement
+naturel claude (134), claude français (110), blog (79), formation claude (70), référencement
+gratuit organisme de formation (68), livret d'accueil stagiaire entreprise (58). Tentative de
+compléter les `source_volume = inconnu` via Ubersuggest France : app.neilpatel.com ne rend pas
+d'arbre exploitable en scraping automatisé et la navigation directe est refusée — deux tentatives
+infructueuses, arrêt sans invention de chiffre. 9 des 10 lignes restent `inconnu`. Profil du site
+donneur idéal rédigé à partir de `PRODUCT.md` (cible OF, Qualiopi, ton) et `NETLINKING.md` §6.9
+(niche étroite, ne jamais diluer vers du hors-sujet) et §6.7 (fermes de liens déguisées, filtre
+sur le ratio de pages réellement trafiquées).
+
+**Mesure :** non applicable — fichier de synthèse, pas de mesure GSC.
+
+---
+
+## 2026-08-26 (69) — Catalogue de netlinking à 26 sites (docs/seo/netlinking-catalogue.csv)
+
+**Type :** netlinking (recherche + fichier de données), hors périmètre édition de contenu —
+journalisé car un nouveau fichier est ajouté au dépôt dans le même commit.
+
+**URLs :** aucune publication — nouveau fichier `docs/seo/netlinking-catalogue.csv`.
+
+**Pourquoi :** SOLOHERY avait fourni 12 portes d'entrée déjà vérifiées le 16/08/2026 pour du
+netlinking gratuit (formation professionnelle, Qualiopi, RH, EdTech, IA appliquée aux entreprises,
+entrepreneuriat B2B). Consigne : porter la liste à au moins 25 sites sans rien fabriquer, chaque
+ligne devant porter la preuve (URL de la page + date de vérification).
+
+**Fait :** repris les 12 sites fournis tels quels (date de vérification conservée : 16/08/2026).
+Testé ~43 candidats supplémentaires (blogs métier, médias à tribunes, annuaires professionnels)
+via 6 vagues de sous-agents `Explore`/`sonnet` lancés en parallèle (skill
+`parallelisation-et-routage`), chacun chargé de trouver et lire intégralement la page de
+contribution réelle, d'écarter tout site payant, annuaire Qualiopi ou plateforme de vente de
+liens, et de ne rien inscrire si la page était introuvable après recherche raisonnable.
+14 candidats confirmés ouverts et gratuits sur les ~43 testés (taux ~33 %) : Actu IA, Culture RH,
+MyRHline, Cadre Dirigeant Magazine, Économie Matin, Wydden (suite éditoriale de 1001startups.fr,
+dont le domaine d'origine redirige désormais vers wydden.com), Le Coin des Entrepreneurs,
+Maddyness, FrenchWeb, Le Monde Informatique, Institut Sapiens, Comarketing-News, Alliancy,
+ITespresso. Total : **26 lignes** dans `docs/seo/netlinking-catalogue.csv`.
+
+Rejets notables (non inscrits, avec la raison) : Focus RH et Chef d'Entreprise.com (sites
+inaccessibles au fetch après plusieurs tentatives), Centre Inffo (en liquidation judiciaire
+depuis le 08/07/2026, aucune page de contribution active), Créer Mon Entreprise (plateforme
+payante Bulldoz), Ludovia Magazine (doublon de Ludomag, déjà dans la liste des 12). Les exclusions
+de la consigne (Guide Social, La Digital Learning Academy, Thot Cursus, Educavox, MentionMatch,
+les-ia.fr) n'ont pas été re-proposées.
+
+**Mesure :** non applicable — fichier de données, pas de mesure GSC.
+
+**Suite :** SOLOHERY relit le CSV et colle son chemin (`docs/seo/netlinking-catalogue.csv`) en
+Preuve. Le Monde du Chiffre (lemondeduchiffre.fr) restait en cours de vérification à la clôture de
+cette entrée, sans effet sur le total déjà au-delà du seuil — à tester dans une prochaine passe si
+une marge supplémentaire est utile.
+
+---
+
 ## 2026-08-25 (68) — Page webinaire Qualiopi (16/09) + Google Form d'inscription
 
 **Type :** publication, hors périmètre SEO strict — journalisé car l'action touche le dépôt et
