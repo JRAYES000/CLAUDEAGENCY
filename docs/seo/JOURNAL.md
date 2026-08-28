@@ -30,8 +30,14 @@ populations différentes ; ne pas les opposer comme une contradiction.
 **Vérification de la colonne « Après » (étape 2 de la tâche) — résultat négatif, pas la confirmation
 attendue.** Relecture en direct du Sheet (`GOOGLESHEETS_BATCH_GET`, `Mesures!A17:H36`, 28/08/2026),
 pas une relecture du journal seul. Sur les 15 lignes E18:E23 et E28:E36, **3 cellules restent
-vides** : **E30** (abonnés page LinkedIn — la page elle-même n'existe pas encore, tâche B10 non
-faite), **E34** (LCP mobile — deux méthodes de mesure tentées et documentées en entrée 81, échec des
+vides** : **E30** (abonnés page LinkedIn — nombre simplement non relevé ; **correction du 28/08 :**
+la page LinkedIn (B1) est créée et en ligne depuis le 15/08/2026
+(https://www.linkedin.com/company/claude-agency-fr/) et B10 (alignement `sameAs`) est fait depuis le
+16/08/2026 — vérifié directement dans l'onglet `B · Notoriété` du Sheet, Statut « Fait » sur les
+deux lignes. Une première version de cette entrée affirmait à tort que la page n'existait pas
+encore ; l'annotation « 0 au 12/08 parce que la page n'existe pas encore » lue dans la cellule E30
+décrit l'état du 12/08, pas l'état actuel — erreur de lecture corrigée ici avant tout push), **E34**
+(LCP mobile — deux méthodes de mesure tentées et documentées en entrée 81, échec des
 deux, cellule volontairement laissée vide plutôt qu'un chiffre inventé) et **E36** (rendez-vous
 obtenus — mesure à la main par Julien sur son agenda, hors accès de Claude Code). Les 12 autres
 cellules du périmètre (E18, E19, E20, E21, E22, E23, E28, E29, E31, E32, E33, E35) sont bien
@@ -52,7 +58,7 @@ Sheet lui-même (outil ou accès hors du périmètre de Claude Code). Signalé p
 | Boîtes d'envoi connectées à Saleshandy | 4 | 0 | 4 | +4 | ✅ ATTEINT | mesuré |
 | Backlinks (tous sites confondus) | — | 0 | 11 | +11 | — | mesuré (Ahrefs manuel) |
 | Autorité de domaine (Domain Rating) | — | 1 | 2,1 | +1,1 | — | mesuré, mais échelle non comparable au 1/100 Ubersuggest du 12/08 (entrée 77) |
-| Abonnés page LinkedIn | — | 0 | *(vide)* | *(vide)* | — | **inconnu** — page pas encore créée (tâche B10) |
+| Abonnés page LinkedIn | — | 0 | *(vide)* | *(vide)* | — | **inconnu** — page en ligne depuis le 15/08 (B1/B10 faits), nombre d'abonnés simplement non relevé |
 | Clics Google (88 j) | — | 49 | 9 | -40 | — | mesuré (Search Console) |
 | Impressions Google (88 j) | — | 2797 | 2081 | -716 | — | mesuré (Search Console) |
 | Position moyenne Google | — | 33,3 | 52,1 | +18,8 (dégradation) | — | mesuré (Search Console) |

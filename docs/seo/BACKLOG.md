@@ -3,8 +3,10 @@
 Prochaines actions, par ordre de priorité. **Lire aussi la section « Écarté »** avant de proposer
 quoi que ce soit : une idée qui s'y trouve a déjà été tranchée.
 
-Mise à jour le 2026-08-14 (ménage du dépôt). Priorisation du 2026-08-12 (après-midi) inchangée. Priorisation à partir des données GSC mesurées (14/05→09/08/2026), pas
-d'hypothèses. Dernière mesure : 49 clics, 2 797 impressions, position moyenne 33,3.
+Mise à jour le 2026-08-28 (bilan de fin de sprint E3, `JOURNAL.md` #82). Priorisation à partir des
+données GSC mesurées, pas d'hypothèses. **Dernière mesure (88 derniers jours, relevé du 27/08) : 9
+clics, 2 081 impressions, position moyenne 52,1 — recul sur les trois par rapport au 12/08 (49
+clics, 2 797 impressions, 33,3), voir priorité 1bis ci-dessous, cause non tranchée.**
 
 ---
 
@@ -20,30 +22,63 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       sur les 15 URL redirigées, et trancher le sort des 5 articles à 0 impression conservés.
 - [ ] Ne PAS resupprimer d'articles avant ce relevé. Le blocage reste le netlinking, pas le volume.
 
-### 🔴 1. Netlinking — le seul levier qui débloque le reste
+### 🟡 1. Netlinking — objectif global atteint, rendement propre à la campagne encore faible
 
-**Constat mesuré :** 0 backlink, 0 domaine référent, autorité de domaine 1/100
-(Ubersuggest, 2026-08-12). Le site a 2 797 impressions et une position moyenne de 33,3 : Google
-connaît les pages, il ne les juge pas assez fiables pour les remonter.
-
-Publier un 70ᵉ article ne changera pas ça. C'est le point de blocage n°1.
+**Constat mesuré (27/08/2026, Ahrefs manuel — Domain Rating, Backlink Checker, `JOURNAL.md` #77 et
+#82) : 8 domaines référents, 11 backlinks, Domain Rating 2,1**, contre 0/0/1 le 12/08. **Objectif de
+5 domaines référents ATTEINT.** Mais ce 8 est une mesure globale (tout l'historique du domaine, y
+compris 2 sites de spam jamais sollicités) : le **rendement propre à la campagne de netlinking
+F1-F6** lancée ce sprint est de **1 domaine référent confirmé en ligne** (annuaireduconseil.com) sur
+20 candidats qualifiés, 2 en attente de publication, 17 jamais contactés. Détail complet :
+`JOURNAL.md` #82 et `docs/points-etape-sprint.md` §E2.
 
 **Plan d'action complet, 13 cibles vérifiées + messages prêts à envoyer :
 [`NETLINKING-ACTIONS.md`](./NETLINKING-ACTIONS.md)** (établi le 2026-08-12).
 
-- [ ] **Vague 1** — 6 fiches à créer soi-même, gratuit, ~2 h : Google Business Profile, LinkedIn
-      entreprise, PagesJaunes, Annuaire du Conseil, Sortlist, Crunchbase.
-- [ ] **Vague 2** — les 2 fédérations qui comptent : Les Acteurs de la Compétence et Hub France IA
-      (payantes, cotisation à demander). Messages rédigés, à envoyer.
-- [ ] **Vague 3** — Digiformag, contribution éditoriale gratuite. Message rédigé avec 3 sujets.
+- [x] **Vague 1** — 5 fiches sur 6 faites : PagesJaunes (A3, inscription en cours de validation),
+      Annuaire du Conseil (A4, fiche en ligne **+ réciprocité posée et vérifiée en ligne** —
+      lien retour dans le footer du site vers annuaireduconseil.com, `JOURNAL.md` #79), Sortlist
+      (A5), Crunchbase (A6, fiche soumise), page entreprise LinkedIn (B1, créée et en ligne le
+      15/08, `sameAs` aligné le 16/08 — B10). Reste : **Google Business Profile (A2) bloqué**, en
+      attente de l'arbitrage de Julien (fiche existante de l'école de naturopathie vs vitrine
+      Claude Agency) — voir point ci-dessous.
+- [ ] **Vague 2** — les 2 fédérations qui comptent : Les Acteurs de la Compétence (A7) et Hub
+      France IA (A8) (payantes, cotisation à demander). Messages envoyés le 18/08, **sans réponse à
+      ce jour** (28/08) — relance due depuis le 21/08, jamais renvoyée. À rejouer, puis passage en
+      « Sans objet » si toujours muettes.
+- [ ] **Vague 3** — Digiformag, contribution éditoriale gratuite. Message envoyé le 18/08, aucun
+      article publié en ligne à ce jour.
 - [ ] Avant tout achat de lien payant : passer le site donneur aux **7 critères éliminatoires du
       tableau 3 de l'onglet F · Netlinking** du Sheet de suivi, puis classer les candidats retenus
       sur le rapport visites estimées ÷ prix. Voir aussi `NETLINKING.md`.
       *(Corrigé le 15/08/2026 : cette ligne renvoyait à la skill `netlinking-ecole-naturo`, qui
       appartient à un autre projet et se calibre sur un site santé YMYL.)*
+- [ ] **Nouveau (28/08/2026) — fiche Google Business Profile « Claude Agency » mystère, non
+      résolue.** Une recherche Google Maps fait remonter une fiche active (nom « Claude Agency »,
+      catégorie « Agence de marketing », statut « Ouvert », téléphone identique au NAP officiel,
+      lien vers claudeagency.fr), **distincte** de la fiche naturopathie visée par A2 (bloquée).
+      Origine inconnue (créée par qui, quand, comment) — coexiste avec le statut Sheet « Bloqué »
+      d'A2 sans que les deux soient réconciliées. Nécessite une vérification qu'un humain avec
+      accès au compte Google Business peut seul faire : légitime ou usurpation, à revendiquer ou à
+      signaler. Détail : `JOURNAL.md` #78, `docs/points-etape-sprint.md` §E1 bloc 2. **A2/A14 sont
+      mises en pause tant que ce point n'est pas éclairci**, pour ne pas créer deux fiches Google
+      concurrentes pour la même entité.
 
 **Contrainte d'éligibilité :** Claude Agency n'est pas un OF déclaré → tous les annuaires
 alimentés par la liste publique Qualiopi lui sont fermés. Ne pas y perdre de temps.
+
+### 🔴 1bis. Régression Search Console à investiguer (nouveau, 28/08/2026)
+
+**Constat mesuré**, deux fenêtres indépendantes recoupées (`JOURNAL.md` #81, #82) : clics,
+impressions et position moyenne reculent **ensemble** sur 88 jours (27/08 vs 12/08) :
+- Clics : 9 (avant 49, écart -40).
+- Impressions : 2 081 (avant 2 797, écart -716).
+- Position moyenne : 52,1 (avant 33,3, écart +18,8 — une dégradation).
+
+Recoupé sur une seconde fenêtre (14/05→09/08, 204 lignes) : même ordre de grandeur — pas un artefact
+du jour de mesure. **Aucune cause tranchée.** Hypothèse ouverte depuis l'entrée 65 (30-40 articles
+publiés d'un coup le 30/06/2026) jamais confirmée ni écartée. À investiguer avant le prochain point
+d'étape — candidat naturel : chantier C (SEO on-site), ou un audit dédié.
 
 ### ✅ 2. Doublon www / non-www — FAUSSE ALERTE, clos le 2026-08-12
 
@@ -188,3 +223,4 @@ Il reste un seul point, hors code :
 | Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |
 | Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |
 | Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. |
+| Reprendre l'envoi de la campagne Saleshandy sur la liste actuelle (vague 1, 50 contacts) | 2026-08-25 | **Suspendue par Julien.** 32 e-mails partis sur 50, 59 % de taux de rebond (19 rebonds/32, mesuré `get_sequence_stats`). Cause : liste jamais nettoyée (D11 bloqué depuis le 22/08, 0 crédit sur le vérificateur Saleshandy) — 55 des 100 adresses de la liste étaient reconstituées au format prénom.nom@, jamais vérifiées (`docs/points-etape-sprint.md` §E2). Toute reprise de la prospection repart d'une **nouvelle base de données**, pas de celle jugée mauvaise le 25/08 (`JOURNAL.md` #80, #82). |
