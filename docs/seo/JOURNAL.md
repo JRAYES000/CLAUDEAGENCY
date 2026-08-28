@@ -5,6 +5,32 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-28 (84) — Correction E2 suite passe de preuves (ultracode) : gabarit, priorité, constat DNS
+
+**Type :** correction, `docs/points-etape-sprint.md` section E2, sur consigne de Julien après une
+vérification indépendante (npm run build, curl, DNS live, lecture directe du Sheet via Composio).
+Le Sheet lui-même n'est **pas** touché — consigne explicite : focus sur l'onglet F, chantier D à
+l'arrêt, on n'écrit rien dans D0b (ni Statut ni Preuve).
+
+**1. Gabarit du verdict.** « Verdict rétrospectif : NO-GO » ne collait pas au gabarit littéral exact
+attendu. **Corrigé :** « Envoi du 25/08 : no-go. »
+
+**2. Constat DNS non reflété dans le Sheet.** Vérification DNS en direct (résolveur 8.8.8.8,
+28/08/2026) : 2 des 4 CNAME `go` de la tâche D0b existent déjà (`go.claudeagency.fr` et
+`go.claudepartners.fr` → `watch.saleshandy.com`), origine et date de pose inconnues — alors que le
+Statut Sheet D0b reste « Bloqué » et que le rapport affirmait qu'aucun des 4 n'était créé. **Ajouté**
+comme simple constat d'observation dans le document (bloc 1 d'E2), sans corriger le Sheet.
+
+**3. Priorité rang 1 réévaluée.** Le document donnait deux tâches ex æquo en tête (D0b et A2, quinze
+jours de retard chacune) — le critère demandait une tâche unique. D0b dépend du chantier D, suspendu
+par Julien depuis le 25/08 (campagne Saleshandy à l'arrêt) : son urgence relative n'est plus la même
+tant que ce chantier ne reprend pas. **Corrigé :** A2 (fiche Google) devient la seule tâche en tête,
+avec explication du retrait de D0b et un renvoi explicite vers le chantier F, seul chantier actif,
+comme nouveau focus opérationnel.
+
+**Fichiers touchés :** `docs/points-etape-sprint.md` uniquement (section E2). Sheet SOLOHERY non
+modifié.
+
 ## 2026-08-28 (83) — Correction E1 suite passe de preuves (E5, ultracode)
 
 **Type :** correction, tâche E1 du Sheet SOLOHERY. 2 non-conformités relevées par une vérification

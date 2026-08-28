@@ -126,12 +126,19 @@ matériellement impossible sans l'accès qu'on n'a pas.
 | D3 — décideurs identifiés | Fait | 79/100 avec nom réel, mais 55 adresses **reconstituées** au format prenom.nom@, explicitement « à passer au vérificateur D11 » | Feu vert sur l'identification, dépendance directe et non résolue vers D11 |
 | D14 — RGPD | Fait | 4 livrables produits le 24/08 (registre, page dédiée, tableau lots, onglet DNC) | Feu vert |
 
-**Verdict rétrospectif : NO-GO.** Deux blocages étaient connus et non résolus au 25/08 : D0d (score
+**Envoi du 25/08 : no-go.** Deux blocages étaient connus et non résolus au 25/08 : D0d (score
 de délivrabilité jamais obtenu malgré l'étiquette « Fait ») et surtout **D11** (liste jamais
 nettoyée, faute de crédit). C'est D11 qui explique le résultat mesuré : D3 documente que 55 des
 100 adresses envoyées étaient **reconstituées, jamais vérifiées** — mécanisme concret et direct du
 59 % de rebond, plus déterminant que D0b (réputation de tracking) ou D0d (score anti-spam, pas
 validité d'adresse), qui sont des facteurs aggravants et non la cause du bounce.
+
+> **Constat hors-Sheet (28/08/2026, non reporté dans l'onglet D sur consigne de Julien — chantier D
+> à l'arrêt, focus donné à l'onglet F) :** vérification DNS en direct (résolveur 8.8.8.8) montre que
+> **2 des 4 CNAME `go` de D0b existent déjà** — `go.claudeagency.fr` et `go.claudepartners.fr`
+> pointent vers `watch.saleshandy.com` ; `go.claudeagency.eu` et `go.claudepro.fr` restent absents.
+> Origine et date de pose inconnues. Le Statut Sheet D0b n'est **pas** mis à jour en conséquence :
+> simple signalement pour que l'information ne se perde pas, pas une correction du Sheet.
 
 ## Bloc 2 — Pages qui pointent vers nous
 
@@ -169,8 +176,15 @@ Périmètre : mêmes plages que ci-dessus (`A · Autorité`, `B · Notoriété`,
 couvre un périmètre plus large. Tâches à échéance « En continu » ou sans date fixe (D13, D15, D24,
 F6…) exclues faute de date à comparer. Classement du retard le plus long au plus court.
 
-**Les deux tâches les plus urgentes, à égalité, sont D0b (4 CNAME) et A2 (fiche Google) : chacune
-en retard de quinze jours** depuis leur échéance du 13/08.
+**La tâche qui passe en premier : A2 (compléter la fiche Google existante), en retard de quinze
+jours** depuis son échéance du 13/08 — seule candidate au rang 1 qui ne dépend pas du chantier D.
+
+D0b (4 CNAME, même retard de quinze jours) partageait ce rang 1 dans la lecture brute du Sheet, mais
+D0b appartient au chantier D, **suspendu par Julien depuis le 25/08** (campagne Saleshandy à l'arrêt
+sur décision, 59 % de rebond). Tant que ce chantier reste à l'arrêt, retarder encore D0b n'a pas le
+même coût qu'avant la suspension — son urgence dépend d'une reprise d'envoi qui n'est pas décidée.
+Le focus opérationnel du sprint passe désormais au **chantier F** (netlinking), seul chantier actif
+restant, avec sa prochaine échéance déjà fixée : 3 démarches en septembre (cf. F5, Bloc 2 ci-dessus).
 
 | Rang | ID | Tâche | Statut | Échéance | Retard au 28/08 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
