@@ -114,13 +114,21 @@ const professionalService = {
   <Font cssVariable="--font-bricolage" preload />
   <Font cssVariable="--font-schibsted" preload />
   <!-- Google tag (gtag.js) — Google Ads AW-18240137840 + GA4 G-6SG03DR5J9 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240137840"></script>
+  <!-- La bibliothèque (129 ko) est injectée après l'événement `load` : elle sortait du
+       chemin critique 600 ms de LCP mobile. Les appels ci-dessous s'empilent dans
+       dataLayer et sont rejoués au chargement — aucune mesure n'est perdue. -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-18240137840');
     gtag('config', 'G-6SG03DR5J9');
+    addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18240137840';
+      document.head.appendChild(s);
+    }, { once: true });
   </script>
   <!-- Instantly Website Visitors (Leadsy) -->
   <!-- Leadsy chargé après première interaction (ou 4 s) : hors du chemin critique LCP/TBT -->
