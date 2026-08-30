@@ -21,6 +21,13 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       pédagogique et financier » sur `/blog/remplir-bpf-organisme-formation/`, l'absence de 404
       sur les 15 URL redirigées, et trancher le sort des 5 articles à 0 impression conservés.
 - [ ] Ne PAS resupprimer d'articles avant ce relevé. Le blocage reste le netlinking, pas le volume.
+- [x] **2026-08-30 — 2e cas de cannibalisation, traité sans fusion :** `/blog/claude-pour-le-marketing/`
+      contre `/agence-marketing-claude/` sur « claude pour le marketing ». Les deux pages sont
+      conservées (intentions différentes) ; ce sont les FAQ dupliquées et le maillage à sens unique
+      qui ont été corrigés. Détail et méthode de diagnostic : `JOURNAL.md` #85.
+- [ ] **Au relevé du 2026-09-05 au plus tôt** : vérifier que l'URL classée sur « claude pour le
+      marketing » a basculé vers l'article. Si la landing reste l'URL classée, la cannibalisation
+      n'est pas levée — envisager alors la fusion, pas une réécriture de plus.
 
 ### 🟡 1. Netlinking — objectif global atteint, rendement propre à la campagne encore faible
 
