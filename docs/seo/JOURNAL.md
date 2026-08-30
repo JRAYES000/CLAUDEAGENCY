@@ -5,6 +5,66 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-30 (85) — Cannibalisation « claude pour le marketing » : l'article rendu autonome, le lien manquant posé depuis la landing
+
+**Type :** arbitrage + réécriture + maillage. Carte 5 du backlog `visibilite-ops`.
+**URLs touchées :** `/blog/claude-pour-le-marketing/` (réécrite, 828 → 1 677 mots) et
+`/agence-marketing-claude/` (un lien contextuel ajouté).
+
+**La question posée était : sous-exploitation ou cannibalisation ? Réponse : cannibalisation.**
+Trois faits concordants, aucun n'étant suffisant seul :
+
+1. **La SERP consolide sur la landing.** Sur « claude pour le marketing », l'URL classée est
+   `/agence-marketing-claude/` — 66e, puis 69e (relevé DataForSEO du 22/08), puis 72e (relevé du
+   27/08, `visibilite-ops/data/2026-08-27-positions.md`). L'article, dont c'est pourtant le
+   slug exact, n'apparaît jamais dans le top 100. Google a bien deux pages et en a choisi une.
+2. **Les FAQ se recouvraient mot pour mot.** Les 3 questions de l'article — contenu IA pénalisé
+   par Google, Claude ou ChatGPT, combien ça coûte — sont les questions 3, 2 et 6 de la FAQ de la
+   landing, avec des réponses de même sens. Deux pages qui répondent la même chose à la même
+   question ne peuvent pas classer toutes les deux.
+3. **Le maillage était à sens unique, et dans le mauvais sens.** L'article envoyait 3 liens vers
+   la landing, dont un en ancre exacte (« agence marketing pilotée par Claude ») dès le premier
+   paragraphe. La landing — 1re sur « agence marketing claude », 15e sur « agence claude », donc
+   la page la plus forte du cluster — n'envoyait **aucun** lien vers l'article, tout en liant
+   deux autres articles du blog. L'article votait pour la landing, la landing ne votait pas pour
+   lui.
+
+**Ce qui a été corrigé, dans cet ordre (la cause d'abord).**
+
+- **Le lien manquant est posé** : `/agence-marketing-claude/` lie désormais vers l'article, en
+  contextuel dans la section « Claude, c'est quoi exactement ? », au paragraphe qui demandait
+  déjà « Envie de voir comment nous l'utilisons au quotidien ? » — l'endroit où le lecteur pose
+  la question à laquelle l'article répond. Pas dans le bloc « Explorer » : un lien de navigation
+  en pied de page pèse moins qu'un lien dans le corps du texte.
+- **Les 3 questions de FAQ dupliquées sont supprimées** de l'article, pas de la landing : la page
+  commerciale garde les objections commerciales. Remplacées par 4 questions que la landing ne
+  traite pas et ne traitera pas (faut-il coder, comment vérifier une production IA, délai avant
+  effet SEO, par quel canal commencer).
+- **Les liens sortants vers la landing passent de 3 à 1**, en fin d'article, dans l'option
+  « vous voulez déléguer ». L'ancre exacte du premier paragraphe est retirée.
+- **L'article est approfondi sur ce qu'une page de vente ne peut pas porter** : une semaine de
+  travail détaillée jour par jour, et une section « les quatre pannes qu'on rencontre vraiment »
+  (chiffre faux affirmé avec aplomb, chiffre recopié qui vieillit, correction de masse qui
+  écrase, tentation du volume) avec la parade de chacune. Intention informationnelle nette d'un
+  côté, intention commerciale de l'autre.
+
+**Aucun Schema FAQPage ajouté** (garde-fou projet) : les questions restent en Markdown, la
+landing conserve son `Service` + `BreadcrumbList` inchangés.
+
+**Aucun chiffre nouveau inventé.** Les trois données chiffrées de l'article (3 M€ de CA, relances
+2 h/jour → 2 h/mois, tunnel 5-6 h → quelques minutes) sont celles déjà publiées depuis le
+13/07/2026 ; elles sont reprises telles quelles, pas augmentées.
+
+**Ce qui reste à vérifier, et quand.** Le seul juge est le prochain relevé de positions sur
+« claude pour le marketing » : l'URL classée doit basculer de `/agence-marketing-claude/` vers
+`/blog/claude-pour-le-marketing/`. Tant que la landing reste l'URL classée, la cannibalisation
+n'est pas levée, quelle que soit la position affichée. À relire au relevé du **2026-09-05** au
+plus tôt, et à considérer comme non tranché avant.
+
+**Fichiers touchés :** `app/src/content/blog/claude-pour-le-marketing.mdx`,
+`app/src/pages/agence-marketing-claude.astro`, `docs/seo/REQUETES.csv` (ligne « claude pour le
+marketing » : `date_maj` 2026-08-30, `mots` 1677), `docs/seo/BACKLOG.md` (§0), ce journal.
+
 ## 2026-08-28 (84) — Correction E2 suite passe de preuves (ultracode) : gabarit, priorité, constat DNS
 
 **Type :** correction, `docs/points-etape-sprint.md` section E2, sur consigne de Julien après une
