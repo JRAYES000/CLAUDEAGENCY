@@ -103,6 +103,24 @@ Identité des commits : `Julien Rayes <jrayes000@gmail.com>`.
 
 ## Prospection e-mail (SalesHandy)
 
+**Aucune vague ne part sans les quatre règles de `docs/prospection/protocole-envoi.md`** — le
+fichier fait foi et porte les chiffres qui les justifient. En résumé : sortir les structures de
+plus de ~50 salariés (leur passerelle anti-spam refuse presque tout expéditeur inconnu), ne
+jamais deviner une adresse (elle doit avoir été lue à une source, jamais reconstruite sur un
+motif), vérifier la liste avant import, couper la séquence le jour même au-delà de **5 % de
+rebond**. Ces règles valent aussi pour les envois Claude Partners : même outil, mêmes boîtes,
+même réputation d'expéditeur.
+
+**Deux blocages en amont, à réparer avant toute reprise** (relevés le 2026-08-31, détail dans le
+protocole) : `claudeagency.fr` envoie **sans DKIM** — seul `mailjet._domainkey` subsiste, le
+sélecteur `hostingermail1._domainkey` manque alors qu'il existe sur les trois autres domaines,
+et DMARC est en `p=quarantine` ; et le dernier test de placement disponible donne **100 % de
+non-délivrés chez Gmail et Google Workspace**, 100 % de spam chez Outlook.
+
+Le piège à connaître : **la vérification d'adresses ne règle qu'un quart du problème.** Sur les
+19 rebonds de la vague du 25/08/2026, 5 seulement venaient d'adresses inexistantes ; les 14 autres
+étaient des refus de serveur. Un vérificateur seul aurait fait passer le taux de 59 % à 44 %.
+
 Le texte de désinscription est un réglage **par séquence**, pas un réglage de compte. SalesHandy
 en pose un par défaut, **en anglais**, sur **chaque séquence nouvellement créée** — y compris
 celles créées par le MCP : *Reply 'Stop' if you'd prefer not to receive messages at this time.*
