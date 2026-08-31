@@ -118,11 +118,17 @@ milliers de comptes — motif de refus classique.
 | Domaine | `go.` présent | Zone DNS |
 | :--- | :--- | :--- |
 | claudeagency.fr, claudepartners.fr | oui | Cloudflare |
-| **claudeagency.eu** | **oui — créé le 31/08**, vérifié sur le serveur d'autorité | Hostinger |
-| claudepro.fr, claudepartner.fr, claude-partners.com, teamclaude.fr | non | Hostinger |
+| **claudeagency.eu**, **claudepro.fr** | **oui — créés le 31/08**, vérifiés en DNS public | Hostinger |
+| claudepartner.fr, claude-partners.com, teamclaude.fr | non | Hostinger |
 
-Les quatre restants n'envoient pas aujourd'hui. Le CNAME à créer est `go` → `watch.saleshandy.com`,
+Les trois restants n'envoient pas aujourd'hui. Le CNAME à créer est `go` → `watch.saleshandy.com`,
 depuis *Noms de domaine → le domaine → DNS / Serveurs de noms*.
+
+**Piège de l'interface Hostinger** : le sélecteur « Choisir le type » du formulaire d'ajout se
+déploie deux ou trois fois, puis cesse de répondre — au clic comme au clavier, et un rechargement
+de page n'y change rien. Le formulaire lui-même reste fonctionnel. Symptôme constaté le 31/08 sur
+trois domaines d'affilée après deux créations réussies ; à traiter comme une limite de l'outil,
+pas comme un problème de droits.
 
 ⚠ **Le DNS seul ne suffit probablement pas** : SalesHandy demande en général de déclarer le
 domaine de suivi dans les réglages de chaque boîte d'envoi. À contrôler dans l'interface avant de
