@@ -111,11 +111,12 @@ motif), vérifier la liste avant import, couper la séquence le jour même au-de
 rebond**. Ces règles valent aussi pour les envois Claude Partners : même outil, mêmes boîtes,
 même réputation d'expéditeur.
 
-**Deux blocages en amont, à réparer avant toute reprise** (relevés le 2026-08-31, détail dans le
-protocole) : `claudeagency.fr` envoie **sans DKIM** — seul `mailjet._domainkey` subsiste, le
-sélecteur `hostingermail1._domainkey` manque alors qu'il existe sur les trois autres domaines,
-et DMARC est en `p=quarantine` ; et le dernier test de placement disponible donne **100 % de
-non-délivrés chez Gmail et Google Workspace**, 100 % de spam chez Outlook.
+**Le blocage en amont, à traiter avant toute reprise** (relevé le 2026-08-31, détail dans le
+protocole) : le dernier test de placement disponible donne **100 % de non-délivrés chez Gmail et
+Google Workspace**, 100 % de spam chez Outlook. L'authentification, elle, est en règle sur les
+quatre domaines — et le piège à ne pas refaire est là : **Hostinger signe sous les sélecteurs
+`hostingermail-a/-b/-c`, pas `hostingermail1`**. Un balayage DKIM qui ignore cette forme conclut
+à une panne d'authentification inexistante ; lire la zone DNS réelle, ne pas deviner un sélecteur.
 
 Le piège à connaître : **la vérification d'adresses ne règle qu'un quart du problème.** Sur les
 19 rebonds de la vague du 25/08/2026, 5 seulement venaient d'adresses inexistantes ; les 14 autres

@@ -79,14 +79,15 @@ Point de vigilance : l'*Inbox Score* des deux boîtes Claude Agency est à **0**
 Deux constats du 2026-08-31 qui passent **avant** les quatre règles : une liste parfaite
 n'atteindra personne tant qu'ils tiennent.
 
-**1. `claudeagency.fr` envoie sans signature DKIM** (`mesuré`, relevé DNS du 31/08). Le seul
-enregistrement présent est `mailjet._domainkey`, hérité d'un outil sorti du circuit ; le sélecteur
-`hostingermail1._domainkey` — celui que Hostinger utilise réellement, et qui existe bien sur
-`claudepartners.fr`, `claudeagency.eu` et `claudepro.fr` — est **absent**. Or le domaine publie
-`DMARC p=quarantine` : un message non signé arrive donc chez un destinataire strict avec la
-consigne explicite de le mettre en quarantaine. C'est cohérent avec les refus observés.
-**À faire : activer DKIM pour ce domaine dans le panneau Hostinger, puis publier
-l'enregistrement dans la zone DNS.**
+**1. L'authentification est en règle sur les quatre domaines — ce n'est pas la cause.** Vérifié
+le 2026-08-31 (`mesuré`) : SPF, `DMARC p=quarantine` et DKIM présents partout, la chaîne DKIM
+résolue jusqu'à la clé RSA de Hostinger.
+
+> **Le piège qui fait conclure à tort à un DKIM manquant** : Hostinger publie sa signature sous
+> les sélecteurs **`hostingermail-a` / `-b` / `-c`**, en CNAME vers `dkim.mail.hostinger.com` —
+> **pas** `hostingermail1`. Un balayage de sélecteurs qui ne teste que la forme numérotée ne
+> trouve rien sur `claudeagency.fr` et fait diagnostiquer une panne d'authentification
+> inexistante. C'est arrivé le 31/08, corrigé le jour même en lisant la zone DNS réelle.
 
 **2. Google refuse tout, Outlook classe tout en spam** — relevé Inbox Radar du 20/08/2026 sur
 `contact@claudepartners.fr`, 25 messages de test :
