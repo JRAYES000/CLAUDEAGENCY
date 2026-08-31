@@ -5,6 +5,48 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-08-31 (87) — E7 : passer le relais, les rendez-vous de septembre
+
+**Type :** documentation de passage de relais, `docs/suite-sprint-septembre.md`. Aucune
+publication sur le site. Entrée rétroactive : commit `a631281` du 31/08/2026, jamais loggé ici,
+repéré par le contrôle de fin de sprint (C10) du 31/08/2026.
+
+**Fichiers touchés :** `docs/suite-sprint-septembre.md` (créé), `docs/points-etape-sprint.md`
+(routines F5/F6), ce journal.
+
+**Fait :** `docs/suite-sprint-septembre.md` créé avec 4 fiches actives (B5, C9, B8, webinaire) et
+2 points en suspens signalés (D0d, D21 — dépendants du chantier D, à l'arrêt).
+
+**Pourquoi :** passage de relais à SOLOHERY après la fin du sprint le 27/08/2026.
+
+**Mesure :** 2 routines post-sprint ajoutées (F5, F6).
+
+**Suite :** SOLOHERY doit créer les 4 rappels calendrier, rédiger les posts LinkedIn 5 à 10, et
+documenter l'outil de visio du webinaire avant le 16/09.
+
+---
+
+## 2026-08-28 (86) — E6 : état des outils et des accès à mi-parcours
+
+**Type :** constat de mi-parcours, tableau ajouté à `docs/points-etape-sprint.md`. Aucune
+publication sur le site. Entrée rétroactive : commit `d64d860` du 28/08/2026, jamais loggé ici,
+repéré par le contrôle de fin de sprint (C10) du 31/08/2026.
+
+**Fichiers touchés :** `docs/points-etape-sprint.md`, ce journal.
+
+**Fait :** tableau des 3 familles (outils, adhésions/fiches, liens) ajouté à
+`docs/points-etape-sprint.md`.
+
+**Pourquoi :** contrôle de mi-parcours demandé par le plan.
+
+**Mesure :** Saleshandy actif mais séquence à l'arrêt (9 boîtes, healthScore 95-97) ; Ahrefs
+bloqué « Insufficient plan » ; Ubersuggest inaccessible (3 échecs) ; 3 démarches de netlinking
+parties, 1 en ligne.
+
+**Suite :** aucun accès du plan ne réclame de règlement au 28/08.
+
+---
+
 ## 2026-08-30 (85) — Cannibalisation « claude pour le marketing » : l'article rendu autonome, le lien manquant posé depuis la landing
 
 **Type :** arbitrage + réécriture + maillage. Carte 5 du backlog `visibilite-ops`.
