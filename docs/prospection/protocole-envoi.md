@@ -115,15 +115,18 @@ de résolutions DNS était à quatre ou cinq sur les dix autorisées, loin de la
 lui, les liens réécrits par SalesHandy pointent vers son domaine partagé, utilisé par des
 milliers de comptes — motif de refus classique.
 
-| Domaine | `go.` présent |
-| :--- | :--- |
-| claudeagency.fr, claudepartners.fr | oui |
-| **claudeagency.eu**, claudepro.fr, claudepartner.fr, claude-partners.com, teamclaude.fr | non |
+| Domaine | `go.` présent | Zone DNS |
+| :--- | :--- | :--- |
+| claudeagency.fr, claudepartners.fr | oui | Cloudflare |
+| **claudeagency.eu** | **oui — créé le 31/08**, vérifié sur le serveur d'autorité | Hostinger |
+| claudepro.fr, claudepartner.fr, claude-partners.com, teamclaude.fr | non | Hostinger |
 
-`claudeagency.eu` envoie activement. Les zones de ces cinq domaines sont chez Hostinger
-(`dns-parking.com`), pas chez Cloudflare : le CNAME `go.<domaine>` → `watch.saleshandy.com` s'y
-crée depuis le panneau Hostinger. Et le DNS seul ne suffit probablement pas — SalesHandy demande
-en général de déclarer le domaine de suivi dans les réglages de chaque boîte (`non vérifié`).
+Les quatre restants n'envoient pas aujourd'hui. Le CNAME à créer est `go` → `watch.saleshandy.com`,
+depuis *Noms de domaine → le domaine → DNS / Serveurs de noms*.
+
+⚠ **Le DNS seul ne suffit probablement pas** : SalesHandy demande en général de déclarer le
+domaine de suivi dans les réglages de chaque boîte d'envoi. À contrôler dans l'interface avant de
+considérer le point comme réglé (`non vérifié` au 31/08).
 
 ## Journal des vagues
 
