@@ -130,6 +130,21 @@ de page n'y change rien. Le formulaire lui-même reste fonctionnel. Symptôme co
 trois domaines d'affilée après deux créations réussies ; à traiter comme une limite de l'outil,
 pas comme un problème de droits.
 
+🔴 **Ces CNAME ne servent à rien aujourd'hui, et c'est une piste à ne pas rouvrir sans vérifier
+d'abord.** Le suivi des ouvertures (code 5) **et** des clics (code 4) est à `0` sur les **trois**
+séquences du compte — vérifié par l'API le 31/08. Suivi désactivé = aucun lien réécrit, aucun
+pixel inséré : **le domaine de suivi n'entre jamais dans le circuit**, ni le partagé ni le nôtre.
+Les refus de serveur du 25/08 n'ont donc pas cette cause. Le raisonnement fautif à ne pas refaire :
+« la séquence affiche 2 ouvertures, donc le suivi est actif, donc les liens sont réécrits » — les
+réglages disent le contraire, et ce sont eux qui font foi. Les CNAME créés restent en place, sans
+effet, utiles seulement si le suivi est un jour réactivé.
+
+**Ce qui reste debout pour expliquer les 14 refus**, tout `mesuré` : domaines créés en août sans
+historique ; 31 envois en 14 minutes le 25/08 ; cibles à passerelle anti-spam d'entreprise ;
+Inbox Score 0 sur `contact@claudepartners.fr`. L'authentification est hors de cause — SPF, DKIM,
+DMARC et PTR sont validés sur les 9 boîtes, aucun domaine en liste noire (une IP signalée sur
+`teamclaude.fr`, qui n'envoie pas).
+
 ⚠ **Le DNS seul ne suffit probablement pas** : SalesHandy demande en général de déclarer le
 domaine de suivi dans les réglages de chaque boîte d'envoi. À contrôler dans l'interface avant de
 considérer le point comme réglé (`non vérifié` au 31/08).
