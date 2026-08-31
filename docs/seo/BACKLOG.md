@@ -49,6 +49,13 @@ F1-F6** lancée ce sprint est de **1 domaine référent confirmé en ligne** (an
       15/08, `sameAs` aligné le 16/08 — B10). Reste : **Google Business Profile (A2) bloqué**, en
       attente de l'arbitrage de Julien (fiche existante de l'école de naturopathie vs vitrine
       Claude Agency) — voir point ci-dessous.
+- [ ] **Au prochain contrôle F6** (en continu, pas d'échéance fixe) : revérifier que le lien
+      retour vers annuaireduconseil.com posé dans le footer (`JOURNAL.md` #79) est toujours actif.
+- [ ] **Changement d'entité juridique (19/08/2026, tranché par Julien le 26/08)** :
+      claudeagency.fr est désormais édité par `BULGARIA EDUCATION EOOD`, plus par le SIREN
+      924 997 539. Impact sur la fiche **A4** (Annuaire du Conseil) : nom d'entité à corriger.
+      **Hors périmètre de ce backlog** — la correction vit dans le backlog du projet
+      `visibilite-ops`, pas dans CLAUDEAGENCY. Détail : `docs/seo/arbitrage-julien.md`.
 - [ ] **Vague 2** — les 2 fédérations qui comptent : Les Acteurs de la Compétence (A7) et Hub
       France IA (A8) (payantes, cotisation à demander). Messages envoyés le 18/08, **sans réponse à
       ce jour** (28/08) — relance due depuis le 21/08, jamais renvoyée. À rejouer, puis passage en
@@ -86,6 +93,22 @@ Recoupé sur une seconde fenêtre (14/05→09/08, 204 lignes) : même ordre de g
 du jour de mesure. **Aucune cause tranchée.** Hypothèse ouverte depuis l'entrée 65 (30-40 articles
 publiés d'un coup le 30/06/2026) jamais confirmée ni écartée. À investiguer avant le prochain point
 d'étape — candidat naturel : chantier C (SEO on-site), ou un audit dédié.
+
+### ✅ 1ter. Jalons complémentaires du sprint E3 — maillage interne, LinkedIn, CNAME
+
+- [x] **Maillage interne (C3) — 20/20 articles, objectif ATTEINT.** 60 liens posés à la main sur
+      les 20 pages sous-performantes retenues, en 4 lots (`9d24b84`/`82f1737`/`a45cd1e`/`605701d`,
+      19/08/2026), d'après `docs/seo/maillage-interne-2026-08-19-proposition.md`. Détail :
+      `JOURNAL.md` #51, #82.
+- [x] **Page LinkedIn (B1) en ligne depuis le 15/08, 4 posts publiés (B4)** sur un objectif de
+      10 — non atteint, mais la série continue (tâche B8, un post tous les 2 jours jusqu'au
+      17/09). Détail : `JOURNAL.md` #82 (tableau des 15 indicateurs).
+- [ ] **CNAME de tracking « go » (D0b, chantier D) — 2/4 posés.** Découverte en direct le
+      28/08/2026 (résolveur 8.8.8.8) : `go.claudeagency.fr` et `go.claudepartners.fr` pointent
+      déjà vers `watch.saleshandy.com` ; `go.claudeagency.eu` et `go.claudepro.fr` restent
+      absents, origine et date de pose des deux premiers inconnues. Chantier D suspendu depuis le
+      25/08 (campagne Saleshandy à l'arrêt) : pas d'urgence à compléter tant que l'envoi n'est pas
+      décidé. Détail : `docs/points-etape-sprint.md` §E2 bloc 1.
 
 ### ✅ 2. Doublon www / non-www — FAUSSE ALERTE, clos le 2026-08-12
 
@@ -231,3 +254,4 @@ Il reste un seul point, hors code :
 | Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |
 | Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. |
 | Reprendre l'envoi de la campagne Saleshandy sur la liste actuelle (vague 1, 50 contacts) | 2026-08-25 | **Suspendue par Julien.** 32 e-mails partis sur 50, 59 % de taux de rebond (19 rebonds/32, mesuré `get_sequence_stats`). Cause : liste jamais nettoyée (D11 bloqué depuis le 22/08, 0 crédit sur le vérificateur Saleshandy) — 55 des 100 adresses de la liste étaient reconstituées au format prénom.nom@, jamais vérifiées (`docs/points-etape-sprint.md` §E2). Toute reprise de la prospection repart d'une **nouvelle base de données**, pas de celle jugée mauvaise le 25/08 (`JOURNAL.md` #80, #82). |
+| Se positionner comme « organisme de formation » | 2026-08-26 | **Fermé par un changement de fait, pas par une préférence.** Depuis le 19/08/2026, claudeagency.fr est édité par `BULGARIA EDUCATION EOOD`, qui n'a ni NDA ni certification Qualiopi — contrairement au SIREN 924 997 539 (l'ancienne entité, école de naturopathie) concerné par l'arbitrage initial. Revendiquer ce statut serait une fausse déclaration. Détail : `docs/seo/arbitrage-julien.md`. |
