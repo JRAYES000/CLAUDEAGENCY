@@ -106,8 +106,24 @@ mauvaise **avant** l'envoi, la vague ratée n'en est pas la cause mais l'aggrava
 Deux réserves : ce relevé a 11 jours et ne couvre qu'une boîte ; et les tests gratuits Inbox
 Radar sont épuisés — la prochaine mesure passe par un abonnement ou un outil tiers.
 
-**3. Le SPF de `claudepartners.fr` et `claudeagency.fr` inclut encore Mailjet**, qui n'envoie
-plus rien. Chaque `include` consomme une des dix résolutions DNS autorisées : à retirer.
+**3. ~~Le SPF des deux domaines Cloudflare incluait encore Mailjet~~ — retiré le 2026-08-31.**
+Les deux publient désormais `v=spf1 include:_spf.mail.hostinger.com ~all` (vérifié en DNS après
+enregistrement). C'était de l'hygiène de configuration, pas un gain de délivrabilité : le compte
+de résolutions DNS était à quatre ou cinq sur les dix autorisées, loin de la limite.
+
+**4. Le domaine de suivi des liens manque sur cinq des sept domaines d'envoi** (`mesuré`). Sans
+lui, les liens réécrits par SalesHandy pointent vers son domaine partagé, utilisé par des
+milliers de comptes — motif de refus classique.
+
+| Domaine | `go.` présent |
+| :--- | :--- |
+| claudeagency.fr, claudepartners.fr | oui |
+| **claudeagency.eu**, claudepro.fr, claudepartner.fr, claude-partners.com, teamclaude.fr | non |
+
+`claudeagency.eu` envoie activement. Les zones de ces cinq domaines sont chez Hostinger
+(`dns-parking.com`), pas chez Cloudflare : le CNAME `go.<domaine>` → `watch.saleshandy.com` s'y
+crée depuis le panneau Hostinger. Et le DNS seul ne suffit probablement pas — SalesHandy demande
+en général de déclarer le domaine de suivi dans les réglages de chaque boîte (`non vérifié`).
 
 ## Journal des vagues
 
