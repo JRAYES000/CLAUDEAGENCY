@@ -118,17 +118,20 @@ milliers de comptes — motif de refus classique.
 | Domaine | `go.` présent | Zone DNS |
 | :--- | :--- | :--- |
 | claudeagency.fr, claudepartners.fr | oui | Cloudflare |
-| **claudeagency.eu**, **claudepro.fr** | **oui — créés le 31/08**, vérifiés en DNS public | Hostinger |
-| claudepartner.fr, claude-partners.com, teamclaude.fr | non | Hostinger |
+| les 7 domaines d'envoi | **oui — complété les 31/08 et 01/09**, vérifiés en DNS public | Cloudflare et Hostinger |
 
-Les trois restants n'envoient pas aujourd'hui. Le CNAME à créer est `go` → `watch.saleshandy.com`,
-depuis *Noms de domaine → le domaine → DNS / Serveurs de noms*.
+**Passer par l'API Hostinger, pas par le panneau.** Le sélecteur « Choisir le type » du formulaire
+d'ajout se déploie deux ou trois fois, puis cesse de répondre — au clic, par référence
+d'accessibilité et au clavier, un rechargement de page n'y changeant rien. L'API fait le même
+travail en une commande et se vérifie :
 
-**Piège de l'interface Hostinger** : le sélecteur « Choisir le type » du formulaire d'ajout se
-déploie deux ou trois fois, puis cesse de répondre — au clic comme au clavier, et un rechargement
-de page n'y change rien. Le formulaire lui-même reste fonctionnel. Symptôme constaté le 31/08 sur
-trois domaines d'affilée après deux créations réussies ; à traiter comme une limite de l'outil,
-pas comme un problème de droits.
+    PUT https://developers.hostinger.com/api/dns/v1/zones/<domaine>
+    Authorization: Bearer <HOSTINGER_API_TOKEN>
+    {"overwrite": false, "zone": [{"name":"go","type":"CNAME","ttl":14400,
+      "records":[{"content":"watch.saleshandy.com"}]}]}
+
+`overwrite: false` est **obligatoire** : à `true`, la charge utile remplace la zone entière — MX,
+DKIM et SPF compris. Contrôler MX et `hostingermail-a._domainkey` après chaque écriture.
 
 🔴 **Ces CNAME ne servent à rien aujourd'hui, et c'est une piste à ne pas rouvrir sans vérifier
 d'abord.** Le suivi des ouvertures (code 5) **et** des clics (code 4) est à `0` sur les **trois**
