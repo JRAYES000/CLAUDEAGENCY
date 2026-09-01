@@ -166,9 +166,25 @@ mise en page.
 `Mail 1` relus (SMF, ISFAM, DIPSO'S) ne la portent pas, alors que la séquence documentée l'impose
 depuis le 24/08/2026. Les modèles ci-dessus la rétablissent.
 
-**3. L'attribution de l'angle reste à faire.** Les 216 lignes nouvelles ont `Angle` vide, parce
-que la règle appliquée aux 86 lignes d'origine n'est pas reconstituable : elle ne suit ni le
-protocole du site (`http` contre `https`), ni le nombre de stagiaires, ni le CA. Une règle simple
-et vérifiable serait : **site en `http://` sans redirection vers HTTPS → SEO / refonte, sinon
-Automatisation IA**. Un site encore en HTTP non sécurisé en 2026 signale un site laissé de côté,
-ce qui est exactement l'accroche de l'angle 2. À valider avant remplissage.
+**3. L'attribution de l'angle est faite, mais la règle ne segmente pas.** Appliquée le
+2026-09-01 aux 216 lignes nouvelles : site en `http://` sans redirection vers HTTPS → SEO /
+refonte, sinon Automatisation IA. Résultat mesuré sur les 215 sites testés en suivant les
+redirections : **116 servent déjà HTTPS, 94 y redirigent, 5 restent en HTTP seul**. La règle
+verse donc 211 lignes sur 216 du même côté.
+
+| Angle | Base entière (302) | Dont lignes nouvelles |
+| :--- | ---: | ---: |
+| Automatisation IA | 243 | 211 |
+| SEO / refonte | 48 | 5 |
+| SEO local (à confirmer) | 11 | 0 |
+
+Les cinq exceptions : SAS INSIGHT, ADOC METIS, SYNRJY, CELINE MATHON CONSULTING, FRAISSINET ET
+ASSOCIES. En 2026, le protocole du site ne dit plus rien de l'état commercial d'un organisme :
+HTTPS est devenu le défaut chez tous les hébergeurs. Si la segmentation doit servir à quelque
+chose, il faut un autre critère — présence de dates de session sur le site, ou existence d'un
+formulaire qui rend un tarif. Les deux demandent une lecture de page, pas un test de protocole.
+
+**Piège rencontré, à ne pas refaire** : le premier test, écrit en `node`, a classé 19 sites en
+« injoignables » avec `ENOTFOUND`. Vérification faite avec `curl`, ces 19 sites répondaient tous
+et redirigeaient vers HTTPS. `node` ne résout pas certains domaines depuis ce shell — le même
+symptôme que sur `api.apify.com`. **Tout test réseau de ce dépôt doit passer par `curl`.**
