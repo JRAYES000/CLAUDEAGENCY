@@ -111,12 +111,22 @@ motif), vérifier la liste avant import, couper la séquence le jour même au-de
 rebond**. Ces règles valent aussi pour les envois Claude Partners : même outil, mêmes boîtes,
 même réputation d'expéditeur.
 
-**Le blocage en amont, à traiter avant toute reprise** (relevé le 2026-08-31, détail dans le
-protocole) : le dernier test de placement disponible donne **100 % de non-délivrés chez Gmail et
-Google Workspace**, 100 % de spam chez Outlook. L'authentification, elle, est en règle sur les
-quatre domaines — et le piège à ne pas refaire est là : **Hostinger signe sous les sélecteurs
+**Le blocage en amont, à traiter avant toute reprise** (`mesuré` le 2026-09-01, détail dans le
+protocole) : le test de placement complet du 26/08 donne **0 % en boîte de réception, 61 % en
+spam, 39 % en onglet « autre » — et 0 % de non-délivré**. Tout arrive, rien n'atterrit. **Ne pas
+répéter l'ancienne formule « 100 % de non-délivrés »** : elle venait d'un test arrêté à mi-course
+et elle est fausse ; un message non délivré est perdu, un message en spam est arrivé.
+
+Sont hors de cause : le contenu (SpamAssassin 0,4, « Safe »), les listes noires (aucune), et
+l'authentification — le piège à ne pas refaire est là : **Hostinger signe sous les sélecteurs
 `hostingermail-a/-b/-c`, pas `hostingermail1`**. Un balayage DKIM qui ignore cette forme conclut
-à une panne d'authentification inexistante ; lire la zone DNS réelle, ne pas deviner un sélecteur.
+à une panne inexistante ; lire la zone DNS réelle, ne pas deviner un sélecteur. Reste la
+réputation d'expéditeur, qui ne se répare pas par un réglage.
+
+**Ce test ne mesure pas Claude Agency** : le seul expéditeur du rapport est
+`contact@claudepartners.fr`. Les deux boîtes Claude Agency n'ont jamais été passées à l'Inbox
+Radar — leur *Inbox Score* de 0 veut dire « jamais mesuré », pas « au plus bas ». Les tests
+gratuits sont épuisés : une nouvelle mesure demande l'abonnement ou un outil tiers.
 
 Le piège à connaître : **la vérification d'adresses ne règle qu'un quart du problème.** Sur les
 19 rebonds de la vague du 25/08/2026, 5 seulement venaient d'adresses inexistantes ; les 14 autres
