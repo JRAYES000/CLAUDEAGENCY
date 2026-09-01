@@ -48,10 +48,40 @@ toutes les sociétés ne déposent pas.
       déposé, 444 hors bornes de CA, 198 au-dessus de 49 salariés, 129 échecs d'appel (la passe 1
       n'avait pas de reprise sur limitation de débit), 6 sociétés cessées.
       Passe 2 (candidats 1 800 à 6 000, avec reprise sur limitation) : en cours.
-- [ ] **3. Site web.** Apify Google Maps sur les survivants.
-- [ ] **4. E-mail.** Crawl des pages de contact, une URL de source notée par adresse.
-- [ ] **5. Vérification.** Passage au vérificateur, retrait des invalides.
-- [ ] **6. Import.** CSV de contrôle, puis écriture dans Notion avec `Statut = À contacter`.
+- [x] **3. Site web.** Apify Google Maps sur 817 organismes (2 runs + 1 test), ~4 $ (`estimé`
+      d'après la grille Bronze). 776 fiches rendues.
+- [x] **4. E-mail.** Extraction des contacts par Maps, puis crawl maison des 177 sites restés
+      sans adresse. **456 adresses uniques**, chacune avec l'URL de la page où elle a été lue.
+- [x] **5. Tri qualité.** 456 → **393** après sept filtres (voir plus bas). 215 retenues au score.
+- [x] **6. Import.** 216 lignes créées dans Notion le 2026-09-01, `Statut = À contacter`.
+      **La base compte 302 lignes, 301 SIREN distincts, 293 adresses toutes distinctes.**
+- [ ] **7. Vérification d'adresses.** À faire **au moment de charger SalesHandy**, pas avant
+      Notion : règle 3 du protocole, ~5 à 10 € les 1 000 (`estimé`).
+
+## Les sept filtres de tri, et pourquoi ils existent
+
+Chaque filtre vient d'une erreur constatée à la relecture, pas d'une précaution théorique.
+Sans eux, ces adresses seraient parties à des inconnus.
+
+| Filtre | L'erreur qui l'a motivé |
+| :--- | :--- |
+| Adresses non commerciales | `dpd@aftral.com` — le délégué RGPD d'un groupe de plusieurs milliers de salariés |
+| Gabarits non modifiés | `contact@mysite.com`, `xxx@xxx.xxx` |
+| Noms fictifs de formulaire | `jean.dupont@gmail.com` |
+| Domaines d'établissements publics et de réseaux | `rsa.psycho@u-paris.fr`, `patrick.mirouse@ecf.asso.fr`, `aboparc-cdg@adp.fr` |
+| Ancrage du site obligatoire si l'adresse est chez un fournisseur grand public | Le site de la mairie de Verrières-en-Anjou retenu pour TECHNIQUE SERVICE FORMATION |
+| Un seul organisme par domaine d'entreprise | Quatre agences ECF partageant la même boîte |
+| Correspondance du nom entre la fiche Google et la raison sociale | POINT JAUNE SAS → une association d'accompagnement social |
+
+Le dernier écarte à lui seul **171 fiches sur 776**, soit 22 %.
+
+**Deux exclusions faites à la main**, que les filtres ne séparent pas : EFFICIENCE ET HUMANISME
+(rattachée à l'association Habitat et Humanisme, dont elle partage un mot) et ABRAPA FORMATION
+(société du Jura, adresse d'un centre alsacien de la même fédération).
+
+**Un faux négatif assumé** : le filtre d'ancrage rejette FM FORMATION, dont l'adresse
+`fmdformation@orange.fr` sur `fm-formation.fr` est pourtant juste — « FM » fait deux lettres et
+« formation » est un mot creux, il ne reste aucun mot pour ancrer. La ligne est conservée.
 
 ## Points relevés en cours de route
 
