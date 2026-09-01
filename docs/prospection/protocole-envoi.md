@@ -184,6 +184,7 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
 | :--- | :--- | :--- | ---: | ---: | ---: | ---: | :--- |
 | 2026-08-25 | Prospection OF (`glwGO3M0w6`) | Claude Agency | 32 | 19 | 59 % | 0 | Suspendue le 25/08 |
 | 2026-08-31 | Micro-lot dirigeants (`6vaKGjLoaW`) | Claude Agency | 10 | 0 | 0 % | 0 | En cours, relance le 05/09 |
+| 2026-09-01 | Annuaire ClaudePartners (`9pa87bZ4Py`) | Claude Partners | 0 (import seul, quota du jour epuise) | — | — | — | 8 importes, 12 ecartes faute de source |
 
 **Cumul par boîte au 2026-09-01** (`mesuré`, API SalesHandy) :
 
