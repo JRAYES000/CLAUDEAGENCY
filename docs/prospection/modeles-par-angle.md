@@ -65,6 +65,7 @@ Je vous l'envoie ?
 Julien Rayes — Claude Agency
 Uniquement des organismes de formation — claudeagency.fr
 
+BULGARIA EDUCATION EOOD — ul. Saedinenie 66, ent. 1, ap. 15, 9700 Choumen, Bulgarie
 Ces coordonnées professionnelles sont utilisées pour de la prospection commerciale B2B ; détail
 du traitement sur simple demande à contact@claudeagency.fr.
 ```
@@ -124,6 +125,7 @@ Je vous l'envoie ?
 Julien Rayes — Claude Agency
 Uniquement des organismes de formation — claudeagency.fr
 
+BULGARIA EDUCATION EOOD — ul. Saedinenie 66, ent. 1, ap. 15, 9700 Choumen, Bulgarie
 Ces coordonnées professionnelles sont utilisées pour de la prospection commerciale B2B ; détail
 du traitement sur simple demande à contact@claudeagency.fr.
 ```
@@ -156,11 +158,29 @@ Julien Rayes — Claude Agency
 
 ## Trois points à trancher avant le premier envoi
 
-**1. L'adresse postale n'a jamais été vérifiée.** `sequence-5-emails.md` le note depuis le
-24/08/2026 et le point est resté ouvert. Les modèles ci-dessus ne la portent pas ; les messages
-d'origine affichaient « 229 rue Saint-Honoré, 75001 Paris ». À vérifier avant de la remettre :
-une adresse fausse dans un e-mail de prospection est un défaut d'information, pas un détail de
-mise en page.
+**1. ~~L'adresse postale n'a jamais été vérifiée.~~ Vérifiée le 2026-09-01, et elle était fausse.**
+Les anciens messages affichaient « 229 rue Saint-Honoré, 75001 Paris ». Cette adresse ne
+correspond à **aucune entité juridique du groupe** : le registre français ne connaît ni
+« BULGARIA EDUCATION » (0 résultat) ni de société « Claude Agency » rattachée.
+
+L'adresse qui fait foi, lue au **registre du commerce bulgare** (EIK 206507432, dossier actif) et
+identique aux mentions légales du site :
+
+> **BULGARIA EDUCATION EOOD** (« БЪЛГАРИЯ ЕДЮКЕЙШЪН » ЕООД)
+> ul. Saedinenie 66, ent. 1, ap. 15 — 9700 Choumen (Шумен), Bulgarie
+> EIK 206 507 432 · TVA BG 206 507 432
+
+Elle est désormais dans la signature des deux premiers e-mails. Une adresse parisienne dans un
+message envoyé par une société bulgare est une information trompeuse sur l'identité de
+l'expéditeur, pas une coquette de mise en page.
+
+**Point relevé au passage, à trancher par toi.** Le registre bulgare enregistre comme gérante
+(управител) **Krasimira Pencheva Cholakova**, et comme associée **Paulina Krasimirova Chakarova**.
+Les signatures des boîtes SalesHandy portent « Julien Rayes — Fondateur & Dirigeant ». Les
+mentions légales du site, elles, écrivent « Directeur de la publication : Julien Rayes », ce qui
+est cohérent puisque ce rôle est distinct de la gérance. Le mot « Dirigeant » dans une signature
+commerciale, lui, ne correspond pas à ce que dit le registre — je ne connais pas les liens entre
+ces personnes et toi, donc je ne touche pas aux signatures SalesHandy.
 
 **2. La ligne de transparence CNIL manque dans les messages actuellement en base.** Les trois
 `Mail 1` relus (SMF, ISFAM, DIPSO'S) ne la portent pas, alors que la séquence documentée l'impose
