@@ -89,22 +89,46 @@ résolue jusqu'à la clé RSA de Hostinger.
 > trouve rien sur `claudeagency.fr` et fait diagnostiquer une panne d'authentification
 > inexistante. C'est arrivé le 31/08, corrigé le jour même en lisant la zone DNS réelle.
 
-**2. Google refuse tout, Outlook classe tout en spam** — relevé Inbox Radar du 20/08/2026 sur
-`contact@claudepartners.fr`, 25 messages de test :
+**2. Rien n'est refusé : tout arrive, et tout est classé en spam.** Relevé Inbox Radar du
+**26/08/2026 17:00**, test complet **51 messages sur 51**, expéditeur `contact@claudepartners.fr`
+(lu dans l'interface le 2026-09-01, `mesuré`) :
 
-| Destinataire | Boîte de réception | Spam | Non délivré |
-| :--- | ---: | ---: | ---: |
-| Gmail | 0 % | 0 % | **100 %** |
-| Google Workspace | 0 % | 0 % | **100 %** |
-| Outlook | 0 % | **100 %** | 0 % |
-| Microsoft Business | 83 % | 17 % | 0 % |
+| Destinataire | Boîte de réception | Spam | Autre | Non délivré |
+| :--- | ---: | ---: | ---: | ---: |
+| Gmail | 0 % | **80 %** | 20 % | 0 % |
+| Google Workspace (US) | 0 % | 10 % | **90 %** | 0 % |
+| Outlook | 0 % | **100 %** | 0 % | 0 % |
+| Microsoft Business (US) | 0 % | **100 %** | 0 % | 0 % |
+| Zoho | 0 % | 0 % | **100 %** | 0 % |
 
-Total : 20 % en boîte de réception, 24 % en spam, 56 % non délivrés. Score SpamAssassin 2,7,
-niveau de risque « Warning ». Ce test date d'avant la vague du 25/08 : la réputation était déjà
-mauvaise **avant** l'envoi, la vague ratée n'en est pas la cause mais l'aggravation.
+Total : **0 % en boîte de réception, 61 % en spam, 39 % en « autre », 0 % non délivré.**
+SpamAssassin **0,4**, niveau de risque **« Safe »**. Authentification validée dans le rapport :
+SPF, DKIM, DMARC et PTR tous au vert, **0 domaine et 0 IP en liste noire**.
 
-Deux réserves : ce relevé a 11 jours et ne couvre qu'une boîte ; et les tests gratuits Inbox
-Radar sont épuisés — la prochaine mesure passe par un abonnement ou un outil tiers.
+> ⚠ **Correction de la version précédente de ce fichier.** Elle citait le test du 20/08 — arrêté
+> en cours de route à 25 messages sur 51 — et en tirait « 100 % de non-délivrés chez Gmail et
+> Google Workspace ». Le test complet du 26/08 dit l'inverse : **plus aucun non-délivré**. La
+> différence n'est pas cosmétique. Un message non délivré est perdu ; un message en spam est
+> arrivé, il est consultable, et le classement se corrige avec de la réputation. Le SpamAssassin
+> est passé de 2,7 « Warning » à 0,4 « Safe » entre les deux tests.
+
+> ⚠ **Ce test ne mesure pas Claude Agency.** Le seul compte expéditeur du rapport est
+> `contact@claudepartners.fr`. `equipe1@claudeagency.fr` et `julien@claudeagency.eu` n'ont jamais
+> été passés à l'Inbox Radar : leur *Inbox Score* de 0 signifie **jamais mesuré**, pas « au plus
+> bas ». Attribuer à Claude Agency un résultat relevé sur Claude Partners est une erreur de
+> lecture à ne pas refaire.
+
+**Ce que ce test élimine comme cause** : l'authentification, les listes noires, et le contenu des
+messages. Un score SpamAssassin de 0,4 signifie que réécrire les e-mails ne changera rien.
+
+**Ce qui reste** : la réputation d'expéditeur. Domaines créés en août, sans historique, presque
+aucune interaction positive — 1 réponse pour 54 envois cumulés sur les deux boîtes Claude Agency
+au 01/09. Les 39 % de « autre » chez Gmail sont l'onglet Promotions, classement typique d'un
+domaine que Google ne connaît pas encore.
+
+**Les tests gratuits Inbox Radar sont épuisés** (« You've used all your free tests », bouton
+*Create Test* grisé au 01/09). Mesurer les boîtes Claude Agency demande soit l'abonnement
+SalesHandy, soit un outil tiers.
 
 **3. ~~Le SPF des deux domaines Cloudflare incluait encore Mailjet~~ — retiré le 2026-08-31.**
 Les deux publient désormais `v=spf1 include:_spf.mail.hostinger.com ~all` (vérifié en DNS après
@@ -160,3 +184,13 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
 | :--- | :--- | :--- | ---: | ---: | ---: | ---: | :--- |
 | 2026-08-25 | Prospection OF (`glwGO3M0w6`) | Claude Agency | 32 | 19 | 59 % | 0 | Suspendue le 25/08 |
 | 2026-08-31 | Micro-lot dirigeants (`6vaKGjLoaW`) | Claude Agency | 10 | 0 | 0 % | 0 | En cours, relance le 05/09 |
+
+**Cumul par boîte au 2026-09-01** (`mesuré`, API SalesHandy) :
+
+| Boîte | Envoyés | Taux de rebond | Réponses | Inbox Score |
+| :--- | ---: | ---: | ---: | ---: |
+| equipe1@claudeagency.fr | 38 | **11 %** | 1 | 0 (jamais mesuré) |
+| julien@claudeagency.eu | 16 | **31 %** | 0 | 0 (jamais mesuré) |
+
+Les deux dépassent le seuil de coupure de 5 %. C'est la qualité de liste, traitée depuis : les
+216 lignes ajoutées le 01/09 portent chacune l'URL de la page où l'adresse a été lue.
