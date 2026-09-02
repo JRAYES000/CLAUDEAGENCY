@@ -5,11 +5,19 @@
 // Mailjet a été retiré des deux étapes : l'envoi passe par la boîte elle-même (même circuit
 // que /api/contact), la liste par Brevo.
 //
+// 3) Crée la fiche dans la base Notion « Leads entrants » (best-effort).
+// 4) Prévient contact@claudeagency.fr qu'un lead vient d'entrer (best-effort).
+//
 // Variables d'env Cloudflare Pages (Production + Preview) :
 //   HOSTINGER_MAIL_TOKEN = jeton API Hostinger Mail — REQUIS (sans lui, pas d'envoi du guide)
 //   BREVO_API_KEY        = clé API Brevo v3 — facultative : sans elle, le guide part quand même,
 //                          seul l'ajout à la liste est sauté.
+//   NOTION_TOKEN         = jeton d'intégration Notion — facultatif, voir _notion.js
+//   NOTION_LEADS_DB      = id de la base « Leads entrants — claudeagency.fr » — facultatif
+import { createLead } from './_notion.js';
+
 const LIST_ID = 12; // Brevo — « Claude Agency - 10 automatisations IA »
+const ALERT_TO = 'contact@claudeagency.fr';
 const REDIRECT = '/merci-ressource/';
 const PDF_URL = 'https://claudeagency.fr/ressources/10-automatisations-ia.pdf';
 const FROM_EMAIL = 'contact@claudeagency.fr';
@@ -48,6 +56,8 @@ export async function onRequestPost({ request, env }) {
   if (!token) return fail('Configuration serveur manquante (jeton Hostinger).', 500);
 
   const firstname = String(data.firstname || '').trim();
+  const societe = String(data.societe || '').trim();
+  const telephone = String(data.telephone || '').trim();
 
   // 1) Envoi immédiat du guide, depuis la boîte contact@claudeagency.fr.
   const hello = firstname ? `Bonjour ${escapeHtml(firstname)},` : 'Bonjour,';
@@ -93,7 +103,7 @@ export async function onRequestPost({ request, env }) {
   if (env.BREVO_API_KEY) {
     const attributes = { MARQUE: 'Claude Agency', SOURCE: 'Guide 10 automatisations IA' };
     if (firstname) attributes.PRENOM = firstname;
-    if (data.telephone) attributes.SMS = String(data.telephone).trim();
+    if (telephone) attributes.SMS = telephone;
     try {
       await fetch('https://api.brevo.com/v3/contacts', {
         method: 'POST',
@@ -105,7 +115,62 @@ export async function onRequestPost({ request, env }) {
     }
   }
 
+  // 3) Fiche Notion — non bloquant : le visiteur a déjà son guide.
+  const inNotion = await createLead(env, {
+    formulaire: 'Guide 10 automatisations',
+    email,
+    prenom: firstname,
+    societe,
+    telephone,
+    consentement: true,
+  });
+
+  // 4) Alerte interne — non bloquante elle aussi, et jamais avant que le guide soit parti.
+  await notifyInternal(token, { email, firstname, societe, telephone, inNotion });
+
   return ok();
+}
+
+// Prévient contact@claudeagency.fr, depuis la boîte elle-même (même circuit que le guide).
+// Indique si la fiche Notion a bien été créée : sans ce signal, une panne d'écriture Notion
+// resterait invisible jusqu'à ce qu'on constate un trou dans la base.
+async function notifyInternal(token, { email, firstname, societe, telephone, inNotion }) {
+  const rows = [
+    ['Societe', societe],
+    ['Prenom', firstname],
+    ['Email', email],
+    ['Telephone', telephone],
+    ['Fiche Notion', inNotion ? 'creee' : 'NON creee — a saisir a la main'],
+  ].filter(([, value]) => value);
+  const subject = 'Nouveau lead — ' + (societe || email);
+  const cell = 'padding:6px 14px 6px 0;color:#666;vertical-align:top;white-space:nowrap';
+  const html =
+    '<table style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:15px">' +
+    rows
+      .map(
+        ([label, value]) =>
+          '<tr><td style="' + cell + '">' + escapeHtml(label) + '</td>' +
+          '<td style="padding:6px 0"><strong>' + escapeHtml(value) + '</strong></td></tr>',
+      )
+      .join('') +
+    '</table>' +
+    '<p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:14px">' +
+    'Guide « 10 automatisations IA » demandé sur claudeagency.fr.</p>';
+  try {
+    await fetch(HOSTINGER_API, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: [ALERT_TO],
+        displayName: 'Formulaire claudeagency.fr',
+        subject,
+        text: rows.map(([label, value]) => `${label} : ${value}`).join('\n'),
+        html,
+      }),
+    });
+  } catch {
+    /* non bloquant */
+  }
 }
 
 function json(obj, status = 200) {

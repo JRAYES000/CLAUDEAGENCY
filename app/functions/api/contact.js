@@ -6,8 +6,15 @@
 // Remplace Web3Forms, dont la clé pointait vers une boîte inaccessible (aucun lead reçu
 // entre le 14/06/2026 et le 18/08/2026).
 //
-// Variable d'env Cloudflare Pages (Production + Preview) :
+// Chaque soumission crée aussi une fiche dans la base Notion « Leads entrants » (best-effort :
+// une panne Notion ne doit pas faire perdre le message, l'e-mail reste la source de vérité).
+//
+// Variables d'env Cloudflare Pages (Production + Preview) :
 //   HOSTINGER_MAIL_TOKEN = jeton API Hostinger Mail (hPanel), portée : boîte contact@claudeagency.fr
+//   NOTION_TOKEN         = jeton d'intégration Notion — facultatif, voir _notion.js
+//   NOTION_LEADS_DB      = id de la base « Leads entrants — claudeagency.fr » — facultatif
+import { createLead } from './_notion.js';
+
 const TO_EMAIL = 'contact@claudeagency.fr';
 const FROM_NAME = 'Formulaire claudeagency.fr';
 // Identifiant public de la boîte côté API Hostinger (pas un secret) — GET /api/v1/me le renvoie.
@@ -29,6 +36,13 @@ const SUBJECTS = {
   contact: 'Nouveau message depuis claudeagency.fr',
   diagnostic: 'Nouveau diagnostic — claudeagency.fr',
   barometre: 'Nouvelle réponse au Baromètre IA',
+};
+
+// Option « Formulaire » de la base Notion, par valeur du champ caché `form`.
+const NOTION_FORMS = {
+  contact: 'Contact',
+  diagnostic: 'Diagnostic',
+  barometre: 'Barometre IA',
 };
 
 // Garde-fous sur les lignes envoyées par le client (mode barometre) : l'endpoint est public.
@@ -85,6 +99,24 @@ export async function onRequestPost({ request, env }) {
   const sent = await sendViaHostinger(env.HOSTINGER_MAIL_TOKEN, { subject, text, html });
 
   if (!sent) return json({ ok: false, message: "L'envoi a échoué. Réessayez dans un instant." }, 502);
+
+  // Fiche Notion — seulement si on tient une adresse : une réponse anonyme au Baromètre
+  // n'est pas un lead, et une ligne sans identifiant ne se relance pas.
+  if (email) {
+    await createLead(env, {
+      formulaire: NOTION_FORMS[form] || NOTION_FORMS.contact,
+      email,
+      prenom: name,
+      societe: String(data.organisme || '').trim(),
+      role: String(data.role || '').trim(),
+      priorite: String(data.priorite || '').trim(),
+      maturite: String(data.maturite || '').trim(),
+      // Pour le Baromètre, le corps utile est la liste des réponses, pas un champ message.
+      message: form === 'barometre' ? text : String(data.message || '').trim(),
+      consentement: true,
+    });
+  }
+
   return json({ ok: true });
 }
 
