@@ -54,8 +54,13 @@ l'URL : minuscules, tirets, sans accent. Les champs obligatoires du blog et des 
 **Une page qui ne doit pas être indexée s'ajoute au filtre du sitemap**, `app/astro.config.mjs`
 ligne 62 — sinon elle y entre malgré son `noindex`. Sept chemins y sont déjà exclus.
 
-Le formulaire d'inscription passe par `app/functions/api/subscribe.js` (Cloudflare Pages Function).
-C'est **le seul code serveur du projet** : toute modification du formulaire le concerne.
+**Tout le code serveur du projet tient dans `app/functions/api/`** (Cloudflare Pages Functions) :
+`subscribe.js` sert le lead magnet, `contact.js` les formulaires contact / diagnostic / Baromètre,
+`_notion.js` écrit la fiche du lead dans la base Notion « Leads entrants — claudeagency.fr » (un
+fichier préfixé par `_` n'est pas routé par Pages). Les trois envoient depuis la boîte
+contact@claudeagency.fr via l'API Hostinger ; l'écriture Notion et l'alerte interne sont
+**best-effort** — elles ne doivent jamais faire perdre un lead. `GET /api/subscribe` dit quelle
+version est déployée et si les variables Notion sont posées.
 
 **Brouillons LinkedIn : `docs/prive/sortants/`**, jamais à la racine ni dans `app/`. Le dossier est
 couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs
