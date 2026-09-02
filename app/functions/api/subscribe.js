@@ -29,7 +29,13 @@ const HOSTINGER_API = `https://api.mail.hostinger.com/api/v1/mailboxes/${MAILBOX
 export async function onRequestGet({ env }) {
   // Health-check + détecteur de version de déploiement. `brevo` dit seulement si la clé est
   // présente (jamais sa valeur) : sans elle, le guide part quand même, sans ajout à la liste.
-  return json({ ok: true, endpoint: 'subscribe', mode: 'hostinger-brevo-v1', brevo: !!env.BREVO_API_KEY });
+  return json({
+    ok: true,
+    endpoint: 'subscribe',
+    mode: 'hostinger-brevo-notion-v2',
+    brevo: !!env.BREVO_API_KEY,
+    notion: !!(env.NOTION_TOKEN && env.NOTION_LEADS_DB),
+  });
 }
 
 export async function onRequestPost({ request, env }) {
