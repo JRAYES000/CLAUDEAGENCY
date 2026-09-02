@@ -30,6 +30,19 @@ Particularités : jeton *account-owned* (préfixe `cfat_`) → `GET /user/tokens
 « Invalid API Token », c'est normal ; tester avec `GET /zones`. Portée : `Pages Write` sur le compte
 + droits DNS sur la zone claudepartners.fr **uniquement** — il ne peut pas modifier la zone claudeagency.fr.
 
+**Variables d'environnement du projet Pages `claudepartners`** — elles se posent par l'API
+(`PATCH /accounts/{id}/pages/projects/claudepartners`, corps
+`deployment_configs.production.env_vars`), jamais en recopiant un secret dans le chat. Le PATCH
+fusionne : les clés absentes du corps sont conservées, mais **relire la liste après coup** reste
+la seule preuve.
+- Production : `HOSTINGER_MAIL_TOKEN`, `BREVO_API_KEY`, `NOTION_TOKEN`, `NOTION_LEADS_DB`
+  (+ `MJ_APIKEY`/`MJ_SECRETKEY`, vestiges de Mailjet, plus utilisés par le code).
+- Preview : les deux `NOTION_*` et les vestiges Mailjet seulement — **ni Hostinger ni Brevo**,
+  donc un formulaire testé sur une URL de preview ne peut pas envoyer d'e-mail.
+- Une variable posée n'est lue que par les déploiements **créés après** : redéployer ensuite.
+- `NOTION_TOKEN` = connexion interne Notion « Leads site claudeagency.fr », partagée avec la
+  seule base « Leads entrants — claudeagency.fr ». Valeur consignée dans `claude-config`.
+
 **claudepartners.fr** (ancien nom de domaine) : depuis le 25/07/2026, site **autonome**, projet Pages
 dédié `claudepartners-fr`, page d'attente en noindex. La redirection 301 vers claudeagency.fr a été
 supprimée. Ne pas rebrancher ces hostnames sur le projet Pages `claudepartners` (duplicate content).
