@@ -35,10 +35,12 @@ Particularités : jeton *account-owned* (préfixe `cfat_`) → `GET /user/tokens
 `deployment_configs.production.env_vars`), jamais en recopiant un secret dans le chat. Le PATCH
 fusionne : les clés absentes du corps sont conservées, mais **relire la liste après coup** reste
 la seule preuve.
-- Production : `HOSTINGER_MAIL_TOKEN`, `BREVO_API_KEY`, `NOTION_TOKEN`, `NOTION_LEADS_DB`
-  (+ `MJ_APIKEY`/`MJ_SECRETKEY`, vestiges de Mailjet, plus utilisés par le code).
-- Preview : les deux `NOTION_*` et les vestiges Mailjet seulement — **ni Hostinger ni Brevo**,
-  donc un formulaire testé sur une URL de preview ne peut pas envoyer d'e-mail.
+- Production : `HOSTINGER_MAIL_TOKEN`, `BREVO_API_KEY`, `NOTION_TOKEN`, `NOTION_LEADS_DB`.
+- Preview : les deux `NOTION_*` seulement — **ni Hostinger ni Brevo**, donc un formulaire testé
+  sur une URL de preview ne peut pas envoyer d'e-mail.
+- **Un secret se pose en type `secret_text`, jamais `plain_text`** : l'API renvoie en clair la
+  valeur des variables `plain_text` à chaque lecture du projet. `MJ_APIKEY` et `MJ_SECRETKEY`
+  étaient dans ce cas ; retirés le 02/09/2026, plus aucun code ne lisait Mailjet.
 - Une variable posée n'est lue que par les déploiements **créés après** : redéployer ensuite.
 - `NOTION_TOKEN` = connexion interne Notion « Leads site claudeagency.fr », partagée avec la
   seule base « Leads entrants — claudeagency.fr ». Valeur consignée dans `claude-config`.
