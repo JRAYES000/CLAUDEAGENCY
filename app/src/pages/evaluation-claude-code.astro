@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Évaluation interne des collaborateurs Claude Agency.
-// Parcours question par question : 20 s pour répondre, puis la correction s'affiche
-// et se lit sans limite de temps. À la fin, le résultat part vers /api/evaluation,
+// Parcours question par question : 20 s pour répondre. Qui répond arrête le chrono et
+// lit la correction sans limite de temps ; qui laisse filer les 20 s voit « Temps écoulé »
+// et le test enchaîne seul sur la question suivante — la correction manquée est reprise
+// sur l'écran de résultat. À la fin, le résultat part vers /api/evaluation,
 // qui crée une ligne dans la base Notion « Resultats du test Claude Code ».
 // Page utilitaire : absente du menu, mais indexable — regle de Julien du 23/08,
 // aucune page des deux sites n'est en noindex.
@@ -452,6 +454,10 @@ const LETTRES = ['A', 'B', 'C', 'D'];
 // il s'arrête dès la réponse, et la correction se lit sans limite de temps.
 const LIMITE = 20;
 
+// Millisecondes d'affichage du bandeau « Temps écoulé » avant l'enchaînement automatique.
+// Sans cette pause, la question suivante apparaît sans que personne comprenne pourquoi.
+const PAUSE = 1500;
+
 // Micro-formatage commun à tous les textes du test : `code` et **gras**.
 // Les intitulés citent beaucoup de commandes ; sans ça les accents graves s'affichent tels quels.
 const enrichir = (t) =>
@@ -530,7 +536,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
-          <span><strong class="font-semibold">{LIMITE} secondes par question.</strong> Passé ce délai, la question compte comme non répondue et la correction s'affiche. Lire la correction n'est pas chronométré.</span>
+          <span><strong class="font-semibold">{LIMITE} secondes par question.</strong> Passé ce délai, la question compte comme non répondue et le test enchaîne tout seul. Répondre arrête le chrono : la correction se lit sans limite de temps.</span>
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
@@ -627,7 +633,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
           <h2 class="mt-2 font-display text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]" set:html={enrichir(item.q)} />
 
           <p class="hors-delai mt-5 rounded-lg border border-[#c98b80] bg-[#fbf0ee] px-4 py-3 text-sm font-medium text-[#8a4436]" hidden>
-            Temps écoulé. Question comptée comme non répondue — voici quand même la correction.
+            Temps écoulé. Question comptée comme non répondue, on enchaîne — la correction est reprise en fin de test.
           </p>
 
           <ul class="mt-6 space-y-2.5">
@@ -753,7 +759,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
     }
   </style>
 
-  <script is:inline define:vars={{ PALIERS, DOMAINES, total, LIMITE }}>
+  <script is:inline define:vars={{ PALIERS, DOMAINES, total, LIMITE, PAUSE }}>
     (function () {
       const accueil = document.getElementById('accueil');
       const identite = document.getElementById('identite');
@@ -795,6 +801,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       const CIRCONFERENCE = 2 * Math.PI * 17;
       let tic = null;
       let depart = 0;
+      let attente = null; // enchaînement différé après un temps écoulé
 
       const peindre = (restant) => {
         chronoValeur.textContent = String(Math.max(0, Math.ceil(restant)));
@@ -849,17 +856,40 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         h.setAttribute('tabindex', '-1');
         h.focus({ preventScroll: true });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        lancerChrono(() => corriger(sections[i], null));
+        lancerChrono(() => expirer(sections[i]));
       };
 
-      // `j` vaut null quand le chrono est arrivé à zéro : la question est alors comptée
-      // comme non répondue, mais la correction s'affiche quand même.
+      // Chrono à zéro : question non répondue, bandeau, puis enchaînement automatique.
+      // La correction n'est pas montrée ici — elle est reprise sur l'écran de résultat,
+      // dans « Ce qu'il faut reprendre ».
+      const expirer = (section) => {
+        const i = Number(section.dataset.index);
+        if (donnees[i].corrige) return;
+        donnees[i].corrige = true;
+        donnees[i].secondes = LIMITE;
+        chrono.hidden = true;
+
+        section.querySelectorAll('.option').forEach((btn) => {
+          btn.disabled = true;
+          btn.setAttribute('aria-disabled', 'true');
+          btn.dataset.etat = 'neutre';
+        });
+        reveler(section.querySelector('.hors-delai'));
+        annonce.textContent = 'Temps écoulé. Question non répondue, passage à la suivante.';
+        majBarre();
+
+        attente = setTimeout(() => {
+          attente = null;
+          if (i === total - 1) terminer();
+          else afficher(i + 1);
+        }, PAUSE);
+      };
+
       const corriger = (section, j) => {
         const i = Number(section.dataset.index);
         if (donnees[i].corrige) return;
         donnees[i].corrige = true;
-        donnees[i].secondes = j === null ? LIMITE : arretChrono();
-        if (j === null) chrono.hidden = true;
+        donnees[i].secondes = arretChrono();
         const correct = donnees[i].correct;
         donnees[i].choisi = j;
         if (j === correct) justes += 1;
@@ -878,17 +908,13 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
           reveler(p);
         });
 
-        if (j === null) reveler(section.querySelector('.hors-delai'));
         reveler(section.querySelector('.retenir'));
         const suivant = section.querySelector('.suivant');
         reveler(suivant);
-        const lettre = ['A', 'B', 'C', 'D'][correct];
         annonce.textContent =
-          j === null
-            ? `Temps écoulé, question non répondue. La bonne réponse est l'option ${lettre}.`
-            : j === correct
-              ? `Bonne réponse. ${justes} sur ${i + 1}.`
-              : `Réponse incorrecte. La bonne réponse est l'option ${lettre}.`;
+          j === correct
+            ? `Bonne réponse. ${justes} sur ${i + 1}.`
+            : `Réponse incorrecte. La bonne réponse est l'option ${['A', 'B', 'C', 'D'][correct]}.`;
         majBarre();
         suivant.focus({ preventScroll: true });
       };
@@ -1053,6 +1079,8 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
 
       document.getElementById('recommencer').addEventListener('click', () => {
         arretChrono();
+        clearTimeout(attente);
+        attente = null;
         index = 0;
         justes = 0;
         participant = null;
