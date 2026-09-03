@@ -63,7 +63,12 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, message: 'Requête invalide.' }, 400);
   }
 
-  if (data.botcheck) return json({ ok: true }); // honeypot rempli => bot, on ignore silencieusement
+  // Champ piège rempli => bot, on ignore silencieusement (réponse « ok » pour ne rien lui apprendre).
+  // `botcheck` : ancienne case à cocher, gardée pour un formulaire encore en cache.
+  if (data.botcheck || data.website) return json({ ok: true });
+  // Bot d'abonnement observé du 30/08 au 03/09/2026 : nom = organisme, message en anglais
+  // demandant des « updates ». Il ne touche pas au champ piège, d'où cette signature.
+  if (/subscri|email updates|news and updates|stay informed|company news/i.test(String(data.message || ''))) return json({ ok: true });
 
   const form = String(data.form || '');
   const email = String(data.email || '').trim();

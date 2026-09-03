@@ -1,6 +1,7 @@
 <form id="contact-form" action="/api/contact" method="POST" class="space-y-4">
   <input type="hidden" name="form" value="contact" />
-  <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+  <!-- Champ piège : invisible pour un humain, rempli par les bots qui saisissent tout champ texte. -->
+  <input type="text" name="website" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <div>
     <label for="name" class="block text-sm font-medium">Nom et prénom</label>
