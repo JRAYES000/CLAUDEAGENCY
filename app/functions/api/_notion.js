@@ -45,9 +45,12 @@ export async function createResultat(env, r) {
 
   // « Email » est la propriete titre de la base : dans Notion le titre est toujours
   // la premiere colonne et ne se deplace pas, et c'est l'adresse que Julien veut voir
-  // en tete. Elle est donc de type title, pas email — pas de lien mailto cliquable.
+  // en tete. Un titre ne porte pas le type email, donc pas de lien mailto : la meme
+  // adresse est recopiee en fin de tableau dans « Email (lien) », elle cliquable.
+  const email = trim(r.email);
   return postPage(env, env.NOTION_EVAL_DB, {
-    Email: { title: [{ text: { content: trim(r.email).slice(0, 200) } }] },
+    Email: { title: [{ text: { content: email.slice(0, 200) } }] },
+    'Email (lien)': { email },
     Prenom: { rich_text: [{ text: { content: trim(r.prenom).slice(0, 200) } }] },
     Nom: { rich_text: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
     'Bonnes reponses': { number: r.justes },
