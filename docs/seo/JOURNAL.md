@@ -5,6 +5,61 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-04 (89) — Nouvel article « Agence Claude : comment la choisir », cible grand public
+
+**Type :** publication. Carte 10 du backlog `visibilite-ops`, déléguée par Julien à l'intendant
+le 2026-09-04.
+
+**URL :** https://claudeagency.fr/blog/agence-claude-comment-choisir/
+
+**Fichiers touchés :** `app/src/content/blog/agence-claude-comment-choisir.mdx` (créé, 1 358 mots),
+`app/src/content/blog/images/agence-claude-choisir-cover.jpg` (créé),
+`app/src/pages/agence-marketing-claude.astro` (un lien contextuel ajouté), `REQUETES.csv`,
+`BACKLOG.md`, ce journal.
+
+**Pourquoi :** deuxième article de l'élargissement grand public (arbitrage du 22/08, répercuté
+dans `PRODUCT.md` le 04/09, commit `3b8f6cb`). Requête visée : « agence claude », mesurée
+**17e** au relevé DataForSEO du 2026-09-03 (`visibilite-ops/data/2026-09-03-positions.md`),
+URL classée `/agence-marketing-claude/`. Aucune ligne « agence claude » n'existait dans
+`REQUETES.csv` : la requête n'était couverte par aucune page dédiée. La requête « agence ia »
+est explicitement hors périmètre — elle revient à l'autre produit.
+
+**Arbitrage — pourquoi l'article ne vise pas la tête de requête :** la landing
+`/agence-marketing-claude/` tient déjà la 17e place sur « agence claude ». Écrire un second
+article sur la même intention commerciale rejouerait exactement le défaut diagnostiqué le 30/08
+sur « claude pour le marketing » (entrée #85) : deux pages, une intention, la landing gagne,
+l'article n'entre jamais dans le top 100. L'article prend donc l'intention **informationnelle**
+du même cluster — *comment choisir une agence qui travaille avec Claude, et repérer celles qui
+se contentent de le dire* — et la landing garde l'intention commerciale. Même méthode que le
+30/08 : séparation des intentions, pas fusion.
+
+**Fait :**
+- Article de 1 358 mots, écrit pour un dirigeant de PME ou un indépendant **non organisme de
+  formation** : les trois sens de « agence Claude », sept questions vérifiables à poser en
+  rendez-vous, trois signaux d'alerte, ce que ça change sur délais et prix, ce que Claude ne
+  fait pas, et un paragraphe qui dit quand une agence ne sert à rien.
+- Premier paragraphe en entonnoir inversé (règle `LECONS.md` du 04/09) : la réponse d'abord,
+  aucun chiffre qui ne soit démontré plus bas.
+- Source externe citée : position de Google sur le contenu produit par IA, Google Search
+  Central, 8 février 2023. Les délais annoncés sont donnés comme **nos délais constatés**,
+  jamais comme une moyenne de marché — aucun chiffre inventé, aucune promesse de position.
+- Maillage posé à la main, jamais par script : article → `/agence-marketing-claude/` (deux
+  fois, dont la conclusion) et → `/blog/claude-pour-le-marketing/` ; landing → article, dans
+  un paragraphe contextuel sous « Claude, c'est quoi exactement ? ».
+- Aucun Schema `FAQPage` ni `HowTo` ajouté (garde-fou du dépôt).
+- Couverture produite par IA : quota gratuit Workers AI de Cloudflare épuisé (HTTP 429 sur les
+  deux comptes du coffre), repli sur fal.ai (FLUX schnell), désigné comme secours dans le
+  coffre. Image 1024×576, sans texte ni visage, tons chauds conformes à `DESIGN.md`.
+
+**Mesure :** `cd app && npm install && npm run build` → **code de sortie 0**, 85 pages, la page
+`/blog/agence-claude-comment-choisir/` figure dans la sortie. `postbuild` IndexNow ignoré en
+local, comme prévu. Position de départ sur « agence claude » : landing 17e au 03/09 — l'article
+part de zéro, il n'a pas encore de position.
+
+**Suite :** au relevé du 2026-09-11, vérifier laquelle des deux URL est classée sur « agence
+claude ». Si l'article n'apparaît pas mais que la landing recule, la séparation d'intentions
+n'a pas pris et il faut trancher entre les deux pages, pas en écrire une troisième.
+
 ## 2026-08-31 (87) — E7 : passer le relais, les rendez-vous de septembre
 
 **Type :** documentation de passage de relais, `docs/suite-sprint-septembre.md`. Aucune

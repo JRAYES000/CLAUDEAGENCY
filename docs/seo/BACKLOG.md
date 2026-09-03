@@ -28,6 +28,11 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
 - [ ] **Au relevé du 2026-09-05 au plus tôt** : vérifier que l'URL classée sur « claude pour le
       marketing » a basculé vers l'article. Si la landing reste l'URL classée, la cannibalisation
       n'est pas levée — envisager alors la fusion, pas une réécriture de plus.
+- [ ] **Au relevé du 2026-09-11** : même contrôle sur « agence claude », après la publication
+      du 04/09 de `/blog/agence-claude-comment-choisir/` (`JOURNAL.md` #89). La landing
+      `/agence-marketing-claude/` était 17e au 03/09. Si l'article n'apparaît pas **et** que la
+      landing recule, la séparation d'intentions n'a pas pris : trancher entre les deux pages,
+      ne pas en écrire une troisième.
 
 ### 🟡 1. Netlinking — objectif global atteint, rendement propre à la campagne encore faible
 
