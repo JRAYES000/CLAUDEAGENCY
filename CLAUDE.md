@@ -56,11 +56,18 @@ ligne 62 — sinon elle y entre malgré son `noindex`. Sept chemins y sont déj�
 
 **Tout le code serveur du projet tient dans `app/functions/api/`** (Cloudflare Pages Functions) :
 `subscribe.js` sert le lead magnet, `contact.js` les formulaires contact / diagnostic / Baromètre,
-`_notion.js` écrit la fiche du lead dans la base Notion « Leads entrants — claudeagency.fr » (un
-fichier préfixé par `_` n'est pas routé par Pages). Les trois envoient depuis la boîte
-contact@claudeagency.fr via l'API Hostinger ; l'écriture Notion et l'alerte interne sont
-**best-effort** — elles ne doivent jamais faire perdre un lead. `GET /api/subscribe` dit quelle
-version est déployée et si les variables Notion sont posées.
+`evaluation.js` le résultat du test `/evaluation-claude-code/`, `_notion.js` écrit dans les bases
+Notion (un fichier préfixé par `_` n'est pas routé par Pages). `subscribe` et `contact` envoient
+depuis la boîte contact@claudeagency.fr via l'API Hostinger ; leur écriture Notion et l'alerte
+interne sont **best-effort** — elles ne doivent jamais faire perdre un lead. `evaluation` fait
+l'inverse : Notion est sa seule sortie, donc un échec y remonte en 502.
+
+**Deux bases Notion, deux variables, deux connexions distinctes** : `NOTION_LEADS_DB` (« Leads
+entrants — claudeagency.fr ») et `NOTION_EVAL_DB` (« Resultats du test Claude Code »). Le jeton
+`NOTION_TOKEN` est le même, mais **l'intégration doit être ajoutée à chaque base une par une**
+dans l'interface Notion : sans ça l'API rend un `404 object_not_found` qui se lit à tort comme un
+mauvais identifiant. `GET /api/subscribe` et `GET /api/evaluation` disent quelle version est
+déployée et si les variables Notion sont posées — pas si la connexion existe.
 
 **Brouillons LinkedIn : `docs/prive/sortants/`**, jamais à la racine ni dans `app/`. Le dossier est
 couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs

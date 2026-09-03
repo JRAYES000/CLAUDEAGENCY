@@ -2,8 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Évaluation interne des collaborateurs Claude Agency.
-// Parcours question par question : on répond, on voit immédiatement pourquoi
-// chaque option est juste ou fausse, puis on avance. Aucune donnée n'est envoyée.
+// Parcours question par question : 20 s pour répondre, puis la correction s'affiche
+// et se lit sans limite de temps. À la fin, le résultat part vers /api/evaluation,
+// qui crée une ligne dans la base Notion « Resultats du test Claude Code ».
 // Page utilitaire : absente du menu, mais indexable — regle de Julien du 23/08,
 // aucune page des deux sites n'est en noindex.
 // Corrigé sourcé sur la documentation officielle (champ `source`).
@@ -447,6 +448,10 @@ const breadcrumb = {
 
 const LETTRES = ['A', 'B', 'C', 'D'];
 
+// Secondes accordées par question. Le chrono ne court que sur la question :
+// il s'arrête dès la réponse, et la correction se lit sans limite de temps.
+const LIMITE = 20;
+
 // Micro-formatage commun à tous les textes du test : `code` et **gras**.
 // Les intitulés citent beaucoup de commandes ; sans ça les accents graves s'affichent tels quels.
 const enrichir = (t) =>
@@ -468,6 +473,24 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
   <!-- Barre de progression, visible seulement pendant le parcours -->
   <div id="barre" hidden class="sticky top-0 z-30 border-b border-sand bg-cream-50/95 backdrop-blur-sm">
     <div class="mx-auto flex max-w-2xl items-center gap-4 px-4 py-3">
+      <!-- Compte à rebours : 20 s pour répondre. Il s'arrête dès la réponse (ou à zéro),
+           la lecture de la correction n'est jamais chronométrée. -->
+      <div id="chrono" class="relative shrink-0" hidden>
+        <svg viewBox="0 0 40 40" class="h-11 w-11 -rotate-90" aria-hidden="true">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" class="text-sand" />
+          <circle
+            id="chrono-arc"
+            cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+            class="text-brand-500 transition-colors duration-300"
+            stroke-dasharray="106.8" stroke-dashoffset="0"
+          />
+        </svg>
+        <span
+          id="chrono-valeur"
+          class="absolute inset-0 flex items-center justify-center font-display text-sm font-bold tabular-nums text-ink"
+        >20</span>
+      </div>
+
       <div class="min-w-0 flex-1">
         <div class="flex items-baseline justify-between gap-3 text-sm">
           <span class="truncate font-medium text-ink">Question <span id="barre-index">1</span> sur {total}</span>
@@ -507,11 +530,15 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
+          <span><strong class="font-semibold">{LIMITE} secondes par question.</strong> Passé ce délai, la question compte comme non répondue et la correction s'affiche. Lire la correction n'est pas chronométré.</span>
+        </li>
+        <li class="flex gap-3">
+          <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
           <span>On ne revient pas en arrière : répondez avec ce que vous savez, pas avec ce que vous cherchez.</span>
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
-          <span>Rien n'est envoyé. Tout se calcule dans votre navigateur.</span>
+          <span>Votre nom et votre score sont enregistrés à la fin, pour le suivi de formation interne.</span>
         </li>
       </ul>
 
@@ -534,6 +561,62 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       <p class="mt-3 text-sm text-ink/70">Comptez une quinzaine de minutes.</p>
     </section>
 
+    <!-- ---------- Identité ---------- -->
+    <section id="identite" hidden>
+      <h1 class="font-display text-3xl font-extrabold leading-[1.1] text-ink sm:text-4xl">Avant de commencer</h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink/70">
+        Votre résultat est rattaché à votre nom : c'est ce qui permet d'en tirer un plan de formation
+        plutôt qu'un score anonyme.
+      </p>
+
+      <form id="identite-form" class="mt-8 space-y-5" novalidate>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="ident-prenom" class="block text-sm font-medium text-ink">Prénom</label>
+            <input
+              id="ident-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="80"
+              class="mt-1.5 w-full rounded-lg border border-sand bg-white px-4 py-3 text-ink outline-none transition-colors duration-150 focus:border-brand-500"
+            />
+          </div>
+          <div>
+            <label for="ident-nom" class="block text-sm font-medium text-ink">Nom</label>
+            <input
+              id="ident-nom" name="nom" type="text" autocomplete="family-name" required maxlength="80"
+              class="mt-1.5 w-full rounded-lg border border-sand bg-white px-4 py-3 text-ink outline-none transition-colors duration-150 focus:border-brand-500"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="ident-email" class="block text-sm font-medium text-ink">Adresse e-mail</label>
+          <input
+            id="ident-email" name="email" type="email" autocomplete="email" required maxlength="150"
+            class="mt-1.5 w-full rounded-lg border border-sand bg-white px-4 py-3 text-ink outline-none transition-colors duration-150 focus:border-brand-500"
+          />
+        </div>
+
+        <!-- Honeypot : la page est publique et liée depuis le pied de page du site. -->
+        <div class="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label for="ident-botcheck">Ne pas remplir</label>
+          <input id="ident-botcheck" name="botcheck" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p id="identite-erreur" class="text-sm font-medium text-[#8a4436]" role="alert" hidden></p>
+
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-brand-700 px-7 py-3.5 font-semibold text-white transition-colors duration-150 hover:bg-brand-800 sm:w-auto"
+        >
+          Lancer la question 1
+        </button>
+        <p class="text-sm leading-relaxed text-ink/70">
+          Le chrono démarre au clic. Ces informations, votre score et votre temps sont conservés
+          par Claude Agency pour le seul suivi de formation interne&nbsp;;
+          écrivez à <a class="underline underline-offset-2 hover:text-ink" href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>
+          pour y accéder ou les faire supprimer.
+        </p>
+      </form>
+    </section>
+
     <!-- ---------- Questions ---------- -->
     <div id="parcours" hidden>
       <p id="annonce" class="sr-only" role="status" aria-live="polite"></p>
@@ -542,6 +625,10 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         <section class="question" data-index={i} data-correct={item.correct} data-domaine={item.domaine} hidden>
           <p class="text-sm font-medium text-brand-700">{DOMAINES[item.domaine]}</p>
           <h2 class="mt-2 font-display text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]" set:html={enrichir(item.q)} />
+
+          <p class="hors-delai mt-5 rounded-lg border border-[#c98b80] bg-[#fbf0ee] px-4 py-3 text-sm font-medium text-[#8a4436]" hidden>
+            Temps écoulé. Question comptée comme non répondue — voici quand même la correction.
+          </p>
 
           <ul class="mt-6 space-y-2.5">
             {item.opts.map((opt, j) => (
@@ -598,6 +685,26 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         <p id="resultat-conseil" class="mt-4 leading-relaxed text-ink/80"></p>
       </div>
 
+      <dl class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        <div class="rounded-lg border border-sand bg-cream-50 p-5">
+          <dt class="text-sm text-ink/70">Temps de réponse</dt>
+          <dd id="resultat-duree" class="mt-1 font-display text-2xl font-bold tabular-nums text-ink"></dd>
+          <dd class="mt-1 text-xs leading-relaxed text-ink/60">Cumul des {total} questions, hors lecture des corrections.</dd>
+        </div>
+        <div class="rounded-lg border border-sand bg-cream-50 p-5">
+          <dt class="text-sm text-ink/70">Par question</dt>
+          <dd id="resultat-moyenne" class="mt-1 font-display text-2xl font-bold tabular-nums text-ink"></dd>
+          <dd class="mt-1 text-xs leading-relaxed text-ink/60">Moyenne, sur un plafond de {LIMITE} s.</dd>
+        </div>
+        <div class="rounded-lg border border-sand bg-cream-50 p-5">
+          <dt class="text-sm text-ink/70">Hors délai</dt>
+          <dd id="resultat-timeouts" class="mt-1 font-display text-2xl font-bold tabular-nums text-ink"></dd>
+          <dd class="mt-1 text-xs leading-relaxed text-ink/60">Questions laissées sans réponse.</dd>
+        </div>
+      </dl>
+
+      <p id="resultat-envoi" class="mt-4 text-sm text-ink/60" role="status" aria-live="polite"></p>
+
       <h2 class="mt-10 font-display text-xl font-bold text-ink">Votre profil par domaine</h2>
       <div id="resultat-domaines" class="mt-4 space-y-4"></div>
 
@@ -646,9 +753,10 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
     }
   </style>
 
-  <script is:inline define:vars={{ PALIERS, DOMAINES, total }}>
+  <script is:inline define:vars={{ PALIERS, DOMAINES, total, LIMITE }}>
     (function () {
       const accueil = document.getElementById('accueil');
+      const identite = document.getElementById('identite');
       const parcours = document.getElementById('parcours');
       const resultat = document.getElementById('resultat');
       const barre = document.getElementById('barre');
@@ -664,10 +772,13 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
 
       let index = 0;
       let justes = 0;
+      let participant = null;
       const donnees = sections.map((s) => ({
         correct: Number(s.dataset.correct),
         domaine: s.dataset.domaine,
         choisi: null,
+        corrige: false,
+        secondes: 0,
       }));
 
       const reveler = (el) => {
@@ -675,10 +786,57 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         el.classList.add('ev-reveal');
       };
 
+      // ---------- Compte à rebours ----------
+      // Un seul intervalle vivant à la fois. `arret()` le tue et rend le temps consommé,
+      // ce qui sert à la fois à la question courante et au cumul final.
+      const chrono = document.getElementById('chrono');
+      const chronoArc = document.getElementById('chrono-arc');
+      const chronoValeur = document.getElementById('chrono-valeur');
+      const CIRCONFERENCE = 2 * Math.PI * 17;
+      let tic = null;
+      let depart = 0;
+
+      const peindre = (restant) => {
+        chronoValeur.textContent = String(Math.max(0, Math.ceil(restant)));
+        chronoArc.setAttribute('stroke-dashoffset', String(CIRCONFERENCE * (1 - Math.max(0, restant) / LIMITE)));
+        chronoArc.classList.toggle('text-brand-500', restant > 5);
+        chronoArc.classList.toggle('text-[#b5634a]', restant <= 5);
+        chronoValeur.classList.toggle('text-ink', restant > 5);
+        chronoValeur.classList.toggle('text-[#b5634a]', restant <= 5);
+      };
+
+      const lancerChrono = (surExpiration) => {
+        clearInterval(tic);
+        depart = performance.now();
+        chrono.hidden = false;
+        peindre(LIMITE);
+        tic = setInterval(() => {
+          const restant = LIMITE - (performance.now() - depart) / 1000;
+          peindre(restant);
+          if (restant <= 0) {
+            clearInterval(tic);
+            tic = null;
+            surExpiration();
+          }
+        }, 100);
+      };
+
+      const arretChrono = () => {
+        clearInterval(tic);
+        tic = null;
+        chrono.hidden = true;
+        return Math.min(LIMITE, (performance.now() - depart) / 1000);
+      };
+
+      const formaterDuree = (s) => {
+        const t = Math.round(s);
+        return t < 60 ? `${t} s` : `${Math.floor(t / 60)} min ${String(t % 60).padStart(2, '0')} s`;
+      };
+
       const majBarre = () => {
         document.getElementById('barre-index').textContent = String(index + 1);
         document.getElementById('barre-justes').textContent = String(justes);
-        const repondues = donnees.filter((d) => d.choisi !== null).length;
+        const repondues = donnees.filter((d) => d.corrige).length;
         document.getElementById('barre-remplissage').style.width = `${(repondues / total) * 100}%`;
         document.getElementById('barre-jauge').setAttribute('aria-valuenow', String(repondues));
       };
@@ -691,11 +849,17 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         h.setAttribute('tabindex', '-1');
         h.focus({ preventScroll: true });
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        lancerChrono(() => corriger(sections[i], null));
       };
 
-      const repondre = (section, j) => {
+      // `j` vaut null quand le chrono est arrivé à zéro : la question est alors comptée
+      // comme non répondue, mais la correction s'affiche quand même.
+      const corriger = (section, j) => {
         const i = Number(section.dataset.index);
-        if (donnees[i].choisi !== null) return;
+        if (donnees[i].corrige) return;
+        donnees[i].corrige = true;
+        donnees[i].secondes = j === null ? LIMITE : arretChrono();
+        if (j === null) chrono.hidden = true;
         const correct = donnees[i].correct;
         donnees[i].choisi = j;
         if (j === correct) justes += 1;
@@ -714,13 +878,17 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
           reveler(p);
         });
 
+        if (j === null) reveler(section.querySelector('.hors-delai'));
         reveler(section.querySelector('.retenir'));
         const suivant = section.querySelector('.suivant');
         reveler(suivant);
+        const lettre = ['A', 'B', 'C', 'D'][correct];
         annonce.textContent =
-          j === correct
-            ? `Bonne réponse. ${justes} sur ${i + 1}.`
-            : `Réponse incorrecte. La bonne réponse est l'option ${['A', 'B', 'C', 'D'][correct]}.`;
+          j === null
+            ? `Temps écoulé, question non répondue. La bonne réponse est l'option ${lettre}.`
+            : j === correct
+              ? `Bonne réponse. ${justes} sur ${i + 1}.`
+              : `Réponse incorrecte. La bonne réponse est l'option ${lettre}.`;
         majBarre();
         suivant.focus({ preventScroll: true });
       };
@@ -728,6 +896,13 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       const terminer = () => {
         parcours.hidden = true;
         barre.hidden = true;
+        chrono.hidden = true;
+
+        const secondes = donnees.reduce((t, d) => t + d.secondes, 0);
+        const sansReponse = donnees.filter((d) => d.choisi === null).length;
+        document.getElementById('resultat-duree').textContent = formaterDuree(secondes);
+        document.getElementById('resultat-moyenne').textContent = `${(secondes / total).toFixed(1)} s`;
+        document.getElementById('resultat-timeouts').textContent = String(sansReponse);
 
         const palier = PALIERS.find((p) => justes >= p.min);
         const carte = document.getElementById('resultat-carte');
@@ -778,12 +953,22 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
               <summary class="cursor-pointer font-medium text-ink marker:text-brand-500">
                 ${i + 1}. ${s.querySelector('h2').textContent}
               </summary>
-              <p class="mt-3 text-sm leading-relaxed text-ink/70"><span class="font-semibold text-ink">Votre réponse :</span> ${libelle(donnees[i].choisi)}</p>
+              <p class="mt-3 text-sm leading-relaxed text-ink/70"><span class="font-semibold text-ink">Votre réponse :</span> ${donnees[i].choisi === null ? '<em>hors délai, pas de réponse</em>' : libelle(donnees[i].choisi)}</p>
               <p class="mt-2 text-sm leading-relaxed text-ink/70"><span class="font-semibold text-ink">Bonne réponse :</span> ${libelle(donnees[i].correct)}</p>
               <p class="mt-3 text-sm leading-relaxed text-ink/80">${s.querySelector('.retenir p:nth-of-type(2)').textContent}</p>
             </details>`;
           })
           .join('');
+
+        envoyer({
+          ...participant,
+          justes,
+          total,
+          sansReponse,
+          secondes: Math.round(secondes),
+          duree: formaterDuree(secondes),
+          palier: palier.titre,
+        });
 
         resultat.hidden = false;
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -794,7 +979,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       // Délégation : un seul écouteur pour tout le parcours
       parcours.addEventListener('click', (e) => {
         const opt = e.target.closest('.option');
-        if (opt && !opt.disabled) { repondre(opt.closest('.question'), Number(opt.dataset.opt)); return; }
+        if (opt && !opt.disabled) { corriger(opt.closest('.question'), Number(opt.dataset.opt)); return; }
         if (e.target.closest('.suivant')) {
           if (index === total - 1) terminer();
           else afficher(index + 1);
@@ -806,23 +991,74 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         const section = sections[index];
         const lettre = e.key.toLowerCase();
         const j = ['a', 'b', 'c', 'd'].indexOf(lettre);
-        if (j !== -1 && donnees[index].choisi === null) {
+        if (j !== -1 && !donnees[index].corrige) {
           e.preventDefault();
-          repondre(section, j);
+          corriger(section, j);
         }
       });
 
       document.getElementById('demarrer').addEventListener('click', () => {
         accueil.hidden = true;
+        identite.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('ident-prenom').focus({ preventScroll: true });
+      });
+
+      // ---------- Identité, puis départ du parcours ----------
+      const formIdentite = document.getElementById('identite-form');
+      const erreurIdentite = document.getElementById('identite-erreur');
+
+      formIdentite.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = (nom) => formIdentite.elements[nom].value.trim();
+        const prenom = val('prenom');
+        const nom = val('nom');
+        const email = val('email');
+        let manque = '';
+        if (!prenom || !nom) manque = 'Merci de renseigner votre prénom et votre nom.';
+        else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) manque = 'Merci de saisir une adresse e-mail valide.';
+        if (manque) {
+          erreurIdentite.textContent = manque;
+          erreurIdentite.hidden = false;
+          return;
+        }
+        erreurIdentite.hidden = true;
+        participant = { prenom, nom, email, botcheck: val('botcheck') };
+
+        identite.hidden = true;
         parcours.hidden = false;
         barre.hidden = false;
         afficher(0);
       });
 
+      // Envoi best-effort : un échec réseau ne doit pas priver la personne de son résultat.
+      const envoyer = (charge) => {
+        const etat = document.getElementById('resultat-envoi');
+        etat.textContent = 'Enregistrement du résultat…';
+        fetch('/api/evaluation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(charge),
+        })
+          .then((r) => {
+            etat.textContent = r.ok
+              ? 'Résultat enregistré.'
+              : "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
+          })
+          .catch(() => {
+            etat.textContent = "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
+          });
+      };
+
       document.getElementById('recommencer').addEventListener('click', () => {
+        arretChrono();
         index = 0;
         justes = 0;
-        donnees.forEach((d) => { d.choisi = null; });
+        participant = null;
+        formIdentite.reset();
+        erreurIdentite.hidden = true;
+        document.getElementById('resultat-envoi').textContent = '';
+        donnees.forEach((d) => { d.choisi = null; d.corrige = false; d.secondes = 0; });
         sections.forEach((s) => {
           s.querySelectorAll('.option').forEach((b) => {
             b.disabled = false;
@@ -835,7 +1071,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
             p.classList.remove('ev-reveal');
             delete p.dataset.etat;
           });
-          ['.retenir', '.suivant'].forEach((sel) => {
+          ['.hors-delai', '.retenir', '.suivant'].forEach((sel) => {
             const el = s.querySelector(sel);
             el.hidden = true;
             el.classList.remove('ev-reveal');

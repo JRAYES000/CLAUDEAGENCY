@@ -5,9 +5,13 @@
 // Variables d'env Cloudflare Pages (Production + Preview) :
 //   NOTION_TOKEN    = jeton d'intégration interne Notion (ntn_…) — REQUIS
 //   NOTION_LEADS_DB = id de la base « Leads entrants — claudeagency.fr »
+//   NOTION_EVAL_DB  = id de la base « Resultats du test Claude Code » (createResultat)
 //
-// Sans ces deux variables, la fonction ne fait rien et rend false : l'appelant continue.
+// Sans ces variables, la fonction ne fait rien et rend false : l'appelant continue.
 // Toujours appeler en non bloquant — un incident Notion ne doit jamais coûter un lead.
+//
+// L'intégration doit être connectée à CHAQUE base : un jeton valide sur « Leads entrants »
+// reçoit un 404 sur une base à laquelle il n'a pas été ajouté.
 const NOTION_API = 'https://api.notion.com/v1/pages';
 const NOTION_VERSION = '2022-06-28';
 
@@ -31,6 +35,28 @@ export async function createLead(env, lead) {
     if (value) properties[key] = { rich_text: [{ text: { content: value.slice(0, 1900) } }] };
   }
 
+  return postPage(env, env.NOTION_LEADS_DB, properties);
+}
+
+// Résultat d'un passage du test /evaluation-claude-code/.
+// Base « Resultats du test Claude Code », alimentée par /api/evaluation.
+export async function createResultat(env, r) {
+  if (!env.NOTION_TOKEN || !env.NOTION_EVAL_DB) return false;
+
+  return postPage(env, env.NOTION_EVAL_DB, {
+    Nom: { title: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
+    Prenom: { rich_text: [{ text: { content: trim(r.prenom).slice(0, 200) } }] },
+    Email: { email: trim(r.email) },
+    'Bonnes reponses': { number: r.justes },
+    Duree: { rich_text: [{ text: { content: trim(r.duree).slice(0, 100) } }] },
+    'Duree (s)': { number: r.secondes },
+    'Sans reponse': { number: r.sansReponse },
+    Palier: { select: { name: r.palier } },
+    'Passe le': { date: { start: new Date().toISOString() } },
+  });
+}
+
+async function postPage(env, database_id, properties) {
   try {
     const res = await fetch(NOTION_API, {
       method: 'POST',
@@ -39,7 +65,7 @@ export async function createLead(env, lead) {
         'Notion-Version': NOTION_VERSION,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ parent: { database_id: env.NOTION_LEADS_DB }, properties }),
+      body: JSON.stringify({ parent: { database_id }, properties }),
     });
     return res.ok;
   } catch {
