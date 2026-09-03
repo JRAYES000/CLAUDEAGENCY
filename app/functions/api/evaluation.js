@@ -63,8 +63,10 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, message: 'Résultat invalide.' }, 400);
   }
 
+  // Statut 200 même en cas d'échec : Cloudflare remplace le corps des réponses 5xx par sa
+  // propre page d'erreur, et la page perdrait le message. C'est `ok` qui fait foi.
   if (!env.NOTION_TOKEN || !env.NOTION_EVAL_DB) {
-    return json({ ok: false, message: 'Configuration serveur manquante.' }, 500);
+    return json({ ok: false, message: 'Configuration serveur manquante.' });
   }
 
   const ecrit = await createResultat(env, {
@@ -78,7 +80,7 @@ export async function onRequestPost({ request, env }) {
     palier,
   });
 
-  if (!ecrit) return json({ ok: false, message: "L'enregistrement a échoué." }, 502);
+  if (!ecrit) return json({ ok: false, message: "L'enregistrement dans Notion a échoué." });
   return json({ ok: true });
 }
 

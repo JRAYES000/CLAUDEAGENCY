@@ -1040,8 +1040,9 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(charge),
         })
-          .then((r) => {
-            etat.textContent = r.ok
+          .then((r) => r.json())
+          .then((j) => {
+            etat.textContent = j && j.ok
               ? 'Résultat enregistré.'
               : "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
           })
