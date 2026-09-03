@@ -901,6 +901,63 @@ source du lot ; le fichier réel (`docs/prospection/liste-100-of.csv`) donne
 - Adresse postale de la signature toujours non vérifiée (point ouvert, hors périmètre D14).
 
 ---
+## 2026-08-24 (88) — Relevé GSC hebdomadaire (fenêtre 12/08→21/08, comparée à 02/08→11/08)
+
+**Type :** mesure.
+
+**Note du 2026-09-04 :** entrée rédigée le 24/08 mais restée non commitée sur le poste
+jusqu'au 04/09 ; renumérotée (67) → (88) parce que le 67 avait été repris entre-temps.
+Les chiffres sont ceux du relevé du 24/08, non recollectés.
+
+**URLs :** sc-domain:claudeagency.fr (propriété domaine, pas d'URL précise).
+
+**Pourquoi :** relevé de routine (tâche planifiée suivi-seo-hebdo-claudeagency). Seulement 2
+jours après le relevé précédent (22/08) — cadence de la tâche planifiée, pas une demande
+ponctuelle ; les deux fenêtres de 10 jours comparées ci-dessous recouvrent donc largement celles
+du relevé du 22/08, résultat à lire comme un point d'étape rapproché plutôt qu'une nouvelle
+semaine complète.
+
+**Fait :**
+- Comparaison de deux fenêtres de 10 jours pleines (les 2-3 derniers jours avant le 24/08 sont
+  incomplets côté GSC, donc exclus, dernier jour plein retenu : 21/08) : 02/08→11/08 contre
+  12/08→21/08. 02/08→11/08 : 7 clics, 1010 impressions, CTR 0,69 %, position moyenne 36,7.
+  12/08→21/08 : 10 clics, 582 impressions, CTR 1,72 %, position moyenne 40,1. Écart : +3 clics,
+  -428 impressions, CTR quasi doublé.
+- La baisse d'impressions vient presque entièrement de 2 pages : /services/seo/ (326 → 50
+  impressions, position 20,4 → 46,9 sur ces mêmes fenêtres) et
+  /blog/logiciel-organisme-formation/ (202 → 60 impressions). Ce sont deux pages déjà
+  identifiées comme touchées par les requêtes bot « skills claude seo » (BACKLOG.md n°4) et par
+  la position hors jeu de « logiciel organisme de formation » (BACKLOG.md n°6) — la baisse
+  d'impressions n'est donc pas un signal négatif en soi, plutôt le reflux d'un pic de bruit
+  constaté début août. /services/seo/ reste à 0 clic sur les deux fenêtres.
+- En parallèle, les clics se sont répartis sur plus de pages : 9 pages distinctes ont eu au
+  moins 1 clic sur 12-21/08 (dont 5 nouvelles : /blog/creer-supports-formation-ia/,
+  /blog/evaluer-apprenants-ia/, /blog/lms-organisme-formation/,
+  /blog/outils-ia-organisme-formation/, /blog/prompts-ia-formateurs/, 1 clic chacune) contre
+  6 pages sur 02-11/08. C'est ce qui explique le CTR en hausse malgré moins d'impressions au
+  total.
+- /blog/feuille-emargement/ (suivi actif, BACKLOG.md n°3) : 19 impressions / 0 clic sur
+  12-21/08 (6 impr. la fenêtre d'avant), position 17,1 — dans la fourchette déjà notée le 22/08,
+  rien de nouveau avant le relevé du 11/09.
+- /blog/livret-accueil-stagiaire/ : 2 clics / 28 impressions sur 12-21/08 (1 clic / 11 impr.
+  avant) — la page la plus cliquée du relevé.
+- Cumul depuis le lancement (14/05→21/08) : 59 clics, 3683 impressions, CTR 1,60 %, position
+  moyenne 33,7 — soit +1 clic mais **-72 impressions** par rapport au cumul enregistré le 22/08
+  (58 clics, 3755 impressions au 19/08), alors que la fenêtre s'est allongée de 2 jours. Chiffre
+  contre-intuitif : traité ici comme une révision normale des données GSC (Search Console
+  retraite parfois les jours récents en aval, écart faible à l'échelle du cumul, ~2 %) et non
+  comme une vraie perte de trafic — les deux comparaisons de fenêtres ci-dessus montrent au
+  contraire un CTR en progrès. À revérifier au prochain relevé si l'écart se creuse.
+- Autres URLs de la liste striking distance (BACKLOG.md n°3) : rien à signaler avant l'échéance
+  du 11/09, pas de mouvement notable sur la fenêtre.
+
+**Mesure :** mesuré — Composio GSC, sc-domain:claudeagency.fr, le 2026-08-24 (chaque chiffre
+avec sa fenêtre, détail ci-dessus). Lignes ajoutées dans PERFORMANCES.csv dans ce commit.
+
+**Suite :** prochaine action du backlog toujours la même — vague 1 netlinking (6 fiches
+gratuites, BACKLOG.md n°1), rien d'autre ne débloquera la position moyenne de 33-40. Revenir sur
+l'échéance du 11/09 pour les 9 URLs striking distance et l'arbitrage /services/seo/.
+
 
 ## 2026-08-22 (66) — Réécriture conversion de l'article automatiser-qualiopi-ia
 

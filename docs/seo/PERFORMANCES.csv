@@ -22,6 +22,12 @@ date_releve,periode_debut,periode_fin,source,propriete,metrique,valeur,note
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,clics,58,cumul depuis lancement, vs 49 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,impressions,3755,cumul depuis lancement, vs 2797 au 09/08
 2026-08-22,2026-05-14,2026-08-19,GSC,sc-domain:claudeagency.fr,ctr_pct,1.54,recalcule clics/impressions
+2026-08-24,2026-08-12,2026-08-21,GSC,sc-domain:claudeagency.fr,clics,10,fenetre 10j comparable a 02/08-11/08 (7 clics)
+2026-08-24,2026-08-12,2026-08-21,GSC,sc-domain:claudeagency.fr,impressions,582,fenetre 10j comparable a 02/08-11/08 (1010 impressions)
+2026-08-24,2026-08-12,2026-08-21,GSC,sc-domain:claudeagency.fr,ctr_pct,1.72,recalcule clics/impressions
+2026-08-24,2026-05-14,2026-08-21,GSC,sc-domain:claudeagency.fr,clics,59,cumul depuis lancement vs 58 au 19/08
+2026-08-24,2026-05-14,2026-08-21,GSC,sc-domain:claudeagency.fr,impressions,3683,cumul depuis lancement vs 3755 au 19/08 (revision GSC voir JOURNAL 67)
+2026-08-24,2026-05-14,2026-08-21,GSC,sc-domain:claudeagency.fr,ctr_pct,1.60,recalcule clics/impressions
 2026-08-27,,,Ahrefs,claudeagency.fr (FR),domaines_referents,8,releve manuel SOLOHERY (ahrefs.com backlink checker) - remplace le inconnu Ubersuggest du meme jour (outil inaccessible); dont 2 spam/ferme de liens et 6 reels (dont 1 domaine propre claudepartners.fr) - detail JOURNAL entree 77
 2026-08-27,,,Ahrefs,claudeagency.fr (FR),backlinks,11,releve manuel SOLOHERY (ahrefs.com backlink checker) - 82% dofollow - remplace le inconnu Ubersuggest du meme jour
 2026-08-27,,,Ahrefs,claudeagency.fr (FR),autorite_domaine,2.1,Domain Rating Ahrefs (pas la meme echelle que Ubersuggest 0-100) - releve manuel SOLOHERY - remplace le inconnu Ubersuggest du meme jour
