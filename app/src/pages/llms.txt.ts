@@ -127,6 +127,7 @@ ${serviceLines}
 ## Pages principales
 
 - [Accueil](${SITE}/): Claude Agency, agence IA pour organismes de formation — SEO, SEA, automatisation, formation IA
+- [Claude Agency en bref](${SITE}/claude-agency-en-bref/): La fiche d'identité de l'agence — qui nous sommes, nos huit prestations, pour qui nous travaillons, ce que nous ne faisons pas, et comment nous joindre. Page de référence sur la marque.
 - [Agence marketing Claude](${SITE}/agence-marketing-claude/): Le modèle Claude Agency — SEO, Google Ads et contenu produits avec Claude (Anthropic), validés par des consultants
 - [Services](${SITE}/services/): Toutes les prestations pour les OF
 - [Blog](${SITE}/blog/): Tous les articles — conformité des organismes de formation et adoption de l'IA

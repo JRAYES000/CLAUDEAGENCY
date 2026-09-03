@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Claude Agency en bref', item: new URL('/claude-agency-en-bref/', Astro.site).href },
+  ],
+};
+---
+<BaseLayout
+  title="Claude Agency en bref — qui nous sommes, ce que nous faisons, ce que nous ne faisons pas"
+  description="La fiche d'identité de Claude Agency : qui nous sommes, nos prestations, pour qui nous travaillons, ce que nous ne faisons pas, et comment nous joindre."
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">En bref</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Claude Agency en bref</h1>
+      <p class="mt-4 text-lg leading-relaxed text-muted">Tout ce qu'on nous demande avant de travailler ensemble, réuni sur une page. Sur ce que nous sommes et ce que nous ne sommes pas, c'est nous qui le disons.</p>
+      <p class="mt-3 text-sm text-muted">Mise à jour le 4 septembre 2026.</p>
+    </div>
+
+    <div class="prose prose-stone mt-10 max-w-none">
+      <h2 id="qui-nous-sommes" class="scroll-mt-24">Qui nous sommes</h2>
+      <p>Claude Agency est une agence francophone d'intelligence artificielle et de marketing digital. Nous aidons les entreprises, les indépendants et les équipes à mettre l'IA au travail chez eux : gagner du temps sur les tâches répétitives, et être trouvés par leurs clients.</p>
+      <p>L'agence a été fondée par <strong><a href="/a-propos/#julien-rayes">Julien Rayes</a></strong>, directeur commercial et marketing d'un organisme de formation certifié Qualiopi qui a dépassé 3 M€ de chiffre d'affaires depuis 2021. Il en a automatisé seul tout le back-office avant d'en faire un métier : les relances administratives y sont passées de 2 h par jour à 2 h par mois. Nous n'avons pas théorisé ces méthodes, nous les avons appliquées chez nous d'abord.</p>
+      <p>Notre particularité tient à un outil : nous travaillons avec <strong>Claude</strong>, l'IA d'Anthropic, et notamment Claude Code. Cette maîtrise nous permet de produire le même travail qu'une agence classique en moyenne 3 à 4 fois plus vite — un gain que nous répercutons sur nos tarifs. Chaque livrable reste validé par un consultant avant d'arriver chez vous. Le fonctionnement détaillé est expliqué sur la page <a href="/agence-marketing-claude/">agence marketing Claude</a>.</p>
+      <p>« Claude Agency » est une marque et un site exploités par <strong>BULGARIA EDUCATION EOOD</strong>, société de droit bulgare immatriculée depuis le 13 mai 2021 sous le numéro EIK 206 507 432, dont le siège est à Choumen (Bulgarie). Cette société émet toutes les factures et porte tous les engagements pris envers nos clients. Directeur de la publication : Julien Rayes. Les <a href="/mentions-legales/">mentions légales</a> donnent les coordonnées complètes, et une page dédiée explique <a href="/facturation-tva-societe-europeenne/">notre facturation et la TVA intracommunautaire</a>.</p>
+
+      <h2 id="ce-que-nous-faisons" class="scroll-mt-24">Ce que nous faisons</h2>
+      <p>Huit prestations, réparties en deux familles. Nous pouvons intervenir sur une seule, ou prendre l'ensemble.</p>
+      <p><strong>Faire venir des clients</strong></p>
+      <ul>
+        <li><a href="/services/seo/">Référencement naturel (SEO)</a> — audit, contenus, maillage interne, suivi des positions.</li>
+        <li><a href="/services/sea/">Publicité Google Ads (SEA)</a> — création et pilotage des campagnes, coût par contact suivi.</li>
+        <li><a href="/services/optimisation-site/">Optimisation de site</a> — lever les freins qui font partir un visiteur avant qu'il vous écrive.</li>
+      </ul>
+      <p><strong>Faire entrer l'IA dans votre organisation</strong></p>
+      <ul>
+        <li><a href="/services/audit-ia/">Audit et diagnostic IA</a> — où l'IA vous fera gagner du temps, chiffré, avant d'investir.</li>
+        <li><a href="/services/formation-ia/">Formation de vos équipes</a> — ateliers pratiques sur vos cas réels, bibliothèque de prompts, aucun prérequis technique.</li>
+        <li><a href="/services/automatisation/">Automatisation des process</a> — administratif, relances, dossiers, tableaux de bord.</li>
+        <li><a href="/services/outils-ia-sur-mesure/">Outils IA sur mesure</a> — assistants et générateurs entraînés sur vos contenus, intégrés à vos outils.</li>
+        <li><a href="/services/integration-ia/">Accompagnement complet</a> — diagnostic, outils, process et équipes, sur trois mois.</li>
+      </ul>
+      <p>Tout commence par un <a href="/diagnostic/">diagnostic</a>, offert et sans engagement.</p>
+
+      <h2 id="pour-qui" class="scroll-mt-24">Pour qui nous travaillons</h2>
+      <p>Des dirigeants de PME, des indépendants et des responsables d'équipe francophones. Majoritairement non techniques, à court de temps, curieux de l'IA mais prudents — et c'est une bonne posture.</p>
+      <p>Les <strong>organismes de formation</strong> sont notre spécialité d'origine et le segment que nous servons le mieux : Qualiopi, BPF, dossiers de financement, émargements, suivi des stagiaires. Nous en connaissons les contraintes parce que nous les vivons. C'est une preuve d'expertise, pas une frontière : nos méthodes valent pour toute organisation qui veut récupérer des heures.</p>
+      <p>Nous intervenons à distance en France, en Belgique, en Suisse et au Luxembourg. En français uniquement.</p>
+
+      <h2 id="ce-que-nous-ne-faisons-pas" class="scroll-mt-24">Ce que nous ne faisons pas</h2>
+      <ul>
+        <li><strong>Nous ne sommes pas un organisme de formation.</strong> Nos prestations ne sont donc imputables ni sur le CPF, ni sur un budget OPCO, ni sur une aide France Travail : elles se règlent sur fonds propres et passent en charge d'exploitation. Nous le disons avant la signature, jamais après. En revanche, accélérer vos propres dossiers de financement fait partie de notre travail.</li>
+        <li><strong>Nous ne vous rendons pas dépendants de nous.</strong> Nous formons vos équipes et nous vous laissons les accès, les comptes et les outils. Vous gardez la main, y compris pour nous arrêter.</li>
+        <li><strong>Nous ne produisons pas de volume creux.</strong> Pas de contenus générés à la chaîne pour remplir un calendrier : chaque livrable est relu par un humain avant de partir.</li>
+        <li><strong>Nous ne vendons pas de licences ni de logiciel.</strong> Nous sommes prestataires de services : conseil, mise en œuvre, formation. Les abonnements aux outils restent à votre nom.</li>
+        <li><strong>Nous ne promettons pas de position sur Google ni de résultat chiffré à l'avance.</strong> Personne ne peut le garantir honnêtement. Nous nous engageons sur la méthode et sur le compte rendu, chiffres à l'appui.</li>
+      </ul>
+
+      <h2 id="comment-nous-joindre" class="scroll-mt-24">Comment nous joindre</h2>
+      <ul>
+        <li><strong>Prendre rendez-vous</strong> — 30 minutes, sans engagement, depuis la <a href="/contact/">page contact</a>.</li>
+        <li><strong>Écrire</strong> — <!--email_off--><a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a><!--/email_off-->, ou le formulaire de la page contact. Réponse personnelle de Julien sous 24 h ouvrées, sans séquence automatique ni relance insistante.</li>
+        <li><strong>Suivre</strong> — <a href="https://www.linkedin.com/company/claude-agency-fr/" rel="noopener" target="_blank">Claude Agency sur LinkedIn</a>, et <a href="https://www.linkedin.com/in/julien-rayes/" rel="me noopener" target="_blank">Julien Rayes</a>.</li>
+        <li><strong>Nous lire</strong> — le <a href="/blog/">blog</a> et le <a href="/barometre-ia-organismes-formation/">Baromètre IA des organismes de formation</a>, notre enquête indépendante sur l'usage réel de l'IA dans le secteur.</li>
+      </ul>
+      <p>Adresse postale et identifiants légaux : <a href="/mentions-legales/">mentions légales</a>. Traitement de vos données : <a href="/confidentialite/">politique de confidentialité</a>.</p>
+    </div>
+
+    <nav class="mt-12 border-t border-sand pt-8 not-prose" aria-label="Explorer Claude Agency">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Explorer</p>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        <li><a href="/a-propos/" class="font-semibold text-brand-700 hover:underline">L'histoire de l'agence et de son fondateur →</a></li>
+        <li><a href="/services/" class="font-semibold text-brand-700 hover:underline">Le détail de nos huit prestations →</a></li>
+        <li><a href="/agence-marketing-claude/" class="font-semibold text-brand-700 hover:underline">Notre modèle d'agence pilotée par Claude →</a></li>
+        <li><a href="/diagnostic/" class="font-semibold text-brand-700 hover:underline">Le diagnostic gratuit en 2 minutes →</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Une question à laquelle cette page ne répond pas ?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Posez-la. Un échange de 30 minutes, sans engagement.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Prendre rendez-vous</a>
+    </div>
+  </section>
+</BaseLayout>

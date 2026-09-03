@@ -5,6 +5,79 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-04 (90) — Page d'identité « Claude Agency en bref », pour la récupération directe par les IA
+
+**Type :** publication. Carte 20 du backlog `visibilite-ops`, déléguée par Julien à l'intendant
+le 2026-09-04.
+
+**URL :** https://claudeagency.fr/claude-agency-en-bref/
+
+**Fichiers touchés :** `app/src/pages/claude-agency-en-bref.astro` (créé),
+`app/src/pages/index.astro` (un lien sous la FAQ), `app/src/pages/agence-marketing-claude.astro`
+(un lien dans le bloc « Explorer »), `app/src/components/Footer.astro` (nav « Navigation »),
+`app/src/pages/llms.txt.ts` (une ligne dans « Pages principales »), ce journal.
+
+**Pourquoi :** quand un moteur conversationnel est interrogé sur une marque, il va lire le site
+de la marque en premier — *direct retrieval*. Le site n'avait aucune page où les cinq réponses
+de base soient réunies : qui nous sommes, ce que nous faisons, pour qui, ce que nous ne faisons
+pas, comment nous joindre. C'était éparpillé entre `/a-propos/`, `/services/`,
+`/mentions-legales/`, `/facturation-tva-societe-europeenne/` et `/contact/` — donc le moteur
+complétait ailleurs. Source de la carte : Nathan Gotch, « How fix technical SEO issues with AI
+(2026) », https://www.youtube.com/watch?v=y-lyVyv800E, 2026-08-25 — démonstration filmée par
+l'auteur sur son propre site, un cas et non une mesure.
+
+**Arbitrage — nouvelle page plutôt que réécriture de `/a-propos/` :** `/a-propos/` existe et
+raconte l'histoire du fondateur, avec images et Schema `Person`. C'est un autre travail : une
+page de récit chaud, pas une fiche de faits. La transformer aurait détruit un contenu E-E-A-T
+qui fonctionne pour en fabriquer un autre, au lieu d'ajouter ce qui manquait. Les deux se
+lient mutuellement et ne se doublonnent pas — `/a-propos/` garde le récit, `/claude-agency-en-bref/`
+prend les faits.
+
+**Fait :**
+- Page en cinq sections, une par question, chaque section adressable par ancre
+  (`#qui-nous-sommes`, `#ce-que-nous-faisons`, `#pour-qui`, `#ce-que-nous-ne-faisons-pas`,
+  `#comment-nous-joindre`). Aucun chiffre nouveau : tout est repris de `PRODUCT.md`,
+  `mentions-legales.astro`, `facturation-tva-societe-europeenne.astro`, du contenu des huit
+  services et de `docs/seo/kit-identite.md` §1.
+- La section « Pour qui » suit le positionnement en vigueur (`PRODUCT.md`, commit `3b8f6cb` du
+  04/09) : agence IA grand public, organismes de formation en spécialité d'origine et segment
+  fort — pas « spécialisation exclusive ».
+- « Ce que nous ne faisons pas » en cinq points vérifiables, dont le plus important : Claude
+  Agency n'est pas un organisme de formation, ses prestations ne sont imputables ni sur le CPF,
+  ni sur un budget OPCO, ni sur une aide France Travail. Repris mot pour mot du sens de
+  `facturation-tva-societe-europeenne.astro` (lignes 28-29 et 112-113).
+- Aucune promesse de position ni de résultat chiffré : la page dit explicitement que personne
+  ne peut en garantir.
+- Schema : `BreadcrumbList` seul. Aucun `FAQPage` ni `HowTo` (garde-fou du dépôt), bien que la
+  page ait une forme de questions-réponses. `Organization`, `WebSite` et `ProfessionalService`
+  restent injectés par `BaseLayout`.
+- Page indexable comme le reste du site, aucun `noindex` — vérifié dans le HTML construit.
+- Maillage posé à la main : accueil (sous la FAQ), `/agence-marketing-claude/` (bloc
+  « Explorer »), pied de page (donc toutes les pages), `llms.txt`. La page renvoie de son côté
+  vers `/a-propos/`, les huit services, `/agence-marketing-claude/`, `/diagnostic/`,
+  `/contact/`, `/mentions-legales/`, `/confidentialite/`,
+  `/facturation-tva-societe-europeenne/`, `/blog/` et le baromètre.
+
+**Mesure :** `cd app && npm install && npm run build` → **code de sortie 0**, 86 pages,
+`/claude-agency-en-bref/index.html` dans la sortie. Contrôles sur `dist/` : la page est dans
+`sitemap-0.xml`, son canonical est `https://claudeagency.fr/claude-agency-en-bref/`, elle ne
+porte aucun `noindex`, et le lien apparaît dans `index.html`, `agence-marketing-claude/index.html`,
+`contact/index.html` (pied de page) et `llms.txt`. `postbuild` IndexNow ignoré en local,
+comme prévu.
+
+**Réserve — dérive repérée, non corrigée ici :** `llms.txt.ts` annonce encore « Spécialisation
+exclusive : organismes de formation » et un titre « Agence IA pour organismes de formation »,
+ce que `PRODUCT.md` a périmé le 04/09. La page publiée aujourd'hui dit l'inverse : un moteur qui
+lit les deux trouvera une contradiction sur la cible. La reprise de `llms.txt` est la carte 7 du
+backlog `visibilite-ops` — pas ouverte ici pour ne pas doubler un chantier existant. Signalé à
+Julien dans le rapport de la délégation. Même remarque, plus petite : `/contact/` annonce « zone
+d'intervention : France entière », là où le JSON-LD de `BaseLayout` et `llms.txt` disent France,
+Belgique, Suisse et Luxembourg.
+
+**Suite :** au relevé du 2026-09-11, vérifier que la page est indexée. Test de fond à faire à la
+main : interroger un moteur conversationnel sur « Claude Agency » et regarder si les réponses
+« ce qu'ils ne font pas » et « pour qui » proviennent bien de cette page.
+
 ## 2026-09-04 (89) — Nouvel article « Agence Claude : comment la choisir », cible grand public
 
 **Type :** publication. Carte 10 du backlog `visibilite-ops`, déléguée par Julien à l'intendant
