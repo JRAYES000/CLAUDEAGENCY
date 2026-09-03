@@ -68,9 +68,12 @@ comme prévu.
 **Réserve — dérive repérée, non corrigée ici :** `llms.txt.ts` annonce encore « Spécialisation
 exclusive : organismes de formation » et un titre « Agence IA pour organismes de formation »,
 ce que `PRODUCT.md` a périmé le 04/09. La page publiée aujourd'hui dit l'inverse : un moteur qui
-lit les deux trouvera une contradiction sur la cible. La reprise de `llms.txt` est la carte 7 du
-backlog `visibilite-ops` — pas ouverte ici pour ne pas doubler un chantier existant. Signalé à
-Julien dans le rapport de la délégation. Même remarque, plus petite : `/contact/` annonce « zone
+lit les deux trouvera une contradiction sur la cible. La carte 20 renvoyait à « la carte 7 » pour
+`llms.txt`, mais cette carte-là portait sur `llms.txt` de **claudepartners.fr** et elle est close
+depuis le 04/09 : aucune carte ne couvrait donc la reprise de `llms.txt` côté claudeagency.fr.
+Elle a été ouverte en **carte 78** du backlog `visibilite-ops`. Pas traitée ici : réécrire le
+positionnement déclaré de tout le fichier dépasse le périmètre de la carte 20, qui portait sur
+une page. Même remarque, plus petite : `/contact/` annonce « zone
 d'intervention : France entière », là où le JSON-LD de `BaseLayout` et `llms.txt` disent France,
 Belgique, Suisse et Luxembourg.
 
