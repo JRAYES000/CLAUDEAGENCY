@@ -1,7 +1,9 @@
 # Claude Agency — guide pour l'agent
 
-Site vitrine + blog SEO de **Claude Agency**, cabinet qui aide les **organismes de formation (OF)
-francophones** (France, Belgique, Suisse, Luxembourg) à adopter l'IA et à automatiser leurs process.
+Site vitrine + blog SEO de **Claude Agency**, **agence IA grand public** francophone (France,
+Belgique, Suisse, Luxembourg) : elle aide ses clients à adopter l'IA et à automatiser leurs process.
+Les **organismes de formation (OF)** sont sa spécialité d'origine et son socle de visibilité — un
+segment fort qu'on maintient, pas la limite de sa cible (arbitrage de Julien du 2026-08-22).
 Production : **https://claudeagency.fr**. Dépôt GitHub **public**.
 
 > Entité éditrice et facturière : **BULGARIA EDUCATION EOOD** (Bulgarie, EIK 206507432,
@@ -95,7 +97,8 @@ volumes de mots-clés via le MCP Ubersuggest. Chaque chiffre consigné porte sa 
 
 ## Publier un article — checklist
 
-1. Rédiger : ton et cible de `PRODUCT.md`, expertise OF concrète, sources citées.
+1. Rédiger : ton et cible de `PRODUCT.md`, expertise concrète — organismes de formation ou autre
+   public —, sources citées.
 2. Frontmatter complet et conforme au schéma ; image présente dans `app/src/content/blog/images/`.
 3. Maillage interne : 2–3 liens choisis **à la main**. Jamais par script (voir garde-fous).
 4. `cd app && npm run build` — doit passer sans erreur. **C'est la condition d'un commit**, ici

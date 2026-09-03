@@ -4,13 +4,14 @@
 **brand** — site vitrine + blog. Le design EST le produit (marketing, acquisition, crédibilité). Pas une app/dashboard.
 
 ## Product purpose
-Cabinet de conseil qui aide les **organismes de formation (OF) français** à **intégrer l'IA** et **automatiser leurs process** pour gagner du temps et monter en qualité. Le site présente l'offre (4 services : audit & diagnostic IA, formation des équipes, automatisation des process, outils IA sur mesure), publie un blog SEO, et convertit en prise de contact / rendez-vous.
+Agence IA **grand public** francophone qui aide **entreprises, indépendants et équipes** à **intégrer l'IA** et **automatiser leurs process** pour gagner du temps et monter en qualité. Les **organismes de formation (OF)** sont la spécialité d'origine et le segment le mieux servi : une preuve d'expertise, pas une frontière (arbitrage du 2026-08-22 — on élargit par-dessus le socle, on ne le remplace pas). Le site présente l'offre (4 services : audit & diagnostic IA, formation des équipes, automatisation des process, outils IA sur mesure), publie un blog SEO, et convertit en prise de contact / rendez-vous.
 
 Objectif prioritaire : **SEO** (acquisition organique), puis **conversion** (audit offert / RDV).
 
 ## Users
-- **Cible** : dirigeants, responsables pédagogiques et responsables administratifs d'organismes de formation français, souvent certifiés **Qualiopi**.
-- **Profil** : majoritairement **non techniques**, pragmatiques, **débordés par l'administratif**, curieux de l'IA mais prudents (peur de la complexité, de se tromper, de perdre la main).
+- **Cible** : large — dirigeants de PME, indépendants, responsables d'équipe et professionnels francophones qui veulent mettre l'IA au travail chez eux.
+- **Segment fort** : les organismes de formation (dirigeants, responsables pédagogiques et administratifs, souvent certifiés **Qualiopi**). C'est là que l'expertise est la plus profonde et la plus documentée — le contenu et les preuves de ce segment restent en place et continuent d'être maintenus.
+- **Profil** : majoritairement **non techniques**, pragmatiques, **à court de temps** (l'administratif en tête chez les organismes de formation), curieux de l'IA mais prudents (peur de la complexité, de se tromper, de perdre la main).
 - **Ce qu'ils veulent voir** : des bénéfices concrets et mesurables (temps gagné), un partenaire de confiance qui parle leur langage métier, zéro jargon.
 
 ## Brand & tone
@@ -20,8 +21,8 @@ Objectif prioritaire : **SEO** (acquisition organique), puis **conversion** (aud
 
 ## Strategic principles
 1. **Clarté avant tout** — un visiteur non technique doit comprendre l'offre en 5 secondes.
-2. **Preuve et réassurance** — spécialisation OF, méthode, E-E-A-T ; montrer le « comment », pas que le « quoi ».
-3. **Partenaire unique 360°** — du diagnostic aux outils, on prend l'OF par la main.
+2. **Preuve et réassurance** — l'expertise organismes de formation sert de preuve, méthode, E-E-A-T ; montrer le « comment », pas que le « quoi ».
+3. **Partenaire unique 360°** — du diagnostic aux outils, on prend le client par la main.
 4. **Autonomie** — on forme et on outille pour que le client garde la main (pas de dépendance).
 5. **SEO-first** — structure, contenu, performance et accessibilité au service du référencement.
 
