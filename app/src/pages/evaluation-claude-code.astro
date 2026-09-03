@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Évaluation interne des collaborateurs Claude Agency.
-// Parcours question par question : 20 s pour répondre. Qui répond arrête le chrono et
-// lit la correction sans limite de temps ; qui laisse filer les 20 s voit « Temps écoulé »
+// Parcours question par question : 30 s pour répondre. Qui répond arrête le chrono et
+// lit la correction sans limite de temps ; qui laisse filer les 30 s voit « Temps écoulé »
 // et le test enchaîne seul sur la question suivante — la correction manquée est reprise
 // sur l'écran de résultat. À la fin, le résultat part vers /api/evaluation,
 // qui crée une ligne dans la base Notion « Resultats du test Claude Code ».
@@ -452,7 +452,7 @@ const LETTRES = ['A', 'B', 'C', 'D'];
 
 // Secondes accordées par question. Le chrono ne court que sur la question :
 // il s'arrête dès la réponse, et la correction se lit sans limite de temps.
-const LIMITE = 20;
+const LIMITE = 30;
 
 // Millisecondes d'affichage du bandeau « Temps écoulé » avant l'enchaînement automatique.
 // Sans cette pause, la question suivante apparaît sans que personne comprenne pourquoi.
@@ -479,7 +479,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
   <!-- Barre de progression, visible seulement pendant le parcours -->
   <div id="barre" hidden class="sticky top-0 z-30 border-b border-sand bg-cream-50/95 backdrop-blur-sm">
     <div class="mx-auto flex max-w-2xl items-center gap-4 px-4 py-3">
-      <!-- Compte à rebours : 20 s pour répondre. Il s'arrête dès la réponse (ou à zéro),
+      <!-- Compte à rebours : 30 s pour répondre. Il s'arrête dès la réponse (ou à zéro),
            la lecture de la correction n'est jamais chronométrée. -->
       <div id="chrono" class="relative shrink-0" hidden>
         <svg viewBox="0 0 40 40" class="h-11 w-11 -rotate-90" aria-hidden="true">

@@ -15,7 +15,7 @@ import { createResultat } from './_notion.js';
 // Le nombre de questions vient de la page : elle seule le connaît, et il changera.
 // Bornes de sécurité uniquement, pour qu'un POST fabriqué ne pose pas n'importe quoi.
 const TOTAL_MAX = 100;
-const SECONDES_PAR_QUESTION = 20;
+const SECONDES_PAR_QUESTION = 30;
 
 // Les paliers sont accentués côté page ; les options du select Notion sont en ASCII
 // (règle de nommage : pas d'accent dans un identifiant). Tout palier hors de cette table
