@@ -43,10 +43,13 @@ export async function createLead(env, lead) {
 export async function createResultat(env, r) {
   if (!env.NOTION_TOKEN || !env.NOTION_EVAL_DB) return false;
 
+  // « Email » est la propriete titre de la base : dans Notion le titre est toujours
+  // la premiere colonne et ne se deplace pas, et c'est l'adresse que Julien veut voir
+  // en tete. Elle est donc de type title, pas email — pas de lien mailto cliquable.
   return postPage(env, env.NOTION_EVAL_DB, {
-    Nom: { title: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
+    Email: { title: [{ text: { content: trim(r.email).slice(0, 200) } }] },
     Prenom: { rich_text: [{ text: { content: trim(r.prenom).slice(0, 200) } }] },
-    Email: { email: trim(r.email) },
+    Nom: { rich_text: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
     'Bonnes reponses': { number: r.justes },
     Duree: { rich_text: [{ text: { content: trim(r.duree).slice(0, 100) } }] },
     'Duree (s)': { number: r.secondes },
