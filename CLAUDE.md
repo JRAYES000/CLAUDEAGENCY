@@ -82,6 +82,21 @@ propriété d'abord, pousser le code ensuite.
 couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs
 commentaires, et ce dépôt est public.
 
+**Publier sur LinkedIn depuis Chrome piloté — joindre l'image.** Le bouton « Importer depuis
+votre ordinateur » de l'éditeur de média déclenche une boîte de dialogue Windows native : elle
+est invisible pour l'agent et **gèle le rendu de l'onglet** (`Page.captureScreenshot` part en
+timeout), ce qui se lit à tort comme un plantage de LinkedIn. Ne jamais cliquer ce bouton ni un
+`input[type=file]`. La marche à suivre : ouvrir l'éditeur de média, récupérer l'`input[type=file]`
+en JavaScript, le déplacer dans `document.body` avec un `aria-label` reconnaissable, puis y
+pousser le fichier par l'outil d'upload du connecteur. Sur le compte Claude Agency l'input est
+créé au clic dans le document principal (le capturer en surchargeant `HTMLInputElement.prototype.click`
+pour le type `file`) ; **sur le compte Claude Partners il vit dans un shadow root** — le chercher
+via `[...document.querySelectorAll('*')].find(e => e.shadowRoot?.querySelector('input[type=file]'))`,
+sans quoi `document.querySelectorAll('input[type=file]')` renvoie zéro et laisse croire qu'il n'y
+en a pas. Second piège du même flux : les références d'éléments du fil d'actualité (`ref_N`)
+**périment dès qu'un post est ajouté**, et un commentaire destiné au nouveau post atterrit sur
+l'ancien. Commenter depuis le permalien du post, jamais depuis le fil.
+
 ## Mémoire SEO — obligatoire
 
 `docs/seo/` est la mémoire du projet SEO. Elle existe pour qu'une session ne reparte jamais de
