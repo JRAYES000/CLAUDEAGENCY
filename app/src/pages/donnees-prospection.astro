@@ -4,20 +4,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // en noindex, seule la 404 fait exception). Créée en noindex le 25/08, corrigée le
 // 26/08 — c'est la page qu'un prospect ouvre pour vérifier qui le contacte : la
 // cacher aux moteurs n'aide personne et contredit la règle.
+// Source de vérité de ce contenu : docs/prospection/registre-traitements.md. Toute
+// divergence entre les deux est un défaut de cette page (carte 57, corrigée le 04/09).
 ---
-<BaseLayout title="Vos données et notre prospection" description="Pourquoi vous recevez un e-mail de Claude Agency, quelles données nous utilisons, et comment vous y opposer.">
+<BaseLayout title="Vos données et notre prospection" description="Pourquoi vous recevez un message de Claude Agency, quelles données nous utilisons, à qui elles sont transmises, et comment vous y opposer.">
   <section class="mx-auto max-w-2xl px-4 py-16">
     <h1 class="font-serif text-4xl font-semibold">Vos données et notre prospection</h1>
     <div class="prose prose-stone mt-8 max-w-none">
       <h2>Pourquoi vous recevez ce message</h2>
-      <p>Claude Agency accompagne les organismes de formation francophones sur Qualiopi, le BPF et l'émargement. Vos coordonnées professionnelles (nom, organisme, contact) nous servent uniquement à vous présenter ces services, en lien avec votre activité.</p>
-      <h2>Source des données</h2>
-      <p>Coordonnées issues de l'annuaire public des entreprises <code>recherche-entreprises.api.gouv.fr</code> (données SIRENE), jamais d'un fichier acheté ni de données collectées sur LinkedIn hors des règles du site.</p>
+      <p>Claude Agency accompagne les organismes de formation francophones sur Qualiopi, le BPF et l'émargement. Nous vous écrivons — par e-mail ou sur LinkedIn — parce que votre organisme exerce cette activité, et uniquement pour vous présenter ces services. Jamais à titre personnel.</p>
+
+      <h2>Sur quelle base légale</h2>
+      <p>Notre intérêt légitime à faire connaître ces services à des professionnels concernés, au sens de l'article 6.1.f du RGPD. Trois conditions vont avec, et nous les tenons : vous êtes informé de l'usage fait de vos coordonnées professionnelles — c'est l'objet de cette page, dont le lien figure dans chacun de nos messages ; vous pouvez vous y opposer à tout moment et gratuitement ; et le message porte sur votre activité professionnelle, jamais sur votre vie privée.</p>
+      <p>Responsable de traitement : BULGARIA EDUCATION EOOD, exploitant la marque Claude Agency — coordonnées complètes dans les <a href="/mentions-legales/">mentions légales</a>.</p>
+
+      <h2>Quelles données nous détenons</h2>
+      <p>Nom du décideur, organisme, SIRET, région, thématique de formation, et selon les cas : téléphone et e-mail professionnels, adresse du profil LinkedIn public, et l'élément public qui a motivé la prise de contact (un article que vous avez signé, une page de votre site, une interview de presse). Aucune donnée sensible, aucune donnée en dehors de votre cadre professionnel.</p>
+
+      <h2>D'où viennent ces données</h2>
+      <p>De deux sources publiques, et d'aucune autre :</p>
+      <ul>
+        <li>L'annuaire public des entreprises <code>recherche-entreprises.api.gouv.fr</code> (données SIRENE), qui fournit l'organisme, le SIRET et la région. Il ne fournit <strong>pas</strong> d'adresse e-mail : celles que nous utilisons ont été déduites du format courant <code>prénom.nom@domaine</code>, sans être confirmées auprès de votre serveur. C'est pourquoi un message peut arriver à une adresse qui n'est pas la vôtre, ou ne pas arriver du tout.</li>
+        <li>Les profils LinkedIn publics et les contenus que vous avez publiés ou signés publiquement — article de blog, page de votre organisme, interview.</li>
+      </ul>
+      <p>Nous n'achetons aucun fichier de contacts.</p>
+
+      <h2>À qui elles sont transmises</h2>
+      <p>À l'équipe Claude Agency, et à trois prestataires techniques qui traitent ces données pour notre compte et sur nos instructions :</p>
+      <ul>
+        <li><strong>Saleshandy</strong> — envoi et suivi de nos e-mails ;</li>
+        <li><strong>Closely</strong> — envoi de nos demandes de connexion et de nos messages LinkedIn ;</li>
+        <li><strong>Apify</strong> — vérification technique de la validité des adresses e-mail.</li>
+      </ul>
+      <p>Aucune donnée n'est vendue ni cédée à un tiers.</p>
+
       <h2>Durée de conservation</h2>
       <p>3 ans à compter du dernier contact resté sans réponse. Une opposition entraîne une suppression immédiate.</p>
+
       <h2>Vous opposer</h2>
-      <p>À tout moment et gratuitement : répondez « stop » à n'importe lequel de nos e-mails, ou écrivez à <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>. C'est traité le jour même.</p>
-      <p>Pour les autres droits RGPD (accès, rectification) et l'identité du responsable de traitement, voir la <a href="/confidentialite/">politique de confidentialité</a>.</p>
+      <p>À tout moment et gratuitement : répondez « stop » à n'importe lequel de nos e-mails, dites-le nous sur LinkedIn, ou écrivez à <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>. C'est traité le jour même.</p>
+      <p>Vos autres droits RGPD — accès, rectification, effacement, limitation — s'exercent à la même adresse. Le cadre général du site est détaillé dans la <a href="/confidentialite/">politique de confidentialité</a>.</p>
     </div>
   </section>
 </BaseLayout>

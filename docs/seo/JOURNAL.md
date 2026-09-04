@@ -5,6 +5,58 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-04 (91) — `/donnees-prospection/` remise au niveau du registre interne : sous-traitants, base légale, vraies sources
+
+**Type :** correction de contenu (conformité RGPD, page publique). Carte 57 du backlog
+`visibilite-ops`, déléguée par Julien à l'intendant le 2026-09-04.
+
+**URL :** https://claudeagency.fr/donnees-prospection/
+
+**Fichiers touchés :** `app/src/pages/donnees-prospection.astro` (réécrite),
+`docs/prospection/registre-traitements.md` (registre interne remis à jour), ce journal.
+
+**Pourquoi :** c'est la page qu'ouvre un destinataire agacé pour savoir qui le contacte et
+avec quoi. Le jury du 31/08 y avait confirmé quatre défauts sur 23 lignes — la page en disait
+moins que le registre interne, et sur un point elle se contredisait.
+
+**Les quatre défauts, et ce qui a été écrit à la place :**
+
+1. **Sous-traitant d'envoi non nommé.** Le registre (`registre-traitements.md:15`) écrivait
+   « Saleshandy comme sous-traitant technique d'envoi », la page publique ne nommait personne.
+   Une section « À qui elles sont transmises » nomme désormais les trois : **Saleshandy**
+   (e-mail), **Closely** (LinkedIn), **Apify** (vérification technique des adresses). Closely
+   et Apify manquaient aussi au registre interne : ajoutés.
+2. **Base légale absente** des deux pages publiques, alors que le registre la fixe
+   (« Intérêt légitime, RGPD art. 6.1.f ») et que ce même registre désigne
+   `/donnees-prospection` comme le lieu de l'information. Une section « Sur quelle base
+   légale » l'écrit, avec les trois conditions CNIL B2B et le responsable de traitement
+   (BULGARIA EDUCATION EOOD), lié aux mentions légales.
+3. **Phrase sur les sources fausse et auto-contradictoire.** L'ancienne ligne disait
+   « Coordonnées issues de … (données SIRENE), jamais d'un fichier acheté ni de données
+   collectées sur LinkedIn hors des règles du site ». Deux problèmes. **(a)** SIRENE a fourni
+   les organismes, pas les adresses e-mail : celles-ci ont été **déduites** du motif
+   `prénom.nom@domaine`, sans confrontation à un serveur — taux de réussite mesuré 18 %
+   (`visibilite-ops/recherche/2026-08-25-verification-liste-of.md`). La page le dit maintenant,
+   et explique pourquoi un message peut arriver à la mauvaise adresse. **(b)** « hors des règles
+   du site » était une clause d'audit recopiée du registre, qui disait « jamais » et « sauf »
+   dans la même phrase — alors qu'un canal LinkedIn claudeagency tourne depuis le 27/08
+   (segment `of` de `data/prospection-registre.csv`, campagne Closely). La page assume
+   désormais **deux** sources publiques : l'annuaire des entreprises, et les profils et
+   contenus publiés publiquement. La clause ambiguë est supprimée, remplacée par ce qui est
+   vrai : aucune donnée extraite d'une zone réservée aux membres connectés.
+4. **Données détenues sous-déclarées.** « nom, organisme, contact » est devenu la liste
+   réelle : nom du décideur, organisme, SIRET, région, thématique, téléphone et e-mail
+   professionnels, profil LinkedIn public, et l'élément public qui a motivé la prise de
+   contact.
+
+**Registre interne corrigé au passage :** ligne « Données traitées » et ligne
+« Destinataires » alignées sur la réalité, ajout du lot « Vague 2 — canal LinkedIn », et
+remplacement de la phrase absolue de fin. Sans ça, la page repartait en contradiction avec sa
+propre source de vérité au prochain audit.
+
+**Vérifié :** `npm run build` dans `app/`, code de sortie 0, 86 pages construites. Page
+indexable, comme toutes les pages du site.
+
 ## 2026-09-04 (90) — Page d'identité « Claude Agency en bref », pour la récupération directe par les IA
 
 **Type :** publication. Carte 20 du backlog `visibilite-ops`, déléguée par Julien à l'intendant
