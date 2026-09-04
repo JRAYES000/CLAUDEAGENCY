@@ -10,7 +10,13 @@
 // Variables d'env Cloudflare Pages (Production + Preview) :
 //   NOTION_TOKEN   = jeton d'intégration Notion — voir _notion.js
 //   NOTION_EVAL_DB = id de la base « Resultats du test Claude Code »
-import { createResultat } from './_notion.js';
+import { createResultat, emailDejaPasse } from './_notion.js';
+
+// Le test ne se passe qu'une fois par adresse. Le controle a lieu deux fois : avant le
+// depart (action « verifier », pour refuser en une seconde plutot qu'apres 20 questions)
+// et avant l'ecriture (pour que deux onglets ouverts ne creent pas deux lignes).
+// Ce n'est pas une authentification : changer d'adresse suffit a le contourner.
+const REFUS_DEJA_PASSE = "Cette adresse a déjà servi à passer le test. Le test ne se passe qu'une fois.";
 
 // Le nombre de questions vient de la page : elle seule le connaît, et il changera.
 // Bornes de sécurité uniquement, pour qu'un POST fabriqué ne pose pas n'importe quoi.
@@ -48,6 +54,17 @@ export async function onRequestPost({ request, env }) {
   const nom = texte(data.nom, 80);
   const prenom = texte(data.prenom, 80);
   const email = texte(data.email, 150);
+
+  // Controle d'unicite demande par la page avant de lancer le chrono. Pas de nom ni de
+  // score a ce stade : seule l'adresse compte.
+  if (data.action === 'verifier') {
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      return json({ ok: false, message: 'Adresse e-mail invalide.' }, 400);
+    }
+    // null (Notion muet) vaut false : on laisse passer plutot que de fermer le test.
+    return json({ ok: true, dejaPasse: (await emailDejaPasse(env, email)) === true });
+  }
+
   if (!nom || !prenom) return json({ ok: false, message: 'Nom et prénom requis.' }, 400);
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return json({ ok: false, message: 'Adresse e-mail invalide.' }, 400);
@@ -67,6 +84,12 @@ export async function onRequestPost({ request, env }) {
   // propre page d'erreur, et la page perdrait le message. C'est `ok` qui fait foi.
   if (!env.NOTION_TOKEN || !env.NOTION_EVAL_DB) {
     return json({ ok: false, message: 'Configuration serveur manquante.' });
+  }
+
+  // Second controle, juste avant d'ecrire : la page a deja verifie au depart, mais rien
+  // n'empeche un second onglet d'avoir commence entre-temps.
+  if ((await emailDejaPasse(env, email)) === true) {
+    return json({ ok: false, dejaPasse: true, message: REFUS_DEJA_PASSE });
   }
 
   const ecrit = await createResultat(env, {

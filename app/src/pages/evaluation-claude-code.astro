@@ -721,13 +721,6 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         Aucune erreur. Le test ne vous apprendra plus rien : la suite se joue sur une mission réelle.
       </p>
 
-      <button
-        type="button"
-        id="recommencer"
-        class="mt-10 w-full rounded-lg border border-sand bg-cream-50 px-7 py-3.5 font-semibold text-ink transition-colors duration-150 hover:bg-cream-100 sm:w-auto"
-      >
-        Recommencer le test
-      </button>
     </section>
   </div>
 
@@ -1031,7 +1024,9 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
       const formIdentite = document.getElementById('identite-form');
       const erreurIdentite = document.getElementById('identite-erreur');
 
-      formIdentite.addEventListener('submit', (e) => {
+      const boutonIdentite = formIdentite.querySelector('button[type="submit"]');
+
+      formIdentite.addEventListener('submit', async (e) => {
         e.preventDefault();
         const val = (nom) => formIdentite.elements[nom].value.trim();
         const prenom = val('prenom');
@@ -1046,6 +1041,35 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
           return;
         }
         erreurIdentite.hidden = true;
+
+        // Le test ne se passe qu'une fois par adresse. Le refus tombe ici, avant le
+        // chrono, plutôt qu'à l'enregistrement — personne ne répond à 20 questions pour
+        // apprendre à la fin que son résultat ne compte pas.
+        const libelle = boutonIdentite.textContent;
+        boutonIdentite.disabled = true;
+        boutonIdentite.textContent = 'Vérification…';
+        let dejaPasse = false;
+        try {
+          const r = await fetch('/api/evaluation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'verifier', email }),
+          });
+          const j = await r.json();
+          dejaPasse = Boolean(j && j.dejaPasse);
+        } catch {
+          // Réseau ou API muets : on laisse passer. Le contrôle a lieu une seconde fois
+          // à l'enregistrement du résultat.
+        }
+        boutonIdentite.disabled = false;
+        boutonIdentite.textContent = libelle;
+
+        if (dejaPasse) {
+          erreurIdentite.textContent = "Cette adresse a déjà servi à passer le test. Le test ne se passe qu'une fois.";
+          erreurIdentite.hidden = false;
+          return;
+        }
+
         participant = { prenom, nom, email, botcheck: val('botcheck') };
 
         identite.hidden = true;
@@ -1073,41 +1097,6 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
             etat.textContent = "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
           });
       };
-
-      document.getElementById('recommencer').addEventListener('click', () => {
-        arretChrono();
-        clearTimeout(attente);
-        attente = null;
-        index = 0;
-        justes = 0;
-        participant = null;
-        formIdentite.reset();
-        erreurIdentite.hidden = true;
-        document.getElementById('resultat-envoi').textContent = '';
-        donnees.forEach((d) => { d.choisi = null; d.corrige = false; d.secondes = 0; });
-        sections.forEach((s) => {
-          s.querySelectorAll('.option').forEach((b) => {
-            b.disabled = false;
-            b.removeAttribute('aria-disabled');
-            delete b.dataset.etat;
-            b.querySelector('.verdict').textContent = '';
-          });
-          s.querySelectorAll('.pourquoi').forEach((p) => {
-            p.hidden = true;
-            p.classList.remove('ev-reveal');
-            delete p.dataset.etat;
-          });
-          ['.hors-delai', '.retenir', '.suivant'].forEach((sel) => {
-            const el = s.querySelector(sel);
-            el.hidden = true;
-            el.classList.remove('ev-reveal');
-          });
-        });
-        resultat.hidden = true;
-        accueil.hidden = false;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.getElementById('demarrer').focus({ preventScroll: true });
-      });
     })();
   </script>
 </BaseLayout>
