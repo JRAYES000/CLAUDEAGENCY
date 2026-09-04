@@ -5,6 +5,41 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-05 (92) — Deux introductions coupées en deux, restes de la réécriture du lot `1bdf91f`
+
+**Type :** correction de contenu (lisibilité, pages publiques). Carte 76 du backlog
+`visibilite-ops`.
+
+**URLs :** https://claudeagency.fr/blog/claude-pour-le-marketing/ ·
+https://claudeagency.fr/blog/referencer-formation-mon-compte-formation/
+
+**Fichiers touchés :** `app/src/content/blog/claude-pour-le-marketing.mdx`,
+`app/src/content/blog/referencer-formation-mon-compte-formation.mdx`, ce journal.
+
+**Pourquoi :** le commit `1bdf91f` du 04/09 (carte 69) a posé un nouveau paragraphe
+d'introduction en tête de 30 articles. Sur deux d'entre eux, l'ancien paragraphe n'a pas
+été retiré en entier : il en restait un morceau qui démarrait **au milieu d'une phrase**,
+en minuscule, juste sous le nouveau texte. Visible par n'importe quel visiteur, sur des
+pages qui portent des requêtes ciblées (« claude pour le marketing », « mon compte
+formation »).
+
+**Ce qui a été retiré :**
+
+1. `claude-pour-le-marketing.mdx` — fragment « préféré de nombreuses équipes marketing : … »
+   et la phrase d'annonce qui suivait, devenue un doublon du nouveau paragraphe (elle
+   répétait « les quatre pannes qu'on rencontre vraiment » à cinq lignes d'intervalle).
+2. `referencer-formation-mon-compte-formation.mdx` — fragment « chercher, et financer, une
+   formation. » et le membre de phrase « , son financement en poche », déjà écrit par le
+   nouveau paragraphe deux lignes plus haut.
+
+**Les 28 autres articles du lot sont indemnes.** Balayage des 30 fichiers de `1bdf91f`
+(premiers paragraphes, recherche de paragraphes ouvrant en minuscule ou de doublons de
+l'intro), puis contre-vérification mécanique sur l'ensemble de `app/src/content/blog/` :
+aucun autre reste. Les autres remontées de ce contrôle sont des retours à la ligne en
+milieu de paragraphe, pas des coupures.
+
+**Vérifié :** `npm run build` dans `app/`, code de sortie 0, 86 pages construites.
+
 ## 2026-09-04 (91) — `/donnees-prospection/` remise au niveau du registre interne : sous-traitants, base légale, vraies sources
 
 **Type :** correction de contenu (conformité RGPD, page publique). Carte 57 du backlog
