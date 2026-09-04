@@ -5,6 +5,54 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-04 (93) — `llms.txt` alignée sur la cible de `PRODUCT.md` : la spécialisation n'est plus « exclusive »
+
+**Type :** correction de positionnement (fichier lu par les moteurs IA). Carte 78 du backlog
+`visibilite-ops`, déléguée à l'intendant.
+
+**URLs :** https://claudeagency.fr/llms.txt · https://claudeagency.fr/contact/
+
+**Fichiers touchés :** `app/src/pages/llms.txt.ts`, `app/src/pages/contact.astro`, ce journal.
+
+**Pourquoi :** `PRODUCT.md` porte depuis le 04/09 (commit `3b8f6cb`) la nouvelle cible —
+agence IA grand public, les organismes de formation en spécialité d'origine et segment fort —
+et la page `/claude-agency-en-bref/`, publiée le même jour, la dit en toutes lettres.
+`llms.txt`, lui, annonçait encore « Spécialisation exclusive : organismes de formation ».
+Un moteur qui lit les deux trouvait une contradiction sur la question la plus simple :
+pour qui travaillez-vous. Dérive repérée en publiant la carte 20, signalée à l'entrée 90.
+
+**Ce qui a changé dans `llms.txt` (cinq endroits) :**
+
+1. **Titre** — « Agence IA pour organismes de formation » → « Agence IA et marketing digital
+   francophone ».
+2. **Paragraphe de résumé (`>`)** — réécrit sur le modèle de `/claude-agency-en-bref/` :
+   entreprises, indépendants et équipes ; les OF Qualiopi en spécialité d'origine et segment
+   le mieux servi, « une preuve d'expertise, pas une frontière ».
+3. **Bloc Identité** — la ligne « Spécialisation exclusive » devient deux lignes : `Clients`
+   (large) et `Spécialité d'origine et segment le mieux servi` (les OF), qui dit explicitement
+   « pas une limite de périmètre ».
+4. **« Ce que fait Claude Agency »** — la phrase d'ouverture ne s'adresse plus aux seuls
+   dirigeants d'OF, et les points 1 à 4 ne présument plus que le client est un OF (le détail
+   Qualiopi/BPF/émargement reste, en exemple sectoriel).
+5. **FAQ « Quelle agence IA choisir pour un organisme de formation ? »** — l'affirmation
+   « seule agence francophone exclusivement spécialisée » est remplacée par la preuve
+   d'expertise réelle (l'OF Qualiopi à +3 M€ du fondateur), suivie d'une phrase qui dit que
+   l'agence travaille aussi hors du secteur de la formation.
+
+Le segment formation n'a été effacé nulle part : c'est le mot « exclusive » qui était faux.
+
+**Second écart traité au passage :** `/contact/` annonçait « Zone d'intervention : France
+entière (à distance) », là où le JSON-LD de `BaseLayout` et `llms.txt` disent France, Belgique,
+Suisse et Luxembourg. La page dit désormais les quatre pays.
+
+**Vérifications :** `npm run build` en code de sortie 0, 86 pages. `grep exclusi` sur
+`app/dist/llms.txt` ne renvoie plus rien.
+
+**Reste à traiter (pas dans le périmètre de la carte 78) :** la `description` du JSON-LD de
+`app/src/layouts/BaseLayout.astro` (ligne 31) porte la même dérive — « agence marketing et IA
+pour organismes de formation francophones » — et part sur **toutes** les pages du site. Le
+`title` et la `description` de l'accueil (`app/src/pages/index.astro`) aussi. Carte à ouvrir.
+
 ## 2026-09-04 (92) — Deux introductions coupées en deux, restes de la réécriture du lot `1bdf91f`
 
 **Type :** correction de contenu (lisibilité, pages publiques). Carte 76 du backlog

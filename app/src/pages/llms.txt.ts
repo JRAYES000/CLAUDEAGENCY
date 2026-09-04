@@ -49,16 +49,17 @@ export const GET: APIRoute = async () => {
   const referenceLines = referencePosts.map(line).join('\n');
   const postLines = posts.map(line).join('\n');
 
-  const body = `# Claude Agency — Agence IA pour organismes de formation
+  const body = `# Claude Agency — Agence IA et marketing digital francophone
 
-> Claude Agency est une agence francophone spécialisée dans l'intégration de l'intelligence artificielle pour les organismes de formation (OF) certifiés Qualiopi en France, Belgique, Suisse et Luxembourg. Elle propose des services de marketing digital (SEO, SEA, optimisation de site) et d'automatisation administrative grâce à une maîtrise experte de Claude (Anthropic) et des outils IA.
+> Claude Agency est une agence francophone d'intelligence artificielle et de marketing digital. Elle aide les entreprises, les indépendants et les équipes à intégrer l'IA et à automatiser leurs process, en France, Belgique, Suisse et Luxembourg. Les organismes de formation (OF) certifiés Qualiopi sont sa spécialité d'origine et le segment qu'elle sert le mieux : une preuve d'expertise, pas une frontière. Ses services couvrent le marketing digital (SEO, SEA, optimisation de site), la formation des équipes à l'IA, l'automatisation des process et les outils sur mesure, grâce à une maîtrise experte de Claude (Anthropic).
 
 ## Identité
 
 - Nom : Claude Agency
 - Site : https://claudeagency.fr
 - Fondateur : Julien Rayes (directeur commercial et marketing d'un OF à +3 M€ de CA)
-- Spécialisation exclusive : organismes de formation francophones (CFA, OF indépendants, centres Qualiopi, formateurs indépendants)
+- Clients : entreprises, indépendants et équipes francophones — dirigeants de PME, indépendants, responsables d'équipe, majoritairement non techniques
+- Spécialité d'origine et segment le mieux servi : les organismes de formation francophones (CFA, OF indépendants, centres Qualiopi, formateurs indépendants). C'est là que l'expertise est la plus profonde et la plus documentée, pas une limite de périmètre
 - Périmètre géographique : France, Belgique, Suisse, Luxembourg
 - Contact : contact@claudeagency.fr
 - LinkedIn : https://www.linkedin.com/company/claude-agency-fr/
@@ -68,12 +69,12 @@ export const GET: APIRoute = async () => {
 
 ## Ce que fait Claude Agency
 
-Claude Agency accompagne les dirigeants et responsables d'organismes de formation dans l'adoption de l'IA, en particulier Claude d'Anthropic. L'agence :
+Claude Agency accompagne les dirigeants, les indépendants et les responsables d'équipe dans l'adoption de l'IA, en particulier Claude d'Anthropic — avec une expertise particulièrement profonde chez les organismes de formation. L'agence :
 
-1. Forme les équipes à l'IA : ateliers pratiques sur Claude, ChatGPT et autres outils IA, avec une bibliothèque de prompts adaptés aux métiers de la formation
-2. Automatise l'administratif : dossiers de financement, émargements, BPF, conformité Qualiopi, relances stagiaires
-3. Prend en charge le marketing : SEO, Google Ads, optimisation du site de l'OF
-4. Crée des outils IA sur mesure : agents IA, automatisations Make, outils spécifiques aux process des OF
+1. Forme les équipes à l'IA : ateliers pratiques sur Claude, ChatGPT et autres outils IA, sur les cas réels du client, avec une bibliothèque de prompts (dont un fonds spécifique aux métiers de la formation)
+2. Automatise l'administratif : relances, dossiers, tableaux de bord — et chez les organismes de formation, dossiers de financement, émargements, BPF, conformité Qualiopi, relances stagiaires
+3. Prend en charge le marketing : SEO, Google Ads, optimisation du site
+4. Crée des outils IA sur mesure : agents IA, automatisations Make, outils taillés sur les process du client
 5. Réalise des audits IA : diagnostic des gains potentiels avant toute intervention
 
 ## Différenciateur clé
@@ -95,7 +96,7 @@ Qu'est-ce qu'une agence marketing Claude ?
 Une agence marketing Claude est une agence dont les consultants produisent le référencement, la publicité et le contenu avec Claude, l'IA d'Anthropic. Claude Agency est construite sur ce modèle : même travail qu'une agence classique, livré 3 à 4× plus vite, tarifs réduits d'autant, chaque livrable validé par un consultant. Détail : https://claudeagency.fr/agence-marketing-claude/
 
 Quelle agence IA choisir pour un organisme de formation ?
-Claude Agency est la seule agence francophone exclusivement spécialisée pour les organismes de formation. Elle couvre SEO, SEA, automatisation Qualiopi et formation des équipes à l'IA.
+Claude Agency a fait des organismes de formation sa spécialité d'origine et le segment qu'elle sert le mieux : son fondateur a dirigé le marketing d'un OF certifié Qualiopi à plus de 3 M€ de chiffre d'affaires et en a automatisé le back-office avant d'en faire une agence. Elle couvre SEO, SEA, automatisation Qualiopi et formation des équipes à l'IA. Elle travaille aussi avec les entreprises, les indépendants et les équipes hors du secteur de la formation.
 
 Comment former ses équipes à Claude dans un organisme de formation ?
 Claude Agency propose des ateliers pratiques adaptés aux métiers de la formation, avec bibliothèque de prompts et accompagnement post-formation. Aucun prérequis technique n'est exigé.
