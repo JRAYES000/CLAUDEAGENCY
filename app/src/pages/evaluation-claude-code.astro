@@ -545,7 +545,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
-          <span>Votre nom et votre score sont enregistrés à la fin, pour le suivi de formation interne. À partir de <strong class="font-semibold">75/100</strong>, vous recevez par e-mail une invitation à déposer votre fiche dans l'annuaire de prestataires Claude&nbsp;Partners.</span>
+          <span>Votre nom et votre score sont enregistrés à la fin, pour le suivi de formation interne. À partir de <strong class="font-semibold">75/100</strong>, vous recevez par e-mail une invitation à déposer votre fiche dans l'annuaire de prestataires Claude&nbsp;Partners, et votre fiche y porte le badge «&nbsp;Test Claude Code réussi&nbsp;» avec votre score, pendant un an.</span>
         </li>
       </ul>
 
@@ -618,7 +618,9 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         <p class="text-sm leading-relaxed text-ink/70">
           Le chrono démarre au clic. Ces informations, votre score et votre temps sont conservés
           par Claude Agency pour le suivi de formation interne. Au-delà de 75/100, votre adresse
-          sert en outre à vous envoyer une invitation à rejoindre l'annuaire Claude&nbsp;Partners&nbsp;;
+          sert en outre à vous envoyer une invitation à rejoindre l'annuaire Claude&nbsp;Partners,
+          et à poser sur votre fiche de cet annuaire, si elle porte la même adresse, le badge
+          «&nbsp;Test Claude Code réussi&nbsp;» avec votre score et la date, pendant un an&nbsp;;
           écrivez à <a class="underline underline-offset-2 hover:text-ink" href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>
           pour accéder à vos données, les faire supprimer ou refuser cette invitation.
         </p>
@@ -1059,7 +1061,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         }
         erreurIdentite.hidden = true;
 
-        // Le test ne se passe qu'une fois par adresse. Le refus tombe ici, avant le
+        // Le test ne se passe qu'une fois par an et par adresse. Le refus tombe ici, avant le
         // chrono, plutôt qu'à l'enregistrement — personne ne répond à 20 questions pour
         // apprendre à la fin que son résultat ne compte pas.
         const libelle = boutonIdentite.textContent;
@@ -1082,7 +1084,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         boutonIdentite.textContent = libelle;
 
         if (dejaPasse) {
-          erreurIdentite.textContent = "Cette adresse a déjà servi à passer le test. Le test ne se passe qu'une fois.";
+          erreurIdentite.textContent = "Cette adresse a déjà servi à passer le test il y a moins d'un an. Le test ne se passe qu'une fois par an.";
           erreurIdentite.hidden = false;
           return;
         }
@@ -1112,7 +1114,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
             }
             // `invite` vient du serveur, seul à savoir si l'e-mail est effectivement parti.
             etat.textContent = j.invite
-              ? "Résultat enregistré. Une invitation à rejoindre l'annuaire Claude Partners vient de vous être envoyée par e-mail."
+              ? "Résultat enregistré. Une invitation à rejoindre l'annuaire Claude Partners vient de vous être envoyée par e-mail : votre fiche y portera le badge « Test Claude Code réussi »."
               : 'Résultat enregistré.';
           })
           .catch(() => {

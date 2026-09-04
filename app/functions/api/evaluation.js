@@ -12,11 +12,13 @@
 //   NOTION_EVAL_DB = id de la base « Resultats du test Claude Code »
 import { createResultat, emailDejaPasse } from './_notion.js';
 
-// Le test ne se passe qu'une fois par adresse. Le controle a lieu deux fois : avant le
-// depart (action « verifier », pour refuser en une seconde plutot qu'apres 20 questions)
-// et avant l'ecriture (pour que deux onglets ouverts ne creent pas deux lignes).
+// Le test ne se passe qu'une fois par an et par adresse — un an, parce que le badge
+// posé sur l'annuaire Claude Partners vaut un an et doit pouvoir se renouveler. Le
+// controle a lieu deux fois : avant le depart (action « verifier », pour refuser en une
+// seconde plutot qu'apres 20 questions) et avant l'ecriture (pour que deux onglets
+// ouverts ne creent pas deux lignes).
 // Ce n'est pas une authentification : changer d'adresse suffit a le contourner.
-const REFUS_DEJA_PASSE = "Cette adresse a déjà servi à passer le test. Le test ne se passe qu'une fois.";
+const REFUS_DEJA_PASSE = "Cette adresse a déjà servi à passer le test il y a moins d'un an. Le test ne se passe qu'une fois par an.";
 
 // Le nombre de questions vient de la page : elle seule le connaît, et il changera.
 // Bornes de sécurité uniquement, pour qu'un POST fabriqué ne pose pas n'importe quoi.
@@ -32,6 +34,9 @@ const SECONDES_PAR_QUESTION = 30;
 // à la règle « ne pas pointer vers ce domaine » du CLAUDE.md — décidée le 04/09/2026.
 const SEUIL_ANNUAIRE = 75;
 const URL_ANNUAIRE = 'https://claudepartners.fr/prestataires/inscription/';
+// Ce que le badge prouve et ne prouve pas, côté annuaire. Même exception que l'URL
+// au-dessus : la page est le seul endroit où l'on renvoie vers ce domaine.
+const URL_LABEL = 'https://claudepartners.fr/label-claude-code/';
 
 // Boîte d'envoi, identique à /api/subscribe et /api/contact. L'identifiant de boîte est
 // public (GET /api/v1/me le renvoie) ; le jeton, lui, vient de l'environnement.
@@ -156,7 +161,14 @@ export async function onRequestPost({ request, env }) {
   // Best-effort, et après l'écriture : un incident d'envoi ne doit pas faire perdre un
   // résultat déjà enregistré. La page reçoit `invite` pour l'annoncer à l'écran.
   let invite = false;
-  if (score >= SEUIL_ANNUAIRE) invite = await inviteAnnuaire(env, { prenom, email, score });
+  if (score >= SEUIL_ANNUAIRE) {
+    invite = await inviteAnnuaire(env, { prenom, email, score });
+    // L'annuaire lit cette base à chaque build et pose le badge « Test Claude Code
+    // réussi » sur la fiche qui porte la même adresse (claudepartners-fr,
+    // src/server/label.js). Sans ce hook, le badge attendrait le prochain build
+    // déclenché par autre chose — parfois plusieurs jours. Best-effort aussi.
+    if (env.CP_DEPLOY_HOOK_URL) await fetch(env.CP_DEPLOY_HOOK_URL, { method: 'POST' }).catch(() => {});
+  }
 
   return json({ ok: true, invite });
 }
@@ -189,6 +201,8 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `${score}/100 au test Claude Code : c'est le niveau que nous recherchons pour nos ` +
           `missions clients.\n\n` +
           `Déposez votre fiche prestataire dans l'annuaire Claude Partners :\n${URL_ANNUAIRE}\n\n` +
+          `Déposée avec cette adresse e-mail, votre fiche portera le badge « Test Claude Code ` +
+          `réussi · ${score}/100 » pendant un an. Ce qu'il prouve, et ce qu'il ne prouve pas :\n${URL_LABEL}\n\n` +
           `Dès qu'une mission correspond à votre profil, nous vous contactons pour vous la ` +
           `proposer.\n\n${conditions}\n\n` +
           `Une question ? Répondez à cet e-mail.\n\n— Julien Rayes, Claude Agency`,
@@ -200,6 +214,9 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `<p>Déposez votre fiche prestataire dans l'annuaire Claude Partners. Dès qu'une ` +
           `mission correspond à votre profil, nous vous contactons pour vous la proposer.</p>` +
           `<p style="margin:24px 0;"><a href="${URL_ANNUAIRE}" style="background:#BE5B3A;color:#ffffff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">Déposer ma fiche prestataire</a></p>` +
+          `<p>Déposée avec cette adresse e-mail, votre fiche portera le badge « Test Claude Code ` +
+          `réussi · <strong>${score}/100</strong> » pendant un an. ` +
+          `<a href="${URL_LABEL}">Ce qu'il prouve, et ce qu'il ne prouve pas.</a></p>` +
           `<p style="font-size:14px;color:#5b5955;">${escapeHtml(conditions)}</p>` +
           `<p>Une question ? Répondez à cet e-mail.</p>` +
           `<p>— Julien Rayes, Claude Agency</p>` +

@@ -14,7 +14,12 @@ Production : **https://claudeagency.fr**. Dépôt GitHub **public**.
 > propre projet Pages. Ne jamais employer « Claude Partners » pour désigner ce site-ci, ni pointer
 > vers ce domaine — **à une exception près, décidée le 04/09/2026** : `/api/evaluation` envoie une
 > invitation à déposer une fiche prestataire à qui obtient 75/100 ou plus au test Claude Code.
-> Ce lien-là est voulu ; ne pas le retirer en croyant corriger un oubli.
+> Ce lien-là est voulu ; ne pas le retirer en croyant corriger un oubli. **Élargie le 05/09/2026** :
+> l'e-mail renvoie aussi vers `claudepartners.fr/label-claude-code/`, la page du badge « Test Claude
+> Code réussi » que l'annuaire pose sur la fiche qui porte la même adresse (il lit la base Notion
+> des résultats à chaque build ; `CP_DEPLOY_HOOK_URL`, sur ce projet Pages, déclenche ce build après
+> chaque réussite). Corollaire : le test se repasse **une fois par an** et par adresse, pas une seule
+> fois — le badge vaut un an. Les liens de la page du test, eux, restent sans lien vers ce domaine.
 
 ## Commandes
 
