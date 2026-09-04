@@ -5,6 +5,72 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-05 (94) — Nouvel article « Facture électronique : ce que doit faire un organisme de formation »
+
+**Type :** publication d'article (actualité réglementaire). Carte 85 du backlog `visibilite-ops`,
+déléguée à l'intendant.
+
+**URL :** https://claudeagency.fr/blog/facture-electronique-organisme-formation/
+
+**Fichiers touchés :** `app/src/content/blog/facture-electronique-organisme-formation.mdx` (neuf),
+`app/src/content/blog/images/facture-electronique-organisme-formation-cover.jpg` (neuf),
+`app/src/content/blog/logiciel-organisme-formation.mdx`,
+`app/src/content/blog/remplir-bpf-organisme-formation.mdx`,
+`app/src/content/blog/numero-declaration-activite.mdx`, `docs/seo/REQUETES.csv`, ce journal.
+
+**Pourquoi :** l'obligation de **recevoir** une facture électronique s'applique depuis le
+1er septembre 2026 à toute entreprise établie en France et assujettie à la TVA, organismes de
+formation compris. Les 58 articles du blog couvraient le BPF, Qualiopi, l'émargement et le NDA,
+mais aucun ne parlait de facturation — vérifié par grep sur `factur|électronique|Chorus|Factur-X`
+dans `app/src/content/blog/` et `app/src/pages/` : zéro occurrence sur ce sujet, aucune
+cannibalisation avec `/facturation-tva-societe-europeenne/` (TVA intracommunautaire, autre sujet).
+Sujet d'actualité : sa valeur décroît chaque semaine.
+
+**Angle retenu :** la seule question que se pose un dirigeant d'organisme — que dois-je avoir en
+place avant de recevoir ma première facture électronique. Entonnoir inversé : la réponse (être
+raccordé à une plateforme agréée, y avoir déclaré son SIREN) est dans le premier paragraphe.
+
+**Le point qui fait la valeur de l'article :** un organisme de formation exonéré de TVA au titre
+des articles 261 à 261 E du CGI n'est **pas** concerné en émission, mais l'est en **réception**,
+en tant qu'acheteur professionnel. C'est le contresens le plus répandu du secteur, et il porte
+exactement sur la seule obligation déjà en vigueur.
+
+**Sources, vérifiées en direct le 2026-09-05 :**
+
+- [service-public.fr F23208](https://entreprendre.service-public.gouv.fr/vosdroits/F23208) —
+  calendrier (réception au 01/09/2026 pour toutes les entreprises ; émission au 01/09/2026 pour
+  les grandes entreprises et ETI, au 01/09/2027 pour les PME et micro-entreprises), passage
+  obligatoire par une plateforme agréée, quatre nouvelles mentions obligatoires.
+- [impots.gouv.fr — « Je n'émets pas de facture, ou je facture sans TVA »](https://www.impots.gouv.fr/professionnel/questions/je-nemets-pas-de-facture-ou-je-facture-sans-tva-suis-je-concerne-par-la)
+  — le cas des exonérés 261 à 261 E et celui de la franchise en base.
+- [impots.gouv.fr — liste des plateformes agréées](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees)
+  — page mise à jour le 03/09/2026.
+
+**Aucune plateforme n'est nommée dans l'article** : l'article renvoie à la liste officielle de la
+DGFiP, qui est la seule à faire foi et qui bouge à chaque immatriculation. Aucun chiffre hors des
+trois sources ci-dessus.
+
+**Maillage entrant (3 liens, posés à la main, jamais par script) :**
+
+1. `logiciel-organisme-formation.mdx` — puce « Facturation et financement ».
+2. `remplir-bpf-organisme-formation.mdx` — phrase ajoutée sous le tableau des cadres du BPF
+   (les cadres B et C se nourrissent de la facturation).
+3. `numero-declaration-activite.mdx` — puce « figurer sur vos documents contractuels ».
+
+**Maillage sortant :** `/blog/logiciel-organisme-formation/`, `/blog/numero-declaration-activite/`,
+`/blog/convention-de-formation/`, `/blog/remplir-bpf-organisme-formation/`, `/services/audit-ia/`.
+
+**Image :** générée par Cloudflare Workers AI (FLUX.2 klein 9B), coût 0 $. Palette maison
+crème/terracotta, aucun texte incrusté.
+
+**Vérifications :** `npm run build` en code de sortie 0, 87 pages, la route
+`/blog/facture-electronique-organisme-formation/` générée. 1 158 mots. Quota respecté : deuxième
+et dernier article de claudeagency.fr pour la semaine du 31/08 (le premier étant
+`agence-claude-comment-choisir`, publié le 04/09).
+
+**Mesure prévue :** au relevé Search Console du jeudi suivant, la page doit compter des affichages
+sur une requête de facturation ; à défaut, indexation constatée sous 14 jours.
+
 ## 2026-09-04 (93) — `llms.txt` alignée sur la cible de `PRODUCT.md` : la spécialisation n'est plus « exclusive »
 
 **Type :** correction de positionnement (fichier lu par les moteurs IA). Carte 78 du backlog
