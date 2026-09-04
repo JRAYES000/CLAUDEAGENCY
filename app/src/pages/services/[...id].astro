@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUTHOR, authorPerson } from '../../data/author';
 
 export const getStaticPaths = (async () => {
   const services = await getCollection('services');
@@ -41,7 +42,7 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 3, name: d.title },
   ],
 };
-const schema = [serviceSchema, breadcrumb];
+const schema = [serviceSchema, authorPerson(site), breadcrumb];
 ---
 <BaseLayout title={d.title} description={d.description} pageSchema={schema}>
   <section class="mx-auto max-w-3xl px-4 py-16">
@@ -86,6 +87,11 @@ const schema = [serviceSchema, breadcrumb];
     )}
 
     <p class="mt-14 border-t border-sand pt-6 text-sm text-muted">
+      Page écrite par <a href="/a-propos/#julien-rayes" class="text-brand-700 hover:underline">{AUTHOR.name}</a>, {AUTHOR.jobTitle}.
+      {AUTHOR.method} <a href={AUTHOR.methodUrl} class="text-brand-700 hover:underline">Comment nous écrivons nos contenus</a>.
+    </p>
+
+    <p class="mt-6 text-sm text-muted">
       Nos prestations sont facturées en euros par BULGARIA EDUCATION EOOD, société européenne&nbsp;:
       facture hors taxe, autoliquidation de la TVA, virement SEPA. <a href="/facturation-tva-societe-europeenne/" class="text-brand-700 hover:underline">Ce que ça change pour votre comptabilité</a>.
     </p>

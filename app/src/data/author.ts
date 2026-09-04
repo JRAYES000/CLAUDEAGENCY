@@ -13,6 +13,13 @@ export const AUTHOR = {
     "des outils comme Make et Claude Code. Il aide aujourd'hui les organismes de formation à " +
     "intégrer l'IA de façon concrète et mesurable : relances administratives passées de 2 h par jour " +
     "à 2 h par mois, comptes rendus automatisés, coaching commercial assisté par IA.",
+  // Mention de production, affichée sous chaque contenu et dans le pied de page.
+  // Google (« Creating helpful content ») demande que l'usage de l'automatisation
+  // soit visible du lecteur ; le détail complet vit sur /a-propos/#methode.
+  method:
+    "Écrit par Julien Rayes et l'équipe de Claude Agency, avec l'aide de l'intelligence " +
+    "artificielle pour la rédaction. Sujet, chiffres et publication restent décidés par un humain.",
+  methodUrl: '/a-propos/#methode',
   knowsAbout: [
     'Intelligence artificielle',
     'Automatisation des process',
