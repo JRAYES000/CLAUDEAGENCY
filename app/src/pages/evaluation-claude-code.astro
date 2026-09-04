@@ -545,7 +545,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         </li>
         <li class="flex gap-3">
           <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"></span>
-          <span>Votre nom et votre score sont enregistrés à la fin, pour le suivi de formation interne.</span>
+          <span>Votre nom et votre score sont enregistrés à la fin, pour le suivi de formation interne. À partir de <strong class="font-semibold">75/100</strong>, vous recevez par e-mail une invitation à déposer votre fiche dans l'annuaire de prestataires Claude&nbsp;Partners.</span>
         </li>
       </ul>
 
@@ -617,9 +617,10 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         </button>
         <p class="text-sm leading-relaxed text-ink/70">
           Le chrono démarre au clic. Ces informations, votre score et votre temps sont conservés
-          par Claude Agency pour le seul suivi de formation interne&nbsp;;
+          par Claude Agency pour le suivi de formation interne. Au-delà de 75/100, votre adresse
+          sert en outre à vous envoyer une invitation à rejoindre l'annuaire Claude&nbsp;Partners&nbsp;;
           écrivez à <a class="underline underline-offset-2 hover:text-ink" href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>
-          pour y accéder ou les faire supprimer.
+          pour accéder à vos données, les faire supprimer ou refuser cette invitation.
         </p>
       </form>
     </section>
@@ -1105,9 +1106,14 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         })
           .then((r) => r.json())
           .then((j) => {
-            etat.textContent = j && j.ok
-              ? 'Résultat enregistré.'
-              : "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
+            if (!j || !j.ok) {
+              etat.textContent = "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";
+              return;
+            }
+            // `invite` vient du serveur, seul à savoir si l'e-mail est effectivement parti.
+            etat.textContent = j.invite
+              ? "Résultat enregistré. Une invitation à rejoindre l'annuaire Claude Partners vient de vous être envoyée par e-mail."
+              : 'Résultat enregistré.';
           })
           .catch(() => {
             etat.textContent = "Le résultat n'a pas pu être enregistré. Prévenez Claude Agency.";

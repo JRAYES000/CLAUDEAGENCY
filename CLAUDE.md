@@ -12,7 +12,9 @@ Production : **https://claudeagency.fr**. Dépôt GitHub **public**.
 
 > `claudepartners.fr` est un **autre produit, en ligne** : un annuaire de prestataires IA, sur son
 > propre projet Pages. Ne jamais employer « Claude Partners » pour désigner ce site-ci, ni pointer
-> vers ce domaine.
+> vers ce domaine — **à une exception près, décidée le 04/09/2026** : `/api/evaluation` envoie une
+> invitation à déposer une fiche prestataire à qui obtient 75/100 ou plus au test Claude Code.
+> Ce lien-là est voulu ; ne pas le retirer en croyant corriger un oubli.
 
 ## Commandes
 

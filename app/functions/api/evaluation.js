@@ -23,6 +23,22 @@ const REFUS_DEJA_PASSE = "Cette adresse a déjà servi à passer le test. Le tes
 const TOTAL_MAX = 100;
 const SECONDES_PAR_QUESTION = 30;
 
+// À partir de ce score, la personne reçoit une invitation à déposer sa fiche dans
+// l'annuaire Claude Partners. Même seuil que le palier « Autonome » ci-dessous, exprès :
+// deux seuils voisins qui divergent d'un point produiraient un écran qui félicite
+// quelqu'un sans l'inviter.
+//
+// Claude Partners est un autre produit, sur son propre domaine. C'est la seule exception
+// à la règle « ne pas pointer vers ce domaine » du CLAUDE.md — décidée le 04/09/2026.
+const SEUIL_ANNUAIRE = 75;
+const URL_ANNUAIRE = 'https://claudepartners.fr/prestataires/inscription/';
+
+// Boîte d'envoi, identique à /api/subscribe et /api/contact. L'identifiant de boîte est
+// public (GET /api/v1/me le renvoie) ; le jeton, lui, vient de l'environnement.
+const FROM_NAME = 'Julien Rayes — Claude Agency';
+const MAILBOX_ID = 'ACcae43ae70041b0ddda143fd8795d';
+const HOSTINGER_API = `https://api.mail.hostinger.com/api/v1/mailboxes/${MAILBOX_ID}/send`;
+
 // Plancher de la vitesse, en secondes par question : en dessous, on n'a pas lu l'énoncé.
 // Le plafond, lui, est SECONDES_PAR_QUESTION — le chrono de la page.
 const SECONDES_PLANCHER = 8;
@@ -62,6 +78,9 @@ export async function onRequestGet({ env }) {
     ok: true,
     endpoint: 'evaluation',
     notion: Boolean(env.NOTION_TOKEN && env.NOTION_EVAL_DB),
+    // Sans ce jeton, l'invitation à l'annuaire ne part pas — en silence, par conception.
+    mail: Boolean(env.HOSTINGER_MAIL_TOKEN),
+    seuilAnnuaire: SEUIL_ANNUAIRE,
   });
 }
 
@@ -133,7 +152,68 @@ export async function onRequestPost({ request, env }) {
   });
 
   if (!ecrit) return json({ ok: false, message: "L'enregistrement dans Notion a échoué." });
-  return json({ ok: true });
+
+  // Best-effort, et après l'écriture : un incident d'envoi ne doit pas faire perdre un
+  // résultat déjà enregistré. La page reçoit `invite` pour l'annoncer à l'écran.
+  let invite = false;
+  if (score >= SEUIL_ANNUAIRE) invite = await inviteAnnuaire(env, { prenom, email, score });
+
+  return json({ ok: true, invite });
+}
+
+// Invitation à déposer une fiche dans l'annuaire Claude Partners, envoyée depuis la boîte
+// contact@claudeagency.fr. Le texte dit la commission : elle est de toute façon dans une
+// case obligatoire du formulaire, et la découvrir à la dernière étape fait abandonner.
+// Il ne promet pas non plus une sélection humaine — la fiche est vérifiée sur sa
+// complétude, pas sur les compétences.
+async function inviteAnnuaire(env, { prenom, email, score }) {
+  const token = env.HOSTINGER_MAIL_TOKEN;
+  if (!token) return false;
+
+  const bonjour = prenom ? `Bonjour ${prenom},` : 'Bonjour,';
+  const conditions =
+    "Inscription gratuite ; une commission de 20 % HT s'applique aux missions engagées via " +
+    'la plateforme. Comptez cinq minutes pour la fiche : spécialités, secteurs, tarif ' +
+    'journalier, disponibilité.';
+
+  try {
+    const res = await fetch(HOSTINGER_API, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: [email],
+        displayName: FROM_NAME,
+        subject: `Test Claude Code : ${score}/100 — déposez votre fiche prestataire`,
+        text:
+          `${bonjour}\n\n` +
+          `${score}/100 au test Claude Code : c'est le niveau que nous recherchons pour nos ` +
+          `missions clients.\n\n` +
+          `Déposez votre fiche prestataire dans l'annuaire Claude Partners :\n${URL_ANNUAIRE}\n\n` +
+          `Dès qu'une mission correspond à votre profil, nous vous contactons pour vous la ` +
+          `proposer.\n\n${conditions}\n\n` +
+          `Une question ? Répondez à cet e-mail.\n\n— Julien Rayes, Claude Agency`,
+        html:
+          `<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#2B2A28;">` +
+          `<p>${escapeHtml(bonjour)}</p>` +
+          `<p><strong>${score}/100</strong> au test Claude Code : c'est le niveau que nous ` +
+          `recherchons pour nos missions clients.</p>` +
+          `<p>Déposez votre fiche prestataire dans l'annuaire Claude Partners. Dès qu'une ` +
+          `mission correspond à votre profil, nous vous contactons pour vous la proposer.</p>` +
+          `<p style="margin:24px 0;"><a href="${URL_ANNUAIRE}" style="background:#BE5B3A;color:#ffffff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">Déposer ma fiche prestataire</a></p>` +
+          `<p style="font-size:14px;color:#5b5955;">${escapeHtml(conditions)}</p>` +
+          `<p>Une question ? Répondez à cet e-mail.</p>` +
+          `<p>— Julien Rayes, Claude Agency</p>` +
+          `</div>`,
+      }),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 function texte(v, max) {
