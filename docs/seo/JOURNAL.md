@@ -5,7 +5,7 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
-## 2026-09-05 (92) — Deux introductions coupées en deux, restes de la réécriture du lot `1bdf91f`
+## 2026-09-04 (92) — Deux introductions coupées en deux, restes de la réécriture du lot `1bdf91f`
 
 **Type :** correction de contenu (lisibilité, pages publiques). Carte 76 du backlog
 `visibilite-ops`.
