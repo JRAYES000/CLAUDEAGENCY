@@ -12,7 +12,14 @@ Production : **https://claudeagency.fr**. Dépôt GitHub **public**.
 
 > `claudepartners.fr` est un **autre produit, en ligne** : un annuaire de prestataires IA, sur son
 > propre projet Pages. Ne jamais employer « Claude Partners » pour désigner ce site-ci, ni pointer
-> vers ce domaine.
+> vers ce domaine — **à une exception près, décidée le 04/09/2026** : `/api/evaluation` envoie une
+> invitation à déposer une fiche prestataire à qui obtient 75/100 ou plus au test Claude Code.
+> Ce lien-là est voulu ; ne pas le retirer en croyant corriger un oubli. **Élargie le 05/09/2026** :
+> l'e-mail renvoie aussi vers `claudepartners.fr/label-claude-code/`, la page du badge « Test Claude
+> Code réussi » que l'annuaire pose sur la fiche qui porte la même adresse (il lit la base Notion
+> des résultats à chaque build ; `CP_DEPLOY_HOOK_URL`, sur ce projet Pages, déclenche ce build après
+> chaque réussite). Corollaire : le test se repasse **une fois par an** et par adresse, pas une seule
+> fois — le badge vaut un an. Les liens de la page du test, eux, restent sans lien vers ce domaine.
 
 ## Commandes
 
@@ -71,9 +78,29 @@ dans l'interface Notion : sans ça l'API rend un `404 object_not_found` qui se l
 mauvais identifiant. `GET /api/subscribe` et `GET /api/evaluation` disent quelle version est
 déployée et si les variables Notion sont posées — pas si la connexion existe.
 
+**Toute nouvelle propriété écrite par `_notion.js` doit exister dans la base avant le
+déploiement.** Notion rejette l'écriture **entière** sur une propriété inconnue : c'est le
+résultat complet du candidat ou le lead qui est perdu, pas seulement le champ en trop. Créer la
+propriété d'abord, pousser le code ensuite.
+
 **Brouillons LinkedIn : `docs/prive/sortants/`**, jamais à la racine ni dans `app/`. Le dossier est
 couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs
 commentaires, et ce dépôt est public.
+
+**Publier sur LinkedIn depuis Chrome piloté — joindre l'image.** Le bouton « Importer depuis
+votre ordinateur » de l'éditeur de média déclenche une boîte de dialogue Windows native : elle
+est invisible pour l'agent et **gèle le rendu de l'onglet** (`Page.captureScreenshot` part en
+timeout), ce qui se lit à tort comme un plantage de LinkedIn. Ne jamais cliquer ce bouton ni un
+`input[type=file]`. La marche à suivre : ouvrir l'éditeur de média, récupérer l'`input[type=file]`
+en JavaScript, le déplacer dans `document.body` avec un `aria-label` reconnaissable, puis y
+pousser le fichier par l'outil d'upload du connecteur. Sur le compte Claude Agency l'input est
+créé au clic dans le document principal (le capturer en surchargeant `HTMLInputElement.prototype.click`
+pour le type `file`) ; **sur le compte Claude Partners il vit dans un shadow root** — le chercher
+via `[...document.querySelectorAll('*')].find(e => e.shadowRoot?.querySelector('input[type=file]'))`,
+sans quoi `document.querySelectorAll('input[type=file]')` renvoie zéro et laisse croire qu'il n'y
+en a pas. Second piège du même flux : les références d'éléments du fil d'actualité (`ref_N`)
+**périment dès qu'un post est ajouté**, et un commentaire destiné au nouveau post atterrit sur
+l'ancien. Commenter depuis le permalien du post, jamais depuis le fil.
 
 ## Mémoire SEO — obligatoire
 

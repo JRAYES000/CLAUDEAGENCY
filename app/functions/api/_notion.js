@@ -13,6 +13,7 @@
 // L'intégration doit être connectée à CHAQUE base : un jeton valide sur « Leads entrants »
 // reçoit un 404 sur une base à laquelle il n'a pas été ajouté.
 const NOTION_API = 'https://api.notion.com/v1/pages';
+const NOTION_DB_API = 'https://api.notion.com/v1/databases';
 const NOTION_VERSION = '2022-06-28';
 
 // Les noms de propriétés sont sans accent, côté Notion comme ici : un identifiant accentué
@@ -47,19 +48,69 @@ export async function createResultat(env, r) {
   // la premiere colonne et ne se deplace pas, et c'est l'adresse que Julien veut voir
   // en tete. Un titre ne porte pas le type email, donc pas de lien mailto : la meme
   // adresse est recopiee en fin de tableau dans « Email (lien) », elle cliquable.
-  const email = trim(r.email);
+  // Minuscules : l'adresse sert de cle d'unicite (un seul passage par personne) et le
+  // filtre Notion `title.equals` respecte la casse. Sans cette normalisation, Jean@X et
+  // jean@x seraient deux personnes differentes pour emailDejaPasse.
+  const email = trim(r.email).toLowerCase();
   return postPage(env, env.NOTION_EVAL_DB, {
     Email: { title: [{ text: { content: email.slice(0, 200) } }] },
     'Email (lien)': { email },
     Prenom: { rich_text: [{ text: { content: trim(r.prenom).slice(0, 200) } }] },
     Nom: { rich_text: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
     'Bonnes reponses': { number: r.justes },
+    Score: { number: r.score },
     Duree: { rich_text: [{ text: { content: trim(r.duree).slice(0, 100) } }] },
     'Duree (s)': { number: r.secondes },
     'Sans reponse': { number: r.sansReponse },
     Palier: { select: { name: r.palier } },
     'Passe le': { date: { start: new Date().toISOString() } },
   });
+}
+
+// Le test ne se passe qu'une fois par an : cette adresse a-t-elle une ligne datee de
+// moins de DELAI_REPASSAGE_JOURS ? Un an, parce que le badge que l'annuaire Claude
+// Partners pose sur la fiche vaut un an (claudepartners-fr, src/server/label.js) et doit
+// pouvoir se renouveler par un nouveau passage.
+// Renvoie true, false, ou null quand la question n'a pas pu etre posee (variables
+// absentes, Notion injoignable, reponse illisible). L'appelant traite null en laissant
+// passer : une panne Notion ne doit pas fermer le test a tout le monde. Le risque assume
+// est un doublon occasionnel, visible dans la base.
+//
+// Le filtre `title.equals` de Notion respecte la casse ; l'adresse est donc comparee en
+// minuscules, comme createResultat l'ecrit.
+const DELAI_REPASSAGE_JOURS = 365;
+
+export async function emailDejaPasse(env, email) {
+  if (!env.NOTION_TOKEN || !env.NOTION_EVAL_DB) return null;
+  const adresse = trim(email).toLowerCase();
+  if (!adresse) return null;
+
+  try {
+    const res = await fetch(`${NOTION_DB_API}/${env.NOTION_EVAL_DB}/query`, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + env.NOTION_TOKEN,
+        'Notion-Version': NOTION_VERSION,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        page_size: 1,
+        filter: { property: 'Email', title: { equals: adresse.slice(0, 200) } },
+        sorts: [{ property: 'Passe le', direction: 'descending' }],
+      }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data.results)) return null;
+    if (data.results.length === 0) return false;
+    // Une ligne sans date lisible compte comme recente : on refuse plutot que d'ouvrir
+    // un second passage sur un doute.
+    const le = new Date(data.results[0].properties?.['Passe le']?.date?.start ?? '');
+    if (Number.isNaN(le.getTime())) return true;
+    return Date.now() - le.getTime() < DELAI_REPASSAGE_JOURS * 864e5;
+  } catch {
+    return null;
+  }
 }
 
 async function postPage(env, database_id, properties) {
