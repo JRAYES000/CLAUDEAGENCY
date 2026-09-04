@@ -71,6 +71,11 @@ dans l'interface Notion : sans ça l'API rend un `404 object_not_found` qui se l
 mauvais identifiant. `GET /api/subscribe` et `GET /api/evaluation` disent quelle version est
 déployée et si les variables Notion sont posées — pas si la connexion existe.
 
+**Toute nouvelle propriété écrite par `_notion.js` doit exister dans la base avant le
+déploiement.** Notion rejette l'écriture **entière** sur une propriété inconnue : c'est le
+résultat complet du candidat ou le lead qui est perdu, pas seulement le champ en trop. Créer la
+propriété d'abord, pousser le code ensuite.
+
 **Brouillons LinkedIn : `docs/prive/sortants/`**, jamais à la racine ni dans `app/`. Le dossier est
 couvert par `/docs/prive/` dans le `.gitignore` — un post cite des personnes nommées et leurs
 commentaires, et ce dépôt est public.
