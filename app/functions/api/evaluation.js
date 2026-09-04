@@ -23,14 +23,38 @@ const REFUS_DEJA_PASSE = "Cette adresse a déjà servi à passer le test. Le tes
 const TOTAL_MAX = 100;
 const SECONDES_PAR_QUESTION = 30;
 
-// Les paliers sont accentués côté page ; les options du select Notion sont en ASCII
-// (règle de nommage : pas d'accent dans un identifiant). Tout palier hors de cette table
-// est refusé plutôt que de créer une option parasite dans la base.
-const PALIERS = {
-  Autonome: 'Autonome',
-  'Opérationnel sur cadrage': 'Operationnel sur cadrage',
-  'À former avant de démarrer': 'A former avant de demarrer',
-};
+// Plancher de la vitesse, en secondes par question : en dessous, on n'a pas lu l'énoncé.
+// Le plafond, lui, est SECONDES_PAR_QUESTION — le chrono de la page.
+const SECONDES_PLANCHER = 8;
+
+// Score sur 100 : la justesse fixe le plafond, la vitesse en récupère au plus un
+// cinquième. Multiplicatif et non additif, exprès — sinon quelqu'un qui clique au hasard
+// en trois secondes par question empocherait les points de vitesse sans rien savoir.
+// Un sans-faute vaut 80 au plus lent et 100 au plus rapide ; un zéro vaut zéro.
+//
+// Le serveur recalcule ce score au lieu de croire la page : le navigateur peut poster
+// ce qu'il veut. Sur un score fabriqué de bout en bout, ça ne change rien — c'est un
+// repère de formation, pas une mesure opposable — mais la colonne reste cohérente avec
+// les deux autres, et la formule se change ici sans redéployer la page.
+function calculeScore(justes, total, secondes) {
+  const justesse = justes / total;
+  const plancher = total * SECONDES_PLANCHER;
+  const plafond = total * SECONDES_PAR_QUESTION;
+  const brut = (plafond - secondes) / (plafond - plancher);
+  const rapidite = Math.min(1, Math.max(0, brut));
+  return Math.round(100 * justesse * (0.8 + 0.2 * rapidite));
+}
+
+// Le palier découle du score, donc de la justesse ET du temps de réponse. Les seuils
+// sont calés sur les anciens (17/20 et 12/20) à la durée médiane constatée le 04/09/2026,
+// soit ~7 min 25 : les paliers des passages déjà enregistrés sont inchangés. Le seul
+// durcissement : à 17/20, il faut désormais répondre en moins de 7 minutes pour rester
+// « Autonome ». Options ASCII, comme le select Notion (pas d'accent dans un identifiant).
+const PALIERS = [
+  { min: 75, notion: 'Autonome' },
+  { min: 50, notion: 'Operationnel sur cadrage' },
+  { min: 0, notion: 'A former avant de demarrer' },
+];
 
 export async function onRequestGet({ env }) {
   // Health-check + détecteur de version de déploiement.
@@ -75,10 +99,14 @@ export async function onRequestPost({ request, env }) {
   const justes = entier(data.justes, 0, total);
   const sansReponse = entier(data.sansReponse, 0, total);
   const secondes = entier(data.secondes, 0, total * SECONDES_PAR_QUESTION);
-  const palier = PALIERS[String(data.palier || '')];
-  if (justes === null || sansReponse === null || secondes === null || !palier) {
+  if (justes === null || sansReponse === null || secondes === null) {
     return json({ ok: false, message: 'Résultat invalide.' }, 400);
   }
+
+  // `data.palier` est ignoré : score et palier sont recalculés ici à partir des trois
+  // chiffres déjà bornés ci-dessus, pour que la base reste cohérente avec sa formule.
+  const score = calculeScore(justes, total, secondes);
+  const palier = PALIERS.find((p) => score >= p.min).notion;
 
   // Statut 200 même en cas d'échec : Cloudflare remplace le corps des réponses 5xx par sa
   // propre page d'erreur, et la page perdrait le message. C'est `ok` qui fait foi.
@@ -100,6 +128,7 @@ export async function onRequestPost({ request, env }) {
     sansReponse,
     secondes,
     duree: texte(data.duree, 100) || `${secondes} s`,
+    score,
     palier,
   });
 

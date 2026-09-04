@@ -58,6 +58,7 @@ export async function createResultat(env, r) {
     Prenom: { rich_text: [{ text: { content: trim(r.prenom).slice(0, 200) } }] },
     Nom: { rich_text: [{ text: { content: trim(r.nom).slice(0, 200) } }] },
     'Bonnes reponses': { number: r.justes },
+    Score: { number: r.score },
     Duree: { rich_text: [{ text: { content: trim(r.duree).slice(0, 100) } }] },
     'Duree (s)': { number: r.secondes },
     'Sans reponse': { number: r.sansReponse },

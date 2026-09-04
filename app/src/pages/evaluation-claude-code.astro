@@ -21,15 +21,19 @@ const DOMAINES = {
   methode: 'Méthode de travail',
 };
 
+// `min` porte desormais sur le score sur 100, pas sur le nombre de bonnes reponses.
+// Seuils cales sur les anciens (17/20 et 12/20) a la duree mediane constatee le
+// 04/09/2026 : les paliers deja enregistres sont inchanges. Ils sont repris a
+// l'identique dans functions/api/evaluation.js, qui fait foi pour la base Notion.
 const PALIERS = [
   {
-    min: 17,
+    min: 75,
     titre: 'Autonome',
     ton: 'ok',
     texte: "Vous pouvez prendre une mission client de bout en bout. Ce qui fera la différence en clientèle, ce n'est plus la connaissance de l'outil, c'est la discipline de vérification.",
   },
   {
-    min: 12,
+    min: 50,
     titre: 'Opérationnel sur cadrage',
     ton: 'moyen',
     texte: "Vous pouvez travailler sur un projet cadré et relu. Reprenez les questions manquées avant de démarrer : ce sont exactement les points où une erreur se paie chez le client.",
@@ -685,6 +689,10 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         <p class="mt-1 font-display text-5xl font-extrabold tabular-nums text-ink">
           <span id="resultat-score"></span><span class="text-2xl font-bold text-ink/70">/{total}</span>
         </p>
+        <p class="mt-2 text-sm text-ink/70">
+          Score&nbsp;: <span id="resultat-note" class="font-display text-base font-bold tabular-nums text-ink"></span><span class="font-semibold text-ink/70">/100</span>
+          &mdash; bonnes réponses d'abord, temps de réponse ensuite.
+        </p>
         <p id="resultat-conseil" class="mt-4 leading-relaxed text-ink/80"></p>
       </div>
 
@@ -920,13 +928,21 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         document.getElementById('resultat-moyenne').textContent = `${(secondes / total).toFixed(1)} s`;
         document.getElementById('resultat-timeouts').textContent = String(sansReponse);
 
-        const palier = PALIERS.find((p) => justes >= p.min);
+        // Meme formule que functions/api/evaluation.js, qui recalcule la valeur
+        // ecrite dans Notion. Ici, elle sert a afficher le score et son palier.
+        const plancher = total * 8;
+        const plafond = total * LIMITE;
+        const rapidite = Math.min(1, Math.max(0, (plafond - secondes) / (plafond - plancher)));
+        const note = Math.round(100 * (justes / total) * (0.8 + 0.2 * rapidite));
+
+        const palier = PALIERS.find((p) => note >= p.min);
         const carte = document.getElementById('resultat-carte');
         carte.className = `rounded-lg border p-8 ${TONS[palier.ton]}`;
         const titre = document.getElementById('resultat-palier');
         titre.textContent = palier.titre;
         titre.className = `font-display text-2xl font-bold ${TONS_TEXTE[palier.ton]}`;
         document.getElementById('resultat-score').textContent = String(justes);
+        document.getElementById('resultat-note').textContent = String(note);
         document.getElementById('resultat-conseil').textContent = palier.texte;
 
         // Profil par domaine
