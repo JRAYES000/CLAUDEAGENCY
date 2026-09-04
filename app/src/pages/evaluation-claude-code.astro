@@ -11,14 +11,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 // aucune page des deux sites n'est en noindex.
 // Corrigé sourcé sur la documentation officielle (champ `source`).
 
-// Périmètre : chaque question porte sur un point du guide interne
-// « Bien utiliser Claude — le guide simple » (Notion). Rien d'autre.
+// Périmètre : l'usage courant de Claude Code. Chaque question se répond sans avoir lu
+// de document interne — un candidat ou un nouvel arrivant peut le passer tel quel.
 const DOMAINES = {
-  skills: "Skills d'équipe",
-  contexte: 'Contexte et limite',
   demande: 'Formuler sa demande',
+  contexte: 'Contexte et limite',
+  session: 'Piloter une session',
   verif: 'Vérifier avant de livrer',
-  missions: 'Missions et parallélisation',
   methode: 'Méthode de travail',
 };
 
@@ -44,67 +43,10 @@ const PALIERS = [
 ];
 
 const questions = [
-  // ============ Skills d'équipe (règle 1) ============
+  // ============ Formuler sa demande ============
   {
-    domaine: 'skills',
-    q: "Vous démarrez une refonte de page pour un client, un travail délicat où vous voulez que Claude vous challenge. Un collègue vous conseille de lancer `/phrase-magique` et `/fonce` ensemble, « pour cumuler les deux ». Que faites-vous ?",
-    opts: [
-      "Les deux : la première cadre la demande, la seconde exécute jusqu'au bout",
-      "`/fonce` seule, elle contient déjà une phase de cadrage",
-      "`/phrase-magique` seule : `/fonce` interdit à Claude de poser la moindre question, elles font le contraire l'une de l'autre",
-      "Ni l'une ni l'autre : les skills servent aux missions longues, pas aux travaux délicats",
-    ],
-    correct: 2,
-    pourquoi: [
-      "Elles ne se cumulent pas, elles s'annulent : l'une oblige Claude à vous questionner, l'autre le lui interdit.",
-      "`/fonce` ne cadre rien. Elle exige que vous ayez cadré vous-même, dans votre demande, avant de la lancer.",
-      "Exact. Travail délicat, `/phrase-magique`. Mission balisée que vous voulez voir finie sans vous, `/fonce`.",
-      "Un travail délicat est précisément le cas d'usage de `/phrase-magique`.",
-    ],
-    explication: "C'est la seule incompatibilité explicite du guide. Le critère de choix tient en une question : voulez-vous être interrogé pendant le travail, ou partir et retrouver un résultat fini ?",
-    source: null,
-  },
-  {
-    domaine: 'skills',
-    q: "Vous partez deux heures et vous lancez `/fonce`. Laquelle de ces demandes s'arrêtera au bon moment ?",
-    opts: [
-      "« Améliore le site du client pendant mon absence. »",
-      "« Corrige le script jusqu'à ce qu'il tourne sans erreur sur les 3 fichiers de test. »",
-      "« Fais du mieux que tu peux sur le site, tu as deux heures. »",
-      "« Occupe-toi de ce qui traîne sur le projet. »",
-    ],
-    correct: 1,
-    pourquoi: [
-      "« Améliorer » n'a pas de fin. Rien dans cette phrase ne dit quand s'arrêter.",
-      "Exact. La fin est vérifiable : trois fichiers, zéro erreur. Claude sait à quel moment il a terminé.",
-      "Une durée n'est pas une condition d'arrêt : elle ne dit pas ce qui doit être atteint.",
-      "« Ce qui traîne » est un périmètre inconnu, sans état final défini.",
-    ],
-    explication: "`/fonce` travaille jusqu'à ce que ce que vous avez décrit soit atteint. Le résultat dépend donc entièrement de la netteté de la fin que vous lui donnez : c'est la seule chose à soigner avant de le lancer.",
-    source: null,
-  },
-  {
-    domaine: 'skills',
-    q: "Dans votre demande à `/fonce`, vous écrivez : « rédige la page services et mets-la en ligne ». Que se passe-t-il ?",
-    opts: [
-      "Il rédige puis s'arrête : la mise en ligne est irréversible, il demandera toujours",
-      "Il publie en brouillon et attend votre validation",
-      "Il refuse la mission : une skill autonome ne publie jamais",
-      "Il publie : il ne s'arrête que devant l'irréversible que vous n'avez pas demandé — ici, vous l'avez demandé",
-    ],
-    correct: 3,
-    pourquoi: [
-      "Il s'arrête devant l'irréversible non demandé. Votre phrase, elle, le demande explicitement.",
-      "Aucune étape de brouillon intermédiaire n'est prévue.",
-      "Elle publie très bien si la demande le dit. C'est précisément le risque.",
-      "Exact. « …et mets-le en ligne » n'est pas une figure de style : ne l'écrivez que si vous le pensez.",
-    ],
-    explication: "La règle est symétrique. Ce que vous n'avez pas demandé et qui est irréversible — publier, écrire à un client, supprimer en masse — déclenche une question. Ce que vous avez demandé s'exécute. Relisez votre phrase de lancement comme un ordre, parce que c'en est un.",
-    source: null,
-  },
-  {
-    domaine: 'skills',
-    q: "Vous travaillez sur un poste où les skills d'équipe ne sont pas installées, et vous démarrez un travail de deux heures. Quelle phrase ajoutez-vous pour éviter de découvrir à la fin qu'il est parti dans la mauvaise direction ?",
+    domaine: 'demande',
+    q: "Vous lancez un travail de deux heures sur un projet client. Quelle phrase ajoutez-vous à votre demande pour éviter de découvrir à la fin qu'il est parti dans la mauvaise direction ?",
     opts: [
       "« Donne-moi ton plan en 3 à 5 étapes avant de commencer. Je valide, puis tu fais. »",
       "« Prends ton temps et sois rigoureux sur ce travail. »",
@@ -118,70 +60,66 @@ const questions = [
       "Le doute est justement ce qu'il ne signale pas de lui-même : il tranche et il continue.",
       "C'est ce qui se passe par défaut. Vous découvrez l'écart quand le travail est déjà fait.",
     ],
-    explication: "Ces phrases font à la main une partie de ce que `/phrase-magique` impose. Les autres à connaître : « reformule ma demande avant de commencer », « sois mon contradicteur, pas mon assistant », « est-ce que c'est complet ? ».",
-    source: null,
-  },
-
-  // ============ Contexte et limite (règle 7) ============
-  {
-    domaine: 'contexte',
-    q: 'Quelle est la différence entre `/clear` et `/compact` ?',
-    opts: [
-      '`/clear` résume la conversation, `/compact` repart de zéro',
-      "`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer de la place tout en la poursuivant",
-      "Les deux font la même chose, `/compact` est simplement l'ancien nom",
-      '`/clear` supprime définitivement la conversation, `/compact` l\'archive',
-    ],
-    correct: 1,
-    pourquoi: [
-      "Inversé. C'est `/compact` qui résume, et `/clear` qui repart à zéro.",
-      "Exact. `/clear` quand vous changez de sujet, `/compact` quand la tâche continue mais que la place manque.",
-      "Ce sont deux commandes distinctes, avec deux effets opposés sur l'historique.",
-      "`/clear` suivi d'un nom range la conversation précédente, et vous la retrouvez avec `/resume`. Rien n'est supprimé.",
-    ],
-    explication: "`/clear` est gratuit, et c'est ce qu'il faut faire 9 fois sur 10. `/compact` coûte cher : Claude relit toute la conversation pour en fabriquer le résumé. Gardez-le pour le milieu d'un gros travail, quand la suite dépend vraiment de ce que vous venez de faire ensemble.",
-    source: 'https://code.claude.com/docs/en/commands',
+    explication: "Claude Code a un mode fait pour ça : `Shift+Tab` jusqu'au mode plan, ou `/plan` en début de message. Il explore et propose, sans modifier un seul fichier tant que vous n'avez pas validé.",
+    source: 'https://code.claude.com/docs/en/permission-modes',
   },
   {
-    domaine: 'contexte',
-    q: "Il est 16 h. Claude annonce que vous avez atteint votre limite, alors qu'il vous reste deux heures de travail. Vous êtes dans la même conversation depuis ce matin, sur trois sujets différents. Quelle est la cause la plus probable ?",
+    domaine: 'demande',
+    q: "Vous demandez une page de vente pour un client. Qu'ajoutez-vous à votre demande pour que le résultat soit jugeable autrement qu'à l'impression ?",
     opts: [
-      "Vous avez envoyé trop de messages : la limite compte le nombre de messages",
-      "Les réponses de Claude étaient trop longues",
-      "À chaque message, Claude relit toute la conversation depuis ce matin : ce n'est pas votre dernière question qui coûte cher, c'est tout ce qu'elle traîne derrière elle",
-      "La limite se déclenche en milieu d'après-midi, quel que soit votre usage",
+      "« Fais quelque chose de qualité, c'est important. »",
+      "« Inspire-toi de ce qui se fait de mieux dans le secteur. »",
+      "« Trois critères : moins de 400 mots, un seul bouton d'action, chaque chiffre suivi de sa source. »",
+      "Rien : vous jugerez le résultat quand vous l'aurez sous les yeux.",
     ],
     correct: 2,
     pourquoi: [
-      "Le nombre de messages pèse beaucoup moins que ce que chacun oblige à relire.",
-      "Elles comptent, mais elles ne comptent qu'une fois. Ce qui coûte, c'est de tout relire à chaque tour.",
-      "Exact. Une question d'une ligne dans une conversation de quatre heures fait relire quatre heures de discussion.",
-      "Aucune heure n'est en cause. C'est l'accumulation qui l'est.",
+      "« Qualité » ne se vérifie pas. Deux personnes ne mettent pas la même chose derrière ce mot, Claude non plus.",
+      "Une référence vague vaut une consigne vague : sans exemple précis sous les yeux, elle ne cadre rien.",
+      "Exact. Trois critères qui se cochent ou non : ils dirigent la rédaction, puis ils servent de grille de relecture.",
+      "Vous jugerez, mais après. Un critère écrit après coup ne sert qu'à justifier ce qui est déjà écrit.",
     ],
-    explication: "D'où la règle : une conversation par sujet, et `/clear` dès que vous changez. Ce n'est pas qu'une économie — noyé sous trois sujets mélangés, Claude confond aussi les consignes.",
-    source: 'https://code.claude.com/docs/en/commands',
+    explication: "Un critère utile est binaire : atteint ou non, sans discussion possible. « Moins de 400 mots » en est un, « percutant » n'en est pas un. Écrits avant, ils orientent le travail ; écrits après, ils le commentent.",
+    source: null,
   },
   {
-    domaine: 'contexte',
-    q: "Vous vous apprêtez à lancer un gros travail dans Claude Code. Quelle commande tapez-vous d'abord, et pour quoi faire ?",
+    domaine: 'demande',
+    q: "Une note de synthèse de deux pages vous convient, sauf le troisième paragraphe. Que demandez-vous ?",
     opts: [
-      "`/context` : elle montre ce que Claude doit relire à chaque message et la place restante. Jauge déjà à moitié pleine, on fait `/clear` avant de démarrer",
-      "`/usage` : elle montre la place restante dans la conversation en cours",
-      "`/compact` : il faut toujours compacter avant un gros travail",
-      "`/doctor` : il libère de la place en réparant l'installation",
+      "« Réécris la note, le troisième paragraphe n'allait pas. »",
+      "« Réécris uniquement le troisième paragraphe, garde le reste tel quel. »",
+      "Vous relancez la demande initiale, en espérant une meilleure version",
+      "Vous corrigez le paragraphe vous-même sans rien dire, pour ne pas perdre de temps",
     ],
-    correct: 0,
+    correct: 1,
     pourquoi: [
-      "Exact. Lancer une grosse mission dans une conversation encombrée, c'est partir avec le réservoir à moitié vide.",
-      "`/usage` est le compteur de votre journée, pas la jauge de la conversation en cours. Les deux servent, à des moments différents.",
-      "Compacter coûte cher, et ne sert à rien si vous changez de sujet : dans ce cas `/clear` est gratuit et plus efficace.",
-      "`/doctor` contrôle votre installation. Il n'allège pas la conversation en cours.",
+      "Vous payez la réécriture des deux pages, et les passages qui vous convenaient changent aussi.",
+      "Exact. Vous ne payez que ce qui est réécrit, et le reste de la note ne bouge pas d'une virgule.",
+      "Relancer produit une version différente, pas une version meilleure : vous perdez au passage ce qui marchait.",
+      "Faisable, mais Claude ne saura pas ce que vous attendiez : la note suivante refera la même erreur.",
     ],
-    explication: "`/context` répond « où j'en suis dans cette conversation », `/usage` répond « où j'en suis dans ma journée ». `/context` avant un gros travail ; `/usage` le matin et après le déjeuner. `/context` signale aussi ce qui prend le plus de place : souvent un outil branché dont vous ne vous servez jamais.",
-    source: 'https://code.claude.com/docs/en/commands',
+    explication: "Chaque message renvoie toute la conversation, et une réponse longue se paie à l'écriture puis à chaque message suivant. Demander une retouche plutôt qu'une régénération complète est l'économie la plus simple d'une session.",
+    source: 'https://code.claude.com/docs/en/costs',
   },
-
-  // ============ Formuler sa demande (règles 2 à 4) ============
+  {
+    domaine: 'demande',
+    q: "Votre demande est longue et vous n'êtes pas certain d'avoir été clair. Que faites-vous avant de le laisser produire ?",
+    opts: [
+      "« Si tu n'as pas compris, dis-le-moi. »",
+      "Vous ajoutez « sois attentif, c'est important »",
+      "Vous découpez la demande en dix messages successifs",
+      "« Reformule ma demande avec tes mots, et dis-moi ce qui te manque avant de commencer. »",
+    ],
+    correct: 3,
+    pourquoi: [
+      "Il comprend toujours quelque chose. Le risque n'est pas l'incompréhension, c'est le malentendu silencieux.",
+      "Une consigne d'attention ne lève aucune ambiguïté : elle ne dit même pas laquelle.",
+      "Dix messages, c'est dix fois la conversation relue, et l'ambiguïté reste entière.",
+      "Exact. La reformulation rend l'écart visible en trois lignes, avant que le travail soit fait.",
+    ],
+    explication: "Deux formulations qui font le même travail : « reformule ma demande avant de commencer » et « pose-moi les questions qui te manquent, ne devine pas ». Quelques secondes contre un livrable à jeter.",
+    source: null,
+  },
   {
     domaine: 'demande',
     q: "Un client veut des posts LinkedIn « dans le ton de sa marque ». Comment obtenez-vous ce ton le plus sûrement ?",
@@ -259,7 +197,125 @@ const questions = [
     source: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/be-clear-and-direct',
   },
 
-  // ============ Vérifier avant de livrer (règle 5) ============
+  // ============ Contexte et limite ============
+  {
+    domaine: 'contexte',
+    q: 'Quelle est la différence entre `/clear` et `/compact` ?',
+    opts: [
+      '`/clear` résume la conversation, `/compact` repart de zéro',
+      "`/clear` démarre une nouvelle conversation à contexte vide ; `/compact` résume la conversation en cours pour libérer de la place tout en la poursuivant",
+      "Les deux font la même chose, `/compact` est simplement l'ancien nom",
+      '`/clear` supprime définitivement la conversation, `/compact` l\'archive',
+    ],
+    correct: 1,
+    pourquoi: [
+      "Inversé. C'est `/compact` qui résume, et `/clear` qui repart à zéro.",
+      "Exact. `/clear` quand vous changez de sujet, `/compact` quand la tâche continue mais que la place manque.",
+      "Ce sont deux commandes distinctes, avec deux effets opposés sur l'historique.",
+      "`/clear` suivi d'un nom range la conversation précédente, et vous la retrouvez avec `/resume`. Rien n'est supprimé.",
+    ],
+    explication: "`/clear` est gratuit, et c'est ce qu'il faut faire 9 fois sur 10. `/compact` coûte cher : Claude relit toute la conversation pour en fabriquer le résumé. Gardez-le pour le milieu d'un gros travail, quand la suite dépend vraiment de ce que vous venez de faire ensemble.",
+    source: 'https://code.claude.com/docs/en/commands',
+  },
+  {
+    domaine: 'contexte',
+    q: "Il est 16 h. Claude annonce que vous avez atteint votre limite, alors qu'il vous reste deux heures de travail. Vous êtes dans la même conversation depuis ce matin, sur trois sujets différents. Quelle est la cause la plus probable ?",
+    opts: [
+      "Vous avez envoyé trop de messages : la limite compte le nombre de messages",
+      "Les réponses de Claude étaient trop longues",
+      "À chaque message, Claude relit toute la conversation depuis ce matin : ce n'est pas votre dernière question qui coûte cher, c'est tout ce qu'elle traîne derrière elle",
+      "La limite se déclenche en milieu d'après-midi, quel que soit votre usage",
+    ],
+    correct: 2,
+    pourquoi: [
+      "Le nombre de messages pèse beaucoup moins que ce que chacun oblige à relire.",
+      "Elles comptent, mais elles ne comptent qu'une fois. Ce qui coûte, c'est de tout relire à chaque tour.",
+      "Exact. Une question d'une ligne dans une conversation de quatre heures fait relire quatre heures de discussion.",
+      "Aucune heure n'est en cause. C'est l'accumulation qui l'est.",
+    ],
+    explication: "D'où la règle : une conversation par sujet, et `/clear` dès que vous changez. Ce n'est pas qu'une économie — noyé sous trois sujets mélangés, Claude confond aussi les consignes.",
+    source: 'https://code.claude.com/docs/en/commands',
+  },
+  {
+    domaine: 'contexte',
+    q: "Vous vous apprêtez à lancer un gros travail dans Claude Code. Quelle commande tapez-vous d'abord, et pour quoi faire ?",
+    opts: [
+      "`/context` : elle montre ce que Claude doit relire à chaque message et la place restante. Jauge déjà à moitié pleine, on fait `/clear` avant de démarrer",
+      "`/usage` : elle montre la place restante dans la conversation en cours",
+      "`/compact` : il faut toujours compacter avant un gros travail",
+      "`/doctor` : il libère de la place en réparant l'installation",
+    ],
+    correct: 0,
+    pourquoi: [
+      "Exact. Lancer une grosse mission dans une conversation encombrée, c'est partir avec le réservoir à moitié vide.",
+      "`/usage` est le compteur de votre journée, pas la jauge de la conversation en cours. Les deux servent, à des moments différents.",
+      "Compacter coûte cher, et ne sert à rien si vous changez de sujet : dans ce cas `/clear` est gratuit et plus efficace.",
+      "`/doctor` contrôle votre installation. Il n'allège pas la conversation en cours.",
+    ],
+    explication: "`/context` répond « où j'en suis dans cette conversation », `/usage` répond « où j'en suis dans ma journée ». `/context` avant un gros travail ; `/usage` le matin et après le déjeuner. `/context` signale aussi ce qui prend le plus de place : souvent un outil branché dont vous ne vous servez jamais.",
+    source: 'https://code.claude.com/docs/en/commands',
+  },
+
+  // ============ Piloter une session ============
+  {
+    domaine: 'session',
+    q: "Une commande échoue. Claude la relance avec une variante minime, elle échoue encore. Que demandez-vous ?",
+    opts: [
+      "« Réessaie, ça finira par passer. »",
+      "« Arrête. Dis-moi ce que tu as essayé, ce que renvoie exactement l'erreur, et ce qui te manque pour trancher. »",
+      "« Contourne le problème autrement. »",
+      "« Recommence le fichier depuis le début. »",
+    ],
+    correct: 1,
+    pourquoi: [
+      "Faire varier une commande qui échoue est une boucle, pas une correction — et chaque tour entame votre limite.",
+      "Exact. Deux échecs sur le même point : on s'arrête et on lit l'état réel avant de retoucher quoi que ce soit.",
+      "Contourner sans avoir compris déplace le problème et le rend plus difficile à retrouver plus tard.",
+      "Repartir de zéro jette le diagnostic déjà accumulé sans rien expliquer de l'échec.",
+    ],
+    explication: "Le signal à repérer : deux tentatives sur le même point sans progrès. Passé ce cap, demandez l'état réel — le contenu du fichier, le message d'erreur complet — plutôt qu'une troisième tentative.",
+    source: null,
+  },
+  {
+    domaine: 'session',
+    q: "Vous demandez à Claude de lancer un assistant à côté pour explorer un gros dossier. Que faut-il savoir avant ?",
+    opts: [
+      "Il reprend l'intégralité de votre conversation en cours",
+      "Il travaille dans sa propre fenêtre : il ne voit pas votre conversation, sa consigne doit contenir tout ce qui lui est nécessaire",
+      "Il partage votre fenêtre, qui se remplit donc deux fois plus vite",
+      "Il n'a accès qu'à Internet, jamais aux fichiers du projet",
+    ],
+    correct: 1,
+    pourquoi: [
+      "S'il reprenait tout, il n'économiserait rien : c'est justement ce qu'on cherche à éviter.",
+      "Exact. C'est l'intérêt — sa recherche ne remplit pas votre conversation — et la contrainte : ce que vous ne lui écrivez pas, il l'ignore.",
+      "C'est l'inverse : il travaille à côté et ne vous renvoie que sa conclusion.",
+      "Il lit les fichiers du projet. C'est même son usage le plus courant.",
+    ],
+    explication: "À retenir dans les deux sens : ce que l'assistant a lu ne revient pas dans votre conversation, vous n'aurez que son résumé ; et ce que vous savez ne lui parvient pas tout seul.",
+    source: 'https://code.claude.com/docs/en/sub-agents',
+  },
+  {
+    domaine: 'session',
+    q: "Claude a modifié plusieurs fichiers et le résultat est moins bon qu'avant. Sur quoi pouvez-vous compter pour revenir en arrière ?",
+    opts: [
+      "`/rewind` annule tout ce qui s'est passé depuis le début de la session",
+      "`/compact` remet les fichiers dans leur état précédent",
+      "`/rewind` annule ce que Claude a modifié lui-même, mais pas ce qui est passé par une commande système : là, seule votre sauvegarde vous rattrape",
+      "Rien : il faut réécrire les fichiers à la main",
+    ],
+    correct: 2,
+    pourquoi: [
+      "Il remonte au point de la conversation que vous choisissez, et il ne couvre pas tout ce qui a été fait.",
+      "`/compact` résume la conversation. Il ne touche à aucun fichier.",
+      "Exact. Un fichier supprimé ou déplacé par une commande n'est pas rattrapé, ni le travail d'un assistant lancé en arrière-plan.",
+      "`/rewind` existe et couvre le cas courant. C'est le reste qui demande une sauvegarde.",
+    ],
+    explication: "D'où le réflexe : enregistrer un état sain avant de lancer un gros travail. `/rewind`, ou deux fois Échap sur une ligne vide, couvre les modifications faites par Claude — pas les commandes système, pas les assistants lancés en arrière-plan.",
+    source: 'https://code.claude.com/docs/en/checkpointing',
+  },
+
+  // ============ Vérifier avant de livrer ============
   {
     domaine: 'verif',
     q: "Claude vous livre un script qui calcule les heures de formation facturables à partir d'un export Excel client. Que faites-vous avant de le transmettre à la comptabilité ?",
@@ -295,7 +351,7 @@ const questions = [
       "Un second avis reste un avis. Il ne remplace pas l'ouverture de la page.",
       "Ce qui est annoncé en début de tâche ne dit rien de ce qui a été fait à la fin.",
     ],
-    explication: "C'est la règle que `/phrase-magique` impose d'office, et elle vaut aussi pour vous : le jour où vous écrivez « c'est en ligne » à un client, la page doit avoir été ouverte.",
+    explication: "Exigez de vous ce que vous exigez de lui : le jour où vous écrivez « c'est en ligne » à un client, la page doit avoir été ouverte. Sinon, la seule formulation honnête est « non vérifié ».",
     source: null,
   },
   {
@@ -318,66 +374,7 @@ const questions = [
     source: null,
   },
 
-  // ============ Missions et parallélisation (règle 8) ============
-  {
-    domaine: 'missions',
-    q: "Un client vous confie 60 fiches formation à remettre au même format. Comment lancez-vous le travail ?",
-    opts: [
-      "`/parallelisation-et-routage` : le travail est répétitif, chaque morceau part chez un assistant moins cher, et votre limite dure plus longtemps",
-      "`ultracode` : il fera travailler plusieurs Claude en même temps, donc ce sera plus rapide",
-      "Fiche par fiche dans la conversation principale, pour garder le contrôle",
-      "`/fonce` d'abord, puis `ultracode` sur le résultat pour le vérifier",
-    ],
-    correct: 0,
-    pourquoi: [
-      "Exact. Répétitif, découpable et vérifiable : c'est exactement le cas d'usage.",
-      "`ultracode` fait aussi travailler en parallèle, mais avec le modèle le plus cher, et pour se contredire. Sur une corvée, vous payez beaucoup pour un résultat identique.",
-      "Faisable, et c'est soixante fois le même travail dans votre conversation, donc soixante fois de la place consommée.",
-      "Empiler les deux additionne les coûts sans traiter le vrai besoin, qui est de découper.",
-    ],
-    explication: "Les deux outils découpent le travail, mais dans des buts opposés : le routage vous fait dépenser moins, `ultracode` vous fait dépenser beaucoup pour être sûr. Travail répétitif, c'est le routage.",
-    source: null,
-  },
-  {
-    domaine: 'missions',
-    q: "Vous préparez un audit réglementaire qui part demain chez un client, sur un sujet où une erreur se paierait. Que faites-vous, et à quoi vous attendez-vous ?",
-    opts: [
-      "Rien de particulier : une demande normale donne le même résultat",
-      "`/parallelisation-et-routage`, pour traiter les parties en même temps",
-      "`ultracode` dans le message, en sachant que votre limite s'épuisera vite",
-      "`ultracode` en permanence à partir de maintenant, pour tous vos livrables clients",
-    ],
-    correct: 2,
-    pourquoi: [
-      "Sur un livrable où l'erreur coûte cher, se priver d'une vérification contradictoire est un pari.",
-      "Le routage optimise le coût, pas la fiabilité : il confie justement les morceaux à des modèles moins chers.",
-      "Exact. Plusieurs Claude travaillent en parallèle et se contredisent pour vérifier. C'est cher, et c'est le moment de le dépenser.",
-      "Le mot ne vaut que pour le message où il est écrit — et en faire un réflexe viderait votre limite sur des demandes qui n'en avaient pas besoin.",
-    ],
-    explication: "`ultracode` n'est pas un bouton « meilleure réponse » : sur une question simple, le résultat ne sera pas meilleur, seulement plus coûteux. Gardez-le pour ce qui part chez un client, le juridique, la santé, les contrôles avant mise en ligne. Il ne fonctionne que dans Claude Code.",
-    source: null,
-  },
-  {
-    domaine: 'missions',
-    q: "Un script client plante. Vous voulez aller plus vite en découpant le travail entre plusieurs assistants. Qu'est-ce que ça donne ?",
-    opts: [
-      "Deux fois plus rapide : chaque assistant prend une partie du script",
-      "Rien de bon : réparer un bug est une suite d'étapes où chacune dépend de la précédente, ça ne se découpe pas",
-      "Plus rapide, à condition d'utiliser `ultracode` plutôt que le routage",
-      "Plus lent, mais plus fiable",
-    ],
-    correct: 1,
-    pourquoi: [
-      "Le deuxième assistant a besoin de ce que le premier vient de trouver. Il attendrait, ou repartirait de zéro.",
-      "Exact. Les deux méthodes ont besoin de morceaux indépendants. Ici, il n'y en a pas.",
-      "Le choix de l'outil n'y change rien : le problème est la dépendance entre les étapes, pas le modèle.",
-      "Il n'y a pas d'arbitrage à faire : le découpage n'apporte simplement rien ici.",
-    ],
-    explication: "Le test tient en une question : le morceau B a-t-il besoin du résultat du morceau A ? Si oui, ni le routage ni `ultracode` n'aident. Un diagnostic, une procédure, une réparation se font en série.",
-    source: null,
-  },
-
-  // ============ Méthode de travail (règles 6, 9) ============
+  // ============ Méthode de travail ============
   {
     domaine: 'methode',
     q: "Un collègue a collé toute la documentation du projet dans le `CLAUDE.md`, « pour que Claude ait tout ». Que lui dites-vous ?",
@@ -418,22 +415,22 @@ const questions = [
   },
   {
     domaine: 'methode',
-    q: "Vendredi 18 h, votre livrable est terminé sur votre machine. Vous le déposerez lundi matin, au calme. Quel est le problème ?",
+    q: "Un chantier de plusieurs jours, sur lequel vous devrez vider la conversation en cours de route. Où vivent le plan et les décisions prises ?",
     opts: [
-      "Aucun, tant qu'il est déposé dans la semaine",
-      "Le fichier risque d'être perdu pendant le week-end",
-      "Un travail non déposé ne compte pas : 80 % de la note du jour vient de ce qui est sur GitHub, et votre rapport affichera un « où en es-tu ? »",
-      "Il faudra tout refaire lundi, le dépôt exigeant une version finale",
+      "Dans la conversation : il suffit de ne jamais la vider",
+      "Dans un fichier du projet, coché au fur et à mesure — une conversation se vide, un fichier reste",
+      "Dans le `CLAUDE.md`, pour qu'il soit relu à chaque message",
+      "Nulle part : Claude retrouve les décisions dans l'historique du projet",
     ],
-    correct: 2,
+    correct: 1,
     pourquoi: [
-      "La note est quotidienne. Un dépôt lundi ne rattrape pas vendredi.",
-      "C'est vrai, mais ce n'est pas la raison principale.",
-      "Exact. Déposez dès qu'une version est montrable, même imparfaite : vous en déposerez d'autres ensuite.",
-      "Rien n'exige une version finale. La première version compte déjà.",
+      "Ne jamais vider est exactement ce qu'il ne faut pas faire : la conversation s'alourdit et votre limite tombe plus tôt.",
+      "Exact. Le fichier survit à tous les nettoyages, et la reprise du lendemain coûte une lecture au lieu d'un recadrage complet.",
+      "Le `CLAUDE.md` est relu à chaque message : un plan de chantier y serait rechargé les jours où il ne sert pas.",
+      "L'historique dit ce qui a été fait. Jamais pourquoi, ni ce qui reste à faire.",
     ],
-    explication: "Le réflexe : le jour même, dans votre dossier du dépôt de l'équipe. Une version montrable déposée vaut mieux qu'une version parfaite gardée sur votre machine.",
-    source: null,
+    explication: "Le repère : au-delà de trois étapes, le plan sort de la conversation. Sans ça, chaque nettoyage oblige à tout réexpliquer — et on finit par ne plus nettoyer du tout.",
+    source: 'https://code.claude.com/docs/en/common-workflows',
   },
 ];
 
@@ -473,7 +470,7 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
 ---
 <BaseLayout
   title="Évaluation des compétences Claude Code | Claude Agency"
-  description="Test interne de 20 questions sur le guide « Bien utiliser Claude » : skills d'équipe, contexte, formulation des demandes, vérification."
+  description="Test de 20 questions sur l'usage de Claude Code : formuler sa demande, gérer le contexte et la limite, piloter une session, vérifier avant de livrer."
   pageSchema={[breadcrumb]}
 >
   <!-- Barre de progression, visible seulement pendant le parcours -->
@@ -524,9 +521,9 @@ const repartition = Object.entries(DOMAINES).map(([cle, nom]) => ({
         Êtes-vous opérationnel sur Claude Code&nbsp;?
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-ink/70">
-        {total} questions sur les règles du guide interne : une mission à confier pendant votre absence,
-        une limite de messages atteinte à 16 h, un document de 30 pages à faire analyser,
-        un livrable où l'erreur se paierait.
+        {total} situations de travail réelles : une limite de messages atteinte à 16 h,
+        un document de 30 pages à faire analyser, une commande qui échoue deux fois de suite,
+        un livrable client où l'erreur se paierait.
       </p>
 
       <ul class="mt-8 space-y-3 text-ink">
