@@ -30,6 +30,12 @@ const FIELDS = [
   ['priorite', 'Priorité n°1'],
   ['maturite', 'Maturité'],
   ['message', 'Message'],
+  // Champ libre et facultatif, ajouté le 2026-09-05 (carte 107) : une visite venue d'une
+  // réponse de ChatGPT arrive dans Analytics comme une visite Google ordinaire. Seule la
+  // question posée au visiteur rend ce chemin visible. Il reste hors de la fiche Notion :
+  // Notion rejette l'écriture ENTIÈRE sur une propriété inconnue, et c'est le lead complet
+  // qui serait perdu — la propriété doit exister dans la base avant d'y être écrite.
+  ['origine', 'Comment nous a connu'],
 ];
 
 const SUBJECTS = {
