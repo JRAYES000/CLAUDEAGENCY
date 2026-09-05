@@ -5,6 +5,41 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-05 (95) — Nouvelle page dédiée « Agence SEO IA »
+
+**Type :** publication d'une page dédiée sur une requête suivie. Routine `redacteur-seo`
+du dépôt `visibilite-ops`, premier passage du poste.
+
+**URL :** https://claudeagency.fr/agence-seo-ia/
+
+**Requête cible :** « agence seo ia » — claudeagency.fr était hors du top 100 au relevé
+DataForSEO du 2026-09-03, et le site n'avait aucune page qui en parlait (`grep -ril`
+sur `app/src/`, vide). Volume 260/mois cité par `PLAN.md` de `visibilite-ops`, non
+revérifié à la source dans ce passage.
+
+**Angle.** Les trois sites les mieux classés au relevé du 2026-09-03 (dity.fr,
+agenceseoia.fr, cybercite.fr, pages lues le 2026-09-05, 2 500 à 4 000 mots chacune)
+promettent tous d'être cités par ChatGPT ou Perplexity. Aucun des trois n'explique
+comment cette citation se mesure, ne donne de délai ni de prix. La page prend ce trou :
+elle sépare positions et citations, et publie notre propre relevé de citations, zéros
+compris (0 citation sur 18 questions ChatGPT/Gemini/Perplexity au 2026-09-03 ;
+claudeagency.fr cité par le Résumé IA de Google sur « agence marketing claude »).
+
+**Fichiers touchés :** `app/src/pages/agence-seo-ia.astro` (neuf),
+`app/src/content/services/seo.mdx` (lien entrant), `app/src/pages/agence-marketing-claude.astro`
+(lien entrant), `docs/seo/REQUETES.csv`, ce journal.
+
+**Maillage :** deux liens entrants (page du service SEO, page agence marketing Claude) ;
+sortants vers `/agence-marketing-claude/`, `/services/seo/`, `/a-propos/` et `/contact/`.
+
+**Image :** `app/src/assets/resultats-automatisation.jpg`, réemployée depuis l'accueil —
+aucune image générée (décision de Julien du 2026-09-05).
+
+**Prochaine lecture :** position de « agence seo ia » deux relevés après publication,
+soit à partir du 2026-09-10.
+
+---
+
 ## 2026-09-05 (94) — Nouvel article « Facture électronique : ce que doit faire un organisme de formation »
 
 **Type :** publication d'article (actualité réglementaire). Carte 85 du backlog `visibilite-ops`,

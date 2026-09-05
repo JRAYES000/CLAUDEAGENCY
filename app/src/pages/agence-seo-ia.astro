@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import mesureImg from '../assets/resultats-automatisation.jpg';
+
+const site = Astro.site!;
+
+const serviceSchema = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  '@id': new URL('/agence-seo-ia/#service', site).href,
+  name: 'Agence SEO IA',
+  serviceType: 'Référencement naturel et visibilité dans les réponses d\'IA (GEO)',
+  description:
+    "Agence SEO IA francophone : référencement Google et citations dans les réponses de ChatGPT, Perplexity, Gemini et du Résumé IA de Google, relevés chaque semaine.",
+  provider: { '@id': new URL('/#organization', site).href },
+  areaServed: { '@type': 'Country', name: 'France' },
+};
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Agence SEO IA' },
+  ],
+};
+---
+<BaseLayout
+  title="Agence SEO IA : visible sur Google et dans les IA"
+  description="Claude Agency est une agence SEO IA francophone : classement Google et citations dans ChatGPT, Perplexity et Gemini, relevés chaque semaine. Audit offert."
+  pageSchema={[serviceSchema, breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Référencement &amp; IA</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Agence SEO IA&nbsp;: se classer sur Google et se faire citer par les IA</h1>
+    </div>
+
+    <div class="prose prose-stone mt-8 max-w-none">
+      <p class="lead">
+        Une <strong>agence SEO IA</strong> travaille deux visibilités à la fois&nbsp;: votre classement
+        dans les résultats Google, et votre citation dans les réponses de ChatGPT, Perplexity, Gemini
+        et du Résumé IA de Google. Les deux se gagnent avec les mêmes pages, mais elles ne se mesurent
+        pas de la même façon&nbsp;: l'une se lit en positions, l'autre en citations. Claude Agency
+        relève ces deux chiffres chaque semaine, pour ses clients comme pour ses propres sites.
+      </p>
+
+      <h2>SEO et GEO&nbsp;: deux visibilités, deux mesures</h2>
+      <p>
+        Le SEO place une page dans une liste de liens. Le GEO — <em>generative engine
+        optimization</em> — vise autre chose&nbsp;: que votre page serve de source à une réponse
+        rédigée par une IA. Un moteur classique renvoie dix liens&nbsp;; un moteur génératif renvoie
+        un paragraphe et cite deux ou trois sites.
+      </p>
+      <p>
+        Vous pouvez donc être premier sur Google et absent de toutes les réponses d'IA. L'inverse
+        arrive aussi. Une agence qui ne vous montre que des positions ne mesure que la moitié du
+        travail qu'elle vous facture.
+      </p>
+
+      <h2>Le relevé de citations, le chiffre que personne ne publie</h2>
+      <p>
+        Les trois sites les mieux classés sur «&nbsp;agence seo ia&nbsp;» au relevé du 3 septembre
+        2026 promettent tous d'être cités par ChatGPT ou Perplexity. Aucun des trois n'explique
+        comment cette citation se mesure&nbsp;— pages lues le 5 septembre 2026.
+      </p>
+      <p>
+        Nous relevons les nôtres, et nous les publions telles quelles. Au 3 septembre 2026, sur
+        dix-huit questions posées à ChatGPT, Gemini et Perplexity, claudeagency.fr n'était cité
+        aucune fois. Le Résumé IA de Google, lui, cite le site sur la requête «&nbsp;agence marketing
+        claude&nbsp;», où il est premier au même relevé (relevés DataForSEO, 3 septembre 2026).
+      </p>
+      <p>
+        Nous montrons ce tableau parce que c'est exactement celui que nous vous remettons&nbsp;— avec
+        vos zéros dedans tant qu'ils y sont. Un prestataire qui ne vous donne jamais un zéro ne
+        mesure rien.
+      </p>
+    </div>
+
+    <Image
+      src={mesureImg}
+      alt="Tableau de bord d'une agence SEO IA : positions Google et citations dans les IA"
+      loading="lazy"
+      sizes="(min-width: 768px) 42rem, 100vw"
+      class="mt-10 w-full rounded-2xl border border-sand object-cover"
+    />
+
+    <div class="prose prose-stone mt-10 max-w-none">
+      <h2>Ce qui fait entrer une page dans une réponse d'IA</h2>
+      <p>
+        Quatre choses, dans cet ordre&nbsp;:
+      </p>
+      <ul>
+        <li>
+          <strong>Une page nommée exactement sur la question.</strong> Sur une autre requête que nous
+          suivons, le site classé premier au 3 septembre 2026 ne recevait aucun lien entrant à notre
+          relevé du 5 septembre 2026&nbsp;: ce qui le classe est une page dont le titre reprend la
+          requête mot pour mot.
+        </li>
+        <li>
+          <strong>Un passage qui se suffit à lui-même.</strong> Deux ou trois phrases qui répondent
+          sans le reste de la page. Une IA cite un passage, pas un site.
+        </li>
+        <li>
+          <strong>Un fait daté et sourcé.</strong> Un chiffre qui porte son origine et son jour est
+          repris&nbsp;; une affirmation sans source est ignorée.
+        </li>
+        <li>
+          <strong>Rien qui bloque les robots.</strong> GPTBot, ClaudeBot et PerplexityBot lisent votre
+          site ou ne le lisent pas. C'est un réglage à vérifier, pas une stratégie.
+        </li>
+      </ul>
+
+      <h2>Ce que nous faisons, et ce que nous ne promettons pas</h2>
+      <p>
+        Nous ne promettons pas de délai. Un contenu met des mois à s'installer dans Google, et
+        personne ne connaît le calendrier de mise à jour d'un modèle de langage. Ce que nous
+        engageons, c'est la mesure&nbsp;: un relevé de positions et un relevé de citations, chaque
+        semaine, que ça monte ou non.
+      </p>
+      <p>
+        Le travail, lui, est classique&nbsp;: audit, une page par question réelle, réécriture des
+        pages qui répondent mal, maillage interne, correctifs techniques. Nos consultants le
+        produisent avec Claude, l'IA d'Anthropic, sous contrôle humain — c'est ce qui permet un
+        rythme de publication qu'une agence traditionnelle facture bien plus cher. Le modèle complet
+        est décrit sur notre page <a href="/agence-marketing-claude/">agence marketing Claude</a>, et
+        le périmètre du <a href="/services/seo/">référencement naturel</a> sur la page du service.
+      </p>
+
+      <h2>À qui s'adresse une agence SEO IA</h2>
+      <p>
+        Aux entreprises dont les clients cherchent d'abord une réponse, pas un prestataire&nbsp;:
+        celles qui répondent bien à ces questions récupèrent la visite, puis la demande. Les
+        organismes de formation sont notre spécialité d'origine et le secteur que nous connaissons le
+        mieux, mais ce travail vaut pour toute activité dont les prospects s'informent avant de
+        choisir.
+      </p>
+      <p>
+        Si vous voulez savoir où vous en êtes aujourd'hui sur les deux tableaux, l'audit de départ
+        est offert&nbsp;: vous repartez avec vos positions, vos citations et vos priorités, avec ou
+        sans nous.
+      </p>
+
+      <h2>Qui écrit cette page</h2>
+      <p>
+        Julien Rayes et l'équipe de Claude Agency, site édité par BULGARIA EDUCATION EOOD. Pas
+        d'auteur d'emprunt, aucun contenu acheté à l'extérieur&nbsp;: le détail est sur la page
+        <a href="/a-propos/">à propos</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Où en est votre visibilité, sur Google et dans les IA&nbsp;?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert, sans engagement&nbsp;: vos positions, vos citations et vos priorités, sous une semaine.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
+  </section>
+</BaseLayout>
