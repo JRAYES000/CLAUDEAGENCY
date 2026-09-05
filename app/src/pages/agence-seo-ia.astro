@@ -5,6 +5,23 @@ import mesureImg from '../assets/resultats-automatisation.jpg';
 
 const site = Astro.site!;
 
+// Les chiffres de cette page viennent du relevé DataForSEO du dépôt visibilite-ops
+// (data/<date>-positions.md et recherche/citations-ia.md). Quand un relevé plus récent
+// sort, on met à jour ce bloc ET `maj` : une page qui dit « 3 septembre » en décembre
+// perd la confiance qu'elle est censée gagner.
+const releveDu = '3 septembre 2026';
+const releveIso = '2026-09-03';
+const publie = '2026-09-05';
+const maj = '2026-09-05';
+const positions = [
+  { requete: 'agence marketing claude', position: '1re', resume: 'Servi, claudeagency.fr cité' },
+  { requete: 'agence claude', position: '17e', resume: 'Aucun résumé servi' },
+  { requete: 'claude pour le marketing', position: '67e', resume: 'Servi, non cité' },
+  { requete: 'agence ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
+  { requete: 'agence seo ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
+];
+const citationsIA = { questions: 18, citations: 0 };
+
 const serviceSchema = {
   '@context': 'https://schema.org', '@type': 'Service',
   '@id': new URL('/agence-seo-ia/#service', site).href,
@@ -13,7 +30,23 @@ const serviceSchema = {
   description:
     "Agence SEO IA francophone : référencement Google et citations dans les réponses de ChatGPT, Perplexity, Gemini et du Résumé IA de Google, relevés chaque semaine.",
   provider: { '@id': new URL('/#organization', site).href },
-  areaServed: { '@type': 'Country', name: 'France' },
+  areaServed: [
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'Country', name: 'Belgique' },
+    { '@type': 'Country', name: 'Suisse' },
+    { '@type': 'Country', name: 'Luxembourg' },
+  ],
+};
+const webPage = {
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  '@id': new URL('/agence-seo-ia/', site).href,
+  url: new URL('/agence-seo-ia/', site).href,
+  name: 'Agence SEO IA : visible sur Google et dans les IA',
+  isPartOf: { '@id': new URL('/#website', site).href },
+  about: { '@id': new URL('/agence-seo-ia/#service', site).href },
+  datePublished: publie,
+  dateModified: maj,
+  inLanguage: 'fr-FR',
 };
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -22,16 +55,20 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Agence SEO IA' },
   ],
 };
+const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <BaseLayout
   title="Agence SEO IA : visible sur Google et dans les IA"
   description="Claude Agency est une agence SEO IA francophone : classement Google et citations dans ChatGPT, Perplexity et Gemini, relevés chaque semaine. Audit offert."
-  pageSchema={[serviceSchema, breadcrumb]}
+  image={mesureImg.src}
+  imageAlt="Tableau de bord d'une agence SEO IA : positions Google et citations dans les IA"
+  pageSchema={[serviceSchema, webPage, breadcrumb]}
 >
   <section class="mx-auto max-w-2xl px-4 py-16">
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Référencement &amp; IA</p>
       <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Agence SEO IA&nbsp;: se classer sur Google et se faire citer par les IA</h1>
+      <p class="mt-4 text-sm text-muted">Publié le {dateFr(publie)}<span aria-hidden="true"> · </span>Mis à jour le <time datetime={maj}>{dateFr(maj)}</time><span aria-hidden="true"> · </span>Chiffres relevés le {releveDu}</p>
     </div>
 
     <div class="prose prose-stone mt-8 max-w-none">
@@ -43,12 +80,13 @@ const breadcrumb = {
         relève ces deux chiffres chaque semaine, pour ses clients comme pour ses propres sites.
       </p>
 
-      <h2>SEO et GEO&nbsp;: deux visibilités, deux mesures</h2>
+      <h2>Qu'est-ce qu'une agence SEO IA&nbsp;?</h2>
       <p>
         Le SEO place une page dans une liste de liens. Le GEO — <em>generative engine
         optimization</em> — vise autre chose&nbsp;: que votre page serve de source à une réponse
         rédigée par une IA. Un moteur classique renvoie dix liens&nbsp;; un moteur génératif renvoie
-        un paragraphe et cite deux ou trois sites.
+        un paragraphe et cite deux ou trois sites. Une agence SEO IA travaille les deux, et surtout
+        <strong>mesure les deux</strong>.
       </p>
       <p>
         Vous pouvez donc être premier sur Google et absent de toutes les réponses d'IA. L'inverse
@@ -56,22 +94,31 @@ const breadcrumb = {
         travail qu'elle vous facture.
       </p>
 
-      <h2>Le relevé de citations, le chiffre que personne ne publie</h2>
+      <h2>Notre relevé de positions et de citations, tel qu'on le mesure</h2>
       <p>
-        Les trois sites les mieux classés sur «&nbsp;agence seo ia&nbsp;» au relevé du 3 septembre
-        2026 promettent tous d'être cités par ChatGPT ou Perplexity. Aucun des trois n'explique
-        comment cette citation se mesure&nbsp;— pages lues le 5 septembre 2026.
+        Les trois sites les mieux classés sur «&nbsp;agence seo ia&nbsp;» au relevé du {releveDu}
+        promettent tous d'être cités par ChatGPT ou Perplexity. Aucun des trois n'explique
+        comment cette citation se mesure&nbsp;— pages lues le 5 septembre 2026. Voici le nôtre,
+        pour notre propre site, tel que nous le remettons à un client&nbsp;: avec les zéros dedans
+        tant qu'ils y sont.
       </p>
+      <table>
+        <caption class="text-left text-sm text-muted">claudeagency.fr — relevé DataForSEO du {releveDu}, Google France, ordinateur</caption>
+        <thead>
+          <tr><th>Recherche Google</th><th>Position de claudeagency.fr</th><th>Résumé IA de Google</th></tr>
+        </thead>
+        <tbody>
+          {positions.map((p) => (
+            <tr><td>«&nbsp;{p.requete}&nbsp;»</td><td>{p.position}</td><td>{p.resume}</td></tr>
+          ))}
+        </tbody>
+      </table>
       <p>
-        Nous relevons les nôtres, et nous les publions telles quelles. Au 3 septembre 2026, sur
-        dix-huit questions posées à ChatGPT, Gemini et Perplexity, claudeagency.fr n'était cité
-        aucune fois. Le Résumé IA de Google, lui, cite le site sur la requête «&nbsp;agence marketing
-        claude&nbsp;», où il est premier au même relevé (relevés DataForSEO, 3 septembre 2026).
-      </p>
-      <p>
-        Nous montrons ce tableau parce que c'est exactement celui que nous vous remettons&nbsp;— avec
-        vos zéros dedans tant qu'ils y sont. Un prestataire qui ne vous donne jamais un zéro ne
-        mesure rien.
+        Côté assistants&nbsp;: sur <strong>{citationsIA.questions} questions</strong> posées à ChatGPT, Gemini
+        et Perplexity le {releveDu}, claudeagency.fr était cité <strong>{citationsIA.citations} fois</strong>.
+        C'est le point de départ, pas un résultat. Cette page existe d'ailleurs parce que la ligne
+        «&nbsp;agence seo ia&nbsp;» du tableau était vide&nbsp;: aucune page du site ne répondait à la
+        question. Un prestataire qui ne vous donne jamais un zéro ne mesure rien.
       </p>
     </div>
 
@@ -84,14 +131,14 @@ const breadcrumb = {
     />
 
     <div class="prose prose-stone mt-10 max-w-none">
-      <h2>Ce qui fait entrer une page dans une réponse d'IA</h2>
+      <h2>Comment se faire citer par ChatGPT, Perplexity ou Gemini&nbsp;?</h2>
       <p>
         Quatre choses, dans cet ordre&nbsp;:
       </p>
       <ul>
         <li>
           <strong>Une page nommée exactement sur la question.</strong> Sur une autre requête que nous
-          suivons, le site classé premier au 3 septembre 2026 ne recevait aucun lien entrant à notre
+          suivons, le site classé premier au {releveDu} ne recevait aucun lien entrant à notre
           relevé du 5 septembre 2026&nbsp;: ce qui le classe est une page dont le titre reprend la
           requête mot pour mot.
         </li>
@@ -109,23 +156,40 @@ const breadcrumb = {
         </li>
       </ul>
 
+      <h2>Quel est le tarif d'une agence SEO&nbsp;?</h2>
+      <p>
+        En France, une prestation de référencement se vend le plus souvent au forfait mensuel,
+        <strong>entre 800 et 3&nbsp;000&nbsp;€ HT par mois pour une PME</strong>, ou à la journée pour des
+        interventions ciblées — repères de marché publiés par
+        <a href="https://claudepartners.fr/blog/agence-seo-ia/">Claude Partners</a>, l'annuaire de
+        prestataires IA édité par la même équipe, lus le 5 septembre 2026. Chez nous, le point de
+        départ est un <strong>audit offert</strong>&nbsp;: vos positions, vos citations et vos priorités,
+        sous une semaine. Le devis vient ensuite, sur le périmètre que l'audit a fait apparaître, et
+        se compte en heures de travail relu par un consultant, pas en «&nbsp;articles par mois&nbsp;».
+      </p>
+
+      <h2>Quelle est la meilleure IA pour le SEO&nbsp;?</h2>
+      <p>
+        Aucune, prise seule. Ce qui fait la différence entre deux agences n'est pas le modèle
+        qu'elles utilisent mais <strong>qui relit ce qu'il produit</strong>, et ce qu'on mesure ensuite.
+        Nos consultants travaillent avec Claude, l'IA d'Anthropic, pour la recherche, le premier jet
+        et la surveillance, sous contrôle humain à chaque page. C'est ce qui permet un rythme de
+        publication qu'une agence traditionnelle facture bien plus cher&nbsp;; le fonctionnement complet
+        est décrit sur notre page <a href="/agence-marketing-claude/">agence marketing Claude</a>.
+      </p>
+
       <h2>Ce que nous faisons, et ce que nous ne promettons pas</h2>
       <p>
         Nous ne promettons pas de délai. Un contenu met des mois à s'installer dans Google, et
         personne ne connaît le calendrier de mise à jour d'un modèle de langage. Ce que nous
         engageons, c'est la mesure&nbsp;: un relevé de positions et un relevé de citations, chaque
-        semaine, que ça monte ou non.
-      </p>
-      <p>
-        Le travail, lui, est classique&nbsp;: audit, une page par question réelle, réécriture des
-        pages qui répondent mal, maillage interne, correctifs techniques. Nos consultants le
-        produisent avec Claude, l'IA d'Anthropic, sous contrôle humain — c'est ce qui permet un
-        rythme de publication qu'une agence traditionnelle facture bien plus cher. Le modèle complet
-        est décrit sur notre page <a href="/agence-marketing-claude/">agence marketing Claude</a>, et
-        le périmètre du <a href="/services/seo/">référencement naturel</a> sur la page du service.
+        semaine, que ça monte ou non. Le contenu de la prestation — audit, pages, réécritures,
+        maillage, correctifs — est détaillé sur la page du service
+        <a href="/services/seo/">référencement naturel</a>&nbsp;; cette page-ci porte la méthode et
+        la mesure.
       </p>
 
-      <h2>À qui s'adresse une agence SEO IA</h2>
+      <h2>À qui s'adresse une agence SEO IA&nbsp;?</h2>
       <p>
         Aux entreprises dont les clients cherchent d'abord une réponse, pas un prestataire&nbsp;:
         celles qui répondent bien à ces questions récupèrent la visite, puis la demande. Les
@@ -133,17 +197,14 @@ const breadcrumb = {
         mieux, mais ce travail vaut pour toute activité dont les prospects s'informent avant de
         choisir.
       </p>
-      <p>
-        Si vous voulez savoir où vous en êtes aujourd'hui sur les deux tableaux, l'audit de départ
-        est offert&nbsp;: vous repartez avec vos positions, vos citations et vos priorités, avec ou
-        sans nous.
-      </p>
 
       <h2>Qui écrit cette page</h2>
       <p>
         Julien Rayes et l'équipe de Claude Agency, site édité par BULGARIA EDUCATION EOOD. Pas
         d'auteur d'emprunt, aucun contenu acheté à l'extérieur&nbsp;: le détail est sur la page
-        <a href="/a-propos/">à propos</a>.
+        <a href="/a-propos/">à propos</a>. Les chiffres de cette page sont ceux de notre propre relevé
+        du {releveDu}&nbsp;; ils sont remplacés à chaque nouveau relevé, et la date en tête de page bouge
+        avec eux.
       </p>
     </div>
   </section>

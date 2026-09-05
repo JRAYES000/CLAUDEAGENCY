@@ -5,6 +5,54 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-05 (96) — Page « Agence SEO IA » : relevé affiché, sous-titres en questions, maillage depuis l'accueil et le pied de page
+
+**Type :** renforcement d'une page publiée le même jour (entrée 95), sur les axes relevés
+en session avec Julien (validés « OK » le 2026-09-05).
+
+**URL :** https://claudeagency.fr/agence-seo-ia/
+
+**Ce qui change et pourquoi.**
+- **Le relevé est affiché, pas décrit** : tableau des cinq requêtes suivies pour claudeagency.fr
+  (position DataForSEO du 2026-09-03, Résumé IA de Google), plus la ligne 0 citation sur 18
+  questions ChatGPT/Gemini/Perplexity. C'est la donnée que personne d'autre n'a, et ce qu'une IA
+  cite.
+- **Trois sous-titres reprennent les « Autres questions posées »** relevées sur la SERP le
+  2026-09-05 (DataForSEO, 0,002 $) : « Quel est le tarif d'une agence SEO ? », « Quelle est la
+  meilleure IA pour le SEO ? », plus « Qu'est-ce qu'une agence SEO IA ? » et « Comment se faire
+  citer par ChatGPT, Perplexity ou Gemini ? ». Les deux autres questions du bloc (« 10 meilleures
+  agences SEO en France », « prix d'un agent IA ») sont hors sujet pour la page. La SERP porte
+  aussi un Résumé IA (sources : cybercite.fr, dity.fr, seo-geo.fr, junto.fr, master-ia.fr,
+  uplix.fr, 425ppm.com, youtube.com).
+- **Tarif** : repères de marché (800 à 3 000 € HT/mois pour une PME) repris de l'article
+  claudepartners.fr/blog/agence-seo-ia/, cité et lié ; aucun prix Claude Agency inventé —
+  Julien n'a pas donné de grille, la page renvoie à l'audit offert puis au devis.
+- **Maillage** : liens entrants ajoutés depuis l'accueil (paragraphe « Ces quatre
+  expertises ») et le pied de page (bloc Navigation) — la page n'était atteignable que
+  depuis deux pages de second niveau. Lien externe depuis l'article de claudepartners.fr
+  (même éditeur, relation déclarée sur la page), commit dans le dépôt claudepartners-fr.
+- **Séparation avec `/services/seo/`** : la page service garde l'offre et les livrables, cette
+  page porte la méthode et la mesure ; le paragraphe « Ce que nous faisons » le dit et renvoie.
+- **Dates** : « Publié le / Mis à jour le / Chiffres relevés le » visibles sous le H1, schéma
+  `WebPage` avec `datePublished` et `dateModified`. Règle : les chiffres et `maj` bougent à
+  chaque nouveau relevé (routine `redacteur-seo` de visibilite-ops).
+- **Image de partage** : `image` et `imageAlt` passés au layout — `og:image` était l'image par
+  défaut du site avec un texte « organismes de formation ». `areaServed` aligné sur les quatre
+  pays de l'Organization.
+
+**Ce qui n'est pas fait, et pourquoi :** pas de prix Claude Agency (pas de grille fournie) ;
+indexation Google non vérifiable depuis un script — demande d'indexation dans la Search
+Console à faire par Julien (carte 110 du backlog visibilite-ops). Autorité du domaine 1/100,
+0 lien entrant (Ubersuggest, 2026-08-12) : le plafond de toutes les pages, à traiter par le
+canal netlinking, pas par le contenu.
+
+**Fichiers touchés :** `app/src/pages/agence-seo-ia.astro`, `app/src/pages/index.astro`,
+`app/src/components/Footer.astro`, ce journal.
+
+**Prochaine lecture :** inchangée, à partir du 2026-09-10.
+
+---
+
 ## 2026-09-05 (95) — Nouvelle page dédiée « Agence SEO IA »
 
 **Type :** publication d'une page dédiée sur une requête suivie. Routine `redacteur-seo`
