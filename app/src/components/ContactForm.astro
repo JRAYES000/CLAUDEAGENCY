@@ -23,6 +23,12 @@
     <textarea id="message" name="message" rows="5" required
               class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"></textarea>
   </div>
+  <div>
+    <label for="origine" class="block text-sm font-medium">Comment nous avez-vous connu&nbsp;? <span class="font-normal text-muted">(facultatif)</span></label>
+    <input type="text" id="origine" name="origine" autocomplete="off"
+           placeholder="En quelques mots"
+           class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
+  </div>
 
   <button type="submit" id="form-submit" class="rounded-lg bg-brand-500 px-5 py-2.5 font-medium text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70">Envoyer</button>
   <p id="form-result" class="text-sm" role="status" aria-live="polite"></p>
