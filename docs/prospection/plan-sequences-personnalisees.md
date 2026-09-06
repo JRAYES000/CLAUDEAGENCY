@@ -90,8 +90,18 @@ Notion rendrait les colonnes illisibles ; envoyer des retours à la ligne à Sal
       (`8JwoQoAZaO`, objet `{{Profile Headline}}`, corps `{{Prospect Overview}}`), étape 2 jour 6
       (`9pa8W7epPy`, même fil, corps `{{LinkedIn Profile Summary}}`), désinscription francisée
       (code 2), **inactive** (`active: false` relu par l'API).
-- [ ] 6b. Import des prospects dans l'étape 1, puis mise à jour des 77 déjà synchronisés.
-- [ ] 7. Ligne de journal dans `protocole-envoi.md` (import seul, pas d'envoi).
+- [x] 6b. Import des prospects dans l'étape 1 : **215 prospects présents dans la séquence**
+      (constaté par l'API le 2026-09-06, une session précédente l'avait fait sans cocher). Notion
+      ne marque que 190 lignes synchronisées : l'écart n'est pas tranché. La mise à jour des 77
+      déjà synchronisés n'a pas été vérifiée.
+- [x] 7. Ligne de journal dans `protocole-envoi.md` — écrite le 2026-09-06 avec la reprise.
+- [x] 8. **Reprise décidée par Julien le 2026-09-06** : 9 prospects « Bad » retirés (206 restent),
+      quatre boîtes attachées à 8/jour, signatures de compte vidées (doublon constaté dans
+      l'aperçu), séquence **active** (`active: true` relu par l'API), premier créneau mardi 08/09.
+      Réglage « risky » à OFF : seuls les 46 Valid partent ; les 160 Risky attendent la bascule
+      du code 6. Détail et chiffres dans `protocole-envoi.md`, journal des vagues.
+- [ ] 9. Après les 46 premiers envois : relever rebonds et réponses, basculer le code 6 à 1 si le
+      taux est sous 5 %, reporter « Contacté » + date dans Notion pour chaque organisme parti.
 
 ## Hors import SalesHandy
 

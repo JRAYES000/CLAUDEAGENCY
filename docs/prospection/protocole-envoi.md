@@ -185,6 +185,31 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
 | 2026-08-25 | Prospection OF (`glwGO3M0w6`) | Claude Agency | 32 | 19 | 59 % | 0 | Suspendue le 25/08 |
 | 2026-08-31 | Micro-lot dirigeants (`6vaKGjLoaW`) | Claude Agency | 10 | 0 | 0 % | 0 | En cours, relance le 05/09 |
 | 2026-09-01 | Annuaire ClaudePartners (`9pa87bZ4Py`) | Claude Partners | 0 (import seul, quota du jour epuise) | — | — | — | 8 importes, 12 ecartes faute de source |
+| 2026-09-06 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 0 (activée, premier créneau mardi 08/09 8 h) | — | — | — | Reprise décidée par Julien le 06/09 ; 206 prospects, 46 Valid ouverts à l'envoi, 160 Risky en attente du bascule « risky » |
+
+**Reprise du 2026-09-06 — ce qui a été fait, tout `mesuré` (API et interface SalesHandy)** :
+
+- Vérification d'adresses : SalesHandy l'avait faite à l'import du 01/09. Sur 215 prospects :
+  **46 Valid, 160 Risky, 9 Bad, 0 Unverified**. Les 9 Bad retirés de la séquence (FM FORMATION,
+  MAM Academy, Orakin, Manager Solution, NIS Formation, Klyf, Say Com, Scenergie, ODI Formation).
+  La séquence compte **206** prospects.
+- **Le réglage « Send emails to risky prospects » est à OFF** (code 6 = 0) : SalesHandy n'enverra
+  qu'aux 46 Valid. Choix assumé pour la première vague : la règle 3 du protocole retire les
+  adresses douteuses, et « Risky » veut dire domaine accept-all, invérifiable. **Bascule à faire**
+  quand les 46 sont partis sous 5 % de rebond : `update_sequence_settings(klw678deP1, [{code: 6,
+  value: "1"}])` — les 160 Risky partent alors dans la même séquence, sans réimport.
+- Quatre boîtes attachées, toutes à 8/jour : equipe1@claudeagency.fr, julien@claudeagency.eu,
+  contact@claudepro.fr, julien@teamclaude.fr (ces deux dernières renommées « Claude Agency » ;
+  teamclaude ramenée de 15 à 8/jour). Soit 32/jour : les 46 Valid partent en deux jours.
+- **Signatures de compte vidées sur les quatre boîtes.** Le rendu réel (aperçu de l'étape 1)
+  montrait un second bloc « Julien Rayes / Fondateur / Claude Agency / Web / LinkedIn » ajouté
+  sous la ligne CNIL, alors que les 206 mails portent déjà leur signature dans le corps — deux
+  liens de plus, en violation du « ≤ 1 lien ». Le micro-lot du 31/08, lui, comptait sur la
+  signature de compte (ses mails n'ont pas de bloc nom) : sa relance (`Y8aLWDrDPN`) porte
+  désormais la signature dans le corps de l'étape, vérifié dans l'interface.
+- En-tête de désinscription (code 13) passé à 1, comme sur le micro-lot. Mode « texte seul »
+  laissé sur « premier e-mail seulement » (code 9 = 1, réglage recommandé par l'outil).
+- Clause « un organisme par bassin » laissée telle quelle (décision Julien du 06/09).
 
 **Cumul par boîte au 2026-09-01** (`mesuré`, API SalesHandy) :
 

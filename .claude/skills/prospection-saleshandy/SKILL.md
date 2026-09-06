@@ -55,6 +55,22 @@ update_sequence_settings(sequenceId, settings=[{ code: 2, value: "Répondez « S
 
 Les 5 séquences existantes ont été francisées le 21/08/2026.
 
+**La signature de compte s'ajoute sous le corps de chaque e-mail, ligne CNIL comprise.** Un mail
+importé qui porte déjà sa signature dans le champ du prospect sort donc avec deux blocs « Julien
+Rayes » et deux liens de plus (constaté le 06/09/2026 dans l'aperçu de l'étape). Règle : soit le
+corps porte la signature et la signature de compte est **vide**, soit l'inverse — jamais les deux.
+Les quatre boîtes Claude Agency sont à signature vide depuis le 06/09 ; une séquence dont les
+mails n'ont pas de bloc nom doit donc porter la signature **dans le corps de l'étape**. Contrôle
+qui tranche : ouvrir l'étape dans l'interface et lire l'aperçu « Email Preview », pas le champ.
+
+**SalesHandy vérifie les adresses à l'import et range chaque prospect en Valid / Risky / Bad /
+Unverified** (filtre « Statut de vérification » de la page prospects d'une séquence ; la colonne
+est visible dans le CRM). Le réglage de séquence « Send emails to risky prospects » (code 6) est
+à 0 par défaut : **les Risky ne partent pas**, sans message. Sur la base OF du 01/09, Risky fait
+160 lignes sur 215 : oublier ce réglage, c'est croire qu'une séquence tourne alors qu'elle
+n'atteint qu'un prospect sur cinq. Le solde de crédits du vérificateur se lit sur
+`/email-verifier` (9 489 au 06/09).
+
 **Trois autres pièges, constatés le 21/08/2026.**
 
 - **Le Markdown n'est pas interprété.** SalesHandy envoie le corps en HTML brut : `<b>` et
