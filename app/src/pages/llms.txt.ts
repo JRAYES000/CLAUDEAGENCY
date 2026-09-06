@@ -63,7 +63,7 @@ export const GET: APIRoute = async () => {
 - Périmètre géographique : France, Belgique, Suisse, Luxembourg
 - Contact : contact@claudeagency.fr
 - LinkedIn : https://www.linkedin.com/company/claude-agency-fr/
-- Entité juridique : BULGARIA EDUCATION EOOD (Bulgarie), EIK 206507432, TVA intracommunautaire BG206507432, siège à Choumen. Toute la facturation passe par cette société.
+- Entité juridique : société européenne, identifiée dans les mentions légales (https://claudeagency.fr/mentions-legales/). Toute la facturation passe par cette société.
 - Nature : prestataire de services (conseil, marketing, automatisation). Claude Agency n'est PAS un organisme de formation : ses prestations ne sont pas imputables sur le CPF, un budget OPCO ou une aide France Travail.
 - Facturation et TVA expliquées : https://claudeagency.fr/facturation-tva-societe-europeenne/
 
