@@ -212,6 +212,32 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
   laissé sur « premier e-mail seulement » (code 9 = 1, réglage recommandé par l'outil).
 - Clause « un organisme par bassin » laissée telle quelle (décision Julien du 06/09).
 
+**Retrait du bloc légal, 2026-09-06 après-midi (demande de Julien : « Bulgaria Education va leur
+faire peur »).** La ligne `BULGARIA EDUCATION EOOD — ul. Saedinenie 66… Choumen, Bulgarie` a été
+retirée des 216 « Mail 1 » de Notion et des 206 champs « Prospect Overview » de la séquence
+`klw678deP1` (import en mode remplacement, par lots de 6 à 8, trois sous-agents en parallèle).
+La ligne CNIL reste seule en pied de mail, après le P.S. ; l'identification de l'expéditeur tient
+par « Julien Rayes — Claude Agency — claudeagency.fr ». Le mail n'a plus d'adresse postale : aucune
+adresse française n'existe dans le dépôt, celle de la rue Saint-Honoré ayant été retirée le 01/09.
+Séquence mise en pause pendant l'opération, réactivée après contrôle.
+
+Contrôles (`mesuré`) : 4 pages Notion relues par `fetch` dans quatre tranches différentes, 0
+occurrence, ligne CNIL en fin ; 7 rendus réels relus dans l'aperçu SalesHandy, 0 occurrence, un
+seul bloc signature ; les trois sous-agents ont vérifié longueur finale = longueur initiale − 84 sur
+chacune de leurs lignes (215/215) et aucun `failedProspectsURL` sur 26 imports. **Non vérifié** :
+le comptage SQL Notion sur les 302 lignes — le quota « Query Data Source » du workspace est épuisé
+depuis l'après-midi ; à relancer (`SELECT COUNT(*) … WHERE "Mail 1" LIKE '%BULGARIA%'`, attendu 0)
+quand il sera remis à zéro. La séquence annuaire Claude Partners (`9pa87bZ4Py`) a été contrôlée :
+ses trois étapes sont des textes fixes sans bloc légal, rien à retirer. La page
+`/donnees-prospection` du site et le registre RGPD nomment toujours l'entité bulgare, sans lien
+depuis les mails — non modifiés, hors demande.
+
+Effet de bord à connaître : l'import de remplacement exige prénom et nom, dérivés mécaniquement
+de `Dirigeant` (premier mot, dernier mot). Cinq noms d'affichage douteux ont été corrigés à la main
+(Neyret, Le Goffic, Leroy, Mac Leod, Charrois) ; d'autres cas du même type peuvent subsister dans
+les tranches traitées avant l'arrêt des premiers sous-agents. Ces noms n'apparaissent que dans
+l'en-tête « À : », jamais dans le corps.
+
 **Cumul par boîte au 2026-09-01** (`mesuré`, API SalesHandy) :
 
 | Boîte | Envoyés | Taux de rebond | Réponses | Inbox Score |

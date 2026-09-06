@@ -100,8 +100,16 @@ Notion rendrait les colonnes illisibles ; envoyer des retours à la ligne à Sal
       l'aperçu), séquence **active** (`active: true` relu par l'API), premier créneau mardi 08/09.
       Réglage « risky » d'abord à OFF, puis **ouvert le même jour à la demande de Julien**
       (code 6 = 1) : les 206 partent. Détail et chiffres dans `protocole-envoi.md`.
+- [x] 8b. **Bloc légal « BULGARIA EDUCATION EOOD + adresse » retiré le 2026-09-06** des 216
+      « Mail 1 » Notion et des 206 champs SalesHandy, à la demande de Julien. La ligne CNIL reste
+      seule en pied. Contrôles et limite (quota SQL Notion épuisé, comptage à relancer) dans
+      `protocole-envoi.md`. Le critère « signature légale (BULGARIA EDUCATION EOOD, Choumen) » de la
+      section Critères ci-dessus est donc caduc depuis cette date.
 - [ ] 9. À chaque jour d'envoi : relever rebonds et réponses, pause le jour même au-delà de 5 %,
       reporter « Contacté » + date dans Notion pour chaque organisme parti.
+- [ ] 10. Quand le quota Notion est revenu : `SELECT COUNT(*) FROM … WHERE "Mail 1" LIKE
+      '%BULGARIA%'` → attendu 0 ; comparer `length("Mail 1")` à `scratchpad/baseline.txt` du 06/09
+      si le fichier existe encore (attendu : initiale − 84 sur 215 lignes).
 
 ## Hors import SalesHandy
 
