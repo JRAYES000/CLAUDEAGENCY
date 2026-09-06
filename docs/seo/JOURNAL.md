@@ -5,6 +5,68 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-06 (97) — Ce que portent les pages que les IA citent à notre place : deux traits repris sur deux articles
+
+**Type :** relevé concurrentiel puis correctif éditorial ciblé. Carte 114 du backlog
+visibilite-ops. Aucune page neuve — le garde-fou de vélocité (2 articles/semaine) tient.
+
+**URLs touchées :** https://claudeagency.fr/blog/outils-ia-organisme-formation/ ·
+https://claudeagency.fr/blog/evaluer-apprenants-ia/
+
+**Le relevé.** Depuis le 2026-08-31, ChatGPT, Gemini et Perplexity ne citent claudeagency.fr
+sur aucune des six questions commerciales suivies (`visibilite-ops/recherche/citations-ia.md`).
+Douze pages citées **à notre place** ont été ouvertes et lues le 2026-09-06 — domaines
+présents sur les deux passages (31/08 et 03/09), concurrents réels uniquement. Note complète
+et tableau des sept critères : `visibilite-ops/recherche/2026-09-06-pages-citees-par-les-ia.md`.
+
+Ce qui ressort, sur 12 pages :
+- **9 nomment des tiers un par un** (5 à 192 entités). C'est le seul trait quasi universel.
+- **8 sont un comparatif ou un annuaire**, pas une page de service.
+- **5 affichent un prix chiffré**, et c'est le cas des trois qui reviennent en tête aux deux
+  passages (sortlist.fr, entreprise.ai, kokoro-ai.fr) — prix collé à chaque nom, pas une
+  fourchette générale en bas de page.
+- **6 datent la liste dans le corps** : « Classement mis à jour le : 06/09/2026 » (sortlist),
+  « Dernière vérification : 03/09/2026 » (entreprise.ai), « Dernière revue éditoriale :
+  19 août 2026 » (index-ia.fr).
+- **1 seule cite des sources externes cliquables** (cloudlist.fr). Koneetiv cite S&P Global,
+  MIT et Gartner sans un lien ; kokoro cite Gartner, BCG, France Digitale et Bpifrance de
+  même. **Contre-intuitif : le lien sortant vers une étude n'est pas ce qui fait citer une
+  page.** Nos pages en posent déjà plus que la concurrence — ce n'est pas le levier.
+
+**Les deux changements posés.**
+1. **Date de relevé collée à la liste**, sur les deux pages de la carte 106 qui ne
+   l'avaient pas encore : `outils-ia-organisme-formation` (« Liste revue le 5 septembre
+   2026 — 17 outils nommés ») et `evaluer-apprenants-ia` (« Repères de coût revus le
+   5 septembre 2026 », avec la source du prix d'un assistant). `logiciel-organisme-formation`,
+   `lms-organisme-formation` et `claude-vs-chatgpt-organisme-formation` la portaient déjà
+   depuis le commit `12a55f0` du 05/09 — vérifié dans les fichiers avant d'écrire, pas
+   supposé. **Au passage** : ce commit `12a55f0` (carte 106, cinq articles rafraîchis) n'a
+   jamais eu son entrée dans ce journal. Il a été poussé depuis une session du dépôt
+   visibilite-ops, et la règle « un commit SEO sans ligne de journal est un commit
+   incomplet » lui a échappé. Rien à refaire côté site, mais une session qui cherchera
+   d'où viennent ces cinq pages ne trouvera que le message de commit.
+2. **Le titre du bloc de liste dit ce qu'il liste et combien** :
+   `## Quels outils, concrètement ?` devient `## Les 17 outils IA les plus utilisés en
+   organisme de formation, besoin par besoin`. Les 17 sont comptés dans le tableau (4 + 2 +
+   3 + 2 + 3 + 3), pas estimés. Aucun lien interne ne visait l'ancre précédente (vérifié).
+
+**Ce qui n'est pas fait, et pourquoi.**
+- **Le prix collé à chaque nom** — le trait le plus discriminant du relevé — demande de
+  relever la grille publique des 17 outils un par un : chantier à part, pas un correctif.
+- `openai.com/chatgpt/pricing` répond toujours **HTTP 403** (déjà constaté le 05/09) : aucun
+  tarif ChatGPT n'a été revérifié aujourd'hui, aucun n'a été modifié.
+- `updatedDate` des deux articles laissé au **2026-09-05** : la substance (liste, grilles)
+  date de ce jour-là, la bouger annoncerait une fraîcheur que le contenu n'a pas.
+- La note relève 12 pages sur ~30 domaines concurrents présents aux deux passages.
+
+**Mesure.** Prochain passage de `citations-ia.mjs` le lundi 2026-09-07 : c'est lui qui dira
+si les deux pages entrent dans les sources. Aucune promesse d'effet avant.
+
+**Build :** `cd app && npm run build` → 88 pages, vert, aucune soumission IndexNow
+(build local, `FORCE_INDEXNOW` non posé).
+
+---
+
 ## 2026-09-05 (96) — Page « Agence SEO IA » : relevé affiché, sous-titres en questions, maillage depuis l'accueil et le pied de page
 
 **Type :** renforcement d'une page publiée le même jour (entrée 95), sur les axes relevés
