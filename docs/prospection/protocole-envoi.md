@@ -193,11 +193,12 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
   **46 Valid, 160 Risky, 9 Bad, 0 Unverified**. Les 9 Bad retirés de la séquence (FM FORMATION,
   MAM Academy, Orakin, Manager Solution, NIS Formation, Klyf, Say Com, Scenergie, ODI Formation).
   La séquence compte **206** prospects.
-- **Le réglage « Send emails to risky prospects » est à OFF** (code 6 = 0) : SalesHandy n'enverra
-  qu'aux 46 Valid. Choix assumé pour la première vague : la règle 3 du protocole retire les
-  adresses douteuses, et « Risky » veut dire domaine accept-all, invérifiable. **Bascule à faire**
-  quand les 46 sont partis sous 5 % de rebond : `update_sequence_settings(klw678deP1, [{code: 6,
-  value: "1"}])` — les 160 Risky partent alors dans la même séquence, sans réimport.
+- **Le réglage « Send emails to risky prospects » (code 6) a d'abord été laissé à OFF** : seuls
+  les 46 Valid partaient. « Risky » veut dire domaine accept-all, invérifiable. **Julien a demandé
+  l'ouverture des 160 Risky le jour même, risque assumé par écrit** : code 6 passé à 1 par l'API le
+  2026-09-06 (relu dans la réponse). Les 206 partent donc dans la même vague, 32 par jour sur
+  quatre boîtes, soit environ sept jours ouvrés. La règle 4 tient : au-delà de 5 % de rebond sur
+  un relevé, la séquence se met en pause le jour même.
 - Quatre boîtes attachées, toutes à 8/jour : equipe1@claudeagency.fr, julien@claudeagency.eu,
   contact@claudepro.fr, julien@teamclaude.fr (ces deux dernières renommées « Claude Agency » ;
   teamclaude ramenée de 15 à 8/jour). Soit 32/jour : les 46 Valid partent en deux jours.

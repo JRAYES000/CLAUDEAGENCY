@@ -98,10 +98,10 @@ Notion rendrait les colonnes illisibles ; envoyer des retours à la ligne à Sal
 - [x] 8. **Reprise décidée par Julien le 2026-09-06** : 9 prospects « Bad » retirés (206 restent),
       quatre boîtes attachées à 8/jour, signatures de compte vidées (doublon constaté dans
       l'aperçu), séquence **active** (`active: true` relu par l'API), premier créneau mardi 08/09.
-      Réglage « risky » à OFF : seuls les 46 Valid partent ; les 160 Risky attendent la bascule
-      du code 6. Détail et chiffres dans `protocole-envoi.md`, journal des vagues.
-- [ ] 9. Après les 46 premiers envois : relever rebonds et réponses, basculer le code 6 à 1 si le
-      taux est sous 5 %, reporter « Contacté » + date dans Notion pour chaque organisme parti.
+      Réglage « risky » d'abord à OFF, puis **ouvert le même jour à la demande de Julien**
+      (code 6 = 1) : les 206 partent. Détail et chiffres dans `protocole-envoi.md`.
+- [ ] 9. À chaque jour d'envoi : relever rebonds et réponses, pause le jour même au-delà de 5 %,
+      reporter « Contacté » + date dans Notion pour chaque organisme parti.
 
 ## Hors import SalesHandy
 
