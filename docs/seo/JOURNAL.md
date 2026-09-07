@@ -5,6 +5,76 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-07 (100) — Deux arbitrages de Julien : l'accueil garde « agence marketing claude », et /semaine-offerte/ reste indexée
+
+**Type :** exécution de deux décisions prises par Julien en réponse au bloc « Reste » de
+l'entrée #99. Aucune mesure nouvelle, aucun contenu réécrit.
+
+### 1. « Agence marketing claude » : c'est l'accueil, et on arrête de le contrarier
+
+**Décision de Julien, 2026-09-07 :** « je préfère privilégier la page d'accueil ».
+
+Le relevé du 07/09 montrait l'accueil 1,9e sur cette requête (36 impressions) et
+`/agence-marketing-claude/` 16,5e (27 impressions) — Google avait donc déjà choisi. L'arbitrage
+entérine ce choix au lieu de le combattre.
+
+**Ce qui change, et c'est peu :**
+- La **priorité 0,9** du sitemap sur `/agence-marketing-claude/` est retirée
+  (`app/astro.config.mjs`). C'était la seule déclaration en code qui désignait la landing comme
+  cible de la requête ; elle contredisait désormais l'arbitrage. La page retombe à 0,5, comme les
+  autres pages hors accueil et hors blog. Un commentaire daté explique pourquoi, pour qu'une
+  session future ne la « restaure » pas en croyant réparer un oubli.
+- `REQUETES.csv` mappe « agence marketing claude » sur `/` et non plus sur la landing, avec les
+  chiffres de l'accueil (0 clic, 36 impressions, position 1,9, GSC 07/09).
+
+**Ce qui ne change pas, et pourquoi.** Le title et le H1 de la landing n'ont **pas** été
+dégradés pour l'éloigner de la requête. La tentation existait — deux pages du même site qui
+portent la requête exacte dans leur title, c'est le signal en double qu'on cherche à supprimer.
+Mais la landing est 16,5e avec 0 clic : abîmer une page qui ne gagne rien ne démontre aucun gain,
+et le vrai concurrent de l'accueil sur cette requête n'est pas elle. Le title de l'accueil n'a pas
+bougé non plus : « Agence IA et marketing pour organismes de formation » porte déjà « Agence » et
+« marketing », et lui ajouter « Claude » rétrécirait le positionnement d'agence IA généraliste
+tranché le 22/08 pour gagner sur une requête à 0 clic.
+
+**Conséquence pratique pour les sessions suivantes :** `/agence-marketing-claude/` reste une page
+de conversion, ce n'est plus une page de positionnement. Ne plus y investir pour la faire monter
+sur cette requête. La question « à quoi sert cette landing », posée à l'entrée #99, reste ouverte
+mais n'est plus urgente : elle ne coûte rien là où elle est.
+
+**Rappel de méthode, valable au-delà de ce cas.** Cette requête fait partie de la famille de
+permutations mécaniques identifiée à l'entrée #98 : position 2, 0 clic sur 36 impressions. Aucune
+des décisions ci-dessus ne repose sur l'idée qu'on va récolter du trafic dessus — elles évitent
+seulement de dépenser du travail contre le choix de Google.
+
+### 2. /semaine-offerte/ : indexée, et c'est voulu
+
+**Décision de Julien, 2026-09-07 :** « OK, tu peux indexer cette page maintenant ».
+
+Cela renverse explicitement la ligne « Écarté » du 2026-08-14 (« Reste en `noindex` »), que la
+règle du 23/08 (« aucune page du site n'est en noindex ») avait déjà rendue caduque en fait sans
+que personne ne le consigne. Les deux lignes se contredisaient depuis quinze jours ; l'entrée #99
+l'avait signalé, Julien a tranché.
+
+**Aucun changement technique n'était nécessaire** : la page n'avait déjà plus de `meta robots`
+et figurait au sitemap — vérifié en ligne le 07/09 avant de le dire. Le seul geste réel : sa
+**description passe de 167 à 149 caractères**, le dernier dépassement du site. Elle avait été
+laissée de côté à l'entrée #98 au motif que la page n'était pas servie depuis une recherche —
+motif qui tombe.
+
+La ligne du backlog porte maintenant l'interdiction inverse : **ne pas remettre de `noindex` ni
+de filtre de sitemap sur cette page.**
+
+**Build :** `cd app && npm run build` → 87 pages, exit 0.
+
+**Fichiers touchés :** `app/astro.config.mjs`, `app/src/pages/semaine-offerte.astro`,
+`docs/seo/JOURNAL.md`, `docs/seo/BACKLOG.md`, `docs/seo/REQUETES.csv`.
+
+**Prochaine lecture :** relevé du 2026-09-11, inchangé — le contrôle « la landing remonte-t-elle
+après la fusion ? » devient « l'accueil tient-il sa position », ce qui n'appelle aucune action
+tant qu'il la tient.
+
+---
+
 ## 2026-09-07 (99) — Fusion de la cannibalisation « claude pour le marketing », et trois docs qui mentaient
 
 **Type :** exécution des arbitrages laissés ouverts par l'entrée #98, sur demande explicite de

@@ -60,11 +60,11 @@ export default defineConfig({
       // rien n'est exclu du sitemap. Seules restent hors sitemap la 404 et la
       // redirection /sitemap.xml, qu'Astro génère et qui ne sont pas des pages.
       serialize(item) {
+        // Arbitrage de Julien du 2026-09-07 : sur « agence marketing claude », c'est
+        // l'ACCUEIL qu'on privilégie, pas /agence-marketing-claude/. La landing avait ici une
+        // priorité 0,9 qui la déclarait cible de cette requête — retirée. Détail : JOURNAL.md #100.
         if (item.url === 'https://claudeagency.fr/') {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 1.0;
-        } else if (/\/agence-marketing-claude\/$/.test(item.url)) {
-          // Landing requête cible « agence marketing claude » : priorité haute.
-          item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.9;
         } else if (/\/blog\//.test(item.url)) {
           item.changefreq = ChangeFreqEnum.WEEKLY; item.priority = 0.7;
           const slug = item.url.match(/\/blog\/([^/]+)\/$/)?.[1];

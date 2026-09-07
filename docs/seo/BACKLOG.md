@@ -40,9 +40,14 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       schéma sur « agence claude ». **La fusion du 07/09 retire un concurrent sur trois, pas le
       principal** : c'est l'accueil qu'il faudrait affaiblir, et aucun geste n'a été posé là-dessus
       — retirer des mots au title d'une page 2e serait jouer un acquis contre une hypothèse.
-      **Au relevé du 11/09** : si la landing remonte après la fusion, laisser faire ; si l'accueil
-      reste devant, la question devient « à quoi sert cette landing », pas « comment la faire
-      gagner ».
+      **TRANCHÉ par Julien le 2026-09-07 : on privilégie l'ACCUEIL.** Google l'avait déjà choisi
+      (1,9e contre 16,5e) ; on cesse de le contrarier. Conséquences posées le jour même : la
+      priorité 0,9 qui déclarait la landing cible de la requête est retirée du sitemap
+      (`app/astro.config.mjs`), et `REQUETES.csv` mappe désormais « agence marketing claude » sur
+      `/`. **Ne plus investir pour faire gagner la landing sur cette requête** — elle reste une
+      page de conversion, ce n'est plus une page de positionnement. Son title et son H1 n'ont pas
+      été retouchés : à la 16,5e place et 0 clic, les dégrader ne démontrerait aucun gain.
+      Détail : `JOURNAL.md` #100.
 - [ ] **Au relevé du 2026-09-11** : même contrôle sur « agence claude », après la publication
       du 04/09 de `/blog/agence-claude-comment-choisir/` (`JOURNAL.md` #89). La landing
       `/agence-marketing-claude/` était 17e au 03/09. Si l'article n'apparaît pas **et** que la
@@ -277,6 +282,6 @@ Il reste un seul point, hors code :
 | Ouvrir un compte Instagram | 2026-08-14 | Cible B2B absente du réseau en contexte professionnel, coût de production le plus élevé de tous les canaux, aucun effet SEO (liens `nofollow`, contenu non indexé), et la page LinkedIn entreprise n'existe pas encore. Arbitrage complet dans `TACHES-SOLOHERY-SITE-CONVERSION.md` §3. |
 | Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |
 | Installer Plausible | 2026-08-14 | GA4 est déjà chargé. Un second outil de mesure = un script de plus et deux chiffres qui ne concorderont jamais. Corriger les 4 événements vers GA4 (G1). |
-| Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. **Contredit depuis, constaté le 2026-09-07 :** la règle de Julien du 23/08 (« aucune page du site n'est en noindex ») a retiré le `noindex` et le filtre du sitemap ; la page est aujourd'hui indexable et présente au sitemap. Les deux arbitrages sont de Julien, le plus récent gagne. **Ne pas « corriger » dans un sens ou dans l'autre sans le lui demander** — une session qui lirait cette seule ligne remettrait un `noindex` contre sa règle du 23/08. |
+| Rendre `/semaine-offerte/` indexable | 2026-08-14 | La page promet une prestation gratuite sans filtre : indexée elle attire des curieux, envoyée à un prospect qualifié elle convertit. Reste en `noindex`. **RENVERSÉ par Julien le 2026-09-07 : la page est indexée, et c'est voulu.** La règle du 23/08 (« aucune page du site n'est en noindex ») avait déjà retiré le `noindex` et le filtre du sitemap ; Julien l'a confirmé explicitement. **Ne pas remettre de `noindex` ni de filtre sur `/semaine-offerte/`.** Sa description a été ramenée sous 155 caractères le 07/09, la page étant désormais servie depuis une recherche. |
 | Reprendre l'envoi de la campagne Saleshandy sur la liste actuelle (vague 1, 50 contacts) | 2026-08-25 | **Suspendue par Julien.** 32 e-mails partis sur 50, 59 % de taux de rebond (19 rebonds/32, mesuré `get_sequence_stats`). Cause : liste jamais nettoyée (D11 bloqué depuis le 22/08, 0 crédit sur le vérificateur Saleshandy) — 55 des 100 adresses de la liste étaient reconstituées au format prénom.nom@, jamais vérifiées (`docs/points-etape-sprint.md` §E2). Toute reprise de la prospection repart d'une **nouvelle base de données**, pas de celle jugée mauvaise le 25/08 (`JOURNAL.md` #80, #82). |
 | Se positionner comme « organisme de formation » | 2026-08-26 | **Fermé par un changement de fait, pas par une préférence.** Depuis le 19/08/2026, claudeagency.fr est édité par `BULGARIA EDUCATION EOOD`, qui n'a ni NDA ni certification Qualiopi — contrairement au SIREN 924 997 539 (l'ancienne entité, école de naturopathie) concerné par l'arbitrage initial. Revendiquer ce statut serait une fausse déclaration. Détail : `docs/seo/arbitrage-julien.md`. |
