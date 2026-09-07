@@ -12,6 +12,24 @@ clics, 2 797 impressions, 33,3), voir priorité 1bis ci-dessous, cause non tranc
 
 ## À faire
 
+### 🔴 -1. Suite immédiate des modifications du 2026-09-07 (JOURNAL #98 à #101)
+
+- [ ] **Dès le 2026-09-08 : finir les 4 demandes d'indexation** que le quota journalier de Google
+      a bloquées. Dans l'ordre : `/barometre-ia-organismes-formation/` (celle qui s'est heurtée au
+      refus), `/facturation-tva-societe-europeenne/`, `/semaine-offerte/`, `/evaluation-claude-code/`.
+      Les 8 autres sont passées le 07/09. **Quota constaté : ~9 envois par jour et par propriété**,
+      et « une erreur interne est survenue » n'est PAS le quota — ça se retente (méthode et pièges
+      de pilotage : `JOURNAL.md` #101).
+- [ ] **Avant de lire le relevé du 2026-09-11, vérifier que Google a réexploré.** Au 07/09, la
+      dernière exploration de chaque page modifiée était **antérieure** aux changements du jour
+      (accueil 05/09, `claude-agency-en-bref` 04/09, `reglement-interieur` 22/08,
+      `opco-qualiopi` 21/08, `cas-usage-claude` 23/07). Tant que la réexploration n'a pas eu lieu,
+      **les CTR du relevé mesurent les anciens titles** et ne disent rien du travail du 07/09.
+      Contrôle : `GOOGLE_SEARCH_CONSOLE_INSPECT_URL`, champ `lastCrawlTime`.
+- [ ] **Contrôle de la fusion** : `/blog/claude-pour-le-marketing/` doit disparaître de l'index
+      (301 posé le 07/09). Il y était encore le 07/09, c'est normal jusqu'à la prochaine
+      exploration. Ne pas demander l'indexation d'une URL redirigée.
+
 ### ✅ 0. Cannibalisation — TRAITÉ le 2026-08-14
 
 15 articles fusionnés (blog de 69 à 54), 15 redirections 301, 88 liens internes réécrits, 5 docs
