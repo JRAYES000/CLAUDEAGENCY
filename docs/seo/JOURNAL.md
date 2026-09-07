@@ -5,7 +5,7 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
-## 2026-09-07 (101) — Demandes d'indexation Search Console : 3 sur 12, sitemap resoumis, et ce que l'API ne sait pas faire
+## 2026-09-07 (101) — Demandes d'indexation Search Console : 8 sur 12, quota journalier atteint, et ce que l'API ne sait pas faire
 
 **Type :** exécution, à la demande de Julien, des demandes d'indexation pour les pages modifiées
 aux entrées #98 à #100. Aucun changement de contenu.
@@ -17,11 +17,17 @@ aux entrées #98 à #100. Aucun changement de contenu.
 avant l'appel, `lastSubmitted` remontait au **2026-07-13**, deux mois en arrière, alors que
 `lastDownloaded` était du 06/09. 87 URLs déclarées.
 
-**2. Trois demandes d'indexation confirmées** (bouton « Demander une indexation » de la Search
-Console, piloté dans Chrome ; boîte « Indexation demandée » lue à l'écran pour chacune) :
-- `/blog/facture-electronique-organisme-formation/`
+**2. Huit demandes d'indexation confirmées** (bouton « Demander une indexation » de la Search
+Console, piloté dans Chrome ; message « Cette URL a été ajoutée à une file d'attente d'exploration
+prioritaire » constaté pour chacune) :
+- `/blog/facture-electronique-organisme-formation/` — la seule qui n'avait jamais été explorée
 - `/`
 - `/agence-marketing-claude/`
+- `/blog/cas-usage-claude-organisme-formation/`
+- `/blog/opco-qualiopi-financement/`
+- `/blog/reglement-interieur-organisme-formation/`
+- `/claude-agency-en-bref/`
+- `/diagnostic/`
 
 ### L'état d'indexation relevé avant d'agir (API d'inspection d'URL, 07/09)
 
@@ -46,25 +52,42 @@ Google le retirera à sa prochaine exploration. **Ne pas demander l'indexation d
 
 ### Ce qui a échoué, et pourquoi c'est à savoir
 
-**`/blog/cas-usage-claude-organisme-formation/` : deux tentatives, deux échecs.** Message de
-Google : « Une erreur interne est survenue lors de l'envoi de votre demande, veuillez réessayer
-ultérieurement. » Après retentative, le bouton affichait toujours « Demander une indexation » et
-non « Indexation demandée » — la demande n'est donc pas passée. C'est le comportement connu du
-quota journalier de ce bouton, qui se manifeste par une erreur interne et non par un message de
-quota.
+**Deux messages d'erreur différents, à ne pas confondre — c'est le point à retenir de la
+journée.**
 
-**L'extension Chrome s'est déconnectée deux fois** en cours de route. Premier incident : Chrome
-était complètement fermé (0 processus), relancé depuis
-`C:\Program Files\Google\Chrome\Application\chrome.exe` — `Start-Process "chrome"` sans chemin
-échoue, l'exécutable n'est pas dans le PATH. Second incident : Chrome tournait (7 processus,
-fenêtre remise au premier plan par `SetForegroundWindow`), mais le service worker de l'extension
-n'a pas repris après deux tentatives. Travail interrompu là.
+1. « **Une erreur interne est survenue** lors de l'envoi de votre demande, veuillez réessayer
+   ultérieurement. » Rencontrée deux fois d'affilée sur `/blog/cas-usage-claude-organisme-formation/`.
+   J'en avais conclu au quota : **c'était faux**. La même URL est passée sans problème une heure
+   plus tard. Ce message est transitoire — il se retente.
+2. « **Quota dépassé** — Désolé, nous n'avons pas pu traiter cette demande, car vous avez dépassé
+   votre quota quotidien. Veuillez réessayer un peu plus tard demain. » Rencontrée sur
+   `/barometre-ia-organismes-formation/` après la 8e demande (9e envoi en comptant un doublon sur
+   l'accueil). Celui-là est sans appel : plus rien ne part avant le lendemain.
 
-**Restent à demander, dans cet ordre :** `/blog/cas-usage-claude-organisme-formation/` (exploré le
-23/07, le plus ancien), `/blog/opco-qualiopi-financement/`,
-`/blog/reglement-interieur-organisme-formation/`, `/claude-agency-en-bref/`, `/diagnostic/`,
-`/barometre-ia-organismes-formation/`, `/facturation-tva-societe-europeenne/`, `/semaine-offerte/`,
-`/evaluation-claude-code/`.
+**Le quota réel constaté est donc de ~9 envois par jour et par propriété**, message explicite à
+l'appui. Ne pas relancer après le second message, c'est du temps perdu.
+
+**Trois pièges de pilotage rencontrés, tous coûteux, tous reproductibles :**
+
+1. **`Start-Process "chrome"` échoue** — l'exécutable n'est pas dans le PATH. Passer par
+   `C:\Program Files\Google\Chrome\Application\chrome.exe`, testé le 07/09.
+2. **Une extension endormie et une extension non enregistrée ne se soignent pas pareil.**
+   `list_connected_browsers` qui renvoie une **liste vide** ne veut pas dire « service worker en
+   veille » : aucune extension n'est rattachée au compte, et ni la relance de Chrome ni la mise au
+   premier plan n'y changent rien — il faut ouvrir le panneau latéral Claude dans Chrome. J'ai perdu
+   trois tentatives à traiter le second cas comme le premier.
+3. **`Page.captureScreenshot` part en timeout dès que Chrome passe en arrière-plan** (l'application
+   Claude reprend le focus à chaque appel d'outil). Le symptôme se lit à tort comme un onglet gelé.
+   La parade qui a débloqué la fin du travail : **ne plus piloter aux coordonnées**. `find` renvoie
+   des `ref_N` valables sur un onglet en arrière-plan, le clic par `ref` fonctionne, et la
+   confirmation se lit en cherchant le texte « file d'attente d'exploration prioritaire ». Aucune
+   capture d'écran nécessaire. Corollaire : les coordonnées en pixels sont de toute façon fragiles
+   ici, la fenêtre ayant changé de taille trois fois en cours de session.
+
+**Restent à demander le 2026-09-08 ou après**, quatre URL, toutes modifiées seulement dans leur
+`description` — donc les moins urgentes du lot :
+`/barometre-ia-organismes-formation/` (refusée pour quota, à reprendre en premier),
+`/facturation-tva-societe-europeenne/`, `/semaine-offerte/`, `/evaluation-claude-code/`.
 
 ### Ce que l'API ne sait pas faire — à ne pas rechercher
 
