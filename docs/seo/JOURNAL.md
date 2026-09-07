@@ -5,6 +5,165 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-07 (98) — Audit technique des 88 pages, 11 correctifs on-page, et deux verdicts de cannibalisation tranchés par la donnée
+
+**Type :** audit on-site complet sur le HTML réellement produit (`app/dist`, 88 pages) + relevé
+Search Console du 2026-08-08 au 2026-09-04, puis correctifs. Demande de Julien : « effectue
+toutes les améliorations SEO du site ».
+
+### Ce que l'audit a trouvé — et surtout ce qu'il n'a pas trouvé
+
+Passe automatisée sur les 88 fichiers HTML du build (script jetable, scratchpad de session ;
+longueurs mesurées **après décodage des entités HTML** — sans ce décodage, `d&#39;` compte 5
+caractères au lieu d'un et fait remonter de faux titres trop longs).
+
+**Aucun défaut sur :** liens internes cassés (0), `alt` d'image manquant (0), `width`/`height`
+manquants donc CLS (0), `canonical` absent (0), `og:image` absent (0), titles dupliqués (0),
+descriptions dupliquées (0), sauts de niveau dans la hiérarchie de titres (0), `target="_blank"`
+sans `rel="noopener"` (0), articles à moins de 2 liens internes entrants (0 — le maillage manuel
+de la carte C3 tient). 87 URLs au sitemap pour 88 pages (la 404 est exclue, normal).
+
+**Faux positif à ne pas rechasser :** l'ancre `#modèle-de-feuille-démargement-à-télécharger` de
+`/blog/feuille-emargement/` sort en « cassée » sur toute comparaison naïve : le `href` est en
+UTF-8 pourcent-encodé (`#mod%C3%A8le-…`) et l'`id` en UTF-8 brut. Le navigateur les fait
+correspondre. Rien à corriger.
+
+### Les 11 correctifs poussés
+
+**Titles au-delà de la troncature Google (~60 caractères rendus) — 5 pages :**
+
+| Page | Avant | Après |
+| :--- | ---: | ---: |
+| `/` | 75 | 50 |
+| `/claude-agency-en-bref/` | 88 | 60 |
+| `/blog/opco-qualiopi-financement/` | 69 | 54 |
+| `/blog/reglement-interieur-organisme-formation/` | 68 | 56 |
+| `/blog/facture-electronique-organisme-formation/` | 66 | 57 |
+
+Les trois articles gardent leur requête cible (`REQUETES.csv`) en tête de title, et deux la
+rapprochent de la graphie exacte relevée : « règlement intérieur organisme de formation » (sans
+« d' »), « facture électronique organisme de formation ».
+
+**Accueil — arbitrage explicite.** Premier jet du title : « Claude Agency, agence IA pour
+organismes de formation ». Rejeté après lecture du relevé GSC : l'accueil est **1,9e sur
+« agence marketing claude »** (36 impressions sur 28 jours). Retirer « marketing » du title
+d'une page qui tient la 2e place sur une requête contenant ce mot, c'est jouer un positionnement
+acquis contre un gain de longueur. Title retenu : **« Agence IA et marketing pour organismes de
+formation »** (50 car.) — tous les termes porteurs de l'ancien conservés, seul le suffixe de
+marque « | Claude Agency » tombe, que Google affiche de toute façon en nom de site.
+
+**Descriptions au-delà de ~155 caractères — 5 pages** (`/`, `/diagnostic/`,
+`/facturation-tva-societe-europeenne/`, `/barometre-ia-organismes-formation/`,
+`/blog/reglement-interieur-organisme-formation/`) : 160-168 → 142-151. Coupées sur une fin de
+phrase, pas sur des points de suspension de Google.
+
+**Second `<h1>` supprimé** sur `/evaluation-claude-code/` : l'écran « Avant de commencer »
+(section `hidden`) portait un `h1` identique au principal. Passé en `h2`, mêmes classes, rendu
+visuel inchangé.
+
+**Non touché, volontairement :** les 4 pages de la liste « striking distance » du 2026-08-12
+dont le title dépasse de peu (`feuille-emargement` 61, `numero-declaration-activite` 61,
+`claude-ai-en-francais`, `seo-organisme-formation`). Leur title a été réécrit le 12/08 et se
+mesure le **11/09** ; le rechanger le 07/09 détruirait la mesure. `/semaine-offerte/`
+(description 167) est une page d'offre privée envoyée en direct, pas une page de recherche.
+
+### Backlog priorité 9 — la case Cloudflare, ouverte depuis le 22/08, est cochée
+
+Le contrôle était marqué « infaisable depuis une session cloud ». Fait depuis le poste :
+
+- `curl -s https://claudeagency.fr/robots.txt` rend **exactement** le fichier du dépôt, sans
+  aucun `Disallow`. Le *Managed robots.txt* de Cloudflare ne le surcharge pas.
+- Requête `GET /` avec les user-agents `GPTBot/1.2`, `ClaudeBot/1.0`, `PerplexityBot/1.0` et
+  `Googlebot/2.1` : **HTTP 200** pour les quatre. Aucun filtrage par user-agent au bord.
+- `/llms.txt` : 200, 30 715 octets.
+
+Le socle GEO est donc réellement en place, pas seulement en code.
+
+### Deux cannibalisations, tranchées par la donnée (GSC, 08/08 → 04/09)
+
+**1. « claude pour le marketing » — la cannibalisation n'est PAS levée.** Le contrôle était dû
+depuis le 05/09 (backlog §0). Sur cette requête, 18 impressions, position 73,9, 0 clic — et
+l'URL qui les porte est **`/agence-marketing-claude/`**, pas l'article. L'article
+`/blog/claude-pour-le-marketing/` ne ressort que sur « agence référencement naturel claude »
+(5 impressions, position 15,8) et « agence référencement claude » (1 impression). La règle déjà
+écrite au backlog s'applique : *« Si la landing reste l'URL classée, la cannibalisation n'est pas
+levée — envisager alors la fusion, pas une réécriture de plus. »* **Décision non prise ici** :
+fusionner deux pages publiées est un arbitrage éditorial, pas un correctif technique. À trancher
+par Julien, avec le contrôle « agence claude » du 11/09.
+
+**2. Cannibalisation inverse, non repérée jusqu'ici : l'accueil mange sa propre landing.** Sur
+« agence marketing claude », la requête cible de `/agence-marketing-claude/` (sitemap priorité
+0,9) :
+
+| URL | Impressions | Position | Clics |
+| :--- | ---: | ---: | ---: |
+| `/` | 36 | **1,9** | 0 |
+| `/agence-marketing-claude/` | 27 | 16,5 | 0 |
+| `/a-propos/` | 17 | 42,5 | 0 |
+| `/services/` | 15 | 49,5 | 0 |
+| `/contact/` | 9 | 62,0 | 0 |
+
+Google choisit l'accueil, pas la landing construite pour la requête. Même schéma sur « agence
+claude » (6 URLs du site en concurrence, la meilleure étant l'accueil à 24,9) et sur
+« agence référencement claude » / « agence référencement naturel claude », où c'est
+`/services/seo/` qui tient la position **2,0** et **1,9**.
+
+### Le constat qui change la lecture de la régression (backlog §1bis)
+
+Sur 28 jours, le site occupe la **position 2 sur trois requêtes distinctes** — « agence
+marketing claude » (accueil), « agence référencement claude » et « agence référencement naturel
+claude » (`/services/seo/`) — pour **76 impressions cumulées et 0 clic**. Un taux de clic nul en
+position 2 n'existe pas chez des humains.
+
+Ces requêtes appartiennent à la même famille que les concaténations « …skills claude seo » déjà
+élucidées le 2026-08-12 (backlog §4) : permutations mécaniques autour de « claude » +
+« agency / seo / marketing / visibility ». Le relevé en contient d'autres du même moule :
+`llmo agency for claude`, `aio agency for claude`, `claude visibility agency`,
+`marketing agency for claude`, `claude seo firm`, `claude seo consultancy`, `claude the agency`.
+
+**Hypothèse, pas conclusion** : une part importante des impressions et de la position moyenne du
+site vient de requêtes non humaines, ce qui gonfle les impressions sans jamais produire de clic
+et tire la position moyenne dans les deux sens selon les vagues. Cela n'invalide pas la
+régression mesurée le 28/08, mais interdit de la lire comme une perte de trafic réel. **Contrôle
+à faire au relevé du 11/09** : refaire le total 88 jours avec le filtre
+`query notContains "claude"` sur les requêtes en anglais, et comparer les deux courbes.
+
+### Ce qui marche vraiment, et qu'il ne faut pas casser
+
+Trafic réel sur 28 jours, hors requêtes de marque et hors permutations :
+`/blog/livret-accueil-stagiaire/` (223 impressions, 12 clics, CTR 5,4 %, position 17,6) et
+`/blog/prompts-ia-formateurs/` (82 impressions, 5 clics, CTR 6,1 %, position 7,3). Ce sont les
+deux seules pages du site qui convertissent des impressions en visites. Toutes deux sur des
+requêtes de métier « organisme de formation », aucune sur « claude ».
+
+### Signalé pour le relevé du 11/09, pas fait ici
+
+- **`/services/seo/` : la condition d'annulation du title est déjà remplie.** La règle du backlog
+  §3 dit « si toujours 0 clic le 11/09, remettre l'ancien title ». Mesure au 04/09 : 305
+  impressions, **1 clic**, et 0 clic sur les deux requêtes où la page est en position 2. Le
+  déclencheur sera à appliquer le 11/09, pas avant — l'effet d'un title se mesure sur une fenêtre
+  complète.
+- `/blog/attestation-de-formation/` et `/blog/automatiser-relances-stagiaires/`, laissées de côté
+  le 12/08 faute de requêtes visibles, en ont maintenant : 11 impressions position 7,3 pour la
+  première, 7 impressions position 8,4 pour la seconde. Leurs requêtes restent sous le seuil
+  d'anonymisation en détail — à réessayer sur une fenêtre plus large au prochain relevé.
+
+**Build :** `cd app && npm run build` → **88 pages, exit 0**, aucune soumission IndexNow
+(build local, `FORCE_INDEXNOW` non posé).
+
+**Fichiers touchés :** `app/src/pages/index.astro`, `app/src/pages/claude-agency-en-bref.astro`,
+`app/src/pages/diagnostic.astro`, `app/src/pages/facturation-tva-societe-europeenne.astro`,
+`app/src/pages/barometre-ia-organismes-formation/index.astro`,
+`app/src/pages/evaluation-claude-code.astro`,
+`app/src/content/blog/opco-qualiopi-financement.mdx`,
+`app/src/content/blog/reglement-interieur-organisme-formation.mdx`,
+`app/src/content/blog/facture-electronique-organisme-formation.mdx`,
+`docs/seo/JOURNAL.md`, `docs/seo/BACKLOG.md`, `docs/seo/REQUETES.csv`.
+
+**Prochaine lecture :** relevé du 2026-09-11, déjà cadré au backlog.
+
+---
+
 ## 2026-09-06 (97) — Ce que portent les pages que les IA citent à notre place : deux traits repris sur deux articles
 
 **Type :** relevé concurrentiel puis correctif éditorial ciblé. Carte 114 du backlog

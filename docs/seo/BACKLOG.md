@@ -25,9 +25,16 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       contre `/agence-marketing-claude/` sur « claude pour le marketing ». Les deux pages sont
       conservées (intentions différentes) ; ce sont les FAQ dupliquées et le maillage à sens unique
       qui ont été corrigés. Détail et méthode de diagnostic : `JOURNAL.md` #85.
-- [ ] **Au relevé du 2026-09-05 au plus tôt** : vérifier que l'URL classée sur « claude pour le
-      marketing » a basculé vers l'article. Si la landing reste l'URL classée, la cannibalisation
-      n'est pas levée — envisager alors la fusion, pas une réécriture de plus.
+- [x] **Relevé fait le 2026-09-07 : la cannibalisation n'est PAS levée.** Sur « claude pour le
+      marketing » (18 impressions, position 73,9, 0 clic, fenêtre 08/08→04/09), l'URL classée est
+      toujours `/agence-marketing-claude/`. L'article ne ressort que sur « agence référencement
+      naturel claude » (5 impressions, position 15,8). **Arbitrage en attente de Julien : fusion
+      des deux pages, ou abandon de l'une.** Ne pas écrire une troisième page, ne pas réécrire une
+      fois de plus. Détail : `JOURNAL.md` #98.
+- [ ] **Nouveau (07/09/2026) — cannibalisation inverse : l'accueil mange sa propre landing.** Sur
+      « agence marketing claude », `/` est 1,9e (36 impressions) et `/agence-marketing-claude/`
+      16,5e (27 impressions) ; cinq URLs du site se partagent la requête, 0 clic au total. Même
+      schéma sur « agence claude ». À traiter avec l'arbitrage ci-dessus, pas séparément.
 - [ ] **Au relevé du 2026-09-11** : même contrôle sur « agence claude », après la publication
       du 04/09 de `/blog/agence-claude-comment-choisir/` (`JOURNAL.md` #89). La landing
       `/agence-marketing-claude/` était 17e au 03/09. Si l'article n'apparaît pas **et** que la
@@ -214,7 +221,12 @@ sujet (leçon du 30/06/2026 : plus jamais de sujet publié sans vérifier l'exis
 14 articles de référence en tête, 5 pages indexables ajoutées, `robots.txt` qui le déclare.
 Il reste un seul point, hors code :
 
-- [ ] **Vérifier que Cloudflare ne bloque pas les bots IA** (`memo-cloudflare.md` §4, case 4 de
+- [x] **VÉRIFIÉ le 2026-09-07 depuis le poste — Cloudflare ne bloque rien.** `curl -s
+      https://claudeagency.fr/robots.txt` rend exactement le fichier du dépôt, sans `Disallow` ;
+      `GET /` avec les user-agents GPTBot, ClaudeBot, PerplexityBot et Googlebot → **200** pour
+      les quatre ; `/llms.txt` → 200. Le *Managed robots.txt* n'est pas actif sur la zone.
+      Détail : `JOURNAL.md` #98. *(Énoncé d'origine ci-dessous, conservé pour la méthode.)*
+      **Vérifier que Cloudflare ne bloque pas les bots IA** (`memo-cloudflare.md` §4, case 4 de
       la checklist, jamais cochée). Le *Managed robots.txt* de Cloudflare bloque par défaut
       GPTBot, ClaudeBot et Google-Extended : si c'est actif, le `robots.txt` du dépôt et le
       `llms.txt` sont sans effet, les moteurs IA n'accèdent pas au site. Contrôle :
