@@ -5,6 +5,94 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-07 (101) — Demandes d'indexation Search Console : 3 sur 12, sitemap resoumis, et ce que l'API ne sait pas faire
+
+**Type :** exécution, à la demande de Julien, des demandes d'indexation pour les pages modifiées
+aux entrées #98 à #100. Aucun changement de contenu.
+
+### Ce qui a été fait
+
+**1. Sitemap resoumis** (`GOOGLE_SEARCH_CONSOLE_SUBMIT_SITEMAP` via Composio) :
+`https://claudeagency.fr/sitemap-index.xml`, réponse `success: true`. Ce n'était pas cosmétique —
+avant l'appel, `lastSubmitted` remontait au **2026-07-13**, deux mois en arrière, alors que
+`lastDownloaded` était du 06/09. 87 URLs déclarées.
+
+**2. Trois demandes d'indexation confirmées** (bouton « Demander une indexation » de la Search
+Console, piloté dans Chrome ; boîte « Indexation demandée » lue à l'écran pour chacune) :
+- `/blog/facture-electronique-organisme-formation/`
+- `/`
+- `/agence-marketing-claude/`
+
+### L'état d'indexation relevé avant d'agir (API d'inspection d'URL, 07/09)
+
+| URL | État | Dernière exploration |
+| :--- | :--- | :--- |
+| `/` | Envoyée et indexée | 2026-09-05 |
+| `/claude-agency-en-bref/` | Envoyée et indexée | 2026-09-04 |
+| `/blog/claude-pour-le-marketing/` | Envoyée et indexée | 2026-09-01 |
+| `/agence-marketing-claude/` | Envoyée et indexée | 2026-08-28 |
+| `/blog/reglement-interieur-organisme-formation/` | Envoyée et indexée | 2026-08-22 |
+| `/blog/opco-qualiopi-financement/` | Envoyée et indexée | 2026-08-21 |
+| `/blog/cas-usage-claude-organisme-formation/` | Envoyée et indexée | 2026-07-23 |
+| `/blog/facture-electronique-organisme-formation/` | **Détectée, actuellement non indexée** | jamais explorée |
+
+Deux enseignements. **Toutes les explorations sont antérieures aux modifications du 07/09** :
+aucun des nouveaux titles n'a encore été vu par Google, et rien de ce qui a été mesuré le 07/09 ne
+reflète le travail de ce jour. Et **l'article publié le 05/09 n'a jamais été exploré** — c'est lui
+qui avait le plus besoin d'une demande, il l'a eue en premier.
+
+`/blog/claude-pour-le-marketing/` reste indexé alors qu'il renvoie un 301 depuis ce matin : normal,
+Google le retirera à sa prochaine exploration. **Ne pas demander l'indexation d'une URL redirigée.**
+
+### Ce qui a échoué, et pourquoi c'est à savoir
+
+**`/blog/cas-usage-claude-organisme-formation/` : deux tentatives, deux échecs.** Message de
+Google : « Une erreur interne est survenue lors de l'envoi de votre demande, veuillez réessayer
+ultérieurement. » Après retentative, le bouton affichait toujours « Demander une indexation » et
+non « Indexation demandée » — la demande n'est donc pas passée. C'est le comportement connu du
+quota journalier de ce bouton, qui se manifeste par une erreur interne et non par un message de
+quota.
+
+**L'extension Chrome s'est déconnectée deux fois** en cours de route. Premier incident : Chrome
+était complètement fermé (0 processus), relancé depuis
+`C:\Program Files\Google\Chrome\Application\chrome.exe` — `Start-Process "chrome"` sans chemin
+échoue, l'exécutable n'est pas dans le PATH. Second incident : Chrome tournait (7 processus,
+fenêtre remise au premier plan par `SetForegroundWindow`), mais le service worker de l'extension
+n'a pas repris après deux tentatives. Travail interrompu là.
+
+**Restent à demander, dans cet ordre :** `/blog/cas-usage-claude-organisme-formation/` (exploré le
+23/07, le plus ancien), `/blog/opco-qualiopi-financement/`,
+`/blog/reglement-interieur-organisme-formation/`, `/claude-agency-en-bref/`, `/diagnostic/`,
+`/barometre-ia-organismes-formation/`, `/facturation-tva-societe-europeenne/`, `/semaine-offerte/`,
+`/evaluation-claude-code/`.
+
+### Ce que l'API ne sait pas faire — à ne pas rechercher
+
+L'API Search Console **n'expose pas** le bouton « Demander une indexation ». Vérifié le 07/09 sur
+l'inventaire complet du connecteur Composio : `SUBMIT_SITEMAP`, `INSPECT_URL` (lecture seule),
+`LIST_SITEMAPS`, `GET_SITEMAP`, `LIST_SITES`, `GET_SITE`, `ADD_SITE`,
+`SEARCH_ANALYTICS_QUERY` — rien d'autre. L'*Indexing API* de Google, elle, n'est officiellement
+ouverte qu'aux types `JobPosting` et `BroadcastEvent`. **Les deux seuls leviers programmables
+sont donc la resoumission du sitemap et IndexNow** ; le reste passe par le clic humain, ou par le
+pilotage du navigateur comme ici.
+
+### IndexNow — déjà fait, automatiquement, trois fois aujourd'hui
+
+`app/scripts/submit-indexnow.mjs` s'exécute en `postbuild` dès que `CF_PAGES` est posé, donc à
+chaque build Cloudflare Pages : il pousse **toutes** les URLs du sitemap à IndexNow (Bing, Yandex,
+Seznam, Naver). Les trois pushes du 07/09 l'ont donc déclenché trois fois. Clé vérifiée servie en
+ligne : `https://claudeagency.fr/957b3f3cb57932a0d71427a3377d6a3e.txt` → **HTTP 200**.
+
+Corollaire : **côté moteurs non-Google, il n'y a rien à faire à la main.** Ne pas poser
+`FORCE_INDEXNOW=1` sur un build local pour « rattraper » — ce serait un doublon, et le garde-fou
+de `CLAUDE.md` existe pour ça.
+
+**Prochaine lecture :** relevé du 2026-09-11. Y ajouter la vérification que les nouveaux titles ont
+bien été explorés — c'est la condition pour que les mesures de CTR de ce relevé veuillent dire
+quelque chose.
+
+---
+
 ## 2026-09-07 (100) — Deux arbitrages de Julien : l'accueil garde « agence marketing claude », et /semaine-offerte/ reste indexée
 
 **Type :** exécution de deux décisions prises par Julien en réponse au bloc « Reste » de
