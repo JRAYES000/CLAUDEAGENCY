@@ -34,7 +34,7 @@ const faq = [
 ];
 ---
 <BaseLayout
-  title="Agence marketing Claude : SEO, Ads et contenu pilotés par l'IA"
+  title="Agence marketing Claude : SEO, Google Ads et contenu"
   description="Claude Agency est l'agence marketing qui pilote SEO, Google Ads et contenu avec Claude, l'IA d'Anthropic. Spécialisée organismes de formation. Audit offert."
   pageSchema={[serviceSchema, breadcrumb]}
 >
@@ -97,6 +97,77 @@ const faq = [
         <li><strong>Sprint de mise en place.</strong> Les fondations d'abord (site, pages, campagnes, contenus prioritaires), livrées vite grâce à Claude.</li>
         <li><strong>Pilotage continu.</strong> Un reporting quotidien de l'activité des consultants, des positions et des conversions suivies mois après mois.</li>
       </ol>
+
+      <h2>Une semaine de marketing pilotée par Claude</h2>
+      <p>
+        Le plus dur à imaginer, quand on n'a jamais travaillé comme ça, c'est le rythme. Voici le
+        nôtre, sur un site que nous suivons en continu.
+      </p>
+      <ul>
+        <li>
+          <strong>Lundi — on mesure avant de décider.</strong> Relevé des positions sur les requêtes
+          suivies, lecture des clics et des impressions de la semaine, comparaison avec le relevé
+          précédent. Ce relevé n'est pas produit par l'IA mais par un petit script&nbsp;: une tâche qui
+          n'appelle aucun jugement se code une fois et tourne toute seule. Le consultant lit le
+          résultat et choisit <strong>une</strong> priorité pour la semaine.
+        </li>
+        <li>
+          <strong>Mardi à jeudi — on produit.</strong> Claude Code travaille sur le site lui-même&nbsp;:
+          rédaction ou réécriture d'une page, correction des balises, maillage interne, préparation
+          d'annonces. Chaque chantier part d'un cadrage écrit (objectif, requête visée, ton, sources
+          autorisées) et se termine par une vérification technique — sur un site, la preuve qu'un
+          travail est en ligne, c'est la page qui répond, pas le rapport qui l'affirme.
+        </li>
+        <li>
+          <strong>Vendredi — on arbitre.</strong> Ce qui a été produit est relu par un humain, ce qui
+          doit partir chez quelqu'un attend une validation explicite, et ce qui n'a pas abouti est
+          écrit noir sur blanc plutôt qu'enjolivé.
+        </li>
+      </ul>
+      <p>
+        Deux règles font tenir ce rythme, et elles valent pour n'importe quelle équipe.
+        <strong>Une seule priorité à la fois</strong>&nbsp;: une IA capable de tout produire donne envie
+        de tout lancer en même temps, et c'est le meilleur moyen de finir la semaine avec dix
+        chantiers ouverts et aucun en ligne. <strong>Ce qu'on a appris s'écrit</strong>&nbsp;: chaque
+        erreur rencontrée devient une consigne que l'IA relit au démarrage suivant — sans cette
+        mémoire écrite, on recommence le même apprentissage à chaque session, et le gain de temps
+        s'évapore.
+      </p>
+
+      <h2>Les quatre pannes qu'on rencontre vraiment</h2>
+      <p>
+        Les démonstrations d'IA montrent toujours le cas qui marche. Voici ce qui casse en
+        production, et la parade que nous appliquons.
+      </p>
+      <ol>
+        <li>
+          <strong>L'IA affirme un chiffre faux avec un aplomb parfait.</strong> C'est la panne la plus
+          coûteuse, parce qu'elle ne ressemble pas à une panne&nbsp;: la phrase est bien tournée, la
+          source a l'air crédible, et personne ne rouvre le lien. <em>La parade&nbsp;:</em> tout chiffre
+          publié porte sa source et sa date de relevé, et ce qui n'a pas pu être vérifié s'écrit
+          «&nbsp;non vérifié&nbsp;».
+        </li>
+        <li>
+          <strong>Un chiffre recopié d'un document à l'autre vieillit sans prévenir.</strong> Une donnée
+          juste au moment où on l'écrit devient fausse dès que la source bouge, et rien ne le signale.
+          <em>La parade&nbsp;:</em> on relit le chiffre à la source avant chaque réutilisation, jamais
+          dans le brouillon précédent.
+        </li>
+        <li>
+          <strong>Une correction lancée «&nbsp;sur tout le site&nbsp;» écrase plus que prévu.</strong> Demander
+          à un agent de poser des liens internes sur soixante articles d'un coup, c'est soixante
+          fichiers réécrits — et si la consigne était mal formulée, soixante contenus abîmés en une
+          seule fois. <em>La parade&nbsp;:</em> on traite un lot restreint, on regarde le résultat, puis on
+          élargit. Le maillage interne se choisit à la main.
+        </li>
+        <li>
+          <strong>La tentation du volume.</strong> Publier trente articles en un mois est devenu facile.
+          Ça ne fait pas venir trente fois plus de visiteurs&nbsp;: ça dilue le site, fait se concurrencer
+          les pages entre elles et brouille le sujet sur lequel Google devrait vous reconnaître.
+          <em>La parade&nbsp;:</em> peu de pages, précises, mises à jour — et on répare un contenu existant
+          avant d'en publier un neuf.
+        </li>
+      </ol>
     </div>
 
     <Image
@@ -118,9 +189,6 @@ const faq = [
         « testons » pas l'IA, nous produisons avec elle chaque jour.
       </p>
       <p>
-        Envie de voir comment nous l'utilisons au quotidien&nbsp;? Nous détaillons une semaine de travail
-        complète, les quatre pannes qu'on rencontre vraiment et les parades, dans
-        <a href="/blog/claude-pour-le-marketing/">Claude pour le marketing&nbsp;: comment une agence l'utilise vraiment</a>.
         Notre fondateur détaille son parcours et sa méthode sur la page <a href="/a-propos/">à propos</a>.
       </p>
       <p>

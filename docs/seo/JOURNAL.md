@@ -5,6 +5,95 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-07 (99) — Fusion de la cannibalisation « claude pour le marketing », et trois docs qui mentaient
+
+**Type :** exécution des arbitrages laissés ouverts par l'entrée #98, sur demande explicite de
+Julien (« réalise toutes les actions correctrices et améliorations que tu as identifiées »).
+
+### La fusion
+
+**Décision : `/blog/claude-pour-le-marketing/` est fusionné dans `/agence-marketing-claude/`,
+puis redirigé en 301.** La règle était déjà écrite au backlog depuis le 30/08 (*« Si la landing
+reste l'URL classée, la cannibalisation n'est pas levée — envisager alors la fusion, pas une
+réécriture de plus »*) ; le relevé du 07/09 l'a déclenchée : sur « claude pour le marketing »
+(18 impressions, position 73,9), l'URL classée est la landing, et l'article ne récoltait plus
+qu'**une** impression sur 28 jours.
+
+**Ce qui a été déplacé, pas supprimé.** Les deux sections que la landing n'avait pas et qui
+portent la preuve concrète — « Une semaine de marketing pilotée par Claude » (lundi/mardi-jeudi/
+vendredi, les deux règles de rythme) et « Les quatre pannes qu'on rencontre vraiment » (chiffre
+faux affirmé avec aplomb, chiffre recopié qui vieillit, correction de masse qui écrase, tentation
+du volume) — sont reprises dans la landing, en HTML, dans le bloc `prose` existant. Le reste de
+l'article (« Ce que Claude fait déjà très bien », « Claude / Claude Code / Cowork », « Notre
+méthode », FAQ) faisait doublon avec des sections que la landing avait déjà.
+
+**Les 5 liens internes qui visaient l'article** (`agence-claude-comment-choisir`,
+`cas-usage-claude-organisme-formation`, `claude-ai-en-francais`, `formation-claude`,
+`seo-organisme-formation`) pointent maintenant vers la landing, ancre « agence marketing
+Claude » — la requête exacte. Le paragraphe de la landing qui renvoyait à l'article a été retiré :
+son contenu est désormais sur la page elle-même.
+
+**Redirection** ajoutée à `app/public/_redirects`, sous les 12 du ménage du 14/08. Le mécanisme
+est vérifié : les 4 URL redirigées du 14/08 encore visibles dans GSC répondent bien 301 en ligne
+(testé le 07/09), et aucune page en dur ne masque une règle du fichier.
+
+**Title de la landing** ramené de 62 à 52 caractères : « Agence marketing Claude : SEO, Google
+Ads et contenu ». La requête cible reste en tête ; « IA » sort du title mais tient le H1 et la
+description.
+
+### Ce qui n'est PAS réglé par cette fusion, et qu'il faut savoir
+
+La seconde cannibalisation de l'entrée #98 demeure : **c'est l'accueil, pas la landing, qui tient
+la position 1,9 sur « agence marketing claude »** (36 impressions contre 27). Fusionner l'article
+retire un concurrent sur trois, pas le principal. Aucun geste supplémentaire n'a été posé
+là-dessus : reprendre des mots au title de l'accueil pour affaiblir volontairement une page qui
+est 2e serait jouer un acquis contre une hypothèse. **À observer au relevé du 11/09** — si la
+landing remonte après la fusion, on laisse faire ; si l'accueil reste devant, la question devient
+« à quoi sert cette landing », et non « comment la faire gagner ».
+
+### Trois documents qui envoyaient les prochaines sessions dans le mur
+
+Corrigés, parce qu'une mémoire fausse coûte plus cher qu'une mémoire absente :
+
+1. **`docs/seo/perf-lcp-mobile.md`, section « Actions Cloudflare dashboard restantes » : tout le
+   bloc nommait `claudepartners.fr`.** Copier-coller depuis l'autre projet. Une session qui
+   l'aurait suivie aurait posé HSTS preload et deux Redirect Rules **sur la mauvaise zone**.
+   7 occurrences corrigées en `claudeagency.fr`, plus une note datée en tête du fichier.
+2. **Même fichier : « Plausible — déjà `defer`, ~1 ko » présenté comme un script chargé sur
+   l'accueil.** Faux depuis toujours : `grep -rn "plausible" app/src/` ne rend, le 07/09, qu'une
+   occurrence — le mot français « plausible » dans une phrase de la page du test. L'installation
+   de Plausible a d'ailleurs été écartée le 14/08. Ligne marquée périmée plutôt que supprimée.
+3. **`CLAUDE.md` : « Sept chemins y sont déjà exclus » du filtre du sitemap.** Plus vrai depuis
+   la règle de Julien du 23/08 : aucune page n'est en `noindex`, le `serialize()` ne fait plus
+   que régler `changefreq`, `priority` et `lastmod`. Le paragraphe dit maintenant l'état réel, et
+   surtout qu'une page à re-dés-indexer demande **deux** gestes, pas un.
+
+### Reste au-dessus de la ligne de flottaison
+
+`/blog/cas-usage-claude-organisme-formation/` : title de 62 à 48 caractères, requête cible
+« cas usage claude organisme formation » intégralement conservée.
+
+**Non touché, volontairement :** `feuille-emargement` et `numero-declaration-activite` (61
+caractères chacun) restent sous le gel de mesure du 11/09 — deux caractères de trop ne valent pas
+la perte d'un relevé. `/services/seo/` non plus : sa règle d'annulation de title porte une date,
+le 11/09, et cette date fait partie de la règle. `/semaine-offerte/` (description de 167) est une
+page d'offre envoyée en direct, jamais servie depuis une recherche.
+
+**Build :** `cd app && npm run build` → **87 pages** (88 moins l'article fusionné), **exit 0**.
+Audit repassé sur le `dist` : 0 lien interne cassé, 0 title au-delà de 60 hors gel, article absent
+du sitemap et de `llms.txt`.
+
+**Fichiers touchés :** `app/src/pages/agence-marketing-claude.astro`, `app/public/_redirects`,
+`app/src/content/blog/claude-pour-le-marketing.mdx` (supprimé),
+`app/src/content/blog/{agence-claude-comment-choisir,cas-usage-claude-organisme-formation,claude-ai-en-francais,formation-claude,seo-organisme-formation}.mdx`,
+`CLAUDE.md`, `docs/seo/perf-lcp-mobile.md`, `docs/seo/JOURNAL.md`, `docs/seo/BACKLOG.md`,
+`docs/seo/REQUETES.csv`.
+
+**Prochaine lecture :** relevé du 2026-09-11 — s'y ajoute le contrôle « la landing remonte-t-elle
+après la fusion ? ».
+
+---
+
 ## 2026-09-07 (98) — Audit technique des 88 pages, 11 correctifs on-page, et deux verdicts de cannibalisation tranchés par la donnée
 
 **Type :** audit on-site complet sur le HTML réellement produit (`app/dist`, 88 pages) + relevé

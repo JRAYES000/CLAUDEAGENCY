@@ -60,8 +60,11 @@ Schéma source de vérité : `app/src/content.config.ts` — le build échoue si
 l'URL : minuscules, tirets, sans accent. Les champs obligatoires du blog et des services sont dans
 `content.config.ts`.
 
-**Une page qui ne doit pas être indexée s'ajoute au filtre du sitemap**, `app/astro.config.mjs`
-ligne 62 — sinon elle y entre malgré son `noindex`. Sept chemins y sont déjà exclus.
+**Le sitemap n'exclut plus aucune page**, par la règle de Julien du 23/08/2026 : aucune page du
+site n'est en `noindex`, donc le `serialize()` de `app/astro.config.mjs` ne fait plus que régler
+`changefreq`, `priority` et `lastmod`. Seules la 404 et la redirection `/sitemap.xml` restent
+hors sitemap, et ce n'est pas le filtre qui les écarte. Une page qui devrait redevenir non
+indexable demande donc **deux** gestes : son `noindex` **et** un filtre à réintroduire ici.
 
 **Tout le code serveur du projet tient dans `app/functions/api/`** (Cloudflare Pages Functions) :
 `subscribe.js` sert le lead magnet, `contact.js` les formulaires contact / diagnostic / Baromètre,

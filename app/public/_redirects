@@ -18,6 +18,10 @@
 /blog/financer-formation-opco-cpf-france-travail/ /blog/plan-financement-formation/ 301
 /blog/formation-claude-anthropic-organisme-formation/ /blog/formation-claude/ 301
 /blog/claude-agency-vs-concurrents/ /blog/meilleure-agence-ia-organisme-formation/ 301
+
+# Fusion du 2026-09-07 : cannibalisation entre la landing et l'article sur « claude pour le
+# marketing ». La landing tenait la requete, l'article ne ressortait plus. Detail : JOURNAL.md #99
+/blog/claude-pour-le-marketing/ /agence-marketing-claude/ 301
 /blog/claude-code-organisme-formation/ /blog/formation-claude-code/ 301
 /blog/optimisation-site-organisme-formation/ /services/optimisation-site/ 301
 /blog/creer-organisme-formation/ /blog/numero-declaration-activite/ 301

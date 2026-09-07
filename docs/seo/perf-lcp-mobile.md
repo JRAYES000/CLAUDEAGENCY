@@ -1,5 +1,9 @@
 # Performance — LCP mobile de la page d'accueil
 
+> **Note du 2026-09-07.** Toute la section « Actions Cloudflare dashboard restantes » nommait
+> `claudepartners.fr` — un copier-coller depuis l'autre projet. Corrigé en `claudeagency.fr` :
+> une session qui l'aurait suivie aurait posé des règles sur la mauvaise zone.
+
 Audit PageSpeed du 2026-06-16. Desktop excellent (LCP 1,1 s, CLS 0).
 Mobile à corriger : **LCP 4,2 s** (cible < 2,5 s), FCP 1,9 s, Speed Index 3,0 s, CLS 0, TBT 19 ms.
 Opportunités chiffrées mobile : « Redirects » −630 ms ; « Unused JavaScript » −300 ms / 54 ko.
@@ -59,7 +63,9 @@ Voir « Actions Cloudflare restantes » ci-dessous.
 ### 5. JavaScript inutilisé (54 ko) — origine identifiée
 Le site est 100 % statique : `dist/_astro/` ne contient **aucun bundle JS first-party**.
 Les seuls scripts externes chargés sur la home sont :
-- **Plausible** (`plausible.io/js/script.js`) — déjà `defer`, ~1 ko, négligeable.
+- ~~**Plausible**~~ — **périmé.** Cette ligne datait du 2026-06-16 ; Plausible n'a jamais été
+  chargé sur le site et l'option d'installation a été écartée le 2026-08-14 (`BACKLOG.md`,
+  section « Écarté »). Vérifié le 2026-09-07 : aucune occurrence de `plausible` dans `app/src/`.
 - **Google Ads gtag.js** (`googletagmanager.com/gtag/js?id=AW-18240137840`) — déjà `async`,
   mais ~54 ko dont l'essentiel est inutilisé sur un site vitrine. **C'est la source des
   54 ko « Unused JavaScript ».**
@@ -82,7 +88,7 @@ niveau de la zone Cloudflare (pas dans le dépôt) :
 ### A. HSTS preload (supprime le hop http→https)
 Un accès initial en `http://` provoque une redirection 301/308 vers `https://`
 (= 1 aller-retour réseau coûteux sur mobile). Pour l'éliminer :
-1. Cloudflare → domaine `claudepartners.fr` → **SSL/TLS → Edge Certificates**.
+1. Cloudflare → domaine `claudeagency.fr` → **SSL/TLS → Edge Certificates**.
 2. Activer **Always Use HTTPS** (si pas déjà fait).
 3. Activer **HSTS (HTTP Strict Transport Security)** :
    - Max-Age : 12 mois (`31536000`).
@@ -96,21 +102,21 @@ Un accès initial en `http://` provoque une redirection 301/308 vers `https://`
 ### B. Redirect Rules www→apex et *.pages.dev→apex (un seul hop, en 301)
 Le fichier `_redirects` d'Astro ne gère **que** les chemins, pas les redirections de
 hostname. Les redirections de domaine doivent être des **Redirect Rules** de zone :
-1. Cloudflare → `claudepartners.fr` → **Rules → Redirect Rules**.
+1. Cloudflare → `claudeagency.fr` → **Rules → Redirect Rules**.
 2. Règle 1 — **www → apex** :
-   - Si `hostname` égale `www.claudepartners.fr`
-   - Rediriger (statique) vers `https://claudepartners.fr` + chemin/query préservés,
+   - Si `hostname` égale `www.claudeagency.fr`
+   - Rediriger (statique) vers `https://claudeagency.fr` + chemin/query préservés,
      code **301**, *Preserve query string* activé.
 3. Règle 2 — **pages.dev → apex** (évite l'indexation du domaine de preview) :
    - Si `hostname` se termine par `.pages.dev`
-   - Rediriger vers `https://claudepartners.fr` + chemin, code **301**.
+   - Rediriger vers `https://claudeagency.fr` + chemin, code **301**.
    - (Le `_headers` envoie déjà `X-Robots-Tag: noindex` sur `*.pages.dev`.)
    Objectif : garantir qu'on n'enchaîne jamais plus d'**un seul** 301, directement
    vers l'URL canonique finale (apex + https + slash final).
 
 ### C. Vérifier l'absence de chaîne (audit)
-Après A et B, tester avec `curl -sIL http://www.claudepartners.fr/` : on doit voir
-**au plus un** 301 menant directement à `https://claudepartners.fr/` (avec slash final),
+Après A et B, tester avec `curl -sIL http://www.claudeagency.fr/` : on doit voir
+**au plus un** 301 menant directement à `https://claudeagency.fr/` (avec slash final),
 puis un 200. Toute chaîne > 1 hop = à corriger dans les Redirect Rules.
 
 ## Résultat build

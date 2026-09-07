@@ -25,6 +25,9 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       contre `/agence-marketing-claude/` sur « claude pour le marketing ». Les deux pages sont
       conservées (intentions différentes) ; ce sont les FAQ dupliquées et le maillage à sens unique
       qui ont été corrigés. Détail et méthode de diagnostic : `JOURNAL.md` #85.
+- [x] **TRAITÉ le 2026-09-07 par la fusion** (`JOURNAL.md` #99) : l'article est fusionné dans
+      `/agence-marketing-claude/` et redirigé en 301, ses deux sections utiles reprises dans la
+      landing, ses 5 liens entrants repointés. Constat qui a déclenché la décision ci-dessous.
 - [x] **Relevé fait le 2026-09-07 : la cannibalisation n'est PAS levée.** Sur « claude pour le
       marketing » (18 impressions, position 73,9, 0 clic, fenêtre 08/08→04/09), l'URL classée est
       toujours `/agence-marketing-claude/`. L'article ne ressort que sur « agence référencement
@@ -34,7 +37,12 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
 - [ ] **Nouveau (07/09/2026) — cannibalisation inverse : l'accueil mange sa propre landing.** Sur
       « agence marketing claude », `/` est 1,9e (36 impressions) et `/agence-marketing-claude/`
       16,5e (27 impressions) ; cinq URLs du site se partagent la requête, 0 clic au total. Même
-      schéma sur « agence claude ». À traiter avec l'arbitrage ci-dessus, pas séparément.
+      schéma sur « agence claude ». **La fusion du 07/09 retire un concurrent sur trois, pas le
+      principal** : c'est l'accueil qu'il faudrait affaiblir, et aucun geste n'a été posé là-dessus
+      — retirer des mots au title d'une page 2e serait jouer un acquis contre une hypothèse.
+      **Au relevé du 11/09** : si la landing remonte après la fusion, laisser faire ; si l'accueil
+      reste devant, la question devient « à quoi sert cette landing », pas « comment la faire
+      gagner ».
 - [ ] **Au relevé du 2026-09-11** : même contrôle sur « agence claude », après la publication
       du 04/09 de `/blog/agence-claude-comment-choisir/` (`JOURNAL.md` #89). La landing
       `/agence-marketing-claude/` était 17e au 03/09. Si l'article n'apparaît pas **et** que la
