@@ -9,6 +9,19 @@ const breadcrumb = {
   ],
 };
 
+const event = {
+  '@context': 'https://schema.org', '@type': 'Event',
+  name: 'Préparer son audit Qualiopi sans y passer ses soirées',
+  description: "Webinaire gratuit : ce qu'on peut déléguer à une machine pour préparer son audit Qualiopi, et ce qu'on ne peut pas.",
+  startDate: '2026-09-16T12:30:00+02:00', endDate: '2026-09-16T13:15:00+02:00',
+  eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  isAccessibleForFree: true,
+  location: { '@type': 'VirtualLocation', url: new URL('/webinaire/', Astro.site).href },
+  organizer: { '@id': new URL('/#organization', Astro.site).href },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: new URL('/webinaire/', Astro.site).href },
+};
+
 const plan = [
   { t: '0–5 min', d: "Cadrage : pourquoi un audit Qualiopi prend des soirées entières, et où part vraiment le temps." },
   { t: '5–25 min', d: "Ce qu'on peut déléguer à une machine : rassembler les preuves, tenir le classeur à jour, croiser les indicateurs avec le référentiel." },
@@ -18,8 +31,8 @@ const plan = [
 ---
 <BaseLayout
   title="Webinaire : préparer son audit Qualiopi"
-  description="Webinaire gratuit le mardi 16/09/2026, 12h30-13h15 : ce qu'on peut déléguer à une machine pour préparer son audit Qualiopi, et ce qu'on ne peut pas."
-  pageSchema={[breadcrumb]}
+  description="Webinaire gratuit le mercredi 16/09/2026, 12h30-13h15 : ce qu'on peut déléguer à une machine pour préparer son audit Qualiopi, et ce qu'on ne peut pas."
+  pageSchema={[breadcrumb, event]}
 >
   <section class="mx-auto max-w-3xl px-4 py-16">
     <div class="cp-rise">
@@ -30,7 +43,7 @@ const plan = [
       <p class="mt-4 text-lg leading-relaxed text-muted">
         Ce qu'on peut déléguer à une machine, et ce qu'on ne peut pas.
       </p>
-      <p class="mt-6 font-medium text-ink">Mardi 16/09/2026, 12h30–13h15</p>
+      <p class="mt-6 font-medium text-ink">Mercredi 16/09/2026, 12h30–13h15</p>
     </div>
 
     <div class="mt-12">
@@ -56,6 +69,8 @@ const plan = [
           loading="lazy"
         >Chargement du formulaire…</iframe>
       </div>
+      <p class="mt-4 text-sm text-muted">Le formulaire ne s'affiche pas&nbsp;? <a href="https://docs.google.com/forms/d/e/1FAIpQLSduhNE3P9shjRl-dkQy11GVlhvmRW0JpRgcQrapB-g3zTSrAg/viewform" target="_blank" rel="noopener" class="text-brand-700 hover:underline">Ouvrez-le dans un nouvel onglet</a>.</p>
+      <p class="mt-3 text-xs text-muted">Vos coordonnées servent uniquement à vous envoyer le lien de connexion et le replay. Elles sont traitées par Claude Agency via Google Forms et ne sont jamais transmises à des tiers. <a href="/confidentialite/" class="underline underline-offset-2 hover:text-ink">Politique de confidentialité</a>.</p>
     </div>
   </section>
 </BaseLayout>

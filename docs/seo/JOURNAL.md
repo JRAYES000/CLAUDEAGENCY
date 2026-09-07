@@ -5,6 +5,83 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-07 (102) — Audit page par page des 88 pages : 158 correctifs techniques, éditoriaux et RGPD, sans toucher aux titles mesurés
+
+**Type :** audit technique et fonctionnel demandé par Julien (« un sous-agent par page »), mené
+depuis visibilite-ops : un agent par page sur le HTML construit, la source et la page en ligne,
+puis un relevé mécanique (titles, descriptions, canonical, liens, images, JSON-LD) avant et
+après. Résultat sur ce site : 19 constats critiques, 131 majeurs, 222 mineurs, dont une
+grande part de doublons de composants partagés. Corrigé ici tout ce qui ne demandait pas
+d'arbitrage ; le reste est remonté à Julien dans le tableau de bord de visibilite-ops.
+
+### Ce qui a été corrigé (158 éditions, 40 fichiers)
+
+**Partage social des articles** (`app/src/pages/blog/[...id].astro`) — deux défauts qui
+touchaient les 58 articles : le texte alternatif de l'image de partage était toujours la phrase
+générique du site (la prop `imageAlt` n'était pas transmise au layout), et `og:image` pointait
+sur le fichier source brut (carré ou 16:9) tout en annonçant 1200×630. L'image de partage est
+maintenant recadrée au build en 1200×630 et porte l'alt de l'article.
+
+**Formulaires** — mention d'information RGPD avec lien vers la politique de confidentialité
+sous le formulaire de contact, le diagnostic, le questionnaire du Baromètre et l'inscription au
+webinaire ; le formulaire de contact redirige vers `/merci/` après envoi (la page était
+orpheline depuis toujours : personne n'y arrivait) ; libellé « organisme ou entreprise » ;
+champ texte du questionnaire nommé pour les lecteurs d'écran.
+
+**Politique de confidentialité réécrite** — elle ne décrivait que le formulaire de contact.
+Elle nomme désormais chaque collecte (contact, diagnostic, Calendly, guide, Baromètre et
+Supabase, test Claude Code et Notion, Google Forms), les trois traceurs chargés sur chaque page
+(Google Analytics 4, Google Ads, Leadsy/Instantly) avec leur finalité et le moyen de s'y
+opposer, et la liste complète des droits RGPD. Date de mise à jour affichée. **Non fait, à
+trancher par Julien :** un bandeau de consentement avant le chargement de Leadsy et des tags
+Google — c'est un choix produit qui touche la mesure et la prospection.
+
+**Contenu** — webinaire annoncé « mardi 16/09 » alors que c'est un mercredi (corrigé, plus
+données structurées `Event`, lien de secours vers le formulaire, et un lien depuis l'article
+Qualiopi : la page n'était liée nulle part) ; `/semaine-offerte/` désormais publique et indexée
+mais qui affirmait deux fois ne pas l'être, et qui portait une plaisanterie sexiste écrite pour
+une page privée (retirée) ; mentions légales qui demandaient d'« appeler » sans aucun numéro sur
+le site (remplacé par l'e-mail) ; références juridiques fausses dans l'article accessibilité
+(indicateur Qualiopi 26, pas 6 ; base légale du référent handicap) ; reste à charge CPF à jour
+(150 € depuis le 2 avril 2026, décret n° 2026-234) ; deux erreurs de calcul dans l'article
+tarification ; section « nurturing » annoncée et jamais écrite dans l'article e-mail marketing ;
+titres qui promettaient un « modèle » absent (un modèle de certificat ajouté ; title et
+description de l'article convention alignés sur la requête cible « mentions obligatoires et
+conformité ») ; chiffres sans source retirés ou reformulés (LinkedIn, tunnel de vente,
+intégration IA) ; liens en double dans quatre sections « Pour aller plus loin » ; liens qui
+redirigeaient (Digiforma, service-public.gouv.fr) ; une trentaine de coquilles, anglicismes
+(« quick wins », « stack », « topic clusters », « ranken », « LLM ») et guillemets.
+
+**Données structurées** — un seul intitulé de poste pour le fondateur (Organization et
+Person disaient deux choses), `foundingDate` retiré (le nœud porte une société de 2021 et une
+marque de 2026), le site retiré de ses propres `sameAs`, catalogue d'offres complété à huit
+prestations, `areaServed` de la landing marketing aligné sur les quatre pays, fil d'Ariane des
+ressources sans étage fantôme, `serviceType` court sur les pages service, pas de canonical
+sur la 404.
+
+**Cohérence** — un seul chiffre sur toute la page d'accueil (« 3 à 4× plus vite, 3× moins
+cher »), même formulation sur `/services/` et `/diagnostic/` ; « Claude Agency est née » ;
+pied de page « Accompagnement IA » comme la page qu'il désigne ; signature des pages service
+sans répétition ; `aria-current` exact dans le menu ; 404 avec un vrai h1.
+
+### Non touché, volontairement
+
+- Les titles de la liste « striking distance » et ceux réécrits le 07/09 (entrée #98) : leur
+  mesure court jusqu'au 11/09.
+- `/agence-seo-ia/` : le relevé affiché date du 03/09 alors qu'un relevé du 07/09 existe ; la
+  session SEO du jour tient cette page, pas celle-ci.
+- Les liens du pied de page et du corps de `/agence-seo-ia/` vers claudepartners.fr,
+  signalés par 60 agents comme contraires au guide du dépôt : ils ont été posés à la demande
+  de Julien (26/08 et 06/09). C'est le guide qui était en retard, corrigé dans ce commit.
+- Le lien « Admin » du menu public, le compte Calendly au nom de l'école, les conditions de
+  `/semaine-offerte/` (avis Google demandé en contrepartie) et la mention Suisse de la page
+  facturation : décisions de Julien, cartes dans visibilite-ops.
+
+**Build :** `cd app && npm run build` → 87 pages, exit 0, contrôle mécanique après build sans
+anomalie (titles ≤ 65, descriptions 70-165, canonical, h1 unique, liens internes, alt, JSON-LD).
+
+---
+
 ## 2026-09-07 (101) — Demandes d'indexation Search Console : 8 sur 12, quota journalier atteint, et ce que l'API ne sait pas faire
 
 **Type :** exécution, à la demande de Julien, des demandes d'indexation pour les pages modifiées

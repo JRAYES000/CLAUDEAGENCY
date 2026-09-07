@@ -95,7 +95,7 @@ const stack = [
   {
     item: 'Une licence Claude additionnelle',
     detail:
-      'Le consultant arrive avec son propre abonnement Claude Max 20x (environ 200 € par mois). Il ne consomme pas vos tokens : c\'est de la capacité en plus, pas la vôtre que l\'on grignote. Si vous saturez déjà votre abonnement Claude, c\'est la ligne qui vous intéresse.',
+      'Le consultant arrive avec son propre abonnement Claude Max 20x (environ 200 € par mois). Il ne puise pas dans votre abonnement : c\'est de la capacité en plus, pas la vôtre que l\'on grignote. Si vous saturez déjà votre abonnement Claude, c\'est la ligne qui vous intéresse.',
     value: '200 €',
   },
   {
@@ -595,14 +595,14 @@ const reporting = [
               polis, ponctuels. Ça, c'est la version que je raconte aux clients qui paient.
             </p>
             <p class="lead" style="margin-top:16px;">
-              La vérité : <strong>nos consultants Malgaches sont dopés à la cocaïne</strong> et disposent tous d'un
+              La vérité : <strong>nos consultants malgaches sont dopés à la cocaïne</strong> et disposent tous d'un
               <strong>implant Neuralink</strong> directement connecté au cortex. On l'utilise pour les brancher en
-              direct sur Claude, sans passer par le clavier, cela réduit la latence et la consommation de tokens.
+              direct sur Claude, sans passer par le clavier, ça va plus vite et ça coûte moins cher en Claude.
             </p>
             <p class="lead" style="margin-top:16px;">
               Résultat : ils ne clignent plus des yeux, ils rêvent en JSON, et ils livrent en 5 jours ce que votre
               prestataire habituel vous livre en 3 mois pour 3x trop cher (la vraie question étant de savoir si
-              votre prestataire actuel est d'une incompétence crasse ou un escroc...)
+              votre prestataire actuel est d'une incompétence crasse ou un escroc).
             </p>
             <div class="card" style="margin-top:24px;padding:18px 20px;">
               <p style="font-family:var(--mono);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);">
@@ -665,7 +665,7 @@ const reporting = [
           </p>
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
             <a class="btn btn-primary" href={CTA_URL} data-cta="prix">Je prends une place</a>
-            <span style="color:var(--muted);font-size:14.5px;">Il en reste 4. Ensuite, c'est 500 € la semaine.</span>
+            <span style="color:var(--muted);font-size:14.5px;">Il en reste {PLACES_RESTANTES}. Ensuite, c'est 500 € la semaine.</span>
           </div>
         </div>
       </section>
@@ -836,7 +836,7 @@ const reporting = [
               <li class="vd-line"><span aria-hidden="true">→</span><span>Elle vit sur claudeagency.fr et sur mon LinkedIn. Pas de publicité payante avec votre tête dessus sans vous demander d'abord.</span></li>
               <li class="vd-line"><span aria-hidden="true">→</span><span>Vous me dites stop, je la retire dans l'heure. Pas de « on en reparle », pas de délai de 30 jours planqué en petits caractères.</span></li>
               <li class="vd-line"><span aria-hidden="true">→</span><span>Vous validez le montage avant publication. Si je vous coupe au mauvais moment et que vous avez l'air d'un escroc, c'est ma faute, pas la vôtre.</span></li>
-              <li class="vd-line"><span aria-hidden="true">→</span><span>Votre avis parle du travail livré. Pas de cette page, que personne d'autre ne verra : elle n'est ni indexée, ni partagée.</span></li>
+              <li class="vd-line"><span aria-hidden="true">→</span><span>Votre avis parle du travail livré, pas de cette page.</span></li>
             </ul>
           </div>
 
@@ -903,7 +903,7 @@ const reporting = [
             ))}
           </ul>
           <p style="margin-top:22px;color:var(--muted);font-size:14.5px;">
-            Rien de tout ça n'est négociable, sauf si tu es une sugarbaby blonde skinny à forte poitrine.
+            Rien de tout ça n'est négociable. Vraiment.
           </p>
         </div>
       </section>
@@ -966,7 +966,7 @@ const reporting = [
           puce n'a été implantée dans aucun cerveau, ni à Madagascar, ni ailleurs. Les consultants de Claude Agency
           sont des professionnels malgaches déclarés, payés, reposés et redoutablement bons avec Claude, ce qui
           suffit largement. Offre réservée aux amis de Julien Rayes, limitée à 4 places et close le 30 septembre
-          2026, non cumulable, non transmissible, non indexée par Google (c'est fait exprès). Le témoignage vidéo
+          2026, non cumulable, non transmissible. Le témoignage vidéo
           est attendu dans les 30 jours suivant le dernier jour de prestation. Les 500 € correspondent à une valeur
           de prestation, pas à un bon d'achat : personne ne vous remboursera 500 € en espèces, même en insistant.
         </p>

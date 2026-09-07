@@ -19,7 +19,7 @@ const pourquoi = [
   },
   {
     titre: 'Anonyme',
-    detail: "Vos réponses servent une étude agrégée. Email facultatif, uniquement si vous voulez recevoir l'étude.",
+    detail: "Vos réponses servent une étude agrégée. E-mail facultatif, seulement si vous voulez recevoir l'étude ou être recontacté.",
   },
   {
     titre: 'En avant-première',
@@ -28,12 +28,12 @@ const pourquoi = [
 ];
 
 const themes = [
+  'Le profil de votre structure (type, taille, Qualiopi)',
   "Votre adoption de l'IA aujourd'hui",
-  "Les tâches sur lesquelles vous l'utilisez (ou pourriez l'utiliser)",
-  'La tâche la plus chronophage de votre quotidien',
+  "Les tâches et les outils sur lesquels vous l'utilisez",
   "Le temps gagné et l'impact sur la qualité",
-  "Vos freins et vos craintes",
-  'Vos projets pour 2026',
+  'Vos freins et vos craintes, Qualiopi compris',
+  'Vos projets et votre budget pour les 12 prochains mois',
 ];
 
 const breadcrumb = {
@@ -56,7 +56,7 @@ const breadcrumb = {
         Baromètre de l'IA dans les organismes de formation
       </h1>
       <p class="mt-5 text-lg leading-relaxed text-muted">
-        Où en sont vraiment les organismes de formation français avec l'intelligence artificielle ? Pour le savoir, nous menons la première enquête chiffrée et indépendante sur le sujet, et nous avons besoin de <strong class="font-semibold text-ink">votre</strong> regard de terrain.
+        Où en sont vraiment les organismes de formation français avec l'intelligence artificielle ? Pour le savoir, nous menons une enquête chiffrée et indépendante sur le sujet, et nous avons besoin de <strong class="font-semibold text-ink">votre</strong> regard de terrain.
       </p>
       <p class="mt-4 leading-relaxed text-muted">
         En 5 minutes, vous contribuez à une étude qui rendra visible la réalité du secteur : usages réels, temps gagné, freins, projets. Les résultats seront publiés ici, librement réutilisables avec un lien vers la source.
@@ -66,7 +66,7 @@ const breadcrumb = {
     <!-- CTA principal vers le questionnaire -->
     <div class="mt-10 rounded-2xl border border-sand bg-cream-100 p-6 sm:p-8">
       <p class="font-display text-xl font-bold text-ink">Participer à l'enquête (5 min)</p>
-      <p class="mt-2 text-muted">15 questions, surtout des QCM. Anonyme. Email facultatif si vous souhaitez recevoir l'étude en avant-première.</p>
+      <p class="mt-2 text-muted">15 questions, surtout des QCM. Anonyme. E-mail facultatif, pour recevoir l'étude en avant-première ou être recontacté.</p>
       <div class="mt-6">
         {QUESTIONNAIRE_URL ? (
           <a

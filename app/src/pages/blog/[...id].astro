@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { AUTHOR, authorPerson } from '../../data/author';
 import LeadMagnet from '../../components/LeadMagnet.astro';
@@ -17,6 +17,9 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 const { title, description, pubDate, updatedDate, author, image, imageAlt, tags } = post.data;
 const dateFmt = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' });
 const site = Astro.site!;
+// Image de partage social au format annoncé par BaseHead (1200×630) : avant le 07/09/2026
+// og:image pointait sur le fichier source (carré ou 16:9) tout en déclarant 1200×630.
+const shareImage = await getImage({ src: image, width: 1200, height: 630, format: 'webp' });
 
 const allPosts = await getCollection('blog', ({ data }) =>
   import.meta.env.PROD ? !data.draft : true);
@@ -32,7 +35,7 @@ const articleSchema = {
   '@id': new URL(`/blog/${post.id}/#article`, site).href,
   mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(`/blog/${post.id}/`, site).href },
   headline: title, description,
-  image: [new URL(image.src, site).href],
+  image: [new URL(shareImage.src, site).href],
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
   author: { '@id': new URL('/a-propos/#julien-rayes', site).href },
@@ -50,7 +53,7 @@ const breadcrumb = {
   ],
 };
 ---
-<BaseLayout title={title} description={description} type="article" image={image.src} pageSchema={[articleSchema, authorPerson(site), breadcrumb]}>
+<BaseLayout title={title} description={description} type="article" image={shareImage.src} imageAlt={imageAlt} pageSchema={[articleSchema, authorPerson(site), breadcrumb]}>
   <article class="mx-auto max-w-2xl px-4 py-16">
     <Image src={image} alt={imageAlt} width={1200} height={630} loading="eager" fetchpriority="high" class="rounded-xl" />
     <h1 class="mt-8 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-700 sm:text-5xl">{title}</h1>

@@ -1,20 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Politique de confidentialité" description="Politique de confidentialité et traitement des données personnelles de claudeagency.fr.">
+<BaseLayout title="Politique de confidentialité" description="Politique de confidentialité et traitement des données personnelles de claudeagency.fr : ce que nous collectons, pourquoi, combien de temps, et vos droits.">
   <section class="mx-auto max-w-2xl px-4 py-16">
     <h1 class="font-serif text-4xl font-semibold">Politique de confidentialité</h1>
+    <p class="mt-2 text-sm text-muted">Dernière mise à jour&nbsp;: 7 septembre 2026</p>
     <div class="prose prose-stone mt-8 max-w-none">
       <h2>Responsable de traitement</h2>
-      <p>Claude Agency, par la société qui édite ce site — identité, immatriculation et adresse complètes dans les <a href="/mentions-legales/">mentions légales</a>. Contact : <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>.</p>
+      <p>Claude Agency, par la société qui édite ce site — identité, immatriculation et adresse complètes dans les <a href="/mentions-legales/">mentions légales</a>. Contact&nbsp;: <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>.</p>
+
       <h2>Données collectées</h2>
-      <p>Via le formulaire de contact : nom, email, nom de l'organisme et message. Ces données servent uniquement à répondre à votre demande.</p>
+      <p>Selon ce que vous utilisez sur le site, nous recevons&nbsp;:</p>
+      <ul>
+        <li><strong>Formulaire de contact et diagnostic</strong>&nbsp;: nom, e-mail, organisme, message et, selon le cas, votre rôle, votre priorité, où vous en êtes avec l’IA et la façon dont vous nous avez connus. Ces données servent uniquement à répondre à votre demande. Elles arrivent sur notre messagerie et sont conservées dans notre outil de suivi (Notion) le temps de traiter votre demande et les échanges qui suivent.</li>
+        <li><strong>Prise de rendez-vous</strong>&nbsp;: nom et e-mail, traités par Calendly (États-Unis) pour organiser l’échange de 30 minutes.</li>
+        <li><strong>Guide « 10 automatisations IA »</strong>&nbsp;: prénom, e-mail, société et téléphone. Avec votre accord, vous recevez ensuite nos conseils par e-mail&nbsp;; vous vous désinscrivez en un clic depuis chaque message.</li>
+        <li><strong>Questionnaire du Baromètre IA</strong>&nbsp;: vos réponses, et votre e-mail seulement si vous le laissez pour recevoir les résultats ou être recontacté. Les réponses sont stockées chez Supabase et exploitées de façon agrégée&nbsp;; sans e-mail, elles sont anonymes.</li>
+        <li><strong>Test Claude Code</strong>&nbsp;: prénom, nom, e-mail, score et temps de réponse, enregistrés dans Notion et conservés un an. Au-delà de 75/100, votre adresse sert à vous envoyer une invitation à l’annuaire Claude Partners et à afficher, sur la fiche de cet annuaire qui porte la même adresse, le badge « Test Claude Code réussi ».</li>
+        <li><strong>Inscription à un webinaire</strong>&nbsp;: coordonnées saisies dans un formulaire Google Forms (Google Ireland Ltd), utilisées pour vous envoyer le lien de connexion et le replay.</li>
+      </ul>
       <p>Si vous recevez un e-mail de prospection commerciale de notre part, le détail (source des données, durée de conservation, opposition) est sur <a href="/donnees-prospection/">cette page dédiée</a>.</p>
-      <h2>Mesure d'audience</h2>
-      <p>Nous mesurons l'audience de ce site (pages consultées, source de visite) à des fins statistiques et d'amélioration. Cette mesure peut recourir à des cookies ou traceurs ; vous pouvez les gérer ou vous y opposer depuis les réglages de votre navigateur.</p>
+
+      <h2>Mesure d’audience et outils tiers</h2>
+      <p>Nous utilisons Google Analytics 4 pour compter les visites (pages consultées, source de visite) et Google Ads pour mesurer l’effet de nos publicités. Nous utilisons aussi Leadsy (Instantly), un outil qui tente de reconnaître l’entreprise d’où provient une visite à partir de l’adresse IP, pour adapter notre prise de contact&nbsp;; il ne révèle pas l’identité d’une personne. Ces outils déposent des cookies ou traceurs, certains opérés depuis les États-Unis. Vous pouvez vous y opposer à tout moment depuis les réglages de votre navigateur (blocage des cookies tiers ou des domaines googletagmanager.com et leadsy.ai) ou en nous écrivant à <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>.</p>
+
       <h2>Vos droits</h2>
-      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contact : contact@claudeagency.fr.</p>
-      <p>Le règlement (UE) 2016/679 s'applique à l'identique dans toute l'Union européenne, Bulgarie comprise. L'autorité de contrôle compétente pour le responsable de traitement est la Commission de protection des données personnelles (КЗЛД, Sofia). Vous conservez par ailleurs le droit de saisir l'autorité de votre propre pays de résidence, en France la CNIL.</p>
+      <p>Conformément au RGPD, vous pouvez accéder à vos données, les faire rectifier ou supprimer, vous opposer à leur traitement, en demander la limitation ou la portabilité, et retirer à tout moment votre consentement aux e-mails de conseils. Il suffit d’écrire à <a href="mailto:contact@claudeagency.fr">contact@claudeagency.fr</a>&nbsp;; nous répondons sous un mois.</p>
+      <p>Le règlement (UE) 2016/679 s’applique à l’identique dans toute l’Union européenne, Bulgarie comprise. L’autorité de contrôle compétente pour le responsable de traitement est la Commission de protection des données personnelles (KZLD / КЗЛД, Sofia — cpdp.bg). Vous conservez par ailleurs le droit de saisir l’autorité de votre propre pays de résidence, en France la CNIL.</p>
     </div>
   </section>
 </BaseLayout>

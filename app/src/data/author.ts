@@ -8,16 +8,16 @@ export const AUTHOR = {
   // Bio factuelle, alignée sur la page /a-propos/. Aucune affirmation inventée.
   bio:
     "Julien Rayes est le fondateur de Claude Agency. Directeur commercial et marketing " +
-    "d'un organisme de formation professionnelle (plus de 3 M€ de chiffre d'affaires depuis 2021), " +
+    "d’un organisme de formation professionnelle (plus de 3 M€ de chiffre d’affaires depuis 2021), " +
     "il en a automatisé seul tout le back-office (administratif, commercial et marketing) avec " +
     "des outils comme Make et Claude Code. Il aide aujourd'hui les organismes de formation à " +
-    "intégrer l'IA de façon concrète et mesurable : relances administratives passées de 2 h par jour " +
+    "intégrer l’IA de façon concrète et mesurable : relances administratives passées de 2 h par jour " +
     "à 2 h par mois, comptes rendus automatisés, coaching commercial assisté par IA.",
   // Mention de production, affichée sous chaque contenu et dans le pied de page.
   // Google (« Creating helpful content ») demande que l'usage de l'automatisation
   // soit visible du lecteur ; le détail complet vit sur /a-propos/#methode.
   method:
-    "Écrit par Julien Rayes et l'équipe de Claude Agency, avec l'aide de l'intelligence " +
+    "Écrit par Julien Rayes et l’équipe de Claude Agency, avec l’aide de l’intelligence " +
     "artificielle pour la rédaction. Sujet, chiffres et publication restent décidés par un humain.",
   methodUrl: '/a-propos/#methode',
   knowsAbout: [

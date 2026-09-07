@@ -5,6 +5,7 @@ import Schema from '../components/Schema.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { AUTHOR } from '../data/author';
 
 interface Props {
   title: string; description: string; image?: string; imageAlt?: string;
@@ -40,9 +41,10 @@ const organization = {
     { '@type': 'Country', name: 'Luxembourg' },
   ],
   email: 'contact@claudeagency.fr',
-  foundingDate: '2026',
+  // Pas de foundingDate : le nœud porte le legalName d'une société immatriculée en 2021
+  // et une marque lancée en 2026 — une seule date serait fausse pour l'un des deux.
   founder: { '@type': 'Person', '@id': `${site}/a-propos/#julien-rayes`, name: 'Julien Rayes',
-    jobTitle: 'Fondateur et directeur',
+    jobTitle: AUTHOR.jobTitle,
     description: "Julien Rayes a automatisé le back-office de son propre organisme de formation (3 M€ de CA) avec Make et Claude Code avant de créer Claude Agency.",
     sameAs: ['https://www.linkedin.com/in/julien-rayes/'],
   },
@@ -61,7 +63,7 @@ const organization = {
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Services IA pour organismes de formation',
+    name: 'Prestations de Claude Agency',
     itemListElement: [
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Audit IA et diagnostic', description: 'Identifier où l\'IA peut faire gagner du temps dans un organisme de formation.' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Formation des équipes à l\'IA', description: 'Ateliers pratiques pour former formateurs et équipes administratives à Claude et aux outils IA.' } },
@@ -69,6 +71,8 @@ const organization = {
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Référencement SEO', description: 'Améliorer la visibilité Google d\'un organisme de formation pour attirer des candidats qualifiés.' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Publicité Google Ads (SEA)', description: 'Piloter les campagnes Google Ads pour remplir les sessions de formation.' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Outils IA sur mesure', description: 'Développer des agents IA et automatisations spécifiques aux process de l\'organisme de formation.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Optimisation de site', description: 'Lever les freins qui font partir un visiteur avant qu\'il vous écrive.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Accompagnement IA', description: 'Diagnostic, outils, formation des équipes et suivi sur trois mois pour ancrer l\'IA dans l\'organisme.' } },
     ],
   },
   contactPoint: {
@@ -81,7 +85,6 @@ const organization = {
   sameAs: [
     'https://www.linkedin.com/in/julien-rayes/',
     'https://www.linkedin.com/company/claude-agency-fr/',
-    'https://claudeagency.fr',
     'https://www.malt.fr/profile/julienrayes',
   ],
 };

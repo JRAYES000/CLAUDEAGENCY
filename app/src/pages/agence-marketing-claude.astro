@@ -13,7 +13,7 @@ const serviceSchema = {
   description:
     "Agence marketing dont les consultants pilotent le SEO, la publicité Google Ads et le contenu avec Claude, l'IA d'Anthropic. Spécialisée dans les organismes de formation.",
   provider: { '@id': new URL('/#organization', site).href },
-  areaServed: { '@type': 'Country', name: 'France' },
+  areaServed: [{ '@type': 'Country', name: 'France' }, { '@type': 'Country', name: 'Belgique' }, { '@type': 'Country', name: 'Suisse' }, { '@type': 'Country', name: 'Luxembourg' }],
   audience: { '@type': 'BusinessAudience', name: 'Organismes de formation' },
 };
 const breadcrumb = {
@@ -26,7 +26,7 @@ const breadcrumb = {
 
 const faq = [
   { q: "Qu'est-ce qu'une agence marketing Claude ?", a: "C'est une agence marketing dont les consultants produisent le référencement, la publicité et le contenu avec Claude, l'intelligence artificielle d'Anthropic. Le travail livré est le même que celui d'une agence classique : il est simplement produit 3 à 4 fois plus vite, ce qui se retrouve dans les tarifs et les délais." },
-  { q: "Pourquoi Claude plutôt que ChatGPT ?", a: "Claude est aujourd'hui l'IA la plus solide en rédaction française naturelle et en travail agentique long (Claude Code, Claude Cowork). C'est elle qui permet à nos consultants de mener un audit SEO, produire un article optimisé ou restructurer une campagne Google Ads en heures plutôt qu'en jours. Nous utilisons aussi d'autres outils quand ils sont plus pertinents." },
+  { q: "Pourquoi Claude plutôt que ChatGPT ?", a: "Claude est aujourd'hui l'IA la plus solide en rédaction française naturelle et pour mener seule des tâches longues de bout en bout (Claude Code, Claude Cowork). C'est elle qui permet à nos consultants de mener un audit SEO, produire un article optimisé ou restructurer une campagne Google Ads en heures plutôt qu'en jours. Nous utilisons aussi d'autres outils quand ils sont plus pertinents." },
   { q: "Le contenu produit avec l'IA est-il pénalisé par Google ?", a: "Non. Google évalue la qualité et l'utilité d'un contenu, pas l'outil qui a servi à le produire. Chaque livrable est relu, vérifié et signé par un consultant : c'est ce contrôle humain, plus l'expertise métier, qui fait la différence avec du contenu généré en masse." },
   { q: "Travaillez-vous uniquement avec des organismes de formation ?", a: "Oui, c'est notre spécialité. Notre fondateur dirige le commercial et le marketing d'un organisme de formation : nous connaissons Qualiopi, les financements et la pédagogie de l'intérieur, et nos contenus parlent le langage de vos futurs stagiaires." },
   { q: "Qui pilote réellement le travail : l'IA ou un humain ?", a: "Un consultant, toujours. Claude exécute la production (recherche, rédaction, analyse, code) sous la direction d'un consultant qui cadre, vérifie et valide. Vous recevez d'ailleurs un reporting quotidien du travail réalisé." },
@@ -68,7 +68,7 @@ const faq = [
       <h2>Agence classique ou agence pilotée par Claude&nbsp;?</h2>
       <table>
         <thead>
-          <tr><th></th><th>Agence classique</th><th>Claude Agency</th></tr>
+          <tr><th scope="col"><span class="sr-only">Critère</span></th><th scope="col">Agence classique</th><th scope="col">Claude Agency</th></tr>
         </thead>
         <tbody>
           <tr><td>Article SEO optimisé</td><td>Plusieurs jours de production</td><td>Quelques heures, relu et validé par un consultant</td></tr>
@@ -174,6 +174,7 @@ const faq = [
       src={methodeImg}
       alt="Consultant d'une agence marketing analysant le référencement et les campagnes d'un organisme de formation avec Claude"
       loading="lazy"
+      widths={[640, 1024, 1600]}
       sizes="(min-width: 768px) 42rem, 100vw"
       class="mt-10 w-full rounded-2xl border border-sand object-cover"
     />
