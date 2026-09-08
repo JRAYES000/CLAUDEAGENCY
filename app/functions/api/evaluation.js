@@ -204,7 +204,7 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `Déposée avec cette adresse e-mail, votre fiche portera le badge « Claude Partners Certified · ${score}/100 » pendant un an — le label officiel de Claude Partners :\n${URL_LABEL}\n\n` +
           `Dès qu'une mission correspond à votre profil, nous vous contactons pour vous la ` +
           `proposer.\n\n${conditions}\n\n` +
-          `Une question ? Répondez à cet e-mail.\n\n— Julien Rayes, Claude Agency`,
+          `— Julien Rayes, Claude Agency`,
         html:
           `<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#2B2A28;">` +
           `<p>${escapeHtml(bonjour)}</p>` +
@@ -217,7 +217,6 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `<p>Déposée avec cette adresse e-mail, votre fiche portera le badge « Claude Partners Certified · <strong>${score}/100</strong> » pendant un an. ` +
           `<a href="${URL_LABEL}">Le label officiel de Claude Partners.</a></p>` +
           `<p style="font-size:14px;color:#5b5955;">${escapeHtml(conditions)}</p>` +
-          `<p>Une question ? Répondez à cet e-mail.</p>` +
           `<p>— Julien Rayes, Claude Agency</p>` +
           `</div>`,
       }),
