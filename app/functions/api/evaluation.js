@@ -163,8 +163,8 @@ export async function onRequestPost({ request, env }) {
   let invite = false;
   if (score >= SEUIL_ANNUAIRE) {
     invite = await inviteAnnuaire(env, { prenom, email, score });
-    // L'annuaire lit cette base à chaque build et pose le badge « Test Claude Code
-    // réussi » sur la fiche qui porte la même adresse (claudepartners-fr,
+    // L'annuaire lit cette base à chaque build et pose le badge
+    // « Claude Partners Certified » sur la fiche qui porte la même adresse (claudepartners-fr,
     // src/server/label.js). Sans ce hook, le badge attendrait le prochain build
     // déclenché par autre chose — parfois plusieurs jours. Best-effort aussi.
     if (env.CP_DEPLOY_HOOK_URL) await fetch(env.CP_DEPLOY_HOOK_URL, { method: 'POST' }).catch(() => {});
@@ -201,8 +201,7 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `${score}/100 au test Claude Code : c'est le niveau que nous recherchons pour nos ` +
           `missions clients.\n\n` +
           `Déposez votre fiche prestataire dans l'annuaire Claude Partners :\n${URL_ANNUAIRE}\n\n` +
-          `Déposée avec cette adresse e-mail, votre fiche portera le badge « Test Claude Code ` +
-          `réussi · ${score}/100 » pendant un an — le label officiel de Claude Partners :\n${URL_LABEL}\n\n` +
+          `Déposée avec cette adresse e-mail, votre fiche portera le badge « Claude Partners Certified · ${score}/100 » pendant un an — le label officiel de Claude Partners :\n${URL_LABEL}\n\n` +
           `Dès qu'une mission correspond à votre profil, nous vous contactons pour vous la ` +
           `proposer.\n\n${conditions}\n\n` +
           `Une question ? Répondez à cet e-mail.\n\n— Julien Rayes, Claude Agency`,
@@ -214,9 +213,8 @@ async function inviteAnnuaire(env, { prenom, email, score }) {
           `<p>Déposez votre fiche prestataire dans l'annuaire Claude Partners. Dès qu'une ` +
           `mission correspond à votre profil, nous vous contactons pour vous la proposer.</p>` +
           `<p style="margin:24px 0;"><a href="${URL_ANNUAIRE}" style="background:#BE5B3A;color:#ffffff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">Déposer ma fiche prestataire</a></p>` +
-          `<p style="margin:28px 0 12px;"><img src="https://claudepartners.fr/images/label-claude-code-badge.png" width="320" height="87" alt="Label Test Claude Code réussi — délivré par Claude Partners" style="display:block;border:0;max-width:100%;height:auto;" /></p>` +
-          `<p>Déposée avec cette adresse e-mail, votre fiche portera le badge « Test Claude Code ` +
-          `réussi · <strong>${score}/100</strong> » pendant un an. ` +
+          `<p style="margin:28px 0 12px;"><img src="https://claudepartners.fr/images/label-claude-code-badge.png" width="320" height="87" alt="Badge Claude Partners Certified — Test Claude Code réussi, délivré par Claude Partners" style="display:block;border:0;max-width:100%;height:auto;" /></p>` +
+          `<p>Déposée avec cette adresse e-mail, votre fiche portera le badge « Claude Partners Certified · <strong>${score}/100</strong> » pendant un an. ` +
           `<a href="${URL_LABEL}">Le label officiel de Claude Partners.</a></p>` +
           `<p style="font-size:14px;color:#5b5955;">${escapeHtml(conditions)}</p>` +
           `<p>Une question ? Répondez à cet e-mail.</p>` +
