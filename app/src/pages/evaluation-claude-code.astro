@@ -23,8 +23,9 @@ const DOMAINES = {
 
 // `min` porte desormais sur le score sur 100, pas sur le nombre de bonnes reponses.
 // Seuils cales sur les anciens (17/20 et 12/20) a la duree mediane constatee le
-// 04/09/2026 : les paliers deja enregistres sont inchanges. Ils sont repris a
-// l'identique dans functions/api/evaluation.js, qui fait foi pour la base Notion.
+// 04/09/2026. Ils sont repris a l'identique dans functions/api/evaluation.js, qui fait
+// foi pour la base Notion. Les seuils n'ont pas bouge le 08/09/2026 : seuls les libelles
+// des deux paliers bas et leurs textes ont ete durcis, dans les deux fichiers a la fois.
 const PALIERS = [
   {
     min: 75,
@@ -34,15 +35,15 @@ const PALIERS = [
   },
   {
     min: 50,
-    titre: 'Opérationnel sur cadrage',
-    ton: 'moyen',
-    texte: "Vous pouvez travailler sur un projet cadré et relu. Reprenez les questions manquées avant de démarrer : ce sont exactement les points où une erreur se paie chez le client.",
+    titre: 'Insuffisant',
+    ton: 'ko',
+    texte: "Ce niveau ne permet pas de tenir une mission client seul. Les questions manquées sont exactement les points où une erreur se paie chez le client : reprenez-les. Ce résultat n'ouvre aucune suite de notre part — ni accompagnement, ni entrée dans l'annuaire, ni réexamen. Le test se repasse dans un an.",
   },
   {
     min: 0,
-    titre: 'À former avant de démarrer',
+    titre: 'Très insuffisant',
     ton: 'ko',
-    texte: "Il manque des bases pour travailler sans aide. Priorité : une conversation par sujet et /clear quand vous changez, la façon de formuler une demande (exemples, documents en haut), et le réflexe de vérifier avant d'affirmer.",
+    texte: "Les bases ne sont pas là : une conversation par sujet et /clear quand vous changez, la façon de formuler une demande, le réflexe de vérifier avant d'affirmer. Travaillez-les sur la documentation officielle avant de facturer quoi que ce soit à un client. Ce résultat n'ouvre aucune suite de notre part et ne fait pas l'objet d'un échange. Le test se repasse dans un an.",
   },
 ];
 

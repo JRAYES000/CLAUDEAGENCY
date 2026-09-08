@@ -71,10 +71,15 @@ function calculeScore(justes, total, secondes) {
 // soit ~7 min 25 : les paliers des passages déjà enregistrés sont inchangés. Le seul
 // durcissement : à 17/20, il faut désormais répondre en moins de 7 minutes pour rester
 // « Autonome ». Options ASCII, comme le select Notion (pas d'accent dans un identifiant).
+//
+// 08/09/2026 : les deux paliers bas sont renommés « Insuffisant » et « Tres insuffisant ».
+// Les options du select Notion ont été renommées, pas recréées : les passages déjà
+// enregistrés portent donc le nouveau libellé, c'est voulu. Une option renommée ici sans
+// l'être dans Notion ferait échouer l'écriture entière et perdre le résultat du candidat.
 const PALIERS = [
   { min: 75, notion: 'Autonome' },
-  { min: 50, notion: 'Operationnel sur cadrage' },
-  { min: 0, notion: 'A former avant de demarrer' },
+  { min: 50, notion: 'Insuffisant' },
+  { min: 0, notion: 'Tres insuffisant' },
 ];
 
 export async function onRequestGet({ env }) {
