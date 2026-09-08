@@ -186,6 +186,7 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
 | 2026-08-31 | Micro-lot dirigeants (`6vaKGjLoaW`) | Claude Agency | 10 | 0 | 0 % | 0 | En cours, relance le 05/09 |
 | 2026-09-01 | Annuaire ClaudePartners (`9pa87bZ4Py`) | Claude Partners | 0 (import seul, quota du jour epuise) | — | — | — | 8 importes, 12 ecartes faute de source |
 | 2026-09-06 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 0 (activée, premier créneau mardi 08/09 8 h) | — | — | — | Reprise décidée par Julien le 06/09 ; 206 prospects, 46 Valid ouverts à l'envoi, 160 Risky en attente du bascule « risky » |
+| 2026-09-08 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 32 | 0 | 0 % | 0 | Poursuivie — seuil de 5 % non atteint, aucune pause ; 3 désinscriptions sur 32 contactés |
 
 **Reprise du 2026-09-06 — ce qui a été fait, tout `mesuré` (API et interface SalesHandy)** :
 
