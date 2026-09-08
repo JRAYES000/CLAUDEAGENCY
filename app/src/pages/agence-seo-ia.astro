@@ -9,16 +9,15 @@ const site = Astro.site!;
 // (data/<date>-positions.md et recherche/citations-ia.md). Quand un relevé plus récent
 // sort, on met à jour ce bloc ET `maj` : une page qui dit « 3 septembre » en décembre
 // perd la confiance qu'elle est censée gagner.
-const releveDu = '3 septembre 2026';
-const releveIso = '2026-09-03';
+const releveDu = '7 septembre 2026';
 const publie = '2026-09-05';
-const maj = '2026-09-05';
+const maj = '2026-09-08';
 const positions = [
-  { requete: 'agence marketing claude', position: '1re', resume: 'Servi, claudeagency.fr cité' },
-  { requete: 'agence claude', position: '17e', resume: 'Aucun résumé servi' },
-  { requete: 'claude pour le marketing', position: '67e', resume: 'Servi, non cité' },
+  { requete: 'agence marketing claude', position: '1re', resume: 'Servi, non cité' },
+  { requete: 'agence claude', position: '8e', resume: 'Aucun résumé servi' },
+  { requete: 'claude pour le marketing', position: '75e', resume: 'Servi, non cité' },
   { requete: 'agence ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
-  { requete: 'agence seo ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
+  { requete: 'agence seo ia', position: 'Hors du top 100', resume: 'Servi, non cité' },
 ];
 const citationsIA = { questions: 18, citations: 0 };
 

@@ -5,6 +5,86 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-08 (103) — Douze titles et descriptions refaits sur les pages que Google montre sans qu'on clique ; les cinq fusions proposées sont refusées, sources à l'appui
+
+**Type :** reprise éditoriale des métadonnées, sans une ligne de contenu neuf. Carte 148 du
+dépôt visibilite-ops, elle-même appuyée sur la mesure `recherche/2026-09-08-pages-sans-visite.md`
+(Search Console + Analytics, fenêtre 2026-06-08 → 2026-09-05, 90 jours).
+
+### Les douze pages retitrées
+
+Critère : Google les a montrées au moins 20 fois sur 90 jours sans obtenir un seul clic. Cinq
+d'entre elles sont déjà en première page — le title et la description sont donc le seul frein
+qui reste. Positions issues de `REQUETES.csv` (relevé GSC du 2026-08-12/13), affichages du
+relevé du 2026-09-08.
+
+| page | affichages 90 j | position | nouveau title |
+| --- | --- | --- | --- |
+| `/blog/seo-organisme-formation/` | 90 | 15,1 | Référencement gratuit d'un organisme de formation |
+| `/services/formation-ia/` | 87 | 29,6 | Formation IA pour organisme de formation |
+| `/blog/numero-declaration-activite/` | 49 | 16,1 | Numéro de déclaration d'activité : l'obtenir et le garder |
+| `/services/integration-ia/` | 43 | 84,6 | Intégrer l'IA dans un organisme de formation |
+| `/services/optimisation-site/` | 33 | 70,8 | Optimiser le site d'un organisme de formation |
+| `/blog/accessibilite-formation-ia/` | 30 | 44,0 | Accessibilité des formations : obligations et rôle de l'IA |
+| `/blog/formation-autofinancee-france-travail/` | 30 | 7,6 | Formation autofinancée et France Travail : ce qui change |
+| `/blog/convention-de-formation/` | 28 | 10,8 | Convention de formation : mentions obligatoires 2026 |
+| `/blog/qualiopi-guide-organisme-formation/` | 28 | 41,2 | Qualiopi : le guide complet pour organismes de formation |
+| `/blog/attestation-de-formation/` | 27 | 7,1 | Attestation de formation : mentions obligatoires 2026 |
+| `/blog/automatiser-relances-stagiaires/` | 22 | 9,7 | Automatiser les relances stagiaires : les 4 moments clés |
+| `/blog/certificat-de-realisation/` | 20 | 3,0 | Certificat de réalisation : mentions obligatoires 2026 |
+
+Trois principes appliqués partout : la requête cible de `REQUETES.csv` en tête du title, une
+description qui annonce **ce que la page tranche** (l'écart d'heures qui bloque un paiement, la
+caducité du NDA, la différence attestation / certificat) au lieu de lister ses rubriques, et
+aucune promesse que la page ne tient pas. Deux titles promettaient un « modèle » que ni
+`/blog/certificat-de-realisation/` ni `/blog/attestation-de-formation/` ne fournissent — le mot
+est retiré, même leçon que la carte 87 sur la page émargement.
+
+Longueurs vérifiées : tous les titles ≤ 60 caractères suffixe de marque compris (les pages
+`services/` ajoutent « · Claude Agency »), toutes les descriptions entre 140 et 152.
+`updatedDate` n'a volontairement pas bougé : le contenu n'a pas changé, et une date de mise à
+jour posée sur une page inchangée ment au lecteur.
+
+### Les cinq fusions proposées par la carte : refusées, et pourquoi
+
+La carte demandait aussi de replier cinq articles sur cinq autres, avec 301. Vérification faite
+dans `REQUETES.csv` — la source de vérité de ce dépôt sur « quelle page vise quelle requête » —
+**aucune des cinq paires ne vise la même requête**, et quatre des cinq suppriment la page la
+mieux classée de la paire :
+
+| page à supprimer | sa requête, sa position | page qui reste | sa requête, sa position |
+| --- | --- | --- | --- |
+| `/blog/formation-claude-code/` | formation claude code — 42,9 | `/blog/formation-claude/` | formation claude — 47,0 |
+| `/blog/chatgpt-formateurs/` | chatgpt pour formateurs — **7,8** | `/blog/claude-vs-chatgpt-organisme-formation/` | claude vs chatgpt OF — 15,4 |
+| `/blog/indicateurs-qualiopi/` | indicateurs qualiopi (**320/mois**, Ubersuggest 2026-06-15) — 25,6 | `/blog/qualiopi-guide-organisme-formation/` | qualiopi guide OF — 41,2 |
+| `/blog/meilleure-agence-ia-organisme-formation/` | meilleure agence ia OF — 11,0 | `/blog/agence-claude-comment-choisir/` | comment choisir une agence claude — non mesurée |
+| `/blog/ia-pedagogie-personnalisation/` | ia pedagogie personnalisation — sans impression | `/blog/foad-ia-organisme-formation/` | foad ia OF — 2,7 |
+
+Une fusion se justifie quand deux pages se disputent **la même** requête. Ici elles portent des
+requêtes distinctes, chacune nommée sur la sienne — exactement le motif qui classe. Supprimer
+`/blog/chatgpt-formateurs/`, moyenne 7,8, pour la replier dans un comparatif à 15,4 ferait
+perdre une position de première page sans rien gagner. Le cas `indicateurs qualiopi` est le plus
+net : 320 recherches par mois, une page nommée mot pour mot dessus, à replier dans un guide
+générique classé 41,2.
+
+Rien n'est supprimé, rien n'est redirigé. L'arbitrage revient au chef du dépôt visibilite-ops,
+qui a écrit la carte ; la recommandation de cette session est de **garder les dix pages** et, si
+le sujet revient, de répartir les intentions entre les paires plutôt que d'en supprimer une
+moitié.
+
+### Aussi dans ce passage
+
+`/agence-seo-ia/` citait le relevé de positions du 3 septembre ; elle cite maintenant celui du
+7 septembre (positions et Résumé IA mis à jour, `dateModified` au 2026-09-08). Une constante
+morte (`releveIso`) est retirée.
+
+### Vérifications
+
+`cd app && npm run build` vert (87 pages), les douze titles relus dans `dist/`, `REQUETES.csv`
+mis à jour sur les douze lignes dans le même commit.
+
+---
+
 ## 2026-09-07 (102) — Audit page par page des 88 pages : 158 correctifs techniques, éditoriaux et RGPD, sans toucher aux titles mesurés
 
 **Type :** audit technique et fonctionnel demandé par Julien (« un sous-agent par page »), mené
