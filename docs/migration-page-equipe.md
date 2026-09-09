@@ -31,11 +31,26 @@ Cible : 900 à 1 200 mots.
 
 ## Étapes
 
-- [ ] claudeagency : `app/src/pages/equipe.astro`, photos, lien « Équipe » dans `Header.astro`,
+- [x] claudeagency : `app/src/pages/equipe.astro`, photos, lien « Équipe » dans `Header.astro`,
       note d'exception dans `CLAUDE.md`.
-- [ ] claudeagency : build, commit, push.
-- [ ] claudepartners (worktree jetable, une autre session a des fichiers indexés) : suppression de
+- [x] claudeagency : build (code 0), commit `fac17e6`, push.
+- [x] claudepartners (worktree jetable, une autre session a des fichiers indexés) : suppression de
       `src/pages/equipe.astro`, 301 dans `public/_redirects`, liens repointés (Footer, /a-propos/,
       /prestataires/, encart de l'accueil), art. 03 des CGU retiré, ligne de `lastmod.json` retirée.
-- [ ] claudepartners : build, commit, push.
-- [ ] Contrôle HTTP des deux URL en production, reprise des critères un par un.
+- [x] claudepartners : build (code 0, anti-fuite : aucune), commit `ecebdbf`, push.
+- [x] Contrôle en production le 2026-09-10 : `claudeagency.fr/equipe/` → 200, 979 mots, deux
+      portraits chargés, lien « Équipe » présent deux fois (desktop + mobile) ;
+      `claudepartners.fr/equipe/` → 301 vers la nouvelle URL ; `/cgu/` sans renvoi `missions-equipe`.
+
+## Reste à décider (hors périmètre de la migration)
+
+L'annuaire étiquette encore les deux fiches « Équipe Claude Partners » (liseré, badge sur la fiche,
+encart de l'accueil, aside de /prestataires/) alors que les CGU ne portent plus la clause et que la
+page dit « Claude Agency ». Renommer l'étiquette est une décision de Julien, pas un correctif.
+
+## Piège rencontré
+
+Une jonction Windows `node_modules` → dépôt principal ne suffit pas à builder dans un worktree :
+Vite échoue en `ENOENT` sur `node_modules/.vite/deps_temp_*` même quand `.vite` existe. Faire un
+`npm ci` dans le worktree. Et `git worktree remove --force` échoue ensuite en « Filename too long »
+sur ce `node_modules` : le supprimer d'abord en PowerShell avec le préfixe `\\?\`.
