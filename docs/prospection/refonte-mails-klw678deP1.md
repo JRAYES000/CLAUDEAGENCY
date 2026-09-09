@@ -126,70 +126,69 @@ signale des refus ; le CSV se telecharge par `curl` et nomme les adresses en ech
 **Un lot fait 12 fiches, soit environ 28 Ko.** Au-dela (20 fiches, 46 Ko), la sortie de `cat` est
 tronquee et le lot ne peut plus etre recopie dans l'appel MCP.
 
-## Avancement — chantier termine le 2026-09-09
+## Avancement — chantier termine, sequence relancee le 2026-09-09
 
-**189 fiches sur 190 sont reecrites**, dans Notion et dans SalesHandy. Controle final par
-reexport complet de la base :
+**287 fiches reecrites**, dans Notion et dans SalesHandy. La sequence est **repartie** :
+206 prospects, 142 mails 1 reprogrammes, 64 deja contactes qui recevront la relance a J+7.
 
-| Controle | Resultat |
+### Le drapeau « Sync SalesHandy » ne definit pas la campagne — erreur a ne pas refaire
+
+C'est le piege central de ce chantier, et il a failli couter cher. J'ai d'abord pris les
+**190 fiches portant le drapeau** pour la campagne. Faux. En relevant les 206 adresses reelles de
+la sequence dans l'interface, page par page, et en les croisant avec la base :
+
+- **109 seulement** des 206 prospects de la sequence portaient le drapeau ;
+- **97** etaient dans la base Notion **sans** le drapeau — invisibles pour la premiere passe, et
+  tous porteurs du passage sur l'escroquerie ;
+- **81** fiches a drapeau ne sont pas dans la sequence — reecrites pour rien, sans dommage.
+
+Le drapeau n'a jamais ete tenu a jour. **La seule source fiable du perimetre d'une campagne est la
+liste des prospects dans SalesHandy**, pas une case a cocher dans Notion.
+
+Relever ces 206 adresses demande de la patience : l'interface tronque les adresses longues dans le
+DOM, et la pagination ne repond ni au clic sur le libelle « Next » ni a `element.click()` sur le
+span — il faut viser `ul.pagination a.page-link`. Le script de collecte est a lancer en tache de
+fond (`.then()`), car un appel JavaScript synchrone depasse le delai de 45 s de l'outil et remonte
+une erreur alors meme que le travail continue.
+
+### Controle final — cote Notion, ou le texte est exact
+
+Notion est ecrit **par script**, donc au caractere pres ; SalesHandy est rempli par **recopie**
+dans un appel MCP. La reference, c'est donc Notion.
+
+| Controle sur les 287 fiches | Resultat |
 | :--- | ---: |
-| Fiches synchronisees | 190 |
-| Relances contenant encore « escroquerie » | **0** |
-| Relances contenant encore « mes clients me supplient » | **0** |
-| Mails 1 en nouvelle version (offre en tete, « Je m'y mets ? ») | **189** |
+| Relances contenant « escroquerie » | **0** |
+| Relances contenant « mes clients me supplient » | **0** |
 | Mails 1 sans ligne CNIL | **0** |
-| Mails 1 sans l'offre gratuite | 1 (AH MANAGEMENT, volontaire) |
-| Mention « 4 consultants IA » | **0** |
+| Textes contenant un caractere non latin | **0** |
+| Mails 1 en ancienne version | 1 (AH MANAGEMENT, volontaire) |
 
-La sequence compte toujours **206 prospects** : aucun ajout accidentel.
+### Ce qui reste non verifie
 
-**AH MANAGEMENT (EcloHesion) est la seule fiche laissee dans son etat d'origine** — prospect
-chaud, en relation suivie, mails deja courts et sur mesure, relance sans le passage retire.
-Seule la ligne CNIL, qui manquait, y a ete ajoutee.
+**La fidelite de la recopie dans SalesHandy.** Un sous-agent a detecte et corrige de lui-meme un
+caractere parasite dans un champ (`contact@comptoirdesrh.fr`), mais aucune relecture caractere par
+caractere n'a ete faite sur l'ensemble. Il n'existe **aucune lecture en masse** des champs
+personnalises : l'API MCP n'expose pas les prospects, le journal reseau du navigateur ne capte pas
+les appels de l'application, et le filtre de recherche de la page prospects ne repond pas au
+pilotage. Le seul controle possible est visuel, fiche par fiche, dans l'apercu de l'etape.
 
-**3 R CONSULTANTS** a ete retire de la sequence le 09/09 sur decision de Julien : sa fiche Notion
-reste reecrite, sans effet.
+Le risque residuel est **cosmetique** : une lettre de travers dans un mot. Les elements de fond —
+offre en tete, passage retire, ligne CNIL — sont structurels et presents dans chaque envoi.
 
-### Deux gabarits, pas un
+### Ce qui a ete corrige en cours de route
 
-La base melange deux formats de mails, et c'est ce qui a fait echouer la premiere passe :
+- **FRAISSINET ET ASSOCIES** : la coupe du preambule laissait « Il n'y avait presque rien a lire
+  — c'est. », phrase suspendue. La regle de coupe suppose que la proposition « … m'a arrete » est
+  detachable ; ici elle etait le predicat. Un seul cas sur 287, repare.
+- **SPIRALISS** : preambule au pluriel, « deux details m'**ont** arrete ». La regex ne couvrait que
+  « m'a ».
+- **Noms d'affichage** : sigles et raisons sociales pris pour des noms de personnes.
 
-- **le gabarit long** (176 fiches) : neuf blocs, preambule, observation, contrepoint, « Plan
-  de… », question, signature, P.S., ligne CNIL ;
-- **le gabarit court** (10 fiches, ecrites plus tard) : cinq blocs, ni P.S. ni ligne CNIL, et un
-  chantier introduit par « Le premier chantier est gratuit : … » au lieu de « Pas un audit, pas
-  une demonstration : … ».
+### Reglages en vigueur a la reprise
 
-`transforme.py` traite le premier, `transforme_court.py` le second. Les deux produisent le meme
-resultat final.
+Planning **lundi-vendredi 9 h-18 h** (Europe/Paris), relance a **J+7**, priorite **equilibree**,
+**suivi des ouvertures actif**, 8 mails/jour et par boite sur quatre boites, soit 32/jour.
 
-### Le piege des accents dans les expressions regulieres
-
-Quatre fiches — ACTIFORMA, BIGOT FORMATION, INSPIRATIONS MANAGEMENT, STARTER FORMATION — sont
-passees a travers la premiere passe parce que la classe `arr[eé]t[eé]` ne couvre pas le **e
-circonflexe** d'« arrete ». Leur preambule disait « une ligne / une phrase / un chiffre m'a
-arrete », forme absente de la liste des variantes. Ecrire `arr[eéê]+t[eé]+`, et prevoir la forme
-generique `(?:une?|un)\s+\w+\s+m'a`.
-
-Meme famille de piege sur les noms d'affichage : le champ `Dirigeant` contient parfois une raison
-sociale ou un sigle, et « JPB&DF » devenait « Jpb&df », « FEDERATION R… » devenait « Federation
-R ». La parade est dans `noms.py` : liste de mots de forme sociale, rejet des sigles et des noms
-d'une ou deux lettres, repli sur `Direction` + nom de l'organisme (44 fiches concernees).
-
-### Un dernier piege, cher en temps
-
-**Ne jamais faire transiter du JSON accentue par un tube `stdin` sous Windows.** Un
-`cat fichier.json | python -c "json.load(sys.stdin)"` decode l'UTF-8 avec la page de code de la
-console et produit un fichier doublement encode (« nouveautÃ© »). Ouvrir le fichier directement
-avec `io.open(chemin, encoding='utf-8')`.
-
-### Ce qui reste
-
-1. **17 prospects de la sequence n'ont aucune fiche Notion identifiable** (206 en base contre 190
-   drapeaux « Sync SalesHandy »). Ils gardent leurs anciens textes. Les retrouver demande de
-   parcourir la liste des 206 dans l'interface, un par un.
-2. **La sequence est toujours en pause.** Elle peut repartir : les 189 fiches reecrites sont en
-   place. La relance part desormais a J+7, le planning est passe a lundi-vendredi 9 h-18 h, la
-   priorite est equilibree et le suivi des ouvertures est actif.
-3. **Surveiller le taux de desinscription**, qui etait a 4,7 % sur les 64 premiers contactes.
-   C'est le seul jugement que le marche ait rendu sur l'ancien texte.
+**A surveiller** : le taux de desinscription, a 4,7 % sur les 64 premiers contactes. C'est lui qui
+dira si la reecriture a servi.
