@@ -418,7 +418,9 @@ taux de réponse qui portera l'information sur cette vague.
 validating error`, ou vide) ont été repassées au vérificateur le 2026-09-10 : STARTWAVE, SENZA,
 INTERACTIF, GLOBAL DIGITAL UNIVERSITY, BIZILIVE, FELOUKI, L'ATELIER DIGITAL, GLOBE TRAINING,
 ÉCOLE DE LA TOILE, Formations 90, LENTREPRENEUSE, FORMEO 13, ANAIA, UNIVERS PROTEC,
-SPIRIT FORMATION, FlowIA, LINGUAID.
+SPIRIT FORMATION, FlowIA, LINGUAID. **Résultat : 6 valides, 11 risky, 0 mauvaise** — dont
+6 encore « Role based ». Aucune adresse invalide ne se cachait derrière l'indécision du
+vérificateur : la liste ne compte que **2 mauvaises sur 206**, déjà en liste de non-contact.
 
 **Réglages de la séquence** (`mesuré`) : `email-risky-prospects` = 1 — sans ce réglage, les 118
 ne partiraient jamais. En-tête de désinscription actif (code 13), suivi des ouvertures actif,
