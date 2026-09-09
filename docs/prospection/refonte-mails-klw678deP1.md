@@ -128,10 +128,9 @@ tronquee et le lot ne peut plus etre recopie dans l'appel MCP.
 
 ## Avancement
 
-Ordre alphabetique. **Lot 1 sur 15 pousse dans SalesHandy (12 fiches), de 1ER GEST UMFI a AEFE.**
+Ordre alphabetique. **Lots 1 a 3 sur 15 pousses dans SalesHandy (36 fiches), de 1ER GEST UMFI a CARDINALE SUD.**
 Les lots prets a pousser sont dans le scratchpad de la session, `lots/lot01.json` a `lot15.json`,
-12 fiches chacun sauf le dernier (6). Reprendre au **lot 02 (ALLEGRE ET DUC -> ASSISTANCE
-MAITRISE EXPERTISE)**. Il reste **162 fiches**, soit 14 lots.
+12 fiches chacun sauf le dernier (6). Reprendre au **lot 04 (CARREFOUR DES COMPETENCES -> CFV)**. Il reste **138 fiches**, soit 12 lots.
 
 Si le scratchpad a disparu, rejouer la chaine : `export_notion.py`, puis `transforme.py`, puis
 `lots.py`. Elle est deterministe et redonne exactement les memes textes.
