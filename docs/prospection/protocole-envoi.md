@@ -386,3 +386,45 @@ stocké a été envoyé à `contact@claudeagency.fr` et relu : paragraphes sépa
 balise visible, une seule ligne de désinscription. À noter : l'envoi de test de SalesHandy
 (« Send Test Email ») utilise le prospect affiché dans l'aperçu — si ce prospect a un champ vide,
 le test arrive vide et se lit à tort comme une panne du modèle.
+
+## 2026-09-10 — la vague part. Ce que « Risky » veut vraiment dire.
+
+Arbitrage de Julien : **on envoie**, sans nettoyage supplémentaire. Les deux consultants restent
+nommés dans les mails, Solohery compris.
+
+**Le statut « Risky » d'un vérificateur ne dit pas qu'une adresse est douteuse.** Sur les 118 du
+lot, **101 (86 %) portent le sous-statut « Do not mail_Role based emails »** : ce sont des adresses
+de service — `contact@`, `cpf@`, `formation@`, `dossier@`. Le vérificateur les classe ainsi par
+convention, faute de pouvoir tester une boîte nominative. Aucune des 206 n'est sans enregistrement
+MX : tous les domaines reçoivent du courrier.
+
+**La mesure qui tranche**, et qu'il faut refaire à chaque vague plutôt que de payer un second
+vérificateur — le taux de rebond observé par statut, sur les 64 envois réels du 08/09 :
+
+| statut | rebonds | envoyés | taux |
+| :--- | ---: | ---: | ---: |
+| valid | 0 | 9 | 0,0 % |
+| risky | 0 | **55** | **0,0 %** |
+
+55 des 64 envois sont partis vers des adresses « risky », aucune n'a rebondi. C'est la raison de
+fond de laisser partir les 118 — pas la provenance du fichier public, qui atteste seulement qu'une
+adresse a été *publiée*, jamais qu'elle est active.
+
+**Ce qui reste à surveiller n'est pas le rebond mais la réponse.** Une adresse de service est lue
+par un secrétariat qui ne décide pas. Le compteur de rebond restera bas et ne dira rien ; c'est le
+taux de réponse qui portera l'information sur cette vague.
+
+**Les 17 réellement non conclues** (sous-statut `Unknown_Not validated temporarily`, `While
+validating error`, ou vide) ont été repassées au vérificateur le 2026-09-10 : STARTWAVE, SENZA,
+INTERACTIF, GLOBAL DIGITAL UNIVERSITY, BIZILIVE, FELOUKI, L'ATELIER DIGITAL, GLOBE TRAINING,
+ÉCOLE DE LA TOILE, Formations 90, LENTREPRENEUSE, FORMEO 13, ANAIA, UNIVERS PROTEC,
+SPIRIT FORMATION, FlowIA, LINGUAID.
+
+**Réglages de la séquence** (`mesuré`) : `email-risky-prospects` = 1 — sans ce réglage, les 118
+ne partiraient jamais. En-tête de désinscription actif (code 13), suivi des ouvertures actif,
+suivi des clics inactif. Le texte « Répondez Stop » est le **réglage n° 2 de la séquence**, ce qui
+confirme qu'il ne doit pas figurer dans le champ du mail.
+
+**Cadence** : planning « New Schedule 3 », lundi-vendredi 9h-18h Europe/Paris, 4 boîtes à 8 envois
+par jour = **32 par jour**. 346 e-mails programmés, soit une dizaine de jours ouvrés. Premier
+créneau : jeudi 2026-09-10 à 9h. **Le seuil de coupure à 5 % se relit à 24 h puis à 72 h.**
