@@ -20,6 +20,10 @@ Production : **https://claudeagency.fr**. Dépôt GitHub **public**.
 > des résultats à chaque build ; `CP_DEPLOY_HOOK_URL`, sur ce projet Pages, déclenche ce build après
 > chaque réussite). Corollaire : le test se repasse **une fois par an** et par adresse, pas une seule
 > fois — le badge vaut un an. Les liens de la page du test, eux, restent sans lien vers ce domaine.
+> **Dernière exception, décidée le 10/09/2026** : `/equipe/`, migrée depuis claudepartners.fr, lie
+> la fiche annuaire de chacun des deux consultants (`claudepartners.fr/prestataires/<slug>/`). Le
+> tarif et les parcours y sont écrits en dur, relevés sur ces fiches : les mettre à jour dans le
+> même geste qu'une fiche (détail : `docs/migration-page-equipe.md`).
 
 ## Commandes
 

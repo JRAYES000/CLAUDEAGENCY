@@ -1,0 +1,220 @@
+---
+/**
+ * /equipe/ — les consultants de Claude Agency, et pourquoi l'agence existe.
+ *
+ * Page migrée depuis claudepartners.fr/equipe/ le 2026-09-10 (docs/migration-page-equipe.md).
+ * Sur l'annuaire, tout ce qui est chiffré venait des fiches et se recalculait au build.
+ * Ici, il n'y a pas de fiches : le tarif, la mission minimale, les livrables, les outils et
+ * les parcours sont ÉCRITS EN DUR, relevés sur les fiches claudepartners le 2026-09-10.
+ * Si une fiche bouge, cette page devient fausse en silence : la relire avant de la citer,
+ * et la mettre à jour dans le même geste que la fiche.
+ *
+ * Les liens vers claudepartners.fr/prestataires/<slug>/ sont une exception voulue au garde-fou
+ * « aucun lien vers claudepartners.fr » (CLAUDE.md), décidée par Julien le 2026-09-10.
+ */
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { authorPerson } from '../data/author';
+import soloheryImg from '../assets/equipe/solohery-randrianantenaina.webp';
+import nomenaImg from '../assets/equipe/nomena-andrianiaina.webp';
+
+const site = Astro.site!;
+
+// Relevé sur les fiches claudepartners le 2026-09-10 (tjm_declare, mission_min).
+const TARIF_JOUR = 90;
+const MISSION_MIN = 'à partir de 5 jours';
+const eur = (n: number) => new Intl.NumberFormat('fr-FR').format(n);
+
+const consultants = [
+  {
+    slug: 'solohery-randrianantenaina',
+    nom: 'Solohery Randrianantenaina',
+    role: 'Expert SEO et GEO',
+    photo: soloheryImg,
+    avis:
+      'Six ans de référencement et de publicité en ligne, dont bientôt quatre en freelance : audit technique, sémantique et netlinking, mots-clés, référencement local, campagnes Google Ads. Il tient la chaîne d’acquisition de bout en bout. Côté IA, quatre mois de missions livrées : un mois chez Meridian Models et trois mois pour l’École de Naturopathie et Sophrologie, sur de la production de contenu assistée et de l’optimisation pour les moteurs de réponse.',
+    livrables: [
+      'Audit SEO technique, sémantique et netlinking',
+      'Recherche et analyse de mots-clés',
+      'Référencement local',
+      'Campagnes Google Ads : Search, Display, remarketing',
+    ],
+    outils: ['Claude Code', 'Google Ads', 'Google Analytics', 'Google Tag Manager', 'Ahrefs', 'Google Data Studio', 'WordPress'],
+    parcours: [
+      'Claude Agency — expert SEO et GEO, depuis juillet 2026',
+      'NEO WEB AGENCY — consultant en référencement freelance, 3 ans et 11 mois',
+      'WEB EVOLUZION — responsable de projet SEO, 8 mois',
+      'OUTSTANDING DIGITAL — spécialiste en référencement, 4 mois',
+      'Referansy — responsable de projet SEO, 2 ans et 2 mois',
+    ],
+  },
+  {
+    slug: 'nomena-andrianiaina',
+    nom: 'Nomena Andrianiaina',
+    role: 'Développeur full-stack',
+    photo: nomenaImg,
+    avis:
+      'Développeur formé à l’École nationale d’informatique de Fianarantsoa : Next.js et TypeScript côté web, Spring Boot côté serveur, React Native et Flutter côté mobile, avec le déploiement Docker et la chaîne d’intégration continue. Parcours court, quatre postes en trois ans, licence en cours, avec quatre mois de missions d’IA : un mois chez Meridian Models et trois mois pour l’École de Naturopathie et Sophrologie, sur de l’automatisation de chaînes et de l’intégration d’agents.',
+    livrables: [
+      'Applications web full-stack TypeScript',
+      'API REST documentées et réutilisables',
+      'Applications mobiles React Native et Flutter',
+      'Intégration continue et déploiement conteneurisé Docker',
+    ],
+    outils: ['Claude Code', 'Next.js', 'React.js', 'React Native', 'TypeScript', 'Java', 'Spring Boot', 'NestJS', 'PostgreSQL', 'Docker', 'Flutter'],
+    parcours: [
+      'ALFA OI — software engineer full-stack, depuis mai 2026',
+      'Webradio AI — développeur Next.js freelance, 1 an et 7 mois',
+      'Orange Digital Center Madagascar — développeur mobile, 6 mois',
+      'Ministère de l’Économie et du Plan — développeur Java et React, 4 mois',
+    ],
+  },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Équipe', item: new URL('/equipe/', site).href },
+  ],
+};
+const aboutPage = {
+  '@context': 'https://schema.org', '@type': 'AboutPage',
+  name: 'L’équipe Claude Agency',
+  url: new URL('/equipe/', site).href,
+  isPartOf: { '@id': new URL('/#website', site).href },
+  publisher: { '@id': new URL('/#organization', site).href },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: consultants.length,
+    itemListElement: consultants.map((c, i) => ({
+      '@type': 'ListItem', position: i + 1, name: c.nom,
+      url: `https://claudepartners.fr/prestataires/${c.slug}/`,
+    })),
+  },
+};
+---
+<BaseLayout
+  title="L’équipe : nos consultants IA à Madagascar — Claude Agency"
+  description={`Pourquoi Claude Agency existe, qui sont ses consultants formés sur Claude Code, à ${eur(TARIF_JOUR)} € HT/jour, et la garantie de remplacement sous une semaine.`}
+  pageSchema={[breadcrumb, aboutPage, authorPerson(site)]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Équipe</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Pourquoi j’ai créé Claude Agency, et qui travaille pour vous</h1>
+    </div>
+
+    <div class="prose prose-stone mt-8 max-w-none">
+      <p class="lead">
+        Je m’appelle Julien Rayes. Avant de fonder cette agence, j’ai été client d’agences pendant
+        cinq ans. Cette page dit ce que j’y ai vu, ce que j’ai décidé d’en faire, et qui sont les
+        deux consultants que je positionne chez vous.
+      </p>
+
+      <h2 id="constat" class="scroll-mt-24">Le constat qui a tout déclenché</h2>
+      <p>
+        En cinq ans, j’ai sollicité une dizaine d’agences marketing pour l’organisme de formation
+        que je dirige : des agences SEO, des agences SEA, des agences de gestion de campagnes
+        Google Ads, Meta Ads ou TikTok, des agences de prospection sur LinkedIn. Aucune n’a accepté
+        de s’engager sur un résultat. Toutes s’engageaient sur des moyens : un nombre d’heures, un
+        nombre d’articles, un budget publicitaire dépensé.
+      </p>
+      <p>
+        Et ce que j’ai reçu, à chaque fois, m’a paru médiocre. Personne n’a su me fixer des
+        objectifs clairs et atteignables, et personne, par conséquent, ne les a atteints. Je payais
+        pour de l’activité, pas pour un résultat.
+      </p>
+      <p>
+        J’ai donc décidé de monter ma propre agence, sur le modèle inverse : des objectifs écrits
+        noir sur blanc, validés ensemble avant de commencer, et un engagement dessus. Mon pari est
+        qu’elle va trois fois plus vite qu’une agence classique, pour un tarif trois fois inférieur.
+      </p>
+
+      <h2 id="comment" class="scroll-mt-24">Comment c’est possible</h2>
+      <p>
+        Deux choses ont changé la donne. La première est l’IA : avec Claude Code, un consultant qui
+        sait s’en servir produit en heures ce qui prenait des jours. La seconde est mon équipe,
+        basée à Antananarivo, à Madagascar, où une rémunération correcte se situe à un niveau qui
+        n’a pas d’équivalent en France. C’est de l’offshore, et je préfère l’écrire que le laisser
+        deviner : c’est le seul mécanisme derrière le tarif de {eur(TARIF_JOUR)} € HT par jour.
+      </p>
+      <p>
+        Je les ai formés moi-même sur Claude Code, pendant au moins trois mois chacun. Ils ont passé
+        de nombreux tests et sont intervenus sur des cas concrets de clients avant d’être positionnés
+        seuls. Les consultants que je vous propose sont donc expérimentés et opérationnels
+        immédiatement : il n’y a pas de période de montée en compétence à votre charge.
+      </p>
+      <p>
+        Madagascar a deux avantages au quotidien sur la plupart des destinations offshore. Le
+        <strong>français</strong> y est langue de travail, d’administration et d’enseignement
+        supérieur : il n’y a pas d’anglais de passage entre vous et eux. Et le fuseau horaire est à
+        <strong>une heure d’avance sur Paris en été, deux en hiver</strong> : vos journées se
+        recouvrent presque entièrement.
+      </p>
+
+      <h2 id="garantie" class="scroll-mt-24">Si ça ne vous convient pas, vous changez de collaborateur</h2>
+      <p>
+        C’est la valeur ajoutée de Claude Agency par rapport à un recrutement direct sur une place
+        de marché offshore, au même tarif. Le contrat, la facturation et l’encadrement passent par
+        l’agence : vous avez un interlocuteur français, et un seul, quoi qu’il arrive en cours de
+        mission.
+      </p>
+      <p>
+        Et si vous n’êtes pas satisfait, pour quelque raison que ce soit, <strong>vous pouvez changer
+        de collaborateur : il est remplacé sous une semaine maximum</strong>, sans que vous ayez à
+        justifier votre demande.
+      </p>
+
+      <h2 id="consultants" class="scroll-mt-24">Les consultants</h2>
+      {consultants.map((c) => (
+        <section aria-labelledby={c.slug} class="not-prose mt-8 border-t border-sand pt-8">
+          <div class="flex items-start gap-5">
+            <Image
+              src={c.photo}
+              alt={`Portrait de ${c.nom}`}
+              width={96}
+              height={96}
+              loading="lazy"
+              class="h-24 w-24 shrink-0 rounded-2xl border border-sand object-cover"
+            />
+            <div>
+              <h3 id={c.slug} class="scroll-mt-24 font-display text-2xl font-bold tracking-tight text-ink">{c.nom}</h3>
+              <p class="mt-1 text-sm text-muted">{c.role}</p>
+              <p class="mt-2 text-sm text-muted"><strong class="text-base text-brand-700">{eur(TARIF_JOUR)} € HT/jour</strong> · {MISSION_MIN}</p>
+            </div>
+          </div>
+          <div class="prose prose-stone mt-5 max-w-none">
+            <p>{c.avis}</p>
+            <p><strong>Ce qu’il a déjà livré :</strong> {c.livrables.join(' · ')}.</p>
+            <p><strong>Ses outils :</strong> {c.outils.join(' · ')}.</p>
+            <p><strong>Son parcours :</strong></p>
+            <ul>{c.parcours.map((x) => <li>{x}</li>)}</ul>
+            <p>
+              <a href={`https://claudepartners.fr/prestataires/${c.slug}/`} rel="noopener">La fiche complète de {c.nom}</a> sur
+              l’annuaire Claude Partners : expertises, secteurs pratiqués, conditions d’intervention.
+            </p>
+          </div>
+        </section>
+      ))}
+
+      <h2 id="travailler" class="scroll-mt-24">Comment travailler avec eux</h2>
+      <p>
+        Les missions démarrent <strong>{MISSION_MIN}</strong>, à distance. Vous recevez un reporting
+        quotidien du travail réalisé. Pour commencer, un échange de trente minutes avec moi suffit :
+        nous écrivons ensemble les objectifs, et je vous dis lequel des deux convient.
+      </p>
+      <p>
+        <a href="/contact/" class="not-prose inline-block rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white no-underline transition-colors hover:bg-brand-600">Prendre rendez-vous</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Testez-les une semaine, sans payer</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Une semaine de consultant IA offerte, contre un avis honnête en vidéo.</p>
+      <a href="/semaine-offerte/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Réserver ma semaine offerte</a>
+    </div>
+  </section>
+</BaseLayout>
