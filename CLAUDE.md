@@ -33,6 +33,12 @@ n'atteste donc pas du build qui publie.
 sitemap à IndexNow. Il ne s'exécute qu'avec `CF_PAGES` ou `FORCE_INDEXNOW` — **ne jamais poser
 `FORCE_INDEXNOW=1` sur un build local**, ça soumettrait ~160 URLs aux moteurs depuis le poste.
 
+**Livrable PDF : mesurer le débordement dans le navigateur avant de lancer Chrome headless.** Le
+PDF coupe en silence ce qui dépasse. Ouvrir le HTML dans le pane intégré et vérifier deux choses
+sur chaque conteneur A4 : `scrollHeight > clientHeight` pour le contenu en flux, et le chevauchement
+des blocs en `position:absolute` (un pied de page ne compte pas dans `scrollHeight`, donc une page
+qui déborde peut se mesurer à zéro). Deux pages tronquées avant d'y passer, le 09/09/2026.
+
 ## Garde-fous — non négociables
 
 - **`.gitignore` ligne 2 ignore `.claude/` en entier**, sous un commentaire faux (« worktrees
