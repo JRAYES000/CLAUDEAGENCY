@@ -250,3 +250,35 @@ l'en-tête « À : », jamais dans le corps.
 
 Les deux dépassent le seuil de coupure de 5 %. C'est la qualité de liste, traitée depuis : les
 216 lignes ajoutées le 01/09 portent chacune l'URL de la page où l'adresse a été lue.
+
+---
+
+## 2026-09-09 — 208 séquences ajoutées (lot moncompteformation). Aucun envoi.
+
+Les 334 lignes collectées sur moncompteformation.gouv.fr ont été enrichies et 208 d'entre elles
+portent désormais `Objet`, `Mail 1` et `Relance J5`. Plan, barème et pièges :
+`docs/prospection/plan-lot-mcf-2026-09.md`. **Rien n'a été importé dans SalesHandy et rien n'est
+parti** — les réserves listées dans le plan se tranchent avant tout import.
+
+Écrit dans Notion (`mesuré`, API REST, relu après écriture) : 329 lignes de données — `Stagiaires
+2025` 329/329, `Qualiopi` corrigé de `NON` à `OUI` sur 329, `CA (€)` + `Annee du CA` sur 57,
+`Ville` 328, `Région` 319, `Dirigeant` 16, `Score cible` 329 — puis 208 séquences. Zéro échec
+d'écriture.
+
+Ce que les règles du protocole ont écarté : 28 organismes trop gros (plus de 49 salariés, ou
+CA > 5 M€, ou > 10 000 stagiaires, ou > 200 formateurs — règle 1), 42 sans site, 32 dont le site
+ne répond plus, 22 dont le site ne rend aucun texte exploitable. Aucune adresse n'a été devinée
+(règle 2) : chaque ligne écrite portait déjà son adresse.
+
+Deux adresses à sortir avant import, invisibles à un contrôle de syntaxe : NATURELIA
+(`…@naturelia.frr`, double « r », rebond certain) et 2MS Antilles (`contat@…`, « contat » sans le
+c). Vu le seuil de coupure à 5 %, ce sont deux rebonds gratuits.
+
+**Le « non vérifié » du 06/09 est levé** : le comptage BULGARIA a été refait sans SQL, par lecture
+API des 636 lignes — 0 occurrence dans `Mail 1`, `Relance J5` et `Objet` (`mesuré` 2026-09-09,
+515 lignes portent un `Mail 1`).
+
+Un chiffre inventé a été trouvé et corrigé après écriture : INSTITEC portait « 1 645 € HT la
+formation de cinq jours », prix qui n'apparaît nulle part sur `institec.fr`. Remplacé par les
+durées, elles, publiées. Le contrôle qui l'a trouvé confronte chaque nombre du constat au texte du
+site, au LPOF et à l'API entreprises ; il est à relancer sur toute vague future.

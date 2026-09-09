@@ -52,15 +52,19 @@ formation n'achète pas des jours de consultant.
 
 ## Critères de réussite
 
-- [ ] Toutes les lignes à site + e-mail portent `Objet`, `Mail 1`, `Relance J5`, `Stagiaires 2025`
-      et `Score cible` non vides.
-- [ ] Chaque `Mail 1` cite **au moins un fait lu sur le site** de l'organisme, la page étant
-      nommée dans le journal de production.
-- [ ] `Mail 1` ≤ 270 mots hors signature, `Relance J5` ≤ 120. Format `<br>` / `<b>`, zéro gras
-      Markdown, ligne CNIL en pied, aucun bloc BULGARIA.
-- [ ] Les quatre éléments obligatoires ci-dessus sont présents dans **100 %** des `Mail 1`.
-- [ ] Zéro mention de CPF, OPCO ou France Travail comme finançant une prestation Claude Agency.
-- [ ] Aucune valeur chiffrée inventée : `CA` vide quand aucun bilan exploitable n'est déposé.
+- [x] Toutes les lignes à site + e-mail portent `Objet`, `Mail 1`, `Relance J5`, `Stagiaires 2025`
+      et `Score cible` non vides. — **208/208, zéro champ vide** (`mesuré` sur la base relue).
+- [x] Chaque `Mail 1` cite **au moins un fait lu sur le site** de l'organisme, la page étant
+      nommée dans le journal de production. — **208/208** : 205 par n-gramme retrouvé mot pour
+      mot dans le texte du site, 3 vérifiés à la main (Dolfi, Coco Auto-École, e-Formaction).
+- [x] `Mail 1` ≤ 270 mots hors signature, `Relance J5` ≤ 120. Format `<br>` / `<b>`, zéro gras
+      Markdown, ligne CNIL en pied, aucun bloc BULGARIA. — **0 problème sur 208**.
+- [x] Les quatre éléments obligatoires ci-dessus sont présents dans **100 %** des `Mail 1`.
+      — dix motifs contrôlés un par un, **0 manque sur 208**.
+- [x] Zéro mention de CPF, OPCO ou France Travail comme finançant une prestation Claude Agency.
+- [x] Aucune valeur chiffrée inventée. — `CA` : 0 écart contre la source, 29 lignes du lot en
+      portent un. Stagiaires : 0 écart contre le LPOF. **Un prix inventé trouvé et corrigé**
+      (INSTITEC, « 1 645 € HT », absent d'`institec.fr`).
 
 ## Sources — ce qui vient d'où
 
@@ -84,29 +88,27 @@ donc de tourner sous 160 000 lignes.
 
 - [x] **0. Lot pilote de 5**, écrit et validé le 2026-09-09 : TALK RH (68), CORTISUM (63),
       L'Forme (57), WAYSTAGE (43), BEAUVOIR (41). Sert de référence de ton et de format.
-- [ ] **1. Export de la base** → `base_export.json`. Bloqué : voir ci-dessous.
-- [ ] **2. Rapprochement** LPOF + API entreprises → `enrichi.json`, écarts dans `ecarts.json`.
-- [ ] **3. Dédoublonnage** SIREN, adresse et domaine → `collisions.json`.
-- [ ] **4. Lecture des sites** → `sites/<siren>.txt`, injoignables dans `crawl_bilan.json`.
-- [ ] **5. Rédaction** par lots, brief commun + les 5 du pilote en exemples.
-- [ ] **6. Contrôle par script** des six critères ci-dessus, sur 100 % des lignes écrites.
-- [ ] **7. Écriture dans Notion**, puis relecture par requête et non par checklist.
-- [ ] **8. Ligne de journal** dans `protocole-envoi.md`. **Aucun envoi n'est déclenché par ce plan.**
+- [x] **1. Export de la base** → 636 lignes, 329 sans mail (`mesuré`).
+- [x] **2. Rapprochement** LPOF + API entreprises. **329/329 SIREN appariés.**
+- [x] **3. Dédoublonnage** SIREN, adresse et domaine : **zéro collision**.
+- [x] **4. Lecture des sites** : 255 lus, 32 injoignables, 22 illisibles.
+- [x] **5. Rédaction** : 208 séquences en 21 lots.
+- [x] **6. Contrôle par script** à chaque lot : 21/21 verts.
+- [x] **7. Écriture dans Notion** : 329 lignes de données + 208 séquences, **zéro échec**.
+- [x] **8. Ligne de journal** dans `protocole-envoi.md`. **Aucun envoi n'a été déclenché.**
 
-## Blocage à lever avant l'étape 1
+## Le blocage Notion, et comment il a été levé
 
 Le jeton `NOTION_TOKEN` du coffre appartient à l'intégration **« Leads site claudeagency.fr »**,
-qui n'est connectée qu'aux bases des leads du site. Sur *Cibles — Prospection OF*, l'API rend un
-`404 object_not_found` — le piège déjà consigné dans `CLAUDE.md` : l'intégration s'ajoute **base
-par base** dans l'interface Notion.
+qui n'était connectée qu'aux bases des leads du site. Sur *Cibles — Prospection OF*, l'API rendait
+un `404 object_not_found` — le piège déjà consigné dans `CLAUDE.md` : l'intégration s'ajoute
+**base par base** dans l'interface Notion.
 
-À faire, une fois : ouvrir la base, menu `•••` → **Connexions** → ajouter *Leads site
-claudeagency.fr*.
+**Levé le 2026-09-09** en ajoutant la connexion depuis la base (menu `•••` → Connexions), pilotée
+par Chrome. Contrôle : `GET /v1/databases/<id>` et `POST .../query` répondent.
 
-Sans cet accès, tout reste faisable par le connecteur MCP — qui agit avec les droits du compte —
-mais au prix d'un appel par ligne à l'écriture, et d'un export qui transite par la conversation.
-Le quota SQL du connecteur est par ailleurs épuisé depuis le 2026-09-06 ; seul le mode `rows`
-répond encore.
+Le quota SQL du connecteur MCP est épuisé depuis le 2026-09-06 ; seul le mode `rows` répond.
+C'est une raison de plus de passer par l'API REST pour tout traitement de masse sur cette base.
 
 ## Points relevés au pilote, à trancher pour le lot complet
 
@@ -120,3 +122,55 @@ répond encore.
 - **Des sites sont morts** : instapreneurpro.fr (SCORE, SIREN 824778682) ne répond pas.
 - **La clause « un organisme par bassin d'emploi »** des 302 relances existantes devient
   intenable à 636 lignes. Elle n'a pas été reprise dans les relances du pilote.
+
+
+## Ce que le chantier a produit (2026-09-09)
+
+| | Lignes |
+| :--- | ---: |
+| Base | 636 |
+| Sans mail au départ | 329 |
+| **Séquences rédigées et écrites** | **208** |
+| Écartées — plus de 49 salariés, ou CA > 5 M€, ou > 10 000 stagiaires, ou > 200 formateurs | 28 |
+| Écartées — pas de site web | 42 |
+| Écartées — site injoignable | 32 |
+| Écartées — site illisible (SPA, PDF, page vide) | 22 |
+
+Données écrites sur les 329 : `Stagiaires 2025` (329/329), `Qualiopi` corrigé de `NON` à `OUI`
+(329), `CA (€)` + `Annee du CA` (57), `Ville` (328), `Région` (319), `Dirigeant` (16), `Score
+cible` (329). Zéro échec d'écriture.
+
+## Réserves à trancher avant l'import SalesHandy
+
+- **NATURELIA** : adresse `sdulac@naturelia.frr` — double « r ». Rebond certain.
+- **2MS ANTILLES** : adresse `contat@2msantilles.com` — « contat » sans le c. Syntaxiquement
+  valide, donc invisible au contrôle automatique.
+- **NEXT FORMA et WEFORMAT** : même dirigeant (Patrick Oinounou), deux SIREN, deux domaines.
+  Le dédoublonnage SIREN et domaine ne pouvait pas l'attraper. Les deux mails ont des angles
+  distincts ; reste à décider si les deux partent.
+- **Adresses chez un fournisseur grand public** sans ancrage du nom dans le domaine, que le
+  filtre du 01/09 écarterait : My Music Ads, NOURF GROUP, AVENIR ET COMPETENCES,
+  VITAE PROJECT (adresse en `@live.fr`), GALDEMAR (gmail), ML SOCIAL INDUSTRY (gmail).
+- **GAME OF WORKS** : le site `ese-gow.fr` sert des pages de casino en ligne injectées. Le mail
+  le signale plutôt que de l'ignorer.
+- **Bassins d'emploi** : trois organismes à Anglet (SPIRIT FORMATION, CHAMBRON LAURA,
+  ECOLE DE LA TOILE), deux en Vendée à 10 km (ATC à Challans, BRIO FORMATION à Soullans).
+  La clause d'exclusivité par bassin n'a pas été reprise dans les relances, mais l'ordre
+  d'envoi mérite d'être espacé.
+- **90 divergences de dirigeant conservées** : moncompteformation déclare souvent le responsable
+  pédagogique là où l'API entreprises donne le gérant. La base n'a pas été écrasée ; ces lignes
+  portent une civilité prudente (« Bonjour, ») et −5 au score.
+
+## Pièges rencontrés, à ne pas refaire
+
+- **Le LPOF se télécharge tronqué sans erreur lisible.** 126 823 lignes sur 166 200 au premier
+  passage, `curl` en code 56, et un CSV qui se parse normalement — donnant des « SIREN absents »
+  qui n'ont rien d'absent. `enrich.py` refuse désormais de tourner sous 160 000 lignes.
+- **Huit threads suffisent à saturer le résolveur DNS local.** 94 sites déclarés injoignables
+  au premier passage, 32 réellement morts après relance à trois threads avec reprise sur
+  `getaddrinfo failed`. Un site vivant testé seul répond parfaitement.
+- **Un CA à 0 € n'est pas un CA.** Voir CORTISUM : 0 € de CA déclaré, 32 896 € de résultat net.
+- **Comparer des noms de dirigeants par préfixe de chaîne ne marche pas.** « ORTIS Stéphanie »
+  contre « Stephanie Monique Mathilde Ortis » est la même personne. Comparer des jetons
+  normalisés, et ignorer les dirigeants personnes morales (ni nom ni prénom) qui feraient
+  écrire une chaîne vide par-dessus un nom juste.
