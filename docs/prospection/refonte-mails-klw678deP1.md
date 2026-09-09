@@ -126,33 +126,70 @@ signale des refus ; le CSV se telecharge par `curl` et nomme les adresses en ech
 **Un lot fait 12 fiches, soit environ 28 Ko.** Au-dela (20 fiches, 46 Ko), la sortie de `cat` est
 tronquee et le lot ne peut plus etre recopie dans l'appel MCP.
 
-## Avancement
+## Avancement — chantier termine le 2026-09-09
 
-Ordre alphabetique. **Lots 1 a 3 sur 15 pousses dans SalesHandy (36 fiches), de 1ER GEST UMFI a CARDINALE SUD.**
-Les lots prets a pousser sont dans le scratchpad de la session, `lots/lot01.json` a `lot15.json`,
-12 fiches chacun sauf le dernier (6). Reprendre au **lot 04 (CARREFOUR DES COMPETENCES -> CFV)**. Il reste **138 fiches**, soit 12 lots.
+**189 fiches sur 190 sont reecrites**, dans Notion et dans SalesHandy. Controle final par
+reexport complet de la base :
 
-Si le scratchpad a disparu, rejouer la chaine : `export_notion.py`, puis `transforme.py`, puis
-`lots.py`. Elle est deterministe et redonne exactement les memes textes.
+| Controle | Resultat |
+| :--- | ---: |
+| Fiches synchronisees | 190 |
+| Relances contenant encore « escroquerie » | **0** |
+| Relances contenant encore « mes clients me supplient » | **0** |
+| Mails 1 en nouvelle version (offre en tete, « Je m'y mets ? ») | **189** |
+| Mails 1 sans ligne CNIL | **0** |
+| Mails 1 sans l'offre gratuite | 1 (AH MANAGEMENT, volontaire) |
+| Mention « 4 consultants IA » | **0** |
 
-**Ecartees du traitement automatique — 16 fiches a reprendre a la main :**
+La sequence compte toujours **206 prospects** : aucun ajout accidentel.
 
-| Fiche | Raison |
-| :--- | :--- |
-| AH MANAGEMENT (EcloHesion) | prospect chaud, mails deja courts et sur mesure, aucun passage a retirer — **ne pas y toucher** |
-| SMF | le chantier de la relance dit seulement « le travail », source inexploitable |
-| 3 R CONSULTANTS | retire de la sequence le 09/09 sur decision de Julien |
-| ACTIFORMA, BIGOT FORMATION, INSPIRATIONS MANAGEMENT, STARTER FORMATION | preambule pas au bloc 2 |
-| CAPITE CORPUS, CHRYSALIDE FORMATIONS, COTTILLE DEVELOPPEMENT, EVINCEL, INFORELEC, LCGP Formation, RIS FORMATION, SARL ISFAM, SARL TRANS'FORMATION70 | mails d'un autre gabarit, plus courts, sans signature ni chantier reperable |
+**AH MANAGEMENT (EcloHesion) est la seule fiche laissee dans son etat d'origine** — prospect
+chaud, en relation suivie, mails deja courts et sur mesure, relance sans le passage retire.
+Seule la ligne CNIL, qui manquait, y a ete ajoutee.
 
-## Ce qui reste après SalesHandy
+**3 R CONSULTANTS** a ete retire de la sequence le 09/09 sur decision de Julien : sa fiche Notion
+reste reecrite, sans effet.
 
-1. **173 fiches** à traiter (190 portant le drapeau, moins 17).
-2. **Notion n'est pas encore mis à jour** : les 190 propriétés `Mail 1` et `Relance J5` portent
-   toujours l'ancien texte. À reprendre une fois SalesHandy fini, sinon une resynchronisation
-   ultérieure réinstallerait le passage sur l'escroquerie.
-3. **17 prospects de la séquence n'ont aucune fiche Notion identifiable** (206 en base contre 190
-   drapeaux). Ils garderont l'ancienne relance tant qu'on ne les aura pas retrouvés un par un dans
-   l'interface.
-4. **Ne pas relancer la séquence** avant que les 173 soient faites : sinon un mélange d'ancien et
-   de nouveau texte part le même jour.
+### Deux gabarits, pas un
+
+La base melange deux formats de mails, et c'est ce qui a fait echouer la premiere passe :
+
+- **le gabarit long** (176 fiches) : neuf blocs, preambule, observation, contrepoint, « Plan
+  de… », question, signature, P.S., ligne CNIL ;
+- **le gabarit court** (10 fiches, ecrites plus tard) : cinq blocs, ni P.S. ni ligne CNIL, et un
+  chantier introduit par « Le premier chantier est gratuit : … » au lieu de « Pas un audit, pas
+  une demonstration : … ».
+
+`transforme.py` traite le premier, `transforme_court.py` le second. Les deux produisent le meme
+resultat final.
+
+### Le piege des accents dans les expressions regulieres
+
+Quatre fiches — ACTIFORMA, BIGOT FORMATION, INSPIRATIONS MANAGEMENT, STARTER FORMATION — sont
+passees a travers la premiere passe parce que la classe `arr[eé]t[eé]` ne couvre pas le **e
+circonflexe** d'« arrete ». Leur preambule disait « une ligne / une phrase / un chiffre m'a
+arrete », forme absente de la liste des variantes. Ecrire `arr[eéê]+t[eé]+`, et prevoir la forme
+generique `(?:une?|un)\s+\w+\s+m'a`.
+
+Meme famille de piege sur les noms d'affichage : le champ `Dirigeant` contient parfois une raison
+sociale ou un sigle, et « JPB&DF » devenait « Jpb&df », « FEDERATION R… » devenait « Federation
+R ». La parade est dans `noms.py` : liste de mots de forme sociale, rejet des sigles et des noms
+d'une ou deux lettres, repli sur `Direction` + nom de l'organisme (44 fiches concernees).
+
+### Un dernier piege, cher en temps
+
+**Ne jamais faire transiter du JSON accentue par un tube `stdin` sous Windows.** Un
+`cat fichier.json | python -c "json.load(sys.stdin)"` decode l'UTF-8 avec la page de code de la
+console et produit un fichier doublement encode (« nouveautÃ© »). Ouvrir le fichier directement
+avec `io.open(chemin, encoding='utf-8')`.
+
+### Ce qui reste
+
+1. **17 prospects de la sequence n'ont aucune fiche Notion identifiable** (206 en base contre 190
+   drapeaux « Sync SalesHandy »). Ils gardent leurs anciens textes. Les retrouver demande de
+   parcourir la liste des 206 dans l'interface, un par un.
+2. **La sequence est toujours en pause.** Elle peut repartir : les 189 fiches reecrites sont en
+   place. La relance part desormais a J+7, le planning est passe a lundi-vendredi 9 h-18 h, la
+   priorite est equilibree et le suivi des ouvertures est actif.
+3. **Surveiller le taux de desinscription**, qui etait a 4,7 % sur les 64 premiers contactes.
+   C'est le seul jugement que le marche ait rendu sur l'ancien texte.

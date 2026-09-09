@@ -188,6 +188,7 @@ Une ligne par vague, remplie le jour même. Une vague sans ligne de journal n'a 
 | 2026-09-06 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 0 (activée, premier créneau mardi 08/09 8 h) | — | — | — | Reprise décidée par Julien le 06/09 ; 206 prospects, 46 Valid ouverts à l'envoi, 160 Risky en attente du bascule « risky » |
 | 2026-09-08 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 32 | 0 | 0 % | 0 | Poursuivie — seuil de 5 % non atteint, aucune pause ; 3 désinscriptions sur 32 contactés |
 | 2026-09-09 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 32 (cumul 64) | 1 (cumul) | 1,6 % | 2 dont 1 positive | Poursuivie — seuil de 5 % non atteint ; désinscriptions toujours à 3, soit 4,7 % des contactés |
+| 2026-09-09 | Prospection OF personnalisée (`klw678deP1`) | Claude Agency | 0 (séquence en pause) | — | — | — | Refonte des 189 mails 1 et relances, dans Notion et SalesHandy — détail dans `refonte-mails-klw678deP1.md` |
 
 **Reprise du 2026-09-06 — ce qui a été fait, tout `mesuré` (API et interface SalesHandy)** :
 
