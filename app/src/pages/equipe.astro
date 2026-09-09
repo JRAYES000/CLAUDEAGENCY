@@ -17,6 +17,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { authorPerson } from '../data/author';
 import soloheryImg from '../assets/equipe/solohery-randrianantenaina.webp';
 import nomenaImg from '../assets/equipe/nomena-andrianiaina.webp';
+// Illustrations générées avec fal.ai (nano-banana) le 2026-09-10, prompts dans ~/.claude/generations.jsonl.
+import constatImg from '../assets/equipe/dirigeant-en-colere-face-aux-agences-marketing.jpg';
+import formationImg from '../assets/equipe/formation-consultants-claude-code-antananarivo.jpg';
+import visioImg from '../assets/equipe/visio-quotidienne-consultant-ia-madagascar.jpg';
+
+const illustration = 'not-prose my-6 w-full rounded-2xl border border-sand object-cover';
 
 const site = Astro.site!;
 
@@ -113,6 +119,14 @@ const aboutPage = {
       </p>
 
       <h2 id="constat" class="scroll-mt-24">Le constat qui a tout déclenché</h2>
+      <Image
+        src={constatImg}
+        alt="Un dirigeant en costume s’arrache les cheveux face à trois jeunes consultants marketing démunis autour d’une table de réunion"
+        widths={[640, 960, 1536]}
+        sizes="(min-width: 768px) 42rem, 100vw"
+        loading="lazy"
+        class={illustration}
+      />
       <p>
         En cinq ans, j’ai sollicité une dizaine d’agences marketing pour l’organisme de formation
         que je dirige : des agences SEO, des agences SEA, des agences de gestion de campagnes
@@ -132,6 +146,14 @@ const aboutPage = {
       </p>
 
       <h2 id="comment" class="scroll-mt-24">Comment c’est possible</h2>
+      <Image
+        src={formationImg}
+        alt="Julien Rayes forme deux consultants malgaches sur Claude Code devant un écran de terminal, dans un bureau lumineux d’Antananarivo"
+        widths={[640, 960, 1536]}
+        sizes="(min-width: 768px) 42rem, 100vw"
+        loading="lazy"
+        class={illustration}
+      />
       <p>
         Deux choses ont changé la donne. La première est l’IA : avec Claude Code, un consultant qui
         sait s’en servir produit en heures ce qui prenait des jours. La seconde est mon équipe,
@@ -199,6 +221,14 @@ const aboutPage = {
       ))}
 
       <h2 id="travailler" class="scroll-mt-24">Comment travailler avec eux</h2>
+      <Image
+        src={visioImg}
+        alt="Une dirigeante en visioconférence avec son consultant IA basé à Madagascar, le reporting quotidien affiché sur un second écran"
+        widths={[640, 960, 1536]}
+        sizes="(min-width: 768px) 42rem, 100vw"
+        loading="lazy"
+        class={illustration}
+      />
       <p>
         Les missions démarrent <strong>{MISSION_MIN}</strong>, à distance. Vous recevez un reporting
         quotidien du travail réalisé. Pour commencer, un échange de trente minutes avec moi suffit :
