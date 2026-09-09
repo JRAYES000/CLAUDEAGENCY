@@ -70,23 +70,41 @@ Julien Rayes — Claude Agency
   n'est pas un bénéfice), et la ligne « 4 consultants IA ».
 - La **ligne CNIL s'ajoute** aux fiches rédigées avant le 01/09, qui n'en ont pas.
 
-## La méthode qui marche — pièges déjà payés
+## La methode qui marche — pieges deja payes
 
-**Lecture Notion : mode `view`, pas mode `sql`.** Le quota « Query Data Source » du workspace
-s'épuise en une dizaine de requêtes SQL ; le mode `view` n'est limité sur aucun plan. Vue dédiée
-créée le 09/09 : `view://3d6e7fe5-dbf8-81c4-9f3c-000c726b69c8` (« Sync SalesHandy — lecture MCP »,
-filtrée sur le drapeau, triée par nom). Pagination par `start_cursor` / `next_cursor`.
+**Lecture Notion : l'API REST, pas le connecteur MCP.** Le mode `sql` du connecteur a un quota
+« Query Data Source » qui s'epuise en une dizaine de requetes ; le mode `view` n'a pas de quota
+mais fait transiter tout le contenu par la conversation. `NOTION_TOKEN` est au coffre GitHub
+(`env/secrets.md`) — confirme par Julien le 09/09 — donc l'export passe par
+`POST https://api.notion.com/v1/databases/<id>/query` en `curl`, filtre sur la case
+`Sync SalesHandy`, et s'ecrit dans un fichier local : 190 lignes, 500 Ko, cout de contexte nul.
 
-**Écriture SalesHandy : `import_prospects_with_field_name`, jamais
+**La reecriture est scriptee, pas manuelle.** Les 190 mails suivent le meme gabarit a neuf blocs
+separes par des lignes vides. Le script decoupe, garde les blocs 1 a 3, jette le contrepoint et
+le bloc « Plan de… », insere le bloc d'offre, et reprend le P.S. tel quel. Le chantier et la
+condition se relevent par expression reguliere dans l'ancienne relance. **176 fiches sur 190**
+passent sans intervention ; les 14 autres sont listees plus bas.
+
+Trois pieges de la transformation, tous corriges dans le script :
+- `livr[ee]s?` ne capture pas « livrees » : il faut `livr[ée]+s?`, sinon le fragment
+  « …, livrees, chez vous » reste et le mail dit deux fois « chez vous ».
+- Le lookbehind `(?<![ée])` est indispensable devant `livr`, sinon « delivres » est mange.
+- L'accord de « Livree / Livre » suit **l'offre**, pas le chantier : la phrase se termine donc
+  par « . Livree chez vous, en fonctionnement. », jamais par « , livree chez vous ».
+
+**Ecriture SalesHandy : `import_prospects_with_field_name`, jamais
 `import_prospects_to_sequence_step`.** Le second n'ajoute que des prospects : il refuse tout
-prospect déjà présent dans la séquence, avec le message trompeur *« Prospect already present in
-another step of same sequence »* — et le refus tombe aussi bien sur l'étape 1 que sur l'étape 2.
-Pire, il **crée** silencieusement le prospect s'il est absent : c'est ainsi que 3 R CONSULTANTS
-s'est retrouvé ajouté à la campagne le 09/09 (206 → 207), puis retiré à la main.
+prospect deja present dans la sequence, avec le message trompeur *« Prospect already present in
+another step of same sequence »* — le refus tombe aussi bien sur l'etape 1 que sur l'etape 2.
+Pire, il **cree** silencieusement le prospect s'il est absent : c'est ainsi que 3 R CONSULTANTS
+s'est retrouve ajoute a la campagne le 09/09 (206 → 207), puis retire a la main.
 
-Paramètres qui fonctionnent : `conflictAction: "overwrite"`, `verifyProspects: false`. Champs
-envoyés à chaque fois — **First Name et Last Name sont obligatoires**, et `overwrite` écrase ce
-qui existe :
+Il n'existe **pas** de cle API SalesHandy exploitable dans le coffre : les dix candidats testes
+rendent tous 403 sur `open-api.saleshandy.com`. L'envoi passe donc obligatoirement par le
+connecteur MCP, un lot a la fois.
+
+Parametres qui fonctionnent : `conflictAction: "overwrite"`, `verifyProspects: false`. Champs
+envoyes — **First Name et Last Name sont obligatoires**, et `overwrite` ecrase ce qui existe :
 
 | Champ SalesHandy | Source Notion |
 | :--- | :--- |
@@ -96,32 +114,17 @@ qui existe :
 | `Prospect Overview` | `Mail 1` |
 | `LinkedIn Profile Summary` | `Relance J5` |
 
-Quand `Dirigeant` est vide, écrire `Direction` / `<NOM DE L'ORGANISME>` : c'est la convention
-déjà en place dans la base. Les liens Markdown de Notion (`[site.fr](http://site.fr)`) se
-retranscrivent **en texte nu** — c'est déjà ce que recevait le destinataire.
+Quand `Dirigeant` est vide, un sigle, ou une raison sociale (SARL, TRANSPORTS, HOLDING, `&`…),
+ecrire `Direction` / `<NOM DE L'ORGANISME>` : c'est la convention deja en place dans la base.
+Les liens Markdown de Notion se retranscrivent **en texte nu** — c'est deja ce que recevait le
+destinataire. Sauts de ligne : `<br>` et `<br><br>`, jamais `
+`, le corps part en HTML.
 
-Sauts de ligne : `<br>` et `<br><br>`, jamais `\n` — le corps part en HTML.
+Controle apres chaque import : `check_prospect_import_status`. Un `failedProspectsURL` non nul
+signale des refus ; le CSV se telecharge par `curl` et nomme les adresses en echec.
 
-Contrôle après chaque import : `check_prospect_import_status`. Un `failedProspectsURL` non nul
-signale des refus ; le CSV se télécharge par `curl` et nomme les adresses en échec.
-
-## Avancement
-
-Ordre alphabétique de la vue. **Fiches traitées dans SalesHandy : 17.**
-
-1ER GEST UMFI · 2C FORMA · 3 R CONSULTANTS · A F C PREVENTION · ACCES'TUDES · ACCORDIA · ACEISP ·
-ACTEMOS · ACTIFORMA · ACYAN · ADFIRMO · ADN GROUP · ADOC METIS · AEFE · ALLEGRE ET DUC · ALPIC ·
-ALTER EGO P.R.P.
-
-**Reprendre à AMAE CONSEIL**, curseur
-`s:mcp_non_archived_6abc0807-ea9a-491a-b006-bf78eb66246c:3cee7fe5-dbf8-81cf-a9cc-ed1813a55615`.
-
-**Volontairement sautée : AH MANAGEMENT (EcloHesion).** Prospect chaud, en relation suivie, ses
-deux mails sont déjà courts et sur mesure et sa relance ne contient pas le passage retiré.
-La réécrire risquerait de casser une conversation en cours.
-
-**3 R CONSULTANTS** a été retiré de la séquence le 09/09 sur décision de Julien ; sa fiche Notion
-reste réécrite, sans effet.
+**Un lot fait 12 fiches, soit environ 28 Ko.** Au-dela (20 fiches, 46 Ko), la sortie de `cat` est
+tronquee et le lot ne peut plus etre recopie dans l'appel MCP.
 
 ## Ce qui reste après SalesHandy
 
