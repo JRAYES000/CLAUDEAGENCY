@@ -282,3 +282,45 @@ Un chiffre inventé a été trouvé et corrigé après écriture : INSTITEC port
 formation de cinq jours », prix qui n'apparaît nulle part sur `institec.fr`. Remplacé par les
 durées, elles, publiées. Le contrôle qui l'a trouvé confronte chaque nombre du constat au texte du
 site, au LPOF et à l'API entreprises ; il est à relancer sur toute vague future.
+
+## 2026-09-10 — 206 prospects importés dans la séquence. Rien n'est encore parti.
+
+Les 208 séquences du lot moncompteformation sont entrées dans `klw678deP1` (« Prospection OF —
+séquence personnalisée par organisme », `/sequence/936926/` dans l'interface), moins les deux
+adresses fautives. Import en neuf lots de 25, `conflictAction: overwrite`, `verifyProspects: true`,
+tag `mcf-2026-09`, étape 1 (`8JwoQoAZaO`).
+
+**Total de la séquence : 206 → 412** (`mesuré`, API et interface). Zéro `failedProspectsURL` sur
+les neuf imports. NATURELIA et 2MS Antilles cherchées dans la séquence : « No Result » pour les
+deux, elles n'y sont pas.
+
+**Ce qui a été corrigé avant l'import, et qu'il faut vérifier à chaque fois.**
+
+*Le format Notion n'est pas le format d'envoi.* Les 208 mails portaient 2 à 3 liens en Markdown
+`[libellé](url)` — la convention de la base. Le corps SalesHandy est du HTML : ils seraient partis
+crochets et parenthèses visibles, sur 206 adresses. Le mail réellement envoyé le 08/09 (relu dans
+le fil d'une réponse) ne contient aucun lien Markdown : le domaine du prospect y est en texte brut.
+Converti à l'identique — domaine et `claudeagency.fr` en texte, seul le `mailto:` reste un lien.
+**Un lien par mail**, ce que demande la règle du ≤ 1 lien.
+
+*La ligne de désinscription visible manquait* sur 206/206, alors que les 302 mails existants la
+portent. L'en-tête `List-Unsubscribe` (code 13) ne la remplace pas : elle a été ajoutée.
+
+Notion a été remis au même format dans le même mouvement, pour que la base et l'outil ne divergent
+pas. Neuf lignes ont d'abord échoué sur la limite Notion de 2 000 caractères par bloc de texte —
+réécrites en blocs, puis relues : 0 restante en Markdown.
+
+**Rythme d'écoulement** (`mesuré`, API) : quatre boîtes attachées (equipe1@claudeagency.fr,
+julien@claudeagency.eu, contact@claudepro.fr, julien@teamclaude.fr), `daily-sending-limit` à 8
+chacune, soit **32 par jour** au plafond. File de 348 non contactés → une dizaine de jours ouvrés.
+C'est le temps qu'on a pour couper si le rebond monte. Rebond actuel de la séquence : 1 sur 64,
+soit 1,6 %, sous le seuil.
+
+**Non mesuré** : le décompte des statuts de vérification d'adresse sur les 206. La vérification a
+tourné (SKILLS4ALL ressort « Risky »), mais le filtre par statut n'a pas été trouvé dans
+l'interface en deux tentatives. À relever à la main avant que la file s'écoule — une adresse
+« Risky » qui rebondit compte dans les 5 %.
+
+**Rappel de ce qui n'a pas été tranché** : les mails nomment Solohery comme consultant disponible,
+alors que Julien s'en est séparé le 2026-09-09. Signalé avant l'import, maintenu par Julien. Les
+206 nouveaux et les 206 déjà en séquence portent tous son nom.
