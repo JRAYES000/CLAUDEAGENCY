@@ -126,6 +126,26 @@ signale des refus ; le CSV se telecharge par `curl` et nomme les adresses en ech
 **Un lot fait 12 fiches, soit environ 28 Ko.** Au-dela (20 fiches, 46 Ko), la sortie de `cat` est
 tronquee et le lot ne peut plus etre recopie dans l'appel MCP.
 
+## Avancement
+
+Ordre alphabetique. **Lot 1 sur 15 pousse dans SalesHandy (12 fiches), de 1ER GEST UMFI a AEFE.**
+Les lots prets a pousser sont dans le scratchpad de la session, `lots/lot01.json` a `lot15.json`,
+12 fiches chacun sauf le dernier (6). Reprendre au **lot 02 (ALLEGRE ET DUC -> ASSISTANCE
+MAITRISE EXPERTISE)**. Il reste **162 fiches**, soit 14 lots.
+
+Si le scratchpad a disparu, rejouer la chaine : `export_notion.py`, puis `transforme.py`, puis
+`lots.py`. Elle est deterministe et redonne exactement les memes textes.
+
+**Ecartees du traitement automatique — 16 fiches a reprendre a la main :**
+
+| Fiche | Raison |
+| :--- | :--- |
+| AH MANAGEMENT (EcloHesion) | prospect chaud, mails deja courts et sur mesure, aucun passage a retirer — **ne pas y toucher** |
+| SMF | le chantier de la relance dit seulement « le travail », source inexploitable |
+| 3 R CONSULTANTS | retire de la sequence le 09/09 sur decision de Julien |
+| ACTIFORMA, BIGOT FORMATION, INSPIRATIONS MANAGEMENT, STARTER FORMATION | preambule pas au bloc 2 |
+| CAPITE CORPUS, CHRYSALIDE FORMATIONS, COTTILLE DEVELOPPEMENT, EVINCEL, INFORELEC, LCGP Formation, RIS FORMATION, SARL ISFAM, SARL TRANS'FORMATION70 | mails d'un autre gabarit, plus courts, sans signature ni chantier reperable |
+
 ## Ce qui reste après SalesHandy
 
 1. **173 fiches** à traiter (190 portant le drapeau, moins 17).
