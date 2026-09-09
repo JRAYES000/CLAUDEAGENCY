@@ -324,3 +324,65 @@ l'interface en deux tentatives. À relever à la main avant que la file s'écoul
 **Rappel de ce qui n'a pas été tranché** : les mails nomment Solohery comme consultant disponible,
 alors que Julien s'en est séparé le 2026-09-09. Signalé avant l'import, maintenu par Julien. Les
 206 nouveaux et les 206 déjà en séquence portent tous son nom.
+
+## 2026-09-10 — test de rendu avant envoi : trois défauts trouvés, tous corrigés
+
+Julien a demandé un test de rendu avant que la vague ne parte. Il a payé : trois défauts,
+dont deux introduits la veille en croyant corriger.
+
+**1. L'API SalesHandy supprime les sauts de ligne réels.** C'est le piège central, et il est
+invisible : l'import répond `isCompleted: true` sans erreur, mais le texte arrive collé.
+
+| organisme | envoyé | stocké | sauts | écart |
+| :--- | ---: | ---: | ---: | ---: |
+| SKILLS4ALL | 1743 | 1722 | 21 | 21 |
+| DATABIRD | 1734 | 1713 | 21 | 21 |
+| MANDYBEN | 1747 | 1726 | 21 | 21 |
+
+L'écart vaut exactement le nombre de sauts. Les mails étaient stockés en un bloc — « Bonjour,J'ai
+passé un moment sur… ». **La forme à utiliser est `<br>`**, celle des mails de la vague du 01/09
+dont le rendu est vérifié sur un mail reçu. Corrigé sur les 208 lignes Notion et les 206 prospects.
+
+**2. La ligne « Répondez Stop » est ajoutée par SalesHandy, pas par le champ.** Vérifié : **0 des
+307 mails antérieurs** ne la porte dans son `Mail 1`. L'avoir ajoutée la veille la mettait en
+double dans le mail reçu. Retirée. Le signe qui l'a trahie : elle arrive habillée d'un
+`<span style="font-size:12px">` que personne n'a écrit.
+
+**3. Le découpage prénom / nom était inversé sur 115 lignes sur 206.** La base mêle deux
+conventions — `BLOISE Alexa` (LPOF, nom d'abord) et `Marc-Noel Fauvel` (API entreprises, prénom
+d'abord) — et prendre le premier mot comme prénom inverse la première. Les destinataires auraient
+lu « BLOISE Alexa » ou « De Olivier » dans leur en-tête *À :*. La règle qui marche est dans
+`noms.py` du chantier : particule en tête → le nom est tout sauf le dernier mot ; tout en
+majuscules → convention LPOF ; un seul mot en majuscules → c'est le nom.
+
+**Un prospect sur 412 était vide** (AKYOS COMMUNICATION) et c'était précisément celui que
+l'aperçu SalesHandy affichait, d'où un premier diagnostic faux — « l'aperçu ne résout pas les
+variables ». Il les résout parfaitement. Réparé.
+
+**Comment vérifier, désormais.** L'API du connecteur ne lit pas le contenu d'un prospect ; le
+contrôle qui tranche est **l'export CSV de la séquence** (icône export de l'onglet Prospects, le
+fichier arrive par e-mail). Il donne les 412 lignes avec `Prospect Overview`, `Profile Headline`
+et `LinkedIn Profile Summary` tels qu'ils partiront.
+
+État final (`mesuré`, export du 2026-09-10 01:10) :
+
+```
+prospects : 412 | sans corps 0 | sans objet 0 | sans relance 0
+lien Markdown 0 | accent grave 0 | gras Markdown 0 | ligne Stop en double 0
+avec <br> 412 | avec <b> 412 | en-têtes « À : » non conformes 0
+à contacter : 348, dont sans corps : 0
+```
+
+**Vérification d'adresses** (`mesuré`, 9 rapports SalesHandy sur les 206) : **86 valides,
+118 « Risky » (57 %), 2 mauvaises**. Les deux mauvaises sont ajoutées à la liste de non-contact :
+`claire@ese-gow.fr` (boîte introuvable — l'organisme dont le site sert des pages de casino) et
+`contact@forma-finance.fr` (n'accepte pas le courrier). Sur les 412 de la séquence : 278 risky,
+132 valides, 2 mauvaises. Le statut « Risky » désigne surtout des domaines *catch-all*, courants
+chez les petits hébergeurs, et n'annonce pas un rebond — mais à 57 % de la liste et avec une
+coupure à 5 %, les premiers envois se surveillent de près.
+
+**Le test de rendu, à refaire à chaque vague.** Un e-mail composé depuis le champ réellement
+stocké a été envoyé à `contact@claudeagency.fr` et relu : paragraphes séparés, gras rendu, aucune
+balise visible, une seule ligne de désinscription. À noter : l'envoi de test de SalesHandy
+(« Send Test Email ») utilise le prospect affiché dans l'aperçu — si ce prospect a un champ vide,
+le test arrive vide et se lit à tort comme une panne du modèle.
