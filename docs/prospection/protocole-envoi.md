@@ -464,3 +464,34 @@ affichent « Nom Prénom » (Launay Pierre, Bontoux Raphaël…) parce que rien 
 l'ordre quand le dirigeant est écrit tout en minuscules. Sans conséquence sur le corps du mail,
 visible seulement dans l'en-tête *À :*. Un nom composé a dû être corrigé à la main
 (PINO CORTES FRANCK → Franck Pino Cortes).
+
+## Un « stop » en réponse n'arrête rien tout seul
+
+`mesuré` le 2026-09-10, sur la réponse de Jean-Michel Bachellerie (JMB FORMATION), reçue à
+07 h 45 : le mot **stop** écrit en réponse à un mail de séquence **n'est pas lu par SalesHandy**.
+Le champ `isUnsubscribed` de la conversation reste à **0** ; seul le clic sur le lien de
+désinscription (en-tête, réglage n° 13) incrémente ce compteur. Une opposition formulée en clair
+dans le corps d'une réponse ne produit donc **aucun effet automatique** : elle n'existe que si
+quelqu'un lit la boîte et agit.
+
+Le registre des traitements promet un traitement « le jour même » (`docs/prospection/registre-traitements.md`,
+condition CNIL n° 2). Cette promesse repose entièrement sur une relecture humaine de la boîte
+unifiée — c'est le point faible du dispositif, pas un réglage à corriger.
+
+**Deux gestes, pas un.** Ils ne se remplacent pas :
+
+1. **Marquer la conversation en *Do Not Contact*** (résultat de prospect). Effet mesuré : le
+   prospect passe en statut **Finished** dans le CRM, il sort de sa séquence et n'y reçoit plus
+   d'étape. Ce geste ne vaut **que pour les séquences en cours**.
+2. **Ajouter l'adresse à la *Global Do Not Contact List***. C'est le seul geste qui protège des
+   **futurs imports** : sans lui, un prochain lot construit depuis une autre source réintègre
+   l'adresse sans le moindre avertissement. Un prospect présent dans cette liste s'affiche
+   **Blacklisted** dans le CRM — pas *Finished*.
+
+Le statut affiché tranche donc entre les deux : *Finished* = séquence arrêtée seulement,
+*Blacklisted* = adresse protégée pour de bon.
+
+**Piège d'outil.** `search_dnc_item` du MCP renvoie une liste **vide** même pour une adresse
+présente dans la liste — vérifié dans les deux sens sur `contact@jmb-formation.com`, avant et
+après ajout. Ne pas conclure d'une réponse vide qu'une adresse n'est pas bloquée : le contrôle
+qui fait foi est `get_dnc_items_by_id`, ou la colonne *Latest Status* du CRM.
