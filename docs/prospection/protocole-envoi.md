@@ -430,3 +430,37 @@ confirme qu'il ne doit pas figurer dans le champ du mail.
 **Cadence** : planning « New Schedule 3 », lundi-vendredi 9h-18h Europe/Paris, 4 boîtes à 8 envois
 par jour = **32 par jour**. 346 e-mails programmés, soit une dizaine de jours ouvrés. Premier
 créneau : jeudi 2026-09-10 à 9h. **Le seuil de coupure à 5 % se relit à 24 h puis à 72 h.**
+
+## 2026-09-10 — lot 2 : 31 séquences de plus. La vague tourne, zéro rebond.
+
+Les 31 organismes récupérés (voir `plan-lot-mcf-2026-09.md`) ont reçu leur séquence, écrite sur
+les faits de leur site relu au navigateur. **La séquence passe de 412 à 443 prospects.**
+
+Contrôle avant écriture, puis relecture après (`mesuré`) :
+
+```
+sequences controlees : 31 / 31   problemes : 0   objets dupliques : 0
+Mail 1 max 270 mots | Relance max 78
+Notion : 31 ecrites, 0 echec, 0 ecart a la relecture
+export SalesHandy : 31/31 retrouves, 0 sans corps, 31 avec <br>, 0 Markdown, 0 ligne Stop
+```
+
+**Premier relevé de la vague** (`mesuré` 2026-09-10, 10 h) : 96 contactés, **1 rebond** — soit
+**1,04 %**, très en dessous du seuil de coupure. 10 ouvertures, 4 réponses, 3 désinscriptions,
+1 « pas intéressé ». Les 32 envois du matin correspondent exactement au plafond quotidien.
+
+Une adresse du lot 2 est ressortie `bad` à la vérification — `contacte.skillkraft@sk-formation.com`,
+boîte introuvable — et rejoint la liste de non-contact. Cela porte à trois les adresses bloquées
+sur les 443.
+
+**Deux détails d'outil relevés au passage.**
+
+*Les imports SalesHandy ne sont pas parallélisables.* Un second import lancé pendant qu'un
+premier tourne est rejeté par un `400 — Prospect Import already in progress, try after it's
+completed`. Enchaîner les lots, ne pas les lancer ensemble.
+
+*Le découpage prénom / nom reste imparfait sur une source sans capitales.* Neuf en-têtes du lot 2
+affichent « Nom Prénom » (Launay Pierre, Bontoux Raphaël…) parce que rien ne permet de trancher
+l'ordre quand le dirigeant est écrit tout en minuscules. Sans conséquence sur le corps du mail,
+visible seulement dans l'en-tête *À :*. Un nom composé a dû être corrigé à la main
+(PINO CORTES FRANCK → Franck Pino Cortes).
