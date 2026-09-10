@@ -491,6 +491,12 @@ unifiée — c'est le point faible du dispositif, pas un réglage à corriger.
 Le statut affiché tranche donc entre les deux : *Finished* = séquence arrêtée seulement,
 *Blacklisted* = adresse protégée pour de bon.
 
+**Bloquer le domaine avec l'adresse** (arbitrage de Julien du 2026-09-10). Une opposition vient
+d'une structure, pas d'une boîte : le dirigeant qui répond « stop » ne veut pas voir sa
+collaboratrice recevoir le même mail deux mois plus tard, depuis un lot construit sur une autre
+source. La liste accepte les deux types côte à côte — `contact@jmb-formation.com` en `email`,
+`jmb-formation.com` en `domain`.
+
 **Piège d'outil.** `search_dnc_item` du MCP renvoie une liste **vide** même pour une adresse
 présente dans la liste — vérifié dans les deux sens sur `contact@jmb-formation.com`, avant et
 après ajout. Ne pas conclure d'une réponse vide qu'une adresse n'est pas bloquée : le contrôle
