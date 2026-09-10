@@ -104,14 +104,23 @@ commentaires, et ce dépôt est public.
 votre ordinateur » de l'éditeur de média déclenche une boîte de dialogue Windows native : elle
 est invisible pour l'agent et **gèle le rendu de l'onglet** (`Page.captureScreenshot` part en
 timeout), ce qui se lit à tort comme un plantage de LinkedIn. Ne jamais cliquer ce bouton ni un
-`input[type=file]`. La marche à suivre : ouvrir l'éditeur de média, récupérer l'`input[type=file]`
-en JavaScript, le déplacer dans `document.body` avec un `aria-label` reconnaissable, puis y
-pousser le fichier par l'outil d'upload du connecteur. Sur le compte Claude Agency l'input est
-créé au clic dans le document principal (le capturer en surchargeant `HTMLInputElement.prototype.click`
-pour le type `file`) ; **sur le compte Claude Partners il vit dans un shadow root** — le chercher
-via `[...document.querySelectorAll('*')].find(e => e.shadowRoot?.querySelector('input[type=file]'))`,
-sans quoi `document.querySelectorAll('input[type=file]')` renvoie zéro et laisse croire qu'il n'y
-en a pas. Second piège du même flux : les références d'éléments du fil d'actualité (`ref_N`)
+`input[type=file]`. La marche à suivre : poser les deux crochets **avant** d'ouvrir l'éditeur de
+média, récupérer l'`input[type=file]` en JavaScript, le déplacer dans `document.body` avec un
+`aria-label` reconnaissable, puis y pousser le fichier par l'outil d'upload du connecteur.
+
+Les deux crochets, à poser ensemble (mesuré le 10/09/2026 sur les deux comptes, pose des bannières
+de profil) : surcharger `HTMLElement.prototype.click` en interceptant `this.tagName === 'INPUT' &&
+this.type === 'file'`, **et** surcharger `Document.prototype.createElement` pour attraper l'input
+au moment de sa création. Surcharger `HTMLInputElement.prototype.click` seul, comme le disait la
+version précédente de ce paragraphe, **ne capture rien** : LinkedIn ne crée l'input qu'au clic,
+donc il n'existe pas dans le DOM quand on cherche à l'attraper. Le symptôme est un compteur de
+captures à zéro **et** `document.querySelectorAll('input[type=file]').length === 0`, ce qui se lit
+à tort comme « l'input est ailleurs ». Si les deux crochets ne donnent rien, alors seulement
+chercher dans les shadow roots via
+`[...document.querySelectorAll('*')].find(e => e.shadowRoot?.querySelector('input[type=file]'))` —
+aucun des deux comptes n'était dans ce cas le 10/09/2026.
+
+Second piège du même flux : les références d'éléments du fil d'actualité (`ref_N`)
 **périment dès qu'un post est ajouté**, et un commentaire destiné au nouveau post atterrit sur
 l'ancien. Commenter depuis le permalien du post, jamais depuis le fil.
 
