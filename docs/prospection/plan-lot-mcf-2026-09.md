@@ -174,3 +174,45 @@ cible` (329). Zéro échec d'écriture.
   contre « Stephanie Monique Mathilde Ortis » est la même personne. Comparer des jetons
   normalisés, et ignorer les dirigeants personnes morales (ni nom ni prénom) qui feraient
   écrire une chaîne vide par-dessus un nom juste.
+
+## 2026-09-10 — récupérer les organismes écartés faute de site lisible
+
+Sur les 93 organismes qui ont une adresse, sont dans la cible, et n'ont pas reçu de mail :
+42 n'ont aucun site déclaré, **51 en ont un qui n'avait pas pu être lu**. Ces 51 ont été repris.
+
+**Trois quarts des échecs n'étaient pas des sites morts.**
+
+| Cause réelle | Organismes |
+| :--- | ---: |
+| Le site répondait, le crawl initial l'avait déclaré mort à tort | 2 |
+| L'URL de la base pointait une fiche moncompteformation périmée — la racine du domaine vit | 7 |
+| Site en JavaScript ou vitrine vide : illisible sans navigateur | 23 |
+| Domaine réellement mort (DNS, 404 partout, SSL cassé, 500) | 19 |
+
+**Le piège des URL de la base.** Elles sont recopiées de moncompteformation et pointent une fiche
+profonde qui expire, alors que le site tourne toujours. Sept organismes ont été récupérés en
+testant simplement `https://<domaine>/`, dont **ARKESYS et ses 5 083 stagiaires** — 404 sur l'URL
+de la base, 7 797 caractères sur la racine. À faire systématiquement avant de déclarer un site
+mort. Une URL accentuée (`…/développer-son-a…`) faisait par ailleurs planter le script avant même
+la requête : encoder en percent-encoding.
+
+**Les 23 sites illisibles sont passés par un crawl navigateur** (Apify `website-content-crawler`,
+Firefox, profondeur 1, suppression des bandeaux cookies, 64 pages remontées, 0 échec) :
+
+- **17 sont devenus lisibles** — cube.fr rendait 55 caractères en HTTP simple et 6 164 au
+  navigateur ; poupischool.fr était bloqué par son bandeau cookies.
+- **5 n'ont pas de vitrine** et c'est un constat en soi, souvent plus fort qu'un site à commenter :
+  RC DEVELOPPEMENT sert la page par défaut de PlanetHoster avec **2 130 stagiaires déclarés**, et
+  NS CONSEIL — **1 706 stagiaires** — a une page d'accueil de **15 caractères**, ses seules pages
+  remplies étant ses conditions générales et un règlement de jeu de Noël.
+- 1 n'a rien rendu (OF PARTNERS).
+
+**Total : 31 organismes redevenus rédigeables** (9 sans navigateur + 22 par le crawl),
+**6 467 stagiaires cumulés** pour les seuls 22 du crawl. Restent les 19 domaines morts, rédigeables
+aussi sur l'angle « votre site ne répond plus », mais à vérifier un par un.
+
+**Piège de méthode, à ne pas refaire.** Juger un site à la somme du texte de ses pages classe
+NS CONSEIL en « lisible » : ses 4 800 caractères sont tous dans ses CGV. Le critère qui tranche est
+**le texte de la meilleure page non administrative**, seuil 800 caractères. Second détail : le
+dataset Apify arrive avec des champs aplatis (`metadata.title`), pas imbriqués — un `get("metadata")`
+renvoie `None` en silence et neutralise tout filtre qui s'appuie dessus.
