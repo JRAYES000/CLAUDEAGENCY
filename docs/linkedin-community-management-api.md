@@ -1,5 +1,16 @@
 # Dossier de demande — LinkedIn Community Management API
 
+> **Suspendu le 2026-09-11, décision de Julien.** La demande n'a d'objet que si l'intégration
+> bascule côté projet SDK, seul endroit où poser une auth config personnalisée et donc les
+> scopes d'organisation. Julien a jugé cette bascule trop lourde pour l'instant et s'en tient
+> au partage MCP, qui expose **un seul compte** (Claude Partners). Conséquences : la skill
+> `page-claude` est irréalisable, `julien-agency` sort du périmètre, `julien-partners` reste
+> la seule livrable.
+>
+> Le dossier ci-dessous reste valable tel quel : il resservira le jour où la bascule se fera.
+> Deux points à revérifier avant de le rouvrir — le rôle de super admin sur la page (voir §1)
+> et la durée de validité des informations de l'entité.
+
 Préparé le 2026-09-11. Objectif : obtenir les autorisations `r_organization_admin` et
 `w_organization_social` pour que la skill `page-claude` puisse publier sur
 [linkedin.com/company/claude-agency-fr](https://www.linkedin.com/company/claude-agency-fr/)
@@ -23,12 +34,23 @@ Sources : [Community Management App Review](https://learn.microsoft.com/en-us/li
 | Politique de confidentialité en ligne | ✅ | https://claudeagency.fr/confidentialite/ |
 | Adresse e-mail professionnelle | ✅ | contact@claudeagency.fr |
 | Page LinkedIn de l'organisation | ✅ | linkedin.com/company/claude-agency-fr |
-| Super admin de la Page | ⚠️ à confirmer | c'est lui qui valide l'association app ↔ Page |
+| Super admin de la Page | ❌ **manquant** | voir l'alerte ci-dessous |
 | Application développeur **neuve** | ⬜ à créer | voir §2 |
 
-Une seule inconnue : **es-tu super admin de la Page ?** Sans ce rôle, personne ne peut associer
-l'application, et le dossier est rejeté d'office. Ça se vérifie en dix secondes sur la Page,
-menu Admin tools.
+⚠️ **Aucun des deux comptes de Julien n'administre la page** (constaté le 11/09). Depuis chacun,
+la page n'offre que les boutons d'un visiteur — *Suivre*, *Message* — et le menu « … » ne
+propose aucune option d'administration. À titre de comparaison, le compte Partners affiche bien
+un encart d'administration sur son fil pour la page *Claude Partners* : c'est ainsi que LinkedIn
+signale une page administrée, et Claude Agency n'y figure pas.
+
+La page est donc administrée par un tiers. Le candidat probable est l'ancien collaborateur
+écarté le 09/09, qui s'affiche encore « Expert en SEO/SEA chez Claude Agency » ; la page compte
+6 abonnés et « 0-1 employé », ce qui ressemble à une page créée par lui et jamais transférée.
+
+Sans ce rôle, l'étape 2 est impossible et le dossier serait rejeté d'office. Deux voies le jour
+où le sujet se rouvre : obtenir le transfert du rôle, ou créer une page neuve — avec 6 abonnés,
+la perte est négligeable, mais il faudrait alors corriger les cinq endroits du site qui pointent
+vers `company/claude-agency-fr`.
 
 ## 2. Les quatre étapes, dans l'ordre
 
