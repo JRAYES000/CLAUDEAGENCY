@@ -51,6 +51,9 @@ const NOTION_FORMS = {
   barometre: 'Barometre IA',
 };
 
+// Adresses bannies : spam recu et confirme. Comparaison en minuscules.
+const BLOCKED_EMAILS = new Set(['22ericman@gmail.com']);
+
 // Garde-fous sur les lignes envoyées par le client (mode barometre) : l'endpoint est public.
 const MAX_ROWS = 40;
 const MAX_VALUE = 500;
@@ -80,6 +83,7 @@ export async function onRequestPost({ request, env }) {
   // jamais ça sur deux champs libres — le honeypot, lui, reste vide : le bot ne voit que le visible.
   const libre = String(data.message || '').trim();
   if (libre.length > 20 && libre === String(data.origine || '').trim()) return json({ ok: true });
+  if (BLOCKED_EMAILS.has(String(data.email || '').trim().toLowerCase())) return json({ ok: true });
 
   const form = String(data.form || '');
   const email = String(data.email || '').trim();
