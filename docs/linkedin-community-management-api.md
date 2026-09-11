@@ -112,12 +112,28 @@ valeurs, puis ajouter `r_organization_admin` et `w_organization_social` aux scop
 ensuite le compte LinkedIn côté Agency : c'est ce nouveau consentement qui portera les
 autorisations d'organisation.
 
-⚠️ **Vérifier avant de lancer la demande** : la connexion LinkedIn utilisée aujourd'hui vit
-dans l'espace *Connect* (MCP) de Composio, et non dans le projet SDK — voir la note de session
-du 11/09. Il reste à confirmer qu'une auth config personnalisée est posable dans cet espace-là.
-Si elle ne l'est pas, il faudra basculer l'intégration côté projet SDK, et ce choix vaut mieux
-d'être tranché **avant** la demande LinkedIn, qui engage douze mois d'intégration.
+**Vérifié le 11/09 : l'espace Connect n'accepte aucune auth config personnalisée.** Trois
+contrôles concordants — la route `/~/connect/auth-configs` rend un **404**, le flux
+« Connect New » n'offre aucune case « use your own developer authentication », et les réglages
+de Connect se limitent à Sessions & API Key, CLI Sessions et MCP Session Management. Les auth
+configs sont une notion de **projet** : la route `/<projet>/auth-configs` existe, elle, et
+porte déjà celle de Google Ads.
 
-Une fois les scopes en place, le contrôle qui tranche est
-`LINKEDIN_GET_COMPANY_INFO` : il répond aujourd'hui 403 sur les deux comptes, il devra rendre
-l'`urn:li:organization:<id>` de Claude Agency.
+Conséquence : `page-claude` ne pourra pas publier depuis le partage MCP mis en place le 11/09.
+Sa connexion devra vivre dans le projet SDK, seul endroit où l'on peut poser ses propres
+`client_id`/`client_secret` et choisir les scopes.
+
+Deux architectures possibles, à trancher :
+
+- **Tout dans le projet SDK** — une auth config LinkedIn personnalisée, les deux profils et la
+  page connectés au même endroit, Nomena sur une clé API neuve portant les bons scopes. Un seul
+  montage à maintenir. C'est la recommandation.
+- **Hybride** — les deux profils restent sur le partage MCP (qui fonctionne déjà), seule
+  `page-claude` passe par le projet SDK. Deux montages, deux modes d'accès pour Nomena.
+
+Rien ne presse : la bascule ne se fait qu'**après** l'approbation LinkedIn, et le partage MCP
+débloque les deux skills de profil dès maintenant.
+
+Une fois les scopes en place, le contrôle qui tranche est `LINKEDIN_GET_COMPANY_INFO` : il
+répond aujourd'hui 403 sur les deux comptes, il devra rendre l'`urn:li:organization:<id>` de
+Claude Agency.
