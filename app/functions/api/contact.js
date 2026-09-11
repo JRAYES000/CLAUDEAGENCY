@@ -75,6 +75,11 @@ export async function onRequestPost({ request, env }) {
   // Bot d'abonnement observé du 30/08 au 03/09/2026 : nom = organisme, message en anglais
   // demandant des « updates ». Il ne touche pas au champ piège, d'où cette signature.
   if (/subscri|email updates|news and updates|stay informed|company news/i.test(String(data.message || ''))) return json({ ok: true });
+  // Bot observé le 11/09/2026 : il recopie la MÊME phrase dans tous les champs libres visibles
+  // (message et origine à l'identique), piochée dans le texte de la page. Un humain ne fait
+  // jamais ça sur deux champs libres — le honeypot, lui, reste vide : le bot ne voit que le visible.
+  const libre = String(data.message || '').trim();
+  if (libre.length > 20 && libre === String(data.origine || '').trim()) return json({ ok: true });
 
   const form = String(data.form || '');
   const email = String(data.email || '').trim();
