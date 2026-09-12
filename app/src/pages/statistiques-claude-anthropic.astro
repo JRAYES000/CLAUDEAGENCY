@@ -1,0 +1,285 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import chiffresImg from '../assets/hero-pilotage-ia.jpg';
+
+const site = Astro.site!;
+
+// Page de reprise trimestrielle. Chaque chiffre ci-dessous porte sa source dans le
+// tableau qui l'affiche : quand une source publie un chiffre plus recent, on remplace
+// la ligne ET on bouge `maj` et `releveDu`. Une page de statistiques qui date perd
+// exactement ce qu'elle est censee gagner.
+const releveDu = '13 septembre 2026';
+const publie = '2026-09-13';
+const maj = '2026-09-13';
+
+const argent = [
+  {
+    quoi: 'Valorisation',
+    valeur: '965 milliards de dollars (post-money)',
+    source: 'Anthropic, annonce de la Série H, 28 mai 2026',
+    url: 'https://www.anthropic.com/news/series-h',
+  },
+  {
+    quoi: 'Dernière levée de fonds',
+    valeur: '65 milliards de dollars (Série H)',
+    source: 'Anthropic, 28 mai 2026',
+    url: 'https://www.anthropic.com/news/series-h',
+  },
+  {
+    quoi: 'Revenu annualisé, mai 2026',
+    valeur: '47 milliards de dollars',
+    source: 'Anthropic, 28 mai 2026',
+    url: 'https://www.anthropic.com/news/series-h',
+  },
+  {
+    quoi: 'Revenu annualisé, fin juillet 2026',
+    valeur: '65 milliards de dollars',
+    source: 'Bloomberg, repris par TechCrunch le 17 août 2026',
+    url: 'https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/',
+  },
+  {
+    quoi: 'Revenu annualisé, fin 2025',
+    valeur: '9 milliards de dollars',
+    source: 'TechCrunch, 17 août 2026',
+    url: 'https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/',
+  },
+  {
+    quoi: 'Revenu annualisé attendu fin 2026',
+    valeur: 'entre 100 et 120 milliards de dollars',
+    source: 'Financial Times, cité par TechCrunch le 17 août 2026',
+    url: 'https://techcrunch.com/2026/08/17/anthropics-annualized-revenue-surges-to-65b/',
+  },
+];
+
+const parts = [
+  { fournisseur: 'Anthropic', api: '40 %', code: '54 %' },
+  { fournisseur: 'OpenAI', api: '27 %', code: '21 %' },
+  { fournisseur: 'Google', api: '21 %', code: 'non communiqué' },
+  { fournisseur: 'Autres fournisseurs', api: '12 %', code: 'non communiqué' },
+];
+
+const abonnements = [
+  { plan: 'Gratuit', prix: '0 $' },
+  { plan: 'Pro', prix: '17 $ par mois en paiement annuel, 20 $ au mois' },
+  { plan: 'Max', prix: 'à partir de 100 $ par mois' },
+  { plan: 'Team', prix: '20 $ par personne et par mois en annuel, 25 $ au mois' },
+  { plan: 'Team Premium', prix: '100 $ par personne et par mois en annuel, 125 $ au mois' },
+  { plan: 'Entreprise', prix: '20 $ par personne, plus la consommation' },
+];
+
+const modeles = [
+  { nom: 'Claude Fable 5.1', contexte: '1 million de jetons', sortie: '128 000 jetons', entree: '10 $', sortiePrix: '50 $' },
+  { nom: 'Claude Opus 5', contexte: '1 million de jetons', sortie: '128 000 jetons', entree: '5 $', sortiePrix: '25 $' },
+  { nom: 'Claude Sonnet 5', contexte: '1 million de jetons', sortie: '128 000 jetons', entree: '2 $', sortiePrix: '10 $' },
+  { nom: 'Claude Haiku 4.5', contexte: '200 000 jetons', sortie: '64 000 jetons', entree: '1 $', sortiePrix: '5 $' },
+];
+
+const webPage = {
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  '@id': new URL('/statistiques-claude-anthropic/', site).href,
+  url: new URL('/statistiques-claude-anthropic/', site).href,
+  name: 'Statistiques Claude et Anthropic : les chiffres 2026',
+  description:
+    "Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu annualisé, part de marché en entreprise, tarifs et modèles, chacun avec sa source et sa date.",
+  isPartOf: { '@id': new URL('/#website', site).href },
+  publisher: { '@id': new URL('/#organization', site).href },
+  datePublished: publie,
+  dateModified: maj,
+  inLanguage: 'fr-FR',
+};
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Statistiques Claude et Anthropic' },
+  ],
+};
+const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title="Statistiques Claude et Anthropic : les chiffres 2026"
+  description="Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu, part de marché en entreprise et tarifs. Chaque ligne porte sa source."
+  image={chiffresImg.src}
+  imageAlt="Dirigeant à son bureau, entouré de tableaux de chiffres et de courbes de performance"
+  pageSchema={[webPage, breadcrumb]}
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Chiffres &amp; sources</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Statistiques Claude et Anthropic&nbsp;: les chiffres de 2026</h1>
+      <p class="mt-4 text-sm text-muted">Publié le {dateFr(publie)}<span aria-hidden="true"> · </span>Mis à jour le <time datetime={maj}>{dateFr(maj)}</time><span aria-hidden="true"> · </span>Chiffres relevés le {releveDu}</p>
+    </div>
+
+    <div class="prose prose-stone mt-8 max-w-none">
+      <p class="lead">
+        Au {releveDu}, les <strong>statistiques Claude et Anthropic</strong> publiques tiennent
+        en quatre chiffres&nbsp;: Anthropic vaut <strong>965 milliards de dollars</strong> après une
+        levée de 65 milliards annoncée le 28 mai 2026, son revenu annualisé atteignait
+        <strong>65 milliards de dollars</strong> fin juillet 2026, elle représente <strong>40&nbsp;% des
+        dépenses des entreprises en API de modèles de langage</strong>, et l'abonnement Claude Pro
+        coûte <strong>17 dollars par mois</strong> en paiement annuel. Chaque ligne de cette page porte
+        sa source d'origine et la date à laquelle elle a été publiée. Ce qui n'a pas de source
+        publique n'y figure pas&nbsp;— et nous le disons quand c'est le cas.
+      </p>
+
+      <h2>Combien vaut Anthropic et combien gagne-t-elle&nbsp;?</h2>
+      <p>
+        Anthropic est une société non cotée&nbsp;: elle ne publie pas de comptes. Les seuls chiffres
+        financiers fiables viennent donc de ses propres annonces et des dépêches de presse qui les
+        complètent. Les voici, dans l'ordre où ils ont été rendus publics.
+      </p>
+      <table>
+        <caption class="text-left text-sm text-muted">Anthropic — chiffres financiers publics, relevés le {releveDu}</caption>
+        <thead>
+          <tr><th>Donnée</th><th>Valeur</th><th>Source et date de publication</th></tr>
+        </thead>
+        <tbody>
+          {argent.map((l) => (
+            <tr>
+              <td>{l.quoi}</td>
+              <td>{l.valeur}</td>
+              <td><a href={l.url} rel="nofollow">{l.source}</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Deux précautions pour qui reprend ces chiffres. Le <em>revenu annualisé</em> n'est pas un
+        chiffre d'affaires&nbsp;: c'est le revenu du dernier mois multiplié par douze, une mesure qui
+        gonfle vite quand la croissance est forte et qui ne dit rien de la rentabilité. Et la
+        prévision de 100 à 120 milliards pour fin 2026 est une <strong>attente d'investisseurs
+        rapportée par la presse</strong>, pas un engagement d'Anthropic.
+      </p>
+
+      <h2>Quelle est la part de marché de Claude face à ChatGPT&nbsp;?</h2>
+      <p>
+        Sur le marché des entreprises, Claude est passé devant ChatGPT. La mesure de référence est
+        l'enquête annuelle de Menlo Ventures, menée auprès de <strong>495 décideurs américains du
+        7 au 25 novembre 2025</strong> et publiée le <strong>9 décembre 2025</strong>. Elle porte sur
+        la dépense en API, c'est-à-dire l'usage professionnel des modèles dans des produits et des
+        outils internes&nbsp;— pas sur le nombre de gens qui ouvrent une application de discussion.
+      </p>
+      <table>
+        <caption class="text-left text-sm text-muted">Part des dépenses des entreprises en API de modèles de langage — <a href="https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/" rel="nofollow">Menlo Ventures, 9 décembre 2025</a></caption>
+        <thead>
+          <tr><th>Fournisseur</th><th>Toutes catégories</th><th>Génération de code</th></tr>
+        </thead>
+        <tbody>
+          {parts.map((p) => (
+            <tr><td>{p.fournisseur}</td><td>{p.api}</td><td>{p.code}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Deux renversements dans ces chiffres. La part d'OpenAI est tombée de 50&nbsp;% en 2023 à
+        27&nbsp;%, quand celle d'Anthropic est montée de 24&nbsp;% en 2024 à 40&nbsp;%. Et sur la
+        génération de code, Anthropic tient plus de la moitié du marché à elle seule. La même
+        enquête chiffre la dépense totale des entreprises en IA générative à <strong>37 milliards de
+        dollars sur 2025</strong>, contre 11,5 milliards en 2024.
+      </p>
+    </div>
+
+    <Image
+      src={chiffresImg}
+      alt="Dirigeant à son bureau, entouré de tableaux de chiffres et de courbes de performance"
+      loading="lazy"
+      sizes="(min-width: 768px) 42rem, 100vw"
+      class="mt-10 w-full rounded-2xl border border-sand object-cover"
+    />
+
+    <div class="prose prose-stone mt-10 max-w-none">
+      <h2>Combien d'utilisateurs Claude a-t-il&nbsp;?</h2>
+      <p>
+        <strong>Anthropic ne publie aucun chiffre d'utilisateurs.</strong> C'est la réponse exacte, et
+        c'est celle qui manque partout ailleurs. Les nombres qui circulent — de quelques dizaines de
+        millions à 245 millions d'utilisateurs mensuels — proviennent de cabinets de mesure
+        d'audience extérieurs, avec des périmètres différents&nbsp;: application mobile seule, site web
+        seul, les deux, avec ou sans les usages passés par l'API. Aucun d'eux ne vient d'Anthropic, et
+        aucun n'est comparable à un autre.
+      </p>
+      <p>
+        Si vous devez citer un chiffre d'audience, citez la source de mesure et son périmètre, pas
+        Anthropic. Ce qui est officiel, en revanche&nbsp;: le 28 mai 2026, Anthropic a indiqué que
+        Claude était <strong>le premier modèle de pointe disponible sur les trois plus grandes
+        plateformes de cloud</strong> — Amazon Web Services, Google Cloud et Microsoft Azure.
+      </p>
+
+      <h2>Combien coûte Claude&nbsp;?</h2>
+      <p>
+        Les tarifs ci-dessous sont ceux affichés par Anthropic le {releveDu}, en dollars américains.
+        Ils changent régulièrement&nbsp;: la page officielle fait foi.
+      </p>
+      <table>
+        <caption class="text-left text-sm text-muted">Abonnements Claude — <a href="https://claude.com/pricing" rel="nofollow">page tarifs d'Anthropic</a>, relevée le {releveDu}</caption>
+        <thead>
+          <tr><th>Formule</th><th>Prix affiché</th></tr>
+        </thead>
+        <tbody>
+          {abonnements.map((a) => (
+            <tr><td>{a.plan}</td><td>{a.prix}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Pour un usage par programme, Anthropic facture au million de jetons — un jeton valant à peu
+        près trois quarts de mot. Les requêtes groupées sont facturées <strong>moitié prix</strong>, et
+        la relecture d'un contexte déjà mis en cache coûte <strong>10&nbsp;% du prix d'entrée</strong>.
+      </p>
+
+      <h2>Quels sont les modèles Claude disponibles en 2026&nbsp;?</h2>
+      <table>
+        <caption class="text-left text-sm text-muted">Modèles Claude en service — <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="nofollow">documentation Anthropic</a>, relevée le {releveDu}</caption>
+        <thead>
+          <tr><th>Modèle</th><th>Mémoire de travail</th><th>Réponse maximale</th><th>Prix par million de jetons</th></tr>
+        </thead>
+        <tbody>
+          {modeles.map((m) => (
+            <tr>
+              <td>{m.nom}</td>
+              <td>{m.contexte}</td>
+              <td>{m.sortie}</td>
+              <td>{m.entree} en entrée, {m.sortiePrix} en sortie</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Un million de jetons représente environ <strong>555 000 mots</strong>, soit à peu près six
+        romans&nbsp;: c'est ce que le modèle peut lire en une fois. C'est la différence qui compte le
+        plus en pratique entre les modèles, avant même la qualité des réponses. Ce que cela change
+        pour une entreprise qui hésite entre les deux principaux assistants, nous l'avons détaillé
+        dans notre comparatif <a href="/blog/claude-vs-chatgpt-organisme-formation/">Claude ou ChatGPT</a>.
+      </p>
+
+      <h2>Comment utiliser ces chiffres&nbsp;?</h2>
+      <p>
+        Cette page est mise à jour chaque trimestre, et à chaque annonce importante d'Anthropic. Vous
+        pouvez la citer&nbsp;: la date de mise à jour en tête de page et la source de chaque ligne sont
+        là pour ça. Si un chiffre vous semble dépassé ou faux, <a href="/contact/">écrivez-nous</a>,
+        nous le corrigerons et la date bougera. Nous travaillons avec Claude tous les jours&nbsp;: notre
+        méthode est décrite sur la page <a href="/agence-marketing-claude/">agence marketing Claude</a>,
+        et la façon dont nous mesurons la visibilité d'un site sur Google et dans les réponses d'IA
+        sur la page <a href="/agence-seo-ia/">agence SEO IA</a>.
+      </p>
+
+      <h2>Qui écrit cette page</h2>
+      <p>
+        Julien Rayes et l'équipe de Claude Agency, éditeur identifié dans les
+        <a href="/mentions-legales/">mentions légales</a>. Pas d'auteur d'emprunt, aucun contenu acheté
+        à l'extérieur&nbsp;: le détail est sur la page <a href="/a-propos/">à propos</a>. Aucun chiffre de
+        cette page n'est estimé par nous&nbsp;; chacun renvoie à la publication qui l'a rendu public, et
+        ce qu'Anthropic ne publie pas est écrit comme tel.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA final : bandeau terracotta plein -->
+  <section class="bg-brand-700">
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Ces chiffres vous concernent-ils&nbsp;?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert, sans engagement&nbsp;: ce que l'IA peut faire chez vous, ce qu'elle coûterait, et par quoi commencer.</p>
+      <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
+    </div>
+  </section>
+</BaseLayout>

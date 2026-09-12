@@ -5,6 +5,54 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-13 (104) — Une page de statistiques sur Claude et Anthropic, chaque chiffre avec sa source primaire, pour se faire citer par les rédacteurs
+
+**Type :** page neuve, `/statistiques-claude-anthropic/`. Carte 153 du dépôt visibilite-ops,
+issue de la veille vidéo du 2026-09-08.
+
+**Le pari.** Les rédacteurs qui écrivent sur Claude cherchent des chiffres — combien ça vaut,
+combien ça coûte, quelle part de marché — et aucune page francophone ne les rassemble avec
+leurs sources. Une page citable rapporte des liens entrants sans les acheter, le poste où nous
+sommes le plus faibles.
+
+**Ce qui différencie la page des blogs de statistiques déjà classés** (promptfacile.fr,
+incremys.com, lus le 2026-09-13) : chaque ligne de tableau porte un lien vers la publication
+d'origine et sa date, et **ce qu'Anthropic ne publie pas est écrit comme tel**. Le nombre
+d'utilisateurs de Claude en particulier : aucun chiffre officiel n'existe, les estimations
+tierces vont de quelques dizaines de millions à 245 millions selon le périmètre, et la page le
+dit au lieu de choisir un nombre.
+
+### Sources retenues
+
+| Donnée | Source | Nature |
+| --- | --- | --- |
+| Valorisation 965 Md$, levée 65 Md$, revenu annualisé 47 Md$ | `anthropic.com/news/series-h`, 2026-05-28 | primaire |
+| Revenu annualisé 65 Md$ fin juillet 2026, 9 Md$ fin 2025, prévision 100-120 Md$ | TechCrunch 2026-08-17 (Bloomberg, Financial Times) | dépêche presse |
+| Parts de marché entreprise 40/27/21/12 %, codage 54 % vs 21 %, dépense 37 Md$ | Menlo Ventures, 2025-12-09 (495 décideurs, enquête 7-25 nov. 2025) | primaire |
+| Tarifs abonnements et API | `claude.com/pricing`, relevé 2026-09-13 | primaire |
+| Modèles, fenêtres de contexte, sorties max | `platform.claude.com/docs`, relevé 2026-09-13 | primaire |
+
+**Écartés faute de source vérifiable** : le nombre d'employés (uniquement des estimations de
+cabinets), les 300 000 clients entreprises et les 80 % de revenu venant des entreprises — le
+chiffre circule à partir d'une déclaration rapportée par Reuters en octobre 2025, mais la
+dépêche n'a pas pu être ouverte depuis cette session (`www.reuters.com` inaccessible) et
+aucune page officielle ne le porte.
+
+**Maillage.** Quatre liens entrants : le pied de page (donc les 88 pages du site), plus une
+ancre en contexte dans `/blog/claude-ai-en-francais/`,
+`/blog/claude-vs-chatgpt-organisme-formation/` et `/blog/agence-claude-comment-choisir/`.
+Sortants : comparatif Claude/ChatGPT, agence marketing Claude, agence SEO IA, contact.
+
+**Reprise.** Le titre porte « 2026 » et l'adresse n'a pas de date : la page se rafraîchit
+chaque trimestre sans changer d'URL. À chaque reprise, les tableaux **et** les constantes
+`releveDu` / `maj` bougent ensemble.
+
+**Vérifications.** Titre 52 caractères, description 148, un seul H1, aucun `noindex`, aucun
+schéma `FAQPage`, image de couverture réemployée (`hero-pilotage-ia.jpg`) passée au layout,
+`npm run build` en code 0, les six cibles de liens internes existent dans `dist/`.
+
+---
+
 ## 2026-09-08 (103) — Douze titles et descriptions refaits sur les pages que Google montre sans qu'on clique ; les cinq fusions proposées sont refusées, sources à l'appui
 
 **Type :** reprise éditoriale des métadonnées, sans une ligne de contenu neuf. Carte 148 du
