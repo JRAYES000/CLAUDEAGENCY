@@ -110,9 +110,10 @@ F1-F6** lancée ce sprint est de **1 domaine référent confirmé en ligne** (an
       11 fiches annuaires à créer, 9 communautés, 4 fils Q&R, 16 sites à contacter pour un lien
       éditorial vers `/statistiques-claude-anthropic/`. Détail et motifs d'écartement :
       `JOURNAL.md` #105. **À suivre** : l'onglet « Suivi » doit être rempli chaque vendredi ; sans
-      URL de contribution, une ligne ne compte pas. Deux points restent à trancher par Julien —
-      la condition « 2 salariés » de l'annuaire HubSpot, et les cinq fils Reddit/Quora que Nomena
-      doit identifier à la main (non vérifiables depuis le poste).
+      URL de contribution, une ligne ne compte pas. **Condition « 2 salariés » de l'annuaire
+      HubSpot : remplie, confirmée par Julien le 13/09/2026** — la fiche est à créer, priorité 2.
+      Reste un point ouvert : les cinq fils Reddit/Quora que Nomena doit identifier à la main
+      (non vérifiables depuis le poste).
 - [ ] Avant tout achat de lien payant : passer le site donneur aux **7 critères éliminatoires du
       tableau 3 de l'onglet F · Netlinking** du Sheet de suivi, puis classer les candidats retenus
       sur le rapport visites estimées ÷ prix. Voir aussi `NETLINKING.md`.

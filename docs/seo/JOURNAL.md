@@ -55,6 +55,10 @@ notées comme telles), six pages du bloc D confirmées par lecture directe aprè
 imputable au filtrage anti-bot. Le classeur a été relu par `openpyxl` et son archive zip testée
 sans erreur.
 
+**Tranché le jour même par Julien** : Claude Agency compte deux salariés, donc l'annuaire des
+agences HubSpot — qui exclut les indépendants — est accessible. La fiche passe de « à valider »
+à « à créer », priorité 2.
+
 **Non vérifié, écrit tel quel dans le fichier** : Reddit et Quora bloquent le crawler
 d'Anthropic comme les requêtes `curl` — aucun fil n'a pu y être vérifié depuis cette session. Ces
 deux plateformes restent une ligne « à ouvrir à la main » du plan, sans URL.
