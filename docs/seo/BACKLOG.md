@@ -105,6 +105,14 @@ F1-F6** lancée ce sprint est de **1 domaine référent confirmé en ligne** (an
       « Sans objet » si toujours muettes.
 - [ ] **Vague 3** — Digiformag, contribution éditoriale gratuite. Message envoyé le 18/08, aucun
       article publié en ligne à ce jour.
+- [ ] **Nouveau (13/09/2026) — plan de présence confié à Nomena, 40 cibles vérifiées.** Fichier
+      `docs/prive/netlinking/Plan-presence-Nomena-2026-09-13.xlsx` (hors git), quatre onglets.
+      11 fiches annuaires à créer, 9 communautés, 4 fils Q&R, 16 sites à contacter pour un lien
+      éditorial vers `/statistiques-claude-anthropic/`. Détail et motifs d'écartement :
+      `JOURNAL.md` #105. **À suivre** : l'onglet « Suivi » doit être rempli chaque vendredi ; sans
+      URL de contribution, une ligne ne compte pas. Deux points restent à trancher par Julien —
+      la condition « 2 salariés » de l'annuaire HubSpot, et les cinq fils Reddit/Quora que Nomena
+      doit identifier à la main (non vérifiables depuis le poste).
 - [ ] Avant tout achat de lien payant : passer le site donneur aux **7 critères éliminatoires du
       tableau 3 de l'onglet F · Netlinking** du Sheet de suivi, puis classer les candidats retenus
       sur le rapport visites estimées ÷ prix. Voir aussi `NETLINKING.md`.
@@ -296,6 +304,7 @@ Il reste un seul point, hors code :
 | Sujet #12 « BPF : qui dépose, quels délais » (plan longue traîne) | 2026-08-19 | Déjà traité : `remplir-bpf-organisme-formation.mdx` a déjà « Qui doit remplir le BPF ? » et « Quand faut-il le transmettre ? ». |
 | Sujet #14 « Convention vs contrat de formation » (plan longue traîne) | 2026-08-19 | Déjà traité : `convention-de-formation.mdx` a un H2 dédié « Convention ou contrat de formation : lequel utiliser ? » avec tableau comparatif. |
 | Sujet #13 « Certification RNQ : étapes pour l'obtenir » (plan longue traîne) | 2026-08-19 | Déjà traité : `qualiopi-guide-organisme-formation.mdx` couvre déjà les étapes d'obtention (L99-123), le cycle d'audit (L125-181) et les coûts (L209+). Remplacé par un enrichissement de ce guide (voir « À faire » n°8). |
+| Créer des comptes sur des forums pour y déposer des liens vers claudeagency.fr | 2026-09-13 | Demandé par Julien, écarté sur trois faits vérifiés (détail `JOURNAL.md` #105) : (a) `NETLINKING.md` §1.3 cite verbatim la politique Google, où le « spam de commentaires/forums » est un schéma de liens interdit ; (b) mesure directe du 13/09 sur 12 forums — les liens de contribution sortent en `rel="ugc"`/`nofollow`, donc aucun PageRank transmis ; (c) §2.5, le risque de *distrust* est plus élevé sur un domaine jeune (DA 2, 1 domaine référent au 13/09, Ubersuggest). **Remplacé** par le plan de présence confié à Nomena, section « À faire » ci-dessus. Ne pas rouvrir sans élément nouveau : la tactique n'a pas été jugée trop risquée, elle a été mesurée sans effet. |
 | Sujets #5 « Audit Qualiopi initial vs surveillance » et #10 « RNQ : qu'est-ce que » (plan longue traîne) | 2026-08-19 | Probablement déjà traités par `qualiopi-guide-organisme-formation.mdx` (sections cycle d'audit et RNQ 7 critères/32 indicateurs), vérification faite sur les titres de section seulement — **à re-vérifier ligne à ligne** avant de les reproposer, pas encore écarté avec certitude comme #9/#12/#13/#14. |
 | Ouvrir un compte Instagram | 2026-08-14 | Cible B2B absente du réseau en contexte professionnel, coût de production le plus élevé de tous les canaux, aucun effet SEO (liens `nofollow`, contenu non indexé), et la page LinkedIn entreprise n'existe pas encore. Arbitrage complet dans `TACHES-SOLOHERY-SITE-CONVERSION.md` §3. |
 | Ouvrir une « chaîne » YouTube avec rythme de publication | 2026-08-14 | Les vidéos sont utiles (tâche G15), le format « chaîne » ne l'est pas. Bibliothèque de 5 à 8 vidéos utilitaires uniquement, après 4 semaines de LinkedIn. |

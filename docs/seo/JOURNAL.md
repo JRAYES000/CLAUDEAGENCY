@@ -5,6 +5,62 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-13 (105) — Le plan de liens confié à un collaborateur : le dépôt de liens en forum est refusé, remplacé par 40 cibles vérifiées une par une
+
+**Type :** plan d'action pour un sous-traitant (Nomena, 5-8 h/semaine). Demande de Julien.
+Livrable hors git — `docs/prive/netlinking/Plan-presence-Nomena-2026-09-13.xlsx`, quatre onglets
+(règles, cibles, modèles de messages, suivi). Le dossier `docs/prive/` est ignoré par git : le
+fichier nomme un collaborateur et des comptes à créer, et ce dépôt est public.
+
+### Ce qui a été refusé
+
+La demande initiale : créer des comptes sur un maximum de forums pour y déposer des liens vers
+claudeagency.fr. Écarté sur trois faits, pas sur une préférence.
+
+1. `NETLINKING.md` §1.3 cite verbatim la politique anti-spam de Google (source primaire vérifiée
+   le 2026-06-15) : le « spam de commentaires/forums » y figure nommément parmi les schémas de
+   liens interdits.
+2. Mesure directe faite cette session : sur 12 pages de forum ouvertes en `curl`, les liens de
+   contribution sortent en `rel="nofollow"` ou `rel="ugc"` chez Developpez.net (59 occurrences),
+   Hardware.fr (5), Hacker News (3), n8n et Make (2 à 4 selon les fils). Aucun PageRank transmis,
+   avant même toute question de pénalité.
+3. `NETLINKING.md` §2.5 : le risque de *distrust* global est **plus élevé sur un domaine jeune**,
+   faute de bons liens pour diluer. Profil mesuré le 2026-09-13 via Ubersuggest :
+   **DA 2, 34 backlinks, 1 domaine référent** (Ahrefs manuel au 2026-08-27 : DR 2,1, 11 backlinks,
+   8 RD — les deux outils divergent, l'ordre de grandeur non).
+
+### Les 40 cibles retenues
+
+| Bloc | Cibles | Ce qu'on en attend |
+| --- | --- | --- |
+| A — Fondations et annuaires | 11 | Liens en marque, validation de l'entité |
+| B — Communautés | 9 | Mentions et prospects ; aucun effet SEO direct, les liens y sont `ugc` |
+| C — Q&R indexées | 4 | Fils qui se classent durablement |
+| D — Liens éditoriaux | 16 | Le seul bloc à fort rendement SEO |
+
+Le bloc D s'appuie sur la page publiée la veille (`/statistiques-claude-anthropic/`, entrée 104) :
+16 pages francophones qui citent déjà des chiffres sur Claude, à qui proposer la page comme source.
+
+**Écartés du plan, avec leur motif** : Annuaire du Conseil, Index-IA et Presta Conseil (SIRET
+français exigé — l'éditeur est bulgare) ; Upwork, Fiverr et Freelance.com (places de marché de
+mission, hors objet) ; Clutch (payant, engagement 12 mois) ; La Causette, forum généraliste sans
+rapport avec le sujet — y poster un lien serait exactement le spam refusé plus haut ;
+promptfacile.fr et incremys.com, concurrents directs de la page statistiques sur la même requête.
+
+### Vérifications
+
+Chaque URL du fichier porte son relevé HTTP du 2026-09-13. 31 en 200, une en 303 (redirection vers
+le formulaire d'inscription), deux en 403 au contrôle automatique (OpenClassrooms, Crunchbase —
+notées comme telles), six pages du bloc D confirmées par lecture directe après un échec `curl`
+imputable au filtrage anti-bot. Le classeur a été relu par `openpyxl` et son archive zip testée
+sans erreur.
+
+**Non vérifié, écrit tel quel dans le fichier** : Reddit et Quora bloquent le crawler
+d'Anthropic comme les requêtes `curl` — aucun fil n'a pu y être vérifié depuis cette session. Ces
+deux plateformes restent une ligne « à ouvrir à la main » du plan, sans URL.
+
+---
+
 ## 2026-09-13 (104) — Une page de statistiques sur Claude et Anthropic, chaque chiffre avec sa source primaire, pour se faire citer par les rédacteurs
 
 **Type :** page neuve, `/statistiques-claude-anthropic/`. Carte 153 du dépôt visibilite-ops,
