@@ -6,13 +6,15 @@ const services = await getCollection('services');
 const byOrder = (a, b) => a.data.order - b.data.order;
 const groups = [
   {
-    label: 'Marketing & acquisition',
-    desc: "Attirer des candidats qualifiés et remplir vos sessions.",
+    question: 'Comment attirer des candidats qualifiés à votre organisme de formation&nbsp;?',
+    answer:
+      "<strong>Claude Agency pilote le SEO, le SEA et l'optimisation de votre site pour attirer des candidats qualifiés.</strong> Ensemble, ces trois services remplissent vos sessions.",
     items: services.filter((s) => s.data.category === 'marketing').sort(byOrder),
   },
   {
-    label: 'IA & automatisation des process',
-    desc: "Récupérer du temps sur la pédagogie et l'administratif.",
+    question: "Quels services d'IA et d'automatisation Claude Agency propose-t-elle&nbsp;?",
+    answer:
+      "<strong>Claude Agency propose l'audit IA, la formation IA, l'automatisation des process, l'intégration de l'IA et des outils IA sur mesure pour organismes de formation.</strong> Ensemble, ils vous font récupérer du temps sur la pédagogie et l'administratif.",
     items: services.filter((s) => s.data.category !== 'marketing').sort(byOrder),
   },
 ];
@@ -51,16 +53,14 @@ const itemList = {
         Tout ce que vous pouvez déléguer pour votre <span class="text-brand-600">organisme de formation</span>
       </h1>
       <p class="mt-6 text-lg leading-relaxed text-muted">
-        Du marketing à l'administratif, nos quatre consultants prennent en charge ce qui vous fait perdre du temps — en moyenne 3 à 4× plus vite et 3× moins cher qu'une agence, grâce à la maîtrise de Claude Code et Claude Cowork.
+        <strong>Claude Agency prend en charge le marketing et l'administratif d'un organisme de formation, en moyenne 3 à 4× plus vite et 3× moins cher qu'une agence.</strong> Nos quatre consultants s'appuient sur la maîtrise de Claude Code et Claude Cowork pour vous faire gagner ce temps.
       </p>
     </div>
 
     {groups.map((g) => (
       <div class="mt-14">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-          <h2 class="font-display text-2xl font-bold text-ink">{g.label}</h2>
-          <p class="text-muted">{g.desc}</p>
-        </div>
+        <h2 class="font-display text-2xl font-bold text-ink" set:html={g.question} />
+        <p class="mt-3 max-w-2xl text-muted" set:html={g.answer} />
         <ul class="mt-6 border-t border-sand">
           {g.items.map((s) => (
             <li class="border-b border-sand">
@@ -81,8 +81,8 @@ const itemList = {
   <!-- CTA final : bandeau terracotta plein -->
   <section class="bg-brand-700">
     <div class="mx-auto max-w-4xl px-4 py-20 text-center">
-      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Par où commencer ?</h2>
-      <p class="mx-auto mt-4 max-w-xl text-brand-100">Un audit offert pour identifier vos priorités, sans engagement.</p>
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Par où commencer&nbsp;?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-brand-100"><strong>Un audit offert identifie vos priorités, sans engagement.</strong></p>
       <a href="/contact/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Demander un audit offert</a>
     </div>
   </section>

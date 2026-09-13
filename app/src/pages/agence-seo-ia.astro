@@ -11,7 +11,7 @@ const site = Astro.site!;
 // perd la confiance qu'elle est censée gagner.
 const releveDu = '7 septembre 2026';
 const publie = '2026-09-05';
-const maj = '2026-09-08';
+const maj = '2026-09-13';
 const positions = [
   { requete: 'agence marketing claude', position: '1re', resume: 'Servi, non cité' },
   { requete: 'agence claude', position: '8e', resume: 'Aucun résumé servi' },
@@ -72,20 +72,24 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
 
     <div class="prose prose-stone mt-8 max-w-none">
       <p class="lead">
-        Une <strong>agence SEO IA</strong> travaille deux visibilités à la fois&nbsp;: votre classement
-        dans les résultats Google, et votre citation dans les réponses de ChatGPT, Perplexity, Gemini
-        et du Résumé IA de Google. Les deux se gagnent avec les mêmes pages, mais elles ne se mesurent
-        pas de la même façon&nbsp;: l'une se lit en positions, l'autre en citations. Claude Agency
-        relève ces deux chiffres chaque semaine, pour ses clients comme pour ses propres sites.
+        <strong>Une agence SEO IA travaille deux visibilités à la fois&nbsp;: votre classement dans
+        les résultats Google, et votre citation dans les réponses de ChatGPT, Perplexity, Gemini et
+        du Résumé IA de Google — à notre dernier relevé, le {releveDu}, claudeagency.fr était cité
+        {citationsIA.citations} fois sur {citationsIA.questions} questions posées aux IA.</strong> Les
+        deux se gagnent avec les mêmes pages, mais elles ne se mesurent pas de la même façon&nbsp;:
+        l'une se lit en positions, l'autre en citations. Claude Agency relève ces deux chiffres
+        chaque semaine, pour ses clients comme pour ses propres sites.
       </p>
 
       <h2>Qu'est-ce qu'une agence SEO IA&nbsp;?</h2>
       <p>
-        Le SEO place une page dans une liste de liens. Le GEO — <em>generative engine
-        optimization</em> — vise autre chose&nbsp;: que votre page serve de source à une réponse
-        rédigée par une IA. Un moteur classique renvoie dix liens&nbsp;; un moteur génératif renvoie
-        un paragraphe et cite deux ou trois sites. Une agence SEO IA travaille les deux, et surtout
-        <strong>mesure les deux</strong>.
+        <strong>C'est une agence qui travaille votre classement dans les résultats Google (SEO) et
+        votre citation dans les réponses des IA génératives comme ChatGPT, Perplexity ou Gemini
+        (GEO) — et qui mesure les deux, pas seulement le premier.</strong> Le SEO place une page dans
+        une liste de liens. Le GEO — <em>generative engine optimization</em> — vise autre
+        chose&nbsp;: que votre page serve de source à une réponse rédigée par une IA. Un moteur
+        classique renvoie dix liens&nbsp;; un moteur génératif renvoie un paragraphe et cite deux ou
+        trois sites.
       </p>
       <p>
         Vous pouvez donc être premier sur Google et absent de toutes les réponses d'IA. L'inverse
@@ -93,13 +97,16 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         travail qu'elle vous facture.
       </p>
 
-      <h2>Notre relevé de positions et de citations, tel qu'on le mesure</h2>
+      <h2>Comment se mesure une citation par une IA&nbsp;?</h2>
       <p>
-        Les trois sites les mieux classés sur «&nbsp;agence seo ia&nbsp;» au relevé du {releveDu}
-        promettent tous d'être cités par ChatGPT ou Perplexity. Aucun des trois n'explique
-        comment cette citation se mesure&nbsp;— pages lues le 5 septembre 2026. Voici le nôtre,
-        pour notre propre site, tel que nous le remettons à un client&nbsp;: avec les zéros dedans
-        tant qu'ils y sont.
+        <strong>En posant des questions réelles à ChatGPT, Gemini et Perplexity, puis en comptant
+        combien de fois le site est cité en source&nbsp;— pas en le devinant depuis le classement
+        Google. À notre relevé du {releveDu}, claudeagency.fr a été cité {citationsIA.citations} fois
+        sur {citationsIA.questions} questions posées.</strong> Les trois sites les mieux classés sur
+        «&nbsp;agence seo ia&nbsp;» à ce même relevé promettent tous d'être cités par ChatGPT ou
+        Perplexity. Aucun des trois n'explique comment cette citation se mesure&nbsp;— pages lues le
+        5 septembre 2026. Voici le nôtre, pour notre propre site, tel que nous le remettons à un
+        client&nbsp;: avec les zéros dedans tant qu'ils y sont.
       </p>
       <table>
         <caption class="text-left text-sm text-muted">claudeagency.fr — relevé DataForSEO du {releveDu}, Google France, ordinateur</caption>
@@ -113,8 +120,6 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         </tbody>
       </table>
       <p>
-        Côté assistants&nbsp;: sur <strong>{citationsIA.questions} questions</strong> posées à ChatGPT, Gemini
-        et Perplexity le {releveDu}, claudeagency.fr était cité <strong>{citationsIA.citations} fois</strong>.
         C'est le point de départ, pas un résultat. Cette page existe d'ailleurs parce que la ligne
         «&nbsp;agence seo ia&nbsp;» du tableau était vide&nbsp;: aucune page du site ne répondait à la
         question. Un prestataire qui ne vous donne jamais un zéro ne mesure rien.
@@ -132,7 +137,10 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
     <div class="prose prose-stone mt-10 max-w-none">
       <h2>Comment se faire citer par ChatGPT, Perplexity ou Gemini&nbsp;?</h2>
       <p>
-        Quatre choses, dans cet ordre&nbsp;:
+        <strong>Quatre choses, dans cet ordre&nbsp;: une page nommée exactement sur la question, un
+        passage qui se suffit à lui-même, un fait daté et sourcé, et rien qui bloque les robots des
+        IA. Sans les quatre, une page bien classée sur Google peut rester invisible pour ChatGPT,
+        Perplexity ou Gemini.</strong> Dans le détail&nbsp;:
       </p>
       <ul>
         <li>
@@ -157,51 +165,53 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
 
       <h2>Quel est le tarif d'une agence SEO&nbsp;?</h2>
       <p>
-        En France, une prestation de référencement se vend le plus souvent au forfait mensuel,
-        <strong>entre 800 et 3&nbsp;000&nbsp;€ HT par mois pour une PME</strong>, ou à la journée pour des
-        interventions ciblées — repères de marché publiés par
-        <a href="https://claudepartners.fr/blog/agence-seo-ia/">Claude Partners</a>, l'annuaire de
-        prestataires IA édité par la même équipe, lus le 5 septembre 2026. Chez nous, le point de
-        départ est un <strong>audit offert</strong>&nbsp;: vos positions, vos citations et vos priorités,
-        sous une semaine. Le devis vient ensuite, sur le périmètre que l'audit a fait apparaître, et
-        se compte en heures de travail relu par un consultant, pas en «&nbsp;articles par mois&nbsp;».
+        <strong>Entre 800 et 3&nbsp;000&nbsp;€ HT par mois pour une PME, au forfait, ou à la journée pour
+        des interventions ciblées. Chez nous, le point de départ est un audit offert&nbsp;: vos
+        positions, vos citations et vos priorités, sous une semaine.</strong> En France, une
+        prestation de référencement se vend le plus souvent selon ce forfait mensuel — repères de
+        marché publiés par <a href="https://claudepartners.fr/blog/agence-seo-ia/">Claude
+        Partners</a>, l'annuaire de prestataires IA édité par la même équipe, lus le 5 septembre 2026.
+        Le devis vient ensuite, sur le périmètre que l'audit a fait apparaître, et se compte en
+        heures de travail relu par un consultant, pas en «&nbsp;articles par mois&nbsp;».
       </p>
 
       <h2>Quelle est la meilleure IA pour le SEO&nbsp;?</h2>
       <p>
-        Aucune, prise seule. Ce qui fait la différence entre deux agences n'est pas le modèle
-        qu'elles utilisent mais <strong>qui relit ce qu'il produit</strong>, et ce qu'on mesure ensuite.
-        Nos consultants travaillent avec Claude, l'IA d'Anthropic, pour la recherche, le premier jet
-        et la surveillance, sous contrôle humain à chaque page. C'est ce qui permet un rythme de
+        <strong>Aucune, prise seule. Ce qui fait la différence entre deux agences n'est pas le
+        modèle qu'elles utilisent mais qui relit ce qu'il produit, et ce qu'on mesure
+        ensuite.</strong> Nos consultants travaillent avec Claude, l'IA d'Anthropic, pour la
+        recherche, le premier jet et la surveillance, sous contrôle humain à chaque page. C'est ce
+        qui permet un rythme de
         publication qu'une agence traditionnelle facture bien plus cher&nbsp;; le fonctionnement complet
         est décrit sur notre page <a href="/agence-marketing-claude/">agence marketing Claude</a>.
       </p>
 
-      <h2>Ce que nous faisons, et ce que nous ne promettons pas</h2>
+      <h2>Une agence SEO IA garantit-elle un résultat&nbsp;?</h2>
       <p>
-        Nous ne promettons pas de délai. Un contenu met des mois à s'installer dans Google, et
-        personne ne connaît le calendrier de mise à jour d'un modèle de langage. Ce que nous
-        engageons, c'est la mesure&nbsp;: un relevé de positions et un relevé de citations, chaque
-        semaine, que ça monte ou non. Le contenu de la prestation — audit, pages, réécritures,
-        maillage, correctifs — est détaillé sur la page du service
+        <strong>Non&nbsp;: nous ne promettons pas de délai. Ce que nous engageons, c'est la
+        mesure&nbsp;: un relevé de positions et un relevé de citations, chaque semaine, que ça monte
+        ou non.</strong> Un contenu met des mois à s'installer dans Google, et personne ne connaît le
+        calendrier de mise à jour d'un modèle de langage. Le contenu de la prestation — audit, pages,
+        réécritures, maillage, correctifs — est détaillé sur la page du service
         <a href="/services/seo/">référencement naturel</a>&nbsp;; cette page-ci porte la méthode et
         la mesure.
       </p>
 
       <h2>À qui s'adresse une agence SEO IA&nbsp;?</h2>
       <p>
-        Aux entreprises dont les clients cherchent d'abord une réponse, pas un prestataire&nbsp;:
-        celles qui répondent bien à ces questions récupèrent la visite, puis la demande. Les
-        organismes de formation sont notre spécialité d'origine et le secteur que nous connaissons le
-        mieux, mais ce travail vaut pour toute activité dont les prospects s'informent avant de
-        choisir.
+        <strong>Aux entreprises dont les clients cherchent d'abord une réponse, pas un
+        prestataire&nbsp;: celles qui répondent bien à ces questions récupèrent la visite, puis la
+        demande.</strong> Les organismes de formation sont notre spécialité d'origine et le secteur
+        que nous connaissons le mieux, mais ce travail vaut pour toute activité dont les prospects
+        s'informent avant de choisir.
       </p>
 
-      <h2>Qui écrit cette page</h2>
+      <h2>Qui écrit cette page&nbsp;?</h2>
       <p>
-        Julien Rayes et l'équipe de Claude Agency, éditeur identifié dans les <a href="/mentions-legales/">mentions légales</a>. Pas
-        d'auteur d'emprunt, aucun contenu acheté à l'extérieur&nbsp;: le détail est sur la page
-        <a href="/a-propos/">à propos</a>. Les chiffres de cette page sont ceux de notre propre relevé
+        <strong>Julien Rayes et l'équipe de Claude Agency, éditeur identifié dans les
+        <a href="/mentions-legales/">mentions légales</a>. Pas d'auteur d'emprunt, aucun contenu
+        acheté à l'extérieur&nbsp;: le détail est sur la page
+        <a href="/a-propos/">à propos</a>.</strong> Les chiffres de cette page sont ceux de notre propre relevé
         du {releveDu}&nbsp;; ils sont remplacés à chaque nouveau relevé, et la date en tête de page bouge
         avec eux.
       </p>
