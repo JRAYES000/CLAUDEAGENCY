@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import { rehypeArticleCta } from './rehype-article-cta.mjs';
+import { rehypeTableScroll } from './rehype-table-scroll.mjs';
 
 // lastmod réel des articles (updatedDate sinon pubDate) — un lastmod « date du build »
 // sur toutes les URLs est un faux signal de fraîcheur que Google finit par ignorer.
@@ -51,7 +52,7 @@ export default defineConfig({
     },
   ],
 
-  markdown: { remarkPlugins: [remarkReadingTime], rehypePlugins: [rehypeArticleCta] },
+  markdown: { remarkPlugins: [remarkReadingTime], rehypePlugins: [rehypeArticleCta, rehypeTableScroll] },
 
   integrations: [
     mdx(),
