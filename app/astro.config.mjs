@@ -4,6 +4,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
+import { unified } from '@astrojs/markdown-remark';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import { rehypeArticleCta } from './rehype-article-cta.mjs';
 import { rehypeTableScroll } from './rehype-table-scroll.mjs';
@@ -29,6 +30,13 @@ export default defineConfig({
   trailingSlash: 'always',                     // cohérent avec build.format:'directory' + le 308 par défaut de Cloudflare Pages
   build: { format: 'directory', assets: '_astro' },
 
+  // Astro 7 a basculé la valeur par défaut sur 'jsx', qui supprime les espaces entre
+  // éléments en ligne. Mesuré sur les 89 pages le 14/09/2026 : 64 d'entre elles y
+  // perdaient un espace et collaient deux mots (« nosmentions légales », « atteignait65
+  // milliards »). On garde donc le comportement d'Astro 6, que la note de migration
+  // propose justement pour ce cas.
+  compressHTML: true,
+
   fonts: [
     {
       provider: fontProviders.google(),
@@ -52,7 +60,16 @@ export default defineConfig({
     },
   ],
 
-  markdown: { remarkPlugins: [remarkReadingTime], rehypePlugins: [rehypeArticleCta, rehypeTableScroll] },
+  // Astro 7 : le moteur Markdown par défaut a changé. `unified()` de
+  // @astrojs/markdown-remark rend le pipeline remark/rehype d'Astro 6 à l'identique,
+  // donc les trois greffons maison tournent sans être réécrits. Le paquet est
+  // désormais une dépendance directe du projet, exigée par astro lui-même.
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkReadingTime],
+      rehypePlugins: [rehypeArticleCta, rehypeTableScroll],
+    }),
+  },
 
   integrations: [
     mdx(),
