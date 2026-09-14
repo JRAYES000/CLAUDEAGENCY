@@ -69,3 +69,18 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Enveloppe de défilement posée sur tout tableau Markdown par `rehype-table-scroll.mjs` :
+   le tableau défile dans son propre cadre, la page ne bouge plus.
+   Les marges passent de la table à l'enveloppe, parce qu'une zone de défilement bloque la
+   fusion des marges : sans ce report, l'espace avant/après chaque tableau grandirait.
+   Deux précautions pour que la mise en page reste au pixel près celle d'avant :
+   - 1.75em et non 2em — le plugin typography écrit `margin: 2em` sur la table en même temps
+     que `font-size: .875em`, donc ses 2em valent 28 px ;
+   - la marge est posée dans `base`, sous la couche du plugin, pour qu'il continue de la
+     remettre à zéro là où il le fait déjà (tableau collé à un titre, en tête ou en fin
+     d'article). La remise à zéro sur la table, elle, doit primer sur le plugin : hors couche. */
+@layer base {
+  .table-scroll { overflow-x: auto; margin-block: 1.75em; }
+}
+.table-scroll > table { margin-block: 0; }
