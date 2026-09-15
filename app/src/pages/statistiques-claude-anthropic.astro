@@ -9,9 +9,9 @@ const site = Astro.site!;
 // tableau qui l'affiche : quand une source publie un chiffre plus recent, on remplace
 // la ligne ET on bouge `maj` et `releveDu`. Une page de statistiques qui date perd
 // exactement ce qu'elle est censee gagner.
-const releveDu = '13 septembre 2026';
+const releveDu = '15 septembre 2026';
 const publie = '2026-09-13';
-const maj = '2026-09-13';
+const maj = '2026-09-15';
 
 const argent = [
   {
@@ -108,7 +108,7 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
     <div class="cp-rise">
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Chiffres &amp; sources</p>
       <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Statistiques Claude et Anthropic&nbsp;: les chiffres de 2026</h1>
-      <p class="mt-4 text-sm text-muted">Publié le {dateFr(publie)}<span aria-hidden="true"> · </span>Mis à jour le <time datetime={maj}>{dateFr(maj)}</time><span aria-hidden="true"> · </span>Chiffres relevés le {releveDu}</p>
+      <p class="mt-4 text-sm text-muted">Publié le {dateFr(publie)}<span aria-hidden="true"> · </span>Mis à jour le <time datetime={maj}>{dateFr(maj)}</time><span aria-hidden="true"> · </span>Sources revérifiées le {releveDu}</p>
     </div>
 
     <div class="prose prose-stone mt-8 max-w-none">
@@ -116,8 +116,9 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         Au {releveDu}, les <strong>statistiques Claude et Anthropic</strong> publiques tiennent
         en quatre chiffres&nbsp;: Anthropic vaut <strong>965 milliards de dollars</strong> après une
         levée de 65 milliards annoncée le 28 mai 2026, son revenu annualisé atteignait
-        <strong>65 milliards de dollars</strong> fin juillet 2026, elle représente <strong>40&nbsp;% des
-        dépenses des entreprises en API de modèles de langage</strong>, et l'abonnement Claude Pro
+        <strong>65 milliards de dollars</strong> fin juillet 2026, le cabinet Menlo Ventures estimait
+        sa part à <strong>40&nbsp;% des dépenses en API de modèles de langage</strong> des 495 décideurs
+        américains qu'il a interrogés en novembre 2025, et l'abonnement Claude Pro
         coûte <strong>17 dollars par mois</strong> en paiement annuel. Chaque ligne de cette page porte
         sa source d'origine et la date à laquelle elle a été publiée. Ce qui n'a pas de source
         publique n'y figure pas&nbsp;— et nous le disons quand c'est le cas.
@@ -154,9 +155,11 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
 
       <h2>Quelle est la part de marché de Claude face à ChatGPT&nbsp;?</h2>
       <p>
-        Sur le marché des entreprises, Claude est passé devant ChatGPT. La mesure de référence est
-        l'enquête annuelle de Menlo Ventures, menée auprès de <strong>495 décideurs américains du
-        7 au 25 novembre 2025</strong> et publiée le <strong>9 décembre 2025</strong>. Elle porte sur
+        Sur la dépense des entreprises en API, Anthropic est passé devant OpenAI fin 2025. Le chiffre
+        de référence n'est pas une mesure mais une <strong>estimation</strong>&nbsp;: celle de l'enquête
+        annuelle de Menlo Ventures, menée auprès de <strong>495 décideurs américains du
+        7 au 25 novembre 2025</strong> et publiée le <strong>9 décembre 2025</strong>. Le cabinet écrit
+        lui-même «&nbsp;<em>we estimate</em>&nbsp;». Elle porte sur
         la dépense en API, c'est-à-dire l'usage professionnel des modèles dans des produits et des
         outils internes&nbsp;— pas sur le nombre de gens qui ouvrent une application de discussion.
       </p>
@@ -174,7 +177,8 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
       <p>
         Deux renversements dans ces chiffres. La part d'OpenAI est tombée de 50&nbsp;% en 2023 à
         27&nbsp;%, quand celle d'Anthropic est montée de 24&nbsp;% en 2024 à 40&nbsp;%. Et sur la
-        génération de code, Anthropic tient plus de la moitié du marché à elle seule. La même
+        génération de code, Anthropic tient à elle seule plus de la moitié de cette même dépense
+        en API — 54&nbsp;% estimés, toujours sur le périmètre de l'enquête. La même
         enquête chiffre la dépense totale des entreprises en IA générative à <strong>37 milliards de
         dollars sur 2025</strong>, contre 11,5 milliards en 2024.
       </p>
@@ -191,12 +195,20 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
     <div class="prose prose-stone mt-10 max-w-none">
       <h2>Combien d'utilisateurs Claude a-t-il&nbsp;?</h2>
       <p>
-        <strong>Anthropic ne publie aucun chiffre d'utilisateurs.</strong> C'est la réponse exacte, et
-        c'est celle qui manque partout ailleurs. Les nombres qui circulent — de quelques dizaines de
-        millions à 245 millions d'utilisateurs mensuels — proviennent de cabinets de mesure
-        d'audience extérieurs, avec des périmètres différents&nbsp;: application mobile seule, site web
-        seul, les deux, avec ou sans les usages passés par l'API. Aucun d'eux ne vient d'Anthropic, et
-        aucun n'est comparable à un autre.
+        <strong>Anthropic ne publie aucun chiffre d'utilisateurs, et nous n'avons trouvé aucune
+        publication d'origine qui en donne un.</strong> C'est la réponse exacte, et c'est celle qui
+        manque partout ailleurs. Les nombres qui circulent viennent de cabinets de mesure d'audience
+        extérieurs, avec des périmètres différents&nbsp;: application mobile seule, site web seul, les
+        deux, avec ou sans les usages passés par l'API. Aucun d'eux ne vient d'Anthropic, et aucun
+        n'est comparable à un autre.
+      </p>
+      <p>
+        Le plus repris de ces nombres est attribué au rapport <em>State of AI 2026</em> de Sensor
+        Tower. Nous avons ouvert
+        <a href="https://sensortower.com/blog/state-of-ai-2026">la publication de Sensor Tower</a> le
+        {releveDu}&nbsp;: elle donne une progression d'audience et une part de marché américaine, <strong>pas
+        de nombre d'utilisateurs mensuels</strong>. Nous ne reprenons donc aucun chiffre d'audience ici —
+        il serait la seule ligne de cette page qu'on ne pourrait pas rouvrir.
       </p>
       <p>
         Si vous devez citer un chiffre d'audience, citez la source de mesure et son périmètre, pas
@@ -222,9 +234,14 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         </tbody>
       </table>
       <p>
-        Pour un usage par programme, Anthropic facture au million de jetons — un jeton valant à peu
-        près trois quarts de mot. Les requêtes groupées sont facturées <strong>moitié prix</strong>, et
-        la relecture d'un contexte déjà mis en cache coûte <strong>10&nbsp;% du prix d'entrée</strong>.
+        Pour un usage par programme, Anthropic facture au million de jetons. Les requêtes groupées
+        sont facturées <strong>moitié prix</strong>, et la relecture d'un contexte déjà mis en cache
+        coûte <strong>10&nbsp;% du prix d'entrée</strong> — <strong>2,5&nbsp;% sur Claude Fable 5.1</strong>,
+        soit 0,25&nbsp;$ le million de jetons au lieu de 1&nbsp;$, d'après la
+        <a href="https://platform.claude.com/docs/en/about-claude/pricing">page tarifs de la documentation
+        Anthropic</a> relue le {releveDu}. C'est le premier modèle du tableau ci-dessous&nbsp;: sur un
+        agent qui relit beaucoup de contexte, appliquer les 10&nbsp;% sans l'exception multiplie le poste
+        principal par quatre.
       </p>
 
       <h2>Quels sont les modèles Claude disponibles en 2026&nbsp;?</h2>
@@ -245,8 +262,13 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         </tbody>
       </table>
       <p>
-        Un million de jetons représente environ <strong>555 000 mots</strong>, soit à peu près six
-        romans&nbsp;: c'est ce que le modèle peut lire en une fois. C'est la différence qui compte le
+        Un million de jetons représente environ <strong>555 000 mots</strong> sur les trois modèles à
+        un million ci-dessus, soit à peu près six romans&nbsp;: c'est ce que le modèle peut lire en une
+        fois. Le décompte a changé avec Claude Opus 4.7&nbsp;; les modèles antérieurs, dont Claude
+        Haiku 4.5, font entrer <strong>environ 750 000 mots</strong> dans un million de jetons, et ses
+        200 000 jetons valent donc environ 150 000 mots — chiffres de la
+        <a href="https://platform.claude.com/docs/en/about-claude/models/overview">documentation Anthropic</a>,
+        relue le {releveDu}. C'est la différence qui compte le
         plus en pratique entre les modèles, avant même la qualité des réponses. Ce que cela change
         pour une entreprise qui hésite entre les deux principaux assistants, nous l'avons détaillé
         dans notre comparatif <a href="/blog/claude-vs-chatgpt-organisme-formation/">Claude ou ChatGPT</a>.

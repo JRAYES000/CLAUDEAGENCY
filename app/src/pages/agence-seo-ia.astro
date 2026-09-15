@@ -9,17 +9,17 @@ const site = Astro.site!;
 // (data/<date>-positions.md et recherche/citations-ia.md). Quand un relevé plus récent
 // sort, on met à jour ce bloc ET `maj` : une page qui dit « 3 septembre » en décembre
 // perd la confiance qu'elle est censée gagner.
-const releveDu = '7 septembre 2026';
+const releveDu = '11 septembre 2026';
 const publie = '2026-09-05';
-const maj = '2026-09-13';
+const maj = '2026-09-15';
 const positions = [
-  { requete: 'agence marketing claude', position: '1re', resume: 'Servi, non cité' },
-  { requete: 'agence claude', position: '8e', resume: 'Aucun résumé servi' },
-  { requete: 'claude pour le marketing', position: '75e', resume: 'Servi, non cité' },
+  { requete: 'agence marketing claude', position: '1re', resume: 'Servi, cité' },
+  { requete: 'agence claude', position: '11e', resume: 'Aucun résumé servi' },
+  { requete: 'claude pour le marketing', position: '70e', resume: 'Servi, non cité' },
   { requete: 'agence ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
   { requete: 'agence seo ia', position: 'Hors du top 100', resume: 'Servi, non cité' },
 ];
-const citationsIA = { questions: 18, citations: 0 };
+const citationsIA = { questions: 18, citations: 0, resumesServis: 7, resumesCites: 1 };
 
 const serviceSchema = {
   '@context': 'https://schema.org', '@type': 'Service',
@@ -75,7 +75,9 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         <strong>Une agence SEO IA travaille deux visibilités à la fois&nbsp;: votre classement dans
         les résultats Google, et votre citation dans les réponses de ChatGPT, Perplexity, Gemini et
         du Résumé IA de Google — à notre dernier relevé, le {releveDu}, claudeagency.fr était cité
-        {citationsIA.citations} fois sur {citationsIA.questions} questions posées aux IA.</strong> Les
+        {citationsIA.citations} fois sur {citationsIA.questions} questions posées à ChatGPT, Gemini
+        et Perplexity, et dans {citationsIA.resumesCites} des {citationsIA.resumesServis} Résumés IA
+        de Google servis sur les recherches que nous suivons.</strong> Les
         deux se gagnent avec les mêmes pages, mais elles ne se mesurent pas de la même façon&nbsp;:
         l'une se lit en positions, l'autre en citations. Claude Agency relève ces deux chiffres
         chaque semaine, pour ses clients comme pour ses propres sites.
@@ -102,7 +104,8 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         <strong>En posant des questions réelles à ChatGPT, Gemini et Perplexity, puis en comptant
         combien de fois le site est cité en source&nbsp;— pas en le devinant depuis le classement
         Google. À notre relevé du {releveDu}, claudeagency.fr a été cité {citationsIA.citations} fois
-        sur {citationsIA.questions} questions posées.</strong> Les trois sites les mieux classés sur
+        sur {citationsIA.questions} questions posées, et dans {citationsIA.resumesCites} des
+        {citationsIA.resumesServis} Résumés IA de Google servis.</strong> Les trois sites les mieux classés sur
         «&nbsp;agence seo ia&nbsp;» à ce même relevé promettent tous d'être cités par ChatGPT ou
         Perplexity. Aucun des trois n'explique comment cette citation se mesure&nbsp;— pages lues le
         5 septembre 2026. Voici le nôtre, pour notre propre site, tel que nous le remettons à un

@@ -5,6 +5,60 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-15 (106) — Les quatre chiffres sans source de la page de statistiques, corrigés à la source primaire
+
+**Type :** reprise de contenu publié. Carte 187 de `visibilite-ops`, ouverte par le jury du 14/09
+(`recherche/2026-09-14-jury-page-statistiques.md`, constats 1 à 4 et 8). Page :
+`app/src/pages/statistiques-claude-anthropic.astro`. Le reste de la page — passages citables,
+`nofollow` des sources, tableau à nous — relève de la carte 193 et n'a pas été touché.
+
+### Ce qui était faux, et ce que dit la source
+
+Les cinq sources externes de la page étaient exactes. Les quatre défauts portaient tous sur des
+affirmations **sans lien**, c'est-à-dire fabriquées par la page elle-même.
+
+1. **Mots par million de jetons, contradiction d'un facteur 1,35.** La page écrivait « un jeton
+   valant à peu près trois quarts de mot » (→ 750 000 mots) vingt lignes avant « environ
+   555 000 mots ». La documentation Anthropic (models/overview, relue le 2026-09-15) : « 1M tokens
+   is roughly 555k words […] on the current tokenizer (introduced with Claude Opus 4.7); models
+   before it fit about 750k words in 1M tokens. 200k tokens is roughly 150k words. » Les deux
+   ratios sont vrais, pour des modèles différents. La page distingue désormais les trois modèles à
+   1 M de jetons (555 000 mots) de Claude Haiku 4.5, antérieur au changement (750 000).
+2. **Relecture de cache à « 10 % du prix d'entrée », faux d'un facteur 4 sur le premier modèle de
+   son propre tableau.** Documentation tarifs, relue le 2026-09-15 : « prompt cache reads cost 10%
+   of the base input price (2.5% on Claude Fable 5.1 and Claude Mythos 5.1) », soit 0,25 $ le
+   million au lieu de 1 $. L'exception est écrite, avec son montant et son lien.
+3. **« 245 millions d'utilisateurs mensuels » : aucune source.** Le nombre est attribué au rapport
+   *State of AI 2026* de Sensor Tower. Publication ouverte le 2026-09-15
+   (<https://sensortower.com/blog/state-of-ai-2026>) : elle donne une progression d'audience et une
+   part de marché américaine, **aucun nombre d'utilisateurs mensuels**. Le chiffre est retiré, et
+   la page dit ce qu'elle a cherché et n'a pas trouvé — au lieu de combler.
+4. **Un sondage de novembre 2025 daté de 2026, au présent, sans effectif.** La réserve existait
+   trente lignes plus bas : un moteur génératif coupe à la phrase. Le chapô porte désormais le
+   cabinet, l'effectif (495 décideurs américains) et la date dans la phrase même.
+5. **« La mesure de référence » pour ce que Menlo Ventures écrit « we estimate ».** Corrigé en
+   estimation, citation du cabinet à l'appui ; et « plus de la moitié du marché » est ramené à son
+   périmètre réel — la dépense des entreprises en API sur la génération de code.
+
+### Vérifications
+
+Les cinq sources externes ont été rouvertes dans le même passage et sont exactes au mot :
+Série H (965 Md post-money, 65 Md levés, 47 Md de run-rate), TechCrunch/Bloomberg du 17/08
+(65 Md fin juillet, 9 Md fin 2025, 100-120 Md attendus d'après le *Financial Times*),
+claude.com/pricing (17 $/mois en annuel, 20 $ au mois), et les deux pages de documentation
+ci-dessus. La ligne de date en tête de page devient « Sources revérifiées le », qui est ce
+qu'elle mesure réellement ; `dateModified` passe au 2026-09-15.
+
+**Rafraîchissement du même passage** : `/agence-seo-ia/` citait encore le relevé de positions du
+07/09 alors que celui du 11/09 existait. Chiffres et date remplacés — et la page annonce
+désormais la première citation de claudeagency.fr dans un Résumé IA de Google (1 des 7 blocs
+servis, requête « agence marketing claude »), contre 0 aux trois relevés précédents.
+
+**Ce qui reste ouvert** : cartes 192 (section sur les limites d'usage) et 193 (réécriture pour la
+citabilité, `nofollow` des sources, tableau de données à nous, requête à ajouter au relevé).
+
+---
+
 ## 2026-09-13 (105) — Le plan de liens confié à un collaborateur : le dépôt de liens en forum est refusé, remplacé par 40 cibles vérifiées une par une
 
 **Type :** plan d'action pour un sous-traitant (Nomena, 5-8 h/semaine). Demande de Julien.
