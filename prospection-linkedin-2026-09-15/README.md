@@ -1,6 +1,11 @@
 # Campagne LinkedIn CLAUDE AGENCY - OF (15/09/2026)
 
-Campagne Closely `143324`, active depuis le 15/09/2026, compte LinkedIn Julien Rayes.
+Campagne Closely `143331`, active depuis le 16/09/2026, sur le compte LinkedIn
+**Claude Agency** (`contact@claudeagency.fr`), index `/2/` dans Closely.
+
+La campagne `143324`, creee la veille sur le compte `jrayes000@gmail.com`, a ete mise en
+pause sans avoir envoye la moindre invitation : Closely ne permet pas de changer le compte
+LinkedIn d'une campagne existante, la migration a donc consiste a la recreer a l'identique.
 
 ## Audience — 104 prospects
 
@@ -42,14 +47,19 @@ abandonnes le 04/09/2026 (decision : tout passe par Closely). Chiffre maison
 repris : 20 a 30 minutes de traitement administratif par inscription, publie
 le 30 juin.
 
-## Point non verifie
+## Compte expediteur
 
-Closely porte deux comptes LinkedIn nommes "Julien Rayes" :
-`jrayes000@gmail.com` et `contact@ecole-naturo.fr`. Le premier de la liste a ete
-retenu. L'interface ne montre pas l'adresse une fois le compte selectionne, donc
-le choix n'a pas pu etre confirme a l'ecran.
+Les deux comptes LinkedIn de Closely sont **deux profils distincts**, homonymes et
+partageant la meme photo : `jrayes000@gmail.com` (index `/1/`) et
+`contact@claudeagency.fr` (index `/2/`). Une fois un compte selectionne, l'interface
+n'affiche plus que "Julien Rayes" : seule la page **Accounts** montre les adresses,
+et seul le segment numerique de l'URL identifie le compte actif.
+
+Controle qui tranche : les limites quotidiennes affichees a la creation different
+d'un compte a l'autre (45 vues de profil et 27 endorse pour `/1/`, 41 et 20 pour `/2/`).
 
 ## Fichiers
 
-- `CLAUDE-AGENCY-OF.csv` — les 104 prospects importes
+- `CLAUDE-AGENCY-OF.csv` — les 104 prospects importes (103 retenus, 1 deja en relation
+  avec le profil Claude Agency et donc ecarte par Closely)
 - `cibles-apify-brut.json` — les 97 profils Apify avec texte "a propos", pour personnaliser
