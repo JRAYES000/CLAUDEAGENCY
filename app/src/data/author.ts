@@ -17,8 +17,9 @@ export const AUTHOR = {
   // Google (« Creating helpful content ») demande que l'usage de l'automatisation
   // soit visible du lecteur ; le détail complet vit sur /a-propos/#methode.
   method:
-    "Écrit par Julien Rayes et l’équipe de Claude Agency, avec l’aide de l’intelligence " +
-    "artificielle pour la rédaction. Sujet, chiffres et publication restent décidés par un humain.",
+    "Écrit par Julien Rayes et l’équipe de Claude Agency — humains et agents Claude —, " +
+    "avec l’intelligence artificielle pour la rédaction. Chaque chiffre porte sa source et sa " +
+    "date, et nous corrigeons toute erreur qu’on nous signale.",
   methodUrl: '/a-propos/#methode',
   knowsAbout: [
     'Intelligence artificielle',
