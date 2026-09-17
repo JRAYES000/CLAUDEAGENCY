@@ -9,17 +9,17 @@ const site = Astro.site!;
 // (data/<date>-positions.md et recherche/citations-ia.md). Quand un relevé plus récent
 // sort, on met à jour ce bloc ET `maj` : une page qui dit « 3 septembre » en décembre
 // perd la confiance qu'elle est censée gagner.
-const releveDu = '11 septembre 2026';
+const releveDu = '17 septembre 2026';
 const publie = '2026-09-05';
-const maj = '2026-09-15';
+const maj = '2026-09-17';
 const positions = [
   { requete: 'agence marketing claude', position: '1re', resume: 'Servi, cité' },
-  { requete: 'agence claude', position: '11e', resume: 'Aucun résumé servi' },
-  { requete: 'claude pour le marketing', position: '70e', resume: 'Servi, non cité' },
+  { requete: 'agence claude', position: '13e', resume: 'Aucun résumé servi' },
+  { requete: 'claude pour le marketing', position: 'Hors du top 100', resume: 'Servi, non cité' },
   { requete: 'agence ia', position: 'Hors du top 100', resume: 'Aucun résumé servi' },
-  { requete: 'agence seo ia', position: 'Hors du top 100', resume: 'Servi, non cité' },
+  { requete: 'agence seo ia', position: 'Non mesuré', resume: 'Servi, non cité' },
 ];
-const citationsIA = { questions: 18, citations: 0, resumesServis: 7, resumesCites: 1 };
+const citationsIA = { questions: 18, citations: 1, resumesServis: 7, resumesCites: 1 };
 
 const serviceSchema = {
   '@context': 'https://schema.org', '@type': 'Service',
@@ -122,6 +122,10 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
           ))}
         </tbody>
       </table>
+      <p>
+        «&nbsp;Non mesuré&nbsp;» veut dire que Google n'a rendu que 19 résultats sur cette recherche au
+        {' '}{releveDu}&nbsp;: le site en est absent, et aucun rang ne s'en déduit.
+      </p>
       <p>
         C'est le point de départ, pas un résultat. Cette page existe d'ailleurs parce que la ligne
         «&nbsp;agence seo ia&nbsp;» du tableau était vide&nbsp;: aucune page du site ne répondait à la

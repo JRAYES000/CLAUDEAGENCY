@@ -5,6 +5,67 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-17 (107) — « Agence claude » : une seule page désignée, et le maillage qui la désigne
+
+**Type :** maillage interne, aucun contenu réécrit. Carte 188 de `visibilite-ops`, ouverte sur
+l'avis du consultant Google du 14/09. Page retenue : `/blog/agence-claude-comment-choisir/`.
+
+### Le constat
+
+Sur « agence claude », Google a changé de page à chaque relevé — quatre URL en quatre relevés,
+et jamais celle écrite pour la requête :
+
+| relevé | URL classée | position |
+| --- | --- | --- |
+| 2026-08-31 | page de service | 16 |
+| 2026-09-07 | `/blog/agence-claude-comment-choisir/` | 8 |
+| 2026-09-11 | `/claude-agency-en-bref/` | 11 |
+| 2026-09-17 | `/` (accueil) | 13 |
+
+La cause est mécanique : l'article dédié n'avait **qu'un seul lien entrant** (depuis
+`/agence-marketing-claude/`), quand `/claude-agency-en-bref/` en avait quatre, dont le pied de
+page et l'accueil. Le site désignait donc ses pages de marque, pas sa page de réponse.
+
+### Les quatre ancres posées, à la main
+
+1. **Pied de page** (`app/src/components/Footer.astro`) — « Agence Claude : comment la choisir »
+   vers l'article. Présent sur les 87 pages du `dist/`, vérifié après build.
+2. **Accueil** (`app/src/pages/index.astro`) — un paragraphe sous la FAQ, ancre exacte
+   « agence Claude ».
+3. **`/claude-agency-en-bref/`** — une phrase qui dit ce que cette page est (la présentation de
+   l'agence) et renvoie la question du choix à l'article, ancre « agence Claude ». C'est ce qui
+   l'écarte du rôle sans rien réécrire.
+4. **`/agence-marketing-claude/`** — lien préexistant, conservé.
+
+Méthode reprise de la carte 124 (claudepartners-fr, « prestataire claude » : renommage des ancres
+de menu et de pied de page, passée de 3e à 1re).
+
+### Un second levier identifié, délibérément non tiré
+
+`app/src/layouts/BaseLayout.astro` déclare `alternateName: ['Agence Claude', …]` dans le schéma
+Organization, sur toutes les pages. C'est très probablement ce qui a fait sortir l'accueil au
+relevé du 17/09 : le site dit à Google que « Agence Claude » est un autre nom de l'organisation,
+donc Google sert la page de l'organisation. **Non modifié dans ce passage** : la carte 188 ne
+porte que le maillage, retirer un `alternateName` est un arbitrage de marque, et deux leviers tirés
+le même jour rendraient le relevé du 18/09 illisible. À trancher si le maillage seul ne suffit pas.
+
+### Rafraîchissement du même passage
+
+`/agence-seo-ia/` citait le relevé du 11/09 alors que celui du 17/09 existait. Chiffres et dates
+remplacés : « agence claude » 11e → 13e, « claude pour le marketing » 70e → hors du top 100,
+citations d'IA 0 → 1 sur 18 questions (ChatGPT, question 1). La ligne « agence seo ia » passe de
+« Hors du top 100 » à « Non mesuré », avec la phrase qui l'explique : Google n'a rendu que
+19 résultats sur cette recherche, donc aucun rang ne s'en déduit — l'ancienne mention était fausse.
+
+### Vérifications
+
+Build en code 0 (89 pages). `dist/blog/agence-claude-comment-choisir/index.html` existe,
+87 fichiers de `dist/` portent le lien, ancres exactes relues dans `dist/index.html` et
+`dist/claude-agency-en-bref/index.html`. URL vérifiée en ligne après déploiement (voir
+`JOURNAL.md` de `visibilite-ops`).
+
+---
+
 ## 2026-09-15 (106) — Les quatre chiffres sans source de la page de statistiques, corrigés à la source primaire
 
 **Type :** reprise de contenu publié. Carte 187 de `visibilite-ops`, ouverte par le jury du 14/09
