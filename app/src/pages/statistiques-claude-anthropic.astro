@@ -13,6 +13,10 @@ const releveDu = '15 septembre 2026';
 // Les sources sur les limites d'usage ont ete rouvertes le 17/09, les autres non :
 // une seule date pour toute la page mentirait sur ce qui a ete revu.
 const releveLimites = '17 septembre 2026';
+// Le releve d'audience est notre seule donnee propre : il se refait en entier, cabinet
+// par cabinet, et porte donc sa propre date. Detail des lectures :
+// visibilite-ops, recherche/2026-09-17-audience-claude-par-cabinet.md
+const releveAudience = '17 septembre 2026';
 const publie = '2026-09-13';
 const maj = '2026-09-17';
 
@@ -91,6 +95,36 @@ const limites = [
   {
     plan: 'Team et Entreprise par siège',
     publie: "Mêmes fenêtres. Concernés par la hausse du 14 septembre 2026 sur Claude Code.",
+  },
+];
+
+// Notre propre relevé : personne ne publie ces quatre périmètres côte à côte, et c'est
+// le périmètre — pas le nombre — qui explique pourquoi les chiffres qui circulent ne
+// sont pas comparables. Chaque source a été ouverte le 17/09/2026.
+const audience = [
+  {
+    cabinet: 'Anthropic',
+    url: null,
+    mesure: 'Ses propres produits.',
+    publie: "Aucun nombre d'utilisateurs dans ses annonces publiques.",
+  },
+  {
+    cabinet: 'Sensor Tower',
+    url: 'https://sensortower.com/blog/state-of-ai-2026',
+    mesure: "Son indicateur « True Audience » : application mobile et site web réunis. La part de marché, elle, ne porte que sur les États-Unis.",
+    publie: "Audience en hausse de 452 % sur un an en mai 2026, et part américaine passée de 4,4 % à près de 14 %. Aucun nombre absolu d'utilisateurs.",
+  },
+  {
+    cabinet: 'Similarweb',
+    url: 'https://www.similarweb.com/website/claude.ai/',
+    mesure: "Les visites estimées du site claude.ai dans le monde. Ni l'application mobile, ni l'usage par l'API — et une visite n'est pas une personne.",
+    publie: '« Total Visits Last 3 Months » : 950,2 millions sur les données d\'août 2026, en baisse de 1,97 % sur un mois.',
+  },
+  {
+    cabinet: 'Yipit Data, cité par a16z',
+    url: 'https://a16z.com/100-gen-ai-apps-6/',
+    mesure: 'Les abonnés payants américains.',
+    publie: 'Croissance de plus de 200 % sur un an en janvier 2026. ChatGPT reste 8 fois plus gros sur cette seule mesure.',
   },
 ];
 
@@ -229,12 +263,33 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         n'est comparable à un autre.
       </p>
       <p>
-        Le plus repris de ces nombres est attribué au rapport <em>State of AI 2026</em> de Sensor
-        Tower. Nous avons ouvert
-        <a href="https://sensortower.com/blog/state-of-ai-2026">la publication de Sensor Tower</a> le
-        {releveDu}&nbsp;: elle donne une progression d'audience et une part de marché américaine, <strong>pas
-        de nombre d'utilisateurs mensuels</strong>. Nous ne reprenons donc aucun chiffre d'audience ici —
-        il serait la seule ligne de cette page qu'on ne pourrait pas rouvrir.
+        Ce que nous publions à la place, et que nous n'avons vu nulle part ailleurs&nbsp;: <strong>ce que
+        chaque cabinet mesure réellement</strong>, en face de ce qu'il publie sur Claude. Quatre
+        périmètres différents, donc quatre chiffres qui ne s'additionnent pas et ne se comparent pas.
+        Nous avons ouvert chacune de ces sources le {releveAudience}.
+      </p>
+      <table>
+        <caption class="text-left text-sm text-muted">Les chiffres d'audience de Claude, cabinet par cabinet et périmètre par périmètre — relevé Claude Agency du {releveAudience}</caption>
+        <thead>
+          <tr><th>Cabinet</th><th>Ce qu'il mesure</th><th>Ce qu'il publie sur Claude</th></tr>
+        </thead>
+        <tbody>
+          {audience.map((a) => (
+            <tr>
+              <td>{a.url ? <a href={a.url}>{a.cabinet}</a> : a.cabinet}</td>
+              <td>{a.mesure}</td>
+              <td>{a.publie}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Le nombre le plus repris — <strong>245 millions d'utilisateurs mensuels</strong> — est attribué
+        au rapport <em>State of AI 2026</em> de Sensor Tower. Nous avons ouvert cette publication le
+        {' '}{releveAudience}&nbsp;: <strong>elle ne contient aucun nombre d'utilisateurs</strong>. Nous ne le
+        reprenons donc pas. Même mécanique probable pour les «&nbsp;952 millions de visites mensuelles&nbsp;»
+        qu'on lit chez les agrégateurs&nbsp;: c'est l'ordre de grandeur du total de Similarweb <strong>sur
+        trois mois</strong>, relu comme un total mensuel.
       </p>
       <p>
         Si vous devez citer un chiffre d'audience, citez la source de mesure et son périmètre, pas
