@@ -5,6 +5,50 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-17 (107) — Ce que Claude autorise vraiment : la section sur les limites d'usage
+
+**Type :** ajout de contenu sur une page publiée. Carte 192 de `visibilite-ops`, idée 1 du
+community manager (journal du 14/09). Page : `app/src/pages/statistiques-claude-anthropic.astro`.
+Les gestes de la carte 193 — passages citables des anciennes sections, `nofollow` des sources,
+tableau d'audience à nous, requête ajoutée à `scripts/positions.mjs` — n'ont pas été touchés.
+
+### Le trou comblé
+
+La page répondait à « combien ça coûte » et s'arrêtait là. La question suivante — combien on a le
+droit de s'en servir — n'y figurait nulle part, alors qu'elle est la deuxième plus tapée après le
+prix (suggestions Google du 17/09 : `limite claude pro`, `claude limite hebdomadaire`,
+`claude limite de session`, `claude limite 5h`, `quota claude pro`).
+
+### Ce que disent les sources primaires, relues le 2026-09-17
+
+1. **Anthropic ne publie aucun quota chiffré.** Ni nombre de messages, ni heures. Pages d'aide Pro
+   (`support.claude.com/en/articles/8325606`) et Max (`.../11049741`) : une limite de session qui se
+   remet à zéro toutes les cinq heures, une limite hebdomadaire sur tous les modèles, Max 5× et 20×
+   définis comme « five times / 20 times the Pro plan's per-session usage allowance ». Plus la
+   réserve : « we may limit your usage in other ways […] at our discretion ». La page le dit comme
+   tel, sur le même patron que la section « combien d'utilisateurs ».
+2. **Le seul chiffre daté est une variation.** +25 % permanent sur les limites hebdomadaires de
+   Claude Code au 14/09/2026, ce qui fait −17 % par rapport au 13/09 : un bonus temporaire de 50 %
+   actif depuis mai s'est arrêté le 13/09 à 23 h 59 heure du Pacifique. 150 → 125 sur une base 100.
+   Annonce du 29/08/2026 par le compte Claude Developers (`x.com/ClaudeDevs/status/2093742321473065266`,
+   HTTP 200 vérifié, contenu non lisible en automatisation) ; la date et la formulation viennent de
+   BleepingComputer et du Blog du Modérateur du 31/08, tous deux liés. C'est la lecture qui manque
+   partout ailleurs : les deux chiffres décrivent le même changement depuis deux points de départ.
+3. **Dépasser la limite est payant depuis le 10/08/2026.** Crédits d'usage pour Pro, Max 5× et
+   Max 20×, facturés aux tarifs API standard, plafond de 2 000 $ par jour
+   (`support.claude.com/en/articles/12429409`, relue le 17/09).
+
+### Écriture
+
+Trois `<h2>`, chacun ouvert par sa réponse datée avant tout contexte, un tableau des cinq formules,
+un lien interne vers `/evaluation-claude-code/`. `releveDu` reste au 15 septembre : les sources
+financières n'ont pas été rouvertes aujourd'hui, et une seule date pour toute la page mentirait sur
+ce qui a été revu. D'où un second constant `releveLimites`. `maj` passe au 2026-09-17, donc
+`dateModified` aussi. La description de la page gagne « limites d’usage » (151 caractères).
+
+**Build :** code 0, 89 pages. **Mots de la page :** 1 230 → 1 759.
+
+---
 ## 2026-09-15 (106) — Les quatre chiffres sans source de la page de statistiques, corrigés à la source primaire
 
 **Type :** reprise de contenu publié. Carte 187 de `visibilite-ops`, ouverte par le jury du 14/09

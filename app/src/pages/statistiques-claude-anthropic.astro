@@ -10,8 +10,11 @@ const site = Astro.site!;
 // la ligne ET on bouge `maj` et `releveDu`. Une page de statistiques qui date perd
 // exactement ce qu'elle est censee gagner.
 const releveDu = '15 septembre 2026';
+// Les sources sur les limites d'usage ont ete rouvertes le 17/09, les autres non :
+// une seule date pour toute la page mentirait sur ce qui a ete revu.
+const releveLimites = '17 septembre 2026';
 const publie = '2026-09-13';
-const maj = '2026-09-15';
+const maj = '2026-09-17';
 
 const argent = [
   {
@@ -68,6 +71,29 @@ const abonnements = [
   { plan: 'Entreprise', prix: '20 $ par personne, plus la consommation' },
 ];
 
+const limites = [
+  {
+    plan: 'Gratuit',
+    publie: "Aucun chiffre. Anthropic indique seulement que le Pro donne plus d'usage par session que le gratuit.",
+  },
+  {
+    plan: 'Pro',
+    publie: "Une limite de session remise à zéro toutes les cinq heures, plus une limite hebdomadaire qui vaut pour tous les modèles. Aucun nombre de messages.",
+  },
+  {
+    plan: 'Max 5×',
+    publie: "Cinq fois l'usage par session du Pro. Mêmes fenêtres de cinq heures et hebdomadaire.",
+  },
+  {
+    plan: 'Max 20×',
+    publie: "Vingt fois l'usage par session du Pro. Mêmes fenêtres.",
+  },
+  {
+    plan: 'Team et Entreprise par siège',
+    publie: "Mêmes fenêtres. Concernés par la hausse du 14 septembre 2026 sur Claude Code.",
+  },
+];
+
 const modeles = [
   { nom: 'Claude Fable 5.1', contexte: '1 million de jetons', sortie: '128 000 jetons', entree: '10 $', sortiePrix: '50 $' },
   { nom: 'Claude Opus 5', contexte: '1 million de jetons', sortie: '128 000 jetons', entree: '5 $', sortiePrix: '25 $' },
@@ -81,7 +107,7 @@ const webPage = {
   url: new URL('/statistiques-claude-anthropic/', site).href,
   name: 'Statistiques Claude et Anthropic : les chiffres 2026',
   description:
-    "Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu annualisé, part de marché en entreprise, tarifs et modèles, chacun avec sa source et sa date.",
+    "Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu annualisé, part de marché en entreprise, tarifs, modèles et limites d'usage, chacun avec sa source et sa date.",
   isPartOf: { '@id': new URL('/#website', site).href },
   publisher: { '@id': new URL('/#organization', site).href },
   datePublished: publie,
@@ -99,7 +125,7 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
 ---
 <BaseLayout
   title="Statistiques Claude et Anthropic : les chiffres 2026"
-  description="Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu, part de marché en entreprise et tarifs. Chaque ligne porte sa source."
+  description="Les chiffres publics de Claude et d'Anthropic en 2026 : valorisation, revenu, part de marché, tarifs et limites d'usage. Chaque ligne porte sa source."
   image={chiffresImg.src}
   imageAlt="Dirigeant à son bureau, entouré de tableaux de chiffres et de courbes de performance"
   pageSchema={[webPage, breadcrumb]}
@@ -244,6 +270,69 @@ const dateFr = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day:
         principal par quatre.
       </p>
 
+      <h2>Quelles sont les limites d'usage de Claude&nbsp;?</h2>
+      <p>
+        <strong>Anthropic ne publie aucun nombre de messages ni aucun quota chiffré.</strong> Ce qu'elle
+        publie, relevé le {releveLimites} sur ses pages d'aide&nbsp;: deux fenêtres qui se cumulent —&nbsp;une
+        limite de session <strong>remise à zéro toutes les cinq heures</strong> et une <strong>limite
+        hebdomadaire</strong> qui vaut pour tous les modèles&nbsp;— et le fait que Claude et Claude Code
+        <strong>puisent dans la même réserve</strong>. Le seul chiffre daté est une variation&nbsp;: depuis le
+        <strong>14 septembre 2026</strong>, les limites hebdomadaires de Claude Code sont
+        <strong>25&nbsp;% plus hautes</strong> qu'avant mai 2026.
+      </p>
+      <table>
+        <caption class="text-left text-sm text-muted">Ce qu'Anthropic publie sur les limites, formule par formule — pages d'aide <a href="https://support.claude.com/en/articles/8325606-what-is-the-pro-plan">Pro</a> et <a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan">Max</a>, relevées le {releveLimites}</caption>
+        <thead>
+          <tr><th>Formule</th><th>Ce qui est publié</th></tr>
+        </thead>
+        <tbody>
+          {limites.map((l) => (
+            <tr><td>{l.plan}</td><td>{l.publie}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        Les multiplicateurs Max portent sur l'<em>usage par session</em>, pas sur un nombre de messages&nbsp;:
+        une conversation longue, un gros document ou un modèle plus puissant consomment davantage à nombre
+        de messages égal. Anthropic ajoute, sur sa page Max&nbsp;: «&nbsp;<em>we may limit your usage in other
+        ways, such as weekly and monthly caps or model and feature usage, at our discretion</em>&nbsp;».
+        Aucune formule ne garantit donc un volume.
+      </p>
+
+      <h2>Qu'est-ce qui a changé le 14 septembre 2026&nbsp;?</h2>
+      <p>
+        Les limites hebdomadaires de Claude Code sont <strong>25&nbsp;% plus hautes</strong> qu'avant mai 2026
+        pour les formules Pro, Max, Team et Entreprise par siège, de façon permanente. Mais elles sont
+        <strong>17&nbsp;% plus basses que la veille</strong>&nbsp;: un bonus temporaire de 50&nbsp;%, actif depuis
+        mai 2026, s'est arrêté le 13 septembre 2026 à 23&nbsp;h&nbsp;59 heure du Pacifique. Le niveau passe donc
+        de 150 à 125 sur une base 100. Annonce faite le <strong>29 août 2026</strong> par
+        <a href="https://x.com/ClaudeDevs/status/2093742321473065266">le compte Claude Developers d'Anthropic</a>.
+      </p>
+      <p>
+        C'est la lecture qui manque partout&nbsp;: «&nbsp;+25&nbsp;%&nbsp;» et «&nbsp;−17&nbsp;%&nbsp;» décrivent le même
+        changement, vus depuis deux points de départ différents. Anthropic a republié son annonce pour
+        préciser elle-même la baisse par rapport au niveau d'alors, après des réactions de développeurs
+        —&nbsp;épisode rapporté par <a href="https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-is-cutting-claude-codes-current-weekly-limits-by-17-percent/" rel="nofollow">BleepingComputer</a> et, en français, par le
+        <a href="https://www.blogdumoderateur.com/claude-code-anthropic-releve-limites-hebdomadaires-25-pourcent/" rel="nofollow">Blog du Modérateur du 31 août 2026</a>. Si vous aviez pris un abonnement
+        pendant l'été, votre volume utile a baissé&nbsp;; si vous arrivez maintenant, il a monté.
+      </p>
+
+      <h2>Que se passe-t-il quand on atteint la limite&nbsp;?</h2>
+      <p>
+        Claude prévient et s'arrête jusqu'à la remise à zéro suivante. Depuis le <strong>10 août 2026</strong>,
+        les abonnés <strong>Pro, Max 5× et Max 20×</strong> peuvent activer des <em>crédits d'usage</em> pour
+        continuer au-delà&nbsp;: la consommation supplémentaire est alors <strong>facturée aux tarifs API
+        standard</strong>, avec un plafond de <strong>2&nbsp;000&nbsp;$ par jour</strong>, d'après la
+        <a href="https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans">page d'aide d'Anthropic</a> relue le {releveLimites}. Les tarifs en
+        question sont ceux du tableau des modèles ci-dessous. Pour savoir combien vous consommez, l'écran
+        Réglages &gt; Usage affiche les deux jauges, celle des cinq heures et celle de la semaine.
+      </p>
+      <p>
+        En pratique, ce qui fait tomber une limite plus tôt n'est presque jamais le nombre de messages&nbsp;:
+        c'est une conversation qu'on laisse grossir toute la journée, puisque tout son contenu est relu à
+        chaque tour. Nous en avons fait une
+        <a href="/evaluation-claude-code/">évaluation de 20 situations réelles</a>, dont celle-là.
+      </p>
       <h2>Quels sont les modèles Claude disponibles en 2026&nbsp;?</h2>
       <table>
         <caption class="text-left text-sm text-muted">Modèles Claude en service — <a href="https://platform.claude.com/docs/en/about-claude/models/overview" rel="nofollow">documentation Anthropic</a>, relevée le {releveDu}</caption>
