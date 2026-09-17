@@ -66,11 +66,19 @@ périmés supprimés. Détail et mise en garde : entrée du 2026-08-14 dans `JOU
       page de conversion, ce n'est plus une page de positionnement. Son title et son H1 n'ont pas
       été retouchés : à la 16,5e place et 0 clic, les dégrader ne démontrerait aucun gain.
       Détail : `JOURNAL.md` #100.
-- [ ] **Au relevé du 2026-09-11** : même contrôle sur « agence claude », après la publication
-      du 04/09 de `/blog/agence-claude-comment-choisir/` (`JOURNAL.md` #89). La landing
-      `/agence-marketing-claude/` était 17e au 03/09. Si l'article n'apparaît pas **et** que la
-      landing recule, la séparation d'intentions n'a pas pris : trancher entre les deux pages,
-      ne pas en écrire une troisième.
+- [x] **Contrôle fait, et tranché le 2026-09-17 (carte 188 de `visibilite-ops`)** : sur
+      « agence claude », Google a servi quatre URL en quatre relevés — page de service 16e
+      (31/08), `/blog/agence-claude-comment-choisir/` 8e (07/09), `/claude-agency-en-bref/` 11e
+      (11/09), `/` 13e (17/09). La séparation d'intentions n'a pas pris parce que l'article
+      n'avait qu'un lien entrant quand les pages de marque en avaient quatre. **Page désignée :
+      `/blog/agence-claude-comment-choisir/`**, désormais liée depuis le pied de page (87 pages),
+      l'accueil et `/claude-agency-en-bref/`, ancre « agence Claude ». Aucune troisième page
+      écrite, aucun contenu réécrit. Détail : `JOURNAL.md` #107.
+- [ ] **Au relevé du 2026-09-18, puis du 2026-09-21** : vérifier que c'est bien l'article qui
+      sort, à la 8e place ou mieux. Sinon, second levier déjà identifié et non tiré —
+      `alternateName: ['Agence Claude', …]` du schéma Organization dans
+      `app/src/layouts/BaseLayout.astro`, qui désigne l'accueil comme la page de la marque.
+      Arbitrer entre les deux pages survivantes, ne pas en écrire une troisième.
 
 ### 🟡 1. Netlinking — objectif global atteint, rendement propre à la campagne encore faible
 
