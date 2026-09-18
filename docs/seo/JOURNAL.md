@@ -5,6 +5,16 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-18 (110) — Les quatre requêtes PME de la carte 218 sont chiffrées
+**Type :** mesure
+**URLs :** aucune — quatre requêtes cibles sans page à ce jour
+**Pourquoi :** la carte 218 de `visibilite-ops` interdisait d'écrire pour les PME tant qu'aucun volume n'était au dossier ; l'entrée 109 s'était arrêtée là faute d'outil.
+**Fait :** les quatre formulations de la carte mesurées sur Ubersuggest (France, fr, 2026-09-18) — « ia pour pme » 30, « automatiser tâches entreprise » 0, « réduire coûts avec ia » 0, « gagner du temps administratif » 0. Trois sur quatre à zéro : les variantes réellement tapées les remplacent, une par thème, et entrent dans `REQUETES.csv` en `a-ecrire` — « automatiser tâches » 720 (SD 24), « gestion administrative entreprise » 210 (SD 22), « ia productivité » 110 (SD 39), « intelligence artificielle pme » 50 (SD 44). Les quatre sont aussi ajoutées au relevé de positions du lundi et du jeudi de `visibilite-ops` (`scripts/positions.mjs`). La ligne « calculateur economies ia » de l'entrée 109 est complétée : **0 recherche par mois** (Ubersuggest 2026-09-18).
+**Mesure :** volumes ci-dessus, tous Ubersuggest 2026-09-18, France, français, compte tier1. Aucune position encore relevée sur ces requêtes.
+**Suite :** rien ici. L'arbitrage « on écrit ces pages ou non » appartient à la carte 219 de `visibilite-ops`, qui dispose maintenant des chiffres. À savoir avant de rédiger : « automatiser tâches » (720) est la seule à gros volume mais son intention est largement technique (Excel, PowerShell, Zapier) — le trafic n'y sera pas tout entier celui d'un dirigeant de PME.
+
+---
+
 ## 2026-09-18 (109) — Le calculateur d'économies sort sur sa propre page
 
 **Type :** nouvelle page, sans rédaction de contenu. Carte 217 de `visibilite-ops`. Page créée :
