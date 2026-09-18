@@ -16,6 +16,8 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { authorPerson } from '../data/author';
 import nomenaImg from '../assets/equipe/nomena-andrianiaina.webp';
+import meschacImg from '../assets/equipe/meschac-akinocho.webp';
+import clotildeImg from '../assets/equipe/clotilde-sandra-menanga.webp';
 // Illustrations générées avec fal.ai (nano-banana) le 2026-09-10, prompts dans ~/.claude/generations.jsonl.
 import constatImg from '../assets/equipe/dirigeant-en-colere-face-aux-agences-marketing.jpg';
 import formationImg from '../assets/equipe/formation-consultants-claude-code-antananarivo.jpg';
@@ -25,8 +27,12 @@ const illustration = 'not-prose my-6 w-full rounded-2xl border border-sand objec
 
 const site = Astro.site!;
 
-// Relevé sur les fiches claudepartners le 2026-09-10 (tjm_declare, mission_min).
-const TARIF_JOUR = 90;
+// Relevé sur les fiches claudepartners : Nomena le 2026-09-10, Meschac Akinocho et
+// Clotilde Sandra Menanga le 2026-09-18 (tjm_declare, mission_min).
+//
+// LE TARIF N'EST PLUS UNIQUE depuis le 2026-09-18 : deux consultants sur trois sont à
+// 100 €. La page annonce donc « à partir de », et chaque encart porte le tarif de la
+// personne. Une constante unique remise ici redeviendrait fausse en silence.
 const MISSION_MIN = 'à partir de 5 jours';
 const eur = (n: number) => new Intl.NumberFormat('fr-FR').format(n);
 
@@ -35,6 +41,8 @@ const consultants = [
     slug: 'nomena-andrianiaina',
     nom: 'Nomena Andrianiaina',
     role: 'Développeur full-stack',
+    ville: 'Antananarivo, Madagascar',
+    tarif: 100,
     photo: nomenaImg,
     avis:
       'Développeur formé à l’École nationale d’informatique de Fianarantsoa : Next.js et TypeScript côté web, Spring Boot côté serveur, React Native et Flutter côté mobile, avec le déploiement Docker et la chaîne d’intégration continue. Parcours court, quatre postes en trois ans, licence en cours, avec quatre mois de missions d’IA : un mois chez Meridian Models et trois mois pour l’École de Naturopathie et Sophrologie, sur de l’automatisation de chaînes et de l’intégration d’agents.',
@@ -52,7 +60,65 @@ const consultants = [
       'Ministère de l’Économie et du Plan — développeur Java et React, 4 mois',
     ],
   },
+  {
+    slug: 'meschac-akinocho-4bfde',
+    nom: 'Meschac Akinocho',
+    role: 'Consultant SEO et GEO',
+    ville: 'Cotonou, Bénin',
+    tarif: 100,
+    photo: meschacImg,
+    avis:
+      'Quinze ans de référencement naturel, la rédaction web d’abord puis l’audit technique et la stratégie. Il a tenu trois ans la production éditoriale SEO du site d’actualité tech FredZone.org, pour l’agence Ererefer. C’est lui qui prend votre visibilité dans les moteurs de recherche et dans les moteurs de réponse générative. Il vend l’implémentation autant que le diagnostic : l’audit part avec les correctifs appliqués, sur WordPress comme sur Shopify.',
+    livrables: [
+      'Audit SEO technique d’un site',
+      'Stratégie de contenu et plan de mots-clés',
+      'Implémentation des optimisations sur WordPress et Shopify',
+      'Optimisation GEO pour les moteurs de réponse générative',
+      'Rédaction d’articles, guides, news et comparatifs optimisés',
+      'Reporting périodique et suivi des positions',
+    ],
+    outils: ['Claude Code', 'WordPress', 'Shopify'],
+    parcours: [
+      'ADAM SEO AGENCY — copywriter et spécialiste SEO, depuis janvier 2023',
+      'Ererefer — rédacteur SEO pour FredZone.org, de février 2020 à janvier 2023',
+      'EWAY - DAS — directeur général, depuis février 2013',
+      'Upwork et Freelancer.com — rédaction web et SEO en indépendant, depuis 2010',
+    ],
+  },
+  {
+    slug: 'clotilde-sandra-menanga-1f35e',
+    nom: 'Clotilde Sandra Menanga',
+    role: 'Community manager et copywriter',
+    ville: 'Douala, Cameroun',
+    tarif: 100,
+    photo: clotildeImg,
+    avis:
+      'Cinq ans de contenu et de référencement, dont trois sur le marché français. C’est elle qui tient vos réseaux sociaux : elle anime votre profil LinkedIn ou celui de votre entreprise, écrit les posts, et fait le setting — la prospection et la qualification en messagerie, jusqu’au rendez-vous posé dans votre agenda. Son copywriting sert les deux : ce qu’on publie, et ce qu’on envoie. Meilleur score de l’équipe au test Claude Code, 90 sur 100.',
+    livrables: [
+      'Gestion du profil LinkedIn d’un dirigeant ou d’une entreprise',
+      'Community management et calendrier éditorial réseaux sociaux',
+      'Copywriting : posts, séquences de messages et pages de vente',
+      'Setting : prospection et qualification en messagerie jusqu’au rendez-vous',
+      'Rédaction et optimisation de contenu web',
+      'Fiches produits e-commerce optimisées',
+    ],
+    outils: ['Claude Code', 'LinkedIn'],
+    parcours: [
+      'Douala Digital Impact — SEO exécutive marché français, rédactrice web senior et cheffe de projet, depuis avril 2023',
+      'Glotelho — rédactrice de contenu web e-commerce, de mai 2021 à avril 2023',
+      'Centre d’incubation des entreprises polytechnique de Douala — gestion de projets, de septembre 2020 à mai 2021',
+      'ESSEC de Douala — formation initiale',
+    ],
+  },
 ];
+
+// « 100 € » quand les trois sont au même tarif, « à partir de 90 € » dès qu'un
+// seul s'en écarte : la phrase suit les fiches au lieu d'être réécrite à la main
+// à chaque arrivée. Les tarifs ont été uniques, puis non, puis uniques de nouveau
+// entre le 10 et le 18 septembre 2026 — la formulation a suivi toute seule.
+const TARIF_MIN = Math.min(...consultants.map((c) => c.tarif));
+const TARIF_UNIQUE = consultants.every((c) => c.tarif === TARIF_MIN);
+const TARIF_TEXTE = `${TARIF_UNIQUE ? '' : 'à partir de '}${eur(TARIF_MIN)} € HT par jour`;
 
 const breadcrumb = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -78,8 +144,8 @@ const aboutPage = {
 };
 ---
 <BaseLayout
-  title="L’équipe : nos consultants IA à Madagascar — Claude Agency"
-  description={`Pourquoi Claude Agency existe, qui sont ses consultants formés sur Claude Code, à ${eur(TARIF_JOUR)} € HT/jour, et la garantie de remplacement sous une semaine.`}
+  title="L’équipe : nos consultants IA à Madagascar, au Bénin et au Cameroun — Claude Agency"
+  description={`Pourquoi Claude Agency existe, qui sont ses ${consultants.length} consultants formés sur Claude Code, à ${TARIF_TEXTE}, et la garantie de remplacement sous une semaine.`}
   pageSchema={[breadcrumb, aboutPage, authorPerson(site)]}
 >
   <section class="mx-auto max-w-2xl px-4 py-16">
@@ -91,8 +157,8 @@ const aboutPage = {
     <div class="prose prose-stone mt-8 max-w-none">
       <p class="lead">
         Je m’appelle Julien Rayes. Avant de fonder cette agence, j’ai été client d’agences pendant
-        cinq ans. Cette page dit ce que j’y ai vu, ce que j’ai décidé d’en faire, et qui est le
-        consultant que je positionne chez vous.
+        cinq ans. Cette page dit ce que j’y ai vu, ce que j’ai décidé d’en faire, et qui sont les
+        consultants que je positionne chez vous.
       </p>
 
       <h2 id="constat" class="scroll-mt-24"><span aria-hidden="true">😤</span> Le constat qui a tout déclenché</h2>
@@ -134,22 +200,23 @@ const aboutPage = {
       <p>
         Deux choses ont changé la donne. La première est <strong>l’IA</strong> : avec Claude Code, un consultant qui
         sait s’en servir produit en heures ce qui prenait des jours. La seconde est <strong>mon équipe,
-        basée à Antananarivo, à Madagascar</strong>, où une rémunération correcte se situe à un niveau qui
+        basée à Antananarivo, à Cotonou et à Douala</strong>, où une rémunération correcte se situe à un niveau qui
         n’a pas d’équivalent en France. C’est de l’offshore, et je préfère l’écrire que le laisser
-        deviner : c’est le seul mécanisme derrière le tarif de <strong>{eur(TARIF_JOUR)} € HT par jour</strong>.
+        deviner : c’est le seul mécanisme derrière un tarif de <strong>{TARIF_TEXTE}</strong>.
       </p>
       <p>
-        <strong>Je l’ai formé moi-même sur Claude Code, pendant au moins trois mois.</strong> Il a passé
-        de nombreux tests et est intervenu sur des cas concrets de clients avant d’être positionné
-        seul. Le consultant que je vous propose est donc <strong>expérimenté et opérationnel
+        <strong>Je les ai formés moi-même sur Claude Code pendant trois mois.</strong> Ils ont passé
+        de nombreux tests et sont intervenus sur des cas concrets de clients avant d’être positionnés
+        seuls. Les consultants que je vous propose sont donc <strong>expérimentés et opérationnels
         immédiatement</strong> : il n’y a pas de période de montée en compétence à votre charge.
       </p>
       <p>
-        Madagascar a deux avantages au quotidien sur la plupart des destinations offshore. Le
-        <strong>français</strong> y est langue de travail, d’administration et d’enseignement
-        supérieur : il n’y a pas d’anglais de passage entre vous et eux. Et le fuseau horaire est à
-        <strong>une heure d’avance sur Paris en été, deux en hiver</strong> : vos journées se
-        recouvrent presque entièrement.
+        Madagascar, le Bénin et le Cameroun ont deux avantages au quotidien sur la plupart des
+        destinations offshore. Le <strong>français</strong> y est langue officielle et langue de
+        l’enseignement supérieur : il n’y a pas d’anglais de passage entre vous et eux. Et les
+        fuseaux horaires ne décalent rien. Madagascar est à <strong>une heure d’avance sur Paris
+        en été, deux en hiver</strong> ; le Bénin et le Cameroun sont <strong>à l’heure de Paris en
+        hiver, une heure derrière en été</strong>. Vos journées se recouvrent presque entièrement.
       </p>
 
       <h2 id="garantie" class="scroll-mt-24"><span aria-hidden="true">🔄</span> Si ça ne vous convient pas, vous changez de collaborateur</h2>
@@ -165,7 +232,13 @@ const aboutPage = {
         justifier votre demande.
       </p>
 
-      <h2 id="consultants" class="scroll-mt-24">Le consultant</h2>
+      <h2 id="consultants" class="scroll-mt-24">Les consultants</h2>
+      <p>
+        Ils sont {consultants.length}, et leurs périmètres ne se recouvrent pas : le
+        <strong>développement</strong>, le <strong>référencement</strong> — moteurs de recherche et
+        moteurs de réponse —, et les <strong>réseaux sociaux</strong>, du contenu publié jusqu’au
+        rendez-vous pris en messagerie. Vous n’en prenez qu’un si un seul vous sert.
+      </p>
       {consultants.map((c) => (
         <section aria-labelledby={c.slug} class="not-prose mt-8 border-t border-sand pt-8">
           <div class="flex items-start gap-5">
@@ -179,13 +252,13 @@ const aboutPage = {
             />
             <div>
               <h3 id={c.slug} class="scroll-mt-24 font-display text-2xl font-bold tracking-tight text-ink">{c.nom}</h3>
-              <p class="mt-1 text-sm text-muted">{c.role}</p>
-              <p class="mt-2 text-sm text-muted"><strong class="text-base text-brand-700">{eur(TARIF_JOUR)} € HT/jour</strong> · {MISSION_MIN}</p>
+              <p class="mt-1 text-sm text-muted">{c.role} · {c.ville}</p>
+              <p class="mt-2 text-sm text-muted"><strong class="text-base text-brand-700">{eur(c.tarif)} € HT/jour</strong> · {MISSION_MIN}</p>
             </div>
           </div>
           <div class="prose prose-stone mt-5 max-w-none">
             <p>{c.avis}</p>
-            <p><strong>Ce qu’il a déjà livré :</strong> {c.livrables.join(' · ')}.</p>
+            <p><strong>Déjà livré :</strong> {c.livrables.join(' · ')}.</p>
             <p><strong>Ses outils :</strong> {c.outils.join(' · ')}.</p>
             <p><strong>Son parcours :</strong></p>
             <ul>{c.parcours.map((x) => <li>{x}</li>)}</ul>
@@ -220,7 +293,7 @@ const aboutPage = {
 
   <section class="bg-brand-700">
     <div class="mx-auto max-w-4xl px-4 py-20 text-center">
-      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Testez-le une semaine, sans payer</h2>
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Testez un consultant une semaine, sans payer</h2>
       <p class="mx-auto mt-4 max-w-xl text-brand-100">Une semaine de consultant IA offerte, contre un avis honnête en vidéo.</p>
       <a href="/semaine-offerte/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Réserver ma semaine offerte</a>
     </div>
