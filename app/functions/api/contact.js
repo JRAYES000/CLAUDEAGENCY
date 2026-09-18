@@ -26,6 +26,7 @@ const FIELDS = [
   ['name', 'Nom et prénom'],
   ['email', 'Email'],
   ['organisme', 'Organisme'],
+  ['structure', "Type d'entreprise"],
   ['role', 'Rôle'],
   ['priorite', 'Priorité n°1'],
   ['maturite', 'Maturité'],
@@ -129,6 +130,9 @@ export async function onRequestPost({ request, env }) {
       prenom: name,
       societe: String(data.organisme || '').trim(),
       role: String(data.role || '').trim(),
+      // Déclaré par le formulaire de contact ; absent ailleurs, où _notion.js déduit ou
+      // écrit « Inconnu ».
+      structure: String(data.structure || '').trim(),
       priorite: String(data.priorite || '').trim(),
       maturite: String(data.maturite || '').trim(),
       // Pour le Baromètre, le corps utile est la liste des réponses, pas un champ message.

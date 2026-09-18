@@ -29,6 +29,7 @@ export async function createLead(env, lead) {
     'Recu le': { date: { start: new Date().toISOString() } },
     Consentement: { checkbox: !!lead.consentement },
   };
+  properties['Type entreprise'] = { select: { name: typeEntreprise(lead) } };
   if (trim(lead.email)) properties.Email = { email: trim(lead.email) };
   if (trim(lead.telephone)) properties.Telephone = { phone_number: trim(lead.telephone) };
   for (const key of ['Prenom', 'Role', 'Priorite', 'Maturite', 'Message']) {
@@ -111,6 +112,24 @@ export async function emailDejaPasse(env, email) {
   } catch {
     return null;
   }
+}
+
+// Type d'entreprise du demandeur. C'est le seul compteur sur lequel se juge l'ouverture
+// du front PME (visibilite-ops, PLAN-NOTORIETE.md), donc il ne se devine pas : seule une
+// déclaration compte. Le formulaire de contact pose la question (`structure`) ; le
+// diagnostic ne la pose pas, mais toutes les options de son champ « rôle » sauf « Autre »
+// nomment un organisme de formation. Tout le reste vaut « Inconnu » — un type supposé
+// ferait mentir le compteur, et c'est lui qui décidera du front PME le 12 novembre.
+// Les trois valeurs sont exactement les options de la propriété Notion : Notion refuse
+// l'écriture entière sur une option inconnue, et c'est le lead complet qui serait perdu.
+const TYPES_DECLARES = new Set(['PME', 'Organisme de formation']);
+
+export function typeEntreprise(lead) {
+  const declare = trim(lead.structure);
+  if (TYPES_DECLARES.has(declare)) return declare;
+  const role = trim(lead.role);
+  if (role && role !== 'Autre') return 'Organisme de formation';
+  return 'Inconnu';
 }
 
 async function postPage(env, database_id, properties) {

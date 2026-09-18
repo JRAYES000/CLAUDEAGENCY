@@ -19,6 +19,16 @@
            class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
   </div>
   <div>
+    <label for="structure" class="block text-sm font-medium">Votre structure</label>
+    <select id="structure" name="structure" required
+            class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
+      <option value="" disabled selected>Choisissez&hellip;</option>
+      <option value="PME">Entreprise (PME, TPE, ind&eacute;pendant)</option>
+      <option value="Organisme de formation">Organisme de formation</option>
+      <option value="Inconnu">Autre</option>
+    </select>
+  </div>
+  <div>
     <label for="message" class="block text-sm font-medium">Votre message</label>
     <textarea id="message" name="message" rows="5" required
               class="mt-1 w-full rounded-lg border border-sand bg-white px-3 py-2 focus:border-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"></textarea>
