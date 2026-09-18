@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TimeSavingsCalculator from '../components/TimeSavingsCalculator.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const breadcrumb = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: "Calculateur d'économies IA" },
+  ],
+};
+---
+<BaseLayout
+  title="Calculateur d'économies IA : votre gain annuel en euros"
+  description="Cochez vos tâches, obtenez en une minute une estimation annuelle du temps et de l'argent que l'IA peut vous faire gagner, puis faites-la valider par un audit offert."
+  pageSchema={[breadcrumb]}
+>
+  <section class="mx-auto max-w-5xl px-4 pt-16">
+    <div class="cp-rise">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">Calculateur</p>
+      <h1 class="mt-3 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl">Combien l'IA vous ferait-elle économiser&nbsp;?</h1>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted">Une minute, cinq cases à cocher, et vous repartez avec un chiffre annuel — en euros et en heures. L'estimation reste indicative&nbsp;: elle s'affine pendant l'<a href="/contact/" class="font-semibold text-brand-700 hover:underline">audit offert de 30 minutes</a>.</p>
+      <p class="mt-3 text-muted">Vous ne savez pas encore par quelle tâche commencer&nbsp;? Le <a href="/diagnostic/" class="font-semibold text-brand-700 hover:underline">diagnostic gratuit</a> vous répond avec des pistes concrètes.</p>
+    </div>
+  </section>
+
+  <TimeSavingsCalculator />
+
+  <section id="demande" class="bg-cream-100">
+    <div class="mx-auto max-w-2xl px-4 py-16">
+      <h2 class="font-display text-3xl font-bold text-ink">Faire valider cette estimation</h2>
+      <p class="mt-3 text-muted">Laissez-nous votre chiffre&nbsp;: on vous dit en 30 minutes ce qui est atteignable chez vous, et par quoi commencer. Sans engagement.</p>
+      <div class="mt-8"><ContactForm /></div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      // Le formulaire est sur cette page : le bouton du calculateur y descend au lieu
+      // d'ouvrir /contact/, et recopie l'estimation dans le message. Le calculateur
+      // réécrit son propre lien à chaque case cochée, donc on écoute après lui (bulle).
+      var cta = document.getElementById('calc-cta');
+      var tasks = document.getElementById('calc-tasks');
+      var message = document.getElementById('message');
+      if (!cta || !tasks) return;
+      var nf = new Intl.NumberFormat('fr-FR');
+      var dernier = '';
+      function suivre() {
+        var query = (cta.getAttribute('href') || '').split('?')[1] || '';
+        var params = new URLSearchParams(query);
+        var estimation = parseInt(params.get('estimation'), 10);
+        var heures = parseInt(params.get('heures'), 10);
+        cta.setAttribute('href', '#demande');
+        if (!message || !estimation || estimation <= 0) return;
+        // Ne jamais écraser ce que la personne a écrit elle-même.
+        if (message.value && message.value !== dernier) return;
+        dernier =
+          'Bonjour,\n\nVotre calculateur estime mon gain potentiel à ~' + nf.format(estimation) + ' € par an' +
+          (heures > 0 ? ' (' + nf.format(heures) + ' h récupérées)' : '') +
+          ". J'aimerais valider cette estimation avec l'audit offert.";
+        message.value = dernier;
+      }
+      tasks.addEventListener('change', suivre);
+      cta.setAttribute('href', '#demande');
+    })();
+  </script>
+</BaseLayout>
