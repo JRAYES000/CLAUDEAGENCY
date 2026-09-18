@@ -5,6 +5,16 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-18 (112) — On écrit les deux pages Claude Code, et rien sur les deux autres
+**Type :** mesure
+**URLs :** aucune — deux requêtes retenues, sans page à ce jour
+**Pourquoi :** carte 224 de `visibilite-ops`. Aucune page des deux sites ne répond à une recherche du type « cet outil, ça vaut quoi ? », tapée par quelqu'un qui hésite à payer ; la carte interdisait d'écrire avant de savoir combien de personnes cherchent vraiment ça.
+**Fait :** les quatre formulations de la carte mesurées sur Ubersuggest (France, fr, 2026-09-18) et entrées dans `REQUETES.csv` — « claude code prix » 390 (SD 17, intention d'achat), « claude code avis » 90 (SD 14), « alternative chatgpt entreprise » 0, « meilleur outil ia entreprise » 0. **Décision : on écrit les deux pages Claude Code, on n'écrit rien sur les deux autres.** Les deux premières entrent en `a-ecrire`, les deux dernières en `ecarte-volume-nul-le-2026-09-18-carte-224` et passent à la section « Écarté » de `BACKLOG.md`. Cannibalisation re-vérifiée en direct le 18/09, et l'état du dossier était périmé sur ce point : **une seule** page vivante vise Claude Code, `/blog/formation-claude-code/` (HTTP 200, intention « se former ») ; `/blog/claude-code-organisme-formation/` est en 301 vers elle depuis le 14/08 (contrôle sans `-L`). Une page de prix et une page d'avis ne lui disputent donc rien.
+**Mesure :** volumes ci-dessus, tous Ubersuggest 2026-09-18, France, français, compte tier1 (`keyword_overview`, locId 2250). Historique de « claude code prix » : 20 recherches par mois en mai 2025, 1 000 en mars et avril 2026, 390 le mois dernier. Aucune position relevée à ce jour sur ces quatre requêtes, et elles ne sont pas dans le relevé du lundi et du jeudi de `visibilite-ops` — à y ajouter à la publication, pas avant : sans page, la mesure ne rendrait qu'un `>100`.
+**Suite :** la rédaction est portée par la carte 232 de `visibilite-ops`, pas avant la semaine du 22/09 — la cadence de deux articles par semaine et par site est déjà consommée sur claudeagency.fr (entrée 111). Trois conditions tiennent : (a) la page « avis » ne s'écrit que sur l'usage réel de Claude Code par un humain de l'équipe, avec le relevé qui le prouve — à défaut elle ne s'écrit pas, une synthèse d'avis trouvés en ligne tombe sous l'interdiction de contenu vide de `GARDE-FOUS.md` ; (b) les deux pages lient vers `/blog/formation-claude-code/` et ne reprennent ni son titre ni son angle « se former » ; (c) le site vend de la formation Claude Code — l'intérêt se divulgue dans la page, un avis de vendeur qui se tait est un avis qui se retourne.
+
+---
+
 ## 2026-09-18 (111) — Deux premières pages écrites pour des PME, pas pour des organismes de formation
 **Type :** publication (2 articles)
 **URLs :** `https://claudeagency.fr/blog/automatiser-taches/` et `https://claudeagency.fr/blog/gestion-administrative-entreprise/`
