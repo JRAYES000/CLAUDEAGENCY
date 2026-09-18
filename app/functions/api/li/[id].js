@@ -6,19 +6,27 @@
 // un service de collecte ; on passe par l'Actor Apify harvestapi/linkedin-profile-posts, qui
 // lit les posts publics sans cookie ni compte LinkedIn.
 //
-// CE QUE CET ENDPOINT COUTE : chaque rafraichissement reel facture environ 0,002 $ par post
-// sur le compte Apify de Julien. D'ou les deux garde-fous ci-dessous, qui ne sont pas
-// decoratifs :
+// POURQUOI LE FLUX EST SERVI DEPUIS KV, ET JAMAIS COLLECTE PENDANT LA REQUETE :
+// Buffer abandonne un flux qui tarde — son message exact est « The feed took too long to
+// load ». Or une collecte Apify prend une dizaine de secondes. Un endpoint qui collecte en
+// direct est donc refuse par Buffer une fois sur deux, ce qui se lit a tort comme un flux
+// invalide. Ici la reponse sort de KV en quelques millisecondes ; quand le contenu a vieilli,
+// il est servi tel quel et la collecte part EN ARRIERE-PLAN (waitUntil) pour la fois d'apres.
+// Ne pas « simplifier » en rendant la collecte bloquante : c'est le bug qu'on vient de corriger.
+//
+// CE QUE CET ENDPOINT COUTE : chaque collecte reelle facture environ 0,002 $ par post sur le
+// compte Apify de Julien. D'ou les deux garde-fous ci-dessous, qui ne sont pas decoratifs :
 //   1. LISTE BLANCHE. L'endpoint est public. Sans elle, n'importe qui pourrait demander
 //      n'importe quel profil en boucle et vider le credit Apify. Ajouter un profil ici est
 //      un geste volontaire.
-//   2. CACHE DE 12 HEURES, servi par le cache Cloudflare. Buffer interroge ses flux plusieurs
-//      fois par jour ; sans cache, chaque passage relancerait la collecte.
+//   2. FRAICHEUR DE 12 HEURES. Buffer interroge ses flux plusieurs fois par jour ; sans ce
+//      seuil, chaque passage relancerait la collecte.
 // Avec ces deux reglages : 3 profils x 2 collectes par jour x 10 posts, soit environ 3,60 $
-// par mois. Allonger la liste ou raccourcir le cache augmente la facture proportionnellement.
+// par mois. Allonger la liste ou raccourcir le seuil augmente la facture proportionnellement.
 //
-// Variable d'environnement Cloudflare Pages (Production + Preview) :
+// Reglages Cloudflare Pages (Production + Preview) :
 //   APIFY_TOKEN = jeton du compte Apify julien_r — pose en secret_text, jamais en clair.
+//   FEEDS       = espace KV « claudeagency-feeds », ou dort le RSS deja fabrique.
 
 // Les profils autorises, par leur identifiant public (le dernier segment de l'URL LinkedIn).
 // La cle sert aussi de titre au flux, pour que Buffer n'affiche pas un slug.
@@ -29,7 +37,7 @@ const PROFILS = {
 };
 
 const POSTS_PAR_COLLECTE = 10;
-const CACHE_SECONDES = 43200; // 12 heures
+const FRAICHEUR_MS = 12 * 60 * 60 * 1000; // au-dela, on recollecte en arriere-plan
 const ACTOR = 'harvestapi~linkedin-profile-posts';
 
 // Le contenu vient d'une reponse JSON, donc il n'est echappe pour personne :
@@ -88,25 +96,17 @@ function postsVersRss(posts, nom, identifiant, urlSource) {
 const texte = (corps, status) =>
   new Response(corps + '\n', { status, headers: { 'content-type': 'text/plain; charset=utf-8' } });
 
-export async function onRequestGet({ params, request, env }) {
-  const id = String(params.id || '').replace(/\.xml$/, '');
-  const nom = PROFILS[id];
+const rss = (corps) =>
+  new Response(corps, {
+    headers: {
+      'content-type': 'application/rss+xml; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
+    },
+  });
 
-  if (!nom) {
-    return texte(
-      'Profil non autorise. Les profils suivis sont : ' + Object.keys(PROFILS).join(', ') + '.',
-      404
-    );
-  }
-  if (!env.APIFY_TOKEN) {
-    return texte("APIFY_TOKEN n'est pas pose sur ce deploiement.", 500);
-  }
-
-  const self = new URL(request.url).origin + '/api/li/' + id;
-  const cache = caches.default;
-  const enCache = await cache.match(new Request(self));
-  if (enCache) return enCache;
-
+// Collecte chez Apify et range le RSS obtenu dans KV. Rend le RSS, ou null si la collecte
+// a echoue — auquel cas l'appelant sert ce qu'il avait deja plutot que de rendre une erreur.
+async function collecter(env, id, nom, self) {
   const amont = await fetch(
     'https://api.apify.com/v2/acts/' + ACTOR + '/run-sync-get-dataset-items?timeout=90',
     {
@@ -125,24 +125,43 @@ export async function onRequestGet({ params, request, env }) {
       }),
     }
   );
-
-  if (!amont.ok) {
-    return texte('Apify a repondu ' + amont.status + ' pour le profil ' + id + '.', 502);
-  }
+  if (!amont.ok) return null;
 
   const posts = await amont.json();
-  if (!Array.isArray(posts) || !posts.length) {
-    return texte('Aucun post recupere pour ' + id + '.', 502);
+  if (!Array.isArray(posts) || !posts.length) return null;
+
+  const corps = postsVersRss(posts, nom, id, self);
+  await env.FEEDS.put('li:' + id, JSON.stringify({ rss: corps, at: Date.now() }));
+  return corps;
+}
+
+export async function onRequestGet({ params, request, env, waitUntil }) {
+  const id = String(params.id || '').replace(/\.xml$/, '');
+  const nom = PROFILS[id];
+
+  if (!nom) {
+    return texte(
+      'Profil non autorise. Les profils suivis sont : ' + Object.keys(PROFILS).join(', ') + '.',
+      404
+    );
+  }
+  if (!env.APIFY_TOKEN) return texte("APIFY_TOKEN n'est pas pose sur ce deploiement.", 500);
+  if (!env.FEEDS) return texte("L'espace KV FEEDS n'est pas lie a ce deploiement.", 500);
+
+  const self = new URL(request.url).origin + '/api/li/' + id;
+  const stocke = await env.FEEDS.get('li:' + id, { type: 'json' });
+
+  if (stocke && stocke.rss) {
+    // Servi immediatement. Si le contenu a vieilli, la collecte suivante part derriere la
+    // reponse : le lecteur n'attend jamais, et il aura le nouveau contenu au prochain passage.
+    if (Date.now() - (stocke.at || 0) > FRAICHEUR_MS) {
+      waitUntil(collecter(env, id, nom, self).catch(() => {}));
+    }
+    return rss(stocke.rss);
   }
 
-  const reponse = new Response(postsVersRss(posts, nom, id, self), {
-    headers: {
-      'content-type': 'application/rss+xml; charset=utf-8',
-      'cache-control': 'public, max-age=' + CACHE_SECONDES,
-    },
-  });
-
-  // Le cache Cloudflare est ce qui borne la facture : on y met la reponse avant de la rendre.
-  await cache.put(new Request(self), reponse.clone());
-  return reponse;
+  // Rien en reserve : premiere visite pour ce profil, la collecte est bloquante une seule fois.
+  const frais = await collecter(env, id, nom, self);
+  if (!frais) return texte('Collecte impossible pour ' + id + ' et rien en reserve.', 502);
+  return rss(frais);
 }
