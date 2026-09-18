@@ -15,7 +15,6 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { authorPerson } from '../data/author';
-import soloheryImg from '../assets/equipe/solohery-randrianantenaina.webp';
 import nomenaImg from '../assets/equipe/nomena-andrianiaina.webp';
 // Illustrations générées avec fal.ai (nano-banana) le 2026-09-10, prompts dans ~/.claude/generations.jsonl.
 import constatImg from '../assets/equipe/dirigeant-en-colere-face-aux-agences-marketing.jpg';
@@ -32,28 +31,6 @@ const MISSION_MIN = 'à partir de 5 jours';
 const eur = (n: number) => new Intl.NumberFormat('fr-FR').format(n);
 
 const consultants = [
-  {
-    slug: 'solohery-randrianantenaina',
-    nom: 'Solohery Randrianantenaina',
-    role: 'Expert SEO et GEO',
-    photo: soloheryImg,
-    avis:
-      'Six ans de référencement et de publicité en ligne, dont bientôt quatre en freelance : audit technique, sémantique et netlinking, mots-clés, référencement local, campagnes Google Ads. Il tient la chaîne d’acquisition de bout en bout. Côté IA, quatre mois de missions livrées : un mois chez Meridian Models et trois mois pour l’École de Naturopathie et Sophrologie, sur de la production de contenu assistée et de l’optimisation pour les moteurs de réponse.',
-    livrables: [
-      'Audit SEO technique, sémantique et netlinking',
-      'Recherche et analyse de mots-clés',
-      'Référencement local',
-      'Campagnes Google Ads : Search, Display, remarketing',
-    ],
-    outils: ['Claude Code', 'Google Ads', 'Google Analytics', 'Google Tag Manager', 'Ahrefs', 'Google Data Studio', 'WordPress'],
-    parcours: [
-      'Claude Agency — expert SEO et GEO, depuis juillet 2026',
-      'NEO WEB AGENCY — consultant en référencement freelance, 3 ans et 11 mois',
-      'WEB EVOLUZION — responsable de projet SEO, 8 mois',
-      'OUTSTANDING DIGITAL — spécialiste en référencement, 4 mois',
-      'Referansy — responsable de projet SEO, 2 ans et 2 mois',
-    ],
-  },
   {
     slug: 'nomena-andrianiaina',
     nom: 'Nomena Andrianiaina',
@@ -114,8 +91,8 @@ const aboutPage = {
     <div class="prose prose-stone mt-8 max-w-none">
       <p class="lead">
         Je m’appelle Julien Rayes. Avant de fonder cette agence, j’ai été client d’agences pendant
-        cinq ans. Cette page dit ce que j’y ai vu, ce que j’ai décidé d’en faire, et qui sont les
-        deux consultants que je positionne chez vous.
+        cinq ans. Cette page dit ce que j’y ai vu, ce que j’ai décidé d’en faire, et qui est le
+        consultant que je positionne chez vous.
       </p>
 
       <h2 id="constat" class="scroll-mt-24"><span aria-hidden="true">😤</span> Le constat qui a tout déclenché</h2>
@@ -162,9 +139,9 @@ const aboutPage = {
         deviner : c’est le seul mécanisme derrière le tarif de <strong>{eur(TARIF_JOUR)} € HT par jour</strong>.
       </p>
       <p>
-        <strong>Je les ai formés moi-même sur Claude Code, pendant au moins trois mois chacun.</strong> Ils ont passé
-        de nombreux tests et sont intervenus sur des cas concrets de clients avant d’être positionnés
-        seuls. Les consultants que je vous propose sont donc <strong>expérimentés et opérationnels
+        <strong>Je l’ai formé moi-même sur Claude Code, pendant au moins trois mois.</strong> Il a passé
+        de nombreux tests et est intervenu sur des cas concrets de clients avant d’être positionné
+        seul. Le consultant que je vous propose est donc <strong>expérimenté et opérationnel
         immédiatement</strong> : il n’y a pas de période de montée en compétence à votre charge.
       </p>
       <p>
@@ -188,7 +165,7 @@ const aboutPage = {
         justifier votre demande.
       </p>
 
-      <h2 id="consultants" class="scroll-mt-24">Les consultants</h2>
+      <h2 id="consultants" class="scroll-mt-24">Le consultant</h2>
       {consultants.map((c) => (
         <section aria-labelledby={c.slug} class="not-prose mt-8 border-t border-sand pt-8">
           <div class="flex items-start gap-5">
@@ -232,8 +209,8 @@ const aboutPage = {
       <p>
         Les missions démarrent <strong>{MISSION_MIN}</strong>, à distance. Vous recevez <strong>un reporting
         quotidien</strong> du travail réalisé. Pour commencer, décrivez-moi votre besoin dans le formulaire de
-        contact : je vous réponds personnellement sous 24 h ouvrées, nous écrivons ensemble les
-        objectifs, et je vous dis lequel des deux convient.
+        contact : je vous réponds personnellement sous 24 h ouvrées, et nous écrivons ensemble les
+        objectifs de la mission.
       </p>
       <p>
         <a href="/contact/#contact-form" class="not-prose inline-block rounded-lg bg-brand-500 px-5 py-2.5 font-semibold text-white no-underline transition-colors hover:bg-brand-600">Exprimer mon besoin</a>
@@ -243,7 +220,7 @@ const aboutPage = {
 
   <section class="bg-brand-700">
     <div class="mx-auto max-w-4xl px-4 py-20 text-center">
-      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Testez-les une semaine, sans payer</h2>
+      <h2 class="font-display text-3xl font-extrabold text-cream-50 sm:text-4xl">Testez-le une semaine, sans payer</h2>
       <p class="mx-auto mt-4 max-w-xl text-brand-100">Une semaine de consultant IA offerte, contre un avis honnête en vidéo.</p>
       <a href="/semaine-offerte/" class="mt-8 inline-block rounded-lg bg-cream-50 px-7 py-3 font-semibold text-brand-800 transition-colors hover:bg-white">Réserver ma semaine offerte</a>
     </div>
