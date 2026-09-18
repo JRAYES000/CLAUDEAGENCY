@@ -3,12 +3,19 @@
 // qui refusent le flux natif — Buffer en particulier.
 //
 // Pourquoi cet endpoint existe (18/09/2026) :
-//   YouTube publie bien un flux par chaîne, mais à une adresse qui porte un paramètre
-//   de requête : /feeds/videos.xml?channel_id=UC…  Buffer refuse cette URL avec un
-//   « Couldn't load Feed », et refuse de la même façon un relais tiers dont l'adresse
-//   porte elle aussi une query string, alors qu'il accepte sans broncher un flux
-//   Substack en /feed. D'où le choix d'une route où l'identifiant est dans le CHEMIN.
-//   Ne pas « simplifier » en ?c=UC… : ce serait revenir exactement au cas qui échoue.
+//   YouTube publie bien un flux par chaîne, mais en Atom, à une adresse qui porte un
+//   paramètre de requête : /feeds/videos.xml?channel_id=UC…  Buffer l'a refusé avec un
+//   « Couldn't load Feed ». Ici le flux est servi en RSS 2.0, depuis notre domaine et
+//   notre cache, ce qui répond en quelques dizaines de millisecondes.
+//
+//   Ce que ce refus n'était PAS, contrairement à ce que ce commentaire affirmait
+//   d'abord : ni le format Atom seul, ni la query string. Un flux avec « ?format=rss »
+//   a été accepté sans difficulté le même jour. Le « Couldn't load Feed » de Buffer est
+//   INTERMITTENT : la même URL, refusée une fois, passe au second essai. Avant de
+//   diagnostiquer quoi que ce soit sur un flux que Buffer rejette, le réessayer.
+//
+//   L'identifiant reste dans le CHEMIN, pas en ?c=UC… : c'est plus lisible dans la
+//   liste des feeds d'un lecteur, et ça évite les lecteurs qui tronquent au « ? ».
 //
 // L'endpoint est PUBLIC et sans secret : il ne fait que relayer un flux déjà public.
 // Le filtre sur la forme de l'identifiant évite qu'il serve de proxy vers autre chose.
