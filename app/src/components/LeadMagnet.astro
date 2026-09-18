@@ -38,16 +38,6 @@ const inputClass =
         <input type="email" id="lm-email" name="email" required autocomplete="email" spellcheck="false" class={inputClass} />
       </div>
     </div>
-    <div class="grid gap-4 sm:grid-cols-2">
-      <div>
-        <label for="lm-societe" class="block text-sm font-medium">Organisme <span class="text-muted">(optionnel)</span></label>
-        <input type="text" id="lm-societe" name="societe" autocomplete="organization" class={inputClass} />
-      </div>
-      <div>
-        <label for="lm-tel" class="block text-sm font-medium">Téléphone <span class="text-muted">(optionnel)</span></label>
-        <input type="tel" id="lm-tel" name="telephone" autocomplete="tel" class={inputClass} />
-      </div>
-    </div>
     <label class="flex items-start gap-2 text-sm text-muted">
       <input type="checkbox" name="consent" value="1" required class="mt-1" />
       <span>J’accepte de recevoir le guide et des conseils par email. Voir la <a href="/confidentialite/" class="text-brand-600 hover:underline">politique de confidentialité</a>. Désinscription en un clic.</span>
