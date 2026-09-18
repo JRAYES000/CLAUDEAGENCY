@@ -5,6 +5,48 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-18 (109) — Le calculateur d'économies sort sur sa propre page
+
+**Type :** nouvelle page, sans rédaction de contenu. Carte 217 de `visibilite-ops`. Page créée :
+`app/src/pages/calculateur-economies-ia.astro` → `https://claudeagency.fr/calculateur-economies-ia/`.
+
+### Ce qui a été fait
+
+`TimeSavingsCalculator.astro` existait déjà et n'était monté que sur l'accueil : aucune URL ne
+pouvait donc se positionner sur une intention « combien l'IA me ferait économiser ». La page
+réutilise le composant tel quel — **aucun chiffre, aucun libellé de tâche n'a été touché** — et
+lui ajoute le formulaire de contact en sortie de calcul (`#demande`). Un script de 20 lignes,
+propre à la page, redirige le bouton du calculateur vers ce formulaire au lieu de `/contact/` et
+y recopie l'estimation ; il n'écrase jamais un texte saisi par la personne. L'événement GA4
+`calculateur_utilise` est conservé, puisque le composant est repris sans modification.
+
+L'accueil garde son calculateur : la page nouvelle s'y relie par une ligne sous le composant,
+pour qu'elle ne soit pas orpheline. Deux liens sortants choisis à la main, vers `/contact/` et
+`/diagnostic/`.
+
+### Ce qui n'a pas été fait, et pourquoi
+
+1. **Aucun volume de recherche relevé.** Le connecteur Ubersuggest est rattaché au compte mais
+   n'est pas chargé dans les sessions à distance : la ligne ajoutée à `REQUETES.csv` porte donc
+   `source_volume: inconnu` et `statut: nouveau`, jamais un chiffre deviné. La carte 218 de
+   `visibilite-ops` porte ce relevé.
+2. **Les cinq tâches du calculateur restent écrites pour un organisme de formation** (Qualiopi,
+   stagiaires, OPCO, conventions). La carte 217 visait la cible PME et disait « rien à écrire,
+   juste à sortir » : sortir le composant est fait, l'adapter aux PME est une réécriture
+   éditoriale qui n'entre pas dans cette carte. Signalé au journal de `visibilite-ops`.
+3. **Le détail technique de la carte se trompait d'un endroit** : le calculateur n'était pas
+   « au bas de la page contact » mais sur l'accueil (`app/src/pages/index.astro:189`). Le
+   constat de fond — aucune page à lui — tenait quand même.
+
+### Contrôles
+
+`cd app && npm run build` en code 0, 90 pages construites. Page présente dans `dist/`, une
+occurrence dans `sitemap-0.xml`, aucun `noindex`. Les quatre ancres attendues sont dans le HTML
+produit (`calc-cta`, `demande`, `contact-form`, `message`). Vérification de l'URL en ligne après
+déploiement Cloudflare Pages.
+
+---
+
 ## 2026-09-17 (108) — Ce que Claude autorise vraiment : la section sur les limites d'usage
 
 **Type :** ajout de contenu sur une page publiée. Carte 192 de `visibilite-ops`, idée 1 du
