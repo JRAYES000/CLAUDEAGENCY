@@ -5,6 +5,21 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-19 (116) — Les quatre illustrations dessinees cedent la place a des photos realistes, payees 0,199 $
+
+**Type :** remplacement d'images
+**URL :** `https://claudeagency.fr/deleguer-son-bullshit-job/`
+**Pourquoi :** l'entree 115 fermait sur un « non fait » — les photos realistes de second degre demandees par Julien n'avaient pas pu etre produites, le quota gratuit Cloudflare etant epuise. Julien a valide la depense fal.ai, puis confirme par message (« utilise fal.ai si besoin »).
+**Fait :** les quatre illustrations dessinees de l'entree 114 sont **retirees du depot** et remplacees par des photographies generees sur `fal-ai/nano-banana` : open space gris sous les neons pour le hero, mur de classeurs avec une main qui en emerge pour la section constat, femme travaillant depuis une terrasse a Bali pour la section methode, homme posant devant deux voitures de sport a Dubai pour l'appel final. Legendes reecrites en consequence, `alt` refaits, emojis conserves. La legende de la derniere image **desamorce explicitement la promesse** : « Non, nous ne promettons pas ca. Nous promettons vos jeudis apres-midi. » — une photo de supercars sur une page commerciale sans cette precaution se lirait comme une promesse de revenus.
+
+**Cout reel : 0,199 $ pour 5 generations facturees, et non 0,16 $ pour 4 comme annonce au devis.** Le detail, parce qu'il resservira : (a) le prompt Bali initial a ete **rejete par le filtre de contenu de fal** (`content_policy_violation`, non facture) — les precautions de pudeur elles-memes declenchent le classifieur, « full body shot », « fully dressed » et « modest framing » sont les termes fautifs ; decrire l'activite et non la personne passe sans probleme ; (b) la reformulation qui passe le filtre avait **supprime le genre** (« a digital nomad ») et le modele a rendu un homme, alors que Julien demandait une femme — d'ou une cinquieme generation a 0,0398 $. La formule qui marche : nommer le genre sans jamais mentionner le corps ni les vetements comme sujet.
+**Filigranes et logos :** les quatre images Pollinations de l'entree 115 portaient un filigrane « pollinations.ai » incruste malgre `no watermark` — c'est constant chez ce moteur, ne pas le reessayer pour une image destinee a la publication. La photo Bali de fal portait un **logo Apple lisible sur le capot du portable** malgre `no logo` : neutralise par un flou local `ffmpeg` (`crop`+`boxblur`+`overlay` sur 60x60 px), gratuit, plutot qu'en repayant une generation.
+
+**Mesure :** `npm run build` vert, code de sortie 0. Detecteur `impeccable` : zero anomalie. Les quatre images chargees et non nulles en preversion, `alt` et legendes verifies dans le DOM. Aucun debordement horizontal, ni a 375 px (`scrollWidth` 375, zero element hors cadre) ni en desktop (860 pour 875). H1 a 32 px en mobile.
+**Suite :** le quota Cloudflare Workers AI (~10 000 neurons/jour) a ete **entierement consomme le 2026-09-19 par neuf generations** — cinq pour un autre chantier, quatre pour cette page. Une session qui a besoin d'images le meme jour apres ce volume n'aura que Pollinations, donc rien de publiable : prevoir fal des le depart, ou etaler sur deux jours.
+
+---
+
 ## 2026-09-19 (115) — Nouveau H1 sur la page bullshit job, et un defaut de contraste qui touche tout le site
 
 **Type :** reecriture de titre + passe de design
