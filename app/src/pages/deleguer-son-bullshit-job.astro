@@ -92,311 +92,385 @@ const faq = [
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero -->
-  <section class="bg-cream-50">
-    <div class="mx-auto max-w-5xl px-4 py-16 sm:py-24">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-sm font-medium uppercase tracking-widest text-brand-700">
-          Pour ceux qui passent leurs journées à recopier des cellules
-        </p>
-        <h1 class="mt-5 text-balance font-serif text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-          Votre employeur vous paie pour un travail qu’une IA finit en quatre minutes
-        </h1>
-        <p class="mt-6 text-lg text-muted">
-          Une heure en visio pour nous montrer vos tâches répétitives. Notre équipe configure
-          Claude pour les faire à votre place. Vous récupérez vos journées.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a
-            href="/contact/"
-            class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500"
+  <div class="bsj">
+    <!-- Hero -->
+    <section class="bg-cream-50">
+      <div class="mx-auto max-w-5xl px-4 pb-16 pt-14 sm:pb-24 sm:pt-20">
+        <div class="bsj-rise mx-auto max-w-3xl text-center">
+          <p class="text-sm font-medium uppercase tracking-widest text-brand-700">
+            Pour ceux qui passent leurs journées dans un bullshit job
+          </p>
+          <h1
+            class="mt-6 text-balance font-serif font-extrabold tracking-tight text-ink"
+            style="font-size:clamp(2rem,6.2vw,3.75rem);line-height:1.04;letter-spacing:-0.035em"
           >
-            Demander mon audit offert
-          </a>
-          <a
-            href="/diagnostic/"
-            class="rounded-lg border border-sand px-6 py-3 font-medium text-ink transition-colors hover:bg-cream-100 focus-visible:ring-2 focus-visible:ring-brand-500"
-          >
-            Faire le diagnostic en 2 minutes
-          </a>
+            Votre employeur boomer vous paie pour un travail qu’un agent IA peut réaliser en
+            <span class="text-brand-600">20 minutes</span>
+          </h1>
+          <p class="mx-auto mt-7 max-w-xl text-lg text-muted">
+            Une heure en visio pour nous montrer vos tâches répétitives. Notre équipe configure
+            Claude pour les faire à votre place. <strong class="font-semibold text-ink"
+              >Vous récupérez vos journées.</strong
+            >
+          </p>
+          <div class="mt-9 flex flex-wrap justify-center gap-3">
+            <a
+              href="/contact/"
+              class="rounded-lg bg-brand-500 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-brand-600"
+            >
+              Demander mon audit offert
+            </a>
+            <a
+              href="/diagnostic/"
+              class="rounded-lg border border-sand px-6 py-3 font-medium text-ink transition-colors duration-200 hover:bg-cream-100"
+            >
+              Faire le diagnostic en 2 minutes
+            </a>
+          </div>
+          <p class="mt-5 text-sm text-muted">
+            Sans engagement. Vous repartez avec votre feuille de route.
+          </p>
         </div>
-        <p class="mt-4 text-sm text-muted">Sans engagement. Vous repartez avec votre feuille de route.</p>
+
+        <figure class="mt-14">
+          <Image
+            src={imgPile}
+            alt="Un salarié presque entièrement enseveli sous des piles de dossiers et de tableaux identiques"
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 1024px) 64rem, 100vw"
+            class="w-full rounded-xl border border-sand"
+            loading="eager"
+          />
+        </figure>
       </div>
+    </section>
 
-      <figure class="mt-12">
-        <Image
-          src={imgPile}
-          alt="Un salarié presque entièrement enseveli sous des piles de dossiers et de tableaux identiques"
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 1024px) 64rem, 100vw"
-          class="w-full rounded-xl border border-sand"
-          loading="eager"
-        />
-      </figure>
-    </div>
-  </section>
-
-  <!-- Le constat -->
-  <section class="border-t border-sand bg-cream-100">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Posons la question honnêtement
-      </h2>
-      <p class="mt-6 text-lg text-ink">
-        Combien d’heures par semaine passez-vous sur des tâches que vous pourriez décrire à
-        quelqu’un en trois phrases ?
-      </p>
-      <p class="mt-4">
-        Ouvrir un export. Filtrer deux colonnes. Recopier dans un autre onglet. Appliquer le format
-        de l’équipe. Envoyer au même destinataire, avec le même objet que la semaine dernière.
-        Recommencer jeudi.
-      </p>
-      <p class="mt-4">
-        Ressaisir les mêmes lignes d’un outil vers un autre parce que les deux ne se parlent pas.
-        Rédiger des comptes rendus que personne ne relit vraiment. Préparer des documents qui
-        serviront quatre minutes.
-      </p>
-      <p class="mt-4 font-medium text-ink">
-        Et chaque mois, le virement tombe. Personne ne se pose de question, parce que le travail est
-        rendu et qu’il est rendu à l’heure.
-      </p>
-      <p class="mt-4">C’est exactement ce qui rend la suite possible.</p>
-
-      <figure class="mt-10">
-        <Image
-          src={imgTableur}
-          alt="Un tableur qui se déroule sans fin hors de l’écran, traverse le bureau et sort dans le couloir"
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 768px) 48rem, 100vw"
-          class="w-full rounded-xl border border-sand"
-          loading="lazy"
-        />
-        <figcaption class="mt-3 text-sm text-muted">
-          Le fichier du lundi matin, dans sa version non abrégée.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- Bandeau terracotta -->
-  <section class="bg-brand-700">
-    <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-cream-50 sm:text-4xl">
-        Maintenant, imaginez que ces heures ne vous appartiennent plus
-      </h2>
-      <p class="mt-6 text-lg text-cream-50/90">
-        Pas dans dix ans, pas dans une conférence sur le futur du travail. Cette semaine.
-      </p>
-      <p class="mt-4 text-cream-50/90">
-        Vous nous montrez une fois comment vous faites. On construit l’automatisation. Elle rend le
-        même livrable, au même format, au même moment. Vous gardez la main : vous relisez, vous
-        validez, vous envoyez.
-      </p>
-      <p class="mt-4 text-cream-50/90">
-        Votre direction reçoit exactement ce pour quoi elle vous paie. Ce qui change, c’est ce que
-        vous faites du temps que ça libère.
-      </p>
-    </div>
-  </section>
-
-  <!-- Pourquoi ça marche -->
-  <section class="bg-cream-50">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Pourquoi ça marche, et pourquoi peu de gens s’en saisissent
-      </h2>
-      <p class="mt-6">
-        Des pans entiers de postes reposent sur des tâches qu’une IA correctement configurée exécute
-        sans difficulté. Ils sont toujours tenus à la main, et ce n’est pas un hasard.
-      </p>
-      <p class="mt-4">
-        Les organisations avancent lentement. Les process ont quinze ans. Les outils externes sont
-        bloqués. Les comités débattent encore d’une stratégie IA pendant que l’écart se creuse entre
-        ce qu’une entreprise sait faire et ce qu’une personne seule peut faire avec les mêmes outils.
-      </p>
-      <p class="mt-4 font-medium text-ink">
-        Cet écart joue en votre faveur, et il ne durera pas quinze ans.
-      </p>
-      <p class="mt-4">
-        Le blocage n’a jamais été la technologie. Il est toujours le même : personne n’a le temps
-        d’expliquer proprement ce qu’il fait, ni les compétences pour le transformer en système qui
-        tourne tout seul. C’est précisément là que nous intervenons.
-      </p>
-    </div>
-  </section>
-
-  <!-- Comment ça se passe -->
-  <section class="border-t border-sand bg-cream-100">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Comment ça se passe
-      </h2>
-      <ol class="mt-8 space-y-6">
-        {
-          etapes.map((e, i) => (
-            <li class="flex gap-4">
-              <span
-                aria-hidden="true"
-                class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 font-serif font-bold text-brand-700"
-              >
-                {i + 1}
-              </span>
-              <div>
-                <h3 class="font-serif text-xl font-bold text-ink">{e.t}</h3>
-                <p class="mt-2">{e.d}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-      <p class="mt-8 text-muted">
-        Votre seul investissement : le temps de nous raconter votre métier. Personne d’autre que vous
-        ne peut le faire.
-      </p>
-
-      <figure class="mt-10">
-        <Image
-          src={imgAgent}
-          alt="Un petit robot assistant tape au clavier à un bureau pendant que la chaise du salarié est vide, le café encore fumant"
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 768px) 48rem, 100vw"
-          class="w-full rounded-xl border border-sand"
-          loading="lazy"
-        />
-        <figcaption class="mt-3 text-sm text-muted">
-          Le collègue qui ne prend jamais de pause, et qui ne s’en vante pas non plus.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- Ce que vous obtenez -->
-  <section class="bg-cream-50">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Ce que vous obtenez
-      </h2>
-      <dl class="mt-8 divide-y divide-sand border-y border-sand">
-        {
-          obtenu.map((o) => (
-            <div class="py-5">
-              <dt class="font-medium text-ink">{o.t}</dt>
-              <dd class="mt-1">{o.d}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </div>
-  </section>
-
-  <!-- Exemples concrets -->
-  <section class="border-t border-sand bg-cream-100">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Ce qu’on automatise le plus souvent
-      </h2>
-      <p class="mt-4 text-muted">
-        Quatre familles de tâches qui reviennent dans presque tous les audits, quel que soit le
-        métier.
-      </p>
-      <ul class="mt-8 space-y-5">
-        {
-          exemples.map((x) => (
-            <li>
-              <h3 class="font-serif text-lg font-bold text-ink">{x.t}</h3>
-              <p class="mt-1">{x.d}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- Pour vous / pas pour vous -->
-  <section class="bg-cream-50">
-    <div class="mx-auto max-w-5xl px-4 py-16 sm:py-20">
-      <div class="grid gap-8 sm:grid-cols-2">
-        <div>
-          <h2 class="font-serif text-2xl font-bold tracking-tight text-ink">C’est pour vous si</h2>
-          <ul class="mt-4 space-y-3">
-            <li>Vos journées contiennent des tâches identiques d’une semaine à l’autre.</li>
-            <li>Vous savez décrire ce que vous faites, même sans savoir l’automatiser.</li>
-            <li>Vous êtes jugé sur un livrable, pas sur des heures de présence.</li>
-            <li>Vous préférez récupérer du temps plutôt que travailler plus vite.</li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="font-serif text-2xl font-bold tracking-tight text-ink">Ce n’est pas pour vous si</h2>
-          <ul class="mt-4 space-y-3 text-muted">
-            <li>Votre travail change de nature tous les jours.</li>
-            <li>Vous cherchez un revenu sans rien faire : il y a une mise en place, et elle demande votre temps.</li>
-            <li>Vous voulez tout comprendre et construire vous-même (dans ce cas, voyez plutôt notre formation IA).</li>
-            <li>Vous n’avez pas le droit de faire sortir vos données de votre organisation.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="border-t border-sand bg-cream-100">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
-      <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-        Les questions qu’on nous pose
-      </h2>
-      <div class="mt-8 divide-y divide-sand border-y border-sand">
-        {
-          faq.map((f) => (
-            <details class="group py-4">
-              <summary class="flex cursor-pointer items-center justify-between gap-4 font-medium text-ink focus-visible:ring-2 focus-visible:ring-brand-500">
-                {f.q}
-                <span aria-hidden="true" class="shrink-0 text-brand-500 group-open:rotate-45 transition-transform">
-                  +
-                </span>
-              </summary>
-              <p class="mt-3">{f.a}</p>
-            </details>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA final -->
-  <section class="bg-cream-50">
-    <div class="mx-auto max-w-3xl px-4 py-16 sm:py-24">
-      <figure>
-        <Image
-          src={imgTemps}
-          alt="Une personne détendue dessine dans un carnet à son atelier, entourée de plantes, dans la lumière de l’après-midi"
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 768px) 48rem, 100vw"
-          class="w-full rounded-xl border border-sand"
-          loading="lazy"
-        />
-        <figcaption class="mt-3 text-sm text-muted">
-          Ce que devient un jeudi après-midi quand le fichier se remplit tout seul.
-        </figcaption>
-      </figure>
-
-      <div class="mt-12 text-center">
+    <!-- Le constat -->
+    <section class="border-t border-sand bg-cream-100">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
         <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Une heure aujourd’hui, vos jeudis pour la suite
+          Posons la question honnêtement
         </h2>
-        <p class="mt-4 text-lg text-muted">Vous montrez. On construit. Vous validez.</p>
-        <div class="mt-8">
-          <a
-            href="/contact/"
-            class="inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-600 focus-visible:ring-2 focus-visible:ring-brand-500"
-          >
-            Demander mon audit offert
-          </a>
-        </div>
-        <p class="mt-4 text-sm text-muted">
-          Offert et sans engagement. Vous repartez avec la liste de vos tâches automatisables, que
-          vous travailliez avec nous ensuite ou non.
+        <p class="mt-7 text-lg text-ink">
+          Combien d’heures par semaine passez-vous sur des tâches que vous pourriez
+          <strong class="font-semibold">décrire à quelqu’un en trois phrases</strong> ?
+        </p>
+        <p class="mt-5">
+          Ouvrir un export. Filtrer deux colonnes. Recopier dans un autre onglet. Appliquer le
+          format de l’équipe. Envoyer au même destinataire, avec le même objet que la semaine
+          dernière. Recommencer jeudi. 🔁
+        </p>
+        <p class="mt-5">
+          Ressaisir les mêmes lignes d’un outil vers un autre parce que les deux ne se parlent pas.
+          Rédiger des comptes rendus que personne ne relit vraiment. Préparer des documents qui
+          serviront quatre minutes.
+        </p>
+        <p class="mt-5 text-lg text-ink">
+          Et chaque mois, <strong class="font-semibold">le virement tombe</strong>. Personne ne se
+          pose de question, parce que le travail est rendu et qu’il est rendu à l’heure. 💸
+        </p>
+        <p class="mt-5">C’est exactement ce qui rend la suite possible.</p>
+
+        <figure class="mt-12">
+          <Image
+            src={imgTableur}
+            alt="Un tableur qui se déroule sans fin hors de l’écran, traverse le bureau et sort dans le couloir"
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 768px) 48rem, 100vw"
+            class="w-full rounded-xl border border-sand"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-sm text-muted">
+            Le fichier du lundi matin, dans sa version non abrégée. 📜
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Bandeau terracotta -->
+    <section class="bg-brand-700">
+      <div class="mx-auto max-w-3xl px-4 py-20 text-center sm:py-24">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-cream-50 sm:text-4xl">
+          Maintenant, imaginez que ces heures ne vous appartiennent plus
+        </h2>
+        <p class="mt-7 text-lg text-brand-50">
+          Pas dans dix ans, pas dans une conférence sur le futur du travail.
+          <strong class="font-semibold text-cream-50">Cette semaine.</strong> ⚡
+        </p>
+        <p class="mt-5 text-brand-100">
+          Vous nous montrez une fois comment vous faites. On construit l’automatisation. Elle rend
+          le même livrable, au même format, au même moment. Vous gardez la main : vous relisez,
+          vous validez, vous envoyez.
+        </p>
+        <p class="mt-5 text-brand-100">
+          Votre direction reçoit exactement ce pour quoi elle vous paie. Ce qui change, c’est ce
+          que vous faites du temps que ça libère.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Pourquoi ça marche -->
+    <section class="bg-cream-50">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Pourquoi ça marche, et pourquoi peu de gens s’en saisissent
+        </h2>
+        <p class="mt-7">
+          Des pans entiers de postes reposent sur des tâches qu’une IA correctement configurée
+          exécute sans difficulté. Ils sont toujours tenus à la main, et
+          <strong class="font-semibold text-ink">ce n’est pas un hasard</strong>.
+        </p>
+        <p class="mt-5">
+          Les organisations avancent lentement. Les process ont quinze ans. Les outils externes
+          sont bloqués. Les comités débattent encore d’une stratégie IA pendant que l’écart se
+          creuse entre ce qu’une entreprise sait faire et ce qu’une personne seule peut faire avec
+          les mêmes outils.
+        </p>
+        <p class="mt-5 text-lg text-ink">
+          <strong class="font-semibold">Cet écart joue en votre faveur, et il ne durera pas quinze
+          ans.</strong>
+        </p>
+        <p class="mt-5">
+          Le blocage n’a jamais été la technologie. Il est toujours le même : personne n’a le temps
+          d’expliquer proprement ce qu’il fait, ni les compétences pour le transformer en système
+          qui tourne tout seul. C’est précisément là que nous intervenons.
+        </p>
+      </div>
+    </section>
+
+    <!-- Comment ça se passe -->
+    <section class="border-t border-sand bg-cream-100">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Comment ça se passe
+        </h2>
+        <ol class="mt-9 space-y-7">
+          {
+            etapes.map((e, i) => (
+              <li class="flex gap-4">
+                <span
+                  aria-hidden="true"
+                  class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-100 font-serif font-bold text-brand-800"
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="font-serif text-xl font-bold text-ink">{e.t}</h3>
+                  <p class="mt-2">{e.d}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="mt-9 text-muted">
+          Votre seul investissement : <strong class="font-semibold text-ink"
+            >le temps de nous raconter votre métier</strong
+          >. Personne d’autre que vous ne peut le faire.
+        </p>
+
+        <figure class="mt-12">
+          <Image
+            src={imgAgent}
+            alt="Un petit robot assistant tape au clavier à un bureau pendant que la chaise du salarié est vide, le café encore fumant"
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 768px) 48rem, 100vw"
+            class="w-full rounded-xl border border-sand"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-sm text-muted">
+            Le collègue qui ne prend jamais de pause, et qui ne s’en vante pas non plus. 🤖
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Ce que vous obtenez -->
+    <section class="bg-cream-50">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Ce que vous obtenez
+        </h2>
+        <dl class="mt-9 divide-y divide-sand border-y border-sand">
+          {
+            obtenu.map((o) => (
+              <div class="py-5">
+                <dt class="font-semibold text-ink">{o.t}</dt>
+                <dd class="mt-1">{o.d}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <!-- Exemples concrets -->
+    <section class="border-t border-sand bg-cream-100">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Ce qu’on automatise le plus souvent
+        </h2>
+        <p class="mt-5 text-muted">
+          Quatre familles de tâches qui reviennent dans presque tous les audits, quel que soit le
+          métier.
+        </p>
+        <ul class="mt-9 space-y-6">
+          {
+            exemples.map((x) => (
+              <li>
+                <h3 class="font-serif text-lg font-bold text-ink">{x.t}</h3>
+                <p class="mt-1">{x.d}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pour vous / pas pour vous -->
+    <section class="bg-cream-50">
+      <div class="mx-auto max-w-5xl px-4 py-16 sm:py-20">
+        <div class="grid gap-10 sm:grid-cols-2">
+          <div>
+            <h2 class="font-serif text-2xl font-bold tracking-tight text-ink">C’est pour vous si</h2>
+            <ul class="mt-5 space-y-3">
+              <li>Vos journées contiennent <strong class="font-semibold text-ink">des tâches identiques d’une semaine à l’autre</strong>.</li>
+              <li>Vous savez décrire ce que vous faites, même sans savoir l’automatiser.</li>
+              <li>Vous êtes jugé sur un livrable, pas sur des heures de présence.</li>
+              <li>Vous préférez récupérer du temps plutôt que travailler plus vite.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="font-serif text-2xl font-bold tracking-tight text-ink">
+              Ce n’est pas pour vous si
+            </h2>
+            <ul class="mt-5 space-y-3 text-muted">
+              <li>Votre travail change de nature tous les jours.</li>
+              <li>
+                Vous cherchez un revenu sans rien faire : <strong class="font-semibold text-ink"
+                  >il y a une mise en place, et elle demande votre temps</strong
+                >.
+              </li>
+              <li>
+                Vous voulez tout comprendre et construire vous-même (dans ce cas, voyez plutôt
+                notre <a href="/services/formation-ia/" class="text-brand-700 underline underline-offset-2 hover:text-brand-600">formation IA</a>).
+              </li>
+              <li>Vous n’avez pas le droit de faire sortir vos données de votre organisation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="border-t border-sand bg-cream-100">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+        <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Les questions qu’on nous pose
+        </h2>
+        <div class="mt-9 divide-y divide-sand border-y border-sand">
+          {
+            faq.map((f) => (
+              <details class="bsj-faq group py-4">
+                <summary class="flex cursor-pointer items-center justify-between gap-4 font-semibold text-ink">
+                  {f.q}
+                  <span
+                    aria-hidden="true"
+                    class="shrink-0 text-xl leading-none text-brand-500 transition-transform duration-200 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p class="mt-3">{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="bg-cream-50">
+      <div class="mx-auto max-w-3xl px-4 py-16 sm:py-24">
+        <figure>
+          <Image
+            src={imgTemps}
+            alt="Une personne détendue dessine dans un carnet à son atelier, entourée de plantes, dans la lumière de l’après-midi"
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 768px) 48rem, 100vw"
+            class="w-full rounded-xl border border-sand"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-sm text-muted">
+            Ce que devient un jeudi après-midi quand le fichier se remplit tout seul. 🌴
+          </figcaption>
+        </figure>
+
+        <div class="mt-16 text-center">
+          <h2 class="text-balance font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            Une heure aujourd’hui, vos jeudis pour la suite
+          </h2>
+          <p class="mt-5 text-lg text-muted">Vous montrez. On construit. Vous validez.</p>
+          <div class="mt-9">
+            <a
+              href="/contact/"
+              class="inline-block rounded-lg bg-brand-500 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-brand-600"
+            >
+              Demander mon audit offert
+            </a>
+          </div>
+          <p class="mt-5 text-sm text-muted">
+            Offert et sans engagement. Vous repartez avec la liste de vos tâches automatisables,
+            que vous travailliez avec nous ensuite ou non.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style is:global>
+  /* Surfaces que le navigateur dessine par défaut : elles portent la charte comme le reste. */
+  .bsj ::selection {
+    background-color: #ebc0ad;
+    color: #2b2724;
+  }
+  .bsj {
+    caret-color: #cc785c;
+    scrollbar-color: #d88b68 #f5efe6;
+  }
+  .bsj a:focus-visible,
+  .bsj summary:focus-visible {
+    outline: 2px solid #b5634a;
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+  .bsj summary {
+    list-style: none;
+  }
+  .bsj summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Un seul moment animé sur la page : l'arrivée du hero, depuis un état déjà visible. */
+  @keyframes bsj-rise {
+    from {
+      opacity: 0.4;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .bsj-rise {
+    animation: bsj-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bsj-rise {
+      animation: none;
+    }
+    .bsj * {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

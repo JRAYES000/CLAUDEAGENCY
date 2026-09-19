@@ -5,6 +5,24 @@ Une action SEO sans entrée ici n'existe pas pour les sessions suivantes.
 
 ---
 
+## 2026-09-19 (115) — Nouveau H1 sur la page bullshit job, et un defaut de contraste qui touche tout le site
+
+**Type :** reecriture de titre + passe de design
+**URL :** `https://claudeagency.fr/deleguer-son-bullshit-job/`
+**Pourquoi :** demande de Julien, dans la foulee de l'entree 114. Titre et surtitre imposes mot pour mot, emphases en gras, emojis discrets, passe de design par la skill `impeccable`, et remplacement des illustrations par des photos realistes de second degre.
+**Fait :** surtitre remplace par « Pour ceux qui passent leurs journees dans un bullshit job ». **H1 remplace par « Votre employeur boomer vous paie pour un travail qu'un agent IA peut realiser en 20 minutes »**, avec « 20 minutes » en `brand-600` et une taille en `clamp(2rem, 6.2vw, 3.75rem)` — l'ancien H1 tenait en `text-6xl`, celui-ci fait 93 caracteres et aurait deborde. Neuf emphases en gras sur les phrases porteuses, six emojis places en fin de phrase dans la prose (jamais en tete de liste, jamais en substitut d'icone). Passe `impeccable polish` : surfaces que le navigateur dessine lui-meme habillees depuis la palette (selection de texte en `brand-200`, caret et barre de defilement en terracotta, anneau de focus explicite sur les liens et les depliants FAQ), un seul moment anime sur la page (l'arrivee du hero, ease-out exponentiel depuis un etat deja visible, neutralise sous `prefers-reduced-motion`), rythme vertical desserre entre les sections. Detecteur mecanique `detect.mjs` : **zero anomalie**.
+
+**Deux regles de la skill volontairement outrepassees**, sur demande explicite de Julien : (a) `craft-floor.md` bannit le surtitre au-dessus d'un H1 (« no brief earns it back ») — le surtitre est pourtant demande mot pour mot ; (b) la meme reference proscrit les emojis en substitut d'icones — contournee en les cantonnant a la prose, aucun emoji ne sert de puce ni de pictogramme de section.
+
+**Mesure :** `npm run build` vert, code de sortie 0. Aucun debordement horizontal a 375 px (`scrollWidth` 375 pour `innerWidth` 375, aucun element depassant la fenetre) ni en desktop (860 pour 875). H1 rendu a 54 px en desktop, 32 px en mobile. Contraste du bandeau terracotta conforme : `brand-100` sur `brand-700` = 4,87:1, `brand-50` sur `brand-700` = 5,52:1.
+
+**Defaut de contraste preexistant, non corrige, a arbitrer.** Quatre textes de la page tombent a **4,35:1**, sous le seuil WCAG AA de 4,5:1 : ce sont tous des `text-muted` (`#7A6E60`) poses sur `cream-100` (`#F5EFE6`). Le defaut n'est pas propre a cette page, il vient du **token `muted` du theme** : mesure faite le meme jour sur l'accueil, **53 textes sur 118 passent sous 4,5:1, le pire a 3,79:1**. La page bullshit job s'en tire donc mieux que la moyenne du site. Rien n'a ete corrige ici, volontairement : assombrir `muted` sur cette seule page creerait une incoherence visible avec ses voisines, et toucher le token affecterait les 93 pages sans que ce soit demande. Deux candidats mesures si Julien veut trancher : `#6E6356` donne 5,13:1 et `#6B6053` donne 5,37:1 sur `cream-100`, tous deux encore nettement plus clairs que `ink`.
+
+**Non fait : les images.** Julien a demande de remplacer les quatre illustrations par des photos realistes de second degre, dont une femme a Bali et un homme a Dubai en supercar. **Le quota gratuit Cloudflare Workers AI (~10 000 neurons/jour) a ete epuise par le premier lot de quatre illustrations** de l'entree 114 : le script a bascule sur Pollinations, dernier recours, qui a rendu quatre images **inexploitables** — filigrane « pollinations.ai » incruste malgre la consigne `no watermark`, cadrage sexualise sans rapport avec le brief sur l'image Bali, et qualite tres inferieure (47 a 64 ko contre 176 a 266 ko pour le lot Cloudflare). Elles n'ont pas ete mises en ligne. La page conserve donc les illustrations dessinees de l'entree 114. Deux voies : attendre la remise a zero du quota Cloudflare a minuit UTC, ou passer par fal.ai a environ **0,04 $ par image, soit 0,16 $ pour les quatre** — depense soumise a l'accord de Julien par le verrou `--yes` du script, jamais engagee d'office.
+**Suite :** l'arbitrage de cible de l'entree 114 tient toujours et n'a pas bouge : la page parle a un salarie, le reste du site parle a des employeurs. Le nouveau H1 durcit l'ecart plutot qu'il ne le reduit, « employeur boomer » etant une pique generationnelle assumee par Julien sur une page signee BULGARIA EDUCATION EOOD.
+
+---
+
 ## 2026-09-19 (114) — Une page de vente directe, adaptée d'un live YouTube, entre dans le pied de page
 
 **Type :** nouvelle page + lien de pied de page
